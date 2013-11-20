@@ -199,24 +199,6 @@ void Buffer::setRange(S64 dstOfs, Buffer& src, S64 srcOfs, S64 size, bool async,
 
 //------------------------------------------------------------------------
 
-void Buffer::clearRange(S64 dstOfs, int value, S64 size, bool async, CUstream cudaStream)
-{
-    FW_ASSERT(size >= 0);
-    FW_ASSERT(dstOfs >= 0 && dstOfs <= m_size - size);
-    FW_UNREF(async); // unsupported
-    FW_UNREF(cudaStream); // unsupported
-
-    if (!size)
-        return;
-
-    if (m_owner == Cuda)
-        CudaModule::checkError("cuMemsetD8", cuMemsetD8(getMutableCudaPtr(dstOfs), (U8)value, (U32)size));
-    else
-        memset(getMutablePtr(dstOfs), value, (size_t)size);
-}
-
-//------------------------------------------------------------------------
-
 void Buffer::setOwner(Module module, bool modify, bool async, CUstream cudaStream, S64 validSize)
 {
     FW_ASSERT((module & ~Module_All) == 0);

@@ -452,6 +452,38 @@ String Window::showFileDialog(const String& title, bool save, const String& filt
 
 //------------------------------------------------------------------------
 
+Array<String> Window::showDirLoadDialog(const String& title, const String& initialDir)
+{
+	char rawPath[MAX_PATH];
+    rawPath[0] = '\0';
+	Array<String> names;
+
+	LPITEMIDLIST pidl     = NULL;
+	BROWSEINFO   bi       = { 0 };
+
+	bi.hwndOwner      = m_hwnd;
+	bi.pszDisplayName = rawPath;
+	bi.pidlRoot       = NULL;
+	bi.lpszTitle      = title.getPtr();
+	bi.ulFlags        = BIF_RETURNONLYFSDIRS | BIF_USENEWUI;
+
+	bool old = setDiscardEvents(true);
+	if((pidl = SHBrowseForFolder(&bi)) != NULL)
+	{
+		SHGetPathFromIDList(pidl, rawPath);
+		CoTaskMemFree(pidl);
+
+		names.add(String(rawPath));
+		traverseDirectory(rawPath, names);
+	}
+	setDiscardEvents(old);
+    getGL()->swapBuffers();
+
+	return names;
+}
+
+//------------------------------------------------------------------------
+
 void Window::showModalMessage(const String& msg)
 {
     if (!m_isRealized || !m_isVisible)
@@ -570,6 +602,57 @@ void Window::pollMessages(void)
     }
 
     setDiscardEvents(old);
+}
+
+//------------------------------------------------------------------------
+
+void Window::traverseDirectory(const char *root, Array<String> &names)
+{
+	HANDLE h;
+	BOOL ok;
+	WIN32_FIND_DATA	fd;
+
+	int error;
+	char start[MAX_PATH + 1];
+	char dir[MAX_PATH + 1];
+
+	strcpy_s(start, root);
+	strcat_s(start, "/*");
+
+	for(h = FindFirstFile(start, &fd), ok = 1; h != INVALID_HANDLE_VALUE && ok; ok = FindNextFile(h, &fd))
+	{
+		if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		{
+			strcpy_s(dir, fd.cFileName);
+			if((strcmp(dir,".") != 0) && (strcmp(dir,"..") != 0)) // Recurse into subdirectories 
+			{
+					strcpy_s(start, root);
+					strcat_s(start, "/");
+					strcat_s(start, dir);
+					traverseDirectory(start, names);
+			}
+		}
+		else
+		{
+			String lower = String(fd.cFileName).toLower();
+			if(lower.endsWith(".bin") || lower.endsWith(".obj")) // Find a model file possibly use the supported file description
+			{
+				strcpy_s(start, root);
+				strcat_s(start, "/");
+				strcat_s(start, fd.cFileName);
+				names.add(String(start));
+			}
+		}
+	}
+
+	error = GetLastError();
+	if(error != ERROR_NO_MORE_FILES)
+		failWin32Error("Opening directory");
+
+	if(h != INVALID_HANDLE_VALUE)
+	{
+		ok = FindClose(h);
+	}
 }
 
 //------------------------------------------------------------------------

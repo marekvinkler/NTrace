@@ -380,6 +380,236 @@ void GLContext::fillRect(const Vec4f& pos, const Vec2f& localSize, const Vec2f& 
 
 //------------------------------------------------------------------------
 
+void GLContext::drawBox(const Vec3f& min, const Vec3f& max, U32 abgr)
+{
+	VGVertex vertices[] =
+    {
+		// min x
+		{ Vec4f(min.x, min.y, min.z, 1.0f), 1.0f },
+        { Vec4f(min.x, max.y, min.z, 1.0f), 1.0f },
+        { Vec4f(min.x, max.y, max.z, 1.0f), 1.0f },
+		{ Vec4f(min.x, min.y, max.z, 1.0f), 1.0f },
+		// min y
+		{ Vec4f(min.x, min.y, min.z, 1.0f), 1.0f },
+		{ Vec4f(min.x, min.y, max.z, 1.0f), 1.0f },
+        { Vec4f(max.x, min.y, max.z, 1.0f), 1.0f },
+		{ Vec4f(max.x, min.y, min.z, 1.0f), 1.0f },
+		// min z
+        { Vec4f(min.x, min.y, min.z, 1.0f), 1.0f },
+		{ Vec4f(max.x, min.y, min.z, 1.0f), 1.0f },
+        { Vec4f(max.x, max.y, min.z, 1.0f), 1.0f },
+		{ Vec4f(min.x, max.y, min.z, 1.0f), 1.0f },
+		// max x
+		{ Vec4f(max.x, max.y, max.z, 1.0f), 1.0f },
+		{ Vec4f(max.x, max.y, min.z, 1.0f), 1.0f },
+        { Vec4f(max.x, min.y, min.z, 1.0f), 1.0f },
+		{ Vec4f(max.x, min.y, max.z, 1.0f), 1.0f },
+		// max y
+		{ Vec4f(max.x, max.y, max.z, 1.0f), 1.0f },
+        { Vec4f(min.x, max.y, max.z, 1.0f), 1.0f },
+        { Vec4f(min.x, max.y, min.z, 1.0f), 1.0f },
+		{ Vec4f(max.x, max.y, min.z, 1.0f), 1.0f },
+		// max z
+		{ Vec4f(max.x, max.y, max.z, 1.0f), 1.0f },
+        { Vec4f(max.x, min.y, max.z, 1.0f), 1.0f },
+        { Vec4f(min.x, min.y, max.z, 1.0f), 1.0f },
+		{ Vec4f(min.x, max.y, max.z, 1.0f), 1.0f },
+    };
+    
+	// Convert color.
+
+    Vec4f color = Vec4f::fromABGR(abgr);
+    if (color.w <= 0.0f)
+        return;
+
+    // Create program.
+
+    static const char* progId = "GLContext::drawVG";
+    Program* prog = getProgram(progId);
+    if (!prog)
+    {
+        prog = new Program(
+            FW_GL_SHADER_SOURCE(
+				uniform mat4 view_matrix;
+                uniform vec4 color;
+                attribute vec4 pos;
+                attribute float alpha;
+                varying vec4 shadedColor;
+                void main()
+                {
+                    gl_Position = view_matrix*pos;
+                    shadedColor = vec4(color.rgb, color.a * alpha);
+                }
+            ),
+            FW_GL_SHADER_SOURCE(
+                varying vec4 shadedColor;
+                void main()
+                {
+                    gl_FragColor = shadedColor;
+                }
+            ));
+        setProgram(progId, prog);
+    }
+
+    // Setup state.
+
+    glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT);
+    glEnable(GL_BLEND);
+    glBlendEquation(GL_FUNC_ADD);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    // Draw.
+
+    prog->use();
+	setUniform(prog->getUniformLoc("view_matrix"), m_vgXform);
+    setUniform(prog->getUniformLoc("color"), color);
+    setAttrib(prog->getAttribLoc("pos"), 4, GL_FLOAT, sizeof(VGVertex), &vertices->pos);
+    setAttrib(prog->getAttribLoc("alpha"), 1, GL_FLOAT, sizeof(VGVertex), &vertices->alpha);
+    glDrawArrays(GL_QUADS, 0, FW_ARRAY_SIZE(vertices));
+    resetAttribs();
+
+    // Clean up.
+
+    glPopAttrib();
+    checkErrors();
+}
+
+//------------------------------------------------------------------------
+
+void GLContext::drawBuffer(Buffer& buffer, GLenum mode, int offset, U32 abgr)
+{
+	// Convert color.
+
+    Vec4f color = Vec4f::fromABGR(abgr);
+    if (color.w <= 0.0f)
+        return;
+
+    // Create program.
+
+    static const char* progId = "GLContext::drawLines";
+    Program* prog = getProgram(progId);
+    if (!prog)
+    {
+        prog = new Program(
+            FW_GL_SHADER_SOURCE(
+			    uniform mat4 view_matrix;
+                uniform vec4 color;
+                attribute vec4 pos;
+                varying vec4 shadedColor;
+                void main()
+                {
+                    gl_Position = view_matrix*pos;
+                    shadedColor = color.rgba;
+                }
+            ),
+            FW_GL_SHADER_SOURCE(
+                varying vec4 shadedColor;
+                void main()
+                {
+                    gl_FragColor = shadedColor;
+                }
+            ));
+        setProgram(progId, prog);
+    }
+
+    // Setup state.
+
+    glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT);
+    //glDisable(GL_CULL_FACE); // Original, why is this needed?
+    glEnable(GL_BLEND);
+    glBlendEquation(GL_FUNC_ADD);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    // Draw.
+
+    prog->use();
+	setUniform(prog->getUniformLoc("view_matrix"), m_vgXform);
+    setUniform(prog->getUniformLoc("color"), color);
+	setAttrib(prog->getAttribLoc("pos"), 4, GL_FLOAT, sizeof(Vec4f), buffer, offset);
+	glDrawArrays(mode, 0, (GLsizei)buffer.getSize());
+
+	//Array<Vec4f> colors;
+	//colors.add(Vec4f(1.0f, 0.0f, 0.0f, 0.3f));
+	//colors.add(Vec4f(0.0f, 1.0f, 0.0f, 0.3f));
+	//colors.add(Vec4f(0.0f, 0.0f, 1.0f, 0.3f));
+	////colors.add(Vec4f(0.0f, 1.0f, 1.0f, 0.3f));
+	//colors.add(Vec4f(1.0f, 1.0f, 0.0f, 0.3f));
+	////colors.add(Vec4f(1.0f, 0.0f, 1.0f, 0.3f));
+	//colors.add(Vec4f(1.0f, 1.0f, 1.0f, 0.3f));
+	//int j = 0;
+	//for(int i = 0; i < buffer.getSize(); i+=8*4*4)
+	//{
+	//	setUniform(prog->getUniformLoc("view_matrix"), m_vgXform);
+	//	setUniform(prog->getUniformLoc("color"), colors[j%colors.getSize()]);
+	//	setAttrib(prog->getAttribLoc("pos"), 4, GL_FLOAT, sizeof(Vec4f), buffer, offset);
+	//	glDrawArrays(mode, i, i+8*4*4);
+	//	j++;
+	//}
+    resetAttribs();
+
+    // Clean up.
+
+    glPopAttrib();
+    checkErrors();
+}
+
+//------------------------------------------------------------------------
+
+void GLContext::drawColorBuffer(Buffer& buffer, Buffer& color, GLenum mode, int offset)
+{
+    // Create program.
+
+    static const char* progId = "GLContext::drawColorBuffer";
+    Program* prog = getProgram(progId);
+    if (!prog)
+    {
+        prog = new Program(
+            FW_GL_SHADER_SOURCE(
+			    uniform mat4 view_matrix;
+                attribute vec4 color;
+                attribute vec4 pos;
+                varying vec4 shadedColor;
+                void main()
+                {
+                    gl_Position = view_matrix*pos;
+                    shadedColor = color.rgba;
+                }
+            ),
+            FW_GL_SHADER_SOURCE(
+                varying vec4 shadedColor;
+                void main()
+                {
+                    gl_FragColor = shadedColor;
+                }
+            ));
+        setProgram(progId, prog);
+    }
+
+    // Setup state.
+
+    glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT);
+    glEnable(GL_BLEND);
+    glBlendEquation(GL_FUNC_ADD);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    // Draw.
+
+    prog->use();
+	setUniform(prog->getUniformLoc("view_matrix"), m_vgXform);
+    setAttrib(prog->getAttribLoc("color"), 4, GL_FLOAT, sizeof(Vec4f), color, offset);
+	setAttrib(prog->getAttribLoc("pos"), 4, GL_FLOAT, sizeof(Vec4f), buffer, offset);
+	glDrawArrays(mode, 0, (GLsizei)buffer.getSize());
+
+    resetAttribs();
+
+    // Clean up.
+
+    glPopAttrib();
+    checkErrors();
+}
+
+//------------------------------------------------------------------------
+
 void GLContext::strokeRect(const Vec4f& pos, const Vec2f& localSize, const Vec2f& screenSize, U32 abgr)
 {
     Vec4f v0 = m_vgXform * pos;

@@ -499,3 +499,22 @@ bool FW::parseFloat(const char*& ptr, F32& value)
 }
 
 //------------------------------------------------------------------------
+
+bool FW::parseVec3f(const char*& ptr, Vec3f& value)
+{
+	if(!parseChar(ptr, '('))
+		return false;
+
+	for(int j = 0; j < 3; j++)
+	{
+		if(!parseFloat(ptr, value[j]) || (j < 2 && !parseChar(ptr, ',')))
+			return false;
+	}
+
+	if(!parseChar(ptr, ')'))
+		return false;
+
+	return true;
+}
+
+//------------------------------------------------------------------------

@@ -161,4 +161,24 @@ template <class T> void sort(T* data, int num, SortCompareFunc compareFunc, Sort
     }
 
 //------------------------------------------------------------------------
+
+int  compareU32     (void* data, int idxA, int idxB);
+void swapU32        (void* data, int idxA, int idxB);
+
+int  compareU64     (void* data, int idxA, int idxB);
+void swapU64        (void* data, int idxA, int idxB);
+
+int  compareS32     (void* data, int idxA, int idxB);
+void swapS32        (void* data, int idxA, int idxB);
+
+int  compareS64     (void* data, int idxA, int idxB);
+void swapS64        (void* data, int idxA, int idxB);
+
+int  compareF32     (void* data, int idxA, int idxB);
+void swapF32        (void* data, int idxA, int idxB);
+
+int  compareF64     (void* data, int idxA, int idxB);
+void swapF64        (void* data, int idxA, int idxB);
+
+//------------------------------------------------------------------------
 }

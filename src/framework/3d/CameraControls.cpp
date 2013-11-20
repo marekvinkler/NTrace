@@ -302,7 +302,7 @@ void CameraControls::initDefaults(void)
 
     m_keepAligned       = false;
     m_speed             = 0.2f;
-    m_fov               = 70.0f;
+    m_fov               = 73.7f;
     m_near              = 0.001f;
     m_far               = 3.0f;
 
@@ -391,6 +391,19 @@ void CameraControls::decodeSignature(const String& sig)
     m_near          = znear;
     m_far           = zfar;
     m_keepAligned   = keepAligned;
+}
+
+//------------------------------------------------------------------------
+
+void CameraControls::print(void)
+{
+	printf("position ");
+	m_position.print();
+	printf(" forward ");
+	m_forward.print();
+	printf(" up ");
+	m_up.print();
+	printf(" FOV %.2f , near %.2f , far %.2f\n", m_fov, m_near, m_far);
 }
 
 //------------------------------------------------------------------------

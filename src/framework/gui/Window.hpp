@@ -134,6 +134,7 @@ public:
     String                  showFileDialog      (const String& title, bool save, const String& filters = "", const String& initialDir = "", bool forceInitialDir = false); // filters = "ext:Title,foo;bar:Title"
     String                  showFileLoadDialog  (const String& title, const String& filters = "", const String& initialDir = "", bool forceInitialDir = false) { return showFileDialog(title, false, filters, initialDir, forceInitialDir); }
     String                  showFileSaveDialog  (const String& title, const String& filters = "", const String& initialDir = "", bool forceInitialDir = false) { return showFileDialog(title, true, filters, initialDir, forceInitialDir); }
+	Array<String>		    showDirLoadDialog   (const String& title, const String& initialDir = "");
 
     void                    showModalMessage    (const String& msg);
 
@@ -144,6 +145,8 @@ public:
     static int              getNumOpen          (void)          { return (s_inited) ? s_open->getSize() : 0; }
     static void             realizeAll          (void);
     static void             pollMessages        (void);
+
+	static void 			traverseDirectory   (const char *root, Array<String> &names);
 
 private:
     Event                   createSimpleEvent   (EventType type) { return createGenericEvent(type, "", 0, m_mouseKnown, m_mousePos); }

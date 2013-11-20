@@ -102,6 +102,7 @@ public:
 
     String              encodeSignature     (void) const;
     void                decodeSignature     (const String& sig);
+	void                print               (void);
 
     void                addGUIControls      (void);             // done automatically on Window.addListener(this)
     void                removeGUIControls   (void);

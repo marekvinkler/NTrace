@@ -176,6 +176,9 @@ public:
     void                fillRect        (const Vec2f& pos, const Vec2f& localSize, U32 abgr) { fillRect(Vec4f(pos, 0.0f, 1.0f), localSize, 0.0f, abgr); }
     void                fillRectNS      (const Vec4f& pos, const Vec2f& screenSize, U32 abgr) { fillRect(pos, 0.0f, screenSize, abgr); }
     void                fillRectNS      (const Vec2f& pos, const Vec2f& screenSize, U32 abgr) { fillRect(Vec4f(pos, 0.0f, 1.0f), 0.0f, screenSize, abgr); }
+	void                drawBox         (const Vec3f& min, const Vec3f& max, U32 abgr);
+	void                drawBuffer      (Buffer& buffer, GLenum mode, int offset, U32 abgr);
+	void                drawColorBuffer (Buffer& buffer, Buffer& color, GLenum mode, int offset);
     void                strokeRect      (const Vec4f& pos, const Vec2f& localSize, const Vec2f& screenSize, U32 abgr);
     void                strokeRect      (const Vec2f& pos, const Vec2f& localSize, U32 abgr) { strokeRect(Vec4f(pos, 0.0f, 1.0f), localSize, 0.0f, abgr); }
     void                strokeRectNS    (const Vec4f& pos, const Vec2f& screenSize, U32 abgr) { strokeRect(pos, 0.0f, screenSize, abgr); }

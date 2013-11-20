@@ -90,6 +90,7 @@ public:
     void            setRange            (S64 dstOfs, const void* src, S64 size, bool async = false, CUstream cudaStream = NULL);
     void            setRange            (S64 dstOfs, Buffer& src, S64 srcOfs, S64 size, bool async = false, CUstream cudaStream = NULL);
     void            set                 (const void* ptr)                       { setRange(0, ptr, getSize()); }
+
     void            set                 (const void* ptr, S64 size)             { resizeDiscard(size); setRange(0, ptr, size); }
     void            set                 (Buffer& other)                         { if (&other != this) { resizeDiscard(other.getSize()); setRange(0, other, 0, other.getSize()); } }
     template <class T> void set         (const Array<T>& data)                  { set(data.getPtr(), data.getNumBytes()); }
