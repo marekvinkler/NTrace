@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+This file containse all changes done to NTrace framework, if you changed 
+anything in the project, write it also to this file. Commits without CHANGES
+file will never by Synced. Syntax is written below:
+
+DATE
+- Something that was changed
+- Something changed
+- SOMETHING IMPORTANT HAS BEEN CHANGED
+- FIXME: What has to be fixed
+- BUG: What is considered bug
+
+The order of changes is in descending order, e.g. you should add new change 
+right below the line of beginning of change file.
+-------------------------------------------------------------------------------
+
+1.12.2013
+- Created Changes file
