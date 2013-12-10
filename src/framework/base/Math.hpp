@@ -30,6 +30,7 @@
 
 #include <math.h>
 #include <vector_types.h>
+#include <stdio.h>
 
 namespace FW
 {
@@ -134,6 +135,7 @@ public:
 
 #if !FW_CUDA
                     void            print       (void) const                { const T* tp = getPtr(); for (int i = 0; i < L; i++) printf("%g\n", (F64)tp[i]); }
+					void            sprint      (char* vec, size_t s) const { int ctr = sprintf_s(vec, s, "( "); for (int i = 0; i < L-1; i++) ctr += sprintf_s(vec+ctr, s, "%.2f , ", (F64)get(i)); ctr += sprintf_s(vec+ctr, s, "%.2f )", (F64)get(L-1)); }
 #endif
 
     FW_CUDA_FUNC    bool            isZero      (void) const                { const T* tp = getPtr(); for (int i = 0; i < L; i++) if (tp[i] != (T)0) return false; return true; }

@@ -133,9 +133,9 @@ int main(int argc, char* argv[])
 #if FW_DEBUG
     if (s_enableLeakCheck && _CrtDumpMemoryLeaks())
     {
-        printf("Press any key to continue . . . ");
+        FW::printf("Press any key to continue . . . ");
         _getch();
-        printf("\n");
+        FW::printf("\n");
     }
 #endif
 
