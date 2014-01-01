@@ -13,6 +13,12 @@
     <Filter Include="ray">
       <UniqueIdentifier>{3920db06-697c-4abf-a3ec-ed1c06b94c0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{1dbfffbf-1dfe-4235-a3ae-871e06844711}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kdtree">
+      <UniqueIdentifier>{cee180ec-28e7-42a5-b40b-b70ea5063c24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\rt\bvh\BVH.cpp">
@@ -57,6 +63,21 @@
     </ClCompile>
     <ClCompile Include="src\rt\cuda\CudaRenderer.cpp">
       <Filter>cuda</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rt\tools\VisualizationBVH.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rt\kdtree\FastKDTreeBuilder.cpp">
+      <Filter>kdtree</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rt\kdtree\KDTree.cpp">
+      <Filter>kdtree</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rt\kdtree\KDTreeNode.cpp">
+      <Filter>kdtree</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rt\kdtree\NaiveKDTreeBuilder.cpp">
+      <Filter>kdtree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +135,21 @@
     </ClInclude>
     <ClInclude Include="src\rt\cuda\CudaRenderer.hpp">
       <Filter>cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\tools\VisualizationBVH.hpp">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\kdtree\FastKDTreeBuilder.hpp">
+      <Filter>kdtree</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\kdtree\KDTree.hpp">
+      <Filter>kdtree</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\kdtree\KDTreeNode.hpp">
+      <Filter>kdtree</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\kdtree\NaiveKDTreeBuilder.hpp">
+      <Filter>kdtree</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -240,11 +240,16 @@
     <ClCompile Include="src\rt\cuda\CudaTracer.cpp" />
     <ClCompile Include="src\rt\cuda\Renderer.cpp" />
     <ClCompile Include="src\rt\Environment.cpp" />
+    <ClCompile Include="src\rt\kdtree\FastKDTreeBuilder.cpp" />
+    <ClCompile Include="src\rt\kdtree\KDTree.cpp" />
+    <ClCompile Include="src\rt\kdtree\KDTreeNode.cpp" />
+    <ClCompile Include="src\rt\kdtree\NaiveKDTreeBuilder.cpp" />
     <ClCompile Include="src\rt\ray\PixelTable.cpp" />
     <ClCompile Include="src\rt\ray\RayBuffer.cpp" />
     <ClCompile Include="src\rt\ray\RayGen.cpp" />
     <ClCompile Include="src\rt\App.cpp" />
     <ClCompile Include="src\rt\Scene.cpp" />
+    <ClCompile Include="src\rt\tools\VisualizationBVH.cpp" />
     <ClCompile Include="src\rt\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +265,10 @@
     <ClInclude Include="src\rt\cuda\Renderer.hpp" />
     <ClInclude Include="src\rt\cuda\RendererKernels.hpp" />
     <ClInclude Include="src\rt\Environment.h" />
+    <ClInclude Include="src\rt\kdtree\FastKDTreeBuilder.hpp" />
+    <ClInclude Include="src\rt\kdtree\KDTree.hpp" />
+    <ClInclude Include="src\rt\kdtree\KDTreeNode.hpp" />
+    <ClInclude Include="src\rt\kdtree\NaiveKDTreeBuilder.hpp" />
     <ClInclude Include="src\rt\kernels\CudaTracerKernels.hpp" />
     <ClInclude Include="src\rt\ray\PixelTable.hpp" />
     <ClInclude Include="src\rt\ray\RayBuffer.hpp" />
@@ -268,6 +277,7 @@
     <ClInclude Include="src\rt\ray\RayGenKernels.hpp" />
     <ClInclude Include="src\rt\App.hpp" />
     <ClInclude Include="src\rt\Scene.hpp" />
+    <ClInclude Include="src\rt\tools\VisualizationBVH.hpp" />
     <ClInclude Include="src\rt\Util.hpp" />
   </ItemGroup>
   <ItemGroup>
