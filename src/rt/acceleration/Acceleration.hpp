@@ -1,5 +1,5 @@
 /*
-*  Copyright (c) 2013, Radek Stibora
+*  Copyright (c) 2013, Vilem Otte
 *  All rights reserved.
 *
 *  Redistribution and use in source and binary forms, with or without
@@ -25,67 +25,70 @@
 *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#pragma once
-#include <cstdio>
+#ifndef __ACCELERATION__H__
+#define __ACCELERATION__H__
+
 #include "Scene.hpp"
-#include "KDTreeNode.hpp"
-#include "ray/RayBuffer.hpp"
-#include "acceleration\Acceleration.hpp"
+#include "bvh\Platform.hpp"
 
 namespace FW
 {
-
-class KDTree : public AccelerationStructure
-{
-public:
-	enum BuilderType
+	/**
+	  * Acceleration structure base class
+	  * @name AccelerationStructure
+	  * @desc Base class for creating other acceleration structures. 
+	  **/
+	class AccelerationStructure
 	{
-		SpatialMedian,
-		ObjectMedian,
-		SAH
+	protected:
+		//////////////////////////
+		/** @section Variables **/
+		Scene*				m_scene;		//< Pointer to scene, on which acc. structure is built
+		Platform			m_platform;		//< Platform information
+
+	public:
+		/////////////////////////////
+		/** @section Constructors **/
+
+		/** 
+		  * Default constructor
+		  * @name AccelerationStructure
+		  * @param Scene* - scene on which acc. structure is to be built
+		  * @param const Platform& - const. ref. to platform info
+		  * @return None
+		  **/
+		AccelerationStructure(Scene* scene, const Platform& platform);
+
+		////////////////////////////
+		/** @section Destructors **/
+
+		/**
+		  * Default destructor (virtual)
+		  * @name ~AccelerationStructure
+		  * @param None
+		  * @return None
+		  **/
+		virtual ~AccelerationStructure();
+
+		////////////////////////
+		/** @section Methods **/
+
+		/**
+		  * Getter for scene
+		  * @name getScene
+		  * @param None
+		  * @return Scene*, pointing to scene on which Acc. structure was built
+		  **/
+		Scene*              getScene(void) const				{ return m_scene; }
+
+		/**
+		  * Getter for platform
+		  * @name getPlatform
+		  * @param None
+		  * @return const ref. to platform
+		  **/
+		const Platform&     getPlatform(void) const				{ return m_platform; }
 	};
-
-	struct Stats
-	{
-		Stats()				{ clear(); }
-		void clear()		{ memset(this, 0, sizeof(Stats)); }
-		void print() const  { std::printf("Tree stats: [bfactor=2] %d nodes (%d+%d), ?.2f SAHCost, %.1f children/inner, %.1f tris/leaf, %.1f%% duplicates, %d empty leaves\n",numLeafNodes+numInnerNodes, numLeafNodes,numInnerNodes, 1.f*numChildNodes/max(numInnerNodes,1), 1.f*numTris/max(numLeafNodes,1), 1.f*percentDuplicates, numEmptyLeaves); }
-
-        S32     numInnerNodes;
-        S32     numLeafNodes;
-        S32     numChildNodes;
-        S32     numTris;
-		S32		numEmptyLeaves;
-		F32		percentDuplicates;
-	};
-
-	struct BuildParams
-	{
-		Stats*				stats;
-		bool				enablePrints;
-		//bool				spatialMedian;
-		BuilderType			builder;				
-
-		BuildParams(void)
-		{
-			stats			= nullptr;
-			enablePrints	= true;
-			builder			= SpatialMedian;
-		}
-	};
-
-	KDTree				(Scene* scene, const Platform& platform, const BuildParams& params);
-	~KDTree				(void)						{ if(m_root != nullptr) m_root->deleteSubtree(); }
-
-	KDTreeNode*			getRoot (void) const		{ return m_root; }
-
-	Array<S32>&			getTriIndices (void)		{ return m_triIndices; }
-	const Array<S32>&   getTriIndices (void) const	{ return m_triIndices; }
-
-private:
-	KDTreeNode*			m_root;
-	Array<S32>			m_triIndices;
-};
-
-
 }
+
+#endif

@@ -84,6 +84,10 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.5\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.5\lib\Win32;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <BuildLog>
       <Path>$(IntDir)BuildLog.htm</Path>
@@ -229,6 +233,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\rt\acceleration\Acceleration.cpp" />
     <ClCompile Include="src\rt\bvh\BVH.cpp" />
     <ClCompile Include="src\rt\bvh\BVHNode.cpp" />
     <ClCompile Include="src\rt\bvh\Platform.cpp" />
@@ -253,6 +258,7 @@
     <ClCompile Include="src\rt\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\rt\acceleration\Acceleration.hpp" />
     <ClInclude Include="src\rt\bvh\BVH.hpp" />
     <ClInclude Include="src\rt\bvh\BVHNode.hpp" />
     <ClInclude Include="src\rt\bvh\Platform.hpp" />

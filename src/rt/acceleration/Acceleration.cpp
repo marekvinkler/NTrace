@@ -1,5 +1,5 @@
 /*
-*  Copyright (c) 2013, Radek Stibora
+*  Copyright (c) 2013, Vilem Otte
 *  All rights reserved.
 *
 *  Redistribution and use in source and binary forms, with or without
@@ -25,43 +25,29 @@
 *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "KDTreeNode.hpp"
+#include "Acceleration.hpp"
 
-namespace FW
+using namespace FW;
+
+/**
+* Default constructor
+* @name AccelerationStructure
+* @param Scene* - scene on which acc. structure is to be built
+* @param const Platform& - const. ref. to platform info
+* @return None
+**/
+AccelerationStructure::AccelerationStructure(Scene* scene, const Platform& platform) : m_scene(scene), m_platform(platform)
 {
 
-
-void KDTreeNode::deleteSubtree()
-{
-    for(int i=0;i<getNumChildNodes();i++)
-        getChildNode(i)->deleteSubtree();
-
-    delete this;
 }
 
-
-int KDTreeNode::getSubtreeSize(KDTREE_STAT stat) const
+/**
+* Default destructor (virtual)
+* @name ~AccelerationStructure
+* @param None
+* @return None
+**/
+AccelerationStructure::~AccelerationStructure()
 {
-	int cnt;
-    switch(stat)
-    {
-        default: FW_ASSERT(0);  // unknown mode
-        case KDTREE_STAT_NODE_COUNT:      cnt = 1; break;
-        case KDTREE_STAT_LEAF_COUNT:      cnt = isLeaf() ? 1 : 0; break;
-        case KDTREE_STAT_INNER_COUNT:     cnt = isLeaf() ? 0 : 1; break;
-        case KDTREE_STAT_TRIANGLE_COUNT:  cnt = isLeaf() ? reinterpret_cast<const KDTLeafNode*>(this)->getNumTriangles() : 0; break;
-        case KDTREE_STAT_CHILDNODE_COUNT: cnt = getNumChildNodes(); break;
-		case KDTREE_STAT_EMPTYLEAF_COUNT: cnt = isLeaf() ? ((reinterpret_cast<const KDTLeafNode*>(this)->getNumTriangles() == 0) ? 1 : 0) : 0; break;
-    }
-
-    if(!isLeaf())
-    {
-        for(int i=0;i<getNumChildNodes();i++)
-            cnt += getChildNode(i)->getSubtreeSize(stat);
-    }
-
-    return cnt;
-}
-
 
 }

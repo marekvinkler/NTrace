@@ -29,6 +29,7 @@
 #include "Scene.hpp"
 #include "bvh/BVHNode.hpp"
 #include "ray/RayBuffer.hpp"
+#include "acceleration\Acceleration.hpp"
 
 namespace FW
 {
@@ -46,7 +47,7 @@ struct RayStats
     Platform    platform;           // set by whoever sets the stats
 };
 
-class BVH
+class BVH : public AccelerationStructure
 {
 public:
     struct Stats
@@ -99,8 +100,6 @@ public:
                         BVH                     (Scene* scene, const Platform& platform, const BuildParams& params);
                         ~BVH                    (void)                  { if(m_root) m_root->deleteSubtree(); }
 
-    Scene*              getScene                (void) const            { return m_scene; }
-    const Platform&     getPlatform             (void) const            { return m_platform; }
     BVHNode*            getRoot                 (void) const            { return m_root; }
     void                trace                   (RayBuffer& rays, RayStats* stats = NULL) const;
 
@@ -109,10 +108,7 @@ public:
 
 private:
     void                traceRecursive          (BVHNode* node, Ray& ray, RayResult& result, bool needClosestHit, RayStats* stats) const;
-
-    Scene*              m_scene;
-    Platform            m_platform;
-
+	
     BVHNode*            m_root;
     Array<S32>          m_triIndices;
 };

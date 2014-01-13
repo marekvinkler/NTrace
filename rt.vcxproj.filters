@@ -19,6 +19,9 @@
     <Filter Include="kdtree">
       <UniqueIdentifier>{cee180ec-28e7-42a5-b40b-b70ea5063c24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="acceleration">
+      <UniqueIdentifier>{58d79ef0-d4d8-4ab5-81a4-a966ed420928}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\rt\bvh\BVH.cpp">
@@ -78,6 +81,9 @@
     </ClCompile>
     <ClCompile Include="src\rt\kdtree\NaiveKDTreeBuilder.cpp">
       <Filter>kdtree</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rt\acceleration\Acceleration.cpp">
+      <Filter>acceleration</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="src\rt\kdtree\NaiveKDTreeBuilder.hpp">
       <Filter>kdtree</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\acceleration\Acceleration.hpp">
+      <Filter>acceleration</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
