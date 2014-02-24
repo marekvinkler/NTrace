@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>NTrace: Main Page</title>
+<title>NTrace: Class Members - Variables</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -44,8 +44,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -55,14 +55,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
                onmouseout="return searchBox.OnSearchSelectHide()"
                alt=""/>
           <input type="text" id="MSearchField" value="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)"
-               onblur="searchBox.OnSearchFieldFocus(false)"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
                onkeyup="searchBox.OnSearchFieldChange(event)"/>
           </span><span class="right">
             <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
           </span>
         </div>
       </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li class="current"><a href="functions.html"><span>Class&#160;Members</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li><a href="functions.html"><span>All</span></a></li>
+      <li><a href="functions_func.html"><span>Functions</span></a></li>
+      <li class="current"><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
+      <li><a href="functions_rela.html"><span>Related&#160;Functions</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -72,12 +89,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('index.html','');});
+$(document).ready(function(){initNavTree('functions_vars.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -89,22 +106,62 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
 
-<div class="header">
-  <div class="headertitle">
-<div class="title">NTrace Documentation</div>  </div>
-</div><!--header-->
 <div class="contents">
-    <div class="textblock">
-        <p>
-            NTrace is a system for three dimensional data visualisation using the ray tracing algorithm.
-            This computationaly complex algorithm is accelerated on the parallel graphics hardware enabling interactive performance.
-        </p>
-    </div>
+&#160;<ul>
+<li>builder
+: <a class="el" href="struct_f_w_1_1_k_d_tree_1_1_build_params.html#a4746469f4baead36dbccccea20ea9068">FW::KDTree::BuildParams</a>
+</li>
+<li>enablePrints
+: <a class="el" href="struct_f_w_1_1_k_d_tree_1_1_build_params.html#a434be93fd8fa85a62bceec518b362b14">FW::KDTree::BuildParams</a>
+</li>
+<li>m_axis
+: <a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#af5b037722df727b79edd0dd59e0ead5a">FW::KDTInnerNode</a>
+</li>
+<li>m_children
+: <a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#a78e833d7bdad83de0297e4b9e2f311c3">FW::KDTInnerNode</a>
+</li>
+<li>m_hi
+: <a class="el" href="class_f_w_1_1_k_d_t_leaf_node.html#a2f095412d5c46cf8d161af4a1c014e0e">FW::KDTLeafNode</a>
+</li>
+<li>m_lo
+: <a class="el" href="class_f_w_1_1_k_d_t_leaf_node.html#a1f77cee82b482d272e385cf6fab3c2c8">FW::KDTLeafNode</a>
+</li>
+<li>m_pos
+: <a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#a55bedb4fdf8213190461ca244c83864d">FW::KDTInnerNode</a>
+</li>
+<li>m_scene
+: <a class="el" href="class_f_w_1_1_acceleration_structure.html#a1f4fb8f84130116ac7d6fda7dc115307">FW::AccelerationStructure</a>
+</li>
+<li>numChildNodes
+: <a class="el" href="struct_f_w_1_1_k_d_tree_1_1_stats.html#a07e62c65e15f24273f5b88756df45024">FW::KDTree::Stats</a>
+</li>
+<li>numEmptyLeaves
+: <a class="el" href="struct_f_w_1_1_k_d_tree_1_1_stats.html#ad69fce07937240cb1679b35a1fbade48">FW::KDTree::Stats</a>
+</li>
+<li>numInnerNodes
+: <a class="el" href="struct_f_w_1_1_k_d_tree_1_1_stats.html#a1325fc35f903927d1236f400562142fb">FW::KDTree::Stats</a>
+</li>
+<li>numLeafNodes
+: <a class="el" href="struct_f_w_1_1_k_d_tree_1_1_stats.html#a8600a30b8616b8f75805cccac66cfc5d">FW::KDTree::Stats</a>
+</li>
+<li>numTris
+: <a class="el" href="struct_f_w_1_1_k_d_tree_1_1_stats.html#a00e1df2276edcb72b0048ee386f75791">FW::KDTree::Stats</a>
+</li>
+<li>percentDuplicates
+: <a class="el" href="struct_f_w_1_1_k_d_tree_1_1_stats.html#ab40aaca45cb0e98991af33193c156dfa">FW::KDTree::Stats</a>
+</li>
+<li>stats
+: <a class="el" href="struct_f_w_1_1_k_d_tree_1_1_build_params.html#a4ef8e10388c7e10ee21d33fc0e504976">FW::KDTree::BuildParams</a>
+</li>
+<li>type
+: <a class="el" href="class_option.html#a397841eea188c0d17d72c19429791ad3">Option</a>
+</li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

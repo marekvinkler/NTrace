@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>NTrace: Main Page</title>
+<title>NTrace: FW::RayStats Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -44,8 +44,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -55,14 +55,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
                onmouseout="return searchBox.OnSearchSelectHide()"
                alt=""/>
           <input type="text" id="MSearchField" value="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)"
-               onblur="searchBox.OnSearchFieldFocus(false)"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
                onkeyup="searchBox.OnSearchFieldChange(event)"/>
           </span><span class="right">
             <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
           </span>
         </div>
       </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -72,12 +80,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('index.html','');});
+$(document).ready(function(){initNavTree('struct_f_w_1_1_ray_stats.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -89,28 +97,58 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="struct_f_w_1_1_ray_stats-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">NTrace Documentation</div>  </div>
+<div class="title">FW::RayStats Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-    <div class="textblock">
-        <p>
-            NTrace is a system for three dimensional data visualisation using the ray tracing algorithm.
-            This computationaly complex algorithm is accelerated on the parallel graphics hardware enabling interactive performance.
-        </p>
-    </div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:af09ab3ae10cce686a0067647ceb34fee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af09ab3ae10cce686a0067647ceb34fee"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
+<tr class="separator:af09ab3ae10cce686a0067647ceb34fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66a032c7e926730834c72879cd56db10"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66a032c7e926730834c72879cd56db10"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> () const </td></tr>
+<tr class="separator:a66a032c7e926730834c72879cd56db10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:abaf43b8cf64ac17e141fdeac59316cee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abaf43b8cf64ac17e141fdeac59316cee"></a>
+S32&#160;</td><td class="memItemRight" valign="bottom"><b>numRays</b></td></tr>
+<tr class="separator:abaf43b8cf64ac17e141fdeac59316cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79c5b2969bc4f45153a6e45a63d93b7c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79c5b2969bc4f45153a6e45a63d93b7c"></a>
+S32&#160;</td><td class="memItemRight" valign="bottom"><b>numTriangleTests</b></td></tr>
+<tr class="separator:a79c5b2969bc4f45153a6e45a63d93b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9342eec4c7c957b0ffae22e5a37409ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9342eec4c7c957b0ffae22e5a37409ad"></a>
+S32&#160;</td><td class="memItemRight" valign="bottom"><b>numNodeTests</b></td></tr>
+<tr class="separator:a9342eec4c7c957b0ffae22e5a37409ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66dae217c2c3dc4bb6cd7832129e2a02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66dae217c2c3dc4bb6cd7832129e2a02"></a>
+S32&#160;</td><td class="memItemRight" valign="bottom"><b>numTreelets</b></td></tr>
+<tr class="separator:a66dae217c2c3dc4bb6cd7832129e2a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7569c8973fd9b95e2002c732f0cf4bcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7569c8973fd9b95e2002c732f0cf4bcc"></a>
+<a class="el" href="class_f_w_1_1_platform.html">Platform</a>&#160;</td><td class="memItemRight" valign="bottom"><b>platform</b></td></tr>
+<tr class="separator:a7569c8973fd9b95e2002c732f0cf4bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/rt/bvh/<a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a></li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:39 for NTrace by
+    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="struct_f_w_1_1_ray_stats.html">RayStats</a></li>
+    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

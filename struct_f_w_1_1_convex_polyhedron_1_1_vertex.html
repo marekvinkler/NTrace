@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>NTrace: Main Page</title>
+<title>NTrace: FW::ConvexPolyhedron::Vertex Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -44,8 +44,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -55,14 +55,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
                onmouseout="return searchBox.OnSearchSelectHide()"
                alt=""/>
           <input type="text" id="MSearchField" value="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)"
-               onblur="searchBox.OnSearchFieldFocus(false)"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
                onkeyup="searchBox.OnSearchFieldChange(event)"/>
           </span><span class="right">
             <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
           </span>
         </div>
       </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -72,12 +80,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;"
+  <div id="splitbar" style="-moz-user-select:none;" 
        class="ui-resizable-handle">
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('index.html','');});
+$(document).ready(function(){initNavTree('struct_f_w_1_1_convex_polyhedron_1_1_vertex.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -89,28 +97,46 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0"
+<iframe src="javascript:void(0)" frameborder="0" 
         name="MSearchResults" id="MSearchResults">
 </iframe>
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="struct_f_w_1_1_convex_polyhedron_1_1_vertex-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">NTrace Documentation</div>  </div>
+<div class="title">FW::ConvexPolyhedron::Vertex Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-    <div class="textblock">
-        <p>
-            NTrace is a system for three dimensional data visualisation using the ray tracing algorithm.
-            This computationaly complex algorithm is accelerated on the parallel graphics hardware enabling interactive performance.
-        </p>
-    </div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a52fa3b1e1a052f8c435dde9d6ec0e251"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52fa3b1e1a052f8c435dde9d6ec0e251"></a>
+<a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pos</b></td></tr>
+<tr class="separator:a52fa3b1e1a052f8c435dde9d6ec0e251"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1d11c739211bdd49041903c5d558f7a"><td class="memItemLeft" ><a class="anchor" id="ab1d11c739211bdd49041903c5d558f7a"></a>
+union {</td></tr>
+<tr class="memitem:ad9be3175c1250adf2de89f88445cd87a"><td class="memItemLeft" ><a class="anchor" id="a6205476091d29732316ded1b1b473480"></a>
+&#160;&#160;&#160;F32&#160;&#160;&#160;<b>orient</b></td></tr>
+<tr class="separator:ad9be3175c1250adf2de89f88445cd87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76415893cdbbedc5d2affc70dc0eeba6"><td class="memItemLeft" ><a class="anchor" id="a31252844793b4354699859f49e7a1b55"></a>
+&#160;&#160;&#160;S32&#160;&#160;&#160;<b>remap</b></td></tr>
+<tr class="separator:a76415893cdbbedc5d2affc70dc0eeba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1d11c739211bdd49041903c5d558f7a"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><b>aux</b></td></tr>
+<tr class="separator:ab1d11c739211bdd49041903c5d558f7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/framework/3d/<a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a></li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:39 for NTrace by
+    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_convex_polyhedron_1_1_vertex.html">Vertex</a></li>
+    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
