@@ -30,7 +30,6 @@
 #include "io/Stream.hpp"
 #include "bvh/BVH.hpp"
 #include "kernels/CudaTracerKernels.hpp"
-#include "gpu/CudaModule.hpp"
 
 namespace FW
 {
@@ -90,7 +89,6 @@ public:
 
 public:
     explicit    CudaBVH             (const BVH& bvh, BVHLayout layout);
-	explicit    CudaBVH             (BVHLayout layout) : m_layout(layout) { ; }
                 CudaBVH             (CudaBVH& other)        { operator=(other); }
     explicit    CudaBVH             (InputStream& in);
                 ~CudaBVH            (void);

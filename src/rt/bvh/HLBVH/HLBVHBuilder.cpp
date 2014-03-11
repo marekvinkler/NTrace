@@ -78,14 +78,14 @@ void HLBVHBuilder::calcMortonAndSort(Buffer &triMorton, Buffer &triIdx)
 	//const U32 k2 = pow(2,n);
 	Vec3f step = (sceneMax - sceneMin) / k2;
 		
-	module->setParami(kernelMorton.getHandle(), 0, triCnt);
-	module->setParamf(kernelMorton.getHandle(), 4, sceneMin.x);
-	module->setParamf(kernelMorton.getHandle(), 8, sceneMin.y);
-	module->setParamf(kernelMorton.getHandle(), 12, sceneMin.z);
-	module->setParamf(kernelMorton.getHandle(), 16, step.x);
-	module->setParamf(kernelMorton.getHandle(), 20, step.y);
-	module->setParamf(kernelMorton.getHandle(), 24, step.z);
-	F32 cudaTime = kernelMorton.launchTimed(Vec2i(BLOCK_SIZE,1), Vec2i((triCnt-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
+	module->setParami(kernelMorton, 0, triCnt);
+	module->setParamf(kernelMorton, 4, sceneMin.x);
+	module->setParamf(kernelMorton, 8, sceneMin.y);
+	module->setParamf(kernelMorton, 12, sceneMin.z);
+	module->setParamf(kernelMorton, 16, step.x);
+	module->setParamf(kernelMorton, 20, step.y);
+	module->setParamf(kernelMorton, 24, step.z);
+	F32 cudaTime = module->launchKernelTimed(kernelMorton, Vec2i(BLOCK_SIZE,1), Vec2i((triCnt-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
 	cudaTotalTime += cudaTime;
 #ifndef BENCHMARK
 	printf("? Morton codes: %f [%f]\n", cudaTime, cudaTotalTime);
@@ -134,12 +134,12 @@ void HLBVHBuilder::createClustersC(Buffer &triMorton, S32 d, Buffer &clusters)
 #if CLUSTER_AABB == 3
 	CudaKernel kernelInitBins = module->getKernel("initClusterAABB");
 
-	module->setParami(kernelInitBins.getHandle(), 0, cluster_cnt);
-	cudaTime = kernelInitBins.launchTimed(Vec2i(BLOCK_SIZE,1), Vec2i((cluster_cnt-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
+	module->setParami(kernelInitBins, 0, cluster_cnt);
+	cudaTime = module->launchKernelTimed(kernelInitBins, Vec2i(BLOCK_SIZE,1), Vec2i((cluster_cnt-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
 #endif
 	
-	module->setParami(kernelClusterAABB.getHandle(), 0, cluster_cnt);
-	module->setParami(kernelClusterAABB.getHandle(), sizeof(S32), triCnt);
+	module->setParami(kernelClusterAABB, 0, cluster_cnt);
+	module->setParami(kernelClusterAABB, sizeof(S32), triCnt);
 #if CLUSTER_AABB == 0
 	cudaTime = module->launchKernelTimed(kernelClusterAABB, Vec2i(BLOCK_SIZE,1), Vec2i((cluster_cnt-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
 #elif CLUSTER_AABB == 1
@@ -148,7 +148,7 @@ void HLBVHBuilder::createClustersC(Buffer &triMorton, S32 d, Buffer &clusters)
 #elif CLUSTER_AABB == 2
 	cudaTime = module->launchKernelTimed(kernelClusterAABB, Vec2i(BLOCK_SIZE,1), Vec2i(cluster_cnt, 1));
 #elif CLUSTER_AABB == 3
-	cudaTime += kernelClusterAABB.launchTimed(Vec2i(BLOCK_SIZE,1), Vec2i(NUM_BLOCKS, 1));
+	cudaTime += module->launchKernelTimed(kernelClusterAABB, Vec2i(BLOCK_SIZE,1), Vec2i(NUM_BLOCKS, 1));
 #endif
 	cudaTotalTime += cudaTime;
 #ifndef BENCHMARK
@@ -264,26 +264,26 @@ void HLBVHBuilder::buildTopLevel(Buffer *ooq, U32 &nodeWritten, U32 &nodeCreated
 		*(CUdeviceptr*)module->getGlobal("g_qsoPlane").getMutablePtr() = qso_plane->getMutableCudaPtr();
 		*(CUdeviceptr*)module->getGlobal("g_qsoChildId").getMutablePtr() = qso_child->getMutableCudaPtr();
 
-		module->setParami(kernelSAHInitBins.getHandle(), 0, sahCreated*BIN_CNT*3);
-		cudaTime += kernelSAHInitBins.launchTimed(Vec2i(BLOCK_SIZE,1), Vec2i((sahCreated*BIN_CNT*3-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
+		module->setParami(kernelSAHInitBins, 0, sahCreated*BIN_CNT*3);
+		cudaTime += module->launchKernelTimed(kernelSAHInitBins, Vec2i(BLOCK_SIZE,1), Vec2i((sahCreated*BIN_CNT*3-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
 		
 		// fill bins
-		module->setParami(kernelSAHFillBins.getHandle(), 0, cluster_cnt);
-		cudaTime += kernelSAHFillBins.launchTimed(Vec2i(BLOCK_SIZE,1), Vec2i((cluster_cnt-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
+		module->setParami(kernelSAHFillBins, 0, cluster_cnt);
+		cudaTime += module->launchKernelTimed(kernelSAHFillBins, Vec2i(BLOCK_SIZE,1), Vec2i((cluster_cnt-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
 		//cuCtxSynchronize(); // Flushes printfs
 		//exit(0);
 		
 		// find SAH split
 		module->getGlobal("g_sahCreated").clear();
 
-		module->setParami(kernelSAHSplit.getHandle(), 0, sahCreated);
-		module->setParami(kernelSAHSplit.getHandle(), 4, sahWritten);
-		cudaTime += kernelSAHSplit.launchTimed(Vec2i(BLOCK_SIZE,1), Vec2i((sahCreated-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
+		module->setParami(kernelSAHSplit, 0, sahCreated);
+		module->setParami(kernelSAHSplit, 4, sahWritten);
+		cudaTime += module->launchKernelTimed(kernelSAHSplit, Vec2i(BLOCK_SIZE,1), Vec2i((sahCreated-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
 				
 		// cluster distribution		
-		module->setParami(kernelSAHDistribute.getHandle(), 0, cluster_cnt);
-		module->setParami(kernelSAHDistribute.getHandle(), 4, sahWritten);
-		cudaTime += kernelSAHDistribute.launchTimed(Vec2i(BLOCK_SIZE,1), Vec2i((cluster_cnt-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
+		module->setParami(kernelSAHDistribute, 0, cluster_cnt);
+		module->setParami(kernelSAHDistribute, 4, sahWritten);
+		cudaTime += module->launchKernelTimed(kernelSAHDistribute, Vec2i(BLOCK_SIZE,1), Vec2i((cluster_cnt-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
 		
 		sahTerminated = *(U32*)module->getGlobal("g_oofs").getPtr(); // terminated total
 		sahCreated = *(U32*)module->getGlobal("g_sahCreated").getPtr();  // created + terminated - leafs
@@ -349,10 +349,10 @@ void HLBVHBuilder::buildBottomLevel(Buffer *q_in, Buffer *q_out, U32 &nodeWritte
 
 		Vec2i blockSize(BLOCK_SIZE, 1);
 		Vec2i gridSize((nodeCreated - 1 + BLOCK_SIZE)/BLOCK_SIZE, 1);
-		module->setParami(kernel.getHandle(), 0, n_bits - (level+1 + bit_ofs));
-		module->setParami(kernel.getHandle(), 4, nodeCreated);
-		module->setParami(kernel.getHandle(), 8, nodeWritten);
-		cudaTime += kernel.launchTimed(blockSize, gridSize);
+		module->setParami(kernel, 0, n_bits - (level+1 + bit_ofs));
+		module->setParami(kernel, 4, nodeCreated);
+		module->setParami(kernel, 8, nodeWritten);
+		cudaTime += module->launchKernelTimed(kernel, blockSize, gridSize);
 		
 		nodeCreated = *(U32*)(module->getGlobal("g_outQueuePtr").getPtr(0));
 		lvlNodes.add(nodeCreated);
@@ -435,10 +435,10 @@ void HLBVHBuilder::calcAABB(U32 nodeWritten)
 		Vec2i blockSize(BLOCK_SIZE, 1);
 		Vec2i gridSize((lvlNodes[lvl] - 1 + BLOCK_SIZE)/BLOCK_SIZE, 1);		
 		
-		module->setParami(kernelAABB.getHandle(), 0, nodeWritten);
-		module->setParami(kernelAABB.getHandle(), 4, lvlNodes[lvl]);
+		module->setParami(kernelAABB, 0, nodeWritten);
+		module->setParami(kernelAABB, 4, lvlNodes[lvl]);
 		//printf("IN: %d %d\n", nodeWritten, lvlNodes[lvl]);
-		cudaTime += kernelAABB.launchTimed(blockSize, gridSize);		
+		cudaTime += module->launchKernelTimed(kernelAABB, blockSize, gridSize);		
 		//module->launchKernel(kernelAABB, blockSize, gridSize);
 		
 		//printf("Level %d: time %f [nodes %d - %d] start %d, cnt %d", lvl, cudaTime, nodeWritten, nodeWritten+lvlNodes[lvl], nodeWritten, lvlNodes[lvl]);
@@ -498,8 +498,8 @@ void HLBVHBuilder::buildLBVH(void)
 	triCnt = m_scene->getNumTriangles();
 
 	// upload scene triangles and vertices
-	*(CUdeviceptr*)module->getGlobal("g_tris").getMutablePtr() = m_scene->getTriVtxIndexBuffer().getCudaPtr();
-	*(CUdeviceptr*)module->getGlobal("g_verts").getMutablePtr() = m_scene->getVtxPosBuffer().getCudaPtr();
+	*(CUdeviceptr*)module->getGlobal("g_tris").getMutablePtr() = m_scene->getTriangleBuffer().getCudaPtr();
+	*(CUdeviceptr*)module->getGlobal("g_verts").getMutablePtr() = m_scene->getVertexBuffer().getCudaPtr();
 #ifndef BENCHMARK
 	printf("! Upload tris and verts: %f [total %f]\n", m_progressTimer.end(), m_progressTimer.getTotal());
 #endif
@@ -525,8 +525,8 @@ void HLBVHBuilder::buildLBVH(void)
 	inWoop.resizeDiscard(triCnt*3*sizeof(Vec4i));
 	*(CUdeviceptr*)module->getGlobal("g_inWoopMem").getMutablePtr() = inWoop.getMutableCudaPtr();
 	
-	module->setParami(kernelWoop.getHandle(), 0, triCnt);
-	cudaTime = kernelWoop.launchTimed(Vec2i(BLOCK_SIZE,1), Vec2i((triCnt-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
+	module->setParami(kernelWoop, 0, triCnt);
+	cudaTime = module->launchKernelTimed(kernelWoop, Vec2i(BLOCK_SIZE,1), Vec2i((triCnt-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
 	cudaTotalTime += cudaTime;
 #ifndef BENCHMARK
 	printf("? Woop data: %f [%f]\n", cudaTime, cudaTotalTime);
@@ -647,8 +647,8 @@ void HLBVHBuilder::buildHLBVH(void)
 	triCnt = m_scene->getNumTriangles();
 
 	// upload scene triangles and vertices
-	*(CUdeviceptr*)module->getGlobal("g_tris").getMutablePtr() = m_scene->getTriVtxIndexBuffer().getCudaPtr();
-	*(CUdeviceptr*)module->getGlobal("g_verts").getMutablePtr() = m_scene->getVtxPosBuffer().getCudaPtr();
+	*(CUdeviceptr*)module->getGlobal("g_tris").getMutablePtr() = m_scene->getTriangleBuffer().getCudaPtr();
+	*(CUdeviceptr*)module->getGlobal("g_verts").getMutablePtr() = m_scene->getVertexBuffer().getCudaPtr();
 #ifndef BENCHMARK
 	printf("! Upload tris and verts: %f [total %f]\n", m_progressTimer.end(), m_progressTimer.getTotal());
 #endif
@@ -682,8 +682,8 @@ void HLBVHBuilder::buildHLBVH(void)
 	inWoop.resizeDiscard(triCnt*3*sizeof(Vec4i));
 	*(CUdeviceptr*)module->getGlobal("g_inWoopMem").getMutablePtr() = inWoop.getMutableCudaPtr();
 	
-	module->setParami(kernelWoop.getHandle(), 0, triCnt);
-	cudaTime = kernelWoop.launchTimed(Vec2i(BLOCK_SIZE,1), Vec2i((triCnt-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
+	module->setParami(kernelWoop, 0, triCnt);
+	cudaTime = module->launchKernelTimed(kernelWoop, Vec2i(BLOCK_SIZE,1), Vec2i((triCnt-1+BLOCK_SIZE)/BLOCK_SIZE, 1));
 	cudaTotalTime += cudaTime;
 #ifndef BENCHMARK
 	printf("? Woop data: %f [%f]\n", cudaTime, cudaTotalTime);
