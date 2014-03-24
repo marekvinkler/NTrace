@@ -35,9 +35,15 @@
 namespace FW
 {
 
-class KDTree : public AccelerationStructure
+/**
+ * \brief K-d tree acceleration structure class.
+ */
+class KDTree
 {
 public:
+	/**
+	 * \brief Supported k-d tree builder types.
+	 */
 	enum BuilderType
 	{
 		SpatialMedian,
@@ -45,46 +51,103 @@ public:
 		SAH
 	};
 
+	/**
+	 * \brief Structure holding statistics about k-d tree.
+	 */
 	struct Stats
 	{
+		/**
+		 * \brief Constructor.
+		 */
 		Stats()				{ clear(); }
+
+		/**
+		 * \brief Resets data to default values.
+		 */
 		void clear()		{ memset(this, 0, sizeof(Stats)); }
+
+		/**
+		 * \brief Prints statistics to stdout.
+		 */
 		void print() const  { std::printf("Tree stats: [bfactor=2] %d nodes (%d+%d), ?.2f SAHCost, %.1f children/inner, %.1f tris/leaf, %.1f%% duplicates, %d empty leaves\n",numLeafNodes+numInnerNodes, numLeafNodes,numInnerNodes, 1.f*numChildNodes/max(numInnerNodes,1), 1.f*numTris/max(numLeafNodes,1), 1.f*percentDuplicates, numEmptyLeaves); }
 
-        S32     numInnerNodes;
-        S32     numLeafNodes;
-        S32     numChildNodes;
-        S32     numTris;
-		S32		numEmptyLeaves;
-		F32		percentDuplicates;
+        S32     numInnerNodes;		//!< Number of inner nodes.
+        S32     numLeafNodes;		//!< Number of leaf nodes.
+        S32     numChildNodes;		//!< Number of child nodes
+        S32     numTris;			//!< Triangle count of the source scene.
+		S32		numEmptyLeaves;		//!< Number of empty leaves.
+		F32		percentDuplicates;	//!< Percentage ratio of duplicated references to initial number of references (which is same as triangle count).
 	};
 
+	/**
+	 * \brief Strucure holding build parameters.
+	 */
 	struct BuildParams
 	{
-		Stats*				stats;
-		bool				enablePrints;
-		//bool				spatialMedian;
-		BuilderType			builder;				
-
+		/**
+		 * \brief Constructor.
+		 */
 		BuildParams(void)
 		{
 			stats			= nullptr;
 			enablePrints	= true;
 			builder			= SpatialMedian;
 		}
+
+		Stats*				stats;			//!< Statistics collected during build phase. Set to NULL if no stats should be collected.
+		bool				enablePrints;	//!< Flag whether to print information during build phase.
+		BuilderType			builder;		//!< Defines which builder type will be used to build the k-d tree.
 	};
 
+	/**
+	 * \brief Constructor.
+	 * \param[in] scene		Source scene.
+	 * \param[in] platform	Platform settings.
+	 * \param[in] params	Build parameters.
+	 */
 	KDTree				(Scene* scene, const Platform& platform, const BuildParams& params);
+
+	/**
+	 * \brief Destructor.
+	 */
 	~KDTree				(void)						{ if(m_root != nullptr) m_root->deleteSubtree(); }
 
+	/**
+	 * \brief Gets source scene of the k-d tree.
+	 * \return Source scene.
+	 */
+	Scene*				getScene (void) const		{ return m_scene; }
+
+	/**
+	 * \brief Gets platform settings of the k-d tree.
+	 * \brief Platform settings.
+	 */
+	const Platform&		getPlatform (void) const	{ return m_platform; }
+
+	/**
+	 * \brief Gets root node of the k-d tree.
+	 * \return K-d tree's root node.
+	 */
 	KDTreeNode*			getRoot (void) const		{ return m_root; }
 
+	/**
+	 *  \brief Returns an array of triangle indices to which leaf nodes are pointig. These indices point to scene's triangle array.
+	 *  \return Array of triangle indices.
+	 */
 	Array<S32>&			getTriIndices (void)		{ return m_triIndices; }
+
+	/**
+	 *  \brief Returns an array of triangle indices reffered to by the leaf nodes. These indices point to the scene's triangle array.
+	 *  \return Array of triangle indices.
+	 */
 	const Array<S32>&   getTriIndices (void) const	{ return m_triIndices; }
 
 private:
-	KDTreeNode*			m_root;
-	Array<S32>			m_triIndices;
+	Scene*				m_scene;		//!< Source scene.
+	Platform			m_platform;		//!< Platform settings.
+
+	KDTreeNode*			m_root;			//!< Root node.
+	Array<S32>			m_triIndices;	//!< Indices pointing to the scene's triangle array.
 };
 
 

@@ -32,7 +32,7 @@
 namespace FW
 {
 
-KDTree::KDTree(Scene* scene, const Platform& platform, const BuildParams& params) : AccelerationStructure(scene, platform)
+KDTree::KDTree(Scene* scene, const Platform& platform, const BuildParams& params) : m_scene(scene), m_platform(platform)
 {
 	S32 numDuplicates = 0;
 

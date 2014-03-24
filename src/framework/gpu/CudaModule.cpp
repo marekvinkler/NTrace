@@ -87,6 +87,33 @@ CudaKernel CudaModule::getKernel(const String& name)
 
 //------------------------------------------------------------------------
 
+int CudaModule::setParami(CUfunction kernel, int offset, S32 value)
+{
+    if (kernel)
+        checkError("cuParamSeti", cuParamSeti(kernel, offset, value));
+    return sizeof(S32);
+}
+
+//------------------------------------------------------------------------
+
+int CudaModule::setParamf(CUfunction kernel, int offset, F32 value)
+{
+    if (kernel)
+        checkError("cuParamSetf", cuParamSetf(kernel, offset, value));
+    return sizeof(F32);
+}
+
+//------------------------------------------------------------------------
+
+int CudaModule::setParamPtr(CUfunction kernel, int offset, CUdeviceptr value)
+{
+    if (kernel)
+        checkError("cuParamSetv", cuParamSetv(kernel, offset, &value, sizeof(CUdeviceptr)));
+    return sizeof(CUdeviceptr);
+}
+
+//------------------------------------------------------------------------
+
 Buffer& CudaModule::getGlobal(const String& name)
 {
     S32* found = m_globalHash.search(name);

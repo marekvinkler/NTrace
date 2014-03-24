@@ -38,6 +38,13 @@ enum
     EntrypointSentinel  = 0x76543210,   // Bottom-most stack entry, indicating the end of traversal.
 };
 
+// Macros for kd-tree build and traversal
+#define KDTREE_MASK 0xF0000000 // Binary flag mask
+#define KDTREE_UNMASK 0x0FFFFFFF // Mask for removing the flags
+#define KDTREE_LEAF 0xC0000000 // Leaf binary flag
+#define KDTREE_EMPTYLEAF 0x80000000 // Leaf binary flag
+#define KDTREE_DIMPOS 28
+
 //------------------------------------------------------------------------
 // BVH memory layout.
 //------------------------------------------------------------------------
@@ -71,6 +78,29 @@ struct KernelConfig
 // Function signature for trace().
 //------------------------------------------------------------------------
 
+#define KDTREE
+#ifdef KDTREE
+
+#define TRACE_FUNC \
+    extern "C" __global__ void trace( \
+        int             numRays,        /* Total number of rays in the batch. */ \
+        bool            anyHit,         /* False if rays need to find the closest hit. */ \
+		float*			bmin,	\
+		float*			bmax,	\
+		float			delta,	\
+        float4*         rays,           /* Ray input: float3 origin, float tmin, float3 direction, float tmax. */ \
+        int4*           results,        /* Ray output: int triangleID, float hitT, int2 padding. */ \
+        float4*         nodesA,         /* SOA: bytes 0-15 of each node, AOS/Compact: 64 bytes per node. */ \
+        float4*         nodesB,         /* SOA: bytes 16-31 of each node, AOS/Compact: unused. */ \
+        float4*         nodesC,         /* SOA: bytes 32-47 of each node, AOS/Compact: unused. */ \
+        float4*         nodesD,         /* SOA: bytes 48-63 of each node, AOS/Compact: unused. */ \
+        float4*         trisA,          /* SOA: bytes 0-15 of each triangle, AOS: 64 bytes per triangle, Compact: 48 bytes per triangle. */ \
+        float4*         trisB,          /* SOA: bytes 16-31 of each triangle, AOS/Compact: unused. */ \
+        float4*         trisC,          /* SOA: bytes 32-47 of each triangle, AOS/Compact: unused. */ \
+        int*            triIndices)     /* Triangle index remapping table. */
+
+#else
+
 #define TRACE_FUNC \
     extern "C" __global__ void trace( \
         int             numRays,        /* Total number of rays in the batch. */ \
@@ -85,6 +115,8 @@ struct KernelConfig
         float4*         trisB,          /* SOA: bytes 16-31 of each triangle, AOS/Compact: unused. */ \
         float4*         trisC,          /* SOA: bytes 32-47 of each triangle, AOS/Compact: unused. */ \
         int*            triIndices)     /* Triangle index remapping table. */
+
+#endif
 
 //------------------------------------------------------------------------
 // Temporary data stored in shared memory to reduce register pressure.

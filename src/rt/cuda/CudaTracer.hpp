@@ -29,12 +29,13 @@
 #include "gpu/CudaCompiler.hpp"
 #include "cuda/CudaBVH.hpp"
 #include "ray/RayBuffer.hpp"
+#include "cuda/CudaVirtualTracer.hpp"
 
 namespace FW
 {
 //------------------------------------------------------------------------
 
-class CudaTracer
+class CudaTracer : public CudaVirtualTracer
 {
 public:
                         CudaTracer              (void);
@@ -43,7 +44,7 @@ public:
     void                setMessageWindow        (Window* window)        { m_compiler.setMessageWindow(window); }
     void                setKernel               (const String& kernelName);
     BVHLayout           getDesiredBVHLayout     (void) const            { return (BVHLayout)m_kernelConfig.bvhLayout; }
-    void                setBVH                  (CudaBVH* bvh)          { m_bvh = bvh; }
+    void                setBVH                  (CudaAS* bvh)          { m_bvh = (CudaBVH*)bvh; }
 
     F32                 traceBatch              (RayBuffer& rays); // returns launch time in seconds
 

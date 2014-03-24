@@ -60,7 +60,7 @@ KDTreeNode* NaiveKDTreeBuilder::run(void)
     }	
 
 	m_progressTimer.start();
-	KDTreeNode* root = buildNode(rootSpec, 0, 0, 0.f, 1.f);
+	KDTreeNode* root = buildNode(rootSpec, 0, 0.f, 1.f);
 	m_kdtree.getTriIndices().compact();
 
     if (m_params.enablePrints)
@@ -70,7 +70,7 @@ KDTreeNode* NaiveKDTreeBuilder::run(void)
 }
 
 
-KDTreeNode* NaiveKDTreeBuilder::buildNode(NodeSpec spec, int level, S32 currentAxis, F32 progressStart, F32 progressEnd)
+KDTreeNode* NaiveKDTreeBuilder::buildNode(NodeSpec spec, int level, F32 progressStart, F32 progressEnd)
 {
 	if (m_params.enablePrints && m_progressTimer.getElapsed() >= 1.0f)
     {
@@ -83,12 +83,12 @@ KDTreeNode* NaiveKDTreeBuilder::buildNode(NodeSpec spec, int level, S32 currentA
 
 	NodeSpec left, right;
 
-	Split split = findMedianSplit(spec, currentAxis);
-	performMedianSplit(left, right, spec, split);
+	Split split = findSplit(spec, level);
+	performSplit(left, right, spec, split);
 
 	F32 progressMid = lerp(progressStart, progressEnd, (F32)right.numRef / (F32)(left.numRef + right.numRef));
-	KDTreeNode* rightNode = buildNode(right, level + 1, nextCoordinate(currentAxis), progressStart, progressMid);
-	KDTreeNode* leftNode = buildNode(left, level + 1, nextCoordinate(currentAxis), progressMid, progressEnd);
+	KDTreeNode* rightNode = buildNode(right, level + 1, progressStart, progressMid);
+	KDTreeNode* leftNode = buildNode(left, level + 1, progressMid, progressEnd);
 	return new KDTInnerNode(split.pos, split.dim, leftNode, rightNode);
 }
 
@@ -102,11 +102,12 @@ KDTreeNode*	NaiveKDTreeBuilder::createLeaf(const NodeSpec& spec)
 }
 
 
-NaiveKDTreeBuilder::Split NaiveKDTreeBuilder::findMedianSplit (const NodeSpec& spec, S32 dim)
+NaiveKDTreeBuilder::Split NaiveKDTreeBuilder::findSplit (const NodeSpec& spec, S32 level)
 {
 	Array<Reference>& refs = m_refStack;
 	
 	F32 splitPos = -1;
+	S32 dim = level % 3;
 
 	if(m_params.builder == FW::KDTree::SpatialMedian)
 	{
@@ -118,10 +119,10 @@ NaiveKDTreeBuilder::Split NaiveKDTreeBuilder::findMedianSplit (const NodeSpec& s
 	else if(m_params.builder == FW::KDTree::ObjectMedian) // ??
 	{
 		m_sortDim = dim;
-		sort(this, refs.getSize() - spec.numRef, refs.getSize(), momCompare, momSwap);
+		sort(this, refs.getSize() - spec.numRef, refs.getSize(), sortCompare, sortSwap);
 
 		S32 medIdx = refs.getSize() - (int)(spec.numRef / 2);
-		splitPos = (refs.get(medIdx).bounds.min()[dim] + refs.get(medIdx).bounds.max()[dim]) / 2;
+		splitPos = refs.get(medIdx).bounds.min()[dim];
 	}
 	else
 		FW_ASSERT(0); // Should not occur.
@@ -134,7 +135,7 @@ NaiveKDTreeBuilder::Split NaiveKDTreeBuilder::findMedianSplit (const NodeSpec& s
 }
 
 
-void NaiveKDTreeBuilder::performMedianSplit (NodeSpec& left, NodeSpec& right, const NodeSpec& spec, const Split& split)
+void NaiveKDTreeBuilder::performSplit (NodeSpec& left, NodeSpec& right, const NodeSpec& spec, const Split& split)
 {
 	Array<Reference>& refs = m_refStack;
 	int leftStart = refs.getSize() - spec.numRef;
@@ -155,8 +156,7 @@ void NaiveKDTreeBuilder::performMedianSplit (NodeSpec& left, NodeSpec& right, co
     }
 
 	// Duplicate references intersecting both sides.
-
-
+	
 	for (int i = leftEnd; i < rightStart; i++)
 	{
 		refs.add(Reference(refs.get(i)));
@@ -179,7 +179,7 @@ void NaiveKDTreeBuilder::performMedianSplit (NodeSpec& left, NodeSpec& right, co
 }
 
 
-bool NaiveKDTreeBuilder::momCompare(void* data, int idxA, int idxB)
+bool NaiveKDTreeBuilder::sortCompare(void* data, int idxA, int idxB)
 {
     const NaiveKDTreeBuilder* ptr = (const NaiveKDTreeBuilder*)data;
     int dim = ptr->m_sortDim;
@@ -190,7 +190,7 @@ bool NaiveKDTreeBuilder::momCompare(void* data, int idxA, int idxB)
     return (ca < cb || (ca == cb && ra.triIdx < rb.triIdx));
 }
 
-void NaiveKDTreeBuilder::momSwap(void* data, int idxA, int idxB)
+void NaiveKDTreeBuilder::sortSwap(void* data, int idxA, int idxB)
 {
     NaiveKDTreeBuilder* ptr = (NaiveKDTreeBuilder*)data;
     swap(ptr->m_refStack[idxA], ptr->m_refStack[idxB]);

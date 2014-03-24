@@ -20,21 +20,34 @@
 
 #pragma once
 #include "gui/Window.hpp"
-#include "cuda/CudaBVH.hpp"
+//#include "cuda/CudaBVH.hpp"
 #include "base/Array.hpp"
+#include "cuda/CudaKDTree.hpp"
 #include "3d/CameraControls.hpp"
+
 
 namespace FW
 {
 //------------------------------------------------------------------------
 
-/*!
+/**
  *  \brief Class for the BVH visualization.
  *  \details In the standard visualization current node's bounding box, its sibling's bounding box and its childrens' bounding boxes are visualized.
  */
 class VisualizationBVH : public Window::Listener
 {
 public:
+
+	struct SplitInfo
+	{
+		F32		pos;
+		S32		dim;
+
+		SplitInfo(void) : pos(0), dim(-1) {}
+		FW::String	getPos(void)		{ return String(pos); }
+		FW::String	getAxisName(void)	{ if (dim == 0) return String('X'); else if (dim == 1) return String('Y'); else if (dim == 2) return('Z'); }
+	};
+
 	/*!
 	 *  \brief Constructor.
 	 *  \param[in] bvh			CudaBVH to visualize.
@@ -42,11 +55,11 @@ public:
 	 *  \param[in] rays			Rays to visualize, pass NULL if no rays should be visualized.
 	 *  \param[in] visibility	Array of triangle visibility flags.
 	 */
-    explicit    VisualizationBVH    (CudaBVH* bvh, const Array<AABB> &emptyBoxes, const RayBuffer* rays = NULL, Buffer* visibility = NULL);
+    explicit    VisualizationBVH    (CudaKDTree* kdtree, Scene* scene, const Array<AABB> &emptyBoxes, const RayBuffer* rays = NULL, Buffer* visibility = NULL);
 	/*!
 	 *  \brief Destructor.
 	 */
-                ~VisualizationBVH   (void);
+    ~VisualizationBVH   (void);
 
 	/*!
 	 *  \brief Handles visualization events - key commands influencing the output.
@@ -107,6 +120,8 @@ private:
 	struct NodeData
     {
 		S32                 addr; //!< Address in the CudaBVH linear array structure.
+		//S32					dim;
+		//F32					pos;
         AABB                box; //!< The boxes bounding box stored as it's min and max value.
 
 		/*!
@@ -160,7 +175,7 @@ private:
 	 *  \brief Traverses the entire BVH tree and fills the VisualizationBVH::m_boxes and VisualizationBVH::m_tris buffers.
 	 *  \param[in] node			The root of the subtree to process.
 	 */
-	void        prepareTreeData     (S32 node);
+	void        prepareTreeData     (NodeData node);
 	/*!
 	 *  \brief Converts a min,max representation of a box to a series of faces(quads) representation and adds it to the buffer.
 	 *  \param[in] box			The box to convert.
@@ -168,10 +183,13 @@ private:
 	 */
 	void        addBoxQuads				(const AABB &box, Array<Vec4f> &buffer);
 
+	
+	void		splitNode			(const NodeData& currNode, S32& leftAdd, S32& rightAdd, AABB& leftBox, AABB& rightBox, SplitInfo& split);
+
 private:
 	// Global and path data
-    CudaBVH*            m_bvh;			//!< BVH to visualize.
-    Array<S32>          m_nodeStack;	//!< Stack of the node addresses, holds the path from the BVH root to the current node.
+    CudaKDTree*         m_kdtree;			//!< BVH to visualize.
+    Array<NodeData>     m_nodeStack;	//!< Stack of the node addresses, holds the path from the BVH root to the current node.
 	Array<String>       m_splitPath;	//!< Text representation of the VisualizationBVH::m_nodeStack path.
 	S32					m_osahSplits[3];//!< Counters of the number of OSAH splits in the subtree under the set node in the x, y and z dimensions.
 	S32                 m_currentDepth; //!< Current node's depth information.
@@ -179,7 +197,7 @@ private:
 	// Currently visible node data
 	NodeData            m_node;			//!< Current node.
 	U32                 m_nodeColor;	//!< Color of the current node.
-	SplitInfo           m_nodeSplit;	//!< Information about the split in the current node.
+	//SplitInfo           m_nodeSplit;	//!< Information about the split in the current node.
 	NodeData            m_sibling;		//!< Sibling of the current node.
 	U32                 m_siblingColor; //!< Color of the sibling of the current node.
 	NodeData            m_left;			//!< Left child of the current node.
@@ -205,6 +223,8 @@ private:
 	bool                m_showAllOSAH;  //!< Flag whether to show all OSAH split nodes.
 	bool                m_showEmpty;    //!< Flag whether to show empty nodes.
 	bool                m_showCurrTris; //!< Flag whether to show triangles of the current node.
+	Scene*				m_scene;
+	SplitInfo			m_nodeSplit;
 };
 
 //------------------------------------------------------------------------

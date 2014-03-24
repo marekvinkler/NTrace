@@ -29,6 +29,9 @@
 
 #include "base/Sort.hpp"
 
+//#define DEBUG
+#define MERGESORT
+
 using namespace FW;
 
 //------------------------------------------------------------------------
@@ -38,30 +41,43 @@ FastKDTreeBuilder::FastKDTreeBuilder(KDTree& kdtree, const KDTree::BuildParams& 
 	m_kdtree		(kdtree),
 	m_platform		(kdtree.getPlatform()),
 	m_params		(params),
-	m_numDuplicates	(0)
+	m_numDuplicates	(0),
+	m_maxDepth		((S32)(1.2f * log2((FW::F32)kdtree.getScene()->getNumTriangles()) + 2.f)),
+	m_maxFailSplits ((S32)(1.f + 0.2f * m_maxDepth))
 	{}
 
 //------------------------------------------------------------------------
 
 KDTreeNode* FastKDTreeBuilder::run(void)
 {
-	// Initialize event stack and determine root bounds.
+	// Initialize event and triangle index stack and determine root bounds.
 
 	const Vec3i* tris = (const Vec3i*)m_kdtree.getScene()->getTriVtxIndexBuffer().getPtr();
 	const Vec3f* verts = (const Vec3f*)m_kdtree.getScene()->getVtxPosBuffer().getPtr();
 
 	NodeSpec rootSpec;
 
+	m_measureTimer.unstart();
+	m_measureTimer.start();
+
 	m_evStack.reset();
+	m_triStack.reset();
+	m_mergeSortBuffer.reset();
+
+	// Compute bounds and generate initial set of events.
+
 	rootSpec.numTri = m_kdtree.getScene()->getNumTriangles();
 	m_triData.resize(rootSpec.numTri);
 	Event e;
 	for (int i = 0; i < rootSpec.numTri; i++)
 	{
+		m_triStack.add(i);
+
 		// Compute bounds.
-		for (int j =0; j < 3; j++)
-			m_triData[i].bounds.grow(verts[tris[i][j]]);
-		rootSpec.bounds.grow(m_triData[i].bounds);
+		AABB triBounds;
+		for (int j = 0; j < 3; j++)
+			triBounds.grow(verts[tris[i][j]]);
+		rootSpec.bounds.grow(triBounds);
 
 		e.triIdx = i;
 
@@ -69,41 +85,53 @@ KDTreeNode* FastKDTreeBuilder::run(void)
 		{
 			e.dim = dim;
 
-			if (m_triData[e.triIdx].bounds.min()[dim] == m_triData[e.triIdx].bounds.max()[dim])
+			if (triBounds.min()[dim] == triBounds.max()[dim])
 			{
-				e.pos = m_triData[e.triIdx].bounds.min()[dim];
+				e.pos = triBounds.min()[dim];
 				e.type = Planar;
 				m_evStack.add(e);
 			}
 			else
 			{
-				e.pos = m_triData[e.triIdx].bounds.min()[dim];
+				e.pos = triBounds.min()[dim];
 				e.type = Start;
 				m_evStack.add(e);
 
-				e.pos = m_triData[e.triIdx].bounds.max()[dim];
+				e.pos = triBounds.max()[dim];
 				e.type = End;
 				m_evStack.add(e);
 			}
 		}
 	}
 
-	sort(&m_evStack, 0, m_evStack.getSize(),  eventSortCompare, eventSortSwap); // ?? nlogn
-
+#ifndef MERGESORT
+	sort(&m_evStack, 0, m_evStack.getSize(),  eventSortCompare, eventSortSwap);
+#else
+	m_mergeSortBuffer.reserve(m_evStack.getSize());
+	msort(m_evStack, 0, m_evStack.getSize());
+#endif
 	rootSpec.numEv = m_evStack.getSize();
 
+	F32 initTime =  m_measureTimer.getElapsed();
 	if (m_params.enablePrints)
-        std::printf("FastKDTreeBuilder: initialization done\n");
+	{
+		std::printf("FastKDTreeBuilder: initialization done in %f seconds.\n", initTime);
+	}
 
 	m_progressTimer.start();
 
 	// Build recursively.
 
-	KDTreeNode* root = buildNode(rootSpec, 0, 0.0f, 1.0f);
+	KDTreeNode* root = buildNode(rootSpec, 0, 0, 0.0f, 1.0f);
 	m_kdtree.getTriIndices().compact();
 
+	F32 totalTime = m_measureTimer.getElapsed();
+	F32 buildTime = totalTime - initTime;
+
 	if (m_params.enablePrints)
-		std::printf("FastKDTreeBuilder: progress %.0f%%\n", 100.0f);
+	{
+		std::printf("FastKDTreeBuilder: progress %.0f%%, built in %f seconds. Total time: %f seconds\n", 100.0f, buildTime, totalTime);
+	}
 
 	return root;
 }
@@ -114,29 +142,20 @@ KDTreeNode*	FastKDTreeBuilder::createLeaf(const NodeSpec& spec)
 {
 	Array<S32>& tris = m_kdtree.getTriIndices();
 
-	for (int i = 0; i < m_triData.getSize(); i++)
-		m_triData[i].relevant = true;
-
-	int size = m_evStack.getSize();
-	for (int i = size-1; i >= size-spec.numEv; i--)
+	int stackSize = m_triStack.getSize();
+	for (int i = stackSize - spec.numTri; i < stackSize; i++)
 	{
-		if (m_triData[m_evStack[i].triIdx].relevant == true)
-		{
-			tris.add(m_evStack[i].triIdx);
-			m_triData[m_evStack[i].triIdx].relevant = false;
-		}
-		m_evStack.removeLast();
+		tris.add(m_triStack.removeLast());
 	}
 
-	for (int i = 0; i < m_triData.getSize(); i++)
-		m_triData[i].relevant = false;
+	m_evStack.remove(m_evStack.getSize() - spec.numEv, m_evStack.getSize());
 
 	return new KDTLeafNode(tris.getSize() - spec.numTri, tris.getSize());
 }
 
 //------------------------------------------------------------------------
 
-KDTreeNode* FastKDTreeBuilder::buildNode(NodeSpec spec, int level, F32 progressStart, F32 progressEnd)
+KDTreeNode* FastKDTreeBuilder::buildNode(const NodeSpec& spec, int level, int forcedSplits, F32 progressStart, F32 progressEnd)
 {
 	// Display progress.
 
@@ -146,41 +165,45 @@ KDTreeNode* FastKDTreeBuilder::buildNode(NodeSpec spec, int level, F32 progressS
         m_progressTimer.start();
     }
 
-	// Too deep => create leaf.
-
-	if (spec.numTri <= m_platform.getMaxLeafSize() || level >= MaxDepth)
+	if (/*spec.numTri <= m_platform.getMaxLeafSize() ||*/ level == m_maxDepth)
 		return createLeaf(spec);
 
-	F32 nodeSah = m_platform.getTriangleCost(spec.numTri);
+	F32 nodePrice = m_platform.getTriangleCost(spec.numTri);
 	Split split = findSplit(spec);
-	if (split.sah < 0)
-		FW_ASSERT(0);
 
-	if (nodeSah <= split.sah)
+#ifdef DEBUG
+	if (split.price < 0.f)
+		FW_ASSERT(0);
+#endif
+
+	if (split.price / nodePrice > 0.9f)
+		forcedSplits++;
+
+	if (split.price == FW_F32_MAX || forcedSplits > m_maxFailSplits)
 		return createLeaf(spec);
 
 	NodeSpec left, right;
 	performSplit(left, right, spec, split);
 
 	F32 progressMid = lerp(progressStart, progressEnd, (F32)right.numTri / (F32)(left.numTri + right.numTri));
-	KDTreeNode* rightNode = buildNode(right, level + 1, progressStart, progressMid);
-    KDTreeNode* leftNode = buildNode(left, level + 1, progressMid, progressEnd);
+	KDTreeNode* rightNode = buildNode(right, level + 1, forcedSplits, progressStart, progressMid);
+    KDTreeNode* leftNode = buildNode(left, level + 1, forcedSplits, progressMid, progressEnd);
     
 	return new KDTInnerNode(split.pos, split.dim, leftNode, rightNode);
 }
 
 //------------------------------------------------------------------------
 
-FastKDTreeBuilder::Split FastKDTreeBuilder::findSplit(const NodeSpec& spec)
+FastKDTreeBuilder::Split FastKDTreeBuilder::findSplit(const NodeSpec& spec) const
 {
-	if (spec.bounds.min()[0] == spec.bounds.max()[0] ||
-		spec.bounds.min()[1] == spec.bounds.max()[1] ||
-		spec.bounds.min()[2] == spec.bounds.max()[2]   ) // ??
-	{
-		Split dontSplit;
-		dontSplit.sah = FW_F32_MAX;
-		return dontSplit;
-	}
+	//if (spec.bounds.min()[0] == spec.bounds.max()[0] ||
+	//	spec.bounds.min()[1] == spec.bounds.max()[1] ||
+	//	spec.bounds.min()[2] == spec.bounds.max()[2]   ) // ??
+	//{
+	//	Split dontSplit;
+	//	dontSplit.price = FW_F32_MAX;
+	//	return dontSplit;
+	//}
 
 	S32 nl [3]; S32 np [3]; S32 nr [3];
 
@@ -198,19 +221,19 @@ FastKDTreeBuilder::Split FastKDTreeBuilder::findSplit(const NodeSpec& spec)
 		const S32 dim = m_evStack.get(i).dim;
 
 		while(i < m_evStack.getSize() && m_evStack.get(i).dim == dim &&
-			m_evStack.get(i).pos == pos && m_evStack.get(i).type == eventType::End)
+			m_evStack.get(i).pos == pos && m_evStack.get(i).type == End)
 		{
 			numEnds++; i++;
 		}
 
 		while(i < m_evStack.getSize() && m_evStack.get(i).dim == dim &&
-			m_evStack.get(i).pos == pos && m_evStack.get(i).type == eventType::Planar)
+			m_evStack.get(i).pos == pos && m_evStack.get(i).type == Planar)
 		{
 			numPlanar++; i++;
 		}
 
 		while(i < m_evStack.getSize() && m_evStack.get(i).dim == dim &&
-			m_evStack.get(i).pos == pos && m_evStack.get(i).type == eventType::Start)
+			m_evStack.get(i).pos == pos && m_evStack.get(i).type == Start)
 		{
 			numStarts++; i++;
 		}
@@ -223,19 +246,31 @@ FastKDTreeBuilder::Split FastKDTreeBuilder::findSplit(const NodeSpec& spec)
 		currentSplit.dim = dim;
 		currentSplit.pos = pos;
 
-		sah(currentSplit, spec.bounds, nl[dim], nr[dim], np[dim]);
+		F32 costLeftSide = sahPrice(currentSplit, spec.bounds, nl[dim] + np[dim], nr[dim]);
+		F32 costRightSide = sahPrice(currentSplit, spec.bounds, nl[dim], nr[dim] + np[dim]);
+		if (costLeftSide < costRightSide)
+		{
+			currentSplit.price = costLeftSide;
+			currentSplit.side = Left;
+		}
+		else
+		{
+			currentSplit.price = costRightSide;
+			currentSplit.side = Right;
+		}
 
+#ifdef DEBUG
 		if (currentSplit.pos < spec.bounds.min()[dim] || currentSplit.pos > spec.bounds.max()[dim])
-			currentSplit.sah = FW_F32_MAX;
+			FW_ASSERT(0);
+#endif
 
-		if(currentSplit.sah < bestSplit.sah)
+		if(currentSplit.price < bestSplit.price)
 			bestSplit = currentSplit;
 
 		nl[dim] += numStarts;
 		nl[dim] += numPlanar;
 		np[dim] = 0;
 	}
-
 	return bestSplit;
 }
 
@@ -243,7 +278,8 @@ FastKDTreeBuilder::Split FastKDTreeBuilder::findSplit(const NodeSpec& spec)
 
 void FastKDTreeBuilder::performSplit (NodeSpec& left, NodeSpec& right, const NodeSpec& spec, const Split& split)
 {
- // Clasiffy triangles.
+	// Clasiffy triangles.
+
 	for (int i = m_evStack.getSize() - spec.numEv; i < m_evStack.getSize(); i++)
 	{
 		const Event& currEv = m_evStack[i];
@@ -262,63 +298,78 @@ void FastKDTreeBuilder::performSplit (NodeSpec& left, NodeSpec& right, const Nod
 			{
 				m_triData[currEv.triIdx].side = LeftOnly;
 			}
-			if (currEv.pos > split.pos || (currEv.pos == split.pos && split.side == Right))
+			else if (currEv.pos > split.pos || (currEv.pos == split.pos && split.side == Right))
 			{
 				m_triData[currEv.triIdx].side = RightOnly;
 			}
 		}
-		m_triData[currEv.triIdx].relevant = true;
 	}
-
-	// Split events to left only and right only.
-	Array<Event> eventsLO;
-	Array<Event> eventsRO;
+	
+	// Separate events related to triangles which do not straddle the split plane.
 
 	for (int i = m_evStack.getSize() - spec.numEv; i < m_evStack.getSize(); i++)
 	{
 		if (m_triData[m_evStack[i].triIdx].side == LeftOnly)
 		{
-			eventsLO.add(m_evStack[i]);
+			m_eventsLO.add(m_evStack[i]);
 		}
 		else if (m_triData[m_evStack[i].triIdx].side == RightOnly)
 		{
-			eventsRO.add(m_evStack[i]);
+			m_eventsRO.add(m_evStack[i]);
 		}
 	}
 
-	// Generate new events from triangles overalapping split plane.
-	Array<Event> eventsBL;
-	Array<Event> eventsBR;
+	// Process straddling triangles. Also adjust triangle index stack.
 
-	for (int i = 0; i < m_triData.getSize(); i++)
+	for (int i = m_triStack.getSize() - spec.numTri; i < m_triStack.getSize(); i++)
 	{
-		if (m_triData[i].side == Both && m_triData[i].relevant)
+		if (m_triData[m_triStack[i]].side == LeftOnly)
+		{
+			m_leftTriIdx.add(m_triStack[i]);
+		}
+		else if (m_triData[m_triStack[i]].side == RightOnly)
+		{
+			m_rightTriIdx.add(m_triStack[i]);
+		}
+
+		// Generate new events.
+
+		if (m_triData[m_triStack[i]].side == Both)
 		{
 			AABB leftBounds; AABB rightBounds;
-			splitBounds(leftBounds, rightBounds, i, split);
+			splitBounds(leftBounds, rightBounds, m_triStack[i], split);
 
 			leftBounds.intersect(spec.bounds);
 			rightBounds.intersect(spec.bounds);
+			//leftBounds.intersect(m_triData[m_triStack[i]].bounds);
+			//rightBounds.intersect(m_triData[m_triStack[i]].bounds);
 
 			AABB* bounds[] = {NULL, NULL};
+			Array<Event>* events [] = {&m_eventsBL, &m_eventsBR};
 
 			if (leftBounds.valid())
+			{
+				m_leftTriIdx.add(m_triStack[i]);
 				bounds[0] = &leftBounds;
+			}
 			if (rightBounds.valid())
+			{
+				m_rightTriIdx.add(m_triStack[i]);
 				bounds[1] = &rightBounds;
+			}
 			
 			m_numDuplicates++;
 
 			Event e;
-			e.triIdx = i;
+			e.triIdx = m_triStack[i];
 
 			for (int s = 0; s < 2; s++)
 			{
 				if (bounds[s] == NULL)
 					continue;
 
-				Vec3f min = bounds[s]->min();
-				Vec3f max = bounds[s]->max();
+				const Vec3f min = bounds[s]->min();
+				const Vec3f max = bounds[s]->max();
 
 				for (int dim = 0; dim < 3; dim++)
 				{
@@ -327,186 +378,150 @@ void FastKDTreeBuilder::performSplit (NodeSpec& left, NodeSpec& right, const Nod
 					if(min[dim] == max[dim])
 					{
 						e.pos = min[dim];
-						e.type = eventType::Planar;
-						if (s == 0)
-							eventsBL.add(e);
-						else
-							eventsBR.add(e);
+						e.type = Planar;
+						events[s]->add(e);
 					}
 					else
 					{
 						e.pos = min[dim];
-						e.type = eventType::Start;
-						if (s == 0)
-							eventsBL.add(e);
-						else
-							eventsBR.add(e);
+						e.type = Start;
+						events[s]->add(e);
 
 						e.pos = max[dim];
-						e.type = eventType::End;
-						if (s == 0)
-							eventsBL.add(e);
-						else
-							eventsBR.add(e);
+						e.type = End;
+						events[s]->add(e);
 					}
 				}
 			}
 		}
+
+		m_triData[m_triStack[i]].side = Both;
 	}
 
-	sort(&eventsBL, 0, eventsBL.getSize(),  eventSortCompare, eventSortSwap);
-	sort(&eventsBR, 0, eventsBR.getSize(),  eventSortCompare, eventSortSwap);
+#ifndef MERGESORT
+	sort(&m_eventsBL, 0, m_eventsBL.getSize(),  eventSortCompare, eventSortSwap);
+	sort(&m_eventsBR, 0, m_eventsBR.getSize(),  eventSortCompare, eventSortSwap);
+#else
+	msort(m_eventsBL, 0, m_eventsBL.getSize());
+	msort(m_eventsBR, 0, m_eventsBR.getSize());
+#endif
 
-	// Merge all four strains.
-	Array<Event> eventsL = mergeEvents(eventsLO, eventsBL);
-	eventsLO.reset();
-	eventsBL.reset();
-	left.numEv = eventsL.getSize();
+	// Merge events.
 
-	Array<Event> eventsR = mergeEvents(eventsRO, eventsBR);
-	eventsRO.reset();
-	eventsBR.reset();
-	right.numEv = eventsR.getSize();
+	S32 stackTop = m_evStack.getSize() - spec.numEv;
+	left.numEv = m_eventsLO.getSize() + m_eventsBL.getSize();
+	right.numEv = m_eventsRO.getSize() + m_eventsBR.getSize();
+	m_evStack.resize((m_evStack.getSize() - spec.numEv) + left.numEv + right.numEv);
 
-	S32 stackTop = m_evStack.getSize() - spec.numEv; // Discard this node's events.
-	m_evStack.resize(m_evStack.getSize() - spec.numEv + eventsL.getSize() + eventsR.getSize());
+	mergeEvents(stackTop, m_eventsLO, m_eventsBL);
+	mergeEvents(stackTop, m_eventsRO, m_eventsBR);
 
-	for (int i = 0; i < eventsL.getSize(); i++)
-	{
-		m_evStack[stackTop + i] = eventsL[i];
-	}
-	stackTop += eventsL.getSize();
-	for (int i = 0; i < eventsR.getSize(); i++)
-	{
-		m_evStack[stackTop + i] = eventsR[i];
-	}
+	left.numTri = m_leftTriIdx.getSize();
+	right.numTri = m_rightTriIdx.getSize();
 
+	stackTop = m_triStack.getSize() - spec.numTri;
+	m_triStack.resize(m_triStack.getSize() - spec.numTri);
 
-	left.numTri = 0;
-	right.numTri = 0;
-	for (int i = 0; i < m_triData.getSize(); i++)
-	{
-		if (m_triData[i].relevant)
-		{
-			if (m_triData[i].side == Left)
-				left.numTri++;
-			else if (m_triData[i].side == Right)
-				right.numTri++;
-			else
-			{
-				left.numTri++;
-				right.numTri++;
-			}
-		}
-		
-		m_triData[i].side = Both;
-		m_triData[i].relevant = false;
-	}
+	m_triStack.insert(stackTop, m_leftTriIdx);
+	stackTop += left.numTri;
+	m_triStack.insert(stackTop, m_rightTriIdx);
 
-	Vec3f leftCut = spec.bounds.max();
-	leftCut[split.dim] = split.pos;
-	AABB leftBounds(spec.bounds.min(), leftCut);
+	// Split bounding box.
 
-	Vec3f rightCut = spec.bounds.min();
-	rightCut[split.dim] = split.pos;
-	AABB rightBounds(rightCut, spec.bounds.max());
+	left.bounds = spec.bounds;
+	left.bounds.max()[split.dim] = split.pos;
 
-	left.bounds = leftBounds;
-	right.bounds = rightBounds;
+	right.bounds = spec.bounds;
+	right.bounds.min()[split.dim] = split.pos;
+
+	m_eventsLO.clear();
+	m_eventsRO.clear();
+	m_eventsBL.clear();
+	m_eventsBR.clear();
+	m_leftTriIdx.clear();
+	m_rightTriIdx.clear();
 }
 
 //------------------------------------------------------------------------
 
-Array<FastKDTreeBuilder::Event> FastKDTreeBuilder::mergeEvents (const Array<Event>& a, const Array<Event>& b) const
+void FastKDTreeBuilder::mergeEvents (S32& stackTop, const Array<Event>& a, const Array<Event>& b)
 {
-	Array<Event> merged;
-	merged.reset(a.getSize() + b.getSize());
-
-	if (a.getSize() == 0)
-		return Array<Event>(b);
-
-	if (b.getSize() == 0)
-		return Array<Event>(a);
-
-	int idxA = 0;
-	int idxB = 0;
-	for (int i = 0; i < merged.getSize(); i++)
+	int idxA = 0; int idxB = 0;
+	for (int i = 0; i < a.getSize() + b.getSize(); i++)
 	{
 		if (idxA == a.getSize())
 		{
-			merged[i] = b.get(idxB);
-			idxB++;
+			m_evStack[stackTop++] = b.get(idxB++);
 		}
 		else if (idxB == b.getSize())
 		{
-			merged[i] = a.get(idxA);
-			idxA++;
+			m_evStack[stackTop++] = a.get(idxA++);
 		}
 		else if (FastKDTreeBuilder::eventCompare(a.get(idxA), b.get(idxB)))
 		{
-			merged[i] = a.get(idxA);
-			idxA++;
+			m_evStack[stackTop++] = a.get(idxA++);
 		}
 		else
 		{
-			merged[i] = b.get(idxB);
-			idxB++;
+			m_evStack[stackTop++] = b.get(idxB++);
 		}
 	}
-
-	return merged;
 }
 
 //------------------------------------------------------------------------
 
-void FastKDTreeBuilder::sah(Split& split, const AABB& bounds, S32 nl, S32 nr, S32 np)
+F32 FastKDTreeBuilder::sahPrice(const Split& split, const AABB& bounds, S32 nl, S32 nr) const
 {
-	Vec3f leftCut = bounds.max();
-	leftCut[split.dim] = split.pos;
-	AABB leftBounds(bounds.min(), leftCut);
+	AABB leftBounds = bounds;
+	leftBounds.max()[split.dim] = split.pos;
 
-	Vec3f rightCut = bounds.min();
-	rightCut[split.dim] = split.pos;
-	AABB rightBounds(rightCut, bounds.max());
+	AABB rightBounds = bounds;
+	rightBounds.min()[split.dim] = split.pos;
+
+	//if (bounds.min()[split.dim] == bounds.max()[split.dim])
+	//{
+	//	return FW_F32_MAX;
+	//}
+
+	if (bounds.min()[0] == bounds.max()[0] ||
+		bounds.min()[1] == bounds.max()[1] ||
+		bounds.min()[2] == bounds.max()[2]   ) // ??
+	{
+		return FW_F32_MAX;
+	}
+
+	if ((split.pos == bounds.min()[split.dim] && nl == 0) || (split.pos == bounds.max()[split.dim] && nr == 0))
+	{
+		return FW_F32_MAX;
+	}
 	
-	F32 probabilityLeft = leftBounds.area() / bounds.area();
-	F32 probabilityRight = rightBounds.area() / bounds.area();
+	const F32 probabilityLeft = leftBounds.area() / bounds.area();
+	const F32 probabilityRight = rightBounds.area() / bounds.area();
 
-	F32 costLeftSide = probabilityLeft * m_platform.getTriangleCost(nl + np) + probabilityRight * m_platform.getTriangleCost(nr);
-	if (((nl + np) == 0 || nr == 0) && !(split.pos == bounds.min()[split.dim] || split.pos == bounds.max()[split.dim])) // No bonus for flat empty cells.
-		costLeftSide *= 0.8; // m_platform ??
+	F32 cost = probabilityLeft * m_platform.getTriangleCost(nl) + probabilityRight * m_platform.getTriangleCost(nr);
+	if ((nl == 0 || nr == 0) && !(split.pos == bounds.min()[split.dim] || split.pos == bounds.max()[split.dim])) // No bonus for flat empty cells.
+		cost *= 0.8f; // m_platform ??
 
-	F32 costRightSide = probabilityLeft * m_platform.getTriangleCost(nl) + probabilityRight * m_platform.getTriangleCost(np + nr);
-	if ((nl == 0 || (np + nr) == 0) && !(split.pos == bounds.min()[split.dim] || split.pos == bounds.max()[split.dim])) // No bonus for flat empty cells.
-		costRightSide *= 0.8; // m_platform ??
+	cost += m_platform.getNodeCost(1); // ??
 
-	if(costLeftSide < costRightSide)
-	{
-		split.side = Left;
-		split.sah = costLeftSide;
-	}
-	else
-	{
-		split.side = Right;
-		split.sah  = costRightSide;
-	}
-
-	split.sah += m_platform.getNodeCost(1); // ??
+	return cost;
 }
 
 //------------------------------------------------------------------------
 
-void FastKDTreeBuilder::splitBounds (AABB& left, AABB& right, S32 triIdx, const Split& split)
+void FastKDTreeBuilder::splitBounds (AABB& left, AABB& right, S32 triIdx, const Split& split) const
 {
 	const Vec3i* tris = (const Vec3i*)m_kdtree.getScene()->getTriVtxIndexBuffer().getPtr();
     const Vec3f* verts = (const Vec3f*)m_kdtree.getScene()->getVtxPosBuffer().getPtr();
 
 	Vec3f vertices[] = {verts[tris[triIdx][0]], verts[tris[triIdx][1]], verts[tris[triIdx][2]]};
 
-	if (split.pos > m_triData[triIdx].bounds.max()[split.dim] || split.pos < m_triData[triIdx].bounds.min()[split.dim])
-	{
-		FW_ASSERT(0);
-	}
+#ifdef DEBUG
+	//if (split.pos > m_triData[triIdx].bounds.max()[split.dim] || split.pos < m_triData[triIdx].bounds.min()[split.dim])
+	//{
+	//	FW_ASSERT(0);
+	//}
+#endif
 
 	int leftmostVertIdx = 0; int secondVertIdx = 0; int thirdVertIdx = 0;
 	for (int i = 0; i < 3; i++)
@@ -534,7 +549,7 @@ void FastKDTreeBuilder::splitBounds (AABB& left, AABB& right, S32 triIdx, const 
 	left.grow(vertices[leftmostVertIdx]);
 	right.grow(vertices[thirdVertIdx]);
 
-	if (vertices[secondVertIdx][split.dim] < split.pos)
+	if (vertices[secondVertIdx][split.dim] <= split.pos)
 	{
 		F32	firstToSplit = split.pos - vertices[leftmostVertIdx][split.dim];
 		F32 secondToSplit = split.pos - vertices[secondVertIdx][split.dim];
@@ -560,23 +575,6 @@ void FastKDTreeBuilder::splitBounds (AABB& left, AABB& right, S32 triIdx, const 
 		right.grow(newVert2);
 
 	}
-	else if (vertices[secondVertIdx][split.dim] == split.pos && vertices[secondVertIdx][split.dim] != vertices[leftmostVertIdx][split.dim])
-	{
-		F32	firstToSplit = split.pos - vertices[leftmostVertIdx][split.dim];
-		F32 firstToThird = vertices[thirdVertIdx][split.dim] - vertices[leftmostVertIdx][split.dim];
-
-		Vec3f edge1 = vertices[thirdVertIdx] - vertices[leftmostVertIdx];
-		edge1 *= firstToSplit / firstToThird;
-
-		Vec3f newVert1 = vertices[leftmostVertIdx] + edge1;
-		
-		newVert1[split.dim] = split.pos;
-
-		left.grow(newVert1);
-		left.grow(vertices[secondVertIdx]);
-		right.grow(newVert1);
-		right.grow(vertices[secondVertIdx]);
-	}
 	else if (vertices[secondVertIdx][split.dim] > split.pos)
 	{
 		F32	firstToSplit = split.pos - vertices[leftmostVertIdx][split.dim];
@@ -601,6 +599,7 @@ void FastKDTreeBuilder::splitBounds (AABB& left, AABB& right, S32 triIdx, const 
 		right.grow(newVert2);
 		right.grow(vertices[secondVertIdx]);
 	}
+#ifdef DEBUG
 	else
 	{
 		FW_ASSERT(0);
@@ -610,6 +609,7 @@ void FastKDTreeBuilder::splitBounds (AABB& left, AABB& right, S32 triIdx, const 
 		FW_ASSERT(0);
 	if(!right.valid())
 		FW_ASSERT(0);
+#endif
 }
 
 //------------------------------------------------------------------------
@@ -649,4 +649,100 @@ bool FastKDTreeBuilder::eventCompare (const Event& eventA, const Event& eventB)
 	{
 		return (eventA.pos < eventB.pos);
 	}
+}
+
+//------------------------------------------------------------------------
+
+void FastKDTreeBuilder::msort(Array<Event>& data, S32 l, S32 h)
+{
+	if ((h - l) <= 1)
+		return;
+
+	int middle = (h + l) / 2;
+
+	msort(data, l, middle);
+	msort(data, middle, h);
+	mmerge(data, l, middle, h);
+}
+
+//------------------------------------------------------------------------
+
+void FastKDTreeBuilder::mmerge(Array<Event>& data, S32 l, S32 m, S32 h)
+{
+	S32 idxL = l;
+	S32 idxR = m;
+	S32 idxB = 0;
+	S32 pos = idxL;
+
+	m_mergeSortBuffer.clear();
+
+	while (pos < h)
+	{
+		if (m_mergeSortBuffer.getSize() - 1 < idxB)
+		{
+			if (idxL >= m)
+			{
+				idxR++;
+				pos++;
+			}
+			else if (idxR >= h)
+			{
+				idxL++;
+				pos++;
+			}
+			else if (eventCompare(data[idxL], data[idxR]))
+			{
+				idxL++;
+				pos++;
+			}
+			else
+			{
+				m_mergeSortBuffer.add(data[pos]);
+				data[pos] = data[idxR];
+				idxR++;
+				idxL++;
+				pos++;
+			}
+		}
+		else
+		{
+			if (idxR >= h)
+			{
+				data[pos] = m_mergeSortBuffer[idxB];
+				idxB++;
+				pos++;
+			}
+			else if (eventCompare(m_mergeSortBuffer[idxB], data[idxR]))
+			{
+				if (pos < m)
+				{
+					m_mergeSortBuffer.add(data[pos]);
+				}
+				data[pos] = m_mergeSortBuffer[idxB];
+				idxB++;
+				idxL++;
+				pos++;
+			}
+			else
+			{
+				if (pos < m)
+				{
+					m_mergeSortBuffer.add(data[pos]);
+				}
+				data[pos] = data[idxR];
+				idxR++;
+				pos++;
+			}
+		}
+	}
+
+#ifdef DEBUG
+
+	for (S32 i = l; i < h - 1; i++)
+	{
+		if (eventCompare(data[i+1], data[i]))
+			FW_ASSERT(0);
+	}
+
+#endif
 }

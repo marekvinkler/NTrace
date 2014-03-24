@@ -22,6 +22,9 @@
     <Filter Include="acceleration">
       <UniqueIdentifier>{58d79ef0-d4d8-4ab5-81a4-a966ed420928}</UniqueIdentifier>
     </Filter>
+    <Filter Include="bvh\HLBVH">
+      <UniqueIdentifier>{5324f46a-b961-4591-aed2-6fd1ddf4e2a0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\rt\bvh\BVH.cpp">
@@ -84,6 +87,18 @@
     </ClCompile>
     <ClCompile Include="src\rt\acceleration\Acceleration.cpp">
       <Filter>acceleration</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rt\bvh\HLBVH\HLBVHBuilder.cpp">
+      <Filter>bvh\HLBVH</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rt\cuda\CudaAS.cpp">
+      <Filter>cuda</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rt\cuda\CudaKDTree.cpp">
+      <Filter>cuda</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rt\cuda\CudaKDTreeTracer.cpp">
+      <Filter>cuda</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +175,24 @@
     <ClInclude Include="src\rt\acceleration\Acceleration.hpp">
       <Filter>acceleration</Filter>
     </ClInclude>
+    <ClInclude Include="src\rt\bvh\HLBVH\HLBVHBuilder.hpp">
+      <Filter>bvh\HLBVH</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\bvh\HLBVH\radixSort.hpp">
+      <Filter>bvh\HLBVH</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\cuda\CudaAS.hpp">
+      <Filter>cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\cuda\CudaKDTree.hpp">
+      <Filter>cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\cuda\CudaKDTreeTracer.hpp">
+      <Filter>cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\cuda\CudaVirtualTracer.hpp">
+      <Filter>cuda</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="src\rt\cuda\RendererKernels.cu">
@@ -187,6 +220,18 @@
   <ItemGroup>
     <None Include="src\rt\kernels\kepler_dynamic_fetch.cu">
       <Filter>kernels</Filter>
+    </None>
+    <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cu">
+      <Filter>bvh\HLBVH</Filter>
+    </None>
+    <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cuh">
+      <Filter>bvh\HLBVH</Filter>
+    </None>
+    <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cuh.bak">
+      <Filter>bvh\HLBVH</Filter>
+    </None>
+    <None Include="src\rt\bvh\HLBVH\radixSort.cu">
+      <Filter>bvh\HLBVH</Filter>
     </None>
   </ItemGroup>
 </Project>

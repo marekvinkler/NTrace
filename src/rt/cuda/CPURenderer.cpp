@@ -95,7 +95,7 @@ bool CPURenderer::nextBatch(void)
 F32 CPURenderer::traceBatch(RayStats* stats)
 {
     FW_ASSERT(m_batchRays);
-	m_bvh->setTraceParams(&m_platform, m_scene);
+	((CudaBVH*)m_accelStruct)->setTraceParams(&m_platform, m_scene);
 	Timer timer(true);
 	if(stats == NULL)
 	{
@@ -103,11 +103,11 @@ F32 CPURenderer::traceBatch(RayStats* stats)
 		if(m_buildParams.empty_boxes.getSize())
 		{
 			//m_bvh->trace(*m_batchRays, *m_emptybvh, &stats);
-			m_bvh->trace(*m_batchRays, m_visibility, m_buildParams.empty_boxes, &stats);
+			((CudaBVH*)m_accelStruct)->trace(*m_batchRays, m_visibility, m_buildParams.empty_boxes, &stats);
 		}
 		else
 		{
-			m_bvh->trace(*m_batchRays, m_visibility, m_buildParams.twoTrees, &stats);
+			((CudaBVH*)m_accelStruct)->trace(*m_batchRays, m_visibility, m_buildParams.twoTrees, &stats);
 		}
 	}
 	else
@@ -115,11 +115,11 @@ F32 CPURenderer::traceBatch(RayStats* stats)
 		if(m_buildParams.empty_boxes.getSize())
 		{
 			//m_bvh->trace(*m_batchRays, *m_emptybvh, stats);
-			m_bvh->trace(*m_batchRays, m_visibility, m_buildParams.empty_boxes, m_bvh->m_stats);
+			((CudaBVH*)m_accelStruct)->trace(*m_batchRays, m_visibility, m_buildParams.empty_boxes, ((CudaBVH*)m_accelStruct)->m_stats);
 		}
 		else
 		{
-			m_bvh->trace(*m_batchRays, m_visibility, m_buildParams.twoTrees, m_bvh->m_stats);
+			((CudaBVH*)m_accelStruct)->trace(*m_batchRays, m_visibility, m_buildParams.twoTrees, ((CudaBVH*)m_accelStruct)->m_stats);
 		}
 	}
 	return timer.getElapsed(); // Trace time in seconds

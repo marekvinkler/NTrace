@@ -33,7 +33,7 @@ namespace FW
 
 void KDTreeNode::deleteSubtree()
 {
-    for(int i=0;i<getNumChildNodes();i++)
+    for(int i = 0; i < getNumChildNodes(); i++)
         getChildNode(i)->deleteSubtree();
 
     delete this;

@@ -83,7 +83,7 @@ private:
     Window              m_window;
     CommonControls      m_commonCtrl;
     CameraControls      m_cameraCtrl;
-    CudaRenderer        m_renderer;			//  TODO: use either CPURenderer or CudaRenderer based upon environment
+    Renderer            m_renderer;
 
     Action              m_action;
     String              m_meshFileName;

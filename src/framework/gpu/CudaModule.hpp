@@ -44,6 +44,9 @@ public:
 
     bool                hasKernel           (const String& name);
     CudaKernel          getKernel           (const String& name);
+    int                 setParami           (CUfunction kernel, int offset, S32 value);
+    int                 setParamf           (CUfunction kernel, int offset, F32 value);
+    int                 setParamPtr         (CUfunction kernel, int offset, CUdeviceptr value);
 
     Buffer&             getGlobal           (const String& name);
     void                updateGlobals       (bool async = false, CUstream stream = NULL); // copy to the device if modified

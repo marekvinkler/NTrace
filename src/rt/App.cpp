@@ -202,6 +202,11 @@ bool App::handleEvent(const Window::Event& ev)
 
     // Update GUI controls.
 
+	if (ev.type == Window::EventType_KeyDown && ev.key == FW_KEY_V)
+	{
+		m_renderer.toggleBVHVis();
+	}
+
     if (ev.type == Window::EventType_KeyDown && ev.key == FW_KEY_TAB)
     {
         bool v = (!m_showCameraControls || !m_showKernelSelector);
@@ -406,7 +411,7 @@ void App::render(GLContext* gl)
 
     // Show statistics.
 
-    CudaBVH* bvh = m_renderer.getCudaBVH();
+    CudaAS* bvh = m_renderer.getCudaBVH();
     S64 nodeBytes = bvh->getNodeBuffer().getSize();
     S64 triBytes = bvh->getTriWoopBuffer().getSize() + bvh->getTriIndexBuffer().getSize();
 
@@ -626,9 +631,7 @@ void FW::runBenchmark(
     BVH::BuildParams buildParams;
     buildParams.splitAlpha = sbvhAlpha;
 
-	/***** TODO: use either CPURenderer or CudaRenderer based upon environment *****/
-    CudaRenderer renderer;
-	//CPURenderer renderer;
+    Renderer renderer;
     renderer.setBuildParams(buildParams);
     renderer.setMesh(importMesh(meshFile));
 

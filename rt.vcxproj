@@ -83,6 +83,7 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(CUDA_PATH)/include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.5\include;$(IncludePath)</IncludePath>
@@ -236,11 +237,17 @@
     <ClCompile Include="src\rt\acceleration\Acceleration.cpp" />
     <ClCompile Include="src\rt\bvh\BVH.cpp" />
     <ClCompile Include="src\rt\bvh\BVHNode.cpp" />
+    <ClCompile Include="src\rt\bvh\HLBVH\HLBVHBuilder.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\rt\bvh\Platform.cpp" />
     <ClCompile Include="src\rt\bvh\SAHBVHBuilder.cpp" />
     <ClCompile Include="src\rt\bvh\SplitBVHBuilder.cpp" />
     <ClCompile Include="src\rt\cuda\CPURenderer.cpp" />
+    <ClCompile Include="src\rt\cuda\CudaAS.cpp" />
     <ClCompile Include="src\rt\cuda\CudaBVH.cpp" />
+    <ClCompile Include="src\rt\cuda\CudaKDTree.cpp" />
+    <ClCompile Include="src\rt\cuda\CudaKDTreeTracer.cpp" />
     <ClCompile Include="src\rt\cuda\CudaRenderer.cpp" />
     <ClCompile Include="src\rt\cuda\CudaTracer.cpp" />
     <ClCompile Include="src\rt\cuda\Renderer.cpp" />
@@ -261,13 +268,23 @@
     <ClInclude Include="src\rt\acceleration\Acceleration.hpp" />
     <ClInclude Include="src\rt\bvh\BVH.hpp" />
     <ClInclude Include="src\rt\bvh\BVHNode.hpp" />
+    <ClInclude Include="src\rt\bvh\HLBVH\HLBVHBuilder.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rt\bvh\HLBVH\radixSort.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="src\rt\bvh\Platform.hpp" />
     <ClInclude Include="src\rt\bvh\SAHBVHBuilder.hpp" />
     <ClInclude Include="src\rt\bvh\SplitBVHBuilder.hpp" />
     <ClInclude Include="src\rt\cuda\CPURenderer.hpp" />
+    <ClInclude Include="src\rt\cuda\CudaAS.hpp" />
     <ClInclude Include="src\rt\cuda\CudaBVH.hpp" />
+    <ClInclude Include="src\rt\cuda\CudaKDTree.hpp" />
+    <ClInclude Include="src\rt\cuda\CudaKDTreeTracer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaRenderer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaTracer.hpp" />
+    <ClInclude Include="src\rt\cuda\CudaVirtualTracer.hpp" />
     <ClInclude Include="src\rt\cuda\Renderer.hpp" />
     <ClInclude Include="src\rt\cuda\RendererKernels.hpp" />
     <ClInclude Include="src\rt\Environment.h" />
@@ -344,6 +361,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cu">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cuh">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cuh.bak">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="src\rt\bvh\HLBVH\radixSort.cu">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </None>
     <None Include="src\rt\kernels\kepler_dynamic_fetch.cu">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

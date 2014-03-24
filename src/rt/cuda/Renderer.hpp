@@ -31,6 +31,10 @@
 #include "cuda/CudaTracer.hpp"
 #include "ray/RayGen.hpp"
 
+#include "cuda/CudaKDTreeTracer.hpp"
+#include "tools/visualizationBVH.hpp"
+
+
 namespace FW
 {
 //------------------------------------------------------------------------
@@ -38,6 +42,12 @@ namespace FW
 class Renderer
 {
 public:
+	enum AccelStructType
+	{
+		tBVH = 0,
+		tKDTree
+	};
+
     enum RayType
     {
         RayType_Primary = 0,
@@ -67,38 +77,46 @@ public:
 
 public:
                         Renderer            (void);
-    virtual             ~Renderer           (void);
+                        ~Renderer           (void);
 
     void                setMesh             (MeshBase* mesh);
-    virtual void        setBuildParams      (const BVH::BuildParams& params) { invalidateBVH(); m_buildParams = params; }
-    void                invalidateBVH       (void)                  { delete m_bvh; m_bvh = NULL; }
+    void                setBuildParams      (const BVH::BuildParams& params) { invalidateBVH(); m_buildParams = params; }
+    void                invalidateBVH       (void)                  { delete m_accelStruct; m_accelStruct = NULL; }
 
-    virtual void        setParams           (const Params& params);
-    virtual void        setMessageWindow    (Window* window)        { m_window = window; }
+    void                setParams           (const Params& params);
+    void                setMessageWindow    (Window* window)        { m_window = window; m_compiler.setMessageWindow(window); m_cudaTracer->setMessageWindow(window); }
     void                setEnableRandom     (bool enable)           { m_enableRandom = enable; }
-	virtual BVHLayout	getLayout           (void) = 0;		
 
+    CudaVirtualTracer&         getCudaTracer       (void)                  { return *m_cudaTracer; }
     Scene*              getScene            (void) const            { return m_scene; }
-    CudaBVH*            getCudaBVH          (void);
+    CudaAS*             getCudaBVH          (void);
 
     F32                 renderFrame         (GLContext* gl, const CameraControls& camera); // returns total launch time
 
     void                beginFrame          (GLContext* gl, const CameraControls& camera);
-    virtual bool        nextBatch           (void) = 0;
-    virtual F32         traceBatch          (RayStats* stats = NULL) = 0; // returns launch time
-    virtual void        updateResult        (void) = 0; // for current batch
+    bool                nextBatch           (void);
+    F32                 traceBatch          (void); // returns launch time
+    void                updateResult        (void); // for current batch
     void                displayResult       (GLContext* gl);
 
-    virtual int         getTotalNumRays     (void) = 0; // for selected ray type, excluding degenerates
-	
-protected:
-	virtual void        setTracerBVH        (CudaBVH* bvh)          { m_bvh = bvh; }
+    int                 getTotalNumRays     (void); // for selected ray type, excluding degenerates
 
-private:
+	F32					calcNodeSAHCostKdtree(const Platform& platform, Buffer* nodes, Buffer* tri,  S32 n, AABB bbox, S32 depth, S32& maxDepth, S32& sumDepth, S32& numNodes, S32& numLeaves, F32& nodeArea, F32 &weightedLeafArea, F32& test);
+	F32					calcLeafSAHCostCompact(const Platform& platform, Buffer* triIdx, S32 n, S32& numLeaves);
+	F32					calcLeafSAHCostNum	(const Platform& platform, S32 n, S32& numLeaves);
+
+	CudaAS*				getCudaKDTree		(void);
+
+	void                startBVHVis         (void);
+	void                endBVHVis           (void);
+	void                toggleBVHVis        (void)					{ m_showVis = !m_showVis; m_showVis ? startBVHVis() : endBVHVis(); }
+
+protected:
                         Renderer            (const Renderer&); // forbidden
     Renderer&           operator=           (const Renderer&); // forbidden
 
 protected:
+    CudaCompiler        m_compiler;
     String              m_bvhCachePath;
     Platform            m_platform;
     BVH::BuildParams    m_buildParams;
@@ -111,7 +129,6 @@ protected:
 
     MeshBase*           m_mesh;
     Scene*              m_scene;
-    CudaBVH*            m_bvh;
 
     Image*              m_image;
     F32                 m_cameraFar;
@@ -121,6 +138,13 @@ protected:
     bool                m_newBatch;
     RayBuffer*          m_batchRays;
     S32                 m_batchStart;
+
+	CudaAS*				m_accelStruct;
+	CudaVirtualTracer*	m_cudaTracer;
+
+	AccelStructType		m_asType;
+	VisualizationBVH*   m_vis;
+	bool				m_showVis;
 };
 
 //------------------------------------------------------------------------

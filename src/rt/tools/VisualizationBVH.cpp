@@ -16,6 +16,7 @@
 
 #include "tools/VisualizationBVH.hpp"
 #include "ray/PixelTable.hpp"
+#include "cuda\Renderer.hpp"
 
 using namespace FW;
 
@@ -23,7 +24,7 @@ using namespace FW;
 #define ROOT_ADDR 0
 
 // Colors for the obsolete visualization
-/*#define COLOR_NODE 0x33FFFFFF
+#define COLOR_NODE 0x33FFFFFF
 #define COLOR_SIBLING 0x33000000
 #define COLOR_LEFT 0x7F0000FF
 #define COLOR_RIGHT 0x7F00FF00
@@ -55,8 +56,8 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-VisualizationBVH::VisualizationBVH(CudaBVH* bvh, const Array<AABB> &emptyBoxes, const RayBuffer* rays, Buffer* visibility)
-:	m_bvh(bvh),
+VisualizationBVH::VisualizationBVH(CudaKDTree* kdtree, Scene* scene, const Array<AABB> &emptyBoxes, const RayBuffer* rays, Buffer* visibility)
+:	m_kdtree(kdtree),
 	m_currentDepth(0),
 	m_visible(false),
 	m_showRays(false),
@@ -64,17 +65,23 @@ VisualizationBVH::VisualizationBVH(CudaBVH* bvh, const Array<AABB> &emptyBoxes, 
 	m_splitColors(false),
 	m_showChildren(true),
 	m_showAllOSAH(false),
-	m_showCurrTris(false)
-{	
+	m_showCurrTris(false),
+	m_scene(scene)
+{
+	m_node.box = kdtree->getBBox(); // scene bounding box
+	m_node.addr = 0;
+
+	splitNode(m_node, m_left.addr, m_right.addr, m_left.box, m_right.box, m_nodeSplit);
+
 	// Initialize m_node, m_sibling, m_left and m_right
-	m_bvh->getNode(m_node.addr, &m_nodeSplit, m_left.box, m_right.box, m_left.addr, m_right.addr);
-	m_node.box = m_left.box + m_right.box; // Compute the root box
-	growParentBox();
+	//m_bvh->getNode(m_node.addr, &m_nodeSplit, m_left.box, m_right.box, m_left.addr, m_right.addr);
+	//m_node.box = m_left.box + m_right.box; // Compute the root box
+	//growParentBox();
 	m_sibling.addr = NO_NODE;
 
 	// Inititalize stacks
-	m_nodeStack.add(0);
-	m_splitPath.add(m_nodeSplit.getTypeName() + " " + m_nodeSplit.getAxisName() + ": ");
+	m_nodeStack.add(m_node);
+	m_splitPath.add(m_nodeSplit.getPos() + " " + m_nodeSplit.getAxisName() + ":");
 
 	// Clear the osah split counts in current node
 	memset(m_osahSplits, 0, sizeof(m_osahSplits));
@@ -153,11 +160,11 @@ VisualizationBVH::VisualizationBVH(CudaBVH* bvh, const Array<AABB> &emptyBoxes, 
 	// Initialize visibility
 	if(visibility != NULL)
 	{
-		m_visibility.set((S32*)visibility->getPtr(), m_bvh->getScene()->getNumTriangles());
+		m_visibility.set((S32*)visibility->getPtr(), scene->getNumTriangles());
 	}
 	else
 	{
-		m_visibility.reset(m_bvh->getScene()->getNumTriangles());
+		m_visibility.reset(scene->getNumTriangles());
 		memset(m_visibility.getPtr(), 0, m_visibility.getNumBytes());
 	}
 
@@ -203,14 +210,14 @@ bool VisualizationBVH::handleEvent(const Window::Event& ev)
 			if (ev.key == FW_KEY_J)									{ m_showChildren = !m_showChildren; }
 			if (ev.key == FW_KEY_U && m_rays.getSize() > 0)			{ m_showRays = !m_showRays; }
 			if (ev.key == FW_KEY_P && m_emptyBoxes.getSize() > 0)   { m_showEmpty = !m_showEmpty; }
-			if (ev.key == FW_KEY_O)									{ m_showCurrTris = !m_showCurrTris; prepareTreeData(m_node.addr); }
-			if (ev.key == FW_KEY_L)									{ m_showAllOSAH = !m_showAllOSAH; prepareTreeData(m_node.addr); }
-			if (ev.key == FW_KEY_T)									{ moveToParent(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node.addr); }
-			if (ev.key == FW_KEY_Y)									{ moveToSibling(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node.addr); }
-			if (ev.key == FW_KEY_G)									{ moveToLeft(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node.addr); }
-			if (ev.key == FW_KEY_H)									{ moveToRight(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node.addr); }
-			if (ev.key == FW_KEY_I)									{ moveUp(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node.addr); }
-			if (ev.key == FW_KEY_K)									{ moveDown(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node.addr); }
+			if (ev.key == FW_KEY_O)									{ m_showCurrTris = !m_showCurrTris; prepareTreeData(m_node); }
+			if (ev.key == FW_KEY_L)									{ m_showAllOSAH = !m_showAllOSAH; prepareTreeData(m_node); }
+			if (ev.key == FW_KEY_T)									{ moveToParent(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node); }
+			if (ev.key == FW_KEY_Y)									{ moveToSibling(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node); }
+			if (ev.key == FW_KEY_G)									{ moveToLeft(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node); }
+			if (ev.key == FW_KEY_H)									{ moveToRight(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node); }
+			if (ev.key == FW_KEY_I)									{ moveUp(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node); }
+			if (ev.key == FW_KEY_K)									{ moveDown(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node); }
 		}
 		break;
 
@@ -228,8 +235,10 @@ void VisualizationBVH::moveToParent()
 	moveUp();
 
 	// Update path
-	m_nodeStack[m_currentDepth] = m_node.addr;
-	m_splitPath.getPtr(m_currentDepth)[m_splitPath[m_currentDepth].indexOf(':')+1] = ' ';
+	m_nodeStack[m_currentDepth] = m_node;
+	if(!m_splitPath[m_currentDepth].endsWith(":"))
+		m_splitPath[m_currentDepth] = m_splitPath[m_currentDepth].substring(0, m_splitPath[m_currentDepth].getLength()-1);
+	//(m_splitPath.get(m_currentDepth).[m_splitPath[m_currentDepth].indexOf(':')+1]) = ' ';
 	m_nodeStack.resize(m_currentDepth+1);
 	m_splitPath.resize(m_currentDepth+1);
 }
@@ -246,37 +255,47 @@ void VisualizationBVH::moveToSibling()
 	m_node = m_sibling;
 	m_sibling = temp;
 
-	if(!m_bvh->isLeaf(m_node.addr))
+	if(m_node.addr >= 0)//if(!m_kdtree->isLeaf(m_node.addr))
 	{
-		m_bvh->getNode(m_node.addr, &m_nodeSplit, m_left.box, m_right.box, m_left.addr, m_right.addr);
+		//m_bvh->getNode(m_node.addr, &m_nodeSplit, m_left.box, m_right.box, m_left.addr, m_right.addr);
+		splitNode(m_node, m_left.addr, m_right.addr, m_left.box, m_right.box, m_nodeSplit);
 	}
 	// Set color mapping for visible nodes
 	setColorMapping();
 
 	// Update path
-	m_nodeStack[m_currentDepth] = m_node.addr;
-	m_splitPath[m_currentDepth] = m_nodeSplit.getTypeName() + " " + m_nodeSplit.getAxisName() + ": ";
+	m_nodeStack[m_currentDepth] = m_node;
+	m_splitPath[m_currentDepth] = m_nodeSplit.getPos() + " " + m_nodeSplit.getAxisName() + ": ";
 	m_nodeStack.resize(m_currentDepth+1);
 	m_splitPath.resize(m_currentDepth+1);
-	if( m_splitPath.getPtr(m_currentDepth - 1)[m_splitPath[m_currentDepth].indexOf(':')+1] == 'L' )
-		m_splitPath.getPtr(m_currentDepth - 1)[m_splitPath[m_currentDepth].indexOf(':')+1] = 'R';
+	// Flip child identifier from the previous split
+	if(m_splitPath[m_currentDepth-1][m_splitPath[m_currentDepth-1].indexOf(':')+1] == 'L')
+	{
+		m_splitPath[m_currentDepth-1] = m_splitPath[m_currentDepth-1].substring(0, m_splitPath[m_currentDepth-1].getLength()-1);
+		m_splitPath[m_currentDepth-1] = m_splitPath[m_currentDepth-1].append('R');
+	}
+	//	m_splitPath[m_currentDepth-1][m_splitPath[m_currentDepth].indexOf(':')+1] = 'R';
 	else
-		m_splitPath.getPtr(m_currentDepth - 1)[m_splitPath[m_currentDepth].indexOf(':')+1] = 'L';
+	{
+	//	m_splitPath[m_currentDepth-1][m_splitPath[m_currentDepth].indexOf(':')+1] = 'L';
+		m_splitPath[m_currentDepth-1] = m_splitPath[m_currentDepth-1].substring(0, m_splitPath[m_currentDepth-1].getLength()-1);
+		m_splitPath[m_currentDepth-1] = m_splitPath[m_currentDepth-1].append('L');
+	}
 }
 
 //------------------------------------------------------------------------
 
 void VisualizationBVH::moveToLeft()
 {
-	if(m_bvh->isLeaf(m_left.addr))
+	if(m_left.addr < 0)
 		return;
 
 	m_node = m_left;
 	m_sibling = m_right;
 
-	if(!m_bvh->isLeaf(m_node.addr))
+	if(m_node.addr >= 0)
 	{
-		m_bvh->getNode(m_node.addr, &m_nodeSplit, m_left.box, m_right.box, m_left.addr, m_right.addr);
+		splitNode(m_node, m_left.addr, m_right.addr, m_left.box, m_right.box, m_nodeSplit);
 	}
 	else
 	{
@@ -284,17 +303,17 @@ void VisualizationBVH::moveToLeft()
 		m_right.addr = NO_NODE;
 	}
 
-	growParentBox();
+	//growParentBox();
 	// Set color mapping for visible nodes
 	setColorMapping();
 
 	// Update path
-	m_splitPath.getPtr(m_currentDepth)[m_splitPath[m_currentDepth].indexOf(':')+1] = 'L';
+	m_splitPath[m_currentDepth] = m_splitPath[m_currentDepth].append('L');
 	m_nodeStack.resize(m_currentDepth+1);
 	m_splitPath.resize(m_currentDepth+1);
 	// Add to the path
-	m_nodeStack.add(m_node.addr);
-	m_splitPath.add(m_nodeSplit.getTypeName() + " " + m_nodeSplit.getAxisName() + ": ");
+	m_nodeStack.add(m_node);
+	m_splitPath.add(m_nodeSplit.getPos() + " " + m_nodeSplit.getAxisName() + ": ");
 	m_currentDepth++;
 }
 
@@ -302,15 +321,15 @@ void VisualizationBVH::moveToLeft()
 
 void VisualizationBVH::moveToRight()
 {
-	if(m_bvh->isLeaf(m_right.addr))
+	if(m_right.addr < 0)
 		return;
 
 	m_node = m_right;
 	m_sibling = m_left;
 
-	if(!m_bvh->isLeaf(m_node.addr))
+	if(m_node.addr >= 0)
 	{
-		m_bvh->getNode(m_node.addr, &m_nodeSplit, m_left.box, m_right.box, m_left.addr, m_right.addr);
+		splitNode(m_node, m_left.addr, m_right.addr, m_left.box, m_right.box, m_nodeSplit);
 	}
 	else
 	{
@@ -318,17 +337,17 @@ void VisualizationBVH::moveToRight()
 		m_right.addr = NO_NODE;
 	}
 
-	growParentBox();
+	//growParentBox();
 	// Set color mapping for visible nodes
 	setColorMapping();
 
 	// Update path
-	m_splitPath.getPtr(m_currentDepth)[m_splitPath[m_currentDepth].indexOf(':')+1] = 'R';
+	m_splitPath[m_currentDepth] = m_splitPath[m_currentDepth].append('R');
 	m_nodeStack.resize(m_currentDepth+1);
 	m_splitPath.resize(m_currentDepth+1);
 	// Add to the path
-	m_nodeStack.add(m_node.addr);
-	m_splitPath.add(m_nodeSplit.getTypeName() + " " + m_nodeSplit.getAxisName() + ": ");
+	m_nodeStack.add(m_node);
+	m_splitPath.add(m_nodeSplit.getPos() + " " + m_nodeSplit.getAxisName() + ": ");
 	m_currentDepth++;
 }
 
@@ -412,9 +431,9 @@ void VisualizationBVH::getFromIndex(S32 idx)
 	if(idx < 0 || idx > m_nodeStack.getSize()-1)
 		return;
 
-	if(!m_bvh->isLeaf(m_nodeStack[idx]))
+	if(m_nodeStack[idx].addr >= 0)
 	{
-		m_bvh->getNode(m_nodeStack[idx], &m_nodeSplit, m_left.box, m_right.box, m_left.addr, m_right.addr);
+		splitNode(m_nodeStack[idx], m_left.addr, m_right.addr, m_left.box, m_right.box, m_nodeSplit);
 	}
 	else
 	{
@@ -424,12 +443,12 @@ void VisualizationBVH::getFromIndex(S32 idx)
 
 	if(idx > 0) // Node is not the root, we can find its sibling
 	{
-		S32 parent = m_nodeStack[idx-1];
+		NodeData parent = m_nodeStack[idx-1];
 		NodeData left, right;
 
-		m_bvh->getNode(parent, NULL, left.box, right.box, left.addr, right.addr);
+		splitNode(parent, left.addr, right.addr, left.box, right.box, m_nodeSplit);
 
-		if(left.addr == m_nodeStack[idx]) // Left child is the current node
+		if(left.addr == m_nodeStack[idx].addr) // Left child is the current node
 		{
 			m_node = left;
 			m_sibling = right;
@@ -442,12 +461,12 @@ void VisualizationBVH::getFromIndex(S32 idx)
 	}
 	else // Node is the root, we need to compute the box and disable sibling
 	{
-		m_node.addr = m_nodeStack[idx];
+		m_node.addr = m_nodeStack[idx].addr;
 		m_node.box = m_left.box + m_right.box;
 		m_sibling.addr = NO_NODE;
 	}
 
-	growParentBox();
+	//growParentBox();
 	// Set color mapping for visible nodes
 	setColorMapping();
 }
@@ -560,12 +579,14 @@ void VisualizationBVH::drawPathInfo(GLContext* gl)
 	gl->setFont("Arial", fontSize, GLContext::FontStyle_Bold);
 	
 	char leftBox[100], rightBox[100];
-	m_left.box.min().sprint(leftBox, 100);
+	memset(leftBox, '\0', 100);
+	memset(rightBox, '\0', 100);
+	//m_left.box.min().sprint(leftBox, 100);
 	strcat_s(leftBox, ", ");
-	m_left.box.max().sprint(leftBox + strlen(leftBox), 100-strlen(leftBox));
-	m_right.box.min().sprint(rightBox, 100);
+	//m_left.box.max().sprint(leftBox + strlen(leftBox), 100-strlen(leftBox));
+	//m_right.box.min().sprint(rightBox, 100);
 	strcat_s(rightBox, ", ");
-	m_right.box.max().sprint(rightBox + strlen(rightBox), 100-strlen(rightBox));
+	//m_right.box.max().sprint(rightBox + strlen(rightBox), 100-strlen(rightBox));
 
 	if(m_showCurrTris)
 	{
@@ -581,8 +602,8 @@ void VisualizationBVH::drawPathInfo(GLContext* gl)
 			m_left.box.area(), leftBox, m_right.box.area(), rightBox), pos, Vec2f(0.0f, 1.0f), 0xFFFFFFFF);
 	}
 	pos.y -= (F32)fontSize;
-	gl->drawLabel(sprintf("Current depth: %d     Path depth: %d     OSAH split counts: %d x- %d y- %d z-axis",
-		m_currentDepth, m_nodeStack.getSize()-1, m_osahSplits[0], m_osahSplits[1], m_osahSplits[2]), pos, Vec2f(0.0f, 1.0f), 0xFFFFFFFF);
+	gl->drawLabel(sprintf("Current depth: %d     Path depth: %d",
+		m_currentDepth, m_nodeStack.getSize()-1), pos, Vec2f(0.0f, 1.0f), 0xFFFFFFFF);
 	pos.y -= (F32)fontSize;
 
 	const float rightMargin = 100.0f;
@@ -642,28 +663,28 @@ void VisualizationBVH::setColorMapping()
 		return;
 	}
 	
-	if(m_nodeSplit.getType() == SplitInfo::SAH)
-	{
-		m_leftColor = COLOR_LEFT_SAH;
-		m_rightColor = COLOR_RIGHT_SAH;
-	}
-	else if(m_nodeSplit.getType() == SplitInfo::SBVH)
-	{
-		m_leftColor = COLOR_LEFT_SVBH;
-		m_rightColor = COLOR_RIGHT_SVBH;
-	}
-	else
-	{
-		m_leftColor = COLOR_LEFT_OSAH;
-		m_rightColor = COLOR_RIGHT_OSAH;
-	}
+	//if(m_nodeSplit.getType() == SplitInfo::SAH)
+	//{
+	//	m_leftColor = COLOR_LEFT_SAH;
+	//	m_rightColor = COLOR_RIGHT_SAH;
+	//}
+	//else if(m_nodeSplit.getType() == SplitInfo::SBVH)
+	//{
+	//	m_leftColor = COLOR_LEFT_SVBH;
+	//	m_rightColor = COLOR_RIGHT_SVBH;
+	//}
+	//else
+	//{
+	//	m_leftColor = COLOR_LEFT_OSAH;
+	//	m_rightColor = COLOR_RIGHT_OSAH;
+	//}
 }
 
 //-----------------------------------------------------------------------
 
-void VisualizationBVH::prepareTreeData(S32 node)
+void VisualizationBVH::prepareTreeData(NodeData node)
 {
-	S32 stack[100];
+	NodeData stack[100];
 	int stackIndex = 1;
 	Array<Vec4f> boxes;
 	Array<Vec4f> verticesInvis;
@@ -679,12 +700,25 @@ void VisualizationBVH::prepareTreeData(S32 node)
 	{
 		for(;;)
 		{
-			if(node < 0)
+			if(node.addr < 0)
 			{
+				//if(node.addr == KDTREE_EMPTYLEAF)
+				//	break;
+
 				if(m_showCurrTris) // Process triangle
 				{
 					indices.clear();
-					m_bvh->getTriangleIndices(node, indices);
+
+					S32 idx = ~node.addr;
+					if (~idx != KDTREE_EMPTYLEAF)
+					{
+						while (((int*)m_kdtree->getTriIndexBuffer().getPtr())[idx] != KDTREE_EMPTYLEAF)
+						{
+							indices.add(((int*)m_kdtree->getTriIndexBuffer().getPtr())[idx]);
+							idx++;
+						}
+					}
+					//m_bvh->getTriangleIndices(node, indices);
 					prims += indices.getSize();
 
 					for(int i = 0; i < indices.getSize(); i++)
@@ -693,12 +727,11 @@ void VisualizationBVH::prepareTreeData(S32 node)
 						if(m_visibility[indices[i]])
 							ptr = &verticesVis;
 
-						//const Vec3i& ind = m_bvh->getScene()->getTriangle(indices[i]).vertices;
-						const Vec3i& ind = *(Vec3i*)m_bvh->getScene()->getTriVtxIndexBuffer().getPtr();
+						const Vec3i& ind = ((const Vec3i*)m_scene->getTriVtxIndexBuffer().getPtr())[indices[i]];
 						for(int j = 0; j < 3; j++)
 						{
-							//const Vec3f& v = m_bvh->getScene()->getVertex(ind[j]);
-							const Vec3f& v = (Vec3f)(m_bvh->getScene()->getVtxPosBuffer()[ind[j]]);
+							const Vec3f& v = ((const Vec3f*)m_scene->getVtxPosBuffer().getPtr())[ind[j]];
+
 							ptr->add(Vec4f(v, 1.0f));
 						}
 					}
@@ -712,13 +745,13 @@ void VisualizationBVH::prepareTreeData(S32 node)
 				S32 child0Addr, child1Addr;
 				SplitInfo splitInfo;
 
-				m_bvh->getNode(node, &splitInfo, child0, child1, child0Addr, child1Addr);
+				splitNode(node, child0Addr, child1Addr, child0, child1, m_nodeSplit);
 				if(m_showCurrTris && rightChild == 0)
 					rightChild = child1Addr;
 
-				if(m_showAllOSAH && splitInfo.getOSAHChosen()) // Process split
+				if(true)/*m_showAllOSAH && splitInfo.getOSAHChosen()) */// Process split
 				{
-					m_osahSplits[splitInfo.getAxis()]++;
+					//m_osahSplits[splitInfo.getAxis()]++;
 					// Compute the box
 					//AABB bbox = child0 + child1;
 					//AABB bbox = child0; // child with more visible triangles in case of OSAH split
@@ -727,13 +760,13 @@ void VisualizationBVH::prepareTreeData(S32 node)
 					addBoxQuads(child1, boxes);
 				}
 
-				node = child0Addr;
-				stack[stackIndex++] = child1Addr;
+				node.addr = child0Addr;
+				stack[stackIndex++].addr = child1Addr;
 			}
 		}
 		stackIndex--;
 		node = stack[stackIndex];
-		if(m_showCurrTris && node == rightChild)
+		if(m_showCurrTris && node.addr == rightChild && stackIndex == 1)
 		{
 			m_leftPrims = prims;
 			prims = 0;
@@ -768,7 +801,7 @@ void VisualizationBVH::addBoxQuads(const AABB &box, Array<Vec4f> &buffer)
 	buffer.add(Vec4f(min.x, max.y, min.z, 1.0f));
 	buffer.add(Vec4f(min.x, max.y, max.z, 1.0f));
 	buffer.add(Vec4f(min.x, min.y, max.z, 1.0f));
-	// Max x
+	// Max 
 	buffer.add(Vec4f(max.x, max.y, max.z, 1.0f));
 	buffer.add(Vec4f(max.x, max.y, min.z, 1.0f));
 	buffer.add(Vec4f(max.x, min.y, min.z, 1.0f));
@@ -796,3 +829,25 @@ void VisualizationBVH::addBoxQuads(const AABB &box, Array<Vec4f> &buffer)
 }
 
 //------------------------------------------------------------------------
+
+void VisualizationBVH::splitNode(const NodeData& currNode, S32& leftAdd, S32& rightAdd, AABB& leftBox, AABB& rightBox, SplitInfo& split)
+{
+	leftAdd = ((Vec4i*)m_kdtree->getNodeBuffer().getPtr())[currNode.addr].x;
+	rightAdd = ((Vec4i*)m_kdtree->getNodeBuffer().getPtr())[currNode.addr].y;
+
+	float splitPos = *(float*)&(((Vec4i*)m_kdtree->getNodeBuffer().getPtr())[currNode.addr].z);
+	unsigned int type = ((Vec4i*)m_kdtree->getNodeBuffer().getPtr())[currNode.addr].w & KDTREE_MASK;
+	S32 dim = type >> KDTREE_DIMPOS;
+
+	Vec3f leftCut = currNode.box.max();
+	leftCut[dim] = splitPos;
+
+	Vec3f rightCut = currNode.box.min();
+	rightCut[dim] = splitPos;
+
+	leftBox = AABB(currNode.box.min(), leftCut);
+	rightBox = AABB(rightCut, currNode.box.max());
+
+	split.dim = dim;
+	split.pos = splitPos;
+}

@@ -29,6 +29,7 @@
 #include "gpu/Buffer.hpp"
 #include "io/Stream.hpp"
 #include "bvh/BVH.hpp"
+#include "CudaAS.hpp"
 #include "kernels/CudaTracerKernels.hpp"
 #include "gpu/CudaModule.hpp"
 
@@ -80,7 +81,7 @@ namespace FW
 //      triIndex[tri*4] = origIdx
 //------------------------------------------------------------------------
 
-class CudaBVH
+class CudaBVH : public CudaAS
 {
 public:
     enum
@@ -99,7 +100,6 @@ public:
     Buffer&     getNodeBuffer       (void)                  { return m_nodes; }
     Buffer&     getTriWoopBuffer    (void)                  { return m_triWoop; }
     Buffer&     getTriIndexBuffer   (void)                  { return m_triIndex; }
-	Scene*      getScene            (void)                  { return m_scene; }
 
     // AOS: idx ignored, returns entire buffer
     // SOA: 0 <= idx < 4, returns one subarray

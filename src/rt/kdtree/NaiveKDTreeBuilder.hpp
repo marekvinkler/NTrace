@@ -32,70 +32,147 @@
 namespace FW
 {
 
+/**
+ * \brief Naive k-d tree builder class
+ * \details Uses either spatial median or object median to determine position of the split. Axis of the split is selected in round-robin fashion.
+ */
 class NaiveKDTreeBuilder
 {
 private:
+	/**
+	 * \brief Maximum depth of the k-d tree.
+	 */
 	enum
 	{
 		MaxDepth			= 18,
 	};
 
+	/**
+	 * \brief Internal structure holding triangle index and it's bounding box.
+	 */
 	struct Reference
     {
-        S32                 triIdx;
-        AABB                bounds;
+        S32                 triIdx; //!< Index of the referenced triangle.
+        AABB                bounds;	//!< Triangle's bounding box.
 
+		/**
+		 * \brief Constructor.
+		 */
         Reference(void) : triIdx(-1) {}
     };
 
+	/**
+	 * \brief Internal structure holding information about processed k-d tree node.
+	 */
 	struct NodeSpec
     {
-        S32                 numRef;
-		AABB                bounds;
+        S32                 numRef;	//!< Number of triangles this node refferences.
+		AABB                bounds;	//!< Node's bounding box.
 
+		/**
+		 * \brief Constructor.
+		 */
         NodeSpec(void) : numRef(0) {}
     };
 
+	/**
+	 * \brief Internal structure holding information about node split.
+	 */
 	struct Split
     {
-        S32                 dim;
-        F32                 pos;
+        S32                 dim; //!< Split axis.
+        F32                 pos; //!< Split position.
 
+		/**
+		 * \brief Constructor.
+		 */
         Split(void) :  dim(0), pos(0.0f) {}
     };
 
 public:
-								NaiveKDTreeBuilder		(KDTree& kdtree,const KDTree::BuildParams& params);
+	/**
+	 * \brief Constructor.
+	 * \param[in] kdtree K-d tree being built.
+	 * \param[in] params Build parameters.
+	 */
+								NaiveKDTreeBuilder		(KDTree& kdtree, const KDTree::BuildParams& params);
+
+	/**
+	 * \brief Destructor.
+	 */
 								~NaiveKDTreeBuilder		(void) {}
 
+	/**
+	 * \brief Builds k-d tree.
+	 * \return Root node of the built tree.
+	 */
 	KDTreeNode*					run						(void);
 
+	/**
+	 * \brief Returns number of duplicated references.
+	 * \return Number of duplicated references.
+	 */
 	S32							getNumDuplicates		(void)	{ return m_numDuplicates; }
 
 private:
-	static bool					momCompare				(void* data, int idxA, int idxB);
-    static void					momSwap					(void* data, int idxA, int idxB);
 
-	KDTreeNode*					buildNode				(NodeSpec spec, int level, S32 currentAxis, F32 progressStart, F32 progressEnd);
+	/**
+	 * \brief Sort compare function. Compares references according to their bounding box center in m_sortDim dimension. See Sort.h in framework/base.
+	 */
+	static bool					sortCompare				(void* data, int idxA, int idxB);
+
+	/**
+	 * \brief Sort swap function. See Sort.h in framework/base.
+	 */
+    static void					sortSwap				(void* data, int idxA, int idxB);
+
+	/**
+	 * \brief Builds either an inner node or a leaf node, based on the node's specifications and level.
+	 * \param[in] spec Specifications of the processed node.
+	 * \param[in] level Node's level in the tree.
+	 * \param[in] progressStart Percentage of the processed references before processing the current node.
+	 * \param[in] progressEnd Percentage of the processed references after processing the current node.
+	 * \return Built node.
+	 */
+	KDTreeNode*					buildNode				(NodeSpec spec, int level, F32 progressStart, F32 progressEnd);
+
+	/** 
+	 * \brief Builds leaf node.
+	 * \param[in] spec Specifications of the processed node.
+	 * \return Built leaf node.
+	 */
 	KDTreeNode*					createLeaf				(const NodeSpec& spec);
 
-	static S32					nextCoordinate			(S32 current) { return ((current + 1) % 3); }
-	Split						findMedianSplit			(const NodeSpec&, S32 currentAxis);
-	void						performMedianSplit		(NodeSpec& left, NodeSpec& right, const NodeSpec& spec, const Split& split);
+	/**
+	 * \brief Finds either object or spatial median split.
+	 * \param[in] spec Specifications of the processed node.
+	 * \param[in] axis Split axis.
+	 * \return Found split.
+	 */
+	Split						findSplit			(const NodeSpec& spec, S32 axis);
+
+	/**
+	 * \brief Splits the node according to a given split.
+	 * \param[out] left Left part of the split node.
+	 * \param[out] right Right part of the split node.
+	 * \param[in] spec Specifications of the processed node.
+	 * \param[in] split Split parameters.
+	 */
+	void						performSplit		(NodeSpec& left, NodeSpec& right, const NodeSpec& spec, const Split& split);
 
 private:
 								NaiveKDTreeBuilder		(const NaiveKDTreeBuilder&); // forbidden
 	NaiveKDTreeBuilder&			operator=				(const NaiveKDTreeBuilder&); // forbidden
 
 private:
-	KDTree&						m_kdtree;
-	const Platform&				m_platform;
-	const KDTree::BuildParams&	m_params;
-	Array<Reference>			m_refStack;
-	S32							m_sortDim;
+	KDTree&						m_kdtree;				//!< K-d tree being built.
+	const Platform&				m_platform;				//!< Platform settings.
+	const KDTree::BuildParams&	m_params;				//!< Build parameters.
+	Array<Reference>			m_refStack;				//!< Stack of references.
+	S32							m_sortDim;				//!< Sort dimension. Used in sortCompare.
 
-	Timer						m_progressTimer;
-	S32							m_numDuplicates;
+	Timer						m_progressTimer;		//!< Timer. Measures the time from the last print of the information to the console.
+	S32							m_numDuplicates;		//!< Number of the duplicated references.
 };
 
 }
