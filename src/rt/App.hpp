@@ -32,6 +32,7 @@
 #include "cuda/Renderer.hpp"
 #include "cuda/CudaRenderer.hpp"
 #include "cuda/CPURenderer.hpp"
+#include "Environment.h"
 
 namespace FW
 {
@@ -83,7 +84,7 @@ private:
     Window              m_window;
     CommonControls      m_commonCtrl;
     CameraControls      m_cameraCtrl;
-    Renderer            m_renderer;
+    Renderer*           m_renderer;
 
     Action              m_action;
     String              m_meshFileName;
@@ -98,6 +99,8 @@ private:
     bool                m_showCameraControls;
     bool                m_showKernelSelector;
     bool                m_guiDirty;
+
+	Environment*		m_env;
 };
 
 //------------------------------------------------------------------------

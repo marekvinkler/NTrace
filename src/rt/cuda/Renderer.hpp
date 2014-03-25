@@ -76,7 +76,7 @@ public:
     };
 
 public:
-                        Renderer            (void);
+						Renderer			(AccelStructType as);
                         ~Renderer           (void);
 
     void                setMesh             (MeshBase* mesh);

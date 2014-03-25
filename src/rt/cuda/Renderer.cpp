@@ -7,7 +7,7 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-Renderer::Renderer(void)
+Renderer::Renderer(AccelStructType as)
 :   m_raygen            (1 << 20),
 
     m_window            (NULL),
@@ -25,7 +25,7 @@ Renderer::Renderer(void)
 
 	m_accelStruct		(NULL),
 
-	m_asType			(tKDTree),
+	m_asType			(as),
 	m_vis				(NULL),
 	m_showVis			(false)
 {

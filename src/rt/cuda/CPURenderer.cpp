@@ -21,7 +21,7 @@ using namespace FW;
 //------------------------------------------------------------------------
 
 CPURenderer::CPURenderer(void)
-:   Renderer(),
+:   Renderer(Renderer::tBVH),
 m_layout(BVHLayout_CPU)
 {
     m_platform = Platform("CPU");

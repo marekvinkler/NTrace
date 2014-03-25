@@ -167,6 +167,19 @@ App::App(void)
     if (!m_kernelNames.getSize())
         fail("No CUDA kernel sources found!");
 
+	m_env = new Environment();
+	m_env->RegisterOption("UseBVH", OptionType::optInt, "BVH");
+	m_env->ReadEnvFile("config.conf");
+	int bvh = m_env->GetInt("UseBVH");
+	if (bvh)
+	{
+		m_renderer = new Renderer(Renderer::tBVH);
+	}
+	else
+	{
+		m_renderer = new Renderer(Renderer::tKDTree);
+	}
+
     m_commonCtrl.showFPS(true);
     m_commonCtrl.addStateObject(this);
     m_commonCtrl.setStateFilePrefix("state_rt_");
@@ -204,7 +217,7 @@ bool App::handleEvent(const Window::Event& ev)
 
 	if (ev.type == Window::EventType_KeyDown && ev.key == FW_KEY_V)
 	{
-		m_renderer.toggleBVHVis();
+		m_renderer->toggleBVHVis();
 	}
 
     if (ev.type == Window::EventType_KeyDown && ev.key == FW_KEY_TAB)
@@ -399,19 +412,19 @@ void App::render(GLContext* gl)
     params.aoRadius     = m_aoRadius;
     params.numSamples   = m_numSamples;
 
-    m_renderer.setParams(params);
-    m_renderer.setMessageWindow(&m_window);
-    m_renderer.setEnableRandom(true);
+    m_renderer->setParams(params);
+	m_renderer->setMessageWindow(&m_window);
+	m_renderer->setEnableRandom(true);
 
     // Render.
 
-    m_renderer.setMesh(m_mesh);
-    F32 launchTime = m_renderer.renderFrame(gl, m_cameraCtrl);
-    int numRays = m_renderer.getTotalNumRays();
+	m_renderer->setMesh(m_mesh);
+	F32 launchTime = m_renderer->renderFrame(gl, m_cameraCtrl);
+	int numRays = m_renderer->getTotalNumRays();
 
     // Show statistics.
 
-    CudaAS* bvh = m_renderer.getCudaBVH();
+	CudaAS* bvh = m_renderer->getCudaBVH();
     S64 nodeBytes = bvh->getNodeBuffer().getSize();
     S64 triBytes = bvh->getTriWoopBuffer().getSize() + bvh->getTriIndexBuffer().getSize();
 
@@ -488,7 +501,7 @@ bool App::loadMesh(const String& fileName)
         return false;
     }
 
-    m_renderer.setMesh(NULL);
+	m_renderer->setMesh(NULL);
     delete m_mesh;
     m_meshFileName = fileName;
     m_mesh = mesh;
@@ -631,9 +644,10 @@ void FW::runBenchmark(
     BVH::BuildParams buildParams;
     buildParams.splitAlpha = sbvhAlpha;
 
-    Renderer renderer;
-    renderer.setBuildParams(buildParams);
-    renderer.setMesh(importMesh(meshFile));
+	Renderer* renderer = new Renderer(Renderer::tBVH);
+	//Renderer* renderer = new Renderer(Renderer::tKDTree);
+    renderer->setBuildParams(buildParams);
+	renderer->setMesh(importMesh(meshFile));
 
     // Create window.
 
@@ -670,35 +684,35 @@ void FW::runBenchmark(
 
                 params.kernelName = kernels[kernelIdx];
                 params.rayType = (Renderer::RayType)rayType;
-                renderer.setParams(params);
+				renderer->setParams(params);
 
                 CameraControls camera;
                 camera.decodeSignature(cameras[cameraIdx]);
-                renderer.beginFrame(gl, camera);
-                totalRays += (S64)renderer.getTotalNumRays() * measureRepeats;
+				renderer->beginFrame(gl, camera);
+				totalRays += (S64)renderer->getTotalNumRays() * measureRepeats;
 
                 // Process each batch.
 
-                while (renderer.nextBatch())
+				while (renderer->nextBatch())
                 {
                     // Render and display result.
 
-                    renderer.traceBatch();
-                    renderer.updateResult();
+					renderer->traceBatch();
+					renderer->updateResult();
                     window.setVisible(true);
                     Window::pollMessages();
                     for (int i = 0; i < 3; i++)
                     {
-                        renderer.displayResult(gl);
+						renderer->displayResult(gl);
                         gl->swapBuffers();
                     }
 
                     // Warm up and measure.
 
                     for (int i = 0; i < warmupRepeats; i++)
-                        renderer.traceBatch();
+						renderer->traceBatch();
                     for (int i = 0; i < measureRepeats; i++)
-                        totalLaunchTime += renderer.traceBatch();
+						totalLaunchTime += renderer->traceBatch();
                 }
 
                 // Error => skip.
