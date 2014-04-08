@@ -1,7 +1,7 @@
-/*
- *  Copyright (c) 2009-2011, NVIDIA Corporation
+/* 
+ *  Copyright (c) 2013, FI MUNI CZ
  *  All rights reserved.
- *
+ *  
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions are met:
  *      * Redistributions of source code must retain the above copyright
@@ -9,10 +9,10 @@
  *      * Redistributions in binary form must reproduce the above copyright
  *        notice, this list of conditions and the following disclaimer in the
  *        documentation and/or other materials provided with the distribution.
- *      * Neither the name of NVIDIA Corporation nor the
+ *      * Neither the name of the <organization> nor the
  *        names of its contributors may be used to endorse or promote products
  *        derived from this software without specific prior written permission.
- *
+ *  
  *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  *  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  *  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -23,44 +23,21 @@
  *  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ *  Authors:
+ *  Vilem Otte <vilem.otte@post.cz>
+ *
  */
 
-#pragma once
-#include "gpu/CudaCompiler.hpp"
-#include "cuda/CudaBVH.hpp"
-#include "ray/RayBuffer.hpp"
-#include "cuda/CudaVirtualTracer.hpp"
+/*! \file
+ *  \brief Environment variables class for this app.
+ */
 
-namespace FW
+#include "AppEnvironment.h"
+
+void
+AppEnvironment::RegisterOptions()
 {
-//------------------------------------------------------------------------
-
-class CudaTracer : public CudaVirtualTracer
-{
-public:
-                        CudaTracer              (void);
-                        ~CudaTracer             (void);
-
-    void                setMessageWindow        (Window* window)        { m_compiler.setMessageWindow(window); }
-    void                setKernel               (const String& kernelName);
-    BVHLayout           getDesiredBVHLayout     (void) const            { return (BVHLayout)m_kernelConfig.bvhLayout; }
-    void                setBVH                  (CudaAS* bvh)          { m_bvh = (CudaBVH*)bvh; }
-
-    F32                 traceBatch              (RayBuffer& rays); // returns launch time in seconds
-
-private:
-    CudaModule*         compileKernel           (void);
-
-private:
-                        CudaTracer              (const CudaTracer&); // forbidden
-    CudaTracer&         operator=               (const CudaTracer&); // forbidden
-
-private:
-    CudaCompiler        m_compiler;
-    String              m_kernelName;
-    KernelConfig        m_kernelConfig;
-    CudaBVH*            m_bvh;
-};
-
-//------------------------------------------------------------------------
+	RegisterOption("AccelerationStructure", OptionType::optString, "BVH=");
 }
+

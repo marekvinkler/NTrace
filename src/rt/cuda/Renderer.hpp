@@ -28,11 +28,11 @@
 #pragma once
 #include "3d/CameraControls.hpp"
 #include "base/Random.hpp"
-#include "cuda/CudaTracer.hpp"
+#include "cuda/CudaBVHTracer.hpp"
 #include "ray/RayGen.hpp"
 
 #include "cuda/CudaKDTreeTracer.hpp"
-#include "tools/visualizationBVH.hpp"
+#include "tools/visualizationKDTree.hpp"
 
 
 namespace FW
@@ -87,7 +87,7 @@ public:
     void                setMessageWindow    (Window* window)        { m_window = window; m_compiler.setMessageWindow(window); m_cudaTracer->setMessageWindow(window); }
     void                setEnableRandom     (bool enable)           { m_enableRandom = enable; }
 
-    CudaVirtualTracer&         getCudaTracer       (void)                  { return *m_cudaTracer; }
+    CudaVirtualTracer&  getCudaTracer       (void)                  { return *m_cudaTracer; }
     Scene*              getScene            (void) const            { return m_scene; }
     CudaAS*             getCudaBVH          (void);
 
@@ -143,7 +143,7 @@ protected:
 	CudaVirtualTracer*	m_cudaTracer;
 
 	AccelStructType		m_asType;
-	VisualizationBVH*   m_vis;
+	Visualization*		m_vis;
 	bool				m_showVis;
 };
 

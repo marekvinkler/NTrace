@@ -97,7 +97,7 @@
       <Optimization>Disabled</Optimization>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <AdditionalIncludeDirectories>src/rt;src/framework;$(CUDA_INC_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -167,7 +167,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <AdditionalIncludeDirectories>src/rt;src/framework;$(CUDA_INC_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>
       </ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -235,6 +235,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\rt\acceleration\Acceleration.cpp" />
+    <ClCompile Include="src\rt\AppEnvironment.cpp" />
     <ClCompile Include="src\rt\bvh\BVH.cpp" />
     <ClCompile Include="src\rt\bvh\BVHNode.cpp" />
     <ClCompile Include="src\rt\bvh\HLBVH\HLBVHBuilder.cpp">
@@ -246,10 +247,10 @@
     <ClCompile Include="src\rt\cuda\CPURenderer.cpp" />
     <ClCompile Include="src\rt\cuda\CudaAS.cpp" />
     <ClCompile Include="src\rt\cuda\CudaBVH.cpp" />
+    <ClCompile Include="src\rt\cuda\CudaBVHTracer.cpp" />
     <ClCompile Include="src\rt\cuda\CudaKDTree.cpp" />
     <ClCompile Include="src\rt\cuda\CudaKDTreeTracer.cpp" />
     <ClCompile Include="src\rt\cuda\CudaRenderer.cpp" />
-    <ClCompile Include="src\rt\cuda\CudaTracer.cpp" />
     <ClCompile Include="src\rt\cuda\Renderer.cpp" />
     <ClCompile Include="src\rt\Environment.cpp" />
     <ClCompile Include="src\rt\kdtree\FastKDTreeBuilder.cpp" />
@@ -261,11 +262,14 @@
     <ClCompile Include="src\rt\ray\RayGen.cpp" />
     <ClCompile Include="src\rt\App.cpp" />
     <ClCompile Include="src\rt\Scene.cpp" />
+    <ClCompile Include="src\rt\tools\Visualization.cpp" />
     <ClCompile Include="src\rt\tools\VisualizationBVH.cpp" />
+    <ClCompile Include="src\rt\tools\VisualizationKDTree.cpp" />
     <ClCompile Include="src\rt\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\rt\acceleration\Acceleration.hpp" />
+    <ClInclude Include="src\rt\AppEnvironment.h" />
     <ClInclude Include="src\rt\bvh\BVH.hpp" />
     <ClInclude Include="src\rt\bvh\BVHNode.hpp" />
     <ClInclude Include="src\rt\bvh\HLBVH\HLBVHBuilder.hpp">
@@ -280,10 +284,10 @@
     <ClInclude Include="src\rt\cuda\CPURenderer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaAS.hpp" />
     <ClInclude Include="src\rt\cuda\CudaBVH.hpp" />
+    <ClInclude Include="src\rt\cuda\CudaBVHTracer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaKDTree.hpp" />
     <ClInclude Include="src\rt\cuda\CudaKDTreeTracer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaRenderer.hpp" />
-    <ClInclude Include="src\rt\cuda\CudaTracer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaVirtualTracer.hpp" />
     <ClInclude Include="src\rt\cuda\Renderer.hpp" />
     <ClInclude Include="src\rt\cuda\RendererKernels.hpp" />
@@ -300,7 +304,9 @@
     <ClInclude Include="src\rt\ray\RayGenKernels.hpp" />
     <ClInclude Include="src\rt\App.hpp" />
     <ClInclude Include="src\rt\Scene.hpp" />
+    <ClInclude Include="src\rt\tools\Visualization.hpp" />
     <ClInclude Include="src\rt\tools\VisualizationBVH.hpp" />
+    <ClInclude Include="src\rt\tools\VisualizationKDTree.hpp" />
     <ClInclude Include="src\rt\Util.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -361,18 +367,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cu">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cuh">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cuh.bak">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </None>
-    <None Include="src\rt\bvh\HLBVH\radixSort.cu">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </None>
     <None Include="src\rt\kernels\kepler_dynamic_fetch.cu">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

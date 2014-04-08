@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "framework", "framework.vcxproj", "{8E0B71BD-6F14-4F0C-AC34-45985043856F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rt", "rt.vcxproj", "{EC32C587-08D5-4F90-8E47-463278872364}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NTrace", "rt.vcxproj", "{EC32C587-08D5-4F90-8E47-463278872364}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CudaProject", "CudaProject\CudaProject.vcxproj", "{0EDDF4AB-7B34-41FF-A48A-C84F8D3D98A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,14 @@ Global
 		{EC32C587-08D5-4F90-8E47-463278872364}.Release|Win32.Build.0 = Release|Win32
 		{EC32C587-08D5-4F90-8E47-463278872364}.Release|x64.ActiveCfg = Release|x64
 		{EC32C587-08D5-4F90-8E47-463278872364}.Release|x64.Build.0 = Release|x64
+		{0EDDF4AB-7B34-41FF-A48A-C84F8D3D98A1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0EDDF4AB-7B34-41FF-A48A-C84F8D3D98A1}.Debug|Win32.Build.0 = Debug|Win32
+		{0EDDF4AB-7B34-41FF-A48A-C84F8D3D98A1}.Debug|x64.ActiveCfg = Debug|x64
+		{0EDDF4AB-7B34-41FF-A48A-C84F8D3D98A1}.Debug|x64.Build.0 = Debug|x64
+		{0EDDF4AB-7B34-41FF-A48A-C84F8D3D98A1}.Release|Win32.ActiveCfg = Release|Win32
+		{0EDDF4AB-7B34-41FF-A48A-C84F8D3D98A1}.Release|Win32.Build.0 = Release|Win32
+		{0EDDF4AB-7B34-41FF-A48A-C84F8D3D98A1}.Release|x64.ActiveCfg = Release|x64
+		{0EDDF4AB-7B34-41FF-A48A-C84F8D3D98A1}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

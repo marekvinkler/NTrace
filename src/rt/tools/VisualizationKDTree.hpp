@@ -25,7 +25,7 @@
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *  Authors:
- *  Marek Vinkler
+ *  Radek Stibora
  *
  */
 
@@ -36,17 +36,29 @@
 #pragma once
 #include "Visualization.hpp"
 
+
 namespace FW
 {
 //------------------------------------------------------------------------
 
-/*!
+/**
  *  \brief Class for the BVH visualization.
  *  \details In the standard visualization current node's bounding box, its sibling's bounding box and its childrens' bounding boxes are visualized.
  */
-class VisualizationBVH : public Visualization
+class VisualizationKDTree : public Visualization
 {
 public:
+
+	struct SplitInfo
+	{
+		F32		pos;
+		S32		dim;
+
+		SplitInfo(void) : pos(0), dim(-1) {}
+		FW::String	getPos(void)		{ return String(pos); }
+		FW::String	getAxisName(void)	{ if (dim == 0) return String('X'); else if (dim == 1) return String('Y'); else if (dim == 2) return('Z'); }
+	};
+
 	/*!
 	 *  \brief Constructor.
 	 *  \param[in] bvh			CudaBVH to visualize.
@@ -54,11 +66,11 @@ public:
 	 *  \param[in] rays			Rays to visualize, pass NULL if no rays should be visualized.
 	 *  \param[in] visibility	Array of triangle visibility flags.
 	 */
-    explicit    VisualizationBVH    (CudaBVH* bvh, Scene* scene, const Array<AABB> &emptyBoxes, const RayBuffer* rays = NULL, Buffer* visibility = NULL);
+    explicit    VisualizationKDTree    (CudaKDTree* kdtree, Scene* scene, const Array<AABB> &emptyBoxes, const RayBuffer* rays = NULL, Buffer* visibility = NULL);
 	/*!
 	 *  \brief Destructor.
 	 */
-                ~VisualizationBVH   (void);
+    ~VisualizationKDTree   (void);
 
 	/*!
 	 *  \brief Handles visualization events - key commands influencing the output.
@@ -108,6 +120,8 @@ private:
 	struct NodeData
     {
 		S32                 addr; //!< Address in the CudaBVH linear array structure.
+		//S32					dim;
+		//F32					pos;
         AABB                box; //!< The boxes bounding box stored as it's min and max value.
 
 		/*!
@@ -126,7 +140,7 @@ private:
 	 */
 	void        growParentBox       ();
 	/*!
-	 *  \brief Draws the 4 nodes: current, sibling, left and right child or the VisualizationBVH::m_boxes buffer.
+	 *  \brief Draws the 4 nodes: current, sibling, left and right child or the VisualizationKDTree::m_boxes buffer.
 	 *  \param[in] gl			The OpenGL context to draw into.
 	 *  \param[in] onlyChildren	States whether to draw all the 4 boxes or just the 2 child boxes.
 	 */
@@ -139,13 +153,13 @@ private:
 	 */
 	void        drawBox             (GLContext* gl, const NodeData &node, U32 abgr);
 	/*!
-	 *  \brief Draws all the rays in the VisualizationBVH::m_rays buffer into the OpenGL contex.
+	 *  \brief Draws all the rays in the VisualizationKDTree::m_rays buffer into the OpenGL contex.
 	 *  \param[in] gl			The OpenGL context to draw into.
 	 *  \param[in] abgr			Color to draw the rays.
 	 */
 	void        drawRays            (GLContext* gl, U32 abgr);
 	/*!
-	 *  \brief Draws all the primitives in the VisualizationBVH::m_tris buffer into the OpenGL contex.
+	 *  \brief Draws all the primitives in the VisualizationKDTree::m_tris buffer into the OpenGL contex.
 	 *  \param[in] gl			The OpenGL context to draw into.
 	 */
 	void        drawPrimitives      (GLContext* gl);
@@ -158,10 +172,10 @@ private:
 	 */
 	void        setColorMapping     ();
 	/*!
-	 *  \brief Traverses the entire BVH tree and fills the VisualizationBVH::m_boxes and VisualizationBVH::m_tris buffers.
+	 *  \brief Traverses the entire BVH tree and fills the VisualizationKDTree::m_boxes and VisualizationKDTree::m_tris buffers.
 	 *  \param[in] node			The root of the subtree to process.
 	 */
-	void        prepareTreeData     (S32 node);
+	void        prepareTreeData     (NodeData node);
 	/*!
 	 *  \brief Converts a min,max representation of a box to a series of faces(quads) representation and adds it to the buffer.
 	 *  \param[in] box			The box to convert.
@@ -169,16 +183,19 @@ private:
 	 */
 	void        addBoxQuads				(const AABB &box, Array<Vec4f> &buffer);
 
+	
+	void		splitNode			(const NodeData& currNode, S32& leftAdd, S32& rightAdd, AABB& leftBox, AABB& rightBox, SplitInfo& split);
+
 private:
 	// Global and path data
-    CudaBVH*            m_bvh;			//!< BVH to visualize.
-    Array<S32>          m_nodeStack;	//!< Stack of the node addresses, holds the path from the BVH root to the current node.
+    CudaKDTree*         m_kdtree;			//!< BVH to visualize.
+    Array<NodeData>     m_nodeStack;	//!< Stack of the node addresses, holds the path from the BVH root to the current node.
 	// Currently visible node data
 	NodeData            m_node;			//!< Current node.
-	SplitInfo           m_nodeSplit;	//!< Information about the split in the current node.
 	NodeData            m_sibling;		//!< Sibling of the current node.
 	NodeData            m_left;			//!< Left child of the current node.
 	NodeData            m_right;		//!< Right child of the current node.
+	SplitInfo			m_nodeSplit;
 };
 
 //------------------------------------------------------------------------

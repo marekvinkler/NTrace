@@ -32,7 +32,7 @@ namespace FW
 {
 //------------------------------------------------------------------------
 
-class AABB
+class AABB 
 {
 public:
     FW_CUDA_FUNC                    AABB        (void) : m_mn(FW_F32_MAX, FW_F32_MAX, FW_F32_MAX), m_mx(-FW_F32_MAX, -FW_F32_MAX, -FW_F32_MAX) {}

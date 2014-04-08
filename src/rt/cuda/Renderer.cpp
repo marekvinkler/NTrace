@@ -35,7 +35,7 @@ Renderer::Renderer(AccelStructType as)
 	}
 	else
 	{
-		m_cudaTracer = new CudaTracer();
+		m_cudaTracer = new CudaBVHTracer();
 	}
 
     m_compiler.setSourceFile("src/rt/cuda/RendererKernels.cu");
@@ -545,7 +545,7 @@ void Renderer::startBVHVis(void)
 	//	traceBatch();
 	//}
 
-	m_vis = new VisualizationBVH((CudaKDTree*)m_accelStruct, m_scene, Array<AABB>());
+	m_vis = new VisualizationKDTree((CudaKDTree*)m_accelStruct, m_scene, Array<AABB>());
 	m_vis->setVisible(true);
 	m_window->addListener(m_vis);
 

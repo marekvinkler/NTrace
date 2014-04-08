@@ -26,7 +26,7 @@ private:
 	
 private:
     CudaCompiler        m_compiler;
-    CudaTracer          m_tracer;
+    CudaBVHTracer       m_tracer;
     CudaBVH*            m_bvh;
 };
 }

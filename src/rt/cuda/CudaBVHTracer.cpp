@@ -25,7 +25,7 @@
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "cuda/CudaTracer.hpp"
+#include "cuda/CudaBVHTracer.hpp"
 #include "gui/Window.hpp"
 #include "io/File.hpp"
 
@@ -33,7 +33,7 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-CudaTracer::CudaTracer(void)
+CudaBVHTracer::CudaBVHTracer(void)
 :   m_bvh(NULL)
 {
     CudaModule::staticInit();
@@ -42,13 +42,13 @@ CudaTracer::CudaTracer(void)
 
 //------------------------------------------------------------------------
 
-CudaTracer::~CudaTracer(void)
+CudaBVHTracer::~CudaBVHTracer(void)
 {
 }
 
 //------------------------------------------------------------------------
 
-void CudaTracer::setKernel(const String& kernelName)
+void CudaBVHTracer::setKernel(const String& kernelName)
 {
     // Not changed => done.
 
@@ -77,7 +77,7 @@ void CudaTracer::setKernel(const String& kernelName)
 
 //------------------------------------------------------------------------
 
-F32 CudaTracer::traceBatch(RayBuffer& rays)
+F32 CudaBVHTracer::traceBatch(RayBuffer& rays)
 {
     // No rays => done.
 
@@ -88,9 +88,9 @@ F32 CudaTracer::traceBatch(RayBuffer& rays)
     // Check BVH consistency.
 
     if (!m_bvh)
-        fail("CudaTracer: No BVH!");
+        fail("CudaBVHTracer: No BVH!");
     if (m_bvh->getLayout() != getDesiredBVHLayout())
-        fail("CudaTracer: Incorrect BVH layout!");
+        fail("CudaBVHTracer: Incorrect BVH layout!");
 
 
     // Get BVH buffers.
@@ -159,7 +159,7 @@ F32 CudaTracer::traceBatch(RayBuffer& rays)
 
 //------------------------------------------------------------------------
 
-CudaModule* CudaTracer::compileKernel(void)
+CudaModule* CudaBVHTracer::compileKernel(void)
 {
     m_compiler.setSourceFile(sprintf("src/rt/kernels/%s.cu", m_kernelName.getPtr()));
     m_compiler.clearDefines();

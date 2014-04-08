@@ -167,15 +167,16 @@ App::App(void)
     if (!m_kernelNames.getSize())
         fail("No CUDA kernel sources found!");
 
-	m_env = new Environment();
-	m_env->RegisterOption("UseBVH", OptionType::optInt, "BVH");
+	m_env = new AppEnvironment();
 	m_env->ReadEnvFile("config.conf");
-	int bvh = m_env->GetInt("UseBVH");
-	if (bvh)
+
+	string bvh;
+	m_env->GetStringValue("AccelerationStructure", bvh);
+	if (bvh == "BVH")
 	{
 		m_renderer = new Renderer(Renderer::tBVH);
 	}
-	else
+	else if (bvh == "KDTree")
 	{
 		m_renderer = new Renderer(Renderer::tKDTree);
 	}
