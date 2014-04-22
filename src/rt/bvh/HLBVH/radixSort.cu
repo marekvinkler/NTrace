@@ -1,6 +1,8 @@
 #include <thrust/sort.h>
 #include <thrust/unique.h>
 #include <thrust/iterator/discard_iterator.h>
+#include <thrust/device_ptr.h>
+#include <thrust/host_vector.h>
 #include "radixSort.hpp"
 
 //#include <thrust/detail/device/cuda/detail/b40c/radixsort_api.h>

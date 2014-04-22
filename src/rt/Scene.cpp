@@ -34,6 +34,8 @@ using namespace FW;
 Scene::Scene(const MeshBase& mesh)
 {
     Vec3f light = Vec3f(1.0f, 2.0f, 3.0f).normalized();
+	
+	mesh.getBBox(m_AABBMin, m_AABBMax);
 
     // Convert mesh and allocate buffers.
 

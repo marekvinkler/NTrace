@@ -59,7 +59,8 @@ public:
     Buffer&         getVtxPosBuffer             (void)          { return m_vtxPos; }
 
     U32             hash                        (void);
-
+	
+	void			getBBox(Vec3f& lo, Vec3f &hi) const	{lo = m_AABBMin; hi = m_AABBMax;};
 private:
                     Scene               (const Scene&); // forbidden
     Scene&          operator=           (const Scene&); // forbidden
@@ -67,11 +68,12 @@ private:
 private:
     S32             m_numTriangles;
     S32             m_numVertices;
-    Buffer          m_triVtxIndex;      // Vec3i[numTriangles]
-    Buffer          m_triNormal;        // Vec3f[numTriangles]
-    Buffer          m_triMaterialColor; // U32[numTriangles], ABGR
-    Buffer          m_triShadedColor;   // U32[numTriangles], ABGR
-    Buffer          m_vtxPos;           // Vec3f[numVertices]
+    Buffer          m_triVtxIndex;			// Vec3i[numTriangles]
+    Buffer          m_triNormal;			// Vec3f[numTriangles]
+    Buffer          m_triMaterialColor;		// U32[numTriangles], ABGR
+    Buffer          m_triShadedColor;		// U32[numTriangles], ABGR
+    Buffer          m_vtxPos;				// Vec3f[numVertices]
+	Vec3f			m_AABBMin, m_AABBMax;	// BBox of the scene
 };
 
 //------------------------------------------------------------------------

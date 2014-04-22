@@ -29,11 +29,13 @@
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -88,6 +90,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.5\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.5\lib\Win32;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>build\$(Platform)_$(Configuration)\$(ProjectName)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <BuildLog>
@@ -238,9 +243,7 @@
     <ClCompile Include="src\rt\AppEnvironment.cpp" />
     <ClCompile Include="src\rt\bvh\BVH.cpp" />
     <ClCompile Include="src\rt\bvh\BVHNode.cpp" />
-    <ClCompile Include="src\rt\bvh\HLBVH\HLBVHBuilder.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="src\rt\bvh\HLBVH\HLBVHBuilder.cpp" />
     <ClCompile Include="src\rt\bvh\Platform.cpp" />
     <ClCompile Include="src\rt\bvh\SAHBVHBuilder.cpp" />
     <ClCompile Include="src\rt\bvh\SplitBVHBuilder.cpp" />
@@ -272,12 +275,8 @@
     <ClInclude Include="src\rt\AppEnvironment.h" />
     <ClInclude Include="src\rt\bvh\BVH.hpp" />
     <ClInclude Include="src\rt\bvh\BVHNode.hpp" />
-    <ClInclude Include="src\rt\bvh\HLBVH\HLBVHBuilder.hpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="src\rt\bvh\HLBVH\radixSort.hpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="src\rt\bvh\HLBVH\HLBVHBuilder.hpp" />
+    <ClInclude Include="src\rt\bvh\HLBVH\radixSort.hpp" />
     <ClInclude Include="src\rt\bvh\Platform.hpp" />
     <ClInclude Include="src\rt\bvh\SAHBVHBuilder.hpp" />
     <ClInclude Include="src\rt\bvh\SplitBVHBuilder.hpp" />
