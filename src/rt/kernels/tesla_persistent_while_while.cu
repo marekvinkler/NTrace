@@ -45,7 +45,7 @@
 #define LOOP_NODE                       100 // Nodes: 1 = if, 100 = while.
 #define LOOP_TRI                        100 // Triangles: 1 = if, 100 = while.
 
-extern "C" __device__ int g_warpCounter;    // Work counter for persistent threads.
+extern "C" {__device__ int g_warpCounter;}    // Work counter for persistent threads.
 
 //------------------------------------------------------------------------
 

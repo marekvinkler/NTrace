@@ -44,7 +44,7 @@
 #define STACK_SIZE              64          // Size of the traversal stack in local memory.
 #define DYNAMIC_FETCH_THRESHOLD 20          // If fewer than this active, fetch new rays
 
-extern "C" __device__ int g_warpCounter;    // Work counter for persistent threads.
+extern "C" {__device__ int g_warpCounter;}    // Work counter for persistent threads.
 
 //------------------------------------------------------------------------
 

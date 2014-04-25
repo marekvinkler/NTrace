@@ -49,7 +49,7 @@
 #define LOAD_BALANCER_BATCH_SIZE        96      // Number of rays to fetch at a time. Must be a multiple of 32.
 #define STACK_SIZE                      (23+32) // Size of the traversal stack in shared memory.
 
-extern "C" __device__ int g_warpCounter;        // Work counter for persistent threads.
+extern "C" {__device__ int g_warpCounter;}        // Work counter for persistent threads.
 
 //------------------------------------------------------------------------
 
