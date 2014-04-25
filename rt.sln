@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "framework", "framework.vcxproj", "{8E0B71BD-6F14-4F0C-AC34-45985043856F}"
@@ -8,7 +8,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NTrace", "rt.vcxproj", "{EC
 		{F7F8E5E1-3EEB-4535-A1C0-3D914B5A47A5} = {F7F8E5E1-3EEB-4535-A1C0-3D914B5A47A5}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cuda", "cuda\cuda.vcxproj", "{F7F8E5E1-3EEB-4535-A1C0-3D914B5A47A5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cuda", "cuda.vcxproj", "{F7F8E5E1-3EEB-4535-A1C0-3D914B5A47A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
