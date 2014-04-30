@@ -241,7 +241,7 @@ __device__ __forceinline__ void popNode(char*& stackPtr, int& shortStack, int& n
 
 //------------------------------------------------------------------------
 
-TRACE_FUNC
+TRACE_FUNC_KDTREE
 {
     // Traversal stack in CUDA thread-local memory.
 

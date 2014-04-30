@@ -24,6 +24,9 @@
     <CudaCompile Include="src\rt\kernels\tesla_persistent_speculative_while_while.cu">
       <Filter>traversal</Filter>
     </CudaCompile>
+    <CudaCompile Include="src\rt\kernels\fermi_kdtree_while_while_leafRef.cu">
+      <Filter>traversal</Filter>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="traversal">

@@ -68,7 +68,7 @@ extern "C" __global__ void queryConfig(void)
 
 //------------------------------------------------------------------------
 
-TRACE_FUNC
+TRACE_FUNC_BVH
 {
     // Temporary data stored in shared memory to reduce register pressure.
 

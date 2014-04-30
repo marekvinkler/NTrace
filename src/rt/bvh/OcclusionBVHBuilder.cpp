@@ -30,13 +30,16 @@ using namespace FW;
 //#define BUILD_ASBVH
 //#define BUILD_VSAH
 
+#define BVH_EPSILON 0.01f
+
 //------------------------------------------------------------------------
 
 OcclusionBVHBuilder::OcclusionBVHBuilder(BVH& bvh, const BVH::BuildParams& params)
 :   SplitBVHBuilder (bvh, params), m_MaxVisibleDepth(48)
 {
-	if(m_params.camera != NULL)
-		m_cameraPos = m_params.camera->getPosition();
+	// FIXME: CAMERA
+//	if(m_params.camera != NULL)
+//		m_cameraPos = m_params.camera->getPosition();
 
 	//if(m_params.visibility != NULL)
 	//{
@@ -83,7 +86,7 @@ BVHNode* OcclusionBVHBuilder::run(void)
 {
     // Initialize reference stack and determine root bounds.
 
-    const Scene::Triangle* tris = m_bvh.getScene()->getTrianglePtr();
+	const Vec3i* tris = (Vec3i*)m_bvh.getScene()->getTriVtxIndexBuffer().getPtr();
 	const Vec3f* verts = (Vec3f*)m_bvh.getScene()->getVtxPosBuffer().getPtr();
 
 	// Find visible triangles
@@ -108,7 +111,7 @@ BVHNode* OcclusionBVHBuilder::run(void)
 
 			m_refStack[last].triIdx = i;
 			for (int j = 0; j < 3; j++)
-				m_refStack[last].bounds.grow(verts[tris[i].vertices[j]]);
+				m_refStack[last].bounds.grow(verts[tris[i][j]]);
 			// Inflate the basic boxes so that box intersections are correct
 			m_refStack[last].bounds.min() -= BVH_EPSILON;
 			m_refStack[last].bounds.max() += BVH_EPSILON;
@@ -188,7 +191,7 @@ BVHNode* OcclusionBVHBuilder::run(void)
 			}
 
 			for (int j = 0; j < 3; j++)
-				m_refStack[i].bounds.grow(verts[tris[m_refStack[i].triIdx].vertices[j]]);
+				m_refStack[i].bounds.grow(verts[tris[m_refStack[i].triIdx][j]]);
 			// Inflate the basic boxes so that box intersections are correct
 			m_refStack[i].bounds.grow(m_refStack[i].bounds.min()-BVH_EPSILON);
 			m_refStack[i].bounds.grow(m_refStack[i].bounds.max()+BVH_EPSILON);
@@ -215,7 +218,8 @@ BVHNode* OcclusionBVHBuilder::run(void)
 		// Build recursively.
 
 		BVHNode* visible;
-		visible = SplitBVHBuilder::buildNode(visibleSpec, invisibleSpec.numRef, rootSpec.numRef-1, 0, 0.0f, 1.0f);
+		// FIXME: SplitBVH
+		//visible = SplitBVHBuilder::buildNode(visibleSpec, invisibleSpec.numRef, rootSpec.numRef-1, 0, 0.0f, 1.0f);
 
 		// Done.
 
@@ -239,7 +243,8 @@ BVHNode* OcclusionBVHBuilder::run(void)
 		// Build recursively.
 
 		BVHNode* invisible;
-		invisible = SplitBVHBuilder::buildNode(invisibleSpec, 0, invisibleSpec.numRef-1, 0, 0.0f, 1.0f);
+		// FIXME: SplitBVH
+		//invisible = SplitBVHBuilder::buildNode(invisibleSpec, 0, invisibleSpec.numRef-1, 0, 0.0f, 1.0f);
 
 		// Done.
 
@@ -275,9 +280,10 @@ BVHNode* OcclusionBVHBuilder::buildNode(const NodeSpecOcl& spec, int start, int 
     }
 
     // Small enough or too deep => create leaf.
-
-	if (level != 0 && spec.numRef <= m_platform.getMinLeafSize() || level >= MaxDepth) // Make sure we do not make the root a leaf -> GPU traversal will fail
-		return createLeaf(spec, start, end);
+	
+	// FIXME: SplitBVH
+	/*if (level != 0 && spec.numRef <= m_platform.getMinLeafSize() || level >= MaxDepth) // Make sure we do not make the root a leaf -> GPU traversal will fail
+		return createLeaf(spec, start, end);*/
 
     // Find split candidates.
 
@@ -333,8 +339,9 @@ BVHNode* OcclusionBVHBuilder::buildNode(const NodeSpecOcl& spec, int start, int 
     // Leaf SAH is the lowest => create leaf.
 
     F32 minSAH = min(leafSAH, object.sah, spatial.sah);
-    if (level != 0 && minSAH == leafSAH && spec.numRef <= m_platform.getMaxLeafSize()) // Make sure we do not make the root a leaf -> GPU traversal will fail
-		return createLeaf(spec, start, end);
+	// FIXME: SplitBVH
+    /*if (level != 0 && minSAH == leafSAH && spec.numRef <= m_platform.getMaxLeafSize()) // Make sure we do not make the root a leaf -> GPU traversal will fail
+		return createLeaf(spec, start, end);*/
 
     // Perform split.
 
@@ -390,7 +397,7 @@ OcclusionBVHBuilder::ObjectSplitOcl OcclusionBVHBuilder::findObjectSplit(const N
 
     for (m_sortDim = 0; m_sortDim < 3; m_sortDim++)
     {
-		sort(start, end+1, this, sortCompare, sortSwap);
+		sort(this, start, end+1, sortCompare, sortSwap);
 
 #ifdef ENABLE_GRAPHS
 		if(level == 0)
@@ -495,7 +502,7 @@ OcclusionBVHBuilder::ObjectSplitOcl OcclusionBVHBuilder::findObjectOccludeSplit(
 
     for (m_sortDim = 0; m_sortDim < 3; m_sortDim++)
     {
-		sort(start, end+1, this, sortCompare, sortSwap);
+		sort(this, start, end+1, sortCompare, sortSwap);
 
 #ifdef ENABLE_GRAPHS
 		if(level == 0)
@@ -628,7 +635,7 @@ OcclusionBVHBuilder::ObjectSplitOcl OcclusionBVHBuilder::findObjectOccludeSplit(
 void OcclusionBVHBuilder::performObjectSplit(NodeSpecOcl& left, NodeSpecOcl& right, const NodeSpecOcl& spec, int start, int end, const ObjectSplitOcl& split)
 {
     m_sortDim = split.sortDim;
-	sort(start, end+1, this, sortCompare, sortSwap);
+	sort(this, start, end+1, sortCompare, sortSwap);
 
     left.numRef = split.numLeft;
     left.bounds = split.leftBounds;

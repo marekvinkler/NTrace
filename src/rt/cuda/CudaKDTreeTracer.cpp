@@ -71,7 +71,7 @@ F32 CudaKDTreeTracer::traceBatch(RayBuffer& rays)
 	Buffer&     indexBuf    = m_kdtree->getTriIndexBuffer();
 	
 	CudaModule* module = compileKernel();
-	CudaKernel kernel = module->getKernel("trace");
+	CudaKernel kernel = module->getKernel("trace_kdtree");
 
 	CudaKernel::Param bmin(m_bbox.min().getPtr(), 3);
 	CudaKernel::Param bmax(m_bbox.max().getPtr(), 3);

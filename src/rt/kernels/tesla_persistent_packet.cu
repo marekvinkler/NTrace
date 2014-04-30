@@ -83,7 +83,7 @@ extern "C" __global__ void queryConfig(void)
 
 //------------------------------------------------------------------------
 
-TRACE_FUNC
+TRACE_FUNC_BVH
 {
     // Shared memory arrays.
 

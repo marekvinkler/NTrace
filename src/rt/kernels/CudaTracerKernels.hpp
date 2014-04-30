@@ -78,11 +78,8 @@ struct KernelConfig
 // Function signature for trace().
 //------------------------------------------------------------------------
 
-#define KDTREE
-#ifdef KDTREE
-
-#define TRACE_FUNC \
-    extern "C" __global__ void trace( \
+#define TRACE_FUNC_KDTREE \
+    extern "C" __global__ void trace_kdtree( \
         int             numRays,        /* Total number of rays in the batch. */ \
         bool            anyHit,         /* False if rays need to find the closest hit. */ \
 		float*			bmin,	\
@@ -99,10 +96,8 @@ struct KernelConfig
         float4*         trisC,          /* SOA: bytes 32-47 of each triangle, AOS/Compact: unused. */ \
         int*            triIndices)     /* Triangle index remapping table. */
 
-#else
-
-#define TRACE_FUNC \
-    extern "C" __global__ void trace( \
+#define TRACE_FUNC_BVH \
+    extern "C" __global__ void trace_bvh( \
         int             numRays,        /* Total number of rays in the batch. */ \
         bool            anyHit,         /* False if rays need to find the closest hit. */ \
         float4*         rays,           /* Ray input: float3 origin, float tmin, float3 direction, float tmax. */ \
@@ -115,8 +110,6 @@ struct KernelConfig
         float4*         trisB,          /* SOA: bytes 16-31 of each triangle, AOS/Compact: unused. */ \
         float4*         trisC,          /* SOA: bytes 32-47 of each triangle, AOS/Compact: unused. */ \
         int*            triIndices)     /* Triangle index remapping table. */
-
-#endif
 
 //------------------------------------------------------------------------
 // Temporary data stored in shared memory to reduce register pressure.
@@ -152,7 +145,9 @@ texture<float4, 1> t_trisC;
 texture<int,  1>   t_triIndices;
 
 __global__ void queryConfig(void);  // Launched once when the kernel is loaded.
-TRACE_FUNC;                         // Launched for each batch of rays.
+
+TRACE_FUNC_BVH;                     // Launched for each batch of rays.
+TRACE_FUNC_KDTREE;
 
 }
 #endif

@@ -109,7 +109,7 @@ F32 CudaBVHTracer::traceBatch(RayBuffer& rays)
     // Compile kernel.
 
     CudaModule* module = compileKernel();
-    CudaKernel kernel = module->getKernel("trace");
+    CudaKernel kernel = module->getKernel("trace_bvh");
 
     // Set parameters.
 

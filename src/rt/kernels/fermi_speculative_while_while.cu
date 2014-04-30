@@ -51,7 +51,7 @@ extern "C" __global__ void queryConfig(void)
 
 //------------------------------------------------------------------------
 
-TRACE_FUNC
+TRACE_FUNC_BVH
 {
     // Traversal stack in CUDA thread-local memory.
 

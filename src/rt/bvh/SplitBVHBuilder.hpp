@@ -93,9 +93,6 @@ public:
     BVHNode*                run                 (void);
 
 private:
-    static bool             sortCompare         (void* data, int idxA, int idxB);
-    static void             sortSwap            (void* data, int idxA, int idxB);
-
     BVHNode*                buildNode           (NodeSpec spec, int level, F32 progressStart, F32 progressEnd);
     BVHNode*                createLeaf          (const NodeSpec& spec);
 
@@ -104,7 +101,10 @@ private:
 
     SpatialSplit            findSpatialSplit    (const NodeSpec& spec, F32 nodeSAH);
     void                    performSpatialSplit (NodeSpec& left, NodeSpec& right, const NodeSpec& spec, const SpatialSplit& split);
-    void                    splitReference      (Reference& left, Reference& right, const Reference& ref, int dim, F32 pos);
+public:
+    static bool             sortCompare         (void* data, int idxA, int idxB);
+    static void             sortSwap            (void* data, int idxA, int idxB);
+	void                    splitReference      (Reference& left, Reference& right, const Reference& ref, int dim, F32 pos);
 
 private:
                             SplitBVHBuilder     (const SplitBVHBuilder&); // forbidden
