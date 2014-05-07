@@ -35,7 +35,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -292,7 +292,6 @@
     <ClInclude Include="src\rt\cuda\CudaRenderer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaVirtualTracer.hpp" />
     <ClInclude Include="src\rt\cuda\Renderer.hpp" />
-    <ClInclude Include="src\rt\cuda\RendererKernels.hpp" />
     <ClInclude Include="src\rt\Environment.h" />
     <ClInclude Include="src\rt\kdtree\FastKDTreeBuilder.hpp" />
     <ClInclude Include="src\rt\kdtree\KDTree.hpp" />
@@ -301,9 +300,7 @@
     <ClInclude Include="src\rt\kernels\CudaTracerKernels.hpp" />
     <ClInclude Include="src\rt\ray\PixelTable.hpp" />
     <ClInclude Include="src\rt\ray\RayBuffer.hpp" />
-    <ClInclude Include="src\rt\ray\RayBufferKernels.hpp" />
     <ClInclude Include="src\rt\ray\RayGen.hpp" />
-    <ClInclude Include="src\rt\ray\RayGenKernels.hpp" />
     <ClInclude Include="src\rt\App.hpp" />
     <ClInclude Include="src\rt\Scene.hpp" />
     <ClInclude Include="src\rt\tools\Visualization.hpp" />

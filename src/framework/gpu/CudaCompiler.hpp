@@ -89,6 +89,7 @@ public:
     void                    addPreamble     (const String& preamble)                        { m_preamble += preamble + "\n"; m_preambleHashValid = false; m_memHashValid = false; }
 
     void                    setMessageWindow(Window* window)                                { m_window = window; }
+    CudaModule*             loadDbgCubin    (bool enablePrints = true); // loads cubin file compiled by cuda rules
     CudaModule*             compile         (bool enablePrints = true, bool autoFail = true);
     const Array<U8>*        compileCubin    (bool enablePrints = true, bool autoFail = true); // returns data in cubin file, padded with a zero
     String                  compileCubinFile(bool enablePrints = true, bool autoFail = true); // returns file name, empty string on error

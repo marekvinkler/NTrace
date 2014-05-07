@@ -127,9 +127,6 @@
     <ClInclude Include="src\rt\cuda\Renderer.hpp">
       <Filter>cuda</Filter>
     </ClInclude>
-    <ClInclude Include="src\rt\cuda\RendererKernels.hpp">
-      <Filter>cuda</Filter>
-    </ClInclude>
     <ClInclude Include="src\rt\kernels\CudaTracerKernels.hpp">
       <Filter>kernels</Filter>
     </ClInclude>
@@ -139,13 +136,7 @@
     <ClInclude Include="src\rt\ray\RayBuffer.hpp">
       <Filter>ray</Filter>
     </ClInclude>
-    <ClInclude Include="src\rt\ray\RayBufferKernels.hpp">
-      <Filter>ray</Filter>
-    </ClInclude>
     <ClInclude Include="src\rt\ray\RayGen.hpp">
-      <Filter>ray</Filter>
-    </ClInclude>
-    <ClInclude Include="src\rt\ray\RayGenKernels.hpp">
       <Filter>ray</Filter>
     </ClInclude>
     <ClInclude Include="src\rt\App.hpp" />
@@ -207,16 +198,5 @@
     <ClInclude Include="src\rt\bvh\HLBVH\radixSort.hpp">
       <Filter>bvh\HLBVH</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuildStep Include="src\rt\cuda\RendererKernels.cu">
-      <Filter>cuda</Filter>
-    </CustomBuildStep>
-    <CustomBuildStep Include="src\rt\ray\RayBufferKernels.cu">
-      <Filter>ray</Filter>
-    </CustomBuildStep>
-    <CustomBuildStep Include="src\rt\ray\RayGenKernels.cu">
-      <Filter>ray</Filter>
-    </CustomBuildStep>
   </ItemGroup>
 </Project>

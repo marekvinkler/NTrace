@@ -32,6 +32,7 @@
 
 #include <process.h>
 #include <stdio.h>
+#include <direct.h>
 
 using namespace FW;
 
@@ -152,6 +153,11 @@ CudaModule* CudaCompiler::compile(bool enablePrints, bool autoFail)
     if (found)
         return *found;
 
+#if FW_DEBUG
+	// Load CUBIN file.
+	return loadDbgCubin(enablePrints);
+#endif
+
     // Compile CUBIN file.
 
     String cubinFile = compileCubinFile(enablePrints, autoFail);
@@ -164,6 +170,39 @@ CudaModule* CudaCompiler::compile(bool enablePrints, bool autoFail)
     s_moduleCache.add(memHash, module);
     return module;
 }
+
+//------------------------------------------------------------------------
+
+CudaModule* CudaCompiler::loadDbgCubin(bool enablePrints)
+{
+	String cubinFile = m_sourceFile.getFileName()+"bin";
+#if !FW_64
+	String cubinDir  = "build\\Win32";
+#else
+	String cubinDir  = "build\\x64_Debug\\cuda";
+#endif
+#if FW_DEBUG
+	cubinDir += "_Debug\\cuda";
+#else
+	cubinDir += "_Release\\cuda";
+#endif
+
+	String fullCubinPath = cubinDir + "\\" + cubinFile;
+
+	// Create module and add to memory cache.
+
+	if (enablePrints)
+		printf("Loading %s...", fullCubinPath.getPtr());
+
+	CudaModule* module = new CudaModule(fullCubinPath);
+	U64 memHash = getMemHash();
+	s_moduleCache.add(memHash, module);
+
+	if (enablePrints)
+		printf("done\n");
+	return module;
+}
+
 
 //------------------------------------------------------------------------
 
@@ -642,6 +681,10 @@ void CudaCompiler::runPreprocessor(String& cubinFile, String& finalOpts)
         finalOpts.getPtr(),
         saveSource().getPtr(),
         logFile.getPtr());
+
+	// TODO: Solve or delete !!!
+	//if(m_sourceFile == "src/rt/kernels/fermi_speculative_while_while.cu")
+	//	cmd = "\"C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v4.2\\bin\\nvcc.exe\" -gencode=arch=compute_20,code=sm_20 --use-local-env --cl-version 2010 -ccbin \"C:\\Program Files\\Microsoft Visual Studio 10.0\\VC\\bin\" -I\"src/rt\" -I\"src/framework\" -I\"C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v4.2\\include\"  -G  --keep-dir \"Debug\" -maxrregcount=0  --machine 32 -E  -o \"cudacache\\preprocessed.cu\" \"D:\\GitHub\\NTrace\\src\\rt\\kernels\\fermi_speculative_while_while.cu\"";
 
     initLogFile(logFile, cmd);
     if (system(cmd.getPtr()) != 0)

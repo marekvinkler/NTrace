@@ -1,14 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="src\rt\bvh\HLBVH\radixSort.hpp" />
+    <ClInclude Include="src\rt\ray\RayGenKernels.hpp">
+      <Filter>ray</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\ray\RayBufferKernels.hpp">
+      <Filter>ray</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\bvh\HLBVH\radixSort.hpp">
+      <Filter>hybrid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\cuda\RendererKernels.hpp">
+      <Filter>shading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cuh" />
-  </ItemGroup>
-  <ItemGroup>
-    <CudaCompile Include="src\rt\bvh\HLBVH\emitTreeKernel.cu" />
-    <CudaCompile Include="src\rt\bvh\HLBVH\radixSort.cu" />
     <CudaCompile Include="src\rt\kernels\fermi_speculative_while_while.cu">
       <Filter>traversal</Filter>
     </CudaCompile>
@@ -27,10 +33,39 @@
     <CudaCompile Include="src\rt\kernels\fermi_kdtree_while_while_leafRef.cu">
       <Filter>traversal</Filter>
     </CudaCompile>
+    <CudaCompile Include="src\rt\ray\RayGenKernels.cu">
+      <Filter>ray</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\ray\RayBufferKernels.cu">
+      <Filter>ray</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\bvh\HLBVH\emitTreeKernel.cu">
+      <Filter>hybrid</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\bvh\HLBVH\radixSort.cu">
+      <Filter>hybrid</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\cuda\RendererKernels.cu">
+      <Filter>shading</Filter>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="traversal">
       <UniqueIdentifier>{fffde6d3-1750-4942-ba40-478d8ed46b8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ray">
+      <UniqueIdentifier>{53b858d5-2ddb-476c-9f36-ee4e69e492ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hybrid">
+      <UniqueIdentifier>{5f601924-9309-45f7-81d7-488f4f697247}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shading">
+      <UniqueIdentifier>{8b5af90d-086c-47b8-91f5-bf8520b94b9c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cuh">
+      <Filter>hybrid</Filter>
+    </None>
   </ItemGroup>
 </Project>
