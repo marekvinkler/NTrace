@@ -34,12 +34,10 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-OcclusionBVHBuilder::OcclusionBVHBuilder(BVH& bvh, const BVH::BuildParams& params)
+OcclusionBVHBuilder::OcclusionBVHBuilder(BVH& bvh, const BVH::BuildParams& params, const Vec3f& cameraPosition)
 :   SplitBVHBuilder (bvh, params), m_MaxVisibleDepth(48)
 {
-	// FIXME: CAMERA
-//	if(m_params.camera != NULL)
-//		m_cameraPos = m_params.camera->getPosition();
+	m_cameraPos = cameraPosition;
 
 	//if(m_params.visibility != NULL)
 	//{
@@ -218,8 +216,9 @@ BVHNode* OcclusionBVHBuilder::run(void)
 		// Build recursively.
 
 		BVHNode* visible;
-		// FIXME: SplitBVH
+		// TODO: Works the same?!
 		//visible = SplitBVHBuilder::buildNode(visibleSpec, invisibleSpec.numRef, rootSpec.numRef-1, 0, 0.0f, 1.0f);
+		visible = SplitBVHBuilder::buildNode(visibleSpec, rootSpec.numRef - 1, 0.0f, 1.0f);
 
 		// Done.
 
@@ -243,8 +242,9 @@ BVHNode* OcclusionBVHBuilder::run(void)
 		// Build recursively.
 
 		BVHNode* invisible;
-		// FIXME: SplitBVH
+		// TODO: Works the same?
 		//invisible = SplitBVHBuilder::buildNode(invisibleSpec, 0, invisibleSpec.numRef-1, 0, 0.0f, 1.0f);
+		invisible = SplitBVHBuilder::buildNode(invisibleSpec, invisibleSpec.numRef-1, 0.0f, 1.0f);
 
 		// Done.
 
@@ -281,9 +281,11 @@ BVHNode* OcclusionBVHBuilder::buildNode(const NodeSpecOcl& spec, int start, int 
 
     // Small enough or too deep => create leaf.
 	
-	// FIXME: SplitBVH
+	// TODO: Works the same?
 	/*if (level != 0 && spec.numRef <= m_platform.getMinLeafSize() || level >= MaxDepth) // Make sure we do not make the root a leaf -> GPU traversal will fail
 		return createLeaf(spec, start, end);*/
+	if (level != 0 && spec.numRef <= m_platform.getMinLeafSize() || level >= MaxDepth)
+		return createLeaf(spec);
 
     // Find split candidates.
 
@@ -339,9 +341,11 @@ BVHNode* OcclusionBVHBuilder::buildNode(const NodeSpecOcl& spec, int start, int 
     // Leaf SAH is the lowest => create leaf.
 
     F32 minSAH = min(leafSAH, object.sah, spatial.sah);
-	// FIXME: SplitBVH
+	// TODO: Works the same?
     /*if (level != 0 && minSAH == leafSAH && spec.numRef <= m_platform.getMaxLeafSize()) // Make sure we do not make the root a leaf -> GPU traversal will fail
 		return createLeaf(spec, start, end);*/
+    if (level != 0 && minSAH == leafSAH && spec.numRef <= m_platform.getMaxLeafSize()) // Make sure we do not make the root a leaf -> GPU traversal will fail
+		return createLeaf(spec);
 
     // Perform split.
 

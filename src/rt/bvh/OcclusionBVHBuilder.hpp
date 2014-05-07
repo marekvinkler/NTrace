@@ -69,7 +69,7 @@ protected:
     };
 
 public:
-                            OcclusionBVHBuilder			(BVH& bvh, const BVH::BuildParams& params);
+                            OcclusionBVHBuilder			(BVH& bvh, const BVH::BuildParams& params, const Vec3f& cameraPosition);
     virtual                 ~OcclusionBVHBuilder		(void);
 
     virtual BVHNode*        run							(void);

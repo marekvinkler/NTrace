@@ -30,6 +30,7 @@
 #include "bvh/BVHNode.hpp"
 #include "ray/RayBuffer.hpp"
 #include "acceleration\Acceleration.hpp"
+#include "Environment.h"
 
 namespace FW
 {
@@ -71,7 +72,6 @@ public:
         F32						splitAlpha;     // spatial split area threshold
 		F32                     osahWeight;     // weighting factor for OSAH construction
 		String	                accelerator;    // the name of the acceleration data structure method for ray tracing
-		//const CameraControls*	camera;			// camera parameter
 		Array<AABB>				empty_boxes;	// information about boxes with no triangles inside
 		Buffer*                 visibility;
 		String					logDirectory;
@@ -97,7 +97,7 @@ public:
     };
 
 public:
-                        BVH                     (Scene* scene, const Platform& platform, const BuildParams& params);
+                        BVH                     (Scene* scene, const Platform& platform, const BuildParams& params, Environment* env);
                         ~BVH                    (void)                  { if(m_root) m_root->deleteSubtree(); }
 
     BVHNode*            getRoot                 (void) const            { return m_root; }
@@ -111,6 +111,7 @@ private:
 	
     BVHNode*            m_root;
     Array<S32>          m_triIndices;
+	Environment*		m_env;
 };
 
 }

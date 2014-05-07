@@ -24,7 +24,7 @@ namespace FW
 class CPURenderer : public Renderer
 {
 public:
-	                    CPURenderer         (void);
+	                    CPURenderer         (Environment* env);
 	virtual             ~CPURenderer        (void);
 
 	

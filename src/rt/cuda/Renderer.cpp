@@ -2,12 +2,13 @@
 #include "cuda/RendererKernels.hpp"
 #include "gui/Window.hpp"
 #include "io/File.hpp"
+#include "bvh/HLBVH/HLBVHBuilder.hpp"
 
 using namespace FW;
 
 //------------------------------------------------------------------------
 
-Renderer::Renderer(AccelStructType as)
+Renderer::Renderer(AccelStructType as, Environment* env)
 :   m_raygen            (1 << 20),
 
     m_window            (NULL),
@@ -29,6 +30,8 @@ Renderer::Renderer(AccelStructType as)
 	m_vis				(NULL),
 	m_showVis			(false)
 {
+	m_env = env;
+
 	if (m_asType == tKDTree)
 	{
 		m_cudaTracer = new CudaKDTreeTracer();
@@ -95,6 +98,9 @@ void Renderer::setParams(const Params& params)
 
 CudaAS* Renderer::getCudaBVH(void)
 {
+	string bvhBuilder;
+	m_env->GetStringValue("BVHBuilder", bvhBuilder);
+
     // BVH is already valid => done.
 
     BVHLayout layout = m_cudaTracer->getDesiredBVHLayout();
@@ -110,6 +116,19 @@ CudaAS* Renderer::getCudaBVH(void)
 
     BVH::Stats stats;
     m_buildParams.stats = &stats;
+
+	// If we use HLBVH, use HLBVH
+
+	if (bvhBuilder == "HLBVH")
+	{
+		HLBVHParams params;
+		params.hlbvh = true;
+		params.hlbvhBits = 4;
+		params.leafSize = 8;
+		params.epsilon = 0.001f;
+		HLBVHBuilder* bvh = new HLBVHBuilder(m_scene, m_platform, params);
+		return bvh;
+	}
 
     // Determine cache file name.
 
@@ -141,7 +160,7 @@ CudaAS* Renderer::getCudaBVH(void)
 
     // Build BVH.
 
-    BVH bvh(m_scene, m_platform, m_buildParams);
+    BVH bvh(m_scene, m_platform, m_buildParams, m_env);
     stats.print();
     m_accelStruct = new CudaBVH(bvh, layout);
     failIfError();

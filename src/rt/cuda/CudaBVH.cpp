@@ -755,7 +755,7 @@ bool eCompare(void* data, int idxA, int idxB)
 void eSwap(void* data, int idxA, int idxB)
 {
     Vec2f* ptr = (Vec2f*)data;
-    swap(ptr[idxA], ptr[idxB]);
+    FW::swap(ptr[idxA], ptr[idxB]);
 }
 
 

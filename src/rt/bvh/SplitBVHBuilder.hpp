@@ -92,7 +92,7 @@ public:
 
     BVHNode*                run                 (void);
 
-private:
+protected:
     BVHNode*                buildNode           (NodeSpec spec, int level, F32 progressStart, F32 progressEnd);
     BVHNode*                createLeaf          (const NodeSpec& spec);
 

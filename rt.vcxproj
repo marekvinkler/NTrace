@@ -35,7 +35,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -247,6 +247,7 @@
     <ClCompile Include="src\rt\bvh\BVH.cpp" />
     <ClCompile Include="src\rt\bvh\BVHNode.cpp" />
     <ClCompile Include="src\rt\bvh\HLBVH\HLBVHBuilder.cpp" />
+    <ClCompile Include="src\rt\bvh\OcclusionBVHBuilder.cpp" />
     <ClCompile Include="src\rt\bvh\Platform.cpp" />
     <ClCompile Include="src\rt\bvh\SAHBVHBuilder.cpp" />
     <ClCompile Include="src\rt\bvh\SplitBVHBuilder.cpp" />
@@ -280,6 +281,7 @@
     <ClInclude Include="src\rt\bvh\BVHNode.hpp" />
     <ClInclude Include="src\rt\bvh\HLBVH\HLBVHBuilder.hpp" />
     <ClInclude Include="src\rt\bvh\HLBVH\radixSort.hpp" />
+    <ClInclude Include="src\rt\bvh\OcclusionBVHBuilder.hpp" />
     <ClInclude Include="src\rt\bvh\Platform.hpp" />
     <ClInclude Include="src\rt\bvh\SAHBVHBuilder.hpp" />
     <ClInclude Include="src\rt\bvh\SplitBVHBuilder.hpp" />

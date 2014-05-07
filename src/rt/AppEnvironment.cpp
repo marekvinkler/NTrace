@@ -38,6 +38,7 @@
 void
 AppEnvironment::RegisterOptions()
 {
-	RegisterOption("AccelerationStructure", OptionType::optString, "BVH=");
+	RegisterOption("AccelerationStructure", OptionType::optString, "ACS=");
+	RegisterOption("BVHBuilder", OptionType::optString, "BVHB=");
 }
 

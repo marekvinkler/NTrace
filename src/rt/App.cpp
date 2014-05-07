@@ -174,11 +174,11 @@ App::App(void)
 	m_env->GetStringValue("AccelerationStructure", bvh);
 	if (bvh == "BVH")
 	{
-		m_renderer = new Renderer(Renderer::tBVH);
+		m_renderer = new Renderer(Renderer::tBVH, m_env);
 	}
 	else if (bvh == "KDTree")
 	{
-		m_renderer = new Renderer(Renderer::tKDTree);
+		m_renderer = new Renderer(Renderer::tKDTree, m_env);
 	}
 
     m_commonCtrl.showFPS(true);
@@ -645,7 +645,7 @@ void FW::runBenchmark(
     BVH::BuildParams buildParams;
     buildParams.splitAlpha = sbvhAlpha;
 
-	Renderer* renderer = new Renderer(Renderer::tBVH);
+	Renderer* renderer = new Renderer(Renderer::tBVH, NULL);
 	//Renderer* renderer = new Renderer(Renderer::tKDTree);
     renderer->setBuildParams(buildParams);
 	renderer->setMesh(importMesh(meshFile));

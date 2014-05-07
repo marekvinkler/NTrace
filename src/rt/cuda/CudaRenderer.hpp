@@ -6,7 +6,7 @@ namespace FW
 class CudaRenderer : public Renderer
 {
 public:
-	                    CudaRenderer        (void);
+	                    CudaRenderer        (Environment* env);
 	virtual             ~CudaRenderer       (void);
 
 	

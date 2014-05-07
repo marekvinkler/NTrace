@@ -33,6 +33,7 @@
 
 #include "cuda/CudaKDTreeTracer.hpp"
 #include "tools/visualizationKDTree.hpp"
+#include "Environment.h"
 
 
 namespace FW
@@ -75,8 +76,11 @@ public:
         }
     };
 
+private:
+	Environment* m_env;
+
 public:
-						Renderer			(AccelStructType as);
+						Renderer			(AccelStructType as, Environment* env);
                         ~Renderer           (void);
 
     void                setMesh             (MeshBase* mesh);

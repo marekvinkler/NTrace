@@ -107,6 +107,9 @@
     <ClCompile Include="src\rt\bvh\HLBVH\HLBVHBuilder.cpp">
       <Filter>bvh\HLBVH</Filter>
     </ClCompile>
+    <ClCompile Include="src\rt\bvh\OcclusionBVHBuilder.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\rt\bvh\BVH.hpp">
@@ -197,6 +200,9 @@
     </ClInclude>
     <ClInclude Include="src\rt\bvh\HLBVH\radixSort.hpp">
       <Filter>bvh\HLBVH</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\bvh\OcclusionBVHBuilder.hpp">
+      <Filter>bvh</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
