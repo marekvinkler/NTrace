@@ -208,7 +208,7 @@ extern "C" __device__ int createLeaf(int start, int end) {	// exclusive
 		outWoopMem[i*3+2] = g_inWoopMem[g_inTriIdxMem[start+i]*3+2];
 #else
 		// Copy vertex data
-		int3 vidx = *(int3*)(g_tris + 3*sizeof(float4)*g_inTriIdxMem[start+i]);
+		int3 vidx = *(int3*)(g_tris + sizeof(int3)*g_inTriIdxMem[start+i]);
 		float3 v0 = g_verts[vidx.x];
 		outWoopMem[i*3] = make_int4(__float_as_int(v0.x), __float_as_int(v0.y), __float_as_int(v0.z), 0);
 		float3 v1 = g_verts[vidx.y];
@@ -388,7 +388,7 @@ __device__ void calcLeaf(int start, int end, float3& lo, float3& hi) { // exclus
 #endif
 
 	for (int i = start; i < end; i++) {
-		int3 vidx = *(int3*)(g_tris + 3*sizeof(float4)*g_inTriIdxMem[i]);
+		int3 vidx = *(int3*)(g_tris + sizeof(int3)*g_inTriIdxMem[i]);
 		float3 a = g_verts[vidx.x];
 		float3 b = g_verts[vidx.y];
 		float3 c = g_verts[vidx.z];
@@ -572,9 +572,9 @@ inv(A) = [ inv(M)   -inv(M) * b ]
 DET  =  a11(a33a22-a32a23)-a21(a33a12-a32a13)+a31(a23a12-a22a13)
 */
 __device__ void calcWoop(int tid, int4* out) {
-	//int3 vidx = *(int3*)(g_tris + 3*sizeof(float4)*tid);
-	//int3 vidx = *(int3*)(g_tris + 3*sizeof(float4)*(  *(int*)(g_inTriIdxMem + tid*4)  ));
-	int3 vidx = *(int3*)(g_tris + 3*sizeof(float4)*tid);
+	//int3 vidx = *(int3*)(g_tris + sizeof(int3)*tid);
+	//int3 vidx = *(int3*)(g_tris + sizeof(int3)*(  *(int*)(g_inTriIdxMem + tid*4)  ));
+	int3 vidx = *(int3*)(g_tris + sizeof(int3)*tid);
 
 	float3 v0 = g_verts[vidx.x];
 	float3 v1 = g_verts[vidx.y];
@@ -669,7 +669,7 @@ extern "C" __global__ void calcMorton(
 	float3 lo = make_float3(lo_x, lo_y, lo_z);
 	float3 step = make_float3(step_x, step_y, step_z);
 
-	int3 vidx = *(int3*)(g_tris + 3*sizeof(float4)*tid);
+	int3 vidx = *(int3*)(g_tris + sizeof(int3)*tid);
 	float3 a = g_verts[vidx.x];
 	float3 b = g_verts[vidx.y];
 	float3 c = g_verts[vidx.z];
@@ -1101,7 +1101,7 @@ extern "C" __global__ void clusterAABB(int cnt, int tris) {
 	float3 hi = make_float3(-FW_F32_MAX,-FW_F32_MAX,-FW_F32_MAX);
 
 	for (int i = start; i < end; i++) {
-		int3 vidx = *(int3*)(g_tris + 3*sizeof(float4)*g_inTriIdxMem[i]);
+		int3 vidx = *(int3*)(g_tris + sizeof(int3)*g_inTriIdxMem[i]);
 		float3 a = g_verts[vidx.x];
 		float3 b = g_verts[vidx.y];
 		float3 c = g_verts[vidx.z];
@@ -1130,7 +1130,7 @@ extern "C" __global__ void clusterAABB(int cnt, int tris) {
 
 	// Each thread processes its part of the array
 	for (int i = start+tid; i < end; i+=WARP_SIZE) {
-		int3 vidx = *(int3*)(g_tris + 3*sizeof(float4)*g_inTriIdxMem[i]);
+		int3 vidx = *(int3*)(g_tris + sizeof(int3)*g_inTriIdxMem[i]);
 		float3 a = g_verts[vidx.x];
 		float3 b = g_verts[vidx.y];
 		float3 c = g_verts[vidx.z];
@@ -1184,7 +1184,7 @@ extern "C" __global__ void clusterAABB(int cnt, int tris) {
 
 	// Each thread processes its part of the array
 	for (int i = start+tid; i < end; i+=BLOCK_SIZE) {
-		int3 vidx = *(int3*)(g_tris + 3*sizeof(float4)*g_inTriIdxMem[i]);
+		int3 vidx = *(int3*)(g_tris + sizeof(int3)*g_inTriIdxMem[i]);
 		float3 a = g_verts[vidx.x];
 		float3 b = g_verts[vidx.y];
 		float3 c = g_verts[vidx.z];
@@ -1273,7 +1273,8 @@ extern "C" __global__ void clusterAABB(int cnt, int tris) {
 		float3 a, b, c;
 		if(i < tris)
 		{
-			int3 vidx = *(int3*)(g_tris + 3*sizeof(float4)*g_inTriIdxMem[i]);
+			uint triIdx = g_inTriIdxMem[i];
+			int3 vidx = *(int3*)(g_tris + sizeof(int3)*triIdx);
 			a = g_verts[vidx.x];
 			b = g_verts[vidx.y];
 			c = g_verts[vidx.z];

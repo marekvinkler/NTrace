@@ -111,6 +111,7 @@ public:
     Vec2i               getDefaultBlockSize (void) const;                                           // Smallest block that reaches maximal occupancy.
     CudaKernel&         setGrid             (int numThreads, const Vec2i& blockSize = 0);           // Generates at least numThreads.
     CudaKernel&         setGrid             (const Vec2i& sizeThreads, const Vec2i& blockSize = 0); // Generates at least sizeThreads in both X and Y.
+    CudaKernel&         setGridExact        (const Vec2i& blockSize, const Vec2i& gridSize) { m_blockSize = blockSize; m_gridSize = gridSize; return *this; }    // Set exact blockSize and gridSize.
 
     CudaKernel&         launch              (void);
     CudaKernel&         launch              (int numThreads, const Vec2i& blockSize = 0)                                { setGrid(numThreads, blockSize); return launch(); }
