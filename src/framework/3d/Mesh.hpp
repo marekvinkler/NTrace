@@ -83,7 +83,12 @@ public:
         Vec3f           specular;
         F32             glossiness;
         F32             displacementCoef; // height = texture/255 * coef + bias
-        F32             displacementBias;
+        F32             displacementBias;	
+		F32				emissivity;				// Material emissive light coefficient
+		F32				reflectivity;			// Material reflectivity coefficient
+		F32				refractivity;			// Material refractivity coefficient
+		F32				indexOfRefraction;		// Index of refraction for material
+
         Texture         textures[TextureType_Max];
 
         Material(void)
@@ -93,6 +98,11 @@ public:
             glossiness          = 32.0f;
             displacementCoef    = 1.0f;
             displacementBias    = 0.0f;
+			
+			emissivity			= 0.0f;
+			reflectivity		= 0.0f;
+			refractivity		= 0.0f;
+			indexOfRefraction	= 1.0f;
         }
     };
 

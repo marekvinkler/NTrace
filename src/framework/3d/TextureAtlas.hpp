@@ -53,6 +53,9 @@ public:
 
     Vec2i                   getAtlasSize    (void)  { validate(); return m_atlasSize; }
     Vec2i                   getTexturePos   (const Texture& tex);
+	Vec2i					getTextureSize	(const Texture& tex);
+	Vec2f					getTexturePosF	(const Texture& tex);
+	Vec2f					getTextureSizeF	(const Texture& tex);
     const Texture&          getAtlasTexture (void)  { validate(); return m_atlasTexture; }
 
 private:

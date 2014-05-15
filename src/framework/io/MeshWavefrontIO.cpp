@@ -296,6 +296,33 @@ void FW::loadMtl(ImportState& s, BufferedInputStream& mtlIn, const String& dirNa
             valid = parseTexture(ptr, tex, dirName);
             mat->textures[MeshBase::TextureType_Environment] = tex.texture;
         }
+		//---------------------------------------------------------------------------------------------------------//
+		// Added functionality for extended material properties                                                    //
+		//---------------------------------------------------------------------------------------------------------//
+		// Emissivity                                                                                              //
+		else if (parseLiteral(ptr, "emissivity "))
+		{
+			valid = parseFloat(ptr, mat->emissivity);
+		}
+		//---------------------------------------------------------------------------------------------------------//
+		// Reflectivity                                                                                            //
+		else if (parseLiteral(ptr, "reflectivity "))
+		{
+			valid = parseFloat(ptr, mat->reflectivity);
+		}
+		//---------------------------------------------------------------------------------------------------------//
+		// Refractivity                                                                                            //
+		else if (parseLiteral(ptr, "refractivity "))
+		{
+			valid = parseFloat(ptr, mat->refractivity);
+		}
+		//---------------------------------------------------------------------------------------------------------//
+		// Index of Refraction                                                                                     //
+		else if (parseLiteral(ptr, "IOR "))
+		{
+			valid = parseFloat(ptr, mat->indexOfRefraction);
+		}
+		//---------------------------------------------------------------------------------------------------------//
         else if (
             parseLiteral(ptr, "vp ") ||             // parameter space vertex
             parseLiteral(ptr, "Kf ") ||             // transmission color

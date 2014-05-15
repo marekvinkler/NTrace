@@ -155,7 +155,7 @@ CudaModule* CudaCompiler::compile(bool enablePrints, bool autoFail)
 
 #if FW_DEBUG
 	// Load CUBIN file.
-	return loadDbgCubin(enablePrints);
+	//return loadDbgCubin(enablePrints);
 #endif
 
     // Compile CUBIN file.

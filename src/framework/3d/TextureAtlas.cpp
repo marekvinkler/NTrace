@@ -90,6 +90,48 @@ Vec2i TextureAtlas::getTexturePos(const Texture& tex)
 
 //------------------------------------------------------------------------
 
+Vec2i TextureAtlas::getTextureSize(const Texture& tex)
+{
+	validate();
+	S32* found = m_itemHash.search(tex.getImage());
+	if(!found)
+		return 0;
+
+	const Item& item = m_items[*found];
+	return item.size;
+}
+
+//------------------------------------------------------------------------
+
+Vec2f TextureAtlas::getTexturePosF(const Texture& tex)
+{
+    validate();
+    S32* found = m_itemHash.search(tex.getImage());
+    if (!found)
+        return 0;
+
+    const Item& item = m_items[*found];
+	Vec2i size = getAtlasSize();
+	Vec2i pos = item.pos + item.border;
+	return Vec2f((F32)(pos.x) / (F32)(size.x), (F32)(pos.y) / (F32)(size.y));
+}
+
+//------------------------------------------------------------------------
+
+Vec2f TextureAtlas::getTextureSizeF(const Texture& tex)
+{
+	validate();
+	S32* found = m_itemHash.search(tex.getImage());
+	if(!found)
+		return 0;
+
+	const Item& item = m_items[*found];
+	Vec2i size = getAtlasSize();
+	return Vec2f((F32)(item.size.x) / (F32)(size.x), (F32)(item.size.y) / (F32)(size.y));
+}
+
+//------------------------------------------------------------------------
+
 void TextureAtlas::validate(void)
 {
     if (!m_atlasTexture.exists())
