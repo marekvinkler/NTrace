@@ -28,21 +28,12 @@
 #pragma once
 #include "base/Math.hpp"
 #include "3d/Mesh.hpp"
+#include "3d/TextureAtlas.hpp"
 
 namespace FW
 {
 //------------------------------------------------------------------------
-
-/* TODO: Move somewhere else, but where? */
-struct Triangle
-{
-    Vec3i       vertices;
-    Vec3f       normal;
-	U32         materialIndex;
-    U32         materialColor;
-    U32         shadedColor;
-};
-
+	
 class Scene
 {
 public:
@@ -51,12 +42,20 @@ public:
 
     int             getNumTriangles             (void) const    { return m_numTriangles; }
     int             getNumVertices              (void) const    { return m_numVertices; }
+    int             getNumEmissive              (void) const    { return m_numEmissive; }
 
     Buffer&         getTriVtxIndexBuffer        (void)          { return m_triVtxIndex; }
     Buffer&         getTriNormalBuffer          (void)          { return m_triNormal; }
     Buffer&         getTriMaterialColorBuffer   (void)          { return m_triMaterialColor; }
     Buffer&         getTriShadedColorBuffer     (void)          { return m_triShadedColor; }
     Buffer&         getVtxPosBuffer             (void)          { return m_vtxPos; }
+	Buffer&			getVtxNormalBuffer			(void)			{ return m_vtxNorm; }
+	Buffer&			getVtxTexCoordBuffer		(void)			{ return m_vtxTC; }
+	Buffer&			getTextureAtlasInfo			(void)			{ return m_atlasInfo; }
+	Buffer&			getMaterialIds				(void)			{ return m_matId; }
+	Buffer&			getEmissiveTris				(void)			{ return m_emissiveTris; }
+	Buffer&			getMaterialInfo				(void)			{ return m_matInfo; }
+	TextureAtlas*	getTextureAtlas				(void)			{ return m_texture; }
 
     U32             hash                        (void);
 	
@@ -68,12 +67,20 @@ private:
 private:
     S32             m_numTriangles;
     S32             m_numVertices;
+	S32				m_numEmissive;
     Buffer          m_triVtxIndex;			// Vec3i[numTriangles]
     Buffer          m_triNormal;			// Vec3f[numTriangles]
     Buffer          m_triMaterialColor;		// U32[numTriangles], ABGR
     Buffer          m_triShadedColor;		// U32[numTriangles], ABGR
     Buffer          m_vtxPos;				// Vec3f[numVertices]
+	Buffer			m_vtxNorm;				// Vec3f[numVertices]
+	Buffer			m_vtxTC;				// Vec2f[numVertices]
+	Buffer			m_atlasInfo;			// Vec4f[numTriangles] - texture atlas information (xy contains offset, zw contains size)
+	Buffer			m_matId;				// U32[numTriangles], material id
+	Buffer			m_emissiveTris;			// Vec3i[m_numEmissive]
+	Buffer			m_matInfo;				// Vec4f[numMaterials] - material information (emissivity, reflectivity, refractivity, texture?)
 	Vec3f			m_AABBMin, m_AABBMax;	// BBox of the scene
+	TextureAtlas*	m_texture;				// Texture atlas holding scene's textures
 };
 
 //------------------------------------------------------------------------

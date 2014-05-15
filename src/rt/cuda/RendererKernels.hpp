@@ -49,6 +49,7 @@ struct ReconstructInput
     bool        isPrimary;
     bool        isAO;
     bool        isDiffuse;
+    bool        isTextured;
     CUdeviceptr primarySlotToID;    // const S32*
     CUdeviceptr primaryResults;     // const RayResult*
     CUdeviceptr batchIDToSlot;      // const S32*
@@ -56,6 +57,13 @@ struct ReconstructInput
     CUdeviceptr triMaterialColor;   // const U32* ABGR
     CUdeviceptr triShadedColor;     // const U32* ABGR
     CUdeviceptr pixels;             // U32* ABGR
+
+	CUdeviceptr texCoords;			// const Vec2f*
+	CUdeviceptr normals;			// const Vec3f*
+	CUdeviceptr triVertIndex;		// const Vec3i*
+	CUdeviceptr atlasInfo;			// const Vec4f*
+	CUdeviceptr matId;				// const U32*
+	CUdeviceptr matInfo;			// const Vec4f*
 };
 
 //------------------------------------------------------------------------
@@ -79,6 +87,8 @@ __global__ void reconstructKernel(void);
 __constant__ CountHitsInput c_CountHitsInput;
 __device__ S32 g_CountHitsOutput;
 __global__ void countHitsKernel(void);
+
+texture<float4, 2> t_textures;
 
 }
 #endif

@@ -291,7 +291,7 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
 
     // Secondary rays enabled => trace primary rays.
 
-    if (m_params.rayType != RayType_Primary)
+	if (m_params.rayType != RayType_Primary || m_params.rayType != RayType_Textured)
 	{
 		if (m_asType == tBVH)
 			m_cudaTracer->traceBatch(m_primaryRays);
@@ -325,6 +325,7 @@ bool Renderer::nextBatch(void)
     switch (m_params.rayType)
     {
     case RayType_Primary:
+	case RayType_Textured:
         if (!m_newBatch)
             return false;
         m_newBatch = false;
@@ -351,7 +352,7 @@ bool Renderer::nextBatch(void)
 
     // Sort rays.
 
-    if (m_params.sortSecondary && m_params.rayType != RayType_Primary)
+    if (m_params.sortSecondary && (m_params.rayType != RayType_Primary || m_params.rayType != RayType_Textured))
         m_batchRays->mortonSort();
     return true;
 }
@@ -378,12 +379,13 @@ void Renderer::updateResult(void)
     // Setup input struct.
 
     ReconstructInput& in    = *(ReconstructInput*)module->getGlobal("c_ReconstructInput").getMutablePtr();
-    in.numRaysPerPrimary    = (m_params.rayType == RayType_Primary) ? 1 : m_params.numSamples;
+    in.numRaysPerPrimary    = (m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured) ? 1 : m_params.numSamples;
     in.firstPrimary         = m_batchStart / in.numRaysPerPrimary;
     in.numPrimary           = m_batchRays->getSize() / in.numRaysPerPrimary;
     in.isPrimary            = (m_params.rayType == RayType_Primary);
     in.isAO                 = (m_params.rayType == RayType_AO);
     in.isDiffuse            = (m_params.rayType == RayType_Diffuse);
+	in.isTextured           = (m_params.rayType == RayType_Textured);
     in.primarySlotToID      = m_primaryRays.getSlotToIDBuffer().getCudaPtr();
     in.primaryResults       = m_primaryRays.getResultBuffer().getCudaPtr();
     in.batchIDToSlot        = m_batchRays->getIDToSlotBuffer().getCudaPtr();
@@ -391,6 +393,15 @@ void Renderer::updateResult(void)
     in.triMaterialColor     = m_scene->getTriMaterialColorBuffer().getCudaPtr();
     in.triShadedColor       = m_scene->getTriShadedColorBuffer().getCudaPtr();
     in.pixels               = m_image->getBuffer().getMutableCudaPtr();
+
+	in.texCoords			= m_scene->getVtxTexCoordBuffer().getCudaPtr();
+	in.normals				= m_scene->getVtxNormalBuffer().getCudaPtr();
+	in.triVertIndex			= m_scene->getTriVtxIndexBuffer().getCudaPtr();
+	in.atlasInfo			= m_scene->getTextureAtlasInfo().getCudaPtr();
+	in.matId				= m_scene->getMaterialIds().getCudaPtr();
+	in.matInfo				= m_scene->getMaterialInfo().getCudaPtr();
+
+	module->setTexRef("t_textures", *m_scene->getTextureAtlas()->getAtlasTexture().getImage(), true, true, true, false);
 
     // Launch.
 
@@ -416,7 +427,7 @@ int Renderer::getTotalNumRays(void)
 {
     // Casting primary rays => no degenerates.
 
-    if (m_params.rayType == RayType_Primary)
+    if (m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured)
         return m_primaryRays.getSize();
 
     // Compile kernel.

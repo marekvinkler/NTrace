@@ -54,6 +54,7 @@ public:
         RayType_Primary = 0,
         RayType_AO,
         RayType_Diffuse,
+		RayType_Textured,
 
         RayType_Max
     };

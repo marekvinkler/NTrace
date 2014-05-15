@@ -60,7 +60,8 @@ static const char* const s_rayTypeNames[] =
 {
     "primary",
     "AO",
-    "diffuse"
+    "diffuse",
+    "textured"
 };
 
 //------------------------------------------------------------------------
@@ -358,6 +359,7 @@ void App::rebuildGui(void)
     cc.addToggle((S32*)&m_rayType, Renderer::RayType_Primary,   FW_KEY_F2,      "Trace primary rays [F2]", &m_guiDirty);
     cc.addToggle((S32*)&m_rayType, Renderer::RayType_AO,        FW_KEY_F3,      "Trace ambient occlusion rays [F3]", &m_guiDirty);
     cc.addToggle((S32*)&m_rayType, Renderer::RayType_Diffuse,   FW_KEY_F4,      "Trace diffuse rays [F4]", &m_guiDirty);
+	cc.addToggle((S32*)&m_rayType, Renderer::RayType_Textured,  FW_KEY_F5,      "Trace textured primary rays [F5]", &m_guiDirty);
     cc.addSeparator();
 
     cc.beginSliderStack();

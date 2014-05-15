@@ -68,12 +68,18 @@ extern "C" __global__ void reconstructKernel(void)
     int                     primarySlot     = in.firstPrimary + taskIdx;
     int                     primaryID       = ((const S32*)in.primarySlotToID)[primarySlot];
     const RayResult&        primaryResult   = ((const RayResult*)in.primaryResults)[primarySlot];
-    const S32*              batchSlots      = (const S32*)in.batchIDToSlot + ((in.isPrimary) ? primaryID : taskIdx * in.numRaysPerPrimary);
+    const S32*              batchSlots      = (const S32*)in.batchIDToSlot + ((in.isPrimary || in.isTextured) ? primaryID : taskIdx * in.numRaysPerPrimary);
     const RayResult*        batchResults    = (const RayResult*)in.batchResults;
-    const U32*          triMaterialColor    = (const U32*)in.triMaterialColor;
-    const U32*          triShadedColor      = (const U32*)in.triShadedColor;
+    const U32*				triMaterialColor    = (const U32*)in.triMaterialColor;
+    const U32*				triShadedColor      = (const U32*)in.triShadedColor;
     U32&                    pixel           = ((U32*)in.pixels)[primaryID];
     Vec4f                   bgColor         = Vec4f(0.2f, 0.4f, 0.8f, 1.0f);
+	const Vec2f*			texCoords		= (const Vec2f*)in.texCoords;
+	const Vec3f*			normals			= (const Vec3f*)in.normals;
+	const Vec3i*			vertIdx			= (const Vec3i*)in.triVertIndex;
+	const Vec4f*			atlasInfo		= (const Vec4f*)in.atlasInfo;
+	const U32*				matId			= (const U32*)in.matId;
+	const Vec4f*			matInfo			= (const Vec4f*)in.matInfo;
 
     // Accumulate color from each ray in the batch.
 
@@ -83,13 +89,48 @@ extern "C" __global__ void reconstructKernel(void)
         int tri = batchResults[batchSlots[i]].id;					// hit index
         if (tri == -1)
 		{
-			if(in.isPrimary)	color += bgColor;					// Primary: missed the scene, use background color
+			if(in.isPrimary || in.isTextured)	
+			{
+				color += bgColor;									// Primary: missed the scene, use background color
+			}
 			else				color += Vec4f(1.0f);				// AO: not blocked, use white (should be light color). Arbitrary choice for Diffuse.
 		}
         else
 		{
-			if(in.isAO)			color += Vec4f(0,0,0,1);			// AO: blocked, use white
-			else				color += fromABGR(triShadedColor[tri]);
+			if(in.isAO)
+			{
+				color += Vec4f(0,0,0,1);			// AO: blocked, use white
+			}
+			else if(in.isTextured)
+			{
+				float u = __int_as_float(primaryResult.padA);
+				float v = __int_as_float(primaryResult.padB);
+				float w = 1.0f - u - v;
+
+				float tU = texCoords[vertIdx[tri].x].x * u + texCoords[vertIdx[tri].y].x * v + texCoords[vertIdx[tri].z].x * w;
+				float tV = texCoords[vertIdx[tri].x].y * u + texCoords[vertIdx[tri].y].y * v + texCoords[vertIdx[tri].z].y * w;
+		
+				tU = tU - floorf(tU);
+				tV = tV - floorf(tV);
+		
+				tU = tU * atlasInfo[tri].z + atlasInfo[tri].x;
+				tV = tV * atlasInfo[tri].w + atlasInfo[tri].y;
+				
+				float4 diffuseColor;
+
+				if(matInfo[matId[tri]].w == 0.0f)
+				{
+					diffuseColor = fromABGR(triMaterialColor[tri]);
+					color = Vec4f(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);
+				}
+				else
+				{
+					diffuseColor = tex2D(t_textures, tU, tV);
+					color = Vec4f(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);// * shadow * diffuse;
+				}
+			}
+			else
+				color += fromABGR(triShadedColor[tri]);
 		}
     }
     color *= 1.0f / (F32)in.numRaysPerPrimary;
