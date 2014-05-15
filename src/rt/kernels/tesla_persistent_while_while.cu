@@ -149,7 +149,7 @@ TRACE_FUNC_BVH
             nodeAddr = 0;   // Start from the root.
             triAddr  = 0;   // No pending triangle list.
             triAddr2 = 0;
-            STORE_RESULT(rayidx, -1, 0.0f); // No triangle intersected so far.
+            STORE_RESULT(rayidx, -1, 0.0f, 0.0f, 0.0f); // No triangle intersected so far.
             hitT     = d.w; // tmax
         }
 
@@ -300,7 +300,7 @@ TRACE_FUNC_BVH
                             // Closest intersection not required => terminate.
 
                             hitT = t;
-                            STORE_RESULT(traversalStack[STACK_SIZE + 2], FETCH_GLOBAL(triIndices, triAddr, int), t);
+                            STORE_RESULT(traversalStack[STACK_SIZE + 2], FETCH_GLOBAL(triIndices, triAddr, int), t, u, v);
                             if (anyHit)
                             {
                                 nodeAddr = EntrypointSentinel;

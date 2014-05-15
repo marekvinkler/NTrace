@@ -89,6 +89,7 @@ TRACE_FUNC_BVH
     int     nodeAddr;               // Non-negative: current internal node, negative: second postponed leaf.
     int     hitIndex;               // Triangle index of the closest intersection, -1 if none.
     float   hitT;                   // t-value of the closest intersection.
+	float	u, v;					// UV barycentric coordinates
 
     // Initialize persistent threads.
 
@@ -283,7 +284,7 @@ TRACE_FUNC_BVH
 
                         float Ox = v11.w + origx*v11.x + origy*v11.y + origz*v11.z;
                         float Dx = dirx*v11.x + diry*v11.y + dirz*v11.z;
-                        float u = Ox + t*Dx;
+                        u = Ox + t*Dx;
 
                         if (u >= 0.0f)
                         {
@@ -296,7 +297,7 @@ TRACE_FUNC_BVH
 #endif
                             float Oy = v22.w + origx*v22.x + origy*v22.y + origz*v22.z;
                             float Dy = dirx*v22.x + diry*v22.y + dirz*v22.z;
-                            float v = Oy + t*Dy;
+                            v = Oy + t*Dy;
 
                             if (v >= 0.0f && u + v <= 1.0f)
                             {
@@ -330,7 +331,7 @@ TRACE_FUNC_BVH
 
         if (hitIndex != -1)
             hitIndex = FETCH_TEXTURE(triIndices, hitIndex, int);
-        STORE_RESULT(traversalStack[STACK_SIZE + 2], hitIndex, hitT);
+        STORE_RESULT(traversalStack[STACK_SIZE + 2], hitIndex, hitT, u, v);
     } while(aux); // persistent threads (always true)
 }
 

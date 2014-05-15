@@ -85,6 +85,7 @@ TRACE_FUNC_BVH
     float   idirx;
     float   idiry;
     float   idirz;
+	float	u, v;							// Barycentric coordinates
 
     // Initialize persistent threads.
 
@@ -264,7 +265,7 @@ TRACE_FUNC_BVH
 
                         float Ox = v11.w + origx*v11.x + origy*v11.y + origz*v11.z;
                         float Dx = dirx*v11.x + diry*v11.y + dirz*v11.z;
-                        float u = Ox + t*Dx;
+                        u = Ox + t*Dx;
 
                         if (u >= 0.0f)
                         {
@@ -272,7 +273,7 @@ TRACE_FUNC_BVH
 
                             float Oy = v22.w + origx*v22.x + origy*v22.y + origz*v22.z;
                             float Dy = dirx*v22.x + diry*v22.y + dirz*v22.z;
-                            float v = Oy + t*Dy;
+                            v = Oy + t*Dy;
 
                             if (v >= 0.0f && u + v <= 1.0f)
                             {
@@ -313,8 +314,8 @@ TRACE_FUNC_BVH
 
         // Remap intersected triangle index, and store the result.
 
-        if (hitIndex == -1) { STORE_RESULT(rayidx, -1, hitT); }
-        else                { STORE_RESULT(rayidx, FETCH_TEXTURE(triIndices, hitIndex, int), hitT); }
+        if (hitIndex == -1) { STORE_RESULT(rayidx, -1, hitT, u, v); }
+        else                { STORE_RESULT(rayidx, FETCH_TEXTURE(triIndices, hitIndex, int), hitT, u, v); }
 
     } while(true);
 }

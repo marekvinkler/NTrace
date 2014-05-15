@@ -72,6 +72,8 @@ TRACE_FUNC_BVH
     int     hitIndex;               // Triangle index of the closest intersection, -1 if none.
     float   hitT;                   // t-value of the closest intersection.
 
+	float	hitU, hitV;				// Barycentric coordinates
+
     // Initialize.
     {
         // Pick ray index.
@@ -229,6 +231,8 @@ TRACE_FUNC_BVH
                             // Closest intersection not required => terminate.
 
                             hitT = t;
+							hitU = u;
+							hitV = v;
                             hitIndex = triAddr;
                             if (anyHit)
                             {
@@ -255,7 +259,7 @@ TRACE_FUNC_BVH
 
     if (hitIndex != -1)
         hitIndex = tex1Dfetch(t_triIndices, hitIndex);
-    STORE_RESULT(rayidx, hitIndex, hitT);
+    STORE_RESULT(rayidx, hitIndex, hitT, hitU, hitV);
 }
 
 //------------------------------------------------------------------------

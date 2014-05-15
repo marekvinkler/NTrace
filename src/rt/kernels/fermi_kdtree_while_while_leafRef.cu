@@ -620,7 +620,7 @@ TRACE_FUNC_KDTREE
 #ifdef ONDEMAND_LIKE
 	if (s_limit[threadIdx.y*blockDim.x + threadIdx.x] == 1)
 #endif
-    STORE_RESULT(rayidx, hitIndex, tmax);
+    STORE_RESULT(rayidx, hitIndex, tmax, hitU, hitV);
 }
 
 

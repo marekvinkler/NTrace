@@ -158,7 +158,8 @@ TRACE_FUNC_KDTREE;
 
 #define FETCH_GLOBAL(NAME, IDX, TYPE) ((const TYPE*)NAME)[IDX]
 #define FETCH_TEXTURE(NAME, IDX, TYPE) tex1Dfetch(t_ ## NAME, IDX)
-#define STORE_RESULT(RAY, TRI, T) ((int2*)results)[(RAY) * 2] = make_int2(TRI, __float_as_int(T))
+//#define STORE_RESULT(RAY, TRI, T) ((int2*)results)[(RAY) * 2] = make_int2(TRI, __float_as_int(T))
+#define STORE_RESULT(RAY, TRI, T, U, V) results[RAY] = make_int4(TRI, __float_as_int(T), __float_as_int(U), __float_as_int(V))
 
 //------------------------------------------------------------------------
 
