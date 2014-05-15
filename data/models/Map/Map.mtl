@@ -1,0 +1,39 @@
+# Max2Mtl Version 4.0 Mar 10th, 2001
+#
+newmtl 01_-_Default
+Ka  0.6 0.6 0.6
+Kd  0.6 0.6 0.6
+Ks  0.9 0.9 0.9
+d  1.0
+Ns  0.0
+illum 2
+map_Kd floor_d.tga
+#
+newmtl 02_-_Default
+Ka  0.6 0.6 0.6
+Kd  0.8 0.0 0.0
+Ks  0.9 0.9 0.9
+d  1.0
+Ns  0.0
+illum 2
+map_Kd brick_d.tga
+#
+newmtl 03_-_Default
+Ka  0.6 0.6 0.6
+Kd  0.2 0.3 0.6
+Ks  0.9 0.9 0.9
+d  1.0
+Ns  0.0
+illum 2
+map_Kd stone_d.tga
+#
+newmtl 04_-_Default
+Ka  0.6 0.6 0.6
+Kd  1.0 1.0 1.0
+Ks  0.9 0.9 0.9
+d  1.0
+Ns  0.0
+illum 2
+emissivity 1.0
+#
+# EOF
