@@ -112,6 +112,31 @@ struct KernelConfig
         int*            triIndices)     /* Triangle index remapping table. */
 
 //------------------------------------------------------------------------
+// OTrace input
+
+struct OtraceInput
+{
+	int				numRays;			/* Total number of rays in the batch. */
+	bool			anyHit;				/* False if rays need to find the closest hit. */
+	CUdeviceptr		rays;				/* Ray input: float3 origin, float tmin, float3 direction, float tmax. */
+	CUdeviceptr		results;			/* Ray output: int triangleID, float hitT, int2 padding. */
+	CUdeviceptr		nodesA;				/* SOA: bytes 0-15 of each node, AOS/Compact: 64 bytes per node. */
+	CUdeviceptr		nodesB;				/* SOA: bytes 16-31 of each node, AOS/Compact: unused. */
+	CUdeviceptr		nodesC;				/* SOA: bytes 32-47 of each node, AOS/Compact: unused. */
+	CUdeviceptr		nodesD;				/* SOA: bytes 48-63 of each node, AOS/Compact: unused. */
+	CUdeviceptr		trisA;				/* SOA: bytes 0-15 of each triangle, AOS: 64 bytes per triangle, Compact: 48 bytes per triangle. */
+	CUdeviceptr		trisB;				/* SOA: bytes 16-31 of each triangle, AOS/Compact: unused. */
+	CUdeviceptr		trisC;				/* SOA: bytes 32-47 of each triangle, AOS/Compact: unused. */
+	CUdeviceptr		triIndices;			/* Triangle index remapping table. */
+	CUdeviceptr		texCoords;			/* Texture coordinates */
+	CUdeviceptr		normals;			/* Normals */
+	CUdeviceptr		triVertIndex;		/* Triangle vertex index */
+	CUdeviceptr		atlasInfo;			/* Texture atlas */
+	CUdeviceptr		matId;				/* Material ID */
+	CUdeviceptr		matInfo;			/* Material data */
+};
+
+//------------------------------------------------------------------------
 // Temporary data stored in shared memory to reduce register pressure.
 //------------------------------------------------------------------------
 
@@ -148,6 +173,10 @@ __global__ void queryConfig(void);  // Launched once when the kernel is loaded.
 
 TRACE_FUNC_BVH;                     // Launched for each batch of rays.
 TRACE_FUNC_KDTREE;
+
+__constant__ OtraceInput c_OtraceInput;
+__global__ void otrace_kernel(void); // Otrace kernel
+texture<float4, 2> t_textureAtlas;	// texture atlases
 
 }
 #endif

@@ -33,11 +33,12 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-CudaBVHTracer::CudaBVHTracer(void)
+CudaBVHTracer::CudaBVHTracer()
 :   m_bvh(NULL)
 {
     CudaModule::staticInit();
     m_compiler.addOptions("-use_fast_math");
+	m_otrace = false;
 }
 
 //------------------------------------------------------------------------
@@ -73,6 +74,13 @@ void CudaBVHTracer::setKernel(const String& kernelName)
 
     module->getKernel("queryConfig").launch(1, 1);
     m_kernelConfig = *(const KernelConfig*)module->getGlobal("g_config").getPtr();
+
+	// Detect whether this is one of the otrace kernels (otrace kernels compute the final shading
+	// color inside the kernel
+	if(strstr(kernelName.getPtr(), "otracer"))
+	{
+		m_otrace = true;
+	}
 }
 
 //------------------------------------------------------------------------
@@ -93,68 +101,143 @@ F32 CudaBVHTracer::traceBatch(RayBuffer& rays)
         fail("CudaBVHTracer: Incorrect BVH layout!");
 
 
-    // Get BVH buffers.
+	if(!m_otrace)
+	{
+		// Get BVH buffers.
 
-    CUdeviceptr nodePtr     = m_bvh->getNodeBuffer().getCudaPtr();
-    CUdeviceptr triPtr      = m_bvh->getTriWoopBuffer().getCudaPtr();
-    Buffer&     indexBuf    = m_bvh->getTriIndexBuffer();
-    Vec2i       nodeOfsA    = m_bvh->getNodeSubArray(0);
-    Vec2i       nodeOfsB    = m_bvh->getNodeSubArray(1);
-    Vec2i       nodeOfsC    = m_bvh->getNodeSubArray(2);
-    Vec2i       nodeOfsD    = m_bvh->getNodeSubArray(3);
-    Vec2i       triOfsA     = m_bvh->getTriWoopSubArray(0);
-    Vec2i       triOfsB     = m_bvh->getTriWoopSubArray(1);
-    Vec2i       triOfsC     = m_bvh->getTriWoopSubArray(2);
+		CUdeviceptr nodePtr     = m_bvh->getNodeBuffer().getCudaPtr();
+		CUdeviceptr triPtr      = m_bvh->getTriWoopBuffer().getCudaPtr();
+		Buffer&     indexBuf    = m_bvh->getTriIndexBuffer();
+		Vec2i       nodeOfsA    = m_bvh->getNodeSubArray(0);
+		Vec2i       nodeOfsB    = m_bvh->getNodeSubArray(1);
+		Vec2i       nodeOfsC    = m_bvh->getNodeSubArray(2);
+		Vec2i       nodeOfsD    = m_bvh->getNodeSubArray(3);
+		Vec2i       triOfsA     = m_bvh->getTriWoopSubArray(0);
+		Vec2i       triOfsB     = m_bvh->getTriWoopSubArray(1);
+		Vec2i       triOfsC     = m_bvh->getTriWoopSubArray(2);
 
-    // Compile kernel.
+		// Compile kernel.
 
-    CudaModule* module = compileKernel();
-    CudaKernel kernel = module->getKernel("trace_bvh");
+		CudaModule* module = compileKernel();
+		CudaKernel kernel = module->getKernel("trace_bvh");
 
-    // Set parameters.
+		// Set parameters.
 
-    kernel.setParams(
-        numRays,                                    // numRays
-        (rays.getNeedClosestHit()) ? 0 : 1,         // anyHit
-        rays.getRayBuffer().getCudaPtr(),           // rays
-        rays.getResultBuffer().getMutableCudaPtr(), // results
-        nodePtr + nodeOfsA.x,                       // nodesA
-        nodePtr + nodeOfsB.x,                       // nodesB
-        nodePtr + nodeOfsC.x,                       // nodesC
-        nodePtr + nodeOfsD.x,                       // nodesD
-        triPtr + triOfsA.x,                         // trisA
-        triPtr + triOfsB.x,                         // trisB
-        triPtr + triOfsC.x,                         // trisC
-        indexBuf.getCudaPtr());                     // triIndices
+		kernel.setParams(
+			numRays,                                    // numRays
+			(rays.getNeedClosestHit()) ? 0 : 1,         // anyHit
+			rays.getRayBuffer().getCudaPtr(),           // rays
+			rays.getResultBuffer().getMutableCudaPtr(), // results
+			nodePtr + nodeOfsA.x,                       // nodesA
+			nodePtr + nodeOfsB.x,                       // nodesB
+			nodePtr + nodeOfsC.x,                       // nodesC
+			nodePtr + nodeOfsD.x,                       // nodesD
+			triPtr + triOfsA.x,                         // trisA
+			triPtr + triOfsB.x,                         // trisB
+			triPtr + triOfsC.x,                         // trisC
+			indexBuf.getCudaPtr());                     // triIndices
 
-    // Set texture references.
+		// Set texture references.
 
-    module->setTexRef("t_rays", rays.getRayBuffer(), CU_AD_FORMAT_FLOAT, 4);
-    module->setTexRef("t_nodesA", nodePtr + nodeOfsA.x, nodeOfsA.y, CU_AD_FORMAT_FLOAT, 4);
-    module->setTexRef("t_nodesB", nodePtr + nodeOfsB.x, nodeOfsB.y, CU_AD_FORMAT_FLOAT, 4);
-    module->setTexRef("t_nodesC", nodePtr + nodeOfsC.x, nodeOfsC.y, CU_AD_FORMAT_FLOAT, 4);
-    module->setTexRef("t_nodesD", nodePtr + nodeOfsD.x, nodeOfsD.y, CU_AD_FORMAT_FLOAT, 4);
-    module->setTexRef("t_trisA", triPtr + triOfsA.x, triOfsA.y, CU_AD_FORMAT_FLOAT, 4);
-    module->setTexRef("t_trisB", triPtr + triOfsB.x, triOfsB.y, CU_AD_FORMAT_FLOAT, 4);
-    module->setTexRef("t_trisC", triPtr + triOfsC.x, triOfsC.y, CU_AD_FORMAT_FLOAT, 4);
-    module->setTexRef("t_triIndices", indexBuf, CU_AD_FORMAT_SIGNED_INT32, 1);
+		module->setTexRef("t_rays", rays.getRayBuffer(), CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_nodesA", nodePtr + nodeOfsA.x, nodeOfsA.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_nodesB", nodePtr + nodeOfsB.x, nodeOfsB.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_nodesC", nodePtr + nodeOfsC.x, nodeOfsC.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_nodesD", nodePtr + nodeOfsD.x, nodeOfsD.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_trisA", triPtr + triOfsA.x, triOfsA.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_trisB", triPtr + triOfsB.x, triOfsB.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_trisC", triPtr + triOfsC.x, triOfsC.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_triIndices", indexBuf, CU_AD_FORMAT_SIGNED_INT32, 1);
 
-    // Determine block and grid sizes.
+		// Determine block and grid sizes.
 
-    int desiredWarps = (numRays + 31) / 32;
-    if (m_kernelConfig.usePersistentThreads != 0)
-    {
-        *(S32*)module->getGlobal("g_warpCounter").getMutablePtr() = 0;
-        desiredWarps = 720; // Tesla: 30 SMs * 24 warps, Fermi: 15 SMs * 48 warps
-    }
+		int desiredWarps = (numRays + 31) / 32;
+		if (m_kernelConfig.usePersistentThreads != 0)
+		{
+			*(S32*)module->getGlobal("g_warpCounter").getMutablePtr() = 0;
+			desiredWarps = 720; // Tesla: 30 SMs * 24 warps, Fermi: 15 SMs * 48 warps
+		}
 
-    Vec2i blockSize(m_kernelConfig.blockWidth, m_kernelConfig.blockHeight);
-    int blockWarps = (blockSize.x * blockSize.y + 31) / 32;
-    int numBlocks = (desiredWarps + blockWarps - 1) / blockWarps;
+		Vec2i blockSize(m_kernelConfig.blockWidth, m_kernelConfig.blockHeight);
+		int blockWarps = (blockSize.x * blockSize.y + 31) / 32;
+		int numBlocks = (desiredWarps + blockWarps - 1) / blockWarps;
 
-    // Launch.
+		// Launch.
 
-    return kernel.launchTimed(numBlocks * blockSize.x * blockSize.y, blockSize);
+		return kernel.launchTimed(numBlocks * blockSize.x * blockSize.y, blockSize);
+	}
+	else
+	{
+		// Get BVH buffers.
+		CUdeviceptr nodePtr     = m_bvh->getNodeBuffer().getCudaPtr();
+		CUdeviceptr triPtr      = m_bvh->getTriWoopBuffer().getCudaPtr();
+		Buffer&     indexBuf    = m_bvh->getTriIndexBuffer();
+		Vec2i       nodeOfsA    = m_bvh->getNodeSubArray(0);
+		Vec2i       nodeOfsB    = m_bvh->getNodeSubArray(1);
+		Vec2i       nodeOfsC    = m_bvh->getNodeSubArray(2);
+		Vec2i       nodeOfsD    = m_bvh->getNodeSubArray(3);
+		Vec2i       triOfsA     = m_bvh->getTriWoopSubArray(0);
+		Vec2i       triOfsB     = m_bvh->getTriWoopSubArray(1);
+		Vec2i       triOfsC     = m_bvh->getTriWoopSubArray(2);
+
+		// Compile kernel.
+		CudaModule* module = compileKernel();
+		CudaKernel kernel = module->getKernel("otrace_kernel");
+
+		// Setup input struct.
+		OtraceInput& in			= *(OtraceInput*)module->getGlobal("c_OtraceInput").getMutablePtr();
+		in.numRays				= numRays;
+		in.anyHit				= (rays.getNeedClosestHit()) ? 0 : 1;
+		in.rays					= rays.getRayBuffer().getCudaPtr();
+		in.results				= rays.getResultBuffer().getMutableCudaPtr();
+		in.nodesA				= nodePtr + nodeOfsA.x;
+		in.nodesB				= nodePtr + nodeOfsB.x;
+		in.nodesC				= nodePtr + nodeOfsC.x;
+		in.nodesD				= nodePtr + nodeOfsD.x;
+		in.trisA				= triPtr + triOfsA.x;
+		in.trisB				= triPtr + triOfsB.x;
+		in.trisC				= triPtr + triOfsC.x;
+		in.triIndices			= indexBuf.getCudaPtr();
+		if(m_scene)
+		{
+			in.texCoords			= m_scene->getVtxTexCoordBuffer().getCudaPtr();
+			in.normals				= m_scene->getVtxNormalBuffer().getCudaPtr();
+			in.triVertIndex			= m_scene->getTriVtxIndexBuffer().getCudaPtr();
+			in.atlasInfo			= m_scene->getTextureAtlasInfo().getCudaPtr();
+			in.matId				= m_scene->getMaterialIds().getCudaPtr();
+			in.matInfo				= m_scene->getMaterialInfo().getCudaPtr();
+		}
+
+		// Set texture references.
+
+		module->setTexRef("t_textureAtlas", *m_scene->getTextureAtlas()->getAtlasTexture().getImage(), true, true, true, false);
+		module->setTexRef("t_rays", rays.getRayBuffer(), CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_nodesA", nodePtr + nodeOfsA.x, nodeOfsA.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_nodesB", nodePtr + nodeOfsB.x, nodeOfsB.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_nodesC", nodePtr + nodeOfsC.x, nodeOfsC.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_nodesD", nodePtr + nodeOfsD.x, nodeOfsD.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_trisA", triPtr + triOfsA.x, triOfsA.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_trisB", triPtr + triOfsB.x, triOfsB.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_trisC", triPtr + triOfsC.x, triOfsC.y, CU_AD_FORMAT_FLOAT, 4);
+		module->setTexRef("t_triIndices", indexBuf, CU_AD_FORMAT_SIGNED_INT32, 1);
+
+		// Determine block and grid sizes.
+
+		int desiredWarps = (numRays + 31) / 32;
+		if (m_kernelConfig.usePersistentThreads != 0)
+		{
+			*(S32*)module->getGlobal("g_warpCounter").getMutablePtr() = 0;
+			desiredWarps = 720; // Tesla: 30 SMs * 24 warps, Fermi: 15 SMs * 48 warps
+		}
+
+		Vec2i blockSize(m_kernelConfig.blockWidth, m_kernelConfig.blockHeight);
+		int blockWarps = (blockSize.x * blockSize.y + 31) / 32;
+		int numBlocks = (desiredWarps + blockWarps - 1) / blockWarps;
+
+		// Launch.
+
+		return kernel.launchTimed(numBlocks * blockSize.x * blockSize.y, blockSize);
+	}
 }
 
 //------------------------------------------------------------------------

@@ -60,6 +60,7 @@ private:
     String              m_kernelName;
     KernelConfig        m_kernelConfig;
     CudaBVH*            m_bvh;
+	bool				m_otrace;
 };
 
 //------------------------------------------------------------------------

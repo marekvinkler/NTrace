@@ -68,7 +68,7 @@ extern "C" __global__ void reconstructKernel(void)
     int                     primarySlot     = in.firstPrimary + taskIdx;
     int                     primaryID       = ((const S32*)in.primarySlotToID)[primarySlot];
     const RayResult&        primaryResult   = ((const RayResult*)in.primaryResults)[primarySlot];
-    const S32*              batchSlots      = (const S32*)in.batchIDToSlot + ((in.isPrimary || in.isTextured) ? primaryID : taskIdx * in.numRaysPerPrimary);
+    const S32*              batchSlots      = (const S32*)in.batchIDToSlot + ((in.isPrimary || in.isTextured || in.isPathTraced) ? primaryID : taskIdx * in.numRaysPerPrimary);
     const RayResult*        batchResults    = (const RayResult*)in.batchResults;
     const U32*				triMaterialColor    = (const U32*)in.triMaterialColor;
     const U32*				triShadedColor      = (const U32*)in.triShadedColor;
@@ -89,7 +89,7 @@ extern "C" __global__ void reconstructKernel(void)
         int tri = batchResults[batchSlots[i]].id;					// hit index
         if (tri == -1)
 		{
-			if(in.isPrimary || in.isTextured)	
+			if(in.isPrimary || in.isTextured || in.isPathTraced)	
 			{
 				color += bgColor;									// Primary: missed the scene, use background color
 			}
@@ -128,6 +128,13 @@ extern "C" __global__ void reconstructKernel(void)
 					diffuseColor = tex2D(t_textures, tU, tV);
 					color = Vec4f(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);// * shadow * diffuse;
 				}
+			}
+			else if(in.isPathTraced)
+			{
+				float u = primaryResult.t;
+				float v = __int_as_float(primaryResult.padA);
+				float w = __int_as_float(primaryResult.padB);
+				color = Vec4f(u, v, w, 1.0f);
 			}
 			else
 				color += fromABGR(triShadedColor[tri]);

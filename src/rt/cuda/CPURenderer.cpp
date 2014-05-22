@@ -60,6 +60,7 @@ bool CPURenderer::nextBatch(void)
     {
     case RayType_Primary:
 	case RayType_Textured:
+	case RayType_PathTracing:
         if (!m_newBatch)
             return false;
         m_newBatch = false;
@@ -86,7 +87,7 @@ bool CPURenderer::nextBatch(void)
 
     // Sort rays.
 
-	if (m_params.sortSecondary && !(m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured))
+	if (m_params.sortSecondary && !(m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured || m_params.rayType == RayType_PathTracing))
         m_batchRays->mortonSort();
     return true;
 }
@@ -142,7 +143,7 @@ void CPURenderer::updateResult(void)
 		return;
 	}*/
 
-	S32 numRaysPerPrimary = (m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured) ? 1 : m_params.numSamples;
+	S32 numRaysPerPrimary = (m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured || m_params.rayType == RayType_PathTracing) ? 1 : m_params.numSamples;
 	S32 firstPrimary = m_batchStart / numRaysPerPrimary;
 
 	for(S32 i = 0; i < m_batchRays->getSize()/numRaysPerPrimary; i++)

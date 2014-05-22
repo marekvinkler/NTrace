@@ -120,6 +120,8 @@ public:
 	void        getNode             (S32 node, SplitInfo *splitInfo, AABB &child0, AABB &child1, S32 &child0Addr, S32 &child1Addr);
 	void        getTriangleIndices  (S32 node, Array<S32>& indices);
 
+	Scene*		getScene			()						{return m_scene;}
+
 private:
     void        createNodeBasic     (const BVH& bvh);
     void        createTriWoopBasic  (const BVH& bvh);

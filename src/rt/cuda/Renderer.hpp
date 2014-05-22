@@ -55,6 +55,7 @@ public:
         RayType_AO,
         RayType_Diffuse,
 		RayType_Textured,
+		RayType_PathTracing,
 
         RayType_Max
     };

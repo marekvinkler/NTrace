@@ -48,6 +48,9 @@
     <CudaCompile Include="src\rt\cuda\RendererKernels.cu">
       <Filter>shading</Filter>
     </CudaCompile>
+    <CudaCompile Include="src\rt\kernels\otracer_basic.cu">
+      <Filter>traversal</Filter>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="traversal">

@@ -40,6 +40,7 @@ Renderer::Renderer(AccelStructType as, Environment* env)
 	{
 		m_cudaTracer = new CudaBVHTracer();
 	}
+	m_cudaTracer->setScene(NULL);
 
     m_compiler.setSourceFile("src/rt/cuda/RendererKernels.cu");
     m_compiler.addOptions("-use_fast_math");
@@ -82,7 +83,10 @@ void Renderer::setMesh(MeshBase* mesh)
 
     m_mesh = mesh;
     if (mesh)
+	{
         m_scene = new Scene(*mesh);
+		m_cudaTracer->setScene(m_scene);
+	}
 }
 
 //------------------------------------------------------------------------
@@ -291,12 +295,9 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
 
     // Secondary rays enabled => trace primary rays.
 
-	if (m_params.rayType != RayType_Primary || m_params.rayType != RayType_Textured)
+	if (m_params.rayType != RayType_Primary || m_params.rayType != RayType_Textured || m_params.rayType != RayType_PathTracing)
 	{
-		if (m_asType == tBVH)
-			m_cudaTracer->traceBatch(m_primaryRays);
-		else
-			m_cudaTracer->traceBatch(m_primaryRays);
+		m_cudaTracer->traceBatch(m_primaryRays);
 	}
 
     // Initialize state.
@@ -326,6 +327,7 @@ bool Renderer::nextBatch(void)
     {
     case RayType_Primary:
 	case RayType_Textured:
+	case RayType_PathTracing:
         if (!m_newBatch)
             return false;
         m_newBatch = false;
@@ -352,7 +354,7 @@ bool Renderer::nextBatch(void)
 
     // Sort rays.
 
-    if (m_params.sortSecondary && (m_params.rayType != RayType_Primary || m_params.rayType != RayType_Textured))
+    if (m_params.sortSecondary && (m_params.rayType != RayType_Primary || m_params.rayType != RayType_Textured || m_params.rayType != RayType_PathTracing))
         m_batchRays->mortonSort();
     return true;
 }
@@ -379,13 +381,14 @@ void Renderer::updateResult(void)
     // Setup input struct.
 
     ReconstructInput& in    = *(ReconstructInput*)module->getGlobal("c_ReconstructInput").getMutablePtr();
-    in.numRaysPerPrimary    = (m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured) ? 1 : m_params.numSamples;
+    in.numRaysPerPrimary    = (m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured || m_params.rayType == RayType_PathTracing) ? 1 : m_params.numSamples;
     in.firstPrimary         = m_batchStart / in.numRaysPerPrimary;
     in.numPrimary           = m_batchRays->getSize() / in.numRaysPerPrimary;
     in.isPrimary            = (m_params.rayType == RayType_Primary);
     in.isAO                 = (m_params.rayType == RayType_AO);
     in.isDiffuse            = (m_params.rayType == RayType_Diffuse);
 	in.isTextured           = (m_params.rayType == RayType_Textured);
+	in.isPathTraced         = (m_params.rayType == RayType_PathTracing);
     in.primarySlotToID      = m_primaryRays.getSlotToIDBuffer().getCudaPtr();
     in.primaryResults       = m_primaryRays.getResultBuffer().getCudaPtr();
     in.batchIDToSlot        = m_batchRays->getIDToSlotBuffer().getCudaPtr();
@@ -427,7 +430,7 @@ int Renderer::getTotalNumRays(void)
 {
     // Casting primary rays => no degenerates.
 
-    if (m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured)
+    if (m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured || m_params.rayType == RayType_PathTracing)
         return m_primaryRays.getSize();
 
     // Compile kernel.

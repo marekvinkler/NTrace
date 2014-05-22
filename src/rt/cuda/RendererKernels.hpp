@@ -50,6 +50,7 @@ struct ReconstructInput
     bool        isAO;
     bool        isDiffuse;
     bool        isTextured;
+	bool		isPathTraced;
     CUdeviceptr primarySlotToID;    // const S32*
     CUdeviceptr primaryResults;     // const RayResult*
     CUdeviceptr batchIDToSlot;      // const S32*
