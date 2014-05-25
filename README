@@ -1,1 +1,4 @@
-Framework for GPU ray tracing.
+NTrace is a system for three dimensional data visualisation using the ray tracing algorithm.
+Its purpose is to enable developement and testing of highly parallel implementations of algorithms 
+for data stracture build and trace using the GPU hardware.
+Documentation for this project can be found at http://marekvinkler.github.io/NTrace/
