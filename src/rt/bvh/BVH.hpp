@@ -25,6 +25,10 @@
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/** \file
+ *  \brief Declarations for the BVH acceleration structure.
+ */
+
 #pragma once
 #include "Scene.hpp"
 #include "bvh/BVHNode.hpp"
@@ -35,50 +39,90 @@
 namespace FW
 {
 
+/**
+ * \brief Structure holding ray statistics. Also provides print to the console. These statistics are used in a CPU trace method provided by this class.
+ */
 struct RayStats
 {
+	/**
+	 * \brief Constructor.
+	 */
     RayStats()          { clear(); }
+
+	/** 
+	 * \brief Resets the statistics to the default values.
+	 */
     void clear()        { memset(this,0,sizeof(RayStats)); }
+
+	/**
+	 * \brief Prints ray statistics to the console.
+	 */
     void print() const  { if(numRays>0) printf("Ray stats: (%s) %d rays, %.1f tris/ray, %.1f nodes/ray (cost=%.2f) %.2f treelets/ray\n", platform.getName().getPtr(), numRays, 1.f*numTriangleTests/numRays, 1.f*numNodeTests/numRays, (platform.getSAHTriangleCost()*numTriangleTests/numRays + platform.getSAHNodeCost()*numNodeTests/numRays), 1.f*numTreelets/numRays ); }
 
-    S32         numRays;
-    S32         numTriangleTests;
-    S32         numNodeTests;
-    S32         numTreelets;
-    Platform    platform;           // set by whoever sets the stats
+    S32         numRays;				//!< Total number of rays.
+    S32         numTriangleTests;		//!< Total number of ray-triangle tests.
+    S32         numNodeTests;			//!< Total number of ray-node tests.
+    S32         numTreelets;			//!< Total number of traversal steps.
+    Platform    platform;				//!< Platform settings of the BVH. Set by whoever sets the stats.
+
 };
 
+/**
+ *  \brief BVH acceleration structure class.
+ *  \details Holds a BVH acceleration structure and also provides method for its CPU traversal.
+ */
 class BVH : public AccelerationStructure
 {
 public:
+
+	/**
+	 * \brief Sturcture for holding statistics about the BVH.
+	 */
     struct Stats
     {
+		/**
+		* \brief Constructor.
+		*/
         Stats()             { clear(); }
+
+		/** 
+		* \brief Resets the statistics to the default values.
+		*/
         void clear()        { memset(this, 0, sizeof(Stats)); }
+
+		/**
+		* \brief Prints the statistics to the console.
+		*/
         void print() const  { printf("Tree stats: [bfactor=%d] %d nodes (%d+%d), %.2f SAHCost, %.1f children/inner, %.1f tris/leaf\n", branchingFactor,numLeafNodes+numInnerNodes, numLeafNodes,numInnerNodes, SAHCost, 1.f*numChildNodes/max(numInnerNodes,1), 1.f*numTris/max(numLeafNodes,1)); }
 
-        F32     SAHCost;
-        S32     branchingFactor;
-        S32     numInnerNodes;
-        S32     numLeafNodes;
-        S32     numChildNodes;
-        S32     numTris;
+        F32     SAHCost;				//!< Total sah cost of the BVH.
+        S32     branchingFactor;		//!< Number of children nodes per one parent node.
+        S32     numInnerNodes;			//!< Total number of inner nodes.
+        S32     numLeafNodes;			//!< Total number of leaf nodes.
+        S32     numChildNodes;			//!< Total number of children nodes.
+        S32     numTris;				//!< Total number of triangles.
     };
 
+	/**
+	 * \brief Stucture holding the BVH build parameters.
+	 */
     struct BuildParams
     {
-        Stats*					stats;
-        bool					enablePrints;
-        F32						splitAlpha;     // spatial split area threshold
-		F32                     osahWeight;     // weighting factor for OSAH construction
-		String	                accelerator;    // the name of the acceleration data structure method for ray tracing
-		Array<AABB>				empty_boxes;	// information about boxes with no triangles inside
-		Buffer*                 visibility;
-		String					logDirectory;
-		String					buildName;
-		int						cameraIdx;
-		bool                    twoTrees;       // build BVH from two separate trees
+        Stats*					stats;			//!< Statistics. If NULL, no statistics are gathered.
+        bool					enablePrints;	//!< Flag whether to enable prints about build progress.
+        F32						splitAlpha;     //!< Spatial split area threshold.
+		F32                     osahWeight;     //!< Weighting factor for OSAH construction.
+		String	                accelerator;    //!< The name of the acceleration data structure method for ray tracing.
+		Array<AABB>				empty_boxes;	//!< Information about boxes with no triangles inside.
+		Buffer*                 visibility;		//!< Visibility buffer for the CPU renderer.
+		String					logDirectory;	//!< Directory where the log file will be saved.
+		String					buildName;		//!< Build name.
+		int						cameraIdx;		//!< Camera index.
+		bool                    twoTrees;       //!< Flag whether to build BVH from two separate trees.
 
+		/**
+		 * \brief Constructor.
+		 */
         BuildParams(void)
         {
             stats           = NULL;
@@ -90,6 +134,10 @@ public:
 			twoTrees        = false;
         }
 
+		/**
+		 * \brief Computes hash of the build parameters.
+		 * \return Hashed build parameters.
+		 */
         U32 computeHash(void) const
         {
             return hashBits(floatToBits(splitAlpha));
@@ -97,21 +145,60 @@ public:
     };
 
 public:
+
+	/**
+	 *  \brief Constructor.
+	 *  \param[in] scene		Source scene for the BVH.
+	 *  \param[in] platform		Platform settings.
+	 *  \param[in] params		Build parameters.
+	 */
                         BVH                     (Scene* scene, const Platform& platform, const BuildParams& params, Environment* env);
+
+	/**
+	 *  \brief Destructor.
+	 */
                         ~BVH                    (void)                  { if(m_root) m_root->deleteSubtree(); }
 
+	/**
+	 *  \brief Returns root node of the BVH.
+	 *  \return Root node of the BVH.
+	 */
     BVHNode*            getRoot                 (void) const            { return m_root; }
+
+	/**
+	 *  \brief CPU traversal.
+	 *  \param[out] rays		Buffer of rays that will be traced.
+	 *  \param[out] stats		Ray statistics collected during the traversal. Leave blank if no stats should be collected.
+	 */
     void                trace                   (RayBuffer& rays, RayStats* stats = NULL) const;
 
+	/**
+	 *  \brief Returns an array of triangle indices to which leaf nodes are pointig. These indices point to scene's triangle array.
+	 *  \return Buffer of triangle indices.
+	 */
     Array<S32>&         getTriIndices           (void)                  { return m_triIndices; }
+
+	/**
+	 *  \brief Returns an array of triangle indices to which leaf nodes are pointig. These indices point to scene's triangle array.
+	 *  \return Buffer of triangle indices.
+	 */
     const Array<S32>&   getTriIndices           (void) const            { return m_triIndices; }
 
 private:
+
+	/**
+	 *  \brief Recursively traverses the BVH.
+	 *  \param[in] node				Root node of the traversal.
+	 *  \param[in] rays				Ray that will traverse the BVH.
+	 *  \param[out] result			Result of the traversal.
+	 *	\param[in] needClosestHit	Wheter the ray needs the closest hit or first hit is sufficient.
+	 *	\param[out] stats			Ray statistics collected during the traversal.
+	 */
     void                traceRecursive          (BVHNode* node, Ray& ray, RayResult& result, bool needClosestHit, RayStats* stats) const;
 	
-    BVHNode*            m_root;
-    Array<S32>          m_triIndices;
-	Environment*		m_env;
+    BVHNode*            m_root;				//!< Root node.
+    Array<S32>          m_triIndices;		//!< Array of indices pointing to the scene triangle array.
+	Environment*		m_env;				//!< Environment settings.
 };
 
 }

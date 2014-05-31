@@ -25,6 +25,11 @@
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * \file
+ * \brief Definitions for the ray generator class.
+ */
+
 #pragma once
 #include "base/Math.hpp"
 #include "base/Array.hpp"
@@ -36,35 +41,153 @@
 namespace FW
 {
 
+/**
+ * \brief Ray generator class. Generates rays for both the GPU and the CPU.
+ */
 class RayGen
 {
 public:
+
+	/**
+	 * \brief Constructor.
+	 * \param[in] maxBatchSize Maximum number of secondary rays in one batch.
+	 */
     RayGen(S32 maxBatchSize = 8*1024*1024);
 
     // true if batch continues
+	/**
+	 * \brief Generates primary rays on the GPU.
+	 * \param[in,out] Generated rays.
+	 * \param[in] origin Point from which rays will be cast.
+	 * \param[in] nscreenToWorld Transformation view matrix.
+	 * \param[in] w Horizontal resolution.
+	 * \param[in] h Vertical resolution.
+	 * \param[in] maxDist Maximum length of generated rays.
+	 */
     void    primary   (RayBuffer& orays, const Vec3f& origin, const Mat4f& nscreenToWorld, S32 w,S32 h,float maxDist);
+
+	/**
+	 * \brief Generates shadow rays on the GPU. Batches rays if necessary.
+	 * \param[in,out] orays Generated rays.
+	 * \param[in] irays Source rays.
+	 * \param[in] numSamples Number of shadow rays for each source ray.
+	 * \param[in] lightPos Position of a light source that casts these shadow rays.
+	 * \param[in] lightRadius Radius of the light source.
+	 * \param[in,out] newBatch Batching flag. 
+	 * \param[in] randomSeed Random seed.
+	 * \return True if batch continues.
+	 */
     bool    shadow    (RayBuffer& orays, RayBuffer& irays, int numSamples, const Vec3f& lightPos, float lightRadius, bool& newBatch, U32 randomSeed=0);
+
+	/**
+	 * \brief Generates ao rays on the GPU. Batches rays if necessary.
+	 * \param[in,out] orays Generated rays.
+	 * \param[in] irays Source rays.
+	 * \param[in] scene Source scene.
+	 * \param[in] numSamples Number of ao rays for each source ray.
+	 * \param[in] maxDist Maximum length of generated rays.
+	 * \param[in,out] newBatch Batching flag.
+	 * \[aram[in] randomSeed Random seed.
+	 * \return True if batch contiunes.
+	 */
     bool    ao        (RayBuffer& orays, RayBuffer& irays, Scene& scene, int numSamples, float maxDist, bool& newBatch, U32 randomSeed=0); // non-const because of Buffer transfers
 
+	/**
+	 * \brief Generates primary rays on the CPU.
+	 * \param[in,out] Generated rays.
+	 * \param[in] origin Point from which rays will be cast.
+	 * \param[in] nscreenToWorld Transformation view matrix.
+	 * \param[in] w Horizontal resolution.
+	 * \param[in] h Vertical resolution.
+	 * \param[in] maxDist Maximum length of generated rays.
+	 */
 	void    primaryCPU(RayBuffer& orays, const Vec3f& origin, const Mat4f& nscreenToWorld, S32 w,S32 h,float maxDist);
+
+	/**
+	 * \brief Generates shadow rays on the CPU. Batches rays if necessary.
+	 * \param[in,out] orays Generated rays.
+	 * \param[in] irays Source rays.
+	 * \param[in] numSamples Number of shadow rays for each source ray.
+	 * \param[in] lightPos Position of a light source that casts these shadow rays.
+	 * \param[in] lightRadius Radius of the light source.
+	 * \param[in,out] newBatch Batching flag. 
+	 * \param[in] randomSeed Random seed.
+	 * \return True if batch continues.
+	 */
     bool    shadowCPU (RayBuffer& orays, RayBuffer& irays, int numSamples, const Vec3f& lightPos, float lightRadius, bool& newBatch, U32 randomSeed=0);
+
+	/**
+	 * \brief Generates ao rays on the CPU. Batches rays if necessary.
+	 * \param[in,out] orays Generated rays.
+	 * \param[in] irays Source rays.
+	 * \param[in] scene Source scene.
+	 * \param[in] numSamples Number of ao rays for each source ray.
+	 * \param[in] maxDist Maximum length of generated rays.
+	 * \param[in,out] newBatch Batching flag.
+	 * \param[in] randomSeed Random seed.
+	 * \return True if batch contiunes.
+	 */
     bool    aoCPU     (RayBuffer& orays, RayBuffer& irays, Scene& scene, int numSamples, float maxDist, bool& newBatch, U32 randomSeed=0); // non-const because of Buffer transfers
 
-    // these are hack for various tests
+     // these are hack for various tests
+	/**
+	 * \brief Generates random rays. Used for various tests.
+	 * \param[in,out] orays Generated rays.
+	 * \param[in] bounds Box in which rays will be generated.
+	 * \param[in] numRays Number of generated rays.
+	 * \param[in] closestHit Flag whether rays require closest hit.
+	 * \param[in] PosDir If false, direction of generated rays will be absolute position in the scene.
+	 * \param[in] randomSeed Random seed.
+	 * \return True if batch continues.
+	 */
     bool    random (RayBuffer& orays, const AABB& bounds, int numRays, bool closestHit, bool PosDir=false, U32 randomSeed=0);
+
+	/**
+	 * \brief Generates random rays.
+	 * \param[in,out] orays Generated rays.
+	 * \param[in] bounds Box in which rays will be generated.
+	 * \param[in] numRays Number of generated rays.
+	 * \param[in] closestHit Flag whether rays require closest hit.
+	 * \param[in] PosDir If false, direction of generated rays will be absolute position in the scene.
+	 * \param[in,out] newBatch Batching flag.
+	 * \param[in] randomSeed Random seed.
+	 * \return True if batch continues.
+	 */
     bool    random (RayBuffer& orays, const AABB& bounds, int numRays, bool closestHit, bool PosDir, bool& newBatch, U32 randomSeed=0);
+
+	/**
+	 * \brief Generates random reflection rays.
+	 * \param[in,out] orays Generated rays.
+	 * \param[in] irays Source rays.
+	 * \param[in] scene Source scene, necessary for normals.
+	 * \param[in] numSamples Number of reflection rays for each source ray.
+	 * \param[in] maxDist Maximum length of reflection rays.
+	 * \param[in,out] newBatch Batching flag.
+	 * \param[in] randomSeed Random seed.
+	 * \return True if batch continues.
+	 */
     bool    randomReflection (RayBuffer& orays, RayBuffer& irays, Scene& scene, int numSamples, float maxDist, bool& newBatch, U32 randomSeed=0);
 
 private:
+	/**
+	 * \brief Creates batches of rays to limit memory load.
+	 * \param[in] numInputRays Number of input rays.
+	 * \param[in] numSamples Number of samples for each input ray.
+	 * \param[in,out] startIdx Index from where to start batching.
+	 * \param[in,out] Flag whether current batch is a new batch.
+	 * \param[in,out] lo Start of current batch.
+	 * \param[out] hi End of current batch.
+	 * \return True if batch is not complete.
+	 */
     bool    batching(S32 numInputRays,S32 numSamples,S32& startIdx,bool& newBatch, S32& lo,S32& hi);
 
-    S32             m_maxBatchSize;
-    CudaCompiler    m_compiler;
-    PixelTable      m_pixelTable;
+    S32             m_maxBatchSize;			//!< Maximum size of batch.
+    CudaCompiler    m_compiler;				//!< CUDA compiler.
+    PixelTable      m_pixelTable;			//!< Pixel table.
 
-    S32             m_shadowStartIdx;
-    S32             m_aoStartIdx;
-    S32             m_randomStartIdx;
+    S32             m_shadowStartIdx;		//!< Start index for shadow ray batching.
+    S32             m_aoStartIdx;			//!< Start index for ao ray batching.
+    S32             m_randomStartIdx;		//!< Start index for random ray batching.
 };
 
 } //
