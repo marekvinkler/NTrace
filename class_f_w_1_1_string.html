@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_string.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,192 +111,1618 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_string.html','');});
 <div class="title">FW::String Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_string_8hpp_source.html">String.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac22e600037b0eb5c4b48c0c5815ecbef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac22e600037b0eb5c4b48c0c5815ecbef"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>String</b> (char chr)</td></tr>
+<tr class="memitem:af7e8d5473894870461d27864229377d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#af7e8d5473894870461d27864229377d6">String</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:af7e8d5473894870461d27864229377d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac22e600037b0eb5c4b48c0c5815ecbef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#ac22e600037b0eb5c4b48c0c5815ecbef">String</a> (char chr)</td></tr>
 <tr class="separator:ac22e600037b0eb5c4b48c0c5815ecbef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ca54df2896e0a931ff16bd7e4b21a3f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ca54df2896e0a931ff16bd7e4b21a3f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>String</b> (const char *chars)</td></tr>
+<tr class="memitem:a2ca54df2896e0a931ff16bd7e4b21a3f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a2ca54df2896e0a931ff16bd7e4b21a3f">String</a> (const char *chars)</td></tr>
 <tr class="separator:a2ca54df2896e0a931ff16bd7e4b21a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00782c584939450039de7cd7ef29cc33"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00782c584939450039de7cd7ef29cc33"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>String</b> (const char *start, const char *end)</td></tr>
+<tr class="memitem:a00782c584939450039de7cd7ef29cc33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a00782c584939450039de7cd7ef29cc33">String</a> (const char *start, const char *end)</td></tr>
 <tr class="separator:a00782c584939450039de7cd7ef29cc33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a381843a1896e11f086afc4e000db36bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a381843a1896e11f086afc4e000db36bd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>String</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other)</td></tr>
+<tr class="memitem:a381843a1896e11f086afc4e000db36bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a381843a1896e11f086afc4e000db36bd">String</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other)</td></tr>
 <tr class="separator:a381843a1896e11f086afc4e000db36bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2fbfa6c6e6429da4f49969a4ef61391"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2fbfa6c6e6429da4f49969a4ef61391"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>String</b> (S32 value)</td></tr>
+<tr class="memitem:ad2fbfa6c6e6429da4f49969a4ef61391"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#ad2fbfa6c6e6429da4f49969a4ef61391">String</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
 <tr class="separator:ad2fbfa6c6e6429da4f49969a4ef61391"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1884aadf7412012c9ecc5716c49c9ef4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1884aadf7412012c9ecc5716c49c9ef4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>String</b> (F64 value)</td></tr>
+<tr class="memitem:a1884aadf7412012c9ecc5716c49c9ef4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a1884aadf7412012c9ecc5716c49c9ef4">String</a> (<a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a> <a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
 <tr class="separator:a1884aadf7412012c9ecc5716c49c9ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a25479ff2992ba0cfb04fe1c6172c61"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a25479ff2992ba0cfb04fe1c6172c61"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getLength</b> (void) const </td></tr>
+<tr class="memitem:a5c256f00e11fa3a3e07b29e770e0cfc8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a5c256f00e11fa3a3e07b29e770e0cfc8">~String</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a5c256f00e11fa3a3e07b29e770e0cfc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a25479ff2992ba0cfb04fe1c6172c61"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a4a25479ff2992ba0cfb04fe1c6172c61">getLength</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a4a25479ff2992ba0cfb04fe1c6172c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35fb116bf14e514e29fbc30dfc168abd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35fb116bf14e514e29fbc30dfc168abd"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>getChar</b> (int idx) const </td></tr>
+<tr class="memitem:a35fb116bf14e514e29fbc30dfc168abd"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a35fb116bf14e514e29fbc30dfc168abd">getChar</a> (int idx) const </td></tr>
 <tr class="separator:a35fb116bf14e514e29fbc30dfc168abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cb3398012aee8e654fe055bc6ec66c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7cb3398012aee8e654fe055bc6ec66c8"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>getPtr</b> (void) const </td></tr>
+<tr class="memitem:a7cb3398012aee8e654fe055bc6ec66c8"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a7cb3398012aee8e654fe055bc6ec66c8">getPtr</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a7cb3398012aee8e654fe055bc6ec66c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a056746c91e71e136dcb8fa8a5cb766ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a056746c91e71e136dcb8fa8a5cb766ae"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (void)</td></tr>
+<tr class="memitem:a056746c91e71e136dcb8fa8a5cb766ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a056746c91e71e136dcb8fa8a5cb766ae">reset</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a056746c91e71e136dcb8fa8a5cb766ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7628d041d4450b3e7c7a913b54ae1865"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7628d041d4450b3e7c7a913b54ae1865"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (char chr)</td></tr>
+<tr class="memitem:a7628d041d4450b3e7c7a913b54ae1865"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a7628d041d4450b3e7c7a913b54ae1865">set</a> (char chr)</td></tr>
 <tr class="separator:a7628d041d4450b3e7c7a913b54ae1865"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad60d046ff70d97c7d1798f5c6e577577"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad60d046ff70d97c7d1798f5c6e577577"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const char *chars)</td></tr>
+<tr class="memitem:ad60d046ff70d97c7d1798f5c6e577577"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#ad60d046ff70d97c7d1798f5c6e577577">set</a> (const char *chars)</td></tr>
 <tr class="separator:ad60d046ff70d97c7d1798f5c6e577577"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4da0df0e9b40b377fea816b7876b3bc5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4da0df0e9b40b377fea816b7876b3bc5"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const char *start, const char *end)</td></tr>
+<tr class="memitem:a4da0df0e9b40b377fea816b7876b3bc5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a4da0df0e9b40b377fea816b7876b3bc5">set</a> (const char *start, const char *end)</td></tr>
 <tr class="separator:a4da0df0e9b40b377fea816b7876b3bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01ec46e36085c5a46562656b6da57518"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01ec46e36085c5a46562656b6da57518"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other)</td></tr>
+<tr class="memitem:a01ec46e36085c5a46562656b6da57518"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a01ec46e36085c5a46562656b6da57518">set</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other)</td></tr>
 <tr class="separator:a01ec46e36085c5a46562656b6da57518"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeaab84be944f7192a50b72dccfbfea3e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeaab84be944f7192a50b72dccfbfea3e"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>setf</b> (const char *fmt,...)</td></tr>
+<tr class="memitem:aeaab84be944f7192a50b72dccfbfea3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#aeaab84be944f7192a50b72dccfbfea3e">setf</a> (const char *fmt,...)</td></tr>
 <tr class="separator:aeaab84be944f7192a50b72dccfbfea3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ea21e1172e582ea54e46fc8051b14fa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ea21e1172e582ea54e46fc8051b14fa"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>setfv</b> (const char *fmt, va_list args)</td></tr>
+<tr class="memitem:a7ea21e1172e582ea54e46fc8051b14fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a7ea21e1172e582ea54e46fc8051b14fa">setfv</a> (const char *fmt, va_list args)</td></tr>
 <tr class="separator:a7ea21e1172e582ea54e46fc8051b14fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6eece6d5e9285def219411980c6a3461"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6eece6d5e9285def219411980c6a3461"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>substring</b> (int start, int end) const </td></tr>
+<tr class="memitem:a6eece6d5e9285def219411980c6a3461"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a6eece6d5e9285def219411980c6a3461">substring</a> (int start, int end) const </td></tr>
 <tr class="separator:a6eece6d5e9285def219411980c6a3461"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cca7a606448e1ab5c6e3f577536cdef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cca7a606448e1ab5c6e3f577536cdef"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>substring</b> (int start) const </td></tr>
+<tr class="memitem:a5cca7a606448e1ab5c6e3f577536cdef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a5cca7a606448e1ab5c6e3f577536cdef">substring</a> (int start) const </td></tr>
 <tr class="separator:a5cca7a606448e1ab5c6e3f577536cdef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeefa4cc6ed931816ddebd85d8cd5e1fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeefa4cc6ed931816ddebd85d8cd5e1fd"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>trimStart</b> (void) const </td></tr>
+<tr class="memitem:aeefa4cc6ed931816ddebd85d8cd5e1fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#aeefa4cc6ed931816ddebd85d8cd5e1fd">trimStart</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:aeefa4cc6ed931816ddebd85d8cd5e1fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa378815c37d86db3c2d80f450dc98c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa378815c37d86db3c2d80f450dc98c9"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>trimEnd</b> (void) const </td></tr>
+<tr class="memitem:aaa378815c37d86db3c2d80f450dc98c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#aaa378815c37d86db3c2d80f450dc98c9">trimEnd</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:aaa378815c37d86db3c2d80f450dc98c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f06d0aef80befb7b969741035f1366c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f06d0aef80befb7b969741035f1366c"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>trim</b> (void) const </td></tr>
+<tr class="memitem:a4f06d0aef80befb7b969741035f1366c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a4f06d0aef80befb7b969741035f1366c">trim</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a4f06d0aef80befb7b969741035f1366c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a476cb681e2e0cd025fe3a6bcb18e755e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a476cb681e2e0cd025fe3a6bcb18e755e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>split</b> (char chr, <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_string.html">String</a> &gt; &amp;pieces, bool includeEmpty=false) const </td></tr>
+<tr class="memitem:a476cb681e2e0cd025fe3a6bcb18e755e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a476cb681e2e0cd025fe3a6bcb18e755e">split</a> (char chr, <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_string.html">String</a> &gt; &amp;pieces, bool includeEmpty=false) const </td></tr>
 <tr class="separator:a476cb681e2e0cd025fe3a6bcb18e755e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49bd12cb4634ef3d58e8d4214089145a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49bd12cb4634ef3d58e8d4214089145a"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (void)</td></tr>
+<tr class="memitem:a49bd12cb4634ef3d58e8d4214089145a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a49bd12cb4634ef3d58e8d4214089145a">clear</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a49bd12cb4634ef3d58e8d4214089145a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bfda215638c9206f2ef44a9ad7ea960"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6bfda215638c9206f2ef44a9ad7ea960"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>append</b> (char chr)</td></tr>
+<tr class="memitem:a6bfda215638c9206f2ef44a9ad7ea960"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a6bfda215638c9206f2ef44a9ad7ea960">append</a> (char chr)</td></tr>
 <tr class="separator:a6bfda215638c9206f2ef44a9ad7ea960"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50704066f80da763389f3fa74acfe19a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50704066f80da763389f3fa74acfe19a"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>append</b> (const char *chars)</td></tr>
+<tr class="memitem:a50704066f80da763389f3fa74acfe19a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a50704066f80da763389f3fa74acfe19a">append</a> (const char *chars)</td></tr>
 <tr class="separator:a50704066f80da763389f3fa74acfe19a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab41b0b2aab35d8ebed2a05396df11bb2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab41b0b2aab35d8ebed2a05396df11bb2"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>append</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other)</td></tr>
+<tr class="memitem:ab41b0b2aab35d8ebed2a05396df11bb2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#ab41b0b2aab35d8ebed2a05396df11bb2">append</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other)</td></tr>
 <tr class="separator:ab41b0b2aab35d8ebed2a05396df11bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac70841a43b7c006c5d4552f7892bac94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac70841a43b7c006c5d4552f7892bac94"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>appendf</b> (const char *fmt,...)</td></tr>
+<tr class="memitem:ac70841a43b7c006c5d4552f7892bac94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#ac70841a43b7c006c5d4552f7892bac94">appendf</a> (const char *fmt,...)</td></tr>
 <tr class="separator:ac70841a43b7c006c5d4552f7892bac94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefceda310b2a2296f2e5099709aa2c63"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aefceda310b2a2296f2e5099709aa2c63"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>appendfv</b> (const char *fmt, va_list args)</td></tr>
+<tr class="memitem:aefceda310b2a2296f2e5099709aa2c63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#aefceda310b2a2296f2e5099709aa2c63">appendfv</a> (const char *fmt, va_list args)</td></tr>
 <tr class="separator:aefceda310b2a2296f2e5099709aa2c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2160332bf2e7f2cd956c928edbf6dc93"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2160332bf2e7f2cd956c928edbf6dc93"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>compact</b> (void)</td></tr>
+<tr class="memitem:a2160332bf2e7f2cd956c928edbf6dc93"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a2160332bf2e7f2cd956c928edbf6dc93">compact</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a2160332bf2e7f2cd956c928edbf6dc93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8690300c10abc257d12754e75d8e337"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8690300c10abc257d12754e75d8e337"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>indexOf</b> (char chr) const </td></tr>
+<tr class="memitem:aa8690300c10abc257d12754e75d8e337"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#aa8690300c10abc257d12754e75d8e337">indexOf</a> (char chr) const </td></tr>
 <tr class="separator:aa8690300c10abc257d12754e75d8e337"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b8a4b23c03c040cfc95dee5c685537f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b8a4b23c03c040cfc95dee5c685537f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>indexOf</b> (char chr, int fromIdx) const </td></tr>
+<tr class="memitem:a0b8a4b23c03c040cfc95dee5c685537f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a0b8a4b23c03c040cfc95dee5c685537f">indexOf</a> (char chr, int fromIdx) const </td></tr>
 <tr class="separator:a0b8a4b23c03c040cfc95dee5c685537f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a444f714230bd4aa6ea67a135b22f0c1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a444f714230bd4aa6ea67a135b22f0c1a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>lastIndexOf</b> (char chr) const </td></tr>
+<tr class="memitem:a444f714230bd4aa6ea67a135b22f0c1a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a444f714230bd4aa6ea67a135b22f0c1a">lastIndexOf</a> (char chr) const </td></tr>
 <tr class="separator:a444f714230bd4aa6ea67a135b22f0c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fecfed0257e04b02a5efc02326dcc5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fecfed0257e04b02a5efc02326dcc5e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>lastIndexOf</b> (char chr, int fromIdx) const </td></tr>
+<tr class="memitem:a1fecfed0257e04b02a5efc02326dcc5e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a1fecfed0257e04b02a5efc02326dcc5e">lastIndexOf</a> (char chr, int fromIdx) const </td></tr>
 <tr class="separator:a1fecfed0257e04b02a5efc02326dcc5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a658a0d4d24a60f7cd0b1410c736de7f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a658a0d4d24a60f7cd0b1410c736de7f5"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>toUpper</b> (void) const </td></tr>
+<tr class="memitem:a658a0d4d24a60f7cd0b1410c736de7f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a658a0d4d24a60f7cd0b1410c736de7f5">toUpper</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a658a0d4d24a60f7cd0b1410c736de7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29aa82d2f27a1900b155f9e5e155348d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29aa82d2f27a1900b155f9e5e155348d"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>toLower</b> (void) const </td></tr>
+<tr class="memitem:a29aa82d2f27a1900b155f9e5e155348d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a29aa82d2f27a1900b155f9e5e155348d">toLower</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a29aa82d2f27a1900b155f9e5e155348d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fdc22836cffc465cf17e6e914379db9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0fdc22836cffc465cf17e6e914379db9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>startsWith</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;str) const </td></tr>
+<tr class="memitem:a0fdc22836cffc465cf17e6e914379db9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a0fdc22836cffc465cf17e6e914379db9">startsWith</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;str) const </td></tr>
 <tr class="separator:a0fdc22836cffc465cf17e6e914379db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c53bae375677e748c208a71f5288baa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c53bae375677e748c208a71f5288baa"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>endsWith</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;str) const </td></tr>
+<tr class="memitem:a2c53bae375677e748c208a71f5288baa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a2c53bae375677e748c208a71f5288baa">endsWith</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;str) const </td></tr>
 <tr class="separator:a2c53bae375677e748c208a71f5288baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe26d853107ae686e7704b8cc48995b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe26d853107ae686e7704b8cc48995b4"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getFileName</b> (void) const </td></tr>
+<tr class="memitem:abe26d853107ae686e7704b8cc48995b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#abe26d853107ae686e7704b8cc48995b4">getFileName</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:abe26d853107ae686e7704b8cc48995b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fdc389b386bdf4edf77164ac58b6e10"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fdc389b386bdf4edf77164ac58b6e10"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getDirName</b> (void) const </td></tr>
+<tr class="memitem:a1fdc389b386bdf4edf77164ac58b6e10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a1fdc389b386bdf4edf77164ac58b6e10">getDirName</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a1fdc389b386bdf4edf77164ac58b6e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19b75b867cea363e9a7b58a0118bbe4d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19b75b867cea363e9a7b58a0118bbe4d"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int idx) const </td></tr>
+<tr class="memitem:a19b75b867cea363e9a7b58a0118bbe4d"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a19b75b867cea363e9a7b58a0118bbe4d">operator[]</a> (int idx) const </td></tr>
 <tr class="separator:a19b75b867cea363e9a7b58a0118bbe4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3436413a6c37ca2230b831965b55f83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3436413a6c37ca2230b831965b55f83"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other)</td></tr>
+<tr class="memitem:ab3436413a6c37ca2230b831965b55f83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#ab3436413a6c37ca2230b831965b55f83">operator=</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other)</td></tr>
 <tr class="separator:ab3436413a6c37ca2230b831965b55f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecfa8887e72c78b35a923da3644d65fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aecfa8887e72c78b35a923da3644d65fb"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (char chr)</td></tr>
+<tr class="memitem:aecfa8887e72c78b35a923da3644d65fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#aecfa8887e72c78b35a923da3644d65fb">operator+=</a> (char chr)</td></tr>
 <tr class="separator:aecfa8887e72c78b35a923da3644d65fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca720629082e104b0354c54d8ceb5014"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca720629082e104b0354c54d8ceb5014"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other)</td></tr>
+<tr class="memitem:aca720629082e104b0354c54d8ceb5014"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#aca720629082e104b0354c54d8ceb5014">operator+=</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other)</td></tr>
 <tr class="separator:aca720629082e104b0354c54d8ceb5014"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0454def78888fac8ae85ded2a0c545e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0454def78888fac8ae85ded2a0c545e6"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (char chr) const </td></tr>
+<tr class="memitem:a0454def78888fac8ae85ded2a0c545e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a0454def78888fac8ae85ded2a0c545e6">operator+</a> (char chr) const </td></tr>
 <tr class="separator:a0454def78888fac8ae85ded2a0c545e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a343b2999f7ffb63883c30301ec3f2501"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a343b2999f7ffb63883c30301ec3f2501"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
+<tr class="memitem:a343b2999f7ffb63883c30301ec3f2501"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a343b2999f7ffb63883c30301ec3f2501">operator+</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
 <tr class="separator:a343b2999f7ffb63883c30301ec3f2501"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1548c36c364c2b7a004016d1a6eabce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1548c36c364c2b7a004016d1a6eabce"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const char *chars) const </td></tr>
+<tr class="memitem:ae1548c36c364c2b7a004016d1a6eabce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#ae1548c36c364c2b7a004016d1a6eabce">operator==</a> (const char *chars) const </td></tr>
 <tr class="separator:ae1548c36c364c2b7a004016d1a6eabce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc82d9aa89d0ea94845fefb898a17e03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc82d9aa89d0ea94845fefb898a17e03"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
+<tr class="memitem:adc82d9aa89d0ea94845fefb898a17e03"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#adc82d9aa89d0ea94845fefb898a17e03">operator==</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
 <tr class="separator:adc82d9aa89d0ea94845fefb898a17e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57ab79394970e0c1073ec8574997caf1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57ab79394970e0c1073ec8574997caf1"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const char *chars) const </td></tr>
+<tr class="memitem:a57ab79394970e0c1073ec8574997caf1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a57ab79394970e0c1073ec8574997caf1">operator!=</a> (const char *chars) const </td></tr>
 <tr class="separator:a57ab79394970e0c1073ec8574997caf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a913fd3bc44ee93a4110914b129c5cc57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a913fd3bc44ee93a4110914b129c5cc57"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
+<tr class="memitem:a913fd3bc44ee93a4110914b129c5cc57"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a913fd3bc44ee93a4110914b129c5cc57">operator!=</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
 <tr class="separator:a913fd3bc44ee93a4110914b129c5cc57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b3fb93193df5dbc44b1728d4b86c94d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b3fb93193df5dbc44b1728d4b86c94d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;</b> (const char *chars) const </td></tr>
+<tr class="memitem:a9b3fb93193df5dbc44b1728d4b86c94d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a9b3fb93193df5dbc44b1728d4b86c94d">operator&lt;</a> (const char *chars) const </td></tr>
 <tr class="separator:a9b3fb93193df5dbc44b1728d4b86c94d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2787584ac8fb6e7424adbbf83e0cb305"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2787584ac8fb6e7424adbbf83e0cb305"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
+<tr class="memitem:a2787584ac8fb6e7424adbbf83e0cb305"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a2787584ac8fb6e7424adbbf83e0cb305">operator&lt;</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
 <tr class="separator:a2787584ac8fb6e7424adbbf83e0cb305"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa02ec3538587b1aad93b67c6b4b9a2a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa02ec3538587b1aad93b67c6b4b9a2a5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;</b> (const char *chars) const </td></tr>
+<tr class="memitem:aa02ec3538587b1aad93b67c6b4b9a2a5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#aa02ec3538587b1aad93b67c6b4b9a2a5">operator&gt;</a> (const char *chars) const </td></tr>
 <tr class="separator:aa02ec3538587b1aad93b67c6b4b9a2a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26f8c24ef2ff417ca3fce7f7146d2b2d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26f8c24ef2ff417ca3fce7f7146d2b2d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
+<tr class="memitem:a26f8c24ef2ff417ca3fce7f7146d2b2d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a26f8c24ef2ff417ca3fce7f7146d2b2d">operator&gt;</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
 <tr class="separator:a26f8c24ef2ff417ca3fce7f7146d2b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31938b6abb2f6d5974bee70d67c217e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31938b6abb2f6d5974bee70d67c217e6"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;=</b> (const char *chars) const </td></tr>
+<tr class="memitem:a31938b6abb2f6d5974bee70d67c217e6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a31938b6abb2f6d5974bee70d67c217e6">operator&gt;=</a> (const char *chars) const </td></tr>
 <tr class="separator:a31938b6abb2f6d5974bee70d67c217e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14e1178abdc709f7adb4fe2a973d2171"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14e1178abdc709f7adb4fe2a973d2171"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;=</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
+<tr class="memitem:a14e1178abdc709f7adb4fe2a973d2171"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a14e1178abdc709f7adb4fe2a973d2171">operator&gt;=</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
 <tr class="separator:a14e1178abdc709f7adb4fe2a973d2171"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f0d40b3ca0a18069ef04e54e746c322"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f0d40b3ca0a18069ef04e54e746c322"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;=</b> (const char *chars) const </td></tr>
+<tr class="memitem:a4f0d40b3ca0a18069ef04e54e746c322"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a4f0d40b3ca0a18069ef04e54e746c322">operator&lt;=</a> (const char *chars) const </td></tr>
 <tr class="separator:a4f0d40b3ca0a18069ef04e54e746c322"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8124015232c764716303d5fdecfcafe9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8124015232c764716303d5fdecfcafe9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;=</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
+<tr class="memitem:a8124015232c764716303d5fdecfcafe9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_string.html#a8124015232c764716303d5fdecfcafe9">operator&lt;=</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;other) const </td></tr>
 <tr class="separator:a8124015232c764716303d5fdecfcafe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00037">37</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="af7e8d5473894870461d27864229377d6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::String::String </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00040">40</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac22e600037b0eb5c4b48c0c5815ecbef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::String::String </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>chr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00041">41</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2ca54df2896e0a931ff16bd7e4b21a3f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::String::String </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>chars</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00042">42</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a00782c584939450039de7cd7ef29cc33"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::String::String </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00043">43</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a381843a1896e11f086afc4e000db36bd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::String::String </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00044">44</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2fbfa6c6e6429da4f49969a4ef61391"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::String::String </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00045">45</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1884aadf7412012c9ecc5716c49c9ef4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::String::String </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00046">46</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5c256f00e11fa3a3e07b29e770e0cfc8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::String::~String </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00047">47</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a6bfda215638c9206f2ef44a9ad7ea960"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp; String::append </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>chr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00173">173</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a50704066f80da763389f3fa74acfe19a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp; String::append </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>chars</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00184">184</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab41b0b2aab35d8ebed2a05396df11bb2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp; String::append </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00196">196</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac70841a43b7c006c5d4552f7892bac94"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp; String::appendf </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00207">207</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aefceda310b2a2296f2e5099709aa2c63"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp; String::appendfv </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">va_list&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00218">218</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a49bd12cb4634ef3d58e8d4214089145a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a>&amp; FW::String::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00070">70</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2160332bf2e7f2cd956c928edbf6dc93"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a>&amp; FW::String::compact </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00076">76</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2c53bae375677e748c208a71f5288baa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool String::endsWith </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00273">273</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a35fb116bf14e514e29fbc30dfc168abd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char FW::String::getChar </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00050">50</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1fdc389b386bdf4edf77164ac58b6e10"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> String::getDirName </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00292">292</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abe26d853107ae686e7704b8cc48995b4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> String::getFileName </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00284">284</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4a25479ff2992ba0cfb04fe1c6172c61"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::String::getLength </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00049">49</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7cb3398012aee8e654fe055bc6ec66c8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* FW::String::getPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00051">51</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa8690300c10abc257d12754e75d8e337"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::String::indexOf </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>chr</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00078">78</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0b8a4b23c03c040cfc95dee5c685537f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::String::indexOf </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>chr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fromIdx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00079">79</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a444f714230bd4aa6ea67a135b22f0c1a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::String::lastIndexOf </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>chr</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00080">80</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1fecfed0257e04b02a5efc02326dcc5e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::String::lastIndexOf </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>chr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fromIdx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00081">81</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a57ab79394970e0c1073ec8574997caf1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::String::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>chars</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00099">99</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a913fd3bc44ee93a4110914b129c5cc57"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::String::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00100">100</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0454def78888fac8ae85ded2a0c545e6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> FW::String::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>chr</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00095">95</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a343b2999f7ffb63883c30301ec3f2501"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> FW::String::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00096">96</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aecfa8887e72c78b35a923da3644d65fb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a>&amp; FW::String::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>chr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00093">93</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aca720629082e104b0354c54d8ceb5014"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a>&amp; FW::String::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00094">94</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9b3fb93193df5dbc44b1728d4b86c94d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::String::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>chars</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00101">101</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2787584ac8fb6e7424adbbf83e0cb305"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::String::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00102">102</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4f0d40b3ca0a18069ef04e54e746c322"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::String::operator&lt;= </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>chars</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00107">107</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8124015232c764716303d5fdecfcafe9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::String::operator&lt;= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00108">108</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab3436413a6c37ca2230b831965b55f83"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a>&amp; FW::String::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00092">92</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae1548c36c364c2b7a004016d1a6eabce"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::String::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>chars</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00097">97</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adc82d9aa89d0ea94845fefb898a17e03"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::String::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00098">98</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa02ec3538587b1aad93b67c6b4b9a2a5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::String::operator&gt; </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>chars</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00103">103</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a26f8c24ef2ff417ca3fce7f7146d2b2d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::String::operator&gt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00104">104</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a31938b6abb2f6d5974bee70d67c217e6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::String::operator&gt;= </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>chars</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00105">105</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a14e1178abdc709f7adb4fe2a973d2171"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::String::operator&gt;= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00106">106</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a19b75b867cea363e9a7b58a0118bbe4d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char FW::String::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00091">91</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a056746c91e71e136dcb8fa8a5cb766ae"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a>&amp; FW::String::reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00053">53</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7628d041d4450b3e7c7a913b54ae1865"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp; String::set </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>chr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00038">38</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad60d046ff70d97c7d1798f5c6e577577"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp; String::set </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>chars</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00048">48</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4da0df0e9b40b377fea816b7876b3bc5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp; String::set </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00060">60</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a01ec46e36085c5a46562656b6da57518"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a>&amp; FW::String::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00057">57</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeaab84be944f7192a50b72dccfbfea3e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp; String::setf </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00072">72</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7ea21e1172e582ea54e46fc8051b14fa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> &amp; String::setfv </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">va_list&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00083">83</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a476cb681e2e0cd025fe3a6bcb18e755e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> String::split </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>chr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_string.html">String</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>pieces</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>includeEmpty</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00157">157</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0fdc22836cffc465cf17e6e914379db9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool String::startsWith </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00261">261</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6eece6d5e9285def219411980c6a3461"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> String::substring </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00096">96</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5cca7a606448e1ab5c6e3f577536cdef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> FW::String::substring </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>start</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8hpp_source.html#l00062">62</a> of file <a class="el" href="_string_8hpp_source.html">String.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a29aa82d2f27a1900b155f9e5e155348d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> String::toLower </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00245">245</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a658a0d4d24a60f7cd0b1410c736de7f5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> String::toUpper </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00229">229</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4f06d0aef80befb7b969741035f1366c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> String::trim </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00131">131</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaa378815c37d86db3c2d80f450dc98c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> String::trimEnd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00120">120</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeefa4cc6ed931816ddebd85d8cd5e1fd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> String::trimStart </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_string_8cpp_source.html#l00109">109</a> of file <a class="el" href="_string_8cpp_source.html">String.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/base/<a class="el" href="_string_8hpp_source.html">String.hpp</a></li>
-<li>src/framework/base/String.cpp</li>
+<li>src/framework/base/<a class="el" href="_string_8cpp_source.html">String.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_string.html">String</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_string.html">String</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

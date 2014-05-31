@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_multicore_launcher.html'
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -113,6 +114,8 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_multicore_launcher.html'
 <div class="title">FW::MulticoreLauncher Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_multicore_launcher_8hpp_source.html">MulticoreLauncher.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -121,51 +124,292 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a76c2c80d8c28150f1d8027ba6bcf8fbd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76c2c80d8c28150f1d8027ba6bcf8fbd"></a>
-typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>TaskFunc</b> )(<a class="el" href="struct_f_w_1_1_multicore_launcher_1_1_task.html">Task</a> &amp;task)</td></tr>
+<tr class="memitem:a76c2c80d8c28150f1d8027ba6bcf8fbd"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_multicore_launcher.html#a76c2c80d8c28150f1d8027ba6bcf8fbd">TaskFunc</a> )(<a class="el" href="struct_f_w_1_1_multicore_launcher_1_1_task.html">Task</a> &amp;task)</td></tr>
 <tr class="separator:a76c2c80d8c28150f1d8027ba6bcf8fbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acf14f54ec2e56ff881ae846a69711408"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf14f54ec2e56ff881ae846a69711408"></a>
-<a class="el" href="class_f_w_1_1_multicore_launcher.html">MulticoreLauncher</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>push</b> (TaskFunc func, void *data, int firstIdx=0, int numTasks=1)</td></tr>
+<tr class="memitem:a0497afc4a3af0b984292a6f8c75c8df5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_multicore_launcher.html#a0497afc4a3af0b984292a6f8c75c8df5">MulticoreLauncher</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a0497afc4a3af0b984292a6f8c75c8df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53c76e1ef2e9874ada22ddcd2327cc0b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_multicore_launcher.html#a53c76e1ef2e9874ada22ddcd2327cc0b">~MulticoreLauncher</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a53c76e1ef2e9874ada22ddcd2327cc0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf14f54ec2e56ff881ae846a69711408"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_multicore_launcher.html">MulticoreLauncher</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_multicore_launcher.html#acf14f54ec2e56ff881ae846a69711408">push</a> (<a class="el" href="class_f_w_1_1_multicore_launcher.html#a76c2c80d8c28150f1d8027ba6bcf8fbd">TaskFunc</a> <a class="el" href="_d_l_l_imports_8inl.html#a7c64747839948b16b40c959981c3a8e4">func</a>, <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>, int firstIdx=0, int numTasks=1)</td></tr>
 <tr class="separator:acf14f54ec2e56ff881ae846a69711408"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a017f4dc45b2e0ef728b20b19728e3b83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a017f4dc45b2e0ef728b20b19728e3b83"></a>
-<a class="el" href="struct_f_w_1_1_multicore_launcher_1_1_task.html">Task</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pop</b> (void)</td></tr>
+<tr class="memitem:a017f4dc45b2e0ef728b20b19728e3b83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_f_w_1_1_multicore_launcher_1_1_task.html">Task</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_multicore_launcher.html#a017f4dc45b2e0ef728b20b19728e3b83">pop</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a017f4dc45b2e0ef728b20b19728e3b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa53ac2b16f013e8b29f41547d93b70f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa53ac2b16f013e8b29f41547d93b70f3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumTasks</b> (void) const </td></tr>
+<tr class="memitem:aa53ac2b16f013e8b29f41547d93b70f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_multicore_launcher.html#aa53ac2b16f013e8b29f41547d93b70f3">getNumTasks</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:aa53ac2b16f013e8b29f41547d93b70f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85d642981fb81f981347c6298752688e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85d642981fb81f981347c6298752688e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumFinished</b> (void) const </td></tr>
+<tr class="memitem:a85d642981fb81f981347c6298752688e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_multicore_launcher.html#a85d642981fb81f981347c6298752688e">getNumFinished</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a85d642981fb81f981347c6298752688e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad61e931653105c6850b8a9a4c8b7a59c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad61e931653105c6850b8a9a4c8b7a59c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>popAll</b> (void)</td></tr>
+<tr class="memitem:ad61e931653105c6850b8a9a4c8b7a59c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_multicore_launcher.html#ad61e931653105c6850b8a9a4c8b7a59c">popAll</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ad61e931653105c6850b8a9a4c8b7a59c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac699433467be0ed825737592396271d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac699433467be0ed825737592396271d9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>popAll</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;progressMessage)</td></tr>
+<tr class="memitem:ac699433467be0ed825737592396271d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_multicore_launcher.html#ac699433467be0ed825737592396271d9">popAll</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;progressMessage)</td></tr>
 <tr class="separator:ac699433467be0ed825737592396271d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a34ea50a62628ed9536b022073cbbc21e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34ea50a62628ed9536b022073cbbc21e"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumCores</b> (void)</td></tr>
+<tr class="memitem:a34ea50a62628ed9536b022073cbbc21e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_multicore_launcher.html#a34ea50a62628ed9536b022073cbbc21e">getNumCores</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a34ea50a62628ed9536b022073cbbc21e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0103eb2d3f500ff16b264c5f3978c068"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0103eb2d3f500ff16b264c5f3978c068"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>setNumThreads</b> (int numThreads)</td></tr>
+<tr class="memitem:a0103eb2d3f500ff16b264c5f3978c068"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_multicore_launcher.html#a0103eb2d3f500ff16b264c5f3978c068">setNumThreads</a> (int numThreads)</td></tr>
 <tr class="separator:a0103eb2d3f500ff16b264c5f3978c068"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_multicore_launcher_8hpp_source.html#l00089">89</a> of file <a class="el" href="_multicore_launcher_8hpp_source.html">MulticoreLauncher.hpp</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a class="anchor" id="a76c2c80d8c28150f1d8027ba6bcf8fbd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>(* FW::MulticoreLauncher::TaskFunc)(<a class="el" href="struct_f_w_1_1_multicore_launcher_1_1_task.html">Task</a> &amp;task)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_multicore_launcher_8hpp_source.html#l00093">93</a> of file <a class="el" href="_multicore_launcher_8hpp_source.html">MulticoreLauncher.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a0497afc4a3af0b984292a6f8c75c8df5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MulticoreLauncher::MulticoreLauncher </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_multicore_launcher_8cpp_source.html#l00045">45</a> of file <a class="el" href="_multicore_launcher_8cpp_source.html">MulticoreLauncher.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a53c76e1ef2e9874ada22ddcd2327cc0b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MulticoreLauncher::~MulticoreLauncher </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_multicore_launcher_8cpp_source.html#l00065">65</a> of file <a class="el" href="_multicore_launcher_8cpp_source.html">MulticoreLauncher.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a34ea50a62628ed9536b022073cbbc21e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MulticoreLauncher::getNumCores </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_multicore_launcher_8cpp_source.html#l00177">177</a> of file <a class="el" href="_multicore_launcher_8cpp_source.html">MulticoreLauncher.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a85d642981fb81f981347c6298752688e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MulticoreLauncher::getNumFinished </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_multicore_launcher_8cpp_source.html#l00151">151</a> of file <a class="el" href="_multicore_launcher_8cpp_source.html">MulticoreLauncher.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa53ac2b16f013e8b29f41547d93b70f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MulticoreLauncher::getNumTasks </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_multicore_launcher_8cpp_source.html#l00144">144</a> of file <a class="el" href="_multicore_launcher_8cpp_source.html">MulticoreLauncher.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a017f4dc45b2e0ef728b20b19728e3b83"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_f_w_1_1_multicore_launcher_1_1_task.html">MulticoreLauncher::Task</a> MulticoreLauncher::pop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_multicore_launcher_8cpp_source.html#l00124">124</a> of file <a class="el" href="_multicore_launcher_8cpp_source.html">MulticoreLauncher.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad61e931653105c6850b8a9a4c8b7a59c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::MulticoreLauncher::popAll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_multicore_launcher_8hpp_source.html#l00114">114</a> of file <a class="el" href="_multicore_launcher_8hpp_source.html">MulticoreLauncher.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac699433467be0ed825737592396271d9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MulticoreLauncher::popAll </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>progressMessage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_multicore_launcher_8cpp_source.html#l00158">158</a> of file <a class="el" href="_multicore_launcher_8cpp_source.html">MulticoreLauncher.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acf14f54ec2e56ff881ae846a69711408"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_multicore_launcher.html">MulticoreLauncher</a> &amp; MulticoreLauncher::push </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_multicore_launcher.html#a76c2c80d8c28150f1d8027ba6bcf8fbd">TaskFunc</a>&#160;</td>
+          <td class="paramname"><em>func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>firstIdx</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numTasks</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_multicore_launcher_8cpp_source.html#l00095">95</a> of file <a class="el" href="_multicore_launcher_8cpp_source.html">MulticoreLauncher.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0103eb2d3f500ff16b264c5f3978c068"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MulticoreLauncher::setNumThreads </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numThreads</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_multicore_launcher_8cpp_source.html#l00186">186</a> of file <a class="el" href="_multicore_launcher_8cpp_source.html">MulticoreLauncher.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/base/<a class="el" href="_multicore_launcher_8hpp_source.html">MulticoreLauncher.hpp</a></li>
-<li>src/framework/base/MulticoreLauncher.cpp</li>
+<li>src/framework/base/<a class="el" href="_multicore_launcher_8cpp_source.html">MulticoreLauncher.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_multicore_launcher.html">MulticoreLauncher</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_multicore_launcher.html">MulticoreLauncher</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

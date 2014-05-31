@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_spinlock.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,28 +112,109 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_spinlock.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p><code>#include &lt;<a class="el" href="_thread_8hpp_source.html">Thread.hpp</a>&gt;</code></p>
+
 <p>Inherited by <a class="el" href="class_safe_spinlock.html">SafeSpinlock</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a78597f49fa383fb3f4768c4cfe087808"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78597f49fa383fb3f4768c4cfe087808"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>enter</b> (void)</td></tr>
+<tr class="memitem:a8f5364a3c78786b224c1385acff97e12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_spinlock.html#a8f5364a3c78786b224c1385acff97e12">Spinlock</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a8f5364a3c78786b224c1385acff97e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a121c0951af2fa66ccd884eff194aa84f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_spinlock.html#a121c0951af2fa66ccd884eff194aa84f">~Spinlock</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a121c0951af2fa66ccd884eff194aa84f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78597f49fa383fb3f4768c4cfe087808"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_spinlock.html#a78597f49fa383fb3f4768c4cfe087808">enter</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a78597f49fa383fb3f4768c4cfe087808"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3efb1ec47700bf2c07bae7e53951a7da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3efb1ec47700bf2c07bae7e53951a7da"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>leave</b> (void)</td></tr>
+<tr class="memitem:a3efb1ec47700bf2c07bae7e53951a7da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_spinlock.html#a3efb1ec47700bf2c07bae7e53951a7da">leave</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a3efb1ec47700bf2c07bae7e53951a7da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_thread_8hpp_source.html#l00036">36</a> of file <a class="el" href="_thread_8hpp_source.html">Thread.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a8f5364a3c78786b224c1385acff97e12"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Spinlock::Spinlock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00040">40</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a121c0951af2fa66ccd884eff194aa84f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Spinlock::~Spinlock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00047">47</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a78597f49fa383fb3f4768c4cfe087808"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Spinlock::enter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00054">54</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3efb1ec47700bf2c07bae7e53951a7da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Spinlock::leave </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00061">61</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/base/<a class="el" href="_thread_8hpp_source.html">Thread.hpp</a></li>
-<li>src/framework/base/Thread.cpp</li>
+<li>src/framework/base/<a class="el" href="_thread_8cpp_source.html">Thread.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_spinlock.html">Spinlock</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_spinlock.html">Spinlock</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

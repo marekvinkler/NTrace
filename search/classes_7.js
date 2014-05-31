@@ -17,5 +17,7 @@ var searchData=
   ['hash_3c_20u64_2c_20fw_3a_3aarray_3c_20u8_20_3e_20_2a_20_3e',['Hash&lt; U64, FW::Array&lt; U8 &gt; * &gt;',['../class_f_w_1_1_hash.html',1,'FW']]],
   ['hash_3c_20u64_2c_20fw_3a_3acudamodule_20_2a_20_3e',['Hash&lt; U64, FW::CudaModule * &gt;',['../class_f_w_1_1_hash.html',1,'FW']]],
   ['hashentry',['HashEntry',['../struct_f_w_1_1_hash_entry.html',1,'FW']]],
+  ['hlbvhbuilder',['HLBVHBuilder',['../class_f_w_1_1_h_l_b_v_h_builder.html',1,'FW']]],
+  ['hlbvhparams',['HLBVHParams',['../struct_f_w_1_1_h_l_b_v_h_params.html',1,'FW']]],
   ['huffmantree',['HuffmanTree',['../struct_huffman_tree.html',1,'']]]
 ];

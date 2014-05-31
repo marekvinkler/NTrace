@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_platform.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,61 +111,667 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_platform.html','');});
 <div class="title">FW::Platform Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class holding various SAH and batch processing parameters.  
+ <a href="class_f_w_1_1_platform.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5db896fdbe3ea757cb6b143077393bc8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5db896fdbe3ea757cb6b143077393bc8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Platform</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;name, float nodeCost=1.f, float triCost=1.f, S32 nodeBatchSize=1, S32 triBatchSize=1)</td></tr>
+<tr class="memitem:a678d14b902ad6e293e8f449de635d380"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#a678d14b902ad6e293e8f449de635d380">Platform</a> ()</td></tr>
+<tr class="memdesc:a678d14b902ad6e293e8f449de635d380"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a678d14b902ad6e293e8f449de635d380">More...</a><br/></td></tr>
+<tr class="separator:a678d14b902ad6e293e8f449de635d380"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5db896fdbe3ea757cb6b143077393bc8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#a5db896fdbe3ea757cb6b143077393bc8">Platform</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ab310c36935c01adfdede31b7dcc84cea">name</a>, float nodeCost=1.<a class="el" href="_d_l_l_imports_8inl.html#aae5e5f55e5704ab0c6fb5992d5b0a116">f</a>, float triCost=1.<a class="el" href="_d_l_l_imports_8inl.html#aae5e5f55e5704ab0c6fb5992d5b0a116">f</a>, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> nodeBatchSize=1, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> triBatchSize=1)</td></tr>
+<tr class="memdesc:a5db896fdbe3ea757cb6b143077393bc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a5db896fdbe3ea757cb6b143077393bc8">More...</a><br/></td></tr>
 <tr class="separator:a5db896fdbe3ea757cb6b143077393bc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaeee7f86728cba564d60add1bccb902b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaeee7f86728cba564d60add1bccb902b"></a>
-const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> () const </td></tr>
+<tr class="memitem:aaeee7f86728cba564d60add1bccb902b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#aaeee7f86728cba564d60add1bccb902b">getName</a> () const </td></tr>
 <tr class="separator:aaeee7f86728cba564d60add1bccb902b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd7d26cddb8a78b03861257418eedb2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd7d26cddb8a78b03861257418eedb2f"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getSAHTriangleCost</b> () const </td></tr>
+<tr class="memitem:abd7d26cddb8a78b03861257418eedb2f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#abd7d26cddb8a78b03861257418eedb2f">getSAHTriangleCost</a> () const </td></tr>
 <tr class="separator:abd7d26cddb8a78b03861257418eedb2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed2e2ac22aaaed73ca5edbb74020b434"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed2e2ac22aaaed73ca5edbb74020b434"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getSAHNodeCost</b> () const </td></tr>
+<tr class="memitem:aed2e2ac22aaaed73ca5edbb74020b434"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#aed2e2ac22aaaed73ca5edbb74020b434">getSAHNodeCost</a> () const </td></tr>
 <tr class="separator:aed2e2ac22aaaed73ca5edbb74020b434"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5cd9ba4faf85d1b5eee6646c0b1338b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5cd9ba4faf85d1b5eee6646c0b1338b"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getCost</b> (int numChildNodes, int numTris) const </td></tr>
+<tr class="memitem:ae5cd9ba4faf85d1b5eee6646c0b1338b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#ae5cd9ba4faf85d1b5eee6646c0b1338b">getCost</a> (int numChildNodes, int numTris) const </td></tr>
+<tr class="memdesc:ae5cd9ba4faf85d1b5eee6646c0b1338b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates cost of a single node.  <a href="#ae5cd9ba4faf85d1b5eee6646c0b1338b">More...</a><br/></td></tr>
 <tr class="separator:ae5cd9ba4faf85d1b5eee6646c0b1338b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cd767e48c0dfc35c631f2983d19b034"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6cd767e48c0dfc35c631f2983d19b034"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getTriangleCost</b> (S32 n) const </td></tr>
+<tr class="memitem:a6cd767e48c0dfc35c631f2983d19b034"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#a6cd767e48c0dfc35c631f2983d19b034">getTriangleCost</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#a7bfd2fdf58fb75abde6e36d72617c71b">n</a>) const </td></tr>
+<tr class="memdesc:a6cd767e48c0dfc35c631f2983d19b034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcuates cost of a given number of triangles rounded to the batch size.  <a href="#a6cd767e48c0dfc35c631f2983d19b034">More...</a><br/></td></tr>
 <tr class="separator:a6cd767e48c0dfc35c631f2983d19b034"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a46c2f95a1b2b7e620dbc3b743fb612"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a46c2f95a1b2b7e620dbc3b743fb612"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getNodeCost</b> (S32 n) const </td></tr>
+<tr class="memitem:a2a46c2f95a1b2b7e620dbc3b743fb612"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#a2a46c2f95a1b2b7e620dbc3b743fb612">getNodeCost</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#a7bfd2fdf58fb75abde6e36d72617c71b">n</a>) const </td></tr>
+<tr class="memdesc:a2a46c2f95a1b2b7e620dbc3b743fb612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates cost of a given number of nodes rounded to the batch size.  <a href="#a2a46c2f95a1b2b7e620dbc3b743fb612">More...</a><br/></td></tr>
 <tr class="separator:a2a46c2f95a1b2b7e620dbc3b743fb612"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a445a94378c95de04ff931f648250bfdc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a445a94378c95de04ff931f648250bfdc"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>getTriangleBatchSize</b> () const </td></tr>
+<tr class="memitem:a445a94378c95de04ff931f648250bfdc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#a445a94378c95de04ff931f648250bfdc">getTriangleBatchSize</a> () const </td></tr>
 <tr class="separator:a445a94378c95de04ff931f648250bfdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63288863cb068f7834fd4212d8791d9a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63288863cb068f7834fd4212d8791d9a"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>getNodeBatchSize</b> () const </td></tr>
+<tr class="memitem:a63288863cb068f7834fd4212d8791d9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#a63288863cb068f7834fd4212d8791d9a">getNodeBatchSize</a> () const </td></tr>
 <tr class="separator:a63288863cb068f7834fd4212d8791d9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1015c85f2edec4fa9300555ce2b0626"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1015c85f2edec4fa9300555ce2b0626"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTriangleBatchSize</b> (S32 triBatchSize)</td></tr>
+<tr class="memitem:aa1015c85f2edec4fa9300555ce2b0626"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#aa1015c85f2edec4fa9300555ce2b0626">setTriangleBatchSize</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> triBatchSize)</td></tr>
+<tr class="memdesc:aa1015c85f2edec4fa9300555ce2b0626"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets triangle batch size to a given value.  <a href="#aa1015c85f2edec4fa9300555ce2b0626">More...</a><br/></td></tr>
 <tr class="separator:aa1015c85f2edec4fa9300555ce2b0626"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb5365e874be3548564e26002e657bd9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb5365e874be3548564e26002e657bd9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setNodeBatchSize</b> (S32 nodeBatchSize)</td></tr>
+<tr class="memitem:aeb5365e874be3548564e26002e657bd9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#aeb5365e874be3548564e26002e657bd9">setNodeBatchSize</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> nodeBatchSize)</td></tr>
+<tr class="memdesc:aeb5365e874be3548564e26002e657bd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets node batch size to a given value.  <a href="#aeb5365e874be3548564e26002e657bd9">More...</a><br/></td></tr>
 <tr class="separator:aeb5365e874be3548564e26002e657bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae2d0db1e3259367b35ec222b2c8cc76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae2d0db1e3259367b35ec222b2c8cc76"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>roundToTriangleBatchSize</b> (S32 n) const </td></tr>
+<tr class="memitem:aae2d0db1e3259367b35ec222b2c8cc76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#aae2d0db1e3259367b35ec222b2c8cc76">roundToTriangleBatchSize</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#a7bfd2fdf58fb75abde6e36d72617c71b">n</a>) const </td></tr>
+<tr class="memdesc:aae2d0db1e3259367b35ec222b2c8cc76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rounds given value up to the nearest triangle batch size multiple.  <a href="#aae2d0db1e3259367b35ec222b2c8cc76">More...</a><br/></td></tr>
 <tr class="separator:aae2d0db1e3259367b35ec222b2c8cc76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d1e8bf44def53a64f885e35724ad494"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d1e8bf44def53a64f885e35724ad494"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>roundToNodeBatchSize</b> (S32 n) const </td></tr>
+<tr class="memitem:a2d1e8bf44def53a64f885e35724ad494"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#a2d1e8bf44def53a64f885e35724ad494">roundToNodeBatchSize</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#a7bfd2fdf58fb75abde6e36d72617c71b">n</a>) const </td></tr>
+<tr class="memdesc:a2d1e8bf44def53a64f885e35724ad494"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rounds given value up to the nearest node batch size multiple.  <a href="#a2d1e8bf44def53a64f885e35724ad494">More...</a><br/></td></tr>
 <tr class="separator:a2d1e8bf44def53a64f885e35724ad494"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25fcec9d45ef75f1bb22b13f04a77357"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25fcec9d45ef75f1bb22b13f04a77357"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setLeafPreferences</b> (S32 minSize, S32 maxSize)</td></tr>
+<tr class="memitem:a25fcec9d45ef75f1bb22b13f04a77357"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#a25fcec9d45ef75f1bb22b13f04a77357">setLeafPreferences</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> minSize, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> maxSize)</td></tr>
+<tr class="memdesc:a25fcec9d45ef75f1bb22b13f04a77357"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets leaf size preferences (desired number of triangles in one leaf node).  <a href="#a25fcec9d45ef75f1bb22b13f04a77357">More...</a><br/></td></tr>
 <tr class="separator:a25fcec9d45ef75f1bb22b13f04a77357"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10a5cabae801b55b9663e10629e4207a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10a5cabae801b55b9663e10629e4207a"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>getMinLeafSize</b> () const </td></tr>
+<tr class="memitem:a10a5cabae801b55b9663e10629e4207a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#a10a5cabae801b55b9663e10629e4207a">getMinLeafSize</a> () const </td></tr>
 <tr class="separator:a10a5cabae801b55b9663e10629e4207a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59830811f2c0f3c2907bf20d8e33b538"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59830811f2c0f3c2907bf20d8e33b538"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxLeafSize</b> () const </td></tr>
+<tr class="memitem:a59830811f2c0f3c2907bf20d8e33b538"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#a59830811f2c0f3c2907bf20d8e33b538">getMaxLeafSize</a> () const </td></tr>
 <tr class="separator:a59830811f2c0f3c2907bf20d8e33b538"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59cb788480741275ae50b3fe4c6b96bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59cb788480741275ae50b3fe4c6b96bd"></a>
-U32&#160;</td><td class="memItemRight" valign="bottom"><b>computeHash</b> () const </td></tr>
+<tr class="memitem:a59cb788480741275ae50b3fe4c6b96bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_platform.html#a59cb788480741275ae50b3fe4c6b96bd">computeHash</a> () const </td></tr>
 <tr class="separator:a59cb788480741275ae50b3fe4c6b96bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class holding various SAH and batch processing parameters. </p>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00046">46</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a678d14b902ad6e293e8f449de635d380"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::Platform::Platform </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00053">53</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5db896fdbe3ea757cb6b143077393bc8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::Platform::Platform </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>nodeCost</em> = <code>1.<a class="el" href="_d_l_l_imports_8inl.html#aae5e5f55e5704ab0c6fb5992d5b0a116">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>triCost</em> = <code>1.<a class="el" href="_d_l_l_imports_8inl.html#aae5e5f55e5704ab0c6fb5992d5b0a116">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>nodeBatchSize</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>triBatchSize</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>Name of the platform settings. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nodeCost</td><td>Cost of a single node. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">triCost</td><td>Cost of a single triangle. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nodeBatchSize</td><td>Size of a node batch. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">triBatchSize</td><td>Size of a triangle batch. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00063">63</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a59cb788480741275ae50b3fe4c6b96bd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> FW::Platform::computeHash </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_f_w_1_1_hash.html">Hash</a> of the platform settings. </dd></dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00162">162</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae5cd9ba4faf85d1b5eee6646c0b1338b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FW::Platform::getCost </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numChildNodes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numTris</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates cost of a single node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">numChildNodes</td><td>Number of child nodes. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numTrix</td><td>Number of triangles. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SAH cost of a node. </dd></dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00088">88</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a59830811f2c0f3c2907bf20d8e33b538"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::Platform::getMaxLeafSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Maximum leaf size. </dd></dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00157">157</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a10a5cabae801b55b9663e10629e4207a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::Platform::getMinLeafSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Minimum leaf size. </dd></dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00152">152</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaeee7f86728cba564d60add1bccb902b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_string.html">String</a>&amp; FW::Platform::getName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Name of the platform settings. </dd></dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00068">68</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a63288863cb068f7834fd4212d8791d9a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::Platform::getNodeBatchSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Size of the node batch. </dd></dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00113">113</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2a46c2f95a1b2b7e620dbc3b743fb612"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FW::Platform::getNodeCost </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates cost of a given number of nodes rounded to the batch size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Number of nodes. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Cost of nodes. </dd></dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00102">102</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aed2e2ac22aaaed73ca5edbb74020b434"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FW::Platform::getSAHNodeCost </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>SAH cost of a single node. </dd></dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00079">79</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abd7d26cddb8a78b03861257418eedb2f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FW::Platform::getSAHTriangleCost </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>SAH cost of a single triangle. </dd></dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00074">74</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a445a94378c95de04ff931f648250bfdc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::Platform::getTriangleBatchSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Size of the triangle batch. </dd></dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00108">108</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6cd767e48c0dfc35c631f2983d19b034"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FW::Platform::getTriangleCost </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calcuates cost of a given number of triangles rounded to the batch size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Number of triangles. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Cost of triangles. </dd></dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00095">95</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2d1e8bf44def53a64f885e35724ad494"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::Platform::roundToNodeBatchSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Rounds given value up to the nearest node batch size multiple. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Value to be rounded. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Rounded value. </dd></dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00139">139</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aae2d0db1e3259367b35ec222b2c8cc76"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::Platform::roundToTriangleBatchSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Rounds given value up to the nearest triangle batch size multiple. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Value to be rounded. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Rounded value. </dd></dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00132">132</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a25fcec9d45ef75f1bb22b13f04a77357"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Platform::setLeafPreferences </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>minSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>maxSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets leaf size preferences (desired number of triangles in one leaf node). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">minSize</td><td>Minimum leaf size. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxSize</td><td>Maximum leaf size. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00147">147</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeb5365e874be3548564e26002e657bd9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Platform::setNodeBatchSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>nodeBatchSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets node batch size to a given value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">nodeBatchSize</td><td>New node batch size. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00125">125</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa1015c85f2edec4fa9300555ce2b0626"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Platform::setTriangleBatchSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>triBatchSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets triangle batch size to a given value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">triBatchSize</td><td>New triangle batch size. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_platform_8hpp_source.html#l00119">119</a> of file <a class="el" href="_platform_8hpp_source.html">Platform.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/rt/bvh/<a class="el" href="_platform_8hpp_source.html">Platform.hpp</a></li>
 </ul>
@@ -173,8 +780,8 @@ U32&#160;</td><td class="memItemRight" valign="bottom"><b>computeHash</b> () con
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_platform.html">Platform</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_platform.html">Platform</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

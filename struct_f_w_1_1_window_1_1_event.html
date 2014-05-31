@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_window_1_1_event.html',
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,43 +111,192 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_window_1_1_event.html',
 <div class="title">FW::Window::Event Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_window_8hpp_source.html">Window.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aef2ddf1aad337d32f4692eae80a73773"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef2ddf1aad337d32f4692eae80a73773"></a>
-EventType&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
+<tr class="memitem:aef2ddf1aad337d32f4692eae80a73773"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83">EventType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_window_1_1_event.html#aef2ddf1aad337d32f4692eae80a73773">type</a></td></tr>
 <tr class="separator:aef2ddf1aad337d32f4692eae80a73773"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0f7a11fd52844e0ba3b3763ccfa6780"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0f7a11fd52844e0ba3b3763ccfa6780"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>key</b></td></tr>
+<tr class="memitem:ac0f7a11fd52844e0ba3b3763ccfa6780"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_window_1_1_event.html#ac0f7a11fd52844e0ba3b3763ccfa6780">key</a></td></tr>
 <tr class="separator:ac0f7a11fd52844e0ba3b3763ccfa6780"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68f82873eb0284708705899b87a00c8e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68f82873eb0284708705899b87a00c8e"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>keyUnicode</b></td></tr>
+<tr class="memitem:a68f82873eb0284708705899b87a00c8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_window_1_1_event.html#a68f82873eb0284708705899b87a00c8e">keyUnicode</a></td></tr>
 <tr class="separator:a68f82873eb0284708705899b87a00c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e23e645c1725b13c03e6dc376370e9f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e23e645c1725b13c03e6dc376370e9f"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>chr</b></td></tr>
+<tr class="memitem:a3e23e645c1725b13c03e6dc376370e9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_window_1_1_event.html#a3e23e645c1725b13c03e6dc376370e9f">chr</a></td></tr>
 <tr class="separator:a3e23e645c1725b13c03e6dc376370e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab270f0489be2b6e4a3bb08f90445b516"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab270f0489be2b6e4a3bb08f90445b516"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>mouseKnown</b></td></tr>
+<tr class="memitem:ab270f0489be2b6e4a3bb08f90445b516"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_window_1_1_event.html#ab270f0489be2b6e4a3bb08f90445b516">mouseKnown</a></td></tr>
 <tr class="separator:ab270f0489be2b6e4a3bb08f90445b516"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8613a92c27aea428efb575afc84a3ba4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8613a92c27aea428efb575afc84a3ba4"></a>
-<a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mousePos</b></td></tr>
+<tr class="memitem:a8613a92c27aea428efb575afc84a3ba4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_window_1_1_event.html#a8613a92c27aea428efb575afc84a3ba4">mousePos</a></td></tr>
 <tr class="separator:a8613a92c27aea428efb575afc84a3ba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28b7a384ab90f5894bf67a1840b7980c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a28b7a384ab90f5894bf67a1840b7980c"></a>
-<a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mouseDelta</b></td></tr>
+<tr class="memitem:a28b7a384ab90f5894bf67a1840b7980c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_window_1_1_event.html#a28b7a384ab90f5894bf67a1840b7980c">mouseDelta</a></td></tr>
 <tr class="separator:a28b7a384ab90f5894bf67a1840b7980c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbd1424d22aba3027c8822a3f1daa834"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afbd1424d22aba3027c8822a3f1daa834"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>mouseDragging</b></td></tr>
+<tr class="memitem:afbd1424d22aba3027c8822a3f1daa834"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_window_1_1_event.html#afbd1424d22aba3027c8822a3f1daa834">mouseDragging</a></td></tr>
 <tr class="separator:afbd1424d22aba3027c8822a3f1daa834"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64b4b93c836dd80e449e015fcdf516a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64b4b93c836dd80e449e015fcdf516a7"></a>
-<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_string.html">String</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>files</b></td></tr>
+<tr class="memitem:a64b4b93c836dd80e449e015fcdf516a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_string.html">String</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_window_1_1_event.html#a64b4b93c836dd80e449e015fcdf516a7">files</a></td></tr>
 <tr class="separator:a64b4b93c836dd80e449e015fcdf516a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a213426632a7344ee96eaecdae74a8959"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a213426632a7344ee96eaecdae74a8959"></a>
-<a class="el" href="class_f_w_1_1_image.html">Image</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>image</b></td></tr>
+<tr class="memitem:a213426632a7344ee96eaecdae74a8959"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_image.html">Image</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_window_1_1_event.html#a213426632a7344ee96eaecdae74a8959">image</a></td></tr>
 <tr class="separator:a213426632a7344ee96eaecdae74a8959"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa51b229d6d07f1b8c57d769297d488b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa51b229d6d07f1b8c57d769297d488b7"></a>
-<a class="el" href="class_f_w_1_1_window.html">Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>window</b></td></tr>
+<tr class="memitem:aa51b229d6d07f1b8c57d769297d488b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_window.html">Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_window_1_1_event.html#aa51b229d6d07f1b8c57d769297d488b7">window</a></td></tr>
 <tr class="separator:aa51b229d6d07f1b8c57d769297d488b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00067">67</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a3e23e645c1725b13c03e6dc376370e9f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::Window::Event::chr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00072">72</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a64b4b93c836dd80e449e015fcdf516a7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt;<a class="el" href="class_f_w_1_1_string.html">String</a>&gt; FW::Window::Event::files</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00077">77</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a213426632a7344ee96eaecdae74a8959"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_image.html">Image</a>* FW::Window::Event::image</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00078">78</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac0f7a11fd52844e0ba3b3763ccfa6780"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> FW::Window::Event::key</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00070">70</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a68f82873eb0284708705899b87a00c8e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::Window::Event::keyUnicode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00071">71</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a28b7a384ab90f5894bf67a1840b7980c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> FW::Window::Event::mouseDelta</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00075">75</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afbd1424d22aba3027c8822a3f1daa834"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::Window::Event::mouseDragging</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00076">76</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab270f0489be2b6e4a3bb08f90445b516"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::Window::Event::mouseKnown</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00073">73</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8613a92c27aea428efb575afc84a3ba4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> FW::Window::Event::mousePos</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00074">74</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aef2ddf1aad337d32f4692eae80a73773"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83">EventType</a> FW::Window::Event::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00069">69</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa51b229d6d07f1b8c57d769297d488b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_window.html">Window</a>* FW::Window::Event::window</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00079">79</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/framework/gui/<a class="el" href="_window_8hpp_source.html">Window.hpp</a></li>
 </ul>
@@ -155,8 +305,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>mouseDragging</b></td
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_window.html">Window</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_window_1_1_event.html">Event</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_window.html">Window</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_window_1_1_event.html">Event</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

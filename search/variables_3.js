@@ -1,8 +1,25 @@
 var searchData=
 [
-  ['numchildnodes',['numChildNodes',['../struct_f_w_1_1_k_d_tree_1_1_stats.html#a07e62c65e15f24273f5b88756df45024',1,'FW::KDTree::Stats']]],
-  ['numemptyleaves',['numEmptyLeaves',['../struct_f_w_1_1_k_d_tree_1_1_stats.html#ad69fce07937240cb1679b35a1fbade48',1,'FW::KDTree::Stats']]],
-  ['numinnernodes',['numInnerNodes',['../struct_f_w_1_1_k_d_tree_1_1_stats.html#a1325fc35f903927d1236f400562142fb',1,'FW::KDTree::Stats']]],
-  ['numleafnodes',['numLeafNodes',['../struct_f_w_1_1_k_d_tree_1_1_stats.html#a8600a30b8616b8f75805cccac66cfc5d',1,'FW::KDTree::Stats']]],
-  ['numtris',['numTris',['../struct_f_w_1_1_k_d_tree_1_1_stats.html#a00e1df2276edcb72b0048ee386f75791',1,'FW::KDTree::Stats']]]
+  ['dasharray',['dashArray',['../_d_l_l_imports_8inl.html#a8fcdf1f5ab86b19df275cbec603c6986',1,'DLLImports.inl']]],
+  ['data',['data',['../structvector.html#afee87fd86bbabb017991064293317a8b',1,'vector::data()'],['../structuivector.html#a427d761df4bb4f0f19b4a973fc224c78',1,'uivector::data()'],['../structucvector.html#ace794c5713208c5a20f21762cd87c919',1,'ucvector::data()'],['../struct_lode_p_n_g___unknown_chunks.html#a9923d61d31e17e7093194da5182eda97',1,'LodePNG_UnknownChunks::data()'],['../struct_f_w_1_1_multicore_launcher_1_1_task.html#a7ef17a943f870f7bfa47b4dea8c8f7a5',1,'FW::MulticoreLauncher::Task::data()'],['../struct_f_w_1_1_task_spec.html#aaf437be9a13993eb76f6dadf9f84e42c',1,'FW::TaskSpec::data()'],['../_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171',1,'data():&#160;DLLImports.inl']]],
+  ['datasize',['datasize',['../struct_lode_p_n_g___unknown_chunks.html#ab124de165db15c6cd5db43378c8ae15a',1,'LodePNG_UnknownChunks']]],
+  ['day',['day',['../struct_lode_p_n_g___time.html#a298fdd9a10f4a122e4921624d3bfd78b',1,'LodePNG_Time']]],
+  ['defaultvalue',['defaultValue',['../class_option.html#a341fb567adcb61ea967bc225ff52ddda',1,'Option']]],
+  ['depth',['depth',['../_d_l_l_imports_8inl.html#aa0f582e931135ed43bf07380b36a4e0b',1,'DLLImports.inl']]],
+  ['description',['description',['../class_option.html#ac68c2f4018c6d97601ea4d624e99046b',1,'Option']]],
+  ['dev',['dev',['../_d_l_l_imports_8inl.html#a4d305f30a4fe754dbc2733a6cfab14d5',1,'DLLImports.inl']]],
+  ['device',['device',['../_d_l_l_imports_8inl.html#a8102700668d9bd3c1b5458ecb3f7089d',1,'DLLImports.inl']]],
+  ['diffuse',['diffuse',['../struct_f_w_1_1_mesh_base_1_1_material.html#aeee67f2e40235015d5e2a08bbfb0dbb0',1,'FW::MeshBase::Material']]],
+  ['dim',['dim',['../struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_split.html#a470afed75e384ff9084d9b518d9318fd',1,'FW::SplitBVHBuilder::SpatialSplit::dim()'],['../struct_f_w_1_1_visualization_k_d_tree_1_1_split_info.html#a2db5dc774e79cd227a4ae2d7604d4a9c',1,'FW::VisualizationKDTree::SplitInfo::dim()'],['../_d_l_l_imports_8inl.html#afa19deda7e4b44859d7d11b6fada0a24',1,'dim():&#160;DLLImports.inl']]],
+  ['direction',['direction',['../struct_f_w_1_1_ray.html#a07c475dc9f518cd9f3381a1b99c83197',1,'FW::Ray']]],
+  ['displacementbias',['displacementBias',['../struct_f_w_1_1_mesh_base_1_1_material.html#a121ca0c0bd09f6e0cdbf0fe8b9d5276a',1,'FW::MeshBase::Material']]],
+  ['displacementcoef',['displacementCoef',['../struct_f_w_1_1_mesh_base_1_1_material.html#aa29da86412b5608d3f70cecb85383277',1,'FW::MeshBase::Material']]],
+  ['dptr',['dptr',['../_d_l_l_imports_8inl.html#a81a912d5eaf15e7473df37fd8aa03f78',1,'DLLImports.inl']]],
+  ['dstarray',['dstArray',['../_d_l_l_imports_8inl.html#a50d740cd96b91354e6b7b49f722c2716',1,'DLLImports.inl']]],
+  ['dstdevice',['dstDevice',['../_d_l_l_imports_8inl.html#a9c7b222577bbf17ae674725c96c11bf8',1,'DLLImports.inl']]],
+  ['dsthost',['dstHost',['../_d_l_l_imports_8inl.html#ae0235e12370eda1f20c0807b270676c5',1,'DLLImports.inl']]],
+  ['dstindex',['dstIndex',['../_d_l_l_imports_8inl.html#a3b3565b5fab92a128d965812c171d44a',1,'DLLImports.inl']]],
+  ['dstpitch',['dstPitch',['../_d_l_l_imports_8inl.html#acb92c3e5909c57a0ee2dafd1e43a45e1',1,'DLLImports.inl']]],
+  ['dummy',['dummy',['../struct_ray_struct.html#a2be0c7c9dba42b601962e17801072c83',1,'RayStruct']]],
+  ['dwmilliseconds',['dwMilliseconds',['../_d_l_l_imports_8inl.html#a2e0570569e0e7b92e0af9506666b23c3',1,'DLLImports.inl']]]
 ];

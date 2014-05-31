@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_image_format_1_1_channe
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,28 +111,112 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_image_format_1_1_channe
 <div class="title">FW::ImageFormat::Channel Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_image_8hpp_source.html">Image.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a8044339c45f5b61bc002b410502f0bab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8044339c45f5b61bc002b410502f0bab"></a>
-ChannelType&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
+<tr class="memitem:a8044339c45f5b61bc002b410502f0bab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66">ChannelType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html#a8044339c45f5b61bc002b410502f0bab">type</a></td></tr>
 <tr class="separator:a8044339c45f5b61bc002b410502f0bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02e5622f43c4080fe0c3ea8cf74a754e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02e5622f43c4080fe0c3ea8cf74a754e"></a>
-ChannelFormat&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr>
+<tr class="memitem:a02e5622f43c4080fe0c3ea8cf74a754e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_image_format.html#a8cae2861de9ce90a2ffe509a2b6edef0">ChannelFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html#a02e5622f43c4080fe0c3ea8cf74a754e">format</a></td></tr>
 <tr class="separator:a02e5622f43c4080fe0c3ea8cf74a754e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a597b2264581743940760ed477c81c6bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a597b2264581743940760ed477c81c6bd"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>wordOfs</b></td></tr>
+<tr class="memitem:a597b2264581743940760ed477c81c6bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html#a597b2264581743940760ed477c81c6bd">wordOfs</a></td></tr>
 <tr class="separator:a597b2264581743940760ed477c81c6bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4826daf14b88dae3509e13cfef508af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4826daf14b88dae3509e13cfef508af"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>wordSize</b></td></tr>
+<tr class="memitem:ae4826daf14b88dae3509e13cfef508af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html#ae4826daf14b88dae3509e13cfef508af">wordSize</a></td></tr>
 <tr class="separator:ae4826daf14b88dae3509e13cfef508af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e07dcc96d44b989b386efae4a49fdbc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e07dcc96d44b989b386efae4a49fdbc"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>fieldOfs</b></td></tr>
+<tr class="memitem:a1e07dcc96d44b989b386efae4a49fdbc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html#a1e07dcc96d44b989b386efae4a49fdbc">fieldOfs</a></td></tr>
 <tr class="separator:a1e07dcc96d44b989b386efae4a49fdbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6856996e5568be73e2f91b1ee3700a28"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6856996e5568be73e2f91b1ee3700a28"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>fieldSize</b></td></tr>
+<tr class="memitem:a6856996e5568be73e2f91b1ee3700a28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html#a6856996e5568be73e2f91b1ee3700a28">fieldSize</a></td></tr>
 <tr class="separator:a6856996e5568be73e2f91b1ee3700a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00077">77</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a1e07dcc96d44b989b386efae4a49fdbc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::ImageFormat::Channel::fieldOfs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00083">83</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6856996e5568be73e2f91b1ee3700a28"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::ImageFormat::Channel::fieldSize</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00084">84</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a02e5622f43c4080fe0c3ea8cf74a754e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_image_format.html#a8cae2861de9ce90a2ffe509a2b6edef0">ChannelFormat</a> FW::ImageFormat::Channel::format</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00080">80</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8044339c45f5b61bc002b410502f0bab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66">ChannelType</a> FW::ImageFormat::Channel::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00079">79</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a597b2264581743940760ed477c81c6bd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::ImageFormat::Channel::wordOfs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00081">81</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae4826daf14b88dae3509e13cfef508af"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::ImageFormat::Channel::wordSize</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00082">82</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/framework/gui/<a class="el" href="_image_8hpp_source.html">Image.hpp</a></li>
 </ul>
@@ -140,8 +225,8 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><b>fieldSize</b></td></tr
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html">Channel</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html">Channel</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

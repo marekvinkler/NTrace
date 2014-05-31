@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_occlusion_b_v_h_builder
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,17 +112,49 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_occlusion_b_v_h_builder
 </div><!--header-->
 <div class="contents">
 
+<p><code>#include &lt;<a class="el" href="_occlusion_b_v_h_builder_8hpp_source.html">OcclusionBVHBuilder.hpp</a>&gt;</code></p>
+
 <p>Inherits SpatialBin.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:afceb31ad51a36506cb90a3368ed92406"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afceb31ad51a36506cb90a3368ed92406"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>enterVisible</b></td></tr>
+<tr class="memitem:afceb31ad51a36506cb90a3368ed92406"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_occlusion_b_v_h_builder_1_1_spatial_bin_ocl.html#afceb31ad51a36506cb90a3368ed92406">enterVisible</a></td></tr>
 <tr class="separator:afceb31ad51a36506cb90a3368ed92406"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8b24dfd8cb5adcf5611616de6d972b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8b24dfd8cb5adcf5611616de6d972b9"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>exitVisible</b></td></tr>
+<tr class="memitem:aa8b24dfd8cb5adcf5611616de6d972b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_occlusion_b_v_h_builder_1_1_spatial_bin_ocl.html#aa8b24dfd8cb5adcf5611616de6d972b9">exitVisible</a></td></tr>
 <tr class="separator:aa8b24dfd8cb5adcf5611616de6d972b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_occlusion_b_v_h_builder_8hpp_source.html#l00065">65</a> of file <a class="el" href="_occlusion_b_v_h_builder_8hpp_source.html">OcclusionBVHBuilder.hpp</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="afceb31ad51a36506cb90a3368ed92406"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::OcclusionBVHBuilder::SpatialBinOcl::enterVisible</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_occlusion_b_v_h_builder_8hpp_source.html#l00067">67</a> of file <a class="el" href="_occlusion_b_v_h_builder_8hpp_source.html">OcclusionBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa8b24dfd8cb5adcf5611616de6d972b9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::OcclusionBVHBuilder::SpatialBinOcl::exitVisible</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_occlusion_b_v_h_builder_8hpp_source.html#l00068">68</a> of file <a class="el" href="_occlusion_b_v_h_builder_8hpp_source.html">OcclusionBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/rt/bvh/<a class="el" href="_occlusion_b_v_h_builder_8hpp_source.html">OcclusionBVHBuilder.hpp</a></li>
 </ul>
@@ -130,8 +163,8 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><b>exitVisible</b></td></
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_occlusion_b_v_h_builder.html">OcclusionBVHBuilder</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_occlusion_b_v_h_builder_1_1_spatial_bin_ocl.html">SpatialBinOcl</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_occlusion_b_v_h_builder.html">OcclusionBVHBuilder</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_occlusion_b_v_h_builder_1_1_spatial_bin_ocl.html">SpatialBinOcl</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

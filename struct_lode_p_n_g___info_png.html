@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_lode_p_n_g___info_png.html','')
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,67 +111,320 @@ $(document).ready(function(){initNavTree('struct_lode_p_n_g___info_png.html','')
 <div class="title">LodePNG_InfoPng Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="lodepng_8h_source.html">lodepng.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a74be99b177b28f3178c02139c4b7f149"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74be99b177b28f3178c02139c4b7f149"></a>
-unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>width</b></td></tr>
+<tr class="memitem:a74be99b177b28f3178c02139c4b7f149"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#a74be99b177b28f3178c02139c4b7f149">width</a></td></tr>
 <tr class="separator:a74be99b177b28f3178c02139c4b7f149"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b87ec9649e7177af7a5f5e08e5bc491"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b87ec9649e7177af7a5f5e08e5bc491"></a>
-unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>height</b></td></tr>
+<tr class="memitem:a4b87ec9649e7177af7a5f5e08e5bc491"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#a4b87ec9649e7177af7a5f5e08e5bc491">height</a></td></tr>
 <tr class="separator:a4b87ec9649e7177af7a5f5e08e5bc491"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a177065a8eeb66398a89ed93e7c2b2f50"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a177065a8eeb66398a89ed93e7c2b2f50"></a>
-unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>compressionMethod</b></td></tr>
+<tr class="memitem:a177065a8eeb66398a89ed93e7c2b2f50"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#a177065a8eeb66398a89ed93e7c2b2f50">compressionMethod</a></td></tr>
 <tr class="separator:a177065a8eeb66398a89ed93e7c2b2f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a101ffbacd7026dad4ab062e984cecf17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a101ffbacd7026dad4ab062e984cecf17"></a>
-unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>filterMethod</b></td></tr>
+<tr class="memitem:a101ffbacd7026dad4ab062e984cecf17"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#a101ffbacd7026dad4ab062e984cecf17">filterMethod</a></td></tr>
 <tr class="separator:a101ffbacd7026dad4ab062e984cecf17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad261cbe064eb69a92638e880d99347ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad261cbe064eb69a92638e880d99347ca"></a>
-unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>interlaceMethod</b></td></tr>
+<tr class="memitem:ad261cbe064eb69a92638e880d99347ca"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#ad261cbe064eb69a92638e880d99347ca">interlaceMethod</a></td></tr>
 <tr class="separator:ad261cbe064eb69a92638e880d99347ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acce58518f72f42ba94db4c1cfd69336b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acce58518f72f42ba94db4c1cfd69336b"></a>
-<a class="el" href="struct_lode_p_n_g___info_color.html">LodePNG_InfoColor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>color</b></td></tr>
+<tr class="memitem:acce58518f72f42ba94db4c1cfd69336b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_lode_p_n_g___info_color.html">LodePNG_InfoColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#acce58518f72f42ba94db4c1cfd69336b">color</a></td></tr>
 <tr class="separator:acce58518f72f42ba94db4c1cfd69336b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37f6cddbe33b775fab09a91076b72f4c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37f6cddbe33b775fab09a91076b72f4c"></a>
-unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>background_defined</b></td></tr>
+<tr class="memitem:a37f6cddbe33b775fab09a91076b72f4c"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#a37f6cddbe33b775fab09a91076b72f4c">background_defined</a></td></tr>
 <tr class="separator:a37f6cddbe33b775fab09a91076b72f4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbab2f688332e8c787717f797de8153e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afbab2f688332e8c787717f797de8153e"></a>
-unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>background_r</b></td></tr>
+<tr class="memitem:afbab2f688332e8c787717f797de8153e"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#afbab2f688332e8c787717f797de8153e">background_r</a></td></tr>
 <tr class="separator:afbab2f688332e8c787717f797de8153e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbda2bda427f0dd6ae1b85daaab21c6c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adbda2bda427f0dd6ae1b85daaab21c6c"></a>
-unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>background_g</b></td></tr>
+<tr class="memitem:adbda2bda427f0dd6ae1b85daaab21c6c"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#adbda2bda427f0dd6ae1b85daaab21c6c">background_g</a></td></tr>
 <tr class="separator:adbda2bda427f0dd6ae1b85daaab21c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b8e98bf898590f785930c7b470254bc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b8e98bf898590f785930c7b470254bc"></a>
-unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>background_b</b></td></tr>
+<tr class="memitem:a7b8e98bf898590f785930c7b470254bc"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#a7b8e98bf898590f785930c7b470254bc">background_b</a></td></tr>
 <tr class="separator:a7b8e98bf898590f785930c7b470254bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ba6d900f4eee624a18df252e9df40e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ba6d900f4eee624a18df252e9df40e9"></a>
-<a class="el" href="struct_lode_p_n_g___text.html">LodePNG_Text</a>&#160;</td><td class="memItemRight" valign="bottom"><b>text</b></td></tr>
+<tr class="memitem:a2ba6d900f4eee624a18df252e9df40e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_lode_p_n_g___text.html">LodePNG_Text</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#a2ba6d900f4eee624a18df252e9df40e9">text</a></td></tr>
 <tr class="separator:a2ba6d900f4eee624a18df252e9df40e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a25d5f857d5e8d1c326997b78d9daf1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a25d5f857d5e8d1c326997b78d9daf1"></a>
-<a class="el" href="struct_lode_p_n_g___i_text.html">LodePNG_IText</a>&#160;</td><td class="memItemRight" valign="bottom"><b>itext</b></td></tr>
+<tr class="memitem:a6a25d5f857d5e8d1c326997b78d9daf1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_lode_p_n_g___i_text.html">LodePNG_IText</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#a6a25d5f857d5e8d1c326997b78d9daf1">itext</a></td></tr>
 <tr class="separator:a6a25d5f857d5e8d1c326997b78d9daf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa220d359b0f73b1f61a87f1c3bf8aad6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa220d359b0f73b1f61a87f1c3bf8aad6"></a>
-unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>time_defined</b></td></tr>
+<tr class="memitem:aa220d359b0f73b1f61a87f1c3bf8aad6"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#aa220d359b0f73b1f61a87f1c3bf8aad6">time_defined</a></td></tr>
 <tr class="separator:aa220d359b0f73b1f61a87f1c3bf8aad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52e3f42ce7942e5ebd0c60db6737056a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52e3f42ce7942e5ebd0c60db6737056a"></a>
-<a class="el" href="struct_lode_p_n_g___time.html">LodePNG_Time</a>&#160;</td><td class="memItemRight" valign="bottom"><b>time</b></td></tr>
+<tr class="memitem:a52e3f42ce7942e5ebd0c60db6737056a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_lode_p_n_g___time.html">LodePNG_Time</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#a52e3f42ce7942e5ebd0c60db6737056a">time</a></td></tr>
 <tr class="separator:a52e3f42ce7942e5ebd0c60db6737056a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f0b0d882e5c099d06d608c79295ba2d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f0b0d882e5c099d06d608c79295ba2d"></a>
-unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>phys_defined</b></td></tr>
+<tr class="memitem:a0f0b0d882e5c099d06d608c79295ba2d"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#a0f0b0d882e5c099d06d608c79295ba2d">phys_defined</a></td></tr>
 <tr class="separator:a0f0b0d882e5c099d06d608c79295ba2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c0f6237cfefc693ed17dbc3a843fe0f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c0f6237cfefc693ed17dbc3a843fe0f"></a>
-unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>phys_x</b></td></tr>
+<tr class="memitem:a9c0f6237cfefc693ed17dbc3a843fe0f"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#a9c0f6237cfefc693ed17dbc3a843fe0f">phys_x</a></td></tr>
 <tr class="separator:a9c0f6237cfefc693ed17dbc3a843fe0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea8ade694048f5912c235478b4ec1a35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aea8ade694048f5912c235478b4ec1a35"></a>
-unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>phys_y</b></td></tr>
+<tr class="memitem:aea8ade694048f5912c235478b4ec1a35"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#aea8ade694048f5912c235478b4ec1a35">phys_y</a></td></tr>
 <tr class="separator:aea8ade694048f5912c235478b4ec1a35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab80ead40f4068cd89e71056143b1cd5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab80ead40f4068cd89e71056143b1cd5"></a>
-unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>phys_unit</b></td></tr>
+<tr class="memitem:aab80ead40f4068cd89e71056143b1cd5"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#aab80ead40f4068cd89e71056143b1cd5">phys_unit</a></td></tr>
 <tr class="separator:aab80ead40f4068cd89e71056143b1cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97faa43bfd4e8f8df1cd836c713edac3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97faa43bfd4e8f8df1cd836c713edac3"></a>
-<a class="el" href="struct_lode_p_n_g___unknown_chunks.html">LodePNG_UnknownChunks</a>&#160;</td><td class="memItemRight" valign="bottom"><b>unknown_chunks</b></td></tr>
+<tr class="memitem:a97faa43bfd4e8f8df1cd836c713edac3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_lode_p_n_g___unknown_chunks.html">LodePNG_UnknownChunks</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___info_png.html#a97faa43bfd4e8f8df1cd836c713edac3">unknown_chunks</a></td></tr>
 <tr class="separator:a97faa43bfd4e8f8df1cd836c713edac3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00524">524</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a7b8e98bf898590f785930c7b470254bc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned LodePNG_InfoPng::background_b</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00555">555</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a37f6cddbe33b775fab09a91076b72f4c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned LodePNG_InfoPng::background_defined</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00552">552</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adbda2bda427f0dd6ae1b85daaab21c6c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned LodePNG_InfoPng::background_g</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00554">554</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afbab2f688332e8c787717f797de8153e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned LodePNG_InfoPng::background_r</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00553">553</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acce58518f72f42ba94db4c1cfd69336b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_lode_p_n_g___info_color.html">LodePNG_InfoColor</a> LodePNG_InfoPng::color</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00538">538</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a177065a8eeb66398a89ed93e7c2b2f50"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned LodePNG_InfoPng::compressionMethod</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00535">535</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a101ffbacd7026dad4ab062e984cecf17"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned LodePNG_InfoPng::filterMethod</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00536">536</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4b87ec9649e7177af7a5f5e08e5bc491"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned LodePNG_InfoPng::height</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00534">534</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad261cbe064eb69a92638e880d99347ca"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned LodePNG_InfoPng::interlaceMethod</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00537">537</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6a25d5f857d5e8d1c326997b78d9daf1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_lode_p_n_g___i_text.html">LodePNG_IText</a> LodePNG_InfoPng::itext</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00561">561</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0f0b0d882e5c099d06d608c79295ba2d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned LodePNG_InfoPng::phys_defined</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00568">568</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aab80ead40f4068cd89e71056143b1cd5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned char LodePNG_InfoPng::phys_unit</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00571">571</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9c0f6237cfefc693ed17dbc3a843fe0f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned LodePNG_InfoPng::phys_x</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00569">569</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aea8ade694048f5912c235478b4ec1a35"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned LodePNG_InfoPng::phys_y</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00570">570</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2ba6d900f4eee624a18df252e9df40e9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_lode_p_n_g___text.html">LodePNG_Text</a> LodePNG_InfoPng::text</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00558">558</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a52e3f42ce7942e5ebd0c60db6737056a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_lode_p_n_g___time.html">LodePNG_Time</a> LodePNG_InfoPng::time</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00565">565</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa220d359b0f73b1f61a87f1c3bf8aad6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned char LodePNG_InfoPng::time_defined</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00564">564</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a97faa43bfd4e8f8df1cd836c713edac3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_lode_p_n_g___unknown_chunks.html">LodePNG_UnknownChunks</a> LodePNG_InfoPng::unknown_chunks</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00576">576</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a74be99b177b28f3178c02139c4b7f149"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned LodePNG_InfoPng::width</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00533">533</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/framework/3rdparty/lodepng/<a class="el" href="lodepng_8h_source.html">lodepng.h</a></li>
 </ul>
@@ -180,7 +434,7 @@ unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>phys_unit</b
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="struct_lode_p_n_g___info_png.html">LodePNG_InfoPng</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="footer">Generated on Sat May 31 2014 15:56:24 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

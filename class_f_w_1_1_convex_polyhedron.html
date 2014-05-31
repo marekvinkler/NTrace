@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_convex_polyhedron.html',
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,6 +112,8 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_convex_polyhedron.html',
 <div class="title">FW::ConvexPolyhedron Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -125,102 +128,849 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a33c703fd94cc3fc6b53e1a7b050d70c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33c703fd94cc3fc6b53e1a7b050d70c3"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ConvexPolyhedron</b> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;lo, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;hi)</td></tr>
+<tr class="memitem:afb9c16087f40d5aadfac98e07ec5f626"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#afb9c16087f40d5aadfac98e07ec5f626">ConvexPolyhedron</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:afb9c16087f40d5aadfac98e07ec5f626"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33c703fd94cc3fc6b53e1a7b050d70c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a33c703fd94cc3fc6b53e1a7b050d70c3">ConvexPolyhedron</a> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;lo, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;hi)</td></tr>
 <tr class="separator:a33c703fd94cc3fc6b53e1a7b050d70c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fe904f435c6d04bea540069a54ebcd1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4fe904f435c6d04bea540069a54ebcd1"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ConvexPolyhedron</b> (const <a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;other)</td></tr>
+<tr class="memitem:a4fe904f435c6d04bea540069a54ebcd1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a4fe904f435c6d04bea540069a54ebcd1">ConvexPolyhedron</a> (const <a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;other)</td></tr>
 <tr class="separator:a4fe904f435c6d04bea540069a54ebcd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2703c7726a4ef01052069c622764eb0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2703c7726a4ef01052069c622764eb0"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumVertices</b> (void) const </td></tr>
+<tr class="memitem:a2897492a9fe1ab696cb0a65064f6ea96"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a2897492a9fe1ab696cb0a65064f6ea96">~ConvexPolyhedron</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a2897492a9fe1ab696cb0a65064f6ea96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2703c7726a4ef01052069c622764eb0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#ad2703c7726a4ef01052069c622764eb0">getNumVertices</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ad2703c7726a4ef01052069c622764eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb6ada73e979e16b7703f9cee5342d58"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb6ada73e979e16b7703f9cee5342d58"></a>
-const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getVertex</b> (int idx) const </td></tr>
+<tr class="memitem:afb6ada73e979e16b7703f9cee5342d58"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#afb6ada73e979e16b7703f9cee5342d58">getVertex</a> (int idx) const </td></tr>
 <tr class="separator:afb6ada73e979e16b7703f9cee5342d58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0fa13aa63f682c9efd257085515b294"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af0fa13aa63f682c9efd257085515b294"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumEdges</b> (void) const </td></tr>
+<tr class="memitem:af0fa13aa63f682c9efd257085515b294"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#af0fa13aa63f682c9efd257085515b294">getNumEdges</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:af0fa13aa63f682c9efd257085515b294"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9ab6b239e28e6bb20ff3441dcf8cadf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9ab6b239e28e6bb20ff3441dcf8cadf"></a>
-<a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getEdge</b> (int idx) const </td></tr>
+<tr class="memitem:aa9ab6b239e28e6bb20ff3441dcf8cadf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#aa9ab6b239e28e6bb20ff3441dcf8cadf">getEdge</a> (int idx) const </td></tr>
 <tr class="separator:aa9ab6b239e28e6bb20ff3441dcf8cadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69824e05eb8c2a0b7013ac9411fbfdc2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a69824e05eb8c2a0b7013ac9411fbfdc2"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getEdgeStartVertex</b> (int idx) const </td></tr>
+<tr class="memitem:a69824e05eb8c2a0b7013ac9411fbfdc2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a69824e05eb8c2a0b7013ac9411fbfdc2">getEdgeStartVertex</a> (int idx) const </td></tr>
 <tr class="separator:a69824e05eb8c2a0b7013ac9411fbfdc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f6fd181563bb70d298984c391cf7942"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f6fd181563bb70d298984c391cf7942"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getEdgeEndVertex</b> (int idx) const </td></tr>
+<tr class="memitem:a3f6fd181563bb70d298984c391cf7942"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a3f6fd181563bb70d298984c391cf7942">getEdgeEndVertex</a> (int idx) const </td></tr>
 <tr class="separator:a3f6fd181563bb70d298984c391cf7942"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8766f030a0396969b6f69532e13bec54"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8766f030a0396969b6f69532e13bec54"></a>
-const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getEdgeStartPos</b> (int idx) const </td></tr>
+<tr class="memitem:a8766f030a0396969b6f69532e13bec54"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a8766f030a0396969b6f69532e13bec54">getEdgeStartPos</a> (int idx) const </td></tr>
 <tr class="separator:a8766f030a0396969b6f69532e13bec54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa77e0db3108ccbf67b63aa6be93e792a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa77e0db3108ccbf67b63aa6be93e792a"></a>
-const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getEdgeEndPos</b> (int idx) const </td></tr>
+<tr class="memitem:aa77e0db3108ccbf67b63aa6be93e792a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#aa77e0db3108ccbf67b63aa6be93e792a">getEdgeEndPos</a> (int idx) const </td></tr>
 <tr class="separator:aa77e0db3108ccbf67b63aa6be93e792a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a132a3d2e153c0b37c69a472bce7f9c01"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a132a3d2e153c0b37c69a472bce7f9c01"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumFaces</b> (void) const </td></tr>
+<tr class="memitem:a132a3d2e153c0b37c69a472bce7f9c01"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a132a3d2e153c0b37c69a472bce7f9c01">getNumFaces</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a132a3d2e153c0b37c69a472bce7f9c01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac38310e949491365c8c2779b27339e51"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac38310e949491365c8c2779b27339e51"></a>
-const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFacePlaneEq</b> (int idx) const </td></tr>
+<tr class="memitem:ac38310e949491365c8c2779b27339e51"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#ac38310e949491365c8c2779b27339e51">getFacePlaneEq</a> (int idx) const </td></tr>
 <tr class="separator:ac38310e949491365c8c2779b27339e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c0772ff0a3d152410840b575513b65f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c0772ff0a3d152410840b575513b65f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getFacePlaneID</b> (int idx) const </td></tr>
+<tr class="memitem:a2c0772ff0a3d152410840b575513b65f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a2c0772ff0a3d152410840b575513b65f">getFacePlaneID</a> (int idx) const </td></tr>
 <tr class="separator:a2c0772ff0a3d152410840b575513b65f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a545652d259c657157f6ee538d9d8d6e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a545652d259c657157f6ee538d9d8d6e1"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getFaceNumEdges</b> (int idx) const </td></tr>
+<tr class="memitem:a545652d259c657157f6ee538d9d8d6e1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a545652d259c657157f6ee538d9d8d6e1">getFaceNumEdges</a> (int idx) const </td></tr>
 <tr class="separator:a545652d259c657157f6ee538d9d8d6e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4020a3530ad8d8c28db32344275617b2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4020a3530ad8d8c28db32344275617b2"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getFaceEdge</b> (int faceIdx, int idx)</td></tr>
+<tr class="memitem:a4020a3530ad8d8c28db32344275617b2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a4020a3530ad8d8c28db32344275617b2">getFaceEdge</a> (int faceIdx, int idx)</td></tr>
 <tr class="separator:a4020a3530ad8d8c28db32344275617b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbd92423da6911bbeeaf376bccf08a56"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adbd92423da6911bbeeaf376bccf08a56"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;other)</td></tr>
+<tr class="memitem:adbd92423da6911bbeeaf376bccf08a56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#adbd92423da6911bbeeaf376bccf08a56">set</a> (const <a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;other)</td></tr>
 <tr class="separator:adbd92423da6911bbeeaf376bccf08a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a89484d7dde8d2c6f7c7dd12925e751"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a89484d7dde8d2c6f7c7dd12925e751"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setEmpty</b> (void)</td></tr>
+<tr class="memitem:a4a89484d7dde8d2c6f7c7dd12925e751"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a4a89484d7dde8d2c6f7c7dd12925e751">setEmpty</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a4a89484d7dde8d2c6f7c7dd12925e751"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a483d8bbbf99335c21eb5fbfe4ba557"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a483d8bbbf99335c21eb5fbfe4ba557"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCube</b> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;lo, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;hi)</td></tr>
+<tr class="memitem:a0a483d8bbbf99335c21eb5fbfe4ba557"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a0a483d8bbbf99335c21eb5fbfe4ba557">setCube</a> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;lo, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;hi)</td></tr>
 <tr class="separator:a0a483d8bbbf99335c21eb5fbfe4ba557"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcc8ede324c561e7307c7e2e8281a9ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abcc8ede324c561e7307c7e2e8281a9ea"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>intersect</b> (const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;planeEq, int planeID=-1)</td></tr>
+<tr class="memitem:abcc8ede324c561e7307c7e2e8281a9ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#abcc8ede324c561e7307c7e2e8281a9ea">intersect</a> (const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;planeEq, int planeID=-1)</td></tr>
 <tr class="separator:abcc8ede324c561e7307c7e2e8281a9ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a159afd3f49fa1ba675baa7e3491da0b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a159afd3f49fa1ba675baa7e3491da0b4"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>intersect</b> (const <a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;other)</td></tr>
+<tr class="memitem:a159afd3f49fa1ba675baa7e3491da0b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a159afd3f49fa1ba675baa7e3491da0b4">intersect</a> (const <a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;other)</td></tr>
 <tr class="separator:a159afd3f49fa1ba675baa7e3491da0b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5d88d8ec26e6e0c55b93fb1a7b7c314"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa5d88d8ec26e6e0c55b93fb1a7b7c314"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>intersectCube</b> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;lo, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;hi)</td></tr>
+<tr class="memitem:aa5d88d8ec26e6e0c55b93fb1a7b7c314"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#aa5d88d8ec26e6e0c55b93fb1a7b7c314">intersectCube</a> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;lo, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;hi)</td></tr>
 <tr class="separator:aa5d88d8ec26e6e0c55b93fb1a7b7c314"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dda8662fb62126837a28d7493a7296e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6dda8662fb62126837a28d7493a7296e"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>computeVolume</b> (void) const </td></tr>
+<tr class="memitem:a6dda8662fb62126837a28d7493a7296e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a6dda8662fb62126837a28d7493a7296e">computeVolume</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a6dda8662fb62126837a28d7493a7296e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a765e68019363c24828aa1db844b3cd65"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a765e68019363c24828aa1db844b3cd65"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>computeArea</b> (int faceIdx) const </td></tr>
+<tr class="memitem:a765e68019363c24828aa1db844b3cd65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a765e68019363c24828aa1db844b3cd65">computeArea</a> (int faceIdx) const </td></tr>
 <tr class="separator:a765e68019363c24828aa1db844b3cd65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd528b6732189ada0e7e82fabe8442c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd528b6732189ada0e7e82fabe8442c7"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>computeArea</b> (void) const </td></tr>
+<tr class="memitem:acd528b6732189ada0e7e82fabe8442c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#acd528b6732189ada0e7e82fabe8442c7">computeArea</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:acd528b6732189ada0e7e82fabe8442c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4aa6702f7e832fe3bdd505c9d4c1ac08"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4aa6702f7e832fe3bdd505c9d4c1ac08"></a>
-<a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>computeCenterOfMass</b> (int faceIdx) const </td></tr>
+<tr class="memitem:a4aa6702f7e832fe3bdd505c9d4c1ac08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a4aa6702f7e832fe3bdd505c9d4c1ac08">computeCenterOfMass</a> (int faceIdx) const </td></tr>
 <tr class="separator:a4aa6702f7e832fe3bdd505c9d4c1ac08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f5add0a92a764f151a7f59548aa77c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f5add0a92a764f151a7f59548aa77c2"></a>
-<a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>computeCenterOfMass</b> (void) const </td></tr>
+<tr class="memitem:a3f5add0a92a764f151a7f59548aa77c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a3f5add0a92a764f151a7f59548aa77c2">computeCenterOfMass</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a3f5add0a92a764f151a7f59548aa77c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92d589f70afdb4271eeaca15add7c7dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92d589f70afdb4271eeaca15add7c7dc"></a>
-<a class="el" href="class_f_w_1_1_mesh.html">Mesh</a>&lt; <a class="el" href="struct_f_w_1_1_vertex_p_n.html">VertexPN</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>createMesh</b> (void) const </td></tr>
+<tr class="memitem:a92d589f70afdb4271eeaca15add7c7dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mesh.html">Mesh</a>&lt; <a class="el" href="struct_f_w_1_1_vertex_p_n.html">VertexPN</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#a92d589f70afdb4271eeaca15add7c7dc">createMesh</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a92d589f70afdb4271eeaca15add7c7dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac252804475c1a7a9fe1f3f4badba6e2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac252804475c1a7a9fe1f3f4badba6e2a"></a>
-<a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;other)</td></tr>
+<tr class="memitem:ac252804475c1a7a9fe1f3f4badba6e2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_convex_polyhedron.html#ac252804475c1a7a9fe1f3f4badba6e2a">operator=</a> (const <a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;other)</td></tr>
 <tr class="separator:ac252804475c1a7a9fe1f3f4badba6e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00035">35</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="afb9c16087f40d5aadfac98e07ec5f626"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::ConvexPolyhedron::ConvexPolyhedron </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00070">70</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a33c703fd94cc3fc6b53e1a7b050d70c3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::ConvexPolyhedron::ConvexPolyhedron </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>lo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>hi</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00071">71</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4fe904f435c6d04bea540069a54ebcd1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::ConvexPolyhedron::ConvexPolyhedron </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00072">72</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2897492a9fe1ab696cb0a65064f6ea96"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::ConvexPolyhedron::~ConvexPolyhedron </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00073">73</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a765e68019363c24828aa1db844b3cd65"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> ConvexPolyhedron::computeArea </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>faceIdx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8cpp_source.html#l00299">299</a> of file <a class="el" href="_convex_polyhedron_8cpp_source.html">ConvexPolyhedron.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acd528b6732189ada0e7e82fabe8442c7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::ConvexPolyhedron::computeArea </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00101">101</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4aa6702f7e832fe3bdd505c9d4c1ac08"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> ConvexPolyhedron::computeCenterOfMass </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>faceIdx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8cpp_source.html#l00316">316</a> of file <a class="el" href="_convex_polyhedron_8cpp_source.html">ConvexPolyhedron.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3f5add0a92a764f151a7f59548aa77c2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> ConvexPolyhedron::computeCenterOfMass </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8cpp_source.html#l00338">338</a> of file <a class="el" href="_convex_polyhedron_8cpp_source.html">ConvexPolyhedron.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6dda8662fb62126837a28d7493a7296e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> ConvexPolyhedron::computeVolume </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8cpp_source.html#l00274">274</a> of file <a class="el" href="_convex_polyhedron_8cpp_source.html">ConvexPolyhedron.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a92d589f70afdb4271eeaca15add7c7dc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_mesh.html">Mesh</a>&lt; <a class="el" href="struct_f_w_1_1_vertex_p_n.html">VertexPN</a> &gt; * ConvexPolyhedron::createMesh </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8cpp_source.html#l00368">368</a> of file <a class="el" href="_convex_polyhedron_8cpp_source.html">ConvexPolyhedron.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa9ab6b239e28e6bb20ff3441dcf8cadf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> FW::ConvexPolyhedron::getEdge </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00079">79</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa77e0db3108ccbf67b63aa6be93e792a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&amp; FW::ConvexPolyhedron::getEdgeEndPos </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00083">83</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3f6fd181563bb70d298984c391cf7942"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::ConvexPolyhedron::getEdgeEndVertex </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00081">81</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8766f030a0396969b6f69532e13bec54"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&amp; FW::ConvexPolyhedron::getEdgeStartPos </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00082">82</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a69824e05eb8c2a0b7013ac9411fbfdc2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::ConvexPolyhedron::getEdgeStartVertex </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00080">80</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4020a3530ad8d8c28db32344275617b2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::ConvexPolyhedron::getFaceEdge </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>faceIdx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00089">89</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a545652d259c657157f6ee538d9d8d6e1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::ConvexPolyhedron::getFaceNumEdges </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00088">88</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac38310e949491365c8c2779b27339e51"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a>&amp; FW::ConvexPolyhedron::getFacePlaneEq </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00086">86</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2c0772ff0a3d152410840b575513b65f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::ConvexPolyhedron::getFacePlaneID </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00087">87</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af0fa13aa63f682c9efd257085515b294"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::ConvexPolyhedron::getNumEdges </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00078">78</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a132a3d2e153c0b37c69a472bce7f9c01"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::ConvexPolyhedron::getNumFaces </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00085">85</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2703c7726a4ef01052069c622764eb0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::ConvexPolyhedron::getNumVertices </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00075">75</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afb6ada73e979e16b7703f9cee5342d58"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&amp; FW::ConvexPolyhedron::getVertex </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00076">76</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abcc8ede324c561e7307c7e2e8281a9ea"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConvexPolyhedron::intersect </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;&#160;</td>
+          <td class="paramname"><em>planeEq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>planeID</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8cpp_source.html#l00089">89</a> of file <a class="el" href="_convex_polyhedron_8cpp_source.html">ConvexPolyhedron.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a159afd3f49fa1ba675baa7e3491da0b4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConvexPolyhedron::intersect </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8cpp_source.html#l00260">260</a> of file <a class="el" href="_convex_polyhedron_8cpp_source.html">ConvexPolyhedron.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa5d88d8ec26e6e0c55b93fb1a7b7c314"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::ConvexPolyhedron::intersectCube </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>lo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>hi</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00097">97</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac252804475c1a7a9fe1f3f4badba6e2a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a>&amp; FW::ConvexPolyhedron::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00106">106</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adbd92423da6911bbeeaf376bccf08a56"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::ConvexPolyhedron::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00091">91</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0a483d8bbbf99335c21eb5fbfe4ba557"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> ConvexPolyhedron::setCube </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>lo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>hi</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8cpp_source.html#l00039">39</a> of file <a class="el" href="_convex_polyhedron_8cpp_source.html">ConvexPolyhedron.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4a89484d7dde8d2c6f7c7dd12925e751"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::ConvexPolyhedron::setEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_convex_polyhedron_8hpp_source.html#l00092">92</a> of file <a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/3d/<a class="el" href="_convex_polyhedron_8hpp_source.html">ConvexPolyhedron.hpp</a></li>
-<li>src/framework/3d/ConvexPolyhedron.cpp</li>
+<li>src/framework/3d/<a class="el" href="_convex_polyhedron_8cpp_source.html">ConvexPolyhedron.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_convex_polyhedron.html">ConvexPolyhedron</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:24 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

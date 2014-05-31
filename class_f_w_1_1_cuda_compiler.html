@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_cuda_compiler.html','');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,102 +112,855 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_cuda_compiler.html','');
 <div class="title">FW::CudaCompiler Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1d7ade5924b5921a628888d21c7ef726"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d7ade5924b5921a628888d21c7ef726"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCachePath</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;path)</td></tr>
+<tr class="memitem:af0561066366b68e742785b2c785439a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#af0561066366b68e742785b2c785439a9">CudaCompiler</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:af0561066366b68e742785b2c785439a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82c1378830b17aa15e392ce76d0c53bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a82c1378830b17aa15e392ce76d0c53bd">~CudaCompiler</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a82c1378830b17aa15e392ce76d0c53bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d7ade5924b5921a628888d21c7ef726"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a1d7ade5924b5921a628888d21c7ef726">setCachePath</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad7c502db49b1bda9659dcc97e2d1c96e">path</a>)</td></tr>
 <tr class="separator:a1d7ade5924b5921a628888d21c7ef726"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c84d67c6dbedcbc82bcdc4518633d67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c84d67c6dbedcbc82bcdc4518633d67"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setSourceFile</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;path)</td></tr>
+<tr class="memitem:a8c84d67c6dbedcbc82bcdc4518633d67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a8c84d67c6dbedcbc82bcdc4518633d67">setSourceFile</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad7c502db49b1bda9659dcc97e2d1c96e">path</a>)</td></tr>
 <tr class="separator:a8c84d67c6dbedcbc82bcdc4518633d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99dcb830210cc9b17c838db3c3d346ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99dcb830210cc9b17c838db3c3d346ba"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setInlineSource</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;source, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;origin=&quot;&quot;)</td></tr>
+<tr class="memitem:a99dcb830210cc9b17c838db3c3d346ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a99dcb830210cc9b17c838db3c3d346ba">setInlineSource</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;source, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;origin=&quot;&quot;)</td></tr>
 <tr class="separator:a99dcb830210cc9b17c838db3c3d346ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2cfdbc88a708e5a62221972ea725f45"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2cfdbc88a708e5a62221972ea725f45"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>overrideSMArch</b> (int arch)</td></tr>
+<tr class="memitem:ae2cfdbc88a708e5a62221972ea725f45"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#ae2cfdbc88a708e5a62221972ea725f45">overrideSMArch</a> (int arch)</td></tr>
 <tr class="separator:ae2cfdbc88a708e5a62221972ea725f45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a727427f879ac197cda0bfbaf19a786b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a727427f879ac197cda0bfbaf19a786b1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clearOptions</b> (void)</td></tr>
+<tr class="memitem:a727427f879ac197cda0bfbaf19a786b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a727427f879ac197cda0bfbaf19a786b1">clearOptions</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a727427f879ac197cda0bfbaf19a786b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af27a29283e440c468018560e68e5a1cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af27a29283e440c468018560e68e5a1cb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addOptions</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;options)</td></tr>
+<tr class="memitem:af27a29283e440c468018560e68e5a1cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#af27a29283e440c468018560e68e5a1cb">addOptions</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;options)</td></tr>
 <tr class="separator:af27a29283e440c468018560e68e5a1cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d145bffd1b8f8aecc6f88ebaa83d2d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d145bffd1b8f8aecc6f88ebaa83d2d7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>include</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;path)</td></tr>
+<tr class="memitem:a0d145bffd1b8f8aecc6f88ebaa83d2d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a0d145bffd1b8f8aecc6f88ebaa83d2d7">include</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad7c502db49b1bda9659dcc97e2d1c96e">path</a>)</td></tr>
 <tr class="separator:a0d145bffd1b8f8aecc6f88ebaa83d2d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a525aab688f84febcab86aad8fb0c3817"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a525aab688f84febcab86aad8fb0c3817"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clearDefines</b> (void)</td></tr>
+<tr class="memitem:a525aab688f84febcab86aad8fb0c3817"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a525aab688f84febcab86aad8fb0c3817">clearDefines</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a525aab688f84febcab86aad8fb0c3817"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc35d2f5952a796c49e26926976ca055"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc35d2f5952a796c49e26926976ca055"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>undef</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;key)</td></tr>
+<tr class="memitem:adc35d2f5952a796c49e26926976ca055"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#adc35d2f5952a796c49e26926976ca055">undef</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;key)</td></tr>
 <tr class="separator:adc35d2f5952a796c49e26926976ca055"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a533675bd966f79a7dbdbb2a3f1bae70f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a533675bd966f79a7dbdbb2a3f1bae70f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>define</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;key, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;value=&quot;&quot;)</td></tr>
+<tr class="memitem:a533675bd966f79a7dbdbb2a3f1bae70f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a533675bd966f79a7dbdbb2a3f1bae70f">define</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;key, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>=&quot;&quot;)</td></tr>
 <tr class="separator:a533675bd966f79a7dbdbb2a3f1bae70f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3634d04a48247e0819147b455f649f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3634d04a48247e0819147b455f649f4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>define</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;key, int value)</td></tr>
+<tr class="memitem:ad3634d04a48247e0819147b455f649f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#ad3634d04a48247e0819147b455f649f4">define</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;key, int <a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
 <tr class="separator:ad3634d04a48247e0819147b455f649f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad717a23ab7ef69fcb275fa06a4ffe3f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad717a23ab7ef69fcb275fa06a4ffe3f8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clearPreamble</b> (void)</td></tr>
+<tr class="memitem:ad717a23ab7ef69fcb275fa06a4ffe3f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#ad717a23ab7ef69fcb275fa06a4ffe3f8">clearPreamble</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ad717a23ab7ef69fcb275fa06a4ffe3f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2d7cfabb3555bf6b019f12492f814fa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2d7cfabb3555bf6b019f12492f814fa"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addPreamble</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;preamble)</td></tr>
+<tr class="memitem:ab2d7cfabb3555bf6b019f12492f814fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#ab2d7cfabb3555bf6b019f12492f814fa">addPreamble</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;preamble)</td></tr>
 <tr class="separator:ab2d7cfabb3555bf6b019f12492f814fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a732f8e92bbf8992daceb7e4db78fce78"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a732f8e92bbf8992daceb7e4db78fce78"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setMessageWindow</b> (<a class="el" href="class_f_w_1_1_window.html">Window</a> *window)</td></tr>
+<tr class="memitem:a732f8e92bbf8992daceb7e4db78fce78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a732f8e92bbf8992daceb7e4db78fce78">setMessageWindow</a> (<a class="el" href="class_f_w_1_1_window.html">Window</a> *window)</td></tr>
 <tr class="separator:a732f8e92bbf8992daceb7e4db78fce78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95ff111b7497c016e4478362c9fbd672"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95ff111b7497c016e4478362c9fbd672"></a>
-<a class="el" href="class_f_w_1_1_cuda_module.html">CudaModule</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>compile</b> (bool enablePrints=true, bool autoFail=true)</td></tr>
+<tr class="memitem:aa7c86b6e0efc65868452e8665123b741"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_cuda_module.html">CudaModule</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#aa7c86b6e0efc65868452e8665123b741">loadDbgCubin</a> (bool enablePrints=true)</td></tr>
+<tr class="separator:aa7c86b6e0efc65868452e8665123b741"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95ff111b7497c016e4478362c9fbd672"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_cuda_module.html">CudaModule</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a95ff111b7497c016e4478362c9fbd672">compile</a> (bool enablePrints=true, bool autoFail=true)</td></tr>
 <tr class="separator:a95ff111b7497c016e4478362c9fbd672"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11b47d7acfc26ea6b81fa8df0310467d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a11b47d7acfc26ea6b81fa8df0310467d"></a>
-const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; U8 &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>compileCubin</b> (bool enablePrints=true, bool autoFail=true)</td></tr>
+<tr class="memitem:a11b47d7acfc26ea6b81fa8df0310467d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a11b47d7acfc26ea6b81fa8df0310467d">compileCubin</a> (bool enablePrints=true, bool autoFail=true)</td></tr>
 <tr class="separator:a11b47d7acfc26ea6b81fa8df0310467d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0cf384bb0ac65359b47fbbb157d8721"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0cf384bb0ac65359b47fbbb157d8721"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>compileCubinFile</b> (bool enablePrints=true, bool autoFail=true)</td></tr>
+<tr class="memitem:ab0cf384bb0ac65359b47fbbb157d8721"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#ab0cf384bb0ac65359b47fbbb157d8721">compileCubinFile</a> (bool enablePrints=true, bool autoFail=true)</td></tr>
 <tr class="separator:ab0cf384bb0ac65359b47fbbb157d8721"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:af6d717ebdf073f569bbe5a90c96963f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6d717ebdf073f569bbe5a90c96963f1"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>setFrameworkPath</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;path)</td></tr>
+<tr class="memitem:af6d717ebdf073f569bbe5a90c96963f1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#af6d717ebdf073f569bbe5a90c96963f1">setFrameworkPath</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad7c502db49b1bda9659dcc97e2d1c96e">path</a>)</td></tr>
 <tr class="separator:af6d717ebdf073f569bbe5a90c96963f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdaaa92d5e6c5bbc7619505832504ab7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abdaaa92d5e6c5bbc7619505832504ab7"></a>
-static const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFrameworkPath</b> (void)</td></tr>
+<tr class="memitem:abdaaa92d5e6c5bbc7619505832504ab7"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#abdaaa92d5e6c5bbc7619505832504ab7">getFrameworkPath</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:abdaaa92d5e6c5bbc7619505832504ab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af75cc35611735507da265de07f152117"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af75cc35611735507da265de07f152117"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>setStaticCudaBinPath</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;path)</td></tr>
+<tr class="memitem:af75cc35611735507da265de07f152117"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#af75cc35611735507da265de07f152117">setStaticCudaBinPath</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad7c502db49b1bda9659dcc97e2d1c96e">path</a>)</td></tr>
 <tr class="separator:af75cc35611735507da265de07f152117"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace8e8257fc8bd5409ebe458e8624693a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace8e8257fc8bd5409ebe458e8624693a"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>setStaticOptions</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;options)</td></tr>
+<tr class="memitem:ace8e8257fc8bd5409ebe458e8624693a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#ace8e8257fc8bd5409ebe458e8624693a">setStaticOptions</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;options)</td></tr>
 <tr class="separator:ace8e8257fc8bd5409ebe458e8624693a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33d065398963c6b061109f4086091cbe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33d065398963c6b061109f4086091cbe"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>setStaticPreamble</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;preamble)</td></tr>
+<tr class="memitem:a33d065398963c6b061109f4086091cbe"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a33d065398963c6b061109f4086091cbe">setStaticPreamble</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;preamble)</td></tr>
 <tr class="separator:a33d065398963c6b061109f4086091cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab36dcc17139742ad6196bb5c93e27f05"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab36dcc17139742ad6196bb5c93e27f05"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>setStaticBinaryFormat</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;format)</td></tr>
+<tr class="memitem:ab36dcc17139742ad6196bb5c93e27f05"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#ab36dcc17139742ad6196bb5c93e27f05">setStaticBinaryFormat</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad4c33e9edd8edca569c34a03f3c9795e">format</a>)</td></tr>
 <tr class="separator:ab36dcc17139742ad6196bb5c93e27f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b701e8eaa70845db092308e000f1a0c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b701e8eaa70845db092308e000f1a0c"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>staticInit</b> (void)</td></tr>
+<tr class="memitem:a6b701e8eaa70845db092308e000f1a0c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a6b701e8eaa70845db092308e000f1a0c">staticInit</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a6b701e8eaa70845db092308e000f1a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4ef424a899f5a32d586b55ef622f2bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4ef424a899f5a32d586b55ef622f2bd"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>staticDeinit</b> (void)</td></tr>
+<tr class="memitem:af4ef424a899f5a32d586b55ef622f2bd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#af4ef424a899f5a32d586b55ef622f2bd">staticDeinit</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:af4ef424a899f5a32d586b55ef622f2bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46ca2388aa21c99fa2b189d5a353f978"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46ca2388aa21c99fa2b189d5a353f978"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>flushMemCache</b> (void)</td></tr>
+<tr class="memitem:a46ca2388aa21c99fa2b189d5a353f978"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_compiler.html#a46ca2388aa21c99fa2b189d5a353f978">flushMemCache</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a46ca2388aa21c99fa2b189d5a353f978"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00068">68</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="af0561066366b68e742785b2c785439a9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CudaCompiler::CudaCompiler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8cpp_source.html#l00116">116</a> of file <a class="el" href="_cuda_compiler_8cpp_source.html">CudaCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a82c1378830b17aa15e392ce76d0c53bd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CudaCompiler::~CudaCompiler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8cpp_source.html#l00139">139</a> of file <a class="el" href="_cuda_compiler_8cpp_source.html">CudaCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="af27a29283e440c468018560e68e5a1cb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::addOptions </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>options</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00080">80</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab2d7cfabb3555bf6b019f12492f814fa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::addPreamble </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>preamble</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00089">89</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a525aab688f84febcab86aad8fb0c3817"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::clearDefines </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00083">83</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a727427f879ac197cda0bfbaf19a786b1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::clearOptions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00079">79</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad717a23ab7ef69fcb275fa06a4ffe3f8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::clearPreamble </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00088">88</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a95ff111b7497c016e4478362c9fbd672"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_cuda_module.html">CudaModule</a> * CudaCompiler::compile </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enablePrints</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>autoFail</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8cpp_source.html#l00145">145</a> of file <a class="el" href="_cuda_compiler_8cpp_source.html">CudaCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a11b47d7acfc26ea6b81fa8df0310467d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> &gt; * CudaCompiler::compileCubin </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enablePrints</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>autoFail</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8cpp_source.html#l00209">209</a> of file <a class="el" href="_cuda_compiler_8cpp_source.html">CudaCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab0cf384bb0ac65359b47fbbb157d8721"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> CudaCompiler::compileCubinFile </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enablePrints</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>autoFail</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8cpp_source.html#l00242">242</a> of file <a class="el" href="_cuda_compiler_8cpp_source.html">CudaCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a533675bd966f79a7dbdbb2a3f1bae70f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::define </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>value</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00085">85</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad3634d04a48247e0819147b455f649f4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::define </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00086">86</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a46ca2388aa21c99fa2b189d5a353f978"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaCompiler::flushMemCache </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8cpp_source.html#l00494">494</a> of file <a class="el" href="_cuda_compiler_8cpp_source.html">CudaCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abdaaa92d5e6c5bbc7619505832504ab7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const <a class="el" href="class_f_w_1_1_string.html">String</a>&amp; FW::CudaCompiler::getFrameworkPath </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00098">98</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0d145bffd1b8f8aecc6f88ebaa83d2d7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::include </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00081">81</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa7c86b6e0efc65868452e8665123b741"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_cuda_module.html">CudaModule</a> * CudaCompiler::loadDbgCubin </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enablePrints</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8cpp_source.html#l00176">176</a> of file <a class="el" href="_cuda_compiler_8cpp_source.html">CudaCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2cfdbc88a708e5a62221972ea725f45"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::overrideSMArch </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arch</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00077">77</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1d7ade5924b5921a628888d21c7ef726"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::setCachePath </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00074">74</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af6d717ebdf073f569bbe5a90c96963f1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::setFrameworkPath </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00097">97</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a99dcb830210cc9b17c838db3c3d346ba"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::setInlineSource </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>origin</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00076">76</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a732f8e92bbf8992daceb7e4db78fce78"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::setMessageWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_window.html">Window</a> *&#160;</td>
+          <td class="paramname"><em>window</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00091">91</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8c84d67c6dbedcbc82bcdc4518633d67"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::setSourceFile </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00075">75</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab36dcc17139742ad6196bb5c93e27f05"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::setStaticBinaryFormat </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>format</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00103">103</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af75cc35611735507da265de07f152117"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::setStaticCudaBinPath </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00100">100</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ace8e8257fc8bd5409ebe458e8624693a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::setStaticOptions </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>options</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00101">101</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a33d065398963c6b061109f4086091cbe"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::setStaticPreamble </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>preamble</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00102">102</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af4ef424a899f5a32d586b55ef622f2bd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaCompiler::staticDeinit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8cpp_source.html#l00474">474</a> of file <a class="el" href="_cuda_compiler_8cpp_source.html">CudaCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6b701e8eaa70845db092308e000f1a0c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaCompiler::staticInit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8cpp_source.html#l00306">306</a> of file <a class="el" href="_cuda_compiler_8cpp_source.html">CudaCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adc35d2f5952a796c49e26926976ca055"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CudaCompiler::undef </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_compiler_8hpp_source.html#l00084">84</a> of file <a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/gpu/<a class="el" href="_cuda_compiler_8hpp_source.html">CudaCompiler.hpp</a></li>
-<li>src/framework/gpu/CudaCompiler.cpp</li>
+<li>src/framework/gpu/<a class="el" href="_cuda_compiler_8cpp_source.html">CudaCompiler.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_cuda_compiler.html">CudaCompiler</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_cuda_compiler.html">CudaCompiler</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_mesh_base.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -113,6 +114,8 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_mesh_base.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p><code>#include &lt;<a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>&gt;</code></p>
+
 <p>Inherited by <a class="el" href="class_f_w_1_1_mesh.html">FW::Mesh&lt; V &gt;</a>, and <a class="el" href="class_f_w_1_1_mesh.html">FW::Mesh&lt; FW::VertexPNT &gt;</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -124,244 +127,1997 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a7d0794560a30691570b9554951cf3b84"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>AttribType</b> { <br/>
-&#160;&#160;<b>AttribType_Position</b> = 0, 
-<b>AttribType_Normal</b>, 
-<b>AttribType_Color</b>, 
-<b>AttribType_TexCoord</b>, 
+<tr class="memitem:a7d0794560a30691570b9554951cf3b84"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84">AttribType</a> { <br/>
+&#160;&#160;<a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84a6a2d34a003d462d817025329d6808eef">AttribType_Position</a> = 0, 
+<a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84a07696c6267e15a4c93ba25818f6972dc">AttribType_Normal</a>, 
+<a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84aa95cbcee90f94401ce8cf213bfe73d58">AttribType_Color</a>, 
+<a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84a35868e97b867ae8777436439c7cb8a5e">AttribType_TexCoord</a>, 
 <br/>
-&#160;&#160;<b>AttribType_AORadius</b>, 
-<b>AttribType_Max</b>
+&#160;&#160;<a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84a6bb239a133eb3c189c322190281f1b9e">AttribType_AORadius</a>, 
+<a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84ac0aca855b4b9b66a16371973eddbd99e">AttribType_Max</a>
 <br/>
  }</td></tr>
 <tr class="separator:a7d0794560a30691570b9554951cf3b84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0e0ea98f849b0c833e1b2b1e3abbbbd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>AttribFormat</b> { <b>AttribFormat_U8</b> = 0, 
-<b>AttribFormat_S32</b>, 
-<b>AttribFormat_F32</b>, 
-<b>AttribFormat_Max</b>
+<tr class="memitem:ae0e0ea98f849b0c833e1b2b1e3abbbbd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#ae0e0ea98f849b0c833e1b2b1e3abbbbd">AttribFormat</a> { <a class="el" href="class_f_w_1_1_mesh_base.html#ae0e0ea98f849b0c833e1b2b1e3abbbbdaea52aeaca74101c06252ffd560438630">AttribFormat_U8</a> = 0, 
+<a class="el" href="class_f_w_1_1_mesh_base.html#ae0e0ea98f849b0c833e1b2b1e3abbbbda5cb94ec1c83e7ba3d56ebc5773a206cc">AttribFormat_S32</a>, 
+<a class="el" href="class_f_w_1_1_mesh_base.html#ae0e0ea98f849b0c833e1b2b1e3abbbbda10ac9fa24b62342a4a01b548123c16de">AttribFormat_F32</a>, 
+<a class="el" href="class_f_w_1_1_mesh_base.html#ae0e0ea98f849b0c833e1b2b1e3abbbbda76600cd3881a8c941a12489feeed980d">AttribFormat_Max</a>
  }</td></tr>
 <tr class="separator:ae0e0ea98f849b0c833e1b2b1e3abbbbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7255377c52f49fc20cc14a9ac3ecf67"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>TextureType</b> { <br/>
-&#160;&#160;<b>TextureType_Diffuse</b> = 0, 
-<b>TextureType_Alpha</b>, 
-<b>TextureType_Displacement</b>, 
-<b>TextureType_Normal</b>, 
+<tr class="memitem:ac7255377c52f49fc20cc14a9ac3ecf67"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#ac7255377c52f49fc20cc14a9ac3ecf67">TextureType</a> { <br/>
+&#160;&#160;<a class="el" href="class_f_w_1_1_mesh_base.html#ac7255377c52f49fc20cc14a9ac3ecf67ac9948e8cd60fc315449c46025ff3dc05">TextureType_Diffuse</a> = 0, 
+<a class="el" href="class_f_w_1_1_mesh_base.html#ac7255377c52f49fc20cc14a9ac3ecf67a31b57baa12305196665e137dd4a10ca1">TextureType_Alpha</a>, 
+<a class="el" href="class_f_w_1_1_mesh_base.html#ac7255377c52f49fc20cc14a9ac3ecf67a871568ebe5710e5f79ef668f5459f279">TextureType_Displacement</a>, 
+<a class="el" href="class_f_w_1_1_mesh_base.html#ac7255377c52f49fc20cc14a9ac3ecf67ae947fdc881f9af9c80603850e5f647ec">TextureType_Normal</a>, 
 <br/>
-&#160;&#160;<b>TextureType_Environment</b>, 
-<b>TextureType_Max</b>
+&#160;&#160;<a class="el" href="class_f_w_1_1_mesh_base.html#ac7255377c52f49fc20cc14a9ac3ecf67a5754b306f94b491c3fcc810e5c01d2ec">TextureType_Environment</a>, 
+<a class="el" href="class_f_w_1_1_mesh_base.html#ac7255377c52f49fc20cc14a9ac3ecf67a89cb28279bc0347ecd4b175e7a47d111">TextureType_Max</a>
 <br/>
  }</td></tr>
 <tr class="separator:ac7255377c52f49fc20cc14a9ac3ecf67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9de2b9bb34323e16cf72c048ca65e59c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9de2b9bb34323e16cf72c048ca65e59c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MeshBase</b> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other)</td></tr>
+<tr class="memitem:abe9d40f2ed8eab06f1f96b767b1e0d7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#abe9d40f2ed8eab06f1f96b767b1e0d7f">MeshBase</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:abe9d40f2ed8eab06f1f96b767b1e0d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9de2b9bb34323e16cf72c048ca65e59c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a9de2b9bb34323e16cf72c048ca65e59c">MeshBase</a> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other)</td></tr>
 <tr class="separator:a9de2b9bb34323e16cf72c048ca65e59c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4726260633205cc47cda5f2581df7da5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4726260633205cc47cda5f2581df7da5"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>addAttrib</b> (AttribType type, AttribFormat format, int length)</td></tr>
+<tr class="memitem:af6a6f7be858e9dce96f5f563c4423fa3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#af6a6f7be858e9dce96f5f563c4423fa3">~MeshBase</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:af6a6f7be858e9dce96f5f563c4423fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4726260633205cc47cda5f2581df7da5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a4726260633205cc47cda5f2581df7da5">addAttrib</a> (<a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84">AttribType</a> <a class="el" href="_d_l_l_imports_8inl.html#a1d14bae93fe47a03f0ace206fef6a34e">type</a>, <a class="el" href="class_f_w_1_1_mesh_base.html#ae0e0ea98f849b0c833e1b2b1e3abbbbd">AttribFormat</a> <a class="el" href="_d_l_l_imports_8inl.html#ad4c33e9edd8edca569c34a03f3c9795e">format</a>, int <a class="el" href="namespace_f_w.html#a7789bc722bc2b565d51fc79aca695bfe">length</a>)</td></tr>
 <tr class="separator:a4726260633205cc47cda5f2581df7da5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f991834367c92f918a06bd3113eaf55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f991834367c92f918a06bd3113eaf55"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addAttribs</b> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other)</td></tr>
+<tr class="memitem:a5f991834367c92f918a06bd3113eaf55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a5f991834367c92f918a06bd3113eaf55">addAttribs</a> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other)</td></tr>
 <tr class="separator:a5f991834367c92f918a06bd3113eaf55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51ee2cee76cb02373d4785adddfe4100"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51ee2cee76cb02373d4785adddfe4100"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>numAttribs</b> (void) const </td></tr>
+<tr class="memitem:a51ee2cee76cb02373d4785adddfe4100"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a51ee2cee76cb02373d4785adddfe4100">numAttribs</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a51ee2cee76cb02373d4785adddfe4100"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2d35f91fd6252acfa2b10bca130707f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac2d35f91fd6252acfa2b10bca130707f"></a>
-const <a class="el" href="struct_f_w_1_1_mesh_base_1_1_attrib_spec.html">AttribSpec</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>attribSpec</b> (int attrib) const </td></tr>
+<tr class="memitem:ac2d35f91fd6252acfa2b10bca130707f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_f_w_1_1_mesh_base_1_1_attrib_spec.html">AttribSpec</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#ac2d35f91fd6252acfa2b10bca130707f">attribSpec</a> (int attrib) const </td></tr>
 <tr class="separator:ac2d35f91fd6252acfa2b10bca130707f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfacf3dd7017982564f5f123877c7636"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adfacf3dd7017982564f5f123877c7636"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>findAttrib</b> (AttribType type) const </td></tr>
+<tr class="memitem:adfacf3dd7017982564f5f123877c7636"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#adfacf3dd7017982564f5f123877c7636">findAttrib</a> (<a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84">AttribType</a> <a class="el" href="_d_l_l_imports_8inl.html#a1d14bae93fe47a03f0ace206fef6a34e">type</a>) const </td></tr>
 <tr class="separator:adfacf3dd7017982564f5f123877c7636"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacea6ad28cfe374b9dd90ae5b63f622f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacea6ad28cfe374b9dd90ae5b63f622f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>findNextAttrib</b> (AttribType type, int prevAttrib) const </td></tr>
+<tr class="memitem:aacea6ad28cfe374b9dd90ae5b63f622f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#aacea6ad28cfe374b9dd90ae5b63f622f">findNextAttrib</a> (<a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84">AttribType</a> <a class="el" href="_d_l_l_imports_8inl.html#a1d14bae93fe47a03f0ace206fef6a34e">type</a>, int prevAttrib) const </td></tr>
 <tr class="separator:aacea6ad28cfe374b9dd90ae5b63f622f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a552e2aa4e79319bb59d3f9d9e4e5de93"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a552e2aa4e79319bb59d3f9d9e4e5de93"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isCompatible</b> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other) const </td></tr>
+<tr class="memitem:a552e2aa4e79319bb59d3f9d9e4e5de93"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a552e2aa4e79319bb59d3f9d9e4e5de93">isCompatible</a> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other) const </td></tr>
 <tr class="separator:a552e2aa4e79319bb59d3f9d9e4e5de93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a1e8942ed0535db955770287d6107d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a1e8942ed0535db955770287d6107d4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (void)</td></tr>
+<tr class="memitem:a6a1e8942ed0535db955770287d6107d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a6a1e8942ed0535db955770287d6107d4">clear</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a6a1e8942ed0535db955770287d6107d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7613b83adb8f0ee64f0f674d465e2fae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7613b83adb8f0ee64f0f674d465e2fae"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other)</td></tr>
+<tr class="memitem:a7613b83adb8f0ee64f0f674d465e2fae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a7613b83adb8f0ee64f0f674d465e2fae">set</a> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other)</td></tr>
 <tr class="separator:a7613b83adb8f0ee64f0f674d465e2fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c3b4c55e979d7aad4b268b9bdcccf19"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c3b4c55e979d7aad4b268b9bdcccf19"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>append</b> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other)</td></tr>
+<tr class="memitem:a5c3b4c55e979d7aad4b268b9bdcccf19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a5c3b4c55e979d7aad4b268b9bdcccf19">append</a> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other)</td></tr>
 <tr class="separator:a5c3b4c55e979d7aad4b268b9bdcccf19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18dd3a2f71e7d9bea4c0f27f75ea64b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18dd3a2f71e7d9bea4c0f27f75ea64b1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>compact</b> (void)</td></tr>
+<tr class="memitem:a18dd3a2f71e7d9bea4c0f27f75ea64b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a18dd3a2f71e7d9bea4c0f27f75ea64b1">compact</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a18dd3a2f71e7d9bea4c0f27f75ea64b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a229533b119669f9c28e85be77c3d6775"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a229533b119669f9c28e85be77c3d6775"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>numVertices</b> (void) const </td></tr>
+<tr class="memitem:a229533b119669f9c28e85be77c3d6775"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a229533b119669f9c28e85be77c3d6775">numVertices</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a229533b119669f9c28e85be77c3d6775"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa46913b1316d00a4b87449e52eeadf56"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa46913b1316d00a4b87449e52eeadf56"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>vertexStride</b> (void) const </td></tr>
+<tr class="memitem:aa46913b1316d00a4b87449e52eeadf56"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#aa46913b1316d00a4b87449e52eeadf56">vertexStride</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:aa46913b1316d00a4b87449e52eeadf56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a315df0ee207e1442fb22314402ffbab6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a315df0ee207e1442fb22314402ffbab6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>resetVertices</b> (int num)</td></tr>
+<tr class="memitem:a315df0ee207e1442fb22314402ffbab6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a315df0ee207e1442fb22314402ffbab6">resetVertices</a> (int num)</td></tr>
 <tr class="separator:a315df0ee207e1442fb22314402ffbab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeab9e0b04f3387d03da110ff780ec23b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeab9e0b04f3387d03da110ff780ec23b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clearVertices</b> (void)</td></tr>
+<tr class="memitem:aeab9e0b04f3387d03da110ff780ec23b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#aeab9e0b04f3387d03da110ff780ec23b">clearVertices</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:aeab9e0b04f3387d03da110ff780ec23b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e61a74a45802b0904d04899aa870c0e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e61a74a45802b0904d04899aa870c0e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>resizeVertices</b> (int num)</td></tr>
+<tr class="memitem:a2e61a74a45802b0904d04899aa870c0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a2e61a74a45802b0904d04899aa870c0e">resizeVertices</a> (int num)</td></tr>
 <tr class="separator:a2e61a74a45802b0904d04899aa870c0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5568e868955bbd43c243baa8626e9231"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5568e868955bbd43c243baa8626e9231"></a>
-const U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>getVertexPtr</b> (int idx=0) const </td></tr>
+<tr class="memitem:a5568e868955bbd43c243baa8626e9231"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a5568e868955bbd43c243baa8626e9231">getVertexPtr</a> (int idx=0) const </td></tr>
 <tr class="separator:a5568e868955bbd43c243baa8626e9231"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63ede9ecaf9da6d760df5aadf733adb0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63ede9ecaf9da6d760df5aadf733adb0"></a>
-U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>getMutableVertexPtr</b> (int idx=0)</td></tr>
+<tr class="memitem:a63ede9ecaf9da6d760df5aadf733adb0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a63ede9ecaf9da6d760df5aadf733adb0">getMutableVertexPtr</a> (int idx=0)</td></tr>
 <tr class="separator:a63ede9ecaf9da6d760df5aadf733adb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2186af786ca6fc82f5507da3664b9fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2186af786ca6fc82f5507da3664b9fe"></a>
-const U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>vertex</b> (int idx) const </td></tr>
+<tr class="memitem:ab2186af786ca6fc82f5507da3664b9fe"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#ab2186af786ca6fc82f5507da3664b9fe">vertex</a> (int idx) const </td></tr>
 <tr class="separator:ab2186af786ca6fc82f5507da3664b9fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3059350476fe7e2ff701b7ba73c1dbc9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3059350476fe7e2ff701b7ba73c1dbc9"></a>
-U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>mutableVertex</b> (int idx)</td></tr>
+<tr class="memitem:a3059350476fe7e2ff701b7ba73c1dbc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a3059350476fe7e2ff701b7ba73c1dbc9">mutableVertex</a> (int idx)</td></tr>
 <tr class="separator:a3059350476fe7e2ff701b7ba73c1dbc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a893759c73db4f8b5674a48bdff002abf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a893759c73db4f8b5674a48bdff002abf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setVertex</b> (int idx, const void *ptr)</td></tr>
+<tr class="memitem:a893759c73db4f8b5674a48bdff002abf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a893759c73db4f8b5674a48bdff002abf">setVertex</a> (int idx, const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>)</td></tr>
 <tr class="separator:a893759c73db4f8b5674a48bdff002abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaff19bc663177b16651b9026fae02596"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaff19bc663177b16651b9026fae02596"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setVertices</b> (int idx, const void *ptr, int num)</td></tr>
+<tr class="memitem:aaff19bc663177b16651b9026fae02596"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#aaff19bc663177b16651b9026fae02596">setVertices</a> (int idx, const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, int num)</td></tr>
 <tr class="separator:aaff19bc663177b16651b9026fae02596"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab98189bdfc7976f25ccb527f6356cb5f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab98189bdfc7976f25ccb527f6356cb5f"></a>
-U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>addVertex</b> (const void *ptr=NULL)</td></tr>
+<tr class="memitem:ab98189bdfc7976f25ccb527f6356cb5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#ab98189bdfc7976f25ccb527f6356cb5f">addVertex</a> (const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</td></tr>
 <tr class="separator:ab98189bdfc7976f25ccb527f6356cb5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7b377e3d3e8021c43b37ae5b5222db1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7b377e3d3e8021c43b37ae5b5222db1"></a>
-U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>addVertices</b> (const void *ptr, int num)</td></tr>
+<tr class="memitem:ab7b377e3d3e8021c43b37ae5b5222db1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#ab7b377e3d3e8021c43b37ae5b5222db1">addVertices</a> (const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, int num)</td></tr>
 <tr class="separator:ab7b377e3d3e8021c43b37ae5b5222db1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe0a8d030e341238201c98af5265fa13"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0a8d030e341238201c98af5265fa13"></a>
-<a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getVertexAttrib</b> (int idx, int attrib) const </td></tr>
+<tr class="memitem:afe0a8d030e341238201c98af5265fa13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#afe0a8d030e341238201c98af5265fa13">getVertexAttrib</a> (int idx, int attrib) const </td></tr>
 <tr class="separator:afe0a8d030e341238201c98af5265fa13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2a70bd273bb62677afc7e15b970bc04"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2a70bd273bb62677afc7e15b970bc04"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setVertexAttrib</b> (int idx, int attrib, const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;v)</td></tr>
+<tr class="memitem:af2a70bd273bb62677afc7e15b970bc04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#af2a70bd273bb62677afc7e15b970bc04">setVertexAttrib</a> (int idx, int attrib, const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:af2a70bd273bb62677afc7e15b970bc04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0f0a1cd4ff3ab816ad83498f6ec84e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0f0a1cd4ff3ab816ad83498f6ec84e6"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>numSubmeshes</b> (void) const </td></tr>
+<tr class="memitem:ab0f0a1cd4ff3ab816ad83498f6ec84e6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#ab0f0a1cd4ff3ab816ad83498f6ec84e6">numSubmeshes</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ab0f0a1cd4ff3ab816ad83498f6ec84e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecac34d580fb349e1cace9bbdb7c13c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aecac34d580fb349e1cace9bbdb7c13c8"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>numTriangles</b> (void) const </td></tr>
+<tr class="memitem:aecac34d580fb349e1cace9bbdb7c13c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#aecac34d580fb349e1cace9bbdb7c13c8">numTriangles</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:aecac34d580fb349e1cace9bbdb7c13c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae34c0e9e178b2f6db72e9c8155f0db80"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae34c0e9e178b2f6db72e9c8155f0db80"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>resizeSubmeshes</b> (int num)</td></tr>
+<tr class="memitem:ae34c0e9e178b2f6db72e9c8155f0db80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#ae34c0e9e178b2f6db72e9c8155f0db80">resizeSubmeshes</a> (int num)</td></tr>
 <tr class="separator:ae34c0e9e178b2f6db72e9c8155f0db80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a261eaac6f47040b15f8ef19cf65066fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a261eaac6f47040b15f8ef19cf65066fb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clearSubmeshes</b> (void)</td></tr>
+<tr class="memitem:a261eaac6f47040b15f8ef19cf65066fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a261eaac6f47040b15f8ef19cf65066fb">clearSubmeshes</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a261eaac6f47040b15f8ef19cf65066fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae69c657b01c9b3432e15201db64f55ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae69c657b01c9b3432e15201db64f55ea"></a>
-const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_vec3i.html">Vec3i</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>indices</b> (int submesh) const </td></tr>
+<tr class="memitem:ae69c657b01c9b3432e15201db64f55ea"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_vec3i.html">Vec3i</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#ae69c657b01c9b3432e15201db64f55ea">indices</a> (int submesh) const </td></tr>
 <tr class="separator:ae69c657b01c9b3432e15201db64f55ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d151cb9ce4fb3cd4808319e05075f1e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d151cb9ce4fb3cd4808319e05075f1e"></a>
-<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_vec3i.html">Vec3i</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>mutableIndices</b> (int submesh)</td></tr>
+<tr class="memitem:a0d151cb9ce4fb3cd4808319e05075f1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_vec3i.html">Vec3i</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a0d151cb9ce4fb3cd4808319e05075f1e">mutableIndices</a> (int submesh)</td></tr>
 <tr class="separator:a0d151cb9ce4fb3cd4808319e05075f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cdb99d82828d75b8284418da0a1c77d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6cdb99d82828d75b8284418da0a1c77d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setIndices</b> (int submesh, const <a class="el" href="class_f_w_1_1_vec3i.html">Vec3i</a> *ptr, int size)</td></tr>
+<tr class="memitem:a6cdb99d82828d75b8284418da0a1c77d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a6cdb99d82828d75b8284418da0a1c77d">setIndices</a> (int submesh, const <a class="el" href="class_f_w_1_1_vec3i.html">Vec3i</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, int <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:a6cdb99d82828d75b8284418da0a1c77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a9792ec101691fa5616f89c28dec792"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a9792ec101691fa5616f89c28dec792"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setIndices</b> (int submesh, const S32 *ptr, int size)</td></tr>
+<tr class="memitem:a9a9792ec101691fa5616f89c28dec792"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a9a9792ec101691fa5616f89c28dec792">setIndices</a> (int submesh, const <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, int <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:a9a9792ec101691fa5616f89c28dec792"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80c8be86999b77c4500ff778905b6f51"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80c8be86999b77c4500ff778905b6f51"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setIndices</b> (int submesh, const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_vec3i.html">Vec3i</a> &gt; &amp;v)</td></tr>
+<tr class="memitem:a80c8be86999b77c4500ff778905b6f51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a80c8be86999b77c4500ff778905b6f51">setIndices</a> (int submesh, const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_vec3i.html">Vec3i</a> &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a80c8be86999b77c4500ff778905b6f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e63817f0e482c7c56bce89678524aef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e63817f0e482c7c56bce89678524aef"></a>
-const <a class="el" href="struct_f_w_1_1_mesh_base_1_1_material.html">Material</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>material</b> (int submesh) const </td></tr>
+<tr class="memitem:a7e63817f0e482c7c56bce89678524aef"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_f_w_1_1_mesh_base_1_1_material.html">Material</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a7e63817f0e482c7c56bce89678524aef">material</a> (int submesh) const </td></tr>
 <tr class="separator:a7e63817f0e482c7c56bce89678524aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f7e6d65d1657adb0c4fccf63024489e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f7e6d65d1657adb0c4fccf63024489e"></a>
-<a class="el" href="struct_f_w_1_1_mesh_base_1_1_material.html">Material</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>material</b> (int submesh)</td></tr>
+<tr class="memitem:a7f7e6d65d1657adb0c4fccf63024489e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_f_w_1_1_mesh_base_1_1_material.html">Material</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a7f7e6d65d1657adb0c4fccf63024489e">material</a> (int submesh)</td></tr>
 <tr class="separator:a7f7e6d65d1657adb0c4fccf63024489e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d6a90545ce180ca401fafa58f141cd0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d6a90545ce180ca401fafa58f141cd0"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>addSubmesh</b> (void)</td></tr>
+<tr class="memitem:a5d6a90545ce180ca401fafa58f141cd0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a5d6a90545ce180ca401fafa58f141cd0">addSubmesh</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a5d6a90545ce180ca401fafa58f141cd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0035c81d3e697cd822db95fedff07efb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0035c81d3e697cd822db95fedff07efb"></a>
-<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getVBO</b> (void)</td></tr>
+<tr class="memitem:a0035c81d3e697cd822db95fedff07efb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a0035c81d3e697cd822db95fedff07efb">getVBO</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a0035c81d3e697cd822db95fedff07efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a859e8cf96cbf8b598921a289102f9bd3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a859e8cf96cbf8b598921a289102f9bd3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>vboAttribOffset</b> (int attrib)</td></tr>
+<tr class="memitem:a859e8cf96cbf8b598921a289102f9bd3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a859e8cf96cbf8b598921a289102f9bd3">vboAttribOffset</a> (int attrib)</td></tr>
 <tr class="separator:a859e8cf96cbf8b598921a289102f9bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c55c96ee9aff28b7bef7b298976bb94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c55c96ee9aff28b7bef7b298976bb94"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>vboAttribStride</b> (int attrib)</td></tr>
+<tr class="memitem:a2c55c96ee9aff28b7bef7b298976bb94"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a2c55c96ee9aff28b7bef7b298976bb94">vboAttribStride</a> (int attrib)</td></tr>
 <tr class="separator:a2c55c96ee9aff28b7bef7b298976bb94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7efa0ea1ad9269b7ac1f2227c2f5228e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7efa0ea1ad9269b7ac1f2227c2f5228e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>vboIndexOffset</b> (int submesh)</td></tr>
+<tr class="memitem:a7efa0ea1ad9269b7ac1f2227c2f5228e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a7efa0ea1ad9269b7ac1f2227c2f5228e">vboIndexOffset</a> (int submesh)</td></tr>
 <tr class="separator:a7efa0ea1ad9269b7ac1f2227c2f5228e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5bf427cd3fc132ed6988d745a897403"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5bf427cd3fc132ed6988d745a897403"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>vboIndexSize</b> (int submesh)</td></tr>
+<tr class="memitem:af5bf427cd3fc132ed6988d745a897403"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#af5bf427cd3fc132ed6988d745a897403">vboIndexSize</a> (int submesh)</td></tr>
 <tr class="separator:af5bf427cd3fc132ed6988d745a897403"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefe312ef1f309ed452ddd3b011453005"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aefe312ef1f309ed452ddd3b011453005"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setGLAttrib</b> (<a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *gl, int attrib, int loc)</td></tr>
+<tr class="memitem:aefe312ef1f309ed452ddd3b011453005"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#aefe312ef1f309ed452ddd3b011453005">setGLAttrib</a> (<a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *gl, int attrib, int loc)</td></tr>
 <tr class="separator:aefe312ef1f309ed452ddd3b011453005"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71c9ca9e72f82058e23f0033cbf8dca3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a71c9ca9e72f82058e23f0033cbf8dca3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (<a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *gl, const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;posToCamera, const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;projection, <a class="el" href="class_f_w_1_1_g_l_context_1_1_program.html">GLContext::Program</a> *prog=NULL, bool gouraud=false)</td></tr>
+<tr class="memitem:a71c9ca9e72f82058e23f0033cbf8dca3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a71c9ca9e72f82058e23f0033cbf8dca3">draw</a> (<a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *gl, const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;posToCamera, const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;projection, <a class="el" href="class_f_w_1_1_g_l_context_1_1_program.html">GLContext::Program</a> *prog=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, bool gouraud=false)</td></tr>
 <tr class="separator:a71c9ca9e72f82058e23f0033cbf8dca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0af641f20adbd4c3393e6f949934beda"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0af641f20adbd4c3393e6f949934beda"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isInMemory</b> (void) const </td></tr>
+<tr class="memitem:a0af641f20adbd4c3393e6f949934beda"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a0af641f20adbd4c3393e6f949934beda">isInMemory</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a0af641f20adbd4c3393e6f949934beda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b9f7c1fcb3a7bb35643ba1d3d24fb71"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b9f7c1fcb3a7bb35643ba1d3d24fb71"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>freeMemory</b> (void)</td></tr>
+<tr class="memitem:a8b9f7c1fcb3a7bb35643ba1d3d24fb71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a8b9f7c1fcb3a7bb35643ba1d3d24fb71">freeMemory</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a8b9f7c1fcb3a7bb35643ba1d3d24fb71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a21fe53bced3bbc304a1a009208ebb7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a21fe53bced3bbc304a1a009208ebb7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isInVBO</b> (void) const </td></tr>
+<tr class="memitem:a1a21fe53bced3bbc304a1a009208ebb7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a1a21fe53bced3bbc304a1a009208ebb7">isInVBO</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a1a21fe53bced3bbc304a1a009208ebb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f4b24ae59cba0c7b9e0f8248c363654"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f4b24ae59cba0c7b9e0f8248c363654"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>freeVBO</b> (void)</td></tr>
+<tr class="memitem:a7f4b24ae59cba0c7b9e0f8248c363654"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a7f4b24ae59cba0c7b9e0f8248c363654">freeVBO</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a7f4b24ae59cba0c7b9e0f8248c363654"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c908a3e80e0cdb99372355aa2772e76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c908a3e80e0cdb99372355aa2772e76"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>xformPositions</b> (const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;mat)</td></tr>
+<tr class="memitem:a6c908a3e80e0cdb99372355aa2772e76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a6c908a3e80e0cdb99372355aa2772e76">xformPositions</a> (const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;mat)</td></tr>
 <tr class="separator:a6c908a3e80e0cdb99372355aa2772e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbf8e0ec7182c0a7f7262dd16493b9b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abbf8e0ec7182c0a7f7262dd16493b9b4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>xformNormals</b> (const <a class="el" href="class_f_w_1_1_mat3f.html">Mat3f</a> &amp;mat, bool normalize=true)</td></tr>
+<tr class="memitem:abbf8e0ec7182c0a7f7262dd16493b9b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#abbf8e0ec7182c0a7f7262dd16493b9b4">xformNormals</a> (const <a class="el" href="class_f_w_1_1_mat3f.html">Mat3f</a> &amp;mat, bool <a class="el" href="namespace_f_w.html#a4dc0db0c0b49cab20846bb9e2c3df231">normalize</a>=true)</td></tr>
 <tr class="separator:abbf8e0ec7182c0a7f7262dd16493b9b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaeb5069434f9240af71c610bec49cc8f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaeb5069434f9240af71c610bec49cc8f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>xform</b> (const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;mat)</td></tr>
+<tr class="memitem:aaeb5069434f9240af71c610bec49cc8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#aaeb5069434f9240af71c610bec49cc8f">xform</a> (const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;mat)</td></tr>
 <tr class="separator:aaeb5069434f9240af71c610bec49cc8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fe18302ad187f5f234f9b750ef7f69a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3fe18302ad187f5f234f9b750ef7f69a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>getBBox</b> (<a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;lo, <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;hi) const </td></tr>
+<tr class="memitem:a3fe18302ad187f5f234f9b750ef7f69a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a3fe18302ad187f5f234f9b750ef7f69a">getBBox</a> (<a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;lo, <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;hi) const </td></tr>
 <tr class="separator:a3fe18302ad187f5f234f9b750ef7f69a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d0159e2828925a7b4111056e126722d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d0159e2828925a7b4111056e126722d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>recomputeNormals</b> (void)</td></tr>
+<tr class="memitem:a6d0159e2828925a7b4111056e126722d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a6d0159e2828925a7b4111056e126722d">recomputeNormals</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a6d0159e2828925a7b4111056e126722d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c9e63a9326a64e723546ded901a0726"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c9e63a9326a64e723546ded901a0726"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>flipTriangles</b> (void)</td></tr>
+<tr class="memitem:a8c9e63a9326a64e723546ded901a0726"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a8c9e63a9326a64e723546ded901a0726">flipTriangles</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a8c9e63a9326a64e723546ded901a0726"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6a1a1a30c3d67ae9bf95a3bd519a8ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6a1a1a30c3d67ae9bf95a3bd519a8ac"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clean</b> (void)</td></tr>
+<tr class="memitem:ab6a1a1a30c3d67ae9bf95a3bd519a8ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#ab6a1a1a30c3d67ae9bf95a3bd519a8ac">clean</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ab6a1a1a30c3d67ae9bf95a3bd519a8ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7317e26de2d37835b489af53e20c6a2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7317e26de2d37835b489af53e20c6a2f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>collapseVertices</b> (void)</td></tr>
+<tr class="memitem:a7317e26de2d37835b489af53e20c6a2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a7317e26de2d37835b489af53e20c6a2f">collapseVertices</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a7317e26de2d37835b489af53e20c6a2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ec2d4df18f331a4472b4973194e7620"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ec2d4df18f331a4472b4973194e7620"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>dupVertsPerSubmesh</b> (void)</td></tr>
+<tr class="memitem:a5ec2d4df18f331a4472b4973194e7620"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a5ec2d4df18f331a4472b4973194e7620">dupVertsPerSubmesh</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a5ec2d4df18f331a4472b4973194e7620"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c1eaff187c337bce987ca369e299420"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c1eaff187c337bce987ca369e299420"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>fixMaterialColors</b> (void)</td></tr>
+<tr class="memitem:a5c1eaff187c337bce987ca369e299420"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a5c1eaff187c337bce987ca369e299420">fixMaterialColors</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a5c1eaff187c337bce987ca369e299420"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d687054ef501ef2c7ac14b61971ea2b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d687054ef501ef2c7ac14b61971ea2b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>simplify</b> (F32 maxError)</td></tr>
+<tr class="memitem:a0d687054ef501ef2c7ac14b61971ea2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a0d687054ef501ef2c7ac14b61971ea2b">simplify</a> (<a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> maxError)</td></tr>
 <tr class="separator:a0d687054ef501ef2c7ac14b61971ea2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a3b49265eb61e905d17c8a8a2f8ec85"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a3b49265eb61e905d17c8a8a2f8ec85"></a>
-const U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int vidx) const </td></tr>
+<tr class="memitem:a4a3b49265eb61e905d17c8a8a2f8ec85"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a4a3b49265eb61e905d17c8a8a2f8ec85">operator[]</a> (int vidx) const </td></tr>
 <tr class="separator:a4a3b49265eb61e905d17c8a8a2f8ec85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6dd39e6464995ceeb0767edd2706af6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6dd39e6464995ceeb0767edd2706af6"></a>
-U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int vidx)</td></tr>
+<tr class="memitem:ac6dd39e6464995ceeb0767edd2706af6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#ac6dd39e6464995ceeb0767edd2706af6">operator[]</a> (int vidx)</td></tr>
 <tr class="separator:ac6dd39e6464995ceeb0767edd2706af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a263433360eee38001d47eb5cdd60ad45"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a263433360eee38001d47eb5cdd60ad45"></a>
-<a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other)</td></tr>
+<tr class="memitem:a263433360eee38001d47eb5cdd60ad45"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a263433360eee38001d47eb5cdd60ad45">operator=</a> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other)</td></tr>
 <tr class="separator:a263433360eee38001d47eb5cdd60ad45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f21168e33bb1f2c42fe49c5b4c02773"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f21168e33bb1f2c42fe49c5b4c02773"></a>
-<a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other)</td></tr>
+<tr class="memitem:a2f21168e33bb1f2c42fe49c5b4c02773"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mesh_base.html#a2f21168e33bb1f2c42fe49c5b4c02773">operator+=</a> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;other)</td></tr>
 <tr class="separator:a2f21168e33bb1f2c42fe49c5b4c02773"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00036">36</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="ae0e0ea98f849b0c833e1b2b1e3abbbbd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_f_w_1_1_mesh_base.html#ae0e0ea98f849b0c833e1b2b1e3abbbbd">FW::MeshBase::AttribFormat</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ae0e0ea98f849b0c833e1b2b1e3abbbbdaea52aeaca74101c06252ffd560438630"></a>AttribFormat_U8</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae0e0ea98f849b0c833e1b2b1e3abbbbda5cb94ec1c83e7ba3d56ebc5773a206cc"></a>AttribFormat_S32</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae0e0ea98f849b0c833e1b2b1e3abbbbda10ac9fa24b62342a4a01b548123c16de"></a>AttribFormat_F32</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae0e0ea98f849b0c833e1b2b1e3abbbbda76600cd3881a8c941a12489feeed980d"></a>AttribFormat_Max</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00051">51</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7d0794560a30691570b9554951cf3b84"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84">FW::MeshBase::AttribType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a7d0794560a30691570b9554951cf3b84a6a2d34a003d462d817025329d6808eef"></a>AttribType_Position</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7d0794560a30691570b9554951cf3b84a07696c6267e15a4c93ba25818f6972dc"></a>AttribType_Normal</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7d0794560a30691570b9554951cf3b84aa95cbcee90f94401ce8cf213bfe73d58"></a>AttribType_Color</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7d0794560a30691570b9554951cf3b84a35868e97b867ae8777436439c7cb8a5e"></a>AttribType_TexCoord</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7d0794560a30691570b9554951cf3b84a6bb239a133eb3c189c322190281f1b9e"></a>AttribType_AORadius</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7d0794560a30691570b9554951cf3b84ac0aca855b4b9b66a16371973eddbd99e"></a>AttribType_Max</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00039">39</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac7255377c52f49fc20cc14a9ac3ecf67"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_f_w_1_1_mesh_base.html#ac7255377c52f49fc20cc14a9ac3ecf67">FW::MeshBase::TextureType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ac7255377c52f49fc20cc14a9ac3ecf67ac9948e8cd60fc315449c46025ff3dc05"></a>TextureType_Diffuse</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ac7255377c52f49fc20cc14a9ac3ecf67a31b57baa12305196665e137dd4a10ca1"></a>TextureType_Alpha</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ac7255377c52f49fc20cc14a9ac3ecf67a871568ebe5710e5f79ef668f5459f279"></a>TextureType_Displacement</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ac7255377c52f49fc20cc14a9ac3ecf67ae947fdc881f9af9c80603850e5f647ec"></a>TextureType_Normal</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ac7255377c52f49fc20cc14a9ac3ecf67a5754b306f94b491c3fcc810e5c01d2ec"></a>TextureType_Environment</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ac7255377c52f49fc20cc14a9ac3ecf67a89cb28279bc0347ecd4b175e7a47d111"></a>TextureType_Max</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00060">60</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="abe9d40f2ed8eab06f1f96b767b1e0d7f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::MeshBase::MeshBase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00119">119</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9de2b9bb34323e16cf72c048ca65e59c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::MeshBase::MeshBase </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00120">120</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af6a6f7be858e9dce96f5f563c4423fa3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::MeshBase::~MeshBase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00121">121</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a4726260633205cc47cda5f2581df7da5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MeshBase::addAttrib </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84">AttribType</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_mesh_base.html#ae0e0ea98f849b0c833e1b2b1e3abbbbd">AttribFormat</a>&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00039">39</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5f991834367c92f918a06bd3113eaf55"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::addAttribs </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00066">66</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5d6a90545ce180ca401fafa58f141cd0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::MeshBase::addSubmesh </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00163">163</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab98189bdfc7976f25ccb527f6356cb5f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::MeshBase::addVertex </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00147">147</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab7b377e3d3e8021c43b37ae5b5222db1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::MeshBase::addVertices </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00148">148</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5c3b4c55e979d7aad4b268b9bdcccf19"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::append </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00135">135</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac2d35f91fd6252acfa2b10bca130707f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_f_w_1_1_mesh_base_1_1_attrib_spec.html">AttribSpec</a>&amp; FW::MeshBase::attribSpec </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>attrib</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00126">126</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab6a1a1a30c3d67ae9bf95a3bd519a8ac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::clean </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00681">681</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6a1e8942ed0535db955770287d6107d4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::MeshBase::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00131">131</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a261eaac6f47040b15f8ef19cf65066fb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::MeshBase::clearSubmeshes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00155">155</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeab9e0b04f3387d03da110ff780ec23b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::MeshBase::clearVertices </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00139">139</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7317e26de2d37835b489af53e20c6a2f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::collapseVertices </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00759">759</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a18dd3a2f71e7d9bea4c0f27f75ea64b1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::compact </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00200">200</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a71c9ca9e72f82058e23f0033cbf8dca3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::draw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *&#160;</td>
+          <td class="paramname"><em>gl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;&#160;</td>
+          <td class="paramname"><em>posToCamera</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;&#160;</td>
+          <td class="paramname"><em>projection</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_g_l_context_1_1_program.html">GLContext::Program</a> *&#160;</td>
+          <td class="paramname"><em>prog</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>gouraud</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00367">367</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5ec2d4df18f331a4472b4973194e7620"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::dupVertsPerSubmesh </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00802">802</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adfacf3dd7017982564f5f123877c7636"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::MeshBase::findAttrib </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84">AttribType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00127">127</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aacea6ad28cfe374b9dd90ae5b63f622f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MeshBase::findNextAttrib </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84">AttribType</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>prevAttrib</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00078">78</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5c1eaff187c337bce987ca369e299420"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::fixMaterialColors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00846">846</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8c9e63a9326a64e723546ded901a0726"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::flipTriangles </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00669">669</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8b9f7c1fcb3a7bb35643ba1d3d24fb71"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::freeMemory </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00545">545</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7f4b24ae59cba0c7b9e0f8248c363654"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::MeshBase::freeVBO </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00177">177</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3fe18302ad187f5f234f9b750ef7f69a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::getBBox </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>lo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>hi</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00597">597</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a63ede9ecaf9da6d760df5aadf733adb0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::MeshBase::getMutableVertexPtr </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00142">142</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0035c81d3e697cd822db95fedff07efb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp; MeshBase::getVBO </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00310">310</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afe0a8d030e341238201c98af5265fa13"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> MeshBase::getVertexAttrib </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>attrib</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00241">241</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5568e868955bbd43c243baa8626e9231"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::MeshBase::getVertexPtr </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em> = <code>0</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00141">141</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae69c657b01c9b3432e15201db64f55ea"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt;<a class="el" href="class_f_w_1_1_vec3i.html">Vec3i</a>&gt;&amp; FW::MeshBase::indices </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>submesh</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00156">156</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a552e2aa4e79319bb59d3f9d9e4e5de93"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MeshBase::isCompatible </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00088">88</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0af641f20adbd4c3393e6f949934beda"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::MeshBase::isInMemory </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00174">174</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1a21fe53bced3bbc304a1a009208ebb7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::MeshBase::isInVBO </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00176">176</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7e63817f0e482c7c56bce89678524aef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_f_w_1_1_mesh_base_1_1_material.html">Material</a>&amp; FW::MeshBase::material </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>submesh</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00161">161</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7f7e6d65d1657adb0c4fccf63024489e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_f_w_1_1_mesh_base_1_1_material.html">Material</a>&amp; FW::MeshBase::material </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>submesh</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00162">162</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0d151cb9ce4fb3cd4808319e05075f1e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt;<a class="el" href="class_f_w_1_1_vec3i.html">Vec3i</a>&gt;&amp; FW::MeshBase::mutableIndices </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>submesh</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00157">157</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3059350476fe7e2ff701b7ba73c1dbc9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::MeshBase::mutableVertex </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00144">144</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a51ee2cee76cb02373d4785adddfe4100"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::MeshBase::numAttribs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00125">125</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab0f0a1cd4ff3ab816ad83498f6ec84e6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::MeshBase::numSubmeshes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00152">152</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aecac34d580fb349e1cace9bbdb7c13c8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::MeshBase::numTriangles </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00153">153</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a229533b119669f9c28e85be77c3d6775"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::MeshBase::numVertices </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00136">136</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2f21168e33bb1f2c42fe49c5b4c02773"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a>&amp; FW::MeshBase::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00195">195</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a263433360eee38001d47eb5cdd60ad45"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a>&amp; FW::MeshBase::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00194">194</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4a3b49265eb61e905d17c8a8a2f8ec85"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::MeshBase::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vidx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00192">192</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac6dd39e6464995ceeb0767edd2706af6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::MeshBase::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vidx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00193">193</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6d0159e2828925a7b4111056e126722d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::recomputeNormals </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00623">623</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a315df0ee207e1442fb22314402ffbab6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::resetVertices </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00213">213</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae34c0e9e178b2f6db72e9c8155f0db80"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::resizeSubmeshes </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00281">281</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2e61a74a45802b0904d04899aa870c0e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::resizeVertices </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00227">227</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7613b83adb8f0ee64f0f674d465e2fae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00105">105</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aefe312ef1f309ed452ddd3b011453005"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::setGLAttrib </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *&#160;</td>
+          <td class="paramname"><em>gl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>attrib</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>loc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00342">342</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6cdb99d82828d75b8284418da0a1c77d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::MeshBase::setIndices </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>submesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3i.html">Vec3i</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00158">158</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9a9792ec101691fa5616f89c28dec792"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::MeshBase::setIndices </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>submesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00159">159</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a80c8be86999b77c4500ff778905b6f51"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::MeshBase::setIndices </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>submesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_vec3i.html">Vec3i</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00160">160</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a893759c73db4f8b5674a48bdff002abf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::MeshBase::setVertex </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00145">145</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af2a70bd273bb62677afc7e15b970bc04"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::setVertexAttrib </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>attrib</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00262">262</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaff19bc663177b16651b9026fae02596"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::MeshBase::setVertices </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00146">146</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0d687054ef501ef2c7ac14b61971ea2b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::simplify </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>maxError</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00862">862</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a859e8cf96cbf8b598921a289102f9bd3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::MeshBase::vboAttribOffset </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>attrib</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00166">166</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2c55c96ee9aff28b7bef7b298976bb94"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::MeshBase::vboAttribStride </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>attrib</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00167">167</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7efa0ea1ad9269b7ac1f2227c2f5228e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::MeshBase::vboIndexOffset </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>submesh</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00168">168</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af5bf427cd3fc132ed6988d745a897403"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::MeshBase::vboIndexSize </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>submesh</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00169">169</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab2186af786ca6fc82f5507da3664b9fe"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::MeshBase::vertex </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00143">143</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa46913b1316d00a4b87449e52eeadf56"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::MeshBase::vertexStride </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00137">137</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaeb5069434f9240af71c610bec49cc8f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::MeshBase::xform </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;&#160;</td>
+          <td class="paramname"><em>mat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00181">181</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abbf8e0ec7182c0a7f7262dd16493b9b4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::xformNormals </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mat3f.html">Mat3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>normalize</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00579">579</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c908a3e80e0cdb99372355aa2772e76"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MeshBase::xformPositions </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;&#160;</td>
+          <td class="paramname"><em>mat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8cpp_source.html#l00561">561</a> of file <a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/3d/<a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a></li>
-<li>src/framework/3d/Mesh.cpp</li>
+<li>src/framework/3d/<a class="el" href="_mesh_8cpp_source.html">Mesh.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:24 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

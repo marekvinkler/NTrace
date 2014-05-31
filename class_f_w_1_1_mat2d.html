@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_mat2d.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -113,294 +114,509 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_mat2d.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p><code>#include &lt;<a class="el" href="_math_8hpp_source.html">Math.hpp</a>&gt;</code></p>
+
 <p>Inherits <a class="el" href="class_f_w_1_1_matrix_base.html">FW::MatrixBase&lt; F64, 2, Mat2d &gt;</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9a8d6e9ab5a699a738edfe108dc024d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a8d6e9ab5a699a738edfe108dc024d6"></a>
-FW_CUDA_FUNC&#160;</td><td class="memItemRight" valign="bottom"><b>Mat2d</b> (const <a class="el" href="class_f_w_1_1_mat2f.html">Mat2f</a> &amp;a)</td></tr>
+<tr class="memitem:aa470669ac5c601351f7227e0d9e5180a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mat2d.html#aa470669ac5c601351f7227e0d9e5180a">Mat2d</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:aa470669ac5c601351f7227e0d9e5180a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a8d6e9ab5a699a738edfe108dc024d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mat2d.html#a9a8d6e9ab5a699a738edfe108dc024d6">Mat2d</a> (const <a class="el" href="class_f_w_1_1_mat2f.html">Mat2f</a> &amp;a)</td></tr>
 <tr class="separator:a9a8d6e9ab5a699a738edfe108dc024d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03901a20466ec0bb8b2c79dc4a5ed8ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03901a20466ec0bb8b2c79dc4a5ed8ff"></a>
-FW_CUDA_FUNC&#160;</td><td class="memItemRight" valign="bottom"><b>Mat2d</b> (F64 a)</td></tr>
+<tr class="memitem:a03901a20466ec0bb8b2c79dc4a5ed8ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mat2d.html#a03901a20466ec0bb8b2c79dc4a5ed8ff">Mat2d</a> (<a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a> a)</td></tr>
 <tr class="separator:a03901a20466ec0bb8b2c79dc4a5ed8ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83d699ee02e25c431e0cd4e116e59a53"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a83d699ee02e25c431e0cd4e116e59a53"></a>
-FW_CUDA_FUNC const F64 *&#160;</td><td class="memItemRight" valign="bottom"><b>getPtr</b> (void) const </td></tr>
+<tr class="memitem:a83d699ee02e25c431e0cd4e116e59a53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> const <a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mat2d.html#a83d699ee02e25c431e0cd4e116e59a53">getPtr</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a83d699ee02e25c431e0cd4e116e59a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac385194d4cacfc3fd5b6343728923b1e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac385194d4cacfc3fd5b6343728923b1e"></a>
-FW_CUDA_FUNC F64 *&#160;</td><td class="memItemRight" valign="bottom"><b>getPtr</b> (void)</td></tr>
+<tr class="memitem:ac385194d4cacfc3fd5b6343728923b1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mat2d.html#ac385194d4cacfc3fd5b6343728923b1e">getPtr</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ac385194d4cacfc3fd5b6343728923b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7dd4f3777e0a82ff04ffd0999e62766"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae7dd4f3777e0a82ff04ffd0999e62766"></a>
-FW_CUDA_FUNC&#160;</td><td class="memItemRight" valign="bottom"><b>operator Mat2f</b> (void) const </td></tr>
+<tr class="memitem:ae7dd4f3777e0a82ff04ffd0999e62766"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mat2d.html#ae7dd4f3777e0a82ff04ffd0999e62766">operator Mat2f</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ae7dd4f3777e0a82ff04ffd0999e62766"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a233b0712fcc29f82ec1deff1435c5de2"><td class="memTemplParams" colspan="2"><a class="anchor" id="a233b0712fcc29f82ec1deff1435c5de2"></a>
-template&lt;class V &gt; </td></tr>
-<tr class="memitem:a233b0712fcc29f82ec1deff1435c5de2"><td class="memTemplItemLeft" align="right" valign="top">FW_CUDA_FUNC&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Mat2d</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; F64, 2, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a233b0712fcc29f82ec1deff1435c5de2"><td class="memTemplParams" colspan="2">template&lt;class V &gt; </td></tr>
+<tr class="memitem:a233b0712fcc29f82ec1deff1435c5de2"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mat2d.html#a233b0712fcc29f82ec1deff1435c5de2">Mat2d</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; <a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>, 2, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a233b0712fcc29f82ec1deff1435c5de2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5638122d38d87976cc919411152540a5"><td class="memTemplParams" colspan="2"><a class="anchor" id="a5638122d38d87976cc919411152540a5"></a>
-template&lt;class V &gt; </td></tr>
-<tr class="memitem:a5638122d38d87976cc919411152540a5"><td class="memTemplItemLeft" align="right" valign="top">FW_CUDA_FUNC <a class="el" href="class_f_w_1_1_mat2d.html">Mat2d</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; F64, 2, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a5638122d38d87976cc919411152540a5"><td class="memTemplParams" colspan="2">template&lt;class V &gt; </td></tr>
+<tr class="memitem:a5638122d38d87976cc919411152540a5"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_mat2d.html">Mat2d</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mat2d.html#a5638122d38d87976cc919411152540a5">operator=</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; <a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>, 2, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a5638122d38d87976cc919411152540a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_f_w_1_1_matrix_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_f_w_1_1_matrix_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_f_w_1_1_matrix_base.html">FW::MatrixBase&lt; F64, 2, Mat2d &gt;</a></td></tr>
-<tr class="memitem:a29c58c09cf7a1ab52484486237445858 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29c58c09cf7a1ab52484486237445858"></a>
-FW_CUDA_FUNC const T *&#160;</td><td class="memItemRight" valign="bottom"><b>getPtr</b> (void) const </td></tr>
+<tr class="memitem:a64665bcf981a00f3a1d6e611d44ad2d5 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a64665bcf981a00f3a1d6e611d44ad2d5">MatrixBase</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a64665bcf981a00f3a1d6e611d44ad2d5 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29c58c09cf7a1ab52484486237445858 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> const T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a29c58c09cf7a1ab52484486237445858">getPtr</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a29c58c09cf7a1ab52484486237445858 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add639ca6082d58dec23d08d2f168dc4e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add639ca6082d58dec23d08d2f168dc4e"></a>
-FW_CUDA_FUNC T *&#160;</td><td class="memItemRight" valign="bottom"><b>getPtr</b> (void)</td></tr>
+<tr class="memitem:add639ca6082d58dec23d08d2f168dc4e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#add639ca6082d58dec23d08d2f168dc4e">getPtr</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:add639ca6082d58dec23d08d2f168dc4e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11cc4d3a1ceb359cb98e6a8b32adc784 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a11cc4d3a1ceb359cb98e6a8b32adc784"></a>
-FW_CUDA_FUNC const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (int idx) const </td></tr>
+<tr class="memitem:a11cc4d3a1ceb359cb98e6a8b32adc784 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a11cc4d3a1ceb359cb98e6a8b32adc784">get</a> (int idx) const </td></tr>
 <tr class="separator:a11cc4d3a1ceb359cb98e6a8b32adc784 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a021bec201c15df3524ebd53b911311e4 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a021bec201c15df3524ebd53b911311e4"></a>
-FW_CUDA_FUNC T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (int idx)</td></tr>
+<tr class="memitem:a021bec201c15df3524ebd53b911311e4 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a021bec201c15df3524ebd53b911311e4">get</a> (int idx)</td></tr>
 <tr class="separator:a021bec201c15df3524ebd53b911311e4 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f08ba7bf32527c416dd86cf4581cd39 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f08ba7bf32527c416dd86cf4581cd39"></a>
-FW_CUDA_FUNC const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (int r, int c) const </td></tr>
+<tr class="memitem:a7f08ba7bf32527c416dd86cf4581cd39 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a7f08ba7bf32527c416dd86cf4581cd39">get</a> (int r, int c) const </td></tr>
 <tr class="separator:a7f08ba7bf32527c416dd86cf4581cd39 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab90a19d256b07974518cd9129a4c7dfe inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab90a19d256b07974518cd9129a4c7dfe"></a>
-FW_CUDA_FUNC T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (int r, int c)</td></tr>
+<tr class="memitem:ab90a19d256b07974518cd9129a4c7dfe inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#ab90a19d256b07974518cd9129a4c7dfe">get</a> (int r, int c)</td></tr>
 <tr class="separator:ab90a19d256b07974518cd9129a4c7dfe inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30e262d87f3b61f634d32c49bcb55a45 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30e262d87f3b61f634d32c49bcb55a45"></a>
-FW_CUDA_FUNC T&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (int idx, const T &amp;a)</td></tr>
+<tr class="memitem:a30e262d87f3b61f634d32c49bcb55a45 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a30e262d87f3b61f634d32c49bcb55a45">set</a> (int idx, const T &amp;a)</td></tr>
 <tr class="separator:a30e262d87f3b61f634d32c49bcb55a45 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a263cbcf8d4f6f647a6b901c43640e6aa inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a263cbcf8d4f6f647a6b901c43640e6aa"></a>
-FW_CUDA_FUNC T&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (int r, int c, const T &amp;a)</td></tr>
+<tr class="memitem:a263cbcf8d4f6f647a6b901c43640e6aa inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a263cbcf8d4f6f647a6b901c43640e6aa">set</a> (int r, int c, const T &amp;a)</td></tr>
 <tr class="separator:a263cbcf8d4f6f647a6b901c43640e6aa inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fe48151d92ea5ff900bb29c15617231 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fe48151d92ea5ff900bb29c15617231"></a>
-FW_CUDA_FUNC void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const T &amp;a)</td></tr>
+<tr class="memitem:a8fe48151d92ea5ff900bb29c15617231 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a8fe48151d92ea5ff900bb29c15617231">set</a> (const T &amp;a)</td></tr>
 <tr class="separator:a8fe48151d92ea5ff900bb29c15617231 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d472e37fee6d4ba9abcccc4014b4f1f inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d472e37fee6d4ba9abcccc4014b4f1f"></a>
-FW_CUDA_FUNC void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const T *ptr)</td></tr>
+<tr class="memitem:a1d472e37fee6d4ba9abcccc4014b4f1f inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a1d472e37fee6d4ba9abcccc4014b4f1f">set</a> (const T *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>)</td></tr>
 <tr class="separator:a1d472e37fee6d4ba9abcccc4014b4f1f inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73af762e907ce2d659ae2e45bcde6695 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73af762e907ce2d659ae2e45bcde6695"></a>
-FW_CUDA_FUNC void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a73af762e907ce2d659ae2e45bcde6695 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a73af762e907ce2d659ae2e45bcde6695">set</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a73af762e907ce2d659ae2e45bcde6695 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a232961140794abca5b3ca00cf30f03 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a232961140794abca5b3ca00cf30f03"></a>
-FW_CUDA_FUNC const <a class="el" href="class_f_w_1_1_vector.html">Vector</a>&lt; T, L &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>col</b> (int c) const </td></tr>
+<tr class="memitem:a0a232961140794abca5b3ca00cf30f03 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> const <a class="el" href="class_f_w_1_1_vector.html">Vector</a>&lt; T, L &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a0a232961140794abca5b3ca00cf30f03">col</a> (int c) const </td></tr>
 <tr class="separator:a0a232961140794abca5b3ca00cf30f03 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cc42653f72fb8228970b0855db4fb57 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6cc42653f72fb8228970b0855db4fb57"></a>
-FW_CUDA_FUNC <a class="el" href="class_f_w_1_1_vector.html">Vector</a>&lt; T, L &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>col</b> (int c)</td></tr>
+<tr class="memitem:a6cc42653f72fb8228970b0855db4fb57 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_vector.html">Vector</a>&lt; T, L &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a6cc42653f72fb8228970b0855db4fb57">col</a> (int c)</td></tr>
 <tr class="separator:a6cc42653f72fb8228970b0855db4fb57 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa65fc9683667238023adba45b4449558 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa65fc9683667238023adba45b4449558"></a>
-FW_CUDA_FUNC const <a class="el" href="class_f_w_1_1_vector.html">Vector</a>&lt; T, L &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCol</b> (int c) const </td></tr>
+<tr class="memitem:aa65fc9683667238023adba45b4449558 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> const <a class="el" href="class_f_w_1_1_vector.html">Vector</a>&lt; T, L &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#aa65fc9683667238023adba45b4449558">getCol</a> (int c) const </td></tr>
 <tr class="separator:aa65fc9683667238023adba45b4449558 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6a6941d7d847f593bda3cca259dd74b inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6a6941d7d847f593bda3cca259dd74b"></a>
-FW_CUDA_FUNC <a class="el" href="class_f_w_1_1_vector.html">Vector</a>&lt; T, L &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getRow</b> (int r) const </td></tr>
+<tr class="memitem:ac6a6941d7d847f593bda3cca259dd74b inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_vector.html">Vector</a>&lt; T, L &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#ac6a6941d7d847f593bda3cca259dd74b">getRow</a> (int r) const </td></tr>
 <tr class="separator:ac6a6941d7d847f593bda3cca259dd74b inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfec8534327ee119f399bae6da0cfd70 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abfec8534327ee119f399bae6da0cfd70"></a>
-FW_CUDA_FUNC void&#160;</td><td class="memItemRight" valign="bottom"><b>setZero</b> (void)</td></tr>
+<tr class="memitem:abfec8534327ee119f399bae6da0cfd70 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#abfec8534327ee119f399bae6da0cfd70">setZero</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:abfec8534327ee119f399bae6da0cfd70 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2ef29511bbc30beb73ab1a7dd3a8074 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2ef29511bbc30beb73ab1a7dd3a8074"></a>
-FW_CUDA_FUNC void&#160;</td><td class="memItemRight" valign="bottom"><b>setIdentity</b> (void)</td></tr>
+<tr class="memitem:ae2ef29511bbc30beb73ab1a7dd3a8074 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#ae2ef29511bbc30beb73ab1a7dd3a8074">setIdentity</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ae2ef29511bbc30beb73ab1a7dd3a8074 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a362c4b9930fbc8657762e9faa7f6ab50 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a362c4b9930fbc8657762e9faa7f6ab50"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (void) const </td></tr>
+<tr class="memitem:a362c4b9930fbc8657762e9faa7f6ab50 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a362c4b9930fbc8657762e9faa7f6ab50">print</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a362c4b9930fbc8657762e9faa7f6ab50 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27f77df0c3c0c4e2eda0d4bd770918f1 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27f77df0c3c0c4e2eda0d4bd770918f1"></a>
-FW_CUDA_FUNC T&#160;</td><td class="memItemRight" valign="bottom"><b>det</b> (void) const </td></tr>
+<tr class="memitem:a27f77df0c3c0c4e2eda0d4bd770918f1 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a27f77df0c3c0c4e2eda0d4bd770918f1">det</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a27f77df0c3c0c4e2eda0d4bd770918f1 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae520709ccc324c8fa245a3afe5953cb6 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae520709ccc324c8fa245a3afe5953cb6"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>transposed</b> (void) const </td></tr>
+<tr class="memitem:ae520709ccc324c8fa245a3afe5953cb6 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#ae520709ccc324c8fa245a3afe5953cb6">transposed</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ae520709ccc324c8fa245a3afe5953cb6 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95d37fec62823af88e1655b67dbbbeeb inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95d37fec62823af88e1655b67dbbbeeb"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>inverted</b> (void) const </td></tr>
+<tr class="memitem:a95d37fec62823af88e1655b67dbbbeeb inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a95d37fec62823af88e1655b67dbbbeeb">inverted</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a95d37fec62823af88e1655b67dbbbeeb inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a320516ad1499da9618b1bbcb8ca9f9d8 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a320516ad1499da9618b1bbcb8ca9f9d8"></a>
-FW_CUDA_FUNC void&#160;</td><td class="memItemRight" valign="bottom"><b>transpose</b> (void)</td></tr>
+<tr class="memitem:a320516ad1499da9618b1bbcb8ca9f9d8 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a320516ad1499da9618b1bbcb8ca9f9d8">transpose</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a320516ad1499da9618b1bbcb8ca9f9d8 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd836d4ffdf5dc97c26ff2232147f86e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd836d4ffdf5dc97c26ff2232147f86e"></a>
-FW_CUDA_FUNC void&#160;</td><td class="memItemRight" valign="bottom"><b>invert</b> (void)</td></tr>
+<tr class="memitem:abd836d4ffdf5dc97c26ff2232147f86e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#abd836d4ffdf5dc97c26ff2232147f86e">invert</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:abd836d4ffdf5dc97c26ff2232147f86e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab04bd721758843b12f1b54cda6386e98 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab04bd721758843b12f1b54cda6386e98"></a>
-FW_CUDA_FUNC const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (int r, int c) const </td></tr>
+<tr class="memitem:ab04bd721758843b12f1b54cda6386e98 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#ab04bd721758843b12f1b54cda6386e98">operator()</a> (int r, int c) const </td></tr>
 <tr class="separator:ab04bd721758843b12f1b54cda6386e98 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95449c58bfcba699462935ae03082f4e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95449c58bfcba699462935ae03082f4e"></a>
-FW_CUDA_FUNC T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (int r, int c)</td></tr>
+<tr class="memitem:a95449c58bfcba699462935ae03082f4e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a95449c58bfcba699462935ae03082f4e">operator()</a> (int r, int c)</td></tr>
 <tr class="separator:a95449c58bfcba699462935ae03082f4e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36e44518481715c1380a8d3073b586dd inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36e44518481715c1380a8d3073b586dd"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const T &amp;a)</td></tr>
+<tr class="memitem:a36e44518481715c1380a8d3073b586dd inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a36e44518481715c1380a8d3073b586dd">operator=</a> (const T &amp;a)</td></tr>
 <tr class="separator:a36e44518481715c1380a8d3073b586dd inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d23f4f0510756023b28d446b2e2a79e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d23f4f0510756023b28d446b2e2a79e"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a2d23f4f0510756023b28d446b2e2a79e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a2d23f4f0510756023b28d446b2e2a79e">operator=</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a2d23f4f0510756023b28d446b2e2a79e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d2208b92b336ee8766946861dba37d3 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d2208b92b336ee8766946861dba37d3"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const T &amp;a)</td></tr>
+<tr class="memitem:a5d2208b92b336ee8766946861dba37d3 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a5d2208b92b336ee8766946861dba37d3">operator+=</a> (const T &amp;a)</td></tr>
 <tr class="separator:a5d2208b92b336ee8766946861dba37d3 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecf9678e3621c5f7f28c3031c93b4fe0 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aecf9678e3621c5f7f28c3031c93b4fe0"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:aecf9678e3621c5f7f28c3031c93b4fe0 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#aecf9678e3621c5f7f28c3031c93b4fe0">operator+=</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:aecf9678e3621c5f7f28c3031c93b4fe0 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa99c899ccdb504fbafd4767591738876 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa99c899ccdb504fbafd4767591738876"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (const T &amp;a)</td></tr>
+<tr class="memitem:aa99c899ccdb504fbafd4767591738876 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#aa99c899ccdb504fbafd4767591738876">operator-=</a> (const T &amp;a)</td></tr>
 <tr class="separator:aa99c899ccdb504fbafd4767591738876 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a730e65c6130585835ed0fc45d07dc477 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a730e65c6130585835ed0fc45d07dc477"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a730e65c6130585835ed0fc45d07dc477 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a730e65c6130585835ed0fc45d07dc477">operator-=</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a730e65c6130585835ed0fc45d07dc477 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47672ddb4c19f880235d755dedd90165 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47672ddb4c19f880235d755dedd90165"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const T &amp;a)</td></tr>
+<tr class="memitem:a47672ddb4c19f880235d755dedd90165 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a47672ddb4c19f880235d755dedd90165">operator*=</a> (const T &amp;a)</td></tr>
 <tr class="separator:a47672ddb4c19f880235d755dedd90165 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47bb655d4b6f0242452f564dbce51ccd inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47bb655d4b6f0242452f564dbce51ccd"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a47bb655d4b6f0242452f564dbce51ccd inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a47bb655d4b6f0242452f564dbce51ccd">operator*=</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a47bb655d4b6f0242452f564dbce51ccd inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a366ea7db9172dccd37137e8f9e138b92 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a366ea7db9172dccd37137e8f9e138b92"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator/=</b> (const T &amp;a)</td></tr>
+<tr class="memitem:a366ea7db9172dccd37137e8f9e138b92 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a366ea7db9172dccd37137e8f9e138b92">operator/=</a> (const T &amp;a)</td></tr>
 <tr class="separator:a366ea7db9172dccd37137e8f9e138b92 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf34dd296f16a290a9f35144acec9949 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf34dd296f16a290a9f35144acec9949"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator/=</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:adf34dd296f16a290a9f35144acec9949 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#adf34dd296f16a290a9f35144acec9949">operator/=</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:adf34dd296f16a290a9f35144acec9949 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a591c7d5de117c968deb037992cd12aae inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a591c7d5de117c968deb037992cd12aae"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator%=</b> (const T &amp;a)</td></tr>
+<tr class="memitem:a591c7d5de117c968deb037992cd12aae inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a591c7d5de117c968deb037992cd12aae">operator%=</a> (const T &amp;a)</td></tr>
 <tr class="separator:a591c7d5de117c968deb037992cd12aae inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57f5e1df0709d1c354bcfabd88268bb9 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57f5e1df0709d1c354bcfabd88268bb9"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator%=</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a57f5e1df0709d1c354bcfabd88268bb9 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a57f5e1df0709d1c354bcfabd88268bb9">operator%=</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a57f5e1df0709d1c354bcfabd88268bb9 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2cf4d630e4a51b040c2a087c71e671e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2cf4d630e4a51b040c2a087c71e671e"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&amp;=</b> (const T &amp;a)</td></tr>
+<tr class="memitem:ab2cf4d630e4a51b040c2a087c71e671e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#ab2cf4d630e4a51b040c2a087c71e671e">operator&amp;=</a> (const T &amp;a)</td></tr>
 <tr class="separator:ab2cf4d630e4a51b040c2a087c71e671e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a947c3548af9c10319103f6addd13c9f9 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a947c3548af9c10319103f6addd13c9f9"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&amp;=</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a947c3548af9c10319103f6addd13c9f9 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a947c3548af9c10319103f6addd13c9f9">operator&amp;=</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a947c3548af9c10319103f6addd13c9f9 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a357b8d51034d7ee1c9df73c826e970 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a357b8d51034d7ee1c9df73c826e970"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator|=</b> (const T &amp;a)</td></tr>
+<tr class="memitem:a2a357b8d51034d7ee1c9df73c826e970 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a2a357b8d51034d7ee1c9df73c826e970">operator|=</a> (const T &amp;a)</td></tr>
 <tr class="separator:a2a357b8d51034d7ee1c9df73c826e970 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fba7be1799d629fc247689d023650cb inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4fba7be1799d629fc247689d023650cb"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator|=</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a4fba7be1799d629fc247689d023650cb inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a4fba7be1799d629fc247689d023650cb">operator|=</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a4fba7be1799d629fc247689d023650cb inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30f3876e1bf593ade6d31fa49b17b775 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30f3876e1bf593ade6d31fa49b17b775"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator^=</b> (const T &amp;a)</td></tr>
+<tr class="memitem:a30f3876e1bf593ade6d31fa49b17b775 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a30f3876e1bf593ade6d31fa49b17b775">operator^=</a> (const T &amp;a)</td></tr>
 <tr class="separator:a30f3876e1bf593ade6d31fa49b17b775 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a713d281e2ab927101a45421a17bdf48e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a713d281e2ab927101a45421a17bdf48e"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator^=</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a713d281e2ab927101a45421a17bdf48e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a713d281e2ab927101a45421a17bdf48e">operator^=</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a713d281e2ab927101a45421a17bdf48e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31a6b5ea71ee2700b28fb53ffb41e822 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31a6b5ea71ee2700b28fb53ffb41e822"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;=</b> (const T &amp;a)</td></tr>
+<tr class="memitem:a31a6b5ea71ee2700b28fb53ffb41e822 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a31a6b5ea71ee2700b28fb53ffb41e822">operator&lt;&lt;=</a> (const T &amp;a)</td></tr>
 <tr class="separator:a31a6b5ea71ee2700b28fb53ffb41e822 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66e0e3f2e3e7930c25691c58cde2b7de inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66e0e3f2e3e7930c25691c58cde2b7de"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;=</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a66e0e3f2e3e7930c25691c58cde2b7de inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a66e0e3f2e3e7930c25691c58cde2b7de">operator&lt;&lt;=</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a66e0e3f2e3e7930c25691c58cde2b7de inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9b99b02463c441527d97c3fd6d5aecf inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9b99b02463c441527d97c3fd6d5aecf"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;&gt;=</b> (const T &amp;a)</td></tr>
+<tr class="memitem:ac9b99b02463c441527d97c3fd6d5aecf inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#ac9b99b02463c441527d97c3fd6d5aecf">operator&gt;&gt;=</a> (const T &amp;a)</td></tr>
 <tr class="separator:ac9b99b02463c441527d97c3fd6d5aecf inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad85f5ce7a08c70b48355371ad65e04ee inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad85f5ce7a08c70b48355371ad65e04ee"></a>
-FW_CUDA_FUNC S &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;&gt;=</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:ad85f5ce7a08c70b48355371ad65e04ee inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#ad85f5ce7a08c70b48355371ad65e04ee">operator&gt;&gt;=</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:ad85f5ce7a08c70b48355371ad65e04ee inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8609c9845f4fdf90d3b021b17652f2ad inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8609c9845f4fdf90d3b021b17652f2ad"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (void) const </td></tr>
+<tr class="memitem:a8609c9845f4fdf90d3b021b17652f2ad inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a8609c9845f4fdf90d3b021b17652f2ad">operator+</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a8609c9845f4fdf90d3b021b17652f2ad inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90fd626523a651f0fd59a9d2da7aab35 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a90fd626523a651f0fd59a9d2da7aab35"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const T &amp;a) const </td></tr>
+<tr class="memitem:a90fd626523a651f0fd59a9d2da7aab35 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a90fd626523a651f0fd59a9d2da7aab35">operator+</a> (const T &amp;a) const </td></tr>
 <tr class="separator:a90fd626523a651f0fd59a9d2da7aab35 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae31c25704c573cce4ad8c21af2b79e2 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae31c25704c573cce4ad8c21af2b79e2"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:aae31c25704c573cce4ad8c21af2b79e2 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#aae31c25704c573cce4ad8c21af2b79e2">operator+</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:aae31c25704c573cce4ad8c21af2b79e2 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb91fee53beea5431965d4d1c07f2282 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb91fee53beea5431965d4d1c07f2282"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (void) const </td></tr>
+<tr class="memitem:aeb91fee53beea5431965d4d1c07f2282 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#aeb91fee53beea5431965d4d1c07f2282">operator-</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:aeb91fee53beea5431965d4d1c07f2282 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5bbc8d040f0db75812ca97f5b8009ae inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5bbc8d040f0db75812ca97f5b8009ae"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const T &amp;a) const </td></tr>
+<tr class="memitem:af5bbc8d040f0db75812ca97f5b8009ae inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#af5bbc8d040f0db75812ca97f5b8009ae">operator-</a> (const T &amp;a) const </td></tr>
 <tr class="separator:af5bbc8d040f0db75812ca97f5b8009ae inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac56a927f62872de829660a00034458ea inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac56a927f62872de829660a00034458ea"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:ac56a927f62872de829660a00034458ea inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#ac56a927f62872de829660a00034458ea">operator-</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:ac56a927f62872de829660a00034458ea inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1258de038a5c9ee117f1ca519dad2a0e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1258de038a5c9ee117f1ca519dad2a0e"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator~</b> (void) const </td></tr>
+<tr class="memitem:a1258de038a5c9ee117f1ca519dad2a0e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a1258de038a5c9ee117f1ca519dad2a0e">operator~</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a1258de038a5c9ee117f1ca519dad2a0e inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8dbd8b3ba17220e42c375830c8a58c6b inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8dbd8b3ba17220e42c375830c8a58c6b"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const T &amp;a) const </td></tr>
+<tr class="memitem:a8dbd8b3ba17220e42c375830c8a58c6b inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a8dbd8b3ba17220e42c375830c8a58c6b">operator*</a> (const T &amp;a) const </td></tr>
 <tr class="separator:a8dbd8b3ba17220e42c375830c8a58c6b inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fbdc25bbe415f4941a6fe4376b463ef inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4fbdc25bbe415f4941a6fe4376b463ef"></a>
-FW_CUDA_FUNC V&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:a4fbdc25bbe415f4941a6fe4376b463ef inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> V&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a4fbdc25bbe415f4941a6fe4376b463ef">operator*</a> (const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:a4fbdc25bbe415f4941a6fe4376b463ef inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa63348a11969b32b0dbdff166fa8c568 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa63348a11969b32b0dbdff166fa8c568"></a>
-FW_CUDA_FUNC V&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L-1, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:aa63348a11969b32b0dbdff166fa8c568 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> V&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#aa63348a11969b32b0dbdff166fa8c568">operator*</a> (const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L-1, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:aa63348a11969b32b0dbdff166fa8c568 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad02e1e4144a429e9d17f0d6c0f2e3a2 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aad02e1e4144a429e9d17f0d6c0f2e3a2"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:aad02e1e4144a429e9d17f0d6c0f2e3a2 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#aad02e1e4144a429e9d17f0d6c0f2e3a2">operator*</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:aad02e1e4144a429e9d17f0d6c0f2e3a2 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5715efc8d3a4d0a60ffaecd089521a3c inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5715efc8d3a4d0a60ffaecd089521a3c"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (const T &amp;a) const </td></tr>
+<tr class="memitem:a5715efc8d3a4d0a60ffaecd089521a3c inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a5715efc8d3a4d0a60ffaecd089521a3c">operator/</a> (const T &amp;a) const </td></tr>
 <tr class="separator:a5715efc8d3a4d0a60ffaecd089521a3c inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2073ea46f6a0da7b597a51e2461ec571 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2073ea46f6a0da7b597a51e2461ec571"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:a2073ea46f6a0da7b597a51e2461ec571 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a2073ea46f6a0da7b597a51e2461ec571">operator/</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:a2073ea46f6a0da7b597a51e2461ec571 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fcd79564496bfeb90f1dedf0abe2a38 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3fcd79564496bfeb90f1dedf0abe2a38"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator%</b> (const T &amp;a) const </td></tr>
+<tr class="memitem:a3fcd79564496bfeb90f1dedf0abe2a38 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a3fcd79564496bfeb90f1dedf0abe2a38">operator%</a> (const T &amp;a) const </td></tr>
 <tr class="separator:a3fcd79564496bfeb90f1dedf0abe2a38 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1cd804f018cf6530e7cd21caa89d8e9 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1cd804f018cf6530e7cd21caa89d8e9"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator%</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:ac1cd804f018cf6530e7cd21caa89d8e9 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#ac1cd804f018cf6530e7cd21caa89d8e9">operator%</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:ac1cd804f018cf6530e7cd21caa89d8e9 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e5445474345555996c37d8bd5851ace inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e5445474345555996c37d8bd5851ace"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator&amp;</b> (const T &amp;a) const </td></tr>
+<tr class="memitem:a7e5445474345555996c37d8bd5851ace inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a7e5445474345555996c37d8bd5851ace">operator&amp;</a> (const T &amp;a) const </td></tr>
 <tr class="separator:a7e5445474345555996c37d8bd5851ace inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b76eaae4537602a6a2e4f5571c97405 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b76eaae4537602a6a2e4f5571c97405"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator&amp;</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:a3b76eaae4537602a6a2e4f5571c97405 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a3b76eaae4537602a6a2e4f5571c97405">operator&amp;</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:a3b76eaae4537602a6a2e4f5571c97405 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88fd6de02227b997cf3650b4c71c5617 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88fd6de02227b997cf3650b4c71c5617"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator|</b> (const T &amp;a) const </td></tr>
+<tr class="memitem:a88fd6de02227b997cf3650b4c71c5617 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a88fd6de02227b997cf3650b4c71c5617">operator|</a> (const T &amp;a) const </td></tr>
 <tr class="separator:a88fd6de02227b997cf3650b4c71c5617 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a534f044a07d01a67a3da8bf453c47339 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a534f044a07d01a67a3da8bf453c47339"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator|</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:a534f044a07d01a67a3da8bf453c47339 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a534f044a07d01a67a3da8bf453c47339">operator|</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:a534f044a07d01a67a3da8bf453c47339 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83dae37fb34fa638aa612377d6f117c5 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a83dae37fb34fa638aa612377d6f117c5"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator^</b> (const T &amp;a) const </td></tr>
+<tr class="memitem:a83dae37fb34fa638aa612377d6f117c5 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a83dae37fb34fa638aa612377d6f117c5">operator^</a> (const T &amp;a) const </td></tr>
 <tr class="separator:a83dae37fb34fa638aa612377d6f117c5 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a702ed46b2aa677b052cd4fa37becfadd inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a702ed46b2aa677b052cd4fa37becfadd"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator^</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:a702ed46b2aa677b052cd4fa37becfadd inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a702ed46b2aa677b052cd4fa37becfadd">operator^</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:a702ed46b2aa677b052cd4fa37becfadd inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3106c558e703c3269b46c373867b46cf inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3106c558e703c3269b46c373867b46cf"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (const T &amp;a) const </td></tr>
+<tr class="memitem:a3106c558e703c3269b46c373867b46cf inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a3106c558e703c3269b46c373867b46cf">operator&lt;&lt;</a> (const T &amp;a) const </td></tr>
 <tr class="separator:a3106c558e703c3269b46c373867b46cf inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78612680646df3c83ac36172fa7fe01d inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78612680646df3c83ac36172fa7fe01d"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:a78612680646df3c83ac36172fa7fe01d inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a78612680646df3c83ac36172fa7fe01d">operator&lt;&lt;</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:a78612680646df3c83ac36172fa7fe01d inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11910f85026fe5f661d31c61693b66db inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a11910f85026fe5f661d31c61693b66db"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;&gt;</b> (const T &amp;a) const </td></tr>
+<tr class="memitem:a11910f85026fe5f661d31c61693b66db inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a11910f85026fe5f661d31c61693b66db">operator&gt;&gt;</a> (const T &amp;a) const </td></tr>
 <tr class="separator:a11910f85026fe5f661d31c61693b66db inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72d408344d22690d3a428c9cde68b38a inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72d408344d22690d3a428c9cde68b38a"></a>
-FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;&gt;</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:a72d408344d22690d3a428c9cde68b38a inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a72d408344d22690d3a428c9cde68b38a">operator&gt;&gt;</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:a72d408344d22690d3a428c9cde68b38a inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa91f1cebcbf560af2323ce0a70e5fd7 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa91f1cebcbf560af2323ce0a70e5fd7"></a>
-FW_CUDA_FUNC void&#160;</td><td class="memItemRight" valign="bottom"><b>setCol</b> (int c, const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:afa91f1cebcbf560af2323ce0a70e5fd7 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#afa91f1cebcbf560af2323ce0a70e5fd7">setCol</a> (int c, const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:afa91f1cebcbf560af2323ce0a70e5fd7 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22afa481e4a0135cb05cb211a16b8ad3 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22afa481e4a0135cb05cb211a16b8ad3"></a>
-FW_CUDA_FUNC void&#160;</td><td class="memItemRight" valign="bottom"><b>setRow</b> (int r, const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a22afa481e4a0135cb05cb211a16b8ad3 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a22afa481e4a0135cb05cb211a16b8ad3">setRow</a> (int r, const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a22afa481e4a0135cb05cb211a16b8ad3 inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addec91fd51e96d9c137f79979338443f inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="addec91fd51e96d9c137f79979338443f"></a>
-FW_CUDA_FUNC bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:addec91fd51e96d9c137f79979338443f inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#addec91fd51e96d9c137f79979338443f">operator==</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:addec91fd51e96d9c137f79979338443f inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fe1f2c5ff9bc05244296032dc672d2a inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9fe1f2c5ff9bc05244296032dc672d2a"></a>
-FW_CUDA_FUNC bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;v) const </td></tr>
+<tr class="memitem:a9fe1f2c5ff9bc05244296032dc672d2a inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a9fe1f2c5ff9bc05244296032dc672d2a">operator!=</a> (const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>) const </td></tr>
 <tr class="separator:a9fe1f2c5ff9bc05244296032dc672d2a inherit pub_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aa0c7c0fa6fe5df56532beded7e36887c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0c7c0fa6fe5df56532beded7e36887c"></a>
-static FW_CUDA_FUNC <a class="el" href="class_f_w_1_1_mat2d.html">Mat2d</a>&#160;</td><td class="memItemRight" valign="bottom"><b>fromPtr</b> (const F64 *ptr)</td></tr>
+<tr class="memitem:aa0c7c0fa6fe5df56532beded7e36887c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_mat2d.html">Mat2d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mat2d.html#aa0c7c0fa6fe5df56532beded7e36887c">fromPtr</a> (const <a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>)</td></tr>
 <tr class="separator:aa0c7c0fa6fe5df56532beded7e36887c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_class_f_w_1_1_matrix_base"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_f_w_1_1_matrix_base')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="class_f_w_1_1_matrix_base.html">FW::MatrixBase&lt; F64, 2, Mat2d &gt;</a></td></tr>
-<tr class="memitem:a73c49ec6ccdf3eeff9e728730da9ab6f inherit pub_static_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73c49ec6ccdf3eeff9e728730da9ab6f"></a>
-static FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>translate</b> (const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L-1, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a73c49ec6ccdf3eeff9e728730da9ab6f inherit pub_static_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a73c49ec6ccdf3eeff9e728730da9ab6f">translate</a> (const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L-1, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a73c49ec6ccdf3eeff9e728730da9ab6f inherit pub_static_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb9b41341acd0590d3fce5e8549594c4 inherit pub_static_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb9b41341acd0590d3fce5e8549594c4"></a>
-static FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>scale</b> (const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L-1, V &gt; &amp;v)</td></tr>
+<tr class="memitem:afb9b41341acd0590d3fce5e8549594c4 inherit pub_static_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#afb9b41341acd0590d3fce5e8549594c4">scale</a> (const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L-1, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:afb9b41341acd0590d3fce5e8549594c4 inherit pub_static_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47a9d344a079897024513dd459fae103 inherit pub_static_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47a9d344a079897024513dd459fae103"></a>
-static FW_CUDA_FUNC S&#160;</td><td class="memItemRight" valign="bottom"><b>scale</b> (const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L, V &gt; &amp;v)</td></tr>
+<tr class="memitem:a47a9d344a079897024513dd459fae103 inherit pub_static_methods_class_f_w_1_1_matrix_base"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_matrix_base.html#a47a9d344a079897024513dd459fae103">scale</a> (const <a class="el" href="class_f_w_1_1_vector_base.html">VectorBase</a>&lt; T, L, V &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a47a9d344a079897024513dd459fae103 inherit pub_static_methods_class_f_w_1_1_matrix_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ae014762b98a67484f15cd584691fea99"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae014762b98a67484f15cd584691fea99"></a>
-F64&#160;</td><td class="memItemRight" valign="bottom"><b>m00</b></td></tr>
+<tr class="memitem:ae014762b98a67484f15cd584691fea99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mat2d.html#ae014762b98a67484f15cd584691fea99">m00</a></td></tr>
 <tr class="separator:ae014762b98a67484f15cd584691fea99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe647b8d76b900b1e1269454c175ce07"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe647b8d76b900b1e1269454c175ce07"></a>
-F64&#160;</td><td class="memItemRight" valign="bottom"><b>m10</b></td></tr>
+<tr class="memitem:abe647b8d76b900b1e1269454c175ce07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mat2d.html#abe647b8d76b900b1e1269454c175ce07">m10</a></td></tr>
 <tr class="separator:abe647b8d76b900b1e1269454c175ce07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8885c07d9476f0b5da8c464c6c8e9bc5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8885c07d9476f0b5da8c464c6c8e9bc5"></a>
-F64&#160;</td><td class="memItemRight" valign="bottom"><b>m01</b></td></tr>
+<tr class="memitem:a8885c07d9476f0b5da8c464c6c8e9bc5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mat2d.html#a8885c07d9476f0b5da8c464c6c8e9bc5">m01</a></td></tr>
 <tr class="separator:a8885c07d9476f0b5da8c464c6c8e9bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b57d630b166b32e82c68b5164d8b915"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b57d630b166b32e82c68b5164d8b915"></a>
-F64&#160;</td><td class="memItemRight" valign="bottom"><b>m11</b></td></tr>
+<tr class="memitem:a4b57d630b166b32e82c68b5164d8b915"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_mat2d.html#a4b57d630b166b32e82c68b5164d8b915">m11</a></td></tr>
 <tr class="separator:a4b57d630b166b32e82c68b5164d8b915"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00704">704</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aa470669ac5c601351f7227e0d9e5180a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> FW::Mat2d::Mat2d </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00707">707</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9a8d6e9ab5a699a738edfe108dc024d6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> FW::Mat2d::Mat2d </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mat2f.html">Mat2f</a> &amp;&#160;</td>
+          <td class="paramname"><em>a</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00708">708</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a03901a20466ec0bb8b2c79dc4a5ed8ff"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> FW::Mat2d::Mat2d </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>&#160;</td>
+          <td class="paramname"><em>a</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00709">709</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a233b0712fcc29f82ec1deff1435c5de2"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class V &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> FW::Mat2d::Mat2d </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; <a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>, 2, V &gt; &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00717">717</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aa0c7c0fa6fe5df56532beded7e36887c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_mat2d.html">Mat2d</a> FW::Mat2d::fromPtr </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00713">713</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a83d699ee02e25c431e0cd4e116e59a53"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> const <a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>* FW::Mat2d::getPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00711">711</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac385194d4cacfc3fd5b6343728923b1e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>* FW::Mat2d::getPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00712">712</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae7dd4f3777e0a82ff04ffd0999e62766"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> FW::Mat2d::operator <a class="el" href="class_f_w_1_1_mat2f.html">Mat2f</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00715">715</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5638122d38d87976cc919411152540a5"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class V &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_mat2d.html">Mat2d</a>&amp; FW::Mat2d::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_matrix_base.html">MatrixBase</a>&lt; <a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>, 2, V &gt; &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00718">718</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ae014762b98a67484f15cd584691fea99"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a> FW::Mat2d::m00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00721">721</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8885c07d9476f0b5da8c464c6c8e9bc5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a> FW::Mat2d::m01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00722">722</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abe647b8d76b900b1e1269454c175ce07"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a> FW::Mat2d::m10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00721">721</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4b57d630b166b32e82c68b5164d8b915"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a> FW::Mat2d::m11</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_math_8hpp_source.html#l00722">722</a> of file <a class="el" href="_math_8hpp_source.html">Math.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/framework/base/<a class="el" href="_math_8hpp_source.html">Math.hpp</a></li>
 </ul>
@@ -409,8 +625,8 @@ F64&#160;</td><td class="memItemRight" valign="bottom"><b>m11</b></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_mat2d.html">Mat2d</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_mat2d.html">Mat2d</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

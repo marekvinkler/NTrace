@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -68,6 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -90,7 +92,7 @@ $(document).ready(function(){initNavTree('_acceleration_8hpp_source.html','');})
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -104,7 +106,7 @@ $(document).ready(function(){initNavTree('_acceleration_8hpp_source.html','');})
 <div class="title">Acceleration.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<a href="_acceleration_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">*  Copyright (c) 2013, Vilem Otte</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">*  All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">*</span></div>
@@ -134,8 +136,8 @@ $(document).ready(function(){initNavTree('_acceleration_8hpp_source.html','');})
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#ifndef __ACCELERATION__H__</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __ACCELERATION__H__</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;Scene.hpp&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;bvh\Platform.hpp&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_scene_8hpp.html">Scene.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_platform_8hpp.html">bvh\Platform.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">namespace </span>FW</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
@@ -144,34 +146,41 @@ $(document).ready(function(){initNavTree('_acceleration_8hpp_source.html','');})
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_f_w_1_1_acceleration_structure.html#a1f4fb8f84130116ac7d6fda7dc115307">   46</a></span>&#160;        <a class="code" href="class_f_w_1_1_scene.html">Scene</a>*              <a class="code" href="class_f_w_1_1_acceleration_structure.html#a1f4fb8f84130116ac7d6fda7dc115307">m_scene</a>;        <span class="comment">//&lt; Pointer to scene, on which acc. structure is built</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="class_f_w_1_1_platform.html">Platform</a>            m_platform;     <span class="comment">//&lt; Platform information</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_f_w_1_1_acceleration_structure.html#a023ce72c5fa5e257f07fa4137bee74eb">   47</a></span>&#160;        <a class="code" href="class_f_w_1_1_platform.html">Platform</a>            <a class="code" href="class_f_w_1_1_acceleration_structure.html#a023ce72c5fa5e257f07fa4137bee74eb">m_platform</a>;     <span class="comment">//&lt; Platform information</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="class_f_w_1_1_acceleration_structure.html">AccelerationStructure</a>(<a class="code" href="class_f_w_1_1_scene.html">Scene</a>* scene, <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_platform.html">Platform</a>&amp; platform);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="class_f_w_1_1_acceleration_structure.html#a27ff4aa8d64c612e3479268de481f071">AccelerationStructure</a>(<a class="code" href="class_f_w_1_1_scene.html">Scene</a>* scene, <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_platform.html">Platform</a>&amp; platform);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="class_f_w_1_1_acceleration_structure.html">AccelerationStructure</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="class_f_w_1_1_acceleration_structure.html#aee9c35bf3db51e5b105c0946a1da5cb7">~AccelerationStructure</a>();</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="class_f_w_1_1_scene.html">Scene</a>*              getScene(<span class="keywordtype">void</span>)<span class="keyword"> const                </span>{ <span class="keywordflow">return</span> <a class="code" href="class_f_w_1_1_acceleration_structure.html#a1f4fb8f84130116ac7d6fda7dc115307">m_scene</a>; }</div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="class_f_w_1_1_acceleration_structure.html#ab2936a274f2e4d69ee68f0d1233c5505">   82</a></span>&#160;        <a class="code" href="class_f_w_1_1_scene.html">Scene</a>*              <a class="code" href="class_f_w_1_1_acceleration_structure.html#ab2936a274f2e4d69ee68f0d1233c5505">getScene</a>(<span class="keywordtype">void</span>)<span class="keyword"> const                </span>{ <span class="keywordflow">return</span> <a class="code" href="class_f_w_1_1_acceleration_structure.html#a1f4fb8f84130116ac7d6fda7dc115307">m_scene</a>; }</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_platform.html">Platform</a>&amp;     getPlatform(<span class="keywordtype">void</span>)<span class="keyword"> const             </span>{ <span class="keywordflow">return</span> m_platform; }</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="class_f_w_1_1_acceleration_structure.html#a8a9bc79c63e7acfe35aaa760fca5a048">   90</a></span>&#160;        <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_platform.html">Platform</a>&amp;     <a class="code" href="class_f_w_1_1_acceleration_structure.html#a8a9bc79c63e7acfe35aaa760fca5a048">getPlatform</a>(<span class="keywordtype">void</span>)<span class="keyword"> const             </span>{ <span class="keywordflow">return</span> <a class="code" href="class_f_w_1_1_acceleration_structure.html#a023ce72c5fa5e257f07fa4137bee74eb">m_platform</a>; }</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    };</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="class_f_w_1_1_acceleration_structure_html"><div class="ttname"><a href="class_f_w_1_1_acceleration_structure.html">FW::AccelerationStructure</a></div><div class="ttdef"><b>Definition:</b> Acceleration.hpp:41</div></div>
-<div class="ttc" id="class_f_w_1_1_scene_html"><div class="ttname"><a href="class_f_w_1_1_scene.html">FW::Scene</a></div><div class="ttdef"><b>Definition:</b> Scene.hpp:46</div></div>
-<div class="ttc" id="class_f_w_1_1_platform_html"><div class="ttname"><a href="class_f_w_1_1_platform.html">FW::Platform</a></div><div class="ttdef"><b>Definition:</b> Platform.hpp:37</div></div>
-<div class="ttc" id="class_f_w_1_1_acceleration_structure_html_a1f4fb8f84130116ac7d6fda7dc115307"><div class="ttname"><a href="class_f_w_1_1_acceleration_structure.html#a1f4fb8f84130116ac7d6fda7dc115307">FW::AccelerationStructure::m_scene</a></div><div class="ttdeci">Scene * m_scene</div><div class="ttdef"><b>Definition:</b> Acceleration.hpp:46</div></div>
+<div class="ttc" id="class_f_w_1_1_acceleration_structure_html_a27ff4aa8d64c612e3479268de481f071"><div class="ttname"><a href="class_f_w_1_1_acceleration_structure.html#a27ff4aa8d64c612e3479268de481f071">FW::AccelerationStructure::AccelerationStructure</a></div><div class="ttdeci">AccelerationStructure(Scene *scene, const Platform &amp;platform)</div><div class="ttdef"><b>Definition:</b> <a href="_acceleration_8cpp_source.html#l00039">Acceleration.cpp:39</a></div></div>
+<div class="ttc" id="class_f_w_1_1_acceleration_structure_html"><div class="ttname"><a href="class_f_w_1_1_acceleration_structure.html">FW::AccelerationStructure</a></div><div class="ttdef"><b>Definition:</b> <a href="_acceleration_8hpp_source.html#l00041">Acceleration.hpp:41</a></div></div>
+<div class="ttc" id="class_f_w_1_1_acceleration_structure_html_ab2936a274f2e4d69ee68f0d1233c5505"><div class="ttname"><a href="class_f_w_1_1_acceleration_structure.html#ab2936a274f2e4d69ee68f0d1233c5505">FW::AccelerationStructure::getScene</a></div><div class="ttdeci">Scene * getScene(void) const </div><div class="ttdef"><b>Definition:</b> <a href="_acceleration_8hpp_source.html#l00082">Acceleration.hpp:82</a></div></div>
+<div class="ttc" id="class_f_w_1_1_acceleration_structure_html_a8a9bc79c63e7acfe35aaa760fca5a048"><div class="ttname"><a href="class_f_w_1_1_acceleration_structure.html#a8a9bc79c63e7acfe35aaa760fca5a048">FW::AccelerationStructure::getPlatform</a></div><div class="ttdeci">const Platform &amp; getPlatform(void) const </div><div class="ttdef"><b>Definition:</b> <a href="_acceleration_8hpp_source.html#l00090">Acceleration.hpp:90</a></div></div>
+<div class="ttc" id="_platform_8hpp_html"><div class="ttname"><a href="_platform_8hpp.html">Platform.hpp</a></div><div class="ttdoc">Declarations for platform settings. </div></div>
+<div class="ttc" id="class_f_w_1_1_scene_html"><div class="ttname"><a href="class_f_w_1_1_scene.html">FW::Scene</a></div><div class="ttdoc">Class holding 3d scene. </div><div class="ttdef"><b>Definition:</b> <a href="_scene_8hpp_source.html#l00044">Scene.hpp:44</a></div></div>
+<div class="ttc" id="class_f_w_1_1_platform_html"><div class="ttname"><a href="class_f_w_1_1_platform.html">FW::Platform</a></div><div class="ttdoc">Class holding various SAH and batch processing parameters. </div><div class="ttdef"><b>Definition:</b> <a href="_platform_8hpp_source.html#l00046">Platform.hpp:46</a></div></div>
+<div class="ttc" id="class_f_w_1_1_acceleration_structure_html_a1f4fb8f84130116ac7d6fda7dc115307"><div class="ttname"><a href="class_f_w_1_1_acceleration_structure.html#a1f4fb8f84130116ac7d6fda7dc115307">FW::AccelerationStructure::m_scene</a></div><div class="ttdeci">Scene * m_scene</div><div class="ttdef"><b>Definition:</b> <a href="_acceleration_8hpp_source.html#l00046">Acceleration.hpp:46</a></div></div>
+<div class="ttc" id="class_f_w_1_1_acceleration_structure_html_a023ce72c5fa5e257f07fa4137bee74eb"><div class="ttname"><a href="class_f_w_1_1_acceleration_structure.html#a023ce72c5fa5e257f07fa4137bee74eb">FW::AccelerationStructure::m_platform</a></div><div class="ttdeci">Platform m_platform</div><div class="ttdef"><b>Definition:</b> <a href="_acceleration_8hpp_source.html#l00047">Acceleration.hpp:47</a></div></div>
+<div class="ttc" id="class_f_w_1_1_acceleration_structure_html_aee9c35bf3db51e5b105c0946a1da5cb7"><div class="ttname"><a href="class_f_w_1_1_acceleration_structure.html#aee9c35bf3db51e5b105c0946a1da5cb7">FW::AccelerationStructure::~AccelerationStructure</a></div><div class="ttdeci">virtual ~AccelerationStructure()</div><div class="ttdef"><b>Definition:</b> <a href="_acceleration_8cpp_source.html#l00050">Acceleration.cpp:50</a></div></div>
+<div class="ttc" id="_scene_8hpp_html"><div class="ttname"><a href="_scene_8hpp.html">Scene.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_efcdd37e5809801e389fc22b12e0cfd9.html">rt</a></li><li class="navelem"><a class="el" href="dir_82ecc92d83e5ebd23a961f9739871ba1.html">acceleration</a></li><li class="navelem"><b>Acceleration.hpp</b></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_efcdd37e5809801e389fc22b12e0cfd9.html">rt</a></li><li class="navelem"><a class="el" href="dir_82ecc92d83e5ebd23a961f9739871ba1.html">acceleration</a></li><li class="navelem"><a class="el" href="_acceleration_8hpp.html">Acceleration.hpp</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:18 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_k_d_t_inner_node.html','
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -121,47 +122,45 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_k_d_t_inner_node.html','
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8b588c99720d41b4f2b49d7a65bb7ac4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#a8b588c99720d41b4f2b49d7a65bb7ac4">KDTInnerNode</a> (F32 split, S32 axis, <a class="el" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a> *child0, <a class="el" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a> *child1)</td></tr>
+<tr class="memitem:a8b588c99720d41b4f2b49d7a65bb7ac4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#a8b588c99720d41b4f2b49d7a65bb7ac4">KDTInnerNode</a> (<a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> split, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> axis, <a class="el" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a> *child0, <a class="el" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a> *child1)</td></tr>
 <tr class="memdesc:a8b588c99720d41b4f2b49d7a65bb7ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a8b588c99720d41b4f2b49d7a65bb7ac4">More...</a><br/></td></tr>
 <tr class="separator:a8b588c99720d41b4f2b49d7a65bb7ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a807bb1e896941513a317d7b4a17d41f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#a807bb1e896941513a317d7b4a17d41f0">isLeaf</a> () const </td></tr>
 <tr class="memdesc:a807bb1e896941513a317d7b4a17d41f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the node is a leaf node.  <a href="#a807bb1e896941513a317d7b4a17d41f0">More...</a><br/></td></tr>
 <tr class="separator:a807bb1e896941513a317d7b4a17d41f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea2b75966e9c54df7e5b2949efa6820b"><td class="memItemLeft" align="right" valign="top">S32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#aea2b75966e9c54df7e5b2949efa6820b">getNumChildNodes</a> () const </td></tr>
+<tr class="memitem:aea2b75966e9c54df7e5b2949efa6820b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#aea2b75966e9c54df7e5b2949efa6820b">getNumChildNodes</a> () const </td></tr>
 <tr class="memdesc:aea2b75966e9c54df7e5b2949efa6820b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns number of the node's child nodes.  <a href="#aea2b75966e9c54df7e5b2949efa6820b">More...</a><br/></td></tr>
 <tr class="separator:aea2b75966e9c54df7e5b2949efa6820b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a562e4397dc0a451958b05574de54f9e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#a562e4397dc0a451958b05574de54f9e4">getChildNode</a> (S32 i) const </td></tr>
+<tr class="memitem:a562e4397dc0a451958b05574de54f9e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#a562e4397dc0a451958b05574de54f9e4">getChildNode</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> i) const </td></tr>
 <tr class="memdesc:a562e4397dc0a451958b05574de54f9e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns node's child node (left or right).  <a href="#a562e4397dc0a451958b05574de54f9e4">More...</a><br/></td></tr>
 <tr class="separator:a562e4397dc0a451958b05574de54f9e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_f_w_1_1_k_d_tree_node"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_f_w_1_1_k_d_tree_node')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_f_w_1_1_k_d_tree_node.html">FW::KDTreeNode</a></td></tr>
-<tr class="memitem:ada2b8b97f032be2a09c74ed42ec7366e inherit pub_methods_class_f_w_1_1_k_d_tree_node"><td class="memItemLeft" align="right" valign="top">virtual S32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_tree_node.html#ada2b8b97f032be2a09c74ed42ec7366e">getNumTriangles</a> () const </td></tr>
+<tr class="memitem:ada2b8b97f032be2a09c74ed42ec7366e inherit pub_methods_class_f_w_1_1_k_d_tree_node"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_tree_node.html#ada2b8b97f032be2a09c74ed42ec7366e">getNumTriangles</a> () const </td></tr>
 <tr class="memdesc:ada2b8b97f032be2a09c74ed42ec7366e inherit pub_methods_class_f_w_1_1_k_d_tree_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns number of triangles this node references. Only leaf nodes will return non-zero values.  <a href="#ada2b8b97f032be2a09c74ed42ec7366e">More...</a><br/></td></tr>
 <tr class="separator:ada2b8b97f032be2a09c74ed42ec7366e inherit pub_methods_class_f_w_1_1_k_d_tree_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18cf6cb0974f70444eb56deccbc9d1e9 inherit pub_methods_class_f_w_1_1_k_d_tree_node"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18cf6cb0974f70444eb56deccbc9d1e9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_tree_node.html#a18cf6cb0974f70444eb56deccbc9d1e9">deleteSubtree</a> ()</td></tr>
-<tr class="memdesc:a18cf6cb0974f70444eb56deccbc9d1e9 inherit pub_methods_class_f_w_1_1_k_d_tree_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes node's subtree. <br/></td></tr>
+<tr class="memitem:a18cf6cb0974f70444eb56deccbc9d1e9 inherit pub_methods_class_f_w_1_1_k_d_tree_node"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_tree_node.html#a18cf6cb0974f70444eb56deccbc9d1e9">deleteSubtree</a> ()</td></tr>
+<tr class="memdesc:a18cf6cb0974f70444eb56deccbc9d1e9 inherit pub_methods_class_f_w_1_1_k_d_tree_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes node's subtree.  <a href="#a18cf6cb0974f70444eb56deccbc9d1e9">More...</a><br/></td></tr>
 <tr class="separator:a18cf6cb0974f70444eb56deccbc9d1e9 inherit pub_methods_class_f_w_1_1_k_d_tree_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36cab718fbc8128c981f15f39d176aad inherit pub_methods_class_f_w_1_1_k_d_tree_node"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_tree_node.html#a36cab718fbc8128c981f15f39d176aad">getSubtreeSize</a> (KDTREE_STAT stat=KDTREE_STAT_NODE_COUNT) const </td></tr>
+<tr class="memitem:a36cab718fbc8128c981f15f39d176aad inherit pub_methods_class_f_w_1_1_k_d_tree_node"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_tree_node.html#a36cab718fbc8128c981f15f39d176aad">getSubtreeSize</a> (<a class="el" href="namespace_f_w.html#ae512ee79dc68d59df2d68fb8f2b13a25">KDTREE_STAT</a> stat=<a class="el" href="namespace_f_w.html#ae512ee79dc68d59df2d68fb8f2b13a25a338dce02d350546a5bdb5a94154f445c">KDTREE_STAT_NODE_COUNT</a>) const </td></tr>
 <tr class="memdesc:a36cab718fbc8128c981f15f39d176aad inherit pub_methods_class_f_w_1_1_k_d_tree_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes given statistics about node's subtree.  <a href="#a36cab718fbc8128c981f15f39d176aad">More...</a><br/></td></tr>
 <tr class="separator:a36cab718fbc8128c981f15f39d176aad inherit pub_methods_class_f_w_1_1_k_d_tree_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a78e833d7bdad83de0297e4b9e2f311c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78e833d7bdad83de0297e4b9e2f311c3"></a>
-<a class="el" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#a78e833d7bdad83de0297e4b9e2f311c3">m_children</a> [2]</td></tr>
-<tr class="memdesc:a78e833d7bdad83de0297e4b9e2f311c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Node's child nodes. <br/></td></tr>
+<tr class="memitem:a78e833d7bdad83de0297e4b9e2f311c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#a78e833d7bdad83de0297e4b9e2f311c3">m_children</a> [2]</td></tr>
+<tr class="memdesc:a78e833d7bdad83de0297e4b9e2f311c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Node's child nodes.  <a href="#a78e833d7bdad83de0297e4b9e2f311c3">More...</a><br/></td></tr>
 <tr class="separator:a78e833d7bdad83de0297e4b9e2f311c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55bedb4fdf8213190461ca244c83864d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55bedb4fdf8213190461ca244c83864d"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#a55bedb4fdf8213190461ca244c83864d">m_pos</a></td></tr>
-<tr class="memdesc:a55bedb4fdf8213190461ca244c83864d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split position. <br/></td></tr>
+<tr class="memitem:a55bedb4fdf8213190461ca244c83864d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#a55bedb4fdf8213190461ca244c83864d">m_pos</a></td></tr>
+<tr class="memdesc:a55bedb4fdf8213190461ca244c83864d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split position.  <a href="#a55bedb4fdf8213190461ca244c83864d">More...</a><br/></td></tr>
 <tr class="separator:a55bedb4fdf8213190461ca244c83864d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5b037722df727b79edd0dd59e0ead5a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5b037722df727b79edd0dd59e0ead5a"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#af5b037722df727b79edd0dd59e0ead5a">m_axis</a></td></tr>
-<tr class="memdesc:af5b037722df727b79edd0dd59e0ead5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split dimension. <br/></td></tr>
+<tr class="memitem:af5b037722df727b79edd0dd59e0ead5a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html#af5b037722df727b79edd0dd59e0ead5a">m_axis</a></td></tr>
+<tr class="memdesc:af5b037722df727b79edd0dd59e0ead5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split dimension.  <a href="#af5b037722df727b79edd0dd59e0ead5a">More...</a><br/></td></tr>
 <tr class="separator:af5b037722df727b79edd0dd59e0ead5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>K-d tree's inner node class. </p>
+
+<p>Definition at line <a class="el" href="_k_d_tree_node_8hpp_source.html#l00094">94</a> of file <a class="el" href="_k_d_tree_node_8hpp_source.html">KDTreeNode.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a8b588c99720d41b4f2b49d7a65bb7ac4"></a>
 <div class="memitem">
@@ -173,13 +172,13 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         <tr>
           <td class="memname">FW::KDTInnerNode::KDTInnerNode </td>
           <td>(</td>
-          <td class="paramtype">F32&#160;</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
           <td class="paramname"><em>split</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">S32&#160;</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
           <td class="paramname"><em>axis</em>, </td>
         </tr>
         <tr>
@@ -218,6 +217,8 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="_k_d_tree_node_8hpp_source.html#l00104">104</a> of file <a class="el" href="_k_d_tree_node_8hpp_source.html">KDTreeNode.hpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -231,7 +232,7 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
         <tr>
           <td class="memname"><a class="el" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a>* FW::KDTInnerNode::getChildNode </td>
           <td>(</td>
-          <td class="paramtype">S32&#160;</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
           <td class="paramname"><em>i</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -254,6 +255,8 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 
 <p>Implements <a class="el" href="class_f_w_1_1_k_d_tree_node.html#a510a35d7f08e98cc36df21a09096beab">FW::KDTreeNode</a>.</p>
 
+<p>Definition at line <a class="el" href="_k_d_tree_node_8hpp_source.html#l00124">124</a> of file <a class="el" href="_k_d_tree_node_8hpp_source.html">KDTreeNode.hpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="aea2b75966e9c54df7e5b2949efa6820b"></a>
@@ -264,7 +267,7 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">S32 FW::KDTInnerNode::getNumChildNodes </td>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::KDTInnerNode::getNumChildNodes </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -281,6 +284,8 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 <dl class="section return"><dt>Returns</dt><dd>Always 2. </dd></dl>
 
 <p>Implements <a class="el" href="class_f_w_1_1_k_d_tree_node.html#a623a9cb0fd1826ef790aa405edf747dc">FW::KDTreeNode</a>.</p>
+
+<p>Definition at line <a class="el" href="_k_d_tree_node_8hpp_source.html#l00117">117</a> of file <a class="el" href="_k_d_tree_node_8hpp_source.html">KDTreeNode.hpp</a>.</p>
 
 </div>
 </div>
@@ -310,6 +315,57 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 
 <p>Implements <a class="el" href="class_f_w_1_1_k_d_tree_node.html#a05b4cc88dfda3519a8fdad070bf3828d">FW::KDTreeNode</a>.</p>
 
+<p>Definition at line <a class="el" href="_k_d_tree_node_8hpp_source.html#l00111">111</a> of file <a class="el" href="_k_d_tree_node_8hpp_source.html">KDTreeNode.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="af5b037722df727b79edd0dd59e0ead5a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::KDTInnerNode::m_axis</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Split dimension. </p>
+
+<p>Definition at line <a class="el" href="_k_d_tree_node_8hpp_source.html#l00128">128</a> of file <a class="el" href="_k_d_tree_node_8hpp_source.html">KDTreeNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a78e833d7bdad83de0297e4b9e2f311c3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a>* FW::KDTInnerNode::m_children[2]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Node's child nodes. </p>
+
+<p>Definition at line <a class="el" href="_k_d_tree_node_8hpp_source.html#l00126">126</a> of file <a class="el" href="_k_d_tree_node_8hpp_source.html">KDTreeNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a55bedb4fdf8213190461ca244c83864d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::KDTInnerNode::m_pos</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Split position. </p>
+
+<p>Definition at line <a class="el" href="_k_d_tree_node_8hpp_source.html#l00127">127</a> of file <a class="el" href="_k_d_tree_node_8hpp_source.html">KDTreeNode.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
@@ -320,8 +376,8 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html">KDTInnerNode</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_k_d_t_inner_node.html">KDTInnerNode</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

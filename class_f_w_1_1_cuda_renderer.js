@@ -1,6 +1,6 @@
 var class_f_w_1_1_cuda_renderer =
 [
-    [ "CudaRenderer", "class_f_w_1_1_cuda_renderer.html#ac3d61c6b03826a67bd76cb3ba13211b3", null ],
+    [ "CudaRenderer", "class_f_w_1_1_cuda_renderer.html#ad7b68baac49fcab5db1a1d810a7c3bf7", null ],
     [ "~CudaRenderer", "class_f_w_1_1_cuda_renderer.html#a27ba7e9d6c413d8ac3771fd069e6c296", null ],
     [ "getLayout", "class_f_w_1_1_cuda_renderer.html#aa7eeab32f1a3f2ab7574de0c6c31ff20", null ],
     [ "getTotalNumRays", "class_f_w_1_1_cuda_renderer.html#a4a135357ad5ce98becaf1eaf8f486d4a", null ],

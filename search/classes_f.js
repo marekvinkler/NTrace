@@ -12,8 +12,8 @@ var searchData=
   ['raystats',['RayStats',['../struct_f_w_1_1_ray_stats.html',1,'FW']]],
   ['raystruct',['RayStruct',['../struct_ray_struct.html',1,'']]],
   ['reconstructinput',['ReconstructInput',['../struct_f_w_1_1_reconstruct_input.html',1,'FW']]],
-  ['reference',['Reference',['../struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_reference.html',1,'FW::SAHBVHBuilder']]],
   ['reference',['Reference',['../struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html',1,'FW::SplitBVHBuilder']]],
+  ['reference',['Reference',['../struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_reference.html',1,'FW::SAHBVHBuilder']]],
   ['renderer',['Renderer',['../class_f_w_1_1_renderer.html',1,'FW']]],
   ['reorderraysinput',['ReorderRaysInput',['../struct_f_w_1_1_reorder_rays_input.html',1,'FW']]]
 ];

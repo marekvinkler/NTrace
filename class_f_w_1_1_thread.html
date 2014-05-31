@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_thread.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -113,80 +114,497 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_thread.html','');});
 <div class="title">FW::Thread Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_thread_8hpp_source.html">Thread.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a4917411f0580a893a56888a23d4a411f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Priority_Min</b> = -15, 
-<b>Priority_Normal</b> = 0, 
-<b>Priority_Max</b> = 15
+<tr class="memitem:a4917411f0580a893a56888a23d4a411f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="class_f_w_1_1_thread.html#a4917411f0580a893a56888a23d4a411fa400eefe4ad4649bee38955d039ffb21b">Priority_Min</a> = -15, 
+<a class="el" href="class_f_w_1_1_thread.html#a4917411f0580a893a56888a23d4a411fa775cb1d380701a181cbe96799aa176f5">Priority_Normal</a> = 0, 
+<a class="el" href="class_f_w_1_1_thread.html#a4917411f0580a893a56888a23d4a411fa2c10ec861c5036fcc181a36c075c45ce">Priority_Max</a> = 15
  }</td></tr>
 <tr class="separator:a4917411f0580a893a56888a23d4a411f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9a3359e9bb57f44a97caa4d3b557a0c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9a3359e9bb57f44a97caa4d3b557a0c"></a>
-typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>ThreadFunc</b> )(void *param)</td></tr>
+<tr class="memitem:ac9a3359e9bb57f44a97caa4d3b557a0c"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#ac9a3359e9bb57f44a97caa4d3b557a0c">ThreadFunc</a> )(<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8inl.html#aa2574cdb3ada8679aa6e4e10fa42d562">param</a>)</td></tr>
 <tr class="separator:ac9a3359e9bb57f44a97caa4d3b557a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81f1224b31a383b7f104752665eb58b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81f1224b31a383b7f104752665eb58b6"></a>
-typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>DeinitFunc</b> )(void *data)</td></tr>
+<tr class="memitem:a81f1224b31a383b7f104752665eb58b6"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#a81f1224b31a383b7f104752665eb58b6">DeinitFunc</a> )(<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>)</td></tr>
 <tr class="separator:a81f1224b31a383b7f104752665eb58b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9b7cfd163fa0a30076ae3efb64104a67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b7cfd163fa0a30076ae3efb64104a67"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> (ThreadFunc func, void *param)</td></tr>
+<tr class="memitem:a3ad909f591333628c22cb5ba10957923"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#a3ad909f591333628c22cb5ba10957923">Thread</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a3ad909f591333628c22cb5ba10957923"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1e25588ebe47a2a6d79ef8c686a992b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#af1e25588ebe47a2a6d79ef8c686a992b">~Thread</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:af1e25588ebe47a2a6d79ef8c686a992b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b7cfd163fa0a30076ae3efb64104a67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#a9b7cfd163fa0a30076ae3efb64104a67">start</a> (<a class="el" href="class_f_w_1_1_thread.html#ac9a3359e9bb57f44a97caa4d3b557a0c">ThreadFunc</a> <a class="el" href="_d_l_l_imports_8inl.html#a7c64747839948b16b40c959981c3a8e4">func</a>, <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8inl.html#aa2574cdb3ada8679aa6e4e10fa42d562">param</a>)</td></tr>
 <tr class="separator:a9b7cfd163fa0a30076ae3efb64104a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00386e0f2c45b2f6bc3360be7a447c0a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00386e0f2c45b2f6bc3360be7a447c0a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getPriority</b> (void)</td></tr>
+<tr class="memitem:a00386e0f2c45b2f6bc3360be7a447c0a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#a00386e0f2c45b2f6bc3360be7a447c0a">getPriority</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a00386e0f2c45b2f6bc3360be7a447c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f31cc93f4bebd06345d40cc66f08ecf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f31cc93f4bebd06345d40cc66f08ecf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPriority</b> (int priority)</td></tr>
+<tr class="memitem:a3f31cc93f4bebd06345d40cc66f08ecf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#a3f31cc93f4bebd06345d40cc66f08ecf">setPriority</a> (int priority)</td></tr>
 <tr class="separator:a3f31cc93f4bebd06345d40cc66f08ecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecf30929ea96a2093a2a3b86176f2ce2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aecf30929ea96a2093a2a3b86176f2ce2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAlive</b> (void)</td></tr>
+<tr class="memitem:aecf30929ea96a2093a2a3b86176f2ce2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#aecf30929ea96a2093a2a3b86176f2ce2">isAlive</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:aecf30929ea96a2093a2a3b86176f2ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab982afa8abe62f1883fbd199c6f6ac2c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab982afa8abe62f1883fbd199c6f6ac2c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>join</b> (void)</td></tr>
+<tr class="memitem:ab982afa8abe62f1883fbd199c6f6ac2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#ab982afa8abe62f1883fbd199c6f6ac2c">join</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ab982afa8abe62f1883fbd199c6f6ac2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a700e6114fabc13b039637368ab24a6da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a700e6114fabc13b039637368ab24a6da"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>getUserData</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id)</td></tr>
+<tr class="memitem:a700e6114fabc13b039637368ab24a6da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#a700e6114fabc13b039637368ab24a6da">getUserData</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id)</td></tr>
 <tr class="separator:a700e6114fabc13b039637368ab24a6da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79a1d8624f8db66d79e0cbf767c31c85"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79a1d8624f8db66d79e0cbf767c31c85"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setUserData</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id, void *data, DeinitFunc deinitFunc=NULL)</td></tr>
+<tr class="memitem:a79a1d8624f8db66d79e0cbf767c31c85"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#a79a1d8624f8db66d79e0cbf767c31c85">setUserData</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id, <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>, <a class="el" href="class_f_w_1_1_thread.html#a81f1224b31a383b7f104752665eb58b6">DeinitFunc</a> deinitFunc=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</td></tr>
 <tr class="separator:a79a1d8624f8db66d79e0cbf767c31c85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a96f6a29ecedc2ffdf0c7146bd7e079e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96f6a29ecedc2ffdf0c7146bd7e079e2"></a>
-static <a class="el" href="class_f_w_1_1_thread.html">Thread</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrent</b> (void)</td></tr>
+<tr class="memitem:a96f6a29ecedc2ffdf0c7146bd7e079e2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_f_w_1_1_thread.html">Thread</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#a96f6a29ecedc2ffdf0c7146bd7e079e2">getCurrent</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a96f6a29ecedc2ffdf0c7146bd7e079e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a0c4940830c9cf87c6c245ce8798cc0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a0c4940830c9cf87c6c245ce8798cc0"></a>
-static <a class="el" href="class_f_w_1_1_thread.html">Thread</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getMain</b> (void)</td></tr>
+<tr class="memitem:a1a0c4940830c9cf87c6c245ce8798cc0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_f_w_1_1_thread.html">Thread</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#a1a0c4940830c9cf87c6c245ce8798cc0">getMain</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a1a0c4940830c9cf87c6c245ce8798cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d86f696e804ac2a32613f67e7406ab3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d86f696e804ac2a32613f67e7406ab3"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMain</b> (void)</td></tr>
+<tr class="memitem:a9d86f696e804ac2a32613f67e7406ab3"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#a9d86f696e804ac2a32613f67e7406ab3">isMain</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a9d86f696e804ac2a32613f67e7406ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a673d37b5dc3806047e8dcb521c4044e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a673d37b5dc3806047e8dcb521c4044e8"></a>
-static U32&#160;</td><td class="memItemRight" valign="bottom"><b>getID</b> (void)</td></tr>
+<tr class="memitem:a673d37b5dc3806047e8dcb521c4044e8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#a673d37b5dc3806047e8dcb521c4044e8">getID</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a673d37b5dc3806047e8dcb521c4044e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb5825157d855df967fcd8f730adae5f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb5825157d855df967fcd8f730adae5f"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>sleep</b> (int millis)</td></tr>
+<tr class="memitem:afb5825157d855df967fcd8f730adae5f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#afb5825157d855df967fcd8f730adae5f">sleep</a> (int millis)</td></tr>
 <tr class="separator:afb5825157d855df967fcd8f730adae5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40ddc126a00416db57b7229e2517e700"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40ddc126a00416db57b7229e2517e700"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>yield</b> (void)</td></tr>
+<tr class="memitem:a40ddc126a00416db57b7229e2517e700"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#a40ddc126a00416db57b7229e2517e700">yield</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a40ddc126a00416db57b7229e2517e700"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34053bb62756739c0373347a656a9ce1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34053bb62756739c0373347a656a9ce1"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>suspendAll</b> (void)</td></tr>
+<tr class="memitem:a34053bb62756739c0373347a656a9ce1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_thread.html#a34053bb62756739c0373347a656a9ce1">suspendAll</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a34053bb62756739c0373347a656a9ce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_thread_8hpp_source.html#l00109">109</a> of file <a class="el" href="_thread_8hpp_source.html">Thread.hpp</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a class="anchor" id="a81f1224b31a383b7f104752665eb58b6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>(* FW::Thread::DeinitFunc)(<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8hpp_source.html#l00113">113</a> of file <a class="el" href="_thread_8hpp_source.html">Thread.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac9a3359e9bb57f44a97caa4d3b557a0c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>(* FW::Thread::ThreadFunc)(<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8inl.html#aa2574cdb3ada8679aa6e4e10fa42d562">param</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8hpp_source.html#l00112">112</a> of file <a class="el" href="_thread_8hpp_source.html">Thread.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a4917411f0580a893a56888a23d4a411f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a4917411f0580a893a56888a23d4a411fa400eefe4ad4649bee38955d039ffb21b"></a>Priority_Min</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a4917411f0580a893a56888a23d4a411fa775cb1d380701a181cbe96799aa176f5"></a>Priority_Normal</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a4917411f0580a893a56888a23d4a411fa2c10ec861c5036fcc181a36c075c45ce"></a>Priority_Max</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_thread_8hpp_source.html#l00115">115</a> of file <a class="el" href="_thread_8hpp_source.html">Thread.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a3ad909f591333628c22cb5ba10957923"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thread::Thread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00235">235</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af1e25588ebe47a2a6d79ef8c686a992b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Thread::~Thread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00245">245</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a96f6a29ecedc2ffdf0c7146bd7e079e2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_thread.html">Thread</a> * Thread::getCurrent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00291">291</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a673d37b5dc3806047e8dcb521c4044e8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> Thread::getID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00324">324</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1a0c4940830c9cf87c6c245ce8798cc0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_thread.html">Thread</a> * Thread::getMain </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00308">308</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a00386e0f2c45b2f6bc3360be7a447c0a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Thread::getPriority </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00345">345</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a700e6114fabc13b039637368ab24a6da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> * Thread::getUserData </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00407">407</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aecf30929ea96a2093a2a3b86176f2ce2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thread::isAlive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00370">370</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9d86f696e804ac2a32613f67e7406ab3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Thread::isMain </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00316">316</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab982afa8abe62f1883fbd199c6f6ac2c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Thread::join </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00393">393</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3f31cc93f4bebd06345d40cc66f08ecf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Thread::setPriority </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>priority</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00359">359</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a79a1d8624f8db66d79e0cbf767c31c85"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Thread::setUserData </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_thread.html#a81f1224b31a383b7f104752665eb58b6">DeinitFunc</a>&#160;</td>
+          <td class="paramname"><em>deinitFunc</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00418">418</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afb5825157d855df967fcd8f730adae5f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Thread::sleep </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>millis</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00331">331</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9b7cfd163fa0a30076ae3efb64104a67"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Thread::start </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_thread.html#ac9a3359e9bb57f44a97caa4d3b557a0c">ThreadFunc</a>&#160;</td>
+          <td class="paramname"><em>func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>param</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00271">271</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a34053bb62756739c0373347a656a9ce1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Thread::suspendAll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00457">457</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a40ddc126a00416db57b7229e2517e700"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Thread::yield </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_thread_8cpp_source.html#l00338">338</a> of file <a class="el" href="_thread_8cpp_source.html">Thread.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/base/<a class="el" href="_thread_8hpp_source.html">Thread.hpp</a></li>
-<li>src/framework/base/Thread.cpp</li>
+<li>src/framework/base/<a class="el" href="_thread_8cpp_source.html">Thread.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_thread.html">Thread</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_thread.html">Thread</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_deque.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,100 +112,954 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_deque.html','');});
 <div class="title">FW::Deque&lt; T &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a458c66359a58472e5b3d3e798cf76ade"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a458c66359a58472e5b3d3e798cf76ade"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Deque</b> (const T &amp;item)</td></tr>
+<tr class="memitem:a91f6f5ff52d28aaba65fa708b8b30ad1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a91f6f5ff52d28aaba65fa708b8b30ad1">Deque</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a91f6f5ff52d28aaba65fa708b8b30ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a458c66359a58472e5b3d3e798cf76ade"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a458c66359a58472e5b3d3e798cf76ade">Deque</a> (const T &amp;item)</td></tr>
 <tr class="separator:a458c66359a58472e5b3d3e798cf76ade"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab968ef067ff1e63e8acab96099e80a2d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab968ef067ff1e63e8acab96099e80a2d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Deque</b> (const T *ptr, int size)</td></tr>
+<tr class="memitem:ab968ef067ff1e63e8acab96099e80a2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#ab968ef067ff1e63e8acab96099e80a2d">Deque</a> (const T *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, int <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:ab968ef067ff1e63e8acab96099e80a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fb0c6016c30d4223ecb923c5e5190b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2fb0c6016c30d4223ecb923c5e5190b4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Deque</b> (const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;other)</td></tr>
+<tr class="memitem:a2fb0c6016c30d4223ecb923c5e5190b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a2fb0c6016c30d4223ecb923c5e5190b4">Deque</a> (const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;other)</td></tr>
 <tr class="separator:a2fb0c6016c30d4223ecb923c5e5190b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad57e6f30fcce1b8b5910e72401a2a570"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad57e6f30fcce1b8b5910e72401a2a570"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Deque</b> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;other)</td></tr>
+<tr class="memitem:ad57e6f30fcce1b8b5910e72401a2a570"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#ad57e6f30fcce1b8b5910e72401a2a570">Deque</a> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;other)</td></tr>
 <tr class="separator:ad57e6f30fcce1b8b5910e72401a2a570"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a5dab74be5a4e1ade56212cb742dd30"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a5dab74be5a4e1ade56212cb742dd30"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> (void) const </td></tr>
+<tr class="memitem:af35fff85573c2b9d91b4a0308d8c3309"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#af35fff85573c2b9d91b4a0308d8c3309">~Deque</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:af35fff85573c2b9d91b4a0308d8c3309"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a5dab74be5a4e1ade56212cb742dd30"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a6a5dab74be5a4e1ade56212cb742dd30">getSize</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a6a5dab74be5a4e1ade56212cb742dd30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92da23ca89b7c254d7a756be528a4853"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92da23ca89b7c254d7a756be528a4853"></a>
-const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFirst</b> (void) const </td></tr>
+<tr class="memitem:a92da23ca89b7c254d7a756be528a4853"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a92da23ca89b7c254d7a756be528a4853">getFirst</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a92da23ca89b7c254d7a756be528a4853"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19739af0a8e0c154a2d24d5baafebf3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19739af0a8e0c154a2d24d5baafebf3c"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFirst</b> (void)</td></tr>
+<tr class="memitem:a19739af0a8e0c154a2d24d5baafebf3c"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a19739af0a8e0c154a2d24d5baafebf3c">getFirst</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a19739af0a8e0c154a2d24d5baafebf3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae692e75982733e48a0cc9408ecb7f442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae692e75982733e48a0cc9408ecb7f442"></a>
-const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLast</b> (void) const </td></tr>
+<tr class="memitem:ae692e75982733e48a0cc9408ecb7f442"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#ae692e75982733e48a0cc9408ecb7f442">getLast</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ae692e75982733e48a0cc9408ecb7f442"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0fcd79075fbb5106999a23d84ed77f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0fcd79075fbb5106999a23d84ed77f7"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLast</b> (void)</td></tr>
+<tr class="memitem:aa0fcd79075fbb5106999a23d84ed77f7"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#aa0fcd79075fbb5106999a23d84ed77f7">getLast</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:aa0fcd79075fbb5106999a23d84ed77f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacdb6e8ff1ff2c9b909f09ab8106a9b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacdb6e8ff1ff2c9b909f09ab8106a9b1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (void)</td></tr>
+<tr class="memitem:aacdb6e8ff1ff2c9b909f09ab8106a9b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#aacdb6e8ff1ff2c9b909f09ab8106a9b1">reset</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:aacdb6e8ff1ff2c9b909f09ab8106a9b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a156c12d5985774c826e2aecddac945f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a156c12d5985774c826e2aecddac945f8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (void)</td></tr>
+<tr class="memitem:a156c12d5985774c826e2aecddac945f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a156c12d5985774c826e2aecddac945f8">clear</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a156c12d5985774c826e2aecddac945f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b15fb370aa630d2f196a6864b8c0238"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b15fb370aa630d2f196a6864b8c0238"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCapacity</b> (int capacity)</td></tr>
+<tr class="memitem:a2b15fb370aa630d2f196a6864b8c0238"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a2b15fb370aa630d2f196a6864b8c0238">setCapacity</a> (int capacity)</td></tr>
 <tr class="separator:a2b15fb370aa630d2f196a6864b8c0238"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a220b21b20f0150c679cce7fbcb105adb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a220b21b20f0150c679cce7fbcb105adb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>compact</b> (void)</td></tr>
+<tr class="memitem:a220b21b20f0150c679cce7fbcb105adb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a220b21b20f0150c679cce7fbcb105adb">compact</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a220b21b20f0150c679cce7fbcb105adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a781f3580c7a07adddd89e5b09261be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a781f3580c7a07adddd89e5b09261be"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const T *ptr, int size)</td></tr>
+<tr class="memitem:a1a781f3580c7a07adddd89e5b09261be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a1a781f3580c7a07adddd89e5b09261be">set</a> (const T *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, int <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:a1a781f3580c7a07adddd89e5b09261be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac14859c1bc8ded6b23848df94fc4752d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac14859c1bc8ded6b23848df94fc4752d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;other)</td></tr>
+<tr class="memitem:ac14859c1bc8ded6b23848df94fc4752d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#ac14859c1bc8ded6b23848df94fc4752d">set</a> (const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;other)</td></tr>
 <tr class="separator:ac14859c1bc8ded6b23848df94fc4752d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c965933765d7334bd0f1dd78824f21a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c965933765d7334bd0f1dd78824f21a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;other)</td></tr>
+<tr class="memitem:a6c965933765d7334bd0f1dd78824f21a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a6c965933765d7334bd0f1dd78824f21a">set</a> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;other)</td></tr>
 <tr class="separator:a6c965933765d7334bd0f1dd78824f21a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5749072b0dac919588ab62920c5d3047"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5749072b0dac919588ab62920c5d3047"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>getRange</b> (<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;res, int start, int end) const </td></tr>
+<tr class="memitem:a5749072b0dac919588ab62920c5d3047"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a5749072b0dac919588ab62920c5d3047">getRange</a> (<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;res, int start, int end) const </td></tr>
 <tr class="separator:a5749072b0dac919588ab62920c5d3047"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b974683e3b48f9efb3be09376e864b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b974683e3b48f9efb3be09376e864b6"></a>
-<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getRange</b> (int start, int end) const </td></tr>
+<tr class="memitem:a7b974683e3b48f9efb3be09376e864b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a7b974683e3b48f9efb3be09376e864b6">getRange</a> (int start, int end) const </td></tr>
 <tr class="separator:a7b974683e3b48f9efb3be09376e864b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4587ea435ebcc91909aec5310b4eff5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad4587ea435ebcc91909aec5310b4eff5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>getAll</b> (<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;res) const </td></tr>
+<tr class="memitem:ad4587ea435ebcc91909aec5310b4eff5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#ad4587ea435ebcc91909aec5310b4eff5">getAll</a> (<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;res) const </td></tr>
 <tr class="separator:ad4587ea435ebcc91909aec5310b4eff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82846e8b2d5d603667955efe59b9041b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82846e8b2d5d603667955efe59b9041b"></a>
-<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getAll</b> (void) const </td></tr>
+<tr class="memitem:a82846e8b2d5d603667955efe59b9041b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a82846e8b2d5d603667955efe59b9041b">getAll</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a82846e8b2d5d603667955efe59b9041b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6916ba26bab4c7253e22ab1ac59e558a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6916ba26bab4c7253e22ab1ac59e558a"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>addFirst</b> (void)</td></tr>
+<tr class="memitem:a6916ba26bab4c7253e22ab1ac59e558a"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a6916ba26bab4c7253e22ab1ac59e558a">addFirst</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a6916ba26bab4c7253e22ab1ac59e558a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae875c86ad5d9884d650c43ecd69bfe36"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae875c86ad5d9884d650c43ecd69bfe36"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>addFirst</b> (const T &amp;item)</td></tr>
+<tr class="memitem:ae875c86ad5d9884d650c43ecd69bfe36"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#ae875c86ad5d9884d650c43ecd69bfe36">addFirst</a> (const T &amp;item)</td></tr>
 <tr class="separator:ae875c86ad5d9884d650c43ecd69bfe36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affb64bab566f2fe45310f5441fceb406"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affb64bab566f2fe45310f5441fceb406"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>addLast</b> (void)</td></tr>
+<tr class="memitem:affb64bab566f2fe45310f5441fceb406"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#affb64bab566f2fe45310f5441fceb406">addLast</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:affb64bab566f2fe45310f5441fceb406"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a423e9b325756207625b432f95f7f54e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a423e9b325756207625b432f95f7f54e4"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>addLast</b> (const T &amp;item)</td></tr>
+<tr class="memitem:a423e9b325756207625b432f95f7f54e4"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a423e9b325756207625b432f95f7f54e4">addLast</a> (const T &amp;item)</td></tr>
 <tr class="separator:a423e9b325756207625b432f95f7f54e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbbcbb038d67de59e4da9203fc9ea953"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adbbcbb038d67de59e4da9203fc9ea953"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>removeFirst</b> (void)</td></tr>
+<tr class="memitem:adbbcbb038d67de59e4da9203fc9ea953"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#adbbcbb038d67de59e4da9203fc9ea953">removeFirst</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:adbbcbb038d67de59e4da9203fc9ea953"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e3b0b3d4255f848eb96ee5c839215ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e3b0b3d4255f848eb96ee5c839215ad"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>removeLast</b> (void)</td></tr>
+<tr class="memitem:a9e3b0b3d4255f848eb96ee5c839215ad"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a9e3b0b3d4255f848eb96ee5c839215ad">removeLast</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a9e3b0b3d4255f848eb96ee5c839215ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a0ec0433609035cf9eb7026c010df6b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a0ec0433609035cf9eb7026c010df6b"></a>
-<a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;other)</td></tr>
+<tr class="memitem:a2a0ec0433609035cf9eb7026c010df6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a2a0ec0433609035cf9eb7026c010df6b">operator=</a> (const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;other)</td></tr>
 <tr class="separator:a2a0ec0433609035cf9eb7026c010df6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fdd64e54835cbdd8d9120499a916ed2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fdd64e54835cbdd8d9120499a916ed2"></a>
-<a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;other)</td></tr>
+<tr class="memitem:a7fdd64e54835cbdd8d9120499a916ed2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a7fdd64e54835cbdd8d9120499a916ed2">operator=</a> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;other)</td></tr>
 <tr class="separator:a7fdd64e54835cbdd8d9120499a916ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27b2199704fb356b5b3fcb61485fd82e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27b2199704fb356b5b3fcb61485fd82e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;other) const </td></tr>
+<tr class="memitem:a27b2199704fb356b5b3fcb61485fd82e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a27b2199704fb356b5b3fcb61485fd82e">operator==</a> (const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;other) const </td></tr>
 <tr class="separator:a27b2199704fb356b5b3fcb61485fd82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72f98ac63841a7213a2fae17d60dc640"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72f98ac63841a7213a2fae17d60dc640"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;other) const </td></tr>
+<tr class="memitem:a72f98ac63841a7213a2fae17d60dc640"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_deque.html#a72f98ac63841a7213a2fae17d60dc640">operator!=</a> (const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;other) const </td></tr>
 <tr class="separator:a72f98ac63841a7213a2fae17d60dc640"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class T&gt;<br/>
+class FW::Deque&lt; T &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00035">35</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a91f6f5ff52d28aaba65fa708b8b30ad1"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::<a class="el" href="class_f_w_1_1_deque.html">Deque</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00046">46</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a458c66359a58472e5b3d3e798cf76ade"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::<a class="el" href="class_f_w_1_1_deque.html">Deque</a> </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00047">47</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab968ef067ff1e63e8acab96099e80a2d"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::<a class="el" href="class_f_w_1_1_deque.html">Deque</a> </td>
+          <td>(</td>
+          <td class="paramtype">const T *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00048">48</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2fb0c6016c30d4223ecb923c5e5190b4"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::<a class="el" href="class_f_w_1_1_deque.html">Deque</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00049">49</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad57e6f30fcce1b8b5910e72401a2a570"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::<a class="el" href="class_f_w_1_1_deque.html">Deque</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00050">50</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af35fff85573c2b9d91b4a0308d8c3309"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::~<a class="el" href="class_f_w_1_1_deque.html">Deque</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00051">51</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a6916ba26bab4c7253e22ab1ac59e558a"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T &amp; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::addFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00162">162</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae875c86ad5d9884d650c43ecd69bfe36"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T&amp; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::addFirst </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00073">73</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="affb64bab566f2fe45310f5441fceb406"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T &amp; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::addLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00178">178</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a423e9b325756207625b432f95f7f54e4"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T&amp; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::addLast </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00075">75</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a156c12d5985774c826e2aecddac945f8"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00060">60</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a220b21b20f0150c679cce7fbcb105adb"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::compact </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00062">62</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad4587ea435ebcc91909aec5310b4eff5"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::getAll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>res</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00069">69</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a82846e8b2d5d603667955efe59b9041b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt;T&gt; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::getAll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00070">70</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a92da23ca89b7c254d7a756be528a4853"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const T&amp; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::getFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00054">54</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a19739af0a8e0c154a2d24d5baafebf3c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T&amp; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::getFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00055">55</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae692e75982733e48a0cc9408ecb7f442"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const T&amp; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::getLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00056">56</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa0fcd79075fbb5106999a23d84ed77f7"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T&amp; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::getLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00057">57</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5749072b0dac919588ab62920c5d3047"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::getRange </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>res</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00133">133</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7b974683e3b48f9efb3be09376e864b6"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::getRange </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00151">151</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6a5dab74be5a4e1ade56212cb742dd30"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::getSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00053">53</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a72f98ac63841a7213a2fae17d60dc640"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00083">83</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2a0ec0433609035cf9eb7026c010df6b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt;T&gt;&amp; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00080">80</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7fdd64e54835cbdd8d9120499a916ed2"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt;T&gt;&amp; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00081">81</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a27b2199704fb356b5b3fcb61485fd82e"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00216">216</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adbbcbb038d67de59e4da9203fc9ea953"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T &amp; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::removeFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00194">194</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9e3b0b3d4255f848eb96ee5c839215ad"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T &amp; <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::removeLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00205">205</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aacdb6e8ff1ff2c9b909f09ab8106a9b1"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00059">59</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1a781f3580c7a07adddd89e5b09261be"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::set </td>
+          <td>(</td>
+          <td class="paramtype">const T *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00098">98</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac14859c1bc8ded6b23848df94fc4752d"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_deque.html">Deque</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00119">119</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c965933765d7334bd0f1dd78824f21a"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00066">66</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2b15fb370aa630d2f196a6864b8c0238"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_deque.html">FW::Deque</a>&lt; T &gt;::setCapacity </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>capacity</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_deque_8hpp_source.html#l00061">61</a> of file <a class="el" href="_deque_8hpp_source.html">Deque.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/framework/base/<a class="el" href="_deque_8hpp_source.html">Deque.hpp</a></li>
 </ul>
@@ -213,8 +1068,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_deque.html">Deque</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_deque.html">Deque</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_texture_atlas.html','');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,19 +111,22 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_texture_atlas.html','');
 
 <p>This is the complete list of members for <a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>addTexture</b>(const Texture &amp;tex, int border=1, bool wrap=true) (defined in <a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a>)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>clear</b>(void) (defined in <a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a>)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getAtlasSize</b>(void) (defined in <a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a>)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>getAtlasTexture</b>(void) (defined in <a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a>)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getTexturePos</b>(const Texture &amp;tex) (defined in <a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a>)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>TextureAtlas</b>(const ImageFormat &amp;format=ImageFormat::ABGR_8888) (defined in <a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a>)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~TextureAtlas</b>(void) (defined in <a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a>)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html#af43127228ab66e164803b27548a656e4">addTexture</a>(const Texture &amp;tex, int border=1, bool wrap=true)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html#ae1a221d4b0349bb8cb249f0bb904a153">clear</a>(void)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html#afeac9d24244a6dbf1c2c0e55dff7514d">getAtlasSize</a>(void)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html#a964a849d8551053e50ea6319858c9fe1">getAtlasTexture</a>(void)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html#a04fe33941de84ffa920175677cc9f9b2">getTexturePos</a>(const Texture &amp;tex)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html#ac24704df19f82b18fe4311b45c81dadf">getTexturePosF</a>(const Texture &amp;tex)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html#a697e1d641e9a3796954c8165774e59bc">getTextureSize</a>(const Texture &amp;tex)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html#aa1b9485b0be365b73bc1fba295cf56fb">getTextureSizeF</a>(const Texture &amp;tex)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html#abd6ec4e6541afffa7d6d6615e0301a57">TextureAtlas</a>(const ImageFormat &amp;format=ImageFormat::ABGR_8888)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html#ac5a269b34faaaac2e1ccb36d8d8d44e6">~TextureAtlas</a>(void)</td><td class="entry"><a class="el" href="class_f_w_1_1_texture_atlas.html">FW::TextureAtlas</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

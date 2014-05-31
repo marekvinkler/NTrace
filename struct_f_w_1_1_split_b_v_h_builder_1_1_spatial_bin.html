@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_split_b_v_h_builder_1_1
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,19 +111,77 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_split_b_v_h_builder_1_1
 <div class="title">FW::SplitBVHBuilder::SpatialBin Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Structure holding info about a spatial bin.  
+ <a href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_bin.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a7b46ead539a7450a3f056edf5e182e9b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b46ead539a7450a3f056edf5e182e9b"></a>
-<a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>bounds</b></td></tr>
+<tr class="memitem:a7b46ead539a7450a3f056edf5e182e9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_bin.html#a7b46ead539a7450a3f056edf5e182e9b">bounds</a></td></tr>
+<tr class="memdesc:a7b46ead539a7450a3f056edf5e182e9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bounding box of the bin.  <a href="#a7b46ead539a7450a3f056edf5e182e9b">More...</a><br/></td></tr>
 <tr class="separator:a7b46ead539a7450a3f056edf5e182e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9995f78ed02ddb17954939cfd3d0102f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9995f78ed02ddb17954939cfd3d0102f"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>enter</b></td></tr>
+<tr class="memitem:a9995f78ed02ddb17954939cfd3d0102f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_bin.html#a9995f78ed02ddb17954939cfd3d0102f">enter</a></td></tr>
+<tr class="memdesc:a9995f78ed02ddb17954939cfd3d0102f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of triangles entering the bin.  <a href="#a9995f78ed02ddb17954939cfd3d0102f">More...</a><br/></td></tr>
 <tr class="separator:a9995f78ed02ddb17954939cfd3d0102f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72d8125702c9be55b8bb4908bc8dade5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72d8125702c9be55b8bb4908bc8dade5"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>exit</b></td></tr>
+<tr class="memitem:a72d8125702c9be55b8bb4908bc8dade5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_bin.html#a72d8125702c9be55b8bb4908bc8dade5">exit</a></td></tr>
+<tr class="memdesc:a72d8125702c9be55b8bb4908bc8dade5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of triangles leaving the bin.  <a href="#a72d8125702c9be55b8bb4908bc8dade5">More...</a><br/></td></tr>
 <tr class="separator:a72d8125702c9be55b8bb4908bc8dade5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure holding info about a spatial bin. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00121">121</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a7b46ead539a7450a3f056edf5e182e9b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> FW::SplitBVHBuilder::SpatialBin::bounds</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bounding box of the bin. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00123">123</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9995f78ed02ddb17954939cfd3d0102f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::SplitBVHBuilder::SpatialBin::enter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of triangles entering the bin. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00124">124</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a72d8125702c9be55b8bb4908bc8dade5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::SplitBVHBuilder::SpatialBin::exit</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of triangles leaving the bin. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00125">125</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/rt/bvh/<a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a></li>
 </ul>
@@ -131,8 +190,8 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><b>exit</b></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html">SplitBVHBuilder</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_bin.html">SpatialBin</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html">SplitBVHBuilder</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_bin.html">SpatialBin</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

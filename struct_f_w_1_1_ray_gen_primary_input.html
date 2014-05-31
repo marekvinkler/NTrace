@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_ray_gen_primary_input.h
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,37 +111,160 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_ray_gen_primary_input.h
 <div class="title">FW::RayGenPrimaryInput Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_ray_gen_kernels_8hpp_source.html">RayGenKernels.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a8263473b94cd3dbedcfde3884d6c7fe4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8263473b94cd3dbedcfde3884d6c7fe4"></a>
-<a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>origin</b></td></tr>
+<tr class="memitem:a8263473b94cd3dbedcfde3884d6c7fe4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_gen_primary_input.html#a8263473b94cd3dbedcfde3884d6c7fe4">origin</a></td></tr>
 <tr class="separator:a8263473b94cd3dbedcfde3884d6c7fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f8f774e83c9f9a0b87624c9bff281a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f8f774e83c9f9a0b87624c9bff281a0"></a>
-<a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>nscreenToWorld</b></td></tr>
+<tr class="memitem:a0f8f774e83c9f9a0b87624c9bff281a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_gen_primary_input.html#a0f8f774e83c9f9a0b87624c9bff281a0">nscreenToWorld</a></td></tr>
 <tr class="separator:a0f8f774e83c9f9a0b87624c9bff281a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d81eddf7e16a2bd4fedad3f5d98c74e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d81eddf7e16a2bd4fedad3f5d98c74e"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>w</b></td></tr>
+<tr class="memitem:a2d81eddf7e16a2bd4fedad3f5d98c74e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_gen_primary_input.html#a2d81eddf7e16a2bd4fedad3f5d98c74e">w</a></td></tr>
 <tr class="separator:a2d81eddf7e16a2bd4fedad3f5d98c74e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5edaf34e9b111b44d56efe439488c2c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5edaf34e9b111b44d56efe439488c2c0"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>h</b></td></tr>
+<tr class="memitem:a5edaf34e9b111b44d56efe439488c2c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_gen_primary_input.html#a5edaf34e9b111b44d56efe439488c2c0">h</a></td></tr>
 <tr class="separator:a5edaf34e9b111b44d56efe439488c2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6cad8fb6cc95796c1f029cd33a72dfe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6cad8fb6cc95796c1f029cd33a72dfe"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>maxDist</b></td></tr>
+<tr class="memitem:aa6cad8fb6cc95796c1f029cd33a72dfe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_gen_primary_input.html#aa6cad8fb6cc95796c1f029cd33a72dfe">maxDist</a></td></tr>
 <tr class="separator:aa6cad8fb6cc95796c1f029cd33a72dfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf4c164a03ee1f5c2e74ef289c75cb52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf4c164a03ee1f5c2e74ef289c75cb52"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>rays</b></td></tr>
+<tr class="memitem:abf4c164a03ee1f5c2e74ef289c75cb52"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_gen_primary_input.html#abf4c164a03ee1f5c2e74ef289c75cb52">rays</a></td></tr>
 <tr class="separator:abf4c164a03ee1f5c2e74ef289c75cb52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5225af500ccafb3128ae57a74ae37ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5225af500ccafb3128ae57a74ae37ba"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>idToSlot</b></td></tr>
+<tr class="memitem:ad5225af500ccafb3128ae57a74ae37ba"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_gen_primary_input.html#ad5225af500ccafb3128ae57a74ae37ba">idToSlot</a></td></tr>
 <tr class="separator:ad5225af500ccafb3128ae57a74ae37ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b12a5bf17a09ec632ec53624d2271c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b12a5bf17a09ec632ec53624d2271c8"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>slotToID</b></td></tr>
+<tr class="memitem:a7b12a5bf17a09ec632ec53624d2271c8"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_gen_primary_input.html#a7b12a5bf17a09ec632ec53624d2271c8">slotToID</a></td></tr>
 <tr class="separator:a7b12a5bf17a09ec632ec53624d2271c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27f5cfcaa8e84eab142faa61693a1fe7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27f5cfcaa8e84eab142faa61693a1fe7"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>indexToPixel</b></td></tr>
+<tr class="memitem:a27f5cfcaa8e84eab142faa61693a1fe7"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_gen_primary_input.html#a27f5cfcaa8e84eab142faa61693a1fe7">indexToPixel</a></td></tr>
 <tr class="separator:a27f5cfcaa8e84eab142faa61693a1fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_ray_gen_kernels_8hpp_source.html#l00037">37</a> of file <a class="el" href="_ray_gen_kernels_8hpp_source.html">RayGenKernels.hpp</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a5edaf34e9b111b44d56efe439488c2c0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::RayGenPrimaryInput::h</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_gen_kernels_8hpp_source.html#l00042">42</a> of file <a class="el" href="_ray_gen_kernels_8hpp_source.html">RayGenKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad5225af500ccafb3128ae57a74ae37ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::RayGenPrimaryInput::idToSlot</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_gen_kernels_8hpp_source.html#l00045">45</a> of file <a class="el" href="_ray_gen_kernels_8hpp_source.html">RayGenKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a27f5cfcaa8e84eab142faa61693a1fe7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::RayGenPrimaryInput::indexToPixel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_gen_kernels_8hpp_source.html#l00047">47</a> of file <a class="el" href="_ray_gen_kernels_8hpp_source.html">RayGenKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa6cad8fb6cc95796c1f029cd33a72dfe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::RayGenPrimaryInput::maxDist</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_gen_kernels_8hpp_source.html#l00043">43</a> of file <a class="el" href="_ray_gen_kernels_8hpp_source.html">RayGenKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0f8f774e83c9f9a0b87624c9bff281a0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> FW::RayGenPrimaryInput::nscreenToWorld</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_gen_kernels_8hpp_source.html#l00040">40</a> of file <a class="el" href="_ray_gen_kernels_8hpp_source.html">RayGenKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8263473b94cd3dbedcfde3884d6c7fe4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> FW::RayGenPrimaryInput::origin</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_gen_kernels_8hpp_source.html#l00039">39</a> of file <a class="el" href="_ray_gen_kernels_8hpp_source.html">RayGenKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abf4c164a03ee1f5c2e74ef289c75cb52"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::RayGenPrimaryInput::rays</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_gen_kernels_8hpp_source.html#l00044">44</a> of file <a class="el" href="_ray_gen_kernels_8hpp_source.html">RayGenKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7b12a5bf17a09ec632ec53624d2271c8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::RayGenPrimaryInput::slotToID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_gen_kernels_8hpp_source.html#l00046">46</a> of file <a class="el" href="_ray_gen_kernels_8hpp_source.html">RayGenKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2d81eddf7e16a2bd4fedad3f5d98c74e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::RayGenPrimaryInput::w</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_gen_kernels_8hpp_source.html#l00041">41</a> of file <a class="el" href="_ray_gen_kernels_8hpp_source.html">RayGenKernels.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/rt/ray/<a class="el" href="_ray_gen_kernels_8hpp_source.html">RayGenKernels.hpp</a></li>
 </ul>
@@ -149,8 +273,8 @@ CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>indexToPixel</
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="struct_f_w_1_1_ray_gen_primary_input.html">RayGenPrimaryInput</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:39 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_ray_gen_primary_input.html">RayGenPrimaryInput</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

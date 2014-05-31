@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_split_b_v_h_builder_1_1
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -104,22 +105,100 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_split_b_v_h_builder_1_1
 
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">FW::SplitBVHBuilder::NodeSpec Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Structure holding specifications of the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a>'s node.  
+ <a href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ae2db91e4356a4a851556047d5bfd735d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html#ae2db91e4356a4a851556047d5bfd735d">NodeSpec</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="memdesc:ae2db91e4356a4a851556047d5bfd735d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#ae2db91e4356a4a851556047d5bfd735d">More...</a><br/></td></tr>
+<tr class="separator:ae2db91e4356a4a851556047d5bfd735d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a61a5fc63b7e2d44558c21bd54716430b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61a5fc63b7e2d44558c21bd54716430b"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>numRef</b></td></tr>
+<tr class="memitem:a61a5fc63b7e2d44558c21bd54716430b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html#a61a5fc63b7e2d44558c21bd54716430b">numRef</a></td></tr>
+<tr class="memdesc:a61a5fc63b7e2d44558c21bd54716430b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of the node's references saved in a node stack.  <a href="#a61a5fc63b7e2d44558c21bd54716430b">More...</a><br/></td></tr>
 <tr class="separator:a61a5fc63b7e2d44558c21bd54716430b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af92d3ac0eb8ec2575b01e520299e791d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af92d3ac0eb8ec2575b01e520299e791d"></a>
-<a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>bounds</b></td></tr>
+<tr class="memitem:af92d3ac0eb8ec2575b01e520299e791d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html#af92d3ac0eb8ec2575b01e520299e791d">bounds</a></td></tr>
+<tr class="memdesc:af92d3ac0eb8ec2575b01e520299e791d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bounding box of the node.  <a href="#af92d3ac0eb8ec2575b01e520299e791d">More...</a><br/></td></tr>
 <tr class="separator:af92d3ac0eb8ec2575b01e520299e791d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure holding specifications of the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a>'s node. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00075">75</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ae2db91e4356a4a851556047d5bfd735d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::SplitBVHBuilder::NodeSpec::NodeSpec </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00083">83</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="af92d3ac0eb8ec2575b01e520299e791d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> FW::SplitBVHBuilder::NodeSpec::bounds</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bounding box of the node. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00078">78</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a61a5fc63b7e2d44558c21bd54716430b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::SplitBVHBuilder::NodeSpec::numRef</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of the node's references saved in a node stack. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00077">77</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/rt/bvh/<a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a></li>
 </ul>
@@ -128,8 +207,8 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><b>numRef</b></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html">SplitBVHBuilder</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html">SplitBVHBuilder</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

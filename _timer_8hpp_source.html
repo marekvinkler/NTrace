@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -68,6 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -90,7 +92,7 @@ $(document).ready(function(){initNavTree('_timer_8hpp_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -104,7 +106,7 @@ $(document).ready(function(){initNavTree('_timer_8hpp_source.html','');});
 <div class="title">Timer.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<a href="_timer_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> *  Copyright (c) 2009-2011, NVIDIA Corporation</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *  All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
@@ -132,7 +134,7 @@ $(document).ready(function(){initNavTree('_timer_8hpp_source.html','');});
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &quot;base/DLLImports.hpp&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="_d_l_l_imports_8hpp.html">base/DLLImports.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">namespace </span>FW</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
@@ -141,48 +143,48 @@ $(document).ready(function(){initNavTree('_timer_8hpp_source.html','');});
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_f_w_1_1_timer.html">   35</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_f_w_1_1_timer.html">Timer</a></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">explicit</span> <span class="keyword">inline</span>     <a class="code" href="class_f_w_1_1_timer.html">Timer</a>           (<span class="keywordtype">bool</span> started = <span class="keyword">false</span>)  : m_startTicks((started) ? queryTicks() : -1), m_totalTicks(0) {}</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">inline</span>              <a class="code" href="class_f_w_1_1_timer.html">Timer</a>           (<span class="keyword">const</span> <a class="code" href="class_f_w_1_1_timer.html">Timer</a>&amp; other)    { operator=(other); }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">inline</span>              ~<a class="code" href="class_f_w_1_1_timer.html">Timer</a>          (<span class="keywordtype">void</span>)                  {}</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_f_w_1_1_timer.html#ae90f6047bc4e60dbb8438b8d2c4707eb">   38</a></span>&#160;    <span class="keyword">explicit</span> <span class="keyword">inline</span>     <a class="code" href="class_f_w_1_1_timer.html#ae90f6047bc4e60dbb8438b8d2c4707eb">Timer</a>           (<span class="keywordtype">bool</span> started = <span class="keyword">false</span>)  : m_startTicks((started) ? <a class="code" href="class_f_w_1_1_timer.html#a85c1e1ac28c5b3af109f353ac16fd5bf">queryTicks</a>() : -1), m_totalTicks(0) {}</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_f_w_1_1_timer.html#af141af1537c0c724f50cd1047d0c5bde">   39</a></span>&#160;    <span class="keyword">inline</span>              <a class="code" href="class_f_w_1_1_timer.html#af141af1537c0c724f50cd1047d0c5bde">Timer</a>           (<span class="keyword">const</span> <a class="code" href="class_f_w_1_1_timer.html">Timer</a>&amp; other)    { <a class="code" href="class_f_w_1_1_timer.html#a2053118c97eac08332b34a4f430a8336">operator=</a>(other); }</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_f_w_1_1_timer.html#a77418b644a0e3ed18b9f4df44d7fd205">   40</a></span>&#160;    <span class="keyword">inline</span>              <a class="code" href="class_f_w_1_1_timer.html#a77418b644a0e3ed18b9f4df44d7fd205">~Timer</a>          (<span class="keywordtype">void</span>)                  {}</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>         start           (<span class="keywordtype">void</span>)                  { m_startTicks = queryTicks(); }</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>         unstart         (<span class="keywordtype">void</span>)                  { m_startTicks = -1; }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">inline</span> F32          getElapsed      (<span class="keywordtype">void</span>)                  { <span class="keywordflow">return</span> ticksToSecs(getElapsedTicks()); }</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_f_w_1_1_timer.html#a7e9053a2e1658bfdc543de560c444856">   42</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>         <a class="code" href="class_f_w_1_1_timer.html#a7e9053a2e1658bfdc543de560c444856">start</a>           (<span class="keywordtype">void</span>)                  { m_startTicks = <a class="code" href="class_f_w_1_1_timer.html#a85c1e1ac28c5b3af109f353ac16fd5bf">queryTicks</a>(); }</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_f_w_1_1_timer.html#a7e96a257831e97b8e12e6da58724e6d9">   43</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>         <a class="code" href="class_f_w_1_1_timer.html#a7e96a257831e97b8e12e6da58724e6d9">unstart</a>         (<span class="keywordtype">void</span>)                  { m_startTicks = -1; }</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_f_w_1_1_timer.html#a68d8b744be4ad1379f50d46aa9b5e5b5">   44</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>          <a class="code" href="class_f_w_1_1_timer.html#a68d8b744be4ad1379f50d46aa9b5e5b5">getElapsed</a>      (<span class="keywordtype">void</span>)                  { <span class="keywordflow">return</span> <a class="code" href="class_f_w_1_1_timer.html#aec744dbea3948ed032c37cba81e2d074">ticksToSecs</a>(getElapsedTicks()); }</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">inline</span> F32          end             (<span class="keywordtype">void</span>);                 <span class="comment">// return elapsed, total += elapsed, restart</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">inline</span> F32          getTotal        (<span class="keywordtype">void</span>)<span class="keyword"> const            </span>{ <span class="keywordflow">return</span> ticksToSecs(m_totalTicks); }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>         clearTotal      (<span class="keywordtype">void</span>)                  { m_totalTicks = 0; }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">inline</span> <a class="code" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>          <a class="code" href="class_f_w_1_1_timer.html#a9cee2122cf413f84e86fef9dfd29bed4">end</a>             (<span class="keywordtype">void</span>);                 <span class="comment">// return elapsed, total += elapsed, restart</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_f_w_1_1_timer.html#a52c86b2a95ef73e0de41c94f43fed524">   47</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>          <a class="code" href="class_f_w_1_1_timer.html#a52c86b2a95ef73e0de41c94f43fed524">getTotal</a>        (<span class="keywordtype">void</span>)<span class="keyword"> const            </span>{ <span class="keywordflow">return</span> <a class="code" href="class_f_w_1_1_timer.html#aec744dbea3948ed032c37cba81e2d074">ticksToSecs</a>(m_totalTicks); }</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="class_f_w_1_1_timer.html#a8e630ddaa729c7a17d02c23d603f48ab">   48</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>         <a class="code" href="class_f_w_1_1_timer.html#a8e630ddaa729c7a17d02c23d603f48ab">clearTotal</a>      (<span class="keywordtype">void</span>)                  { m_totalTicks = 0; }</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">inline</span> <a class="code" href="class_f_w_1_1_timer.html">Timer</a>&amp;       operator=       (<span class="keyword">const</span> <a class="code" href="class_f_w_1_1_timer.html">Timer</a>&amp; other);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">inline</span> <a class="code" href="class_f_w_1_1_timer.html">Timer</a>&amp;       <a class="code" href="class_f_w_1_1_timer.html#a2053118c97eac08332b34a4f430a8336">operator=       </a>(<span class="keyword">const</span> <a class="code" href="class_f_w_1_1_timer.html">Timer</a>&amp; other);</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span>         staticInit      (<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> S64   queryTicks      (<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> F32   ticksToSecs     (S64 ticks);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span>         <a class="code" href="class_f_w_1_1_timer.html#a2120aeb9232013a1495e38599ea4c269">staticInit</a>      (<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>   <a class="code" href="class_f_w_1_1_timer.html#a85c1e1ac28c5b3af109f353ac16fd5bf">queryTicks</a>      (<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>   <a class="code" href="class_f_w_1_1_timer.html#aec744dbea3948ed032c37cba81e2d074">ticksToSecs</a>     (<a class="code" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> ticks);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">inline</span> S64          getElapsedTicks (<span class="keywordtype">void</span>);                 <span class="comment">// return time since start, start if unstarted</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">inline</span> <a class="code" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>          getElapsedTicks (<span class="keywordtype">void</span>);                 <span class="comment">// return time since start, start if unstarted</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">static</span> F64      s_ticksToSecsCoef;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">static</span> S64      s_prevTicks;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">static</span> <a class="code" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>      s_ticksToSecsCoef;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">static</span> <a class="code" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>      s_prevTicks;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    S64             m_startTicks;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    S64             m_totalTicks;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>             m_startTicks;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>             m_totalTicks;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">//------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;F32 Timer::end(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="class_f_w_1_1_timer.html#a9cee2122cf413f84e86fef9dfd29bed4">   69</a></span>&#160;<a class="code" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> <a class="code" href="class_f_w_1_1_timer.html#a9cee2122cf413f84e86fef9dfd29bed4">Timer::end</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    S64 elapsed = getElapsedTicks();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> elapsed = getElapsedTicks();</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    m_startTicks += elapsed;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    m_totalTicks += elapsed;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> ticksToSecs(elapsed);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_f_w_1_1_timer.html#aec744dbea3948ed032c37cba81e2d074">ticksToSecs</a>(elapsed);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">//------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;Timer&amp; Timer::operator=(<span class="keyword">const</span> Timer&amp; other)</div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="class_f_w_1_1_timer.html#a2053118c97eac08332b34a4f430a8336">   79</a></span>&#160;<a class="code" href="class_f_w_1_1_timer.html">Timer</a>&amp; <a class="code" href="class_f_w_1_1_timer.html#a2053118c97eac08332b34a4f430a8336">Timer::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_f_w_1_1_timer.html">Timer</a>&amp; other)</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    m_startTicks = other.m_startTicks;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    m_totalTicks = other.m_totalTicks;</div>
@@ -191,29 +193,29 @@ $(document).ready(function(){initNavTree('_timer_8hpp_source.html','');});
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">//------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;S64 Timer::queryTicks(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="class_f_w_1_1_timer.html#a85c1e1ac28c5b3af109f353ac16fd5bf">   88</a></span>&#160;<a class="code" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="code" href="class_f_w_1_1_timer.html#a85c1e1ac28c5b3af109f353ac16fd5bf">Timer::queryTicks</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    LARGE_INTEGER ticks;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    QueryPerformanceCounter(&amp;ticks);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    ticks.QuadPart = max(s_prevTicks, ticks.QuadPart);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    ticks.QuadPart = <a class="code" href="namespace_f_w.html#a92ac3235c6dc1e2e0ca429b61a3f8c63">max</a>(s_prevTicks, ticks.QuadPart);</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    s_prevTicks = ticks.QuadPart; <span class="comment">// increasing little endian =&gt; thread-safe</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> ticks.QuadPart;</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">//------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;F32 Timer::ticksToSecs(S64 ticks)</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="class_f_w_1_1_timer.html#aec744dbea3948ed032c37cba81e2d074">   99</a></span>&#160;<a class="code" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> <a class="code" href="class_f_w_1_1_timer.html#aec744dbea3948ed032c37cba81e2d074">Timer::ticksToSecs</a>(<a class="code" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> ticks)</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;{</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">if</span> (s_ticksToSecsCoef == -1.0)</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        staticInit();</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">return</span> (F32)((F64)ticks * s_ticksToSecsCoef);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="class_f_w_1_1_timer.html#a2120aeb9232013a1495e38599ea4c269">staticInit</a>();</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>)((<a class="code" href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">F64</a>)ticks * s_ticksToSecsCoef);</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">//------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;S64 Timer::getElapsedTicks(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<a class="code" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> Timer::getElapsedTicks(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    S64 curr = queryTicks();</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> curr = <a class="code" href="class_f_w_1_1_timer.html#a85c1e1ac28c5b3af109f353ac16fd5bf">queryTicks</a>();</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">if</span> (m_startTicks == -1)</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        m_startTicks = curr;</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> curr - m_startTicks;</div>
@@ -221,14 +223,32 @@ $(document).ready(function(){initNavTree('_timer_8hpp_source.html','');});
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">//------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
-<div class="ttc" id="class_f_w_1_1_timer_html"><div class="ttname"><a href="class_f_w_1_1_timer.html">FW::Timer</a></div><div class="ttdef"><b>Definition:</b> Timer.hpp:35</div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html_a52c86b2a95ef73e0de41c94f43fed524"><div class="ttname"><a href="class_f_w_1_1_timer.html#a52c86b2a95ef73e0de41c94f43fed524">FW::Timer::getTotal</a></div><div class="ttdeci">F32 getTotal(void) const </div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00047">Timer.hpp:47</a></div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html_a2120aeb9232013a1495e38599ea4c269"><div class="ttname"><a href="class_f_w_1_1_timer.html#a2120aeb9232013a1495e38599ea4c269">FW::Timer::staticInit</a></div><div class="ttdeci">static void staticInit(void)</div><div class="ttdef"><b>Definition:</b> <a href="_timer_8cpp_source.html#l00039">Timer.cpp:39</a></div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html_a7e96a257831e97b8e12e6da58724e6d9"><div class="ttname"><a href="class_f_w_1_1_timer.html#a7e96a257831e97b8e12e6da58724e6d9">FW::Timer::unstart</a></div><div class="ttdeci">void unstart(void)</div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00043">Timer.hpp:43</a></div></div>
+<div class="ttc" id="namespace_f_w_html_a19d92d5dfd5b96a78fedaf9ae0d62b1e"><div class="ttname"><a href="namespace_f_w.html#a19d92d5dfd5b96a78fedaf9ae0d62b1e">FW::F64</a></div><div class="ttdeci">double F64</div><div class="ttdef"><b>Definition:</b> <a href="_defs_8hpp_source.html#l00090">Defs.hpp:90</a></div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html_a7e9053a2e1658bfdc543de560c444856"><div class="ttname"><a href="class_f_w_1_1_timer.html#a7e9053a2e1658bfdc543de560c444856">FW::Timer::start</a></div><div class="ttdeci">void start(void)</div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00042">Timer.hpp:42</a></div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html_af141af1537c0c724f50cd1047d0c5bde"><div class="ttname"><a href="class_f_w_1_1_timer.html#af141af1537c0c724f50cd1047d0c5bde">FW::Timer::Timer</a></div><div class="ttdeci">Timer(const Timer &amp;other)</div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00039">Timer.hpp:39</a></div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html_a85c1e1ac28c5b3af109f353ac16fd5bf"><div class="ttname"><a href="class_f_w_1_1_timer.html#a85c1e1ac28c5b3af109f353ac16fd5bf">FW::Timer::queryTicks</a></div><div class="ttdeci">static S64 queryTicks(void)</div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00088">Timer.hpp:88</a></div></div>
+<div class="ttc" id="namespace_f_w_html_a444682d451e41e6a951ce34c6be6aa1b"><div class="ttname"><a href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">FW::F32</a></div><div class="ttdeci">float F32</div><div class="ttdef"><b>Definition:</b> <a href="_defs_8hpp_source.html#l00089">Defs.hpp:89</a></div></div>
+<div class="ttc" id="namespace_f_w_html_a92ac3235c6dc1e2e0ca429b61a3f8c63"><div class="ttname"><a href="namespace_f_w.html#a92ac3235c6dc1e2e0ca429b61a3f8c63">FW::max</a></div><div class="ttdeci">FW_CUDA_FUNC T max(const VectorBase&lt; T, L, S &gt; &amp;v)</div><div class="ttdef"><b>Definition:</b> <a href="_math_8hpp_source.html#l00462">Math.hpp:462</a></div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html_aec744dbea3948ed032c37cba81e2d074"><div class="ttname"><a href="class_f_w_1_1_timer.html#aec744dbea3948ed032c37cba81e2d074">FW::Timer::ticksToSecs</a></div><div class="ttdeci">static F32 ticksToSecs(S64 ticks)</div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00099">Timer.hpp:99</a></div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html_a9cee2122cf413f84e86fef9dfd29bed4"><div class="ttname"><a href="class_f_w_1_1_timer.html#a9cee2122cf413f84e86fef9dfd29bed4">FW::Timer::end</a></div><div class="ttdeci">F32 end(void)</div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00069">Timer.hpp:69</a></div></div>
+<div class="ttc" id="namespace_f_w_html_a79e68c842b255fc3ffc278fa7c0ddd9a"><div class="ttname"><a href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">FW::S64</a></div><div class="ttdeci">signed __int64 S64</div><div class="ttdef"><b>Definition:</b> <a href="_defs_8hpp_source.html#l00098">Defs.hpp:98</a></div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html_ae90f6047bc4e60dbb8438b8d2c4707eb"><div class="ttname"><a href="class_f_w_1_1_timer.html#ae90f6047bc4e60dbb8438b8d2c4707eb">FW::Timer::Timer</a></div><div class="ttdeci">Timer(bool started=false)</div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00038">Timer.hpp:38</a></div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html"><div class="ttname"><a href="class_f_w_1_1_timer.html">FW::Timer</a></div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00035">Timer.hpp:35</a></div></div>
+<div class="ttc" id="_d_l_l_imports_8hpp_html"><div class="ttname"><a href="_d_l_l_imports_8hpp.html">DLLImports.hpp</a></div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html_a2053118c97eac08332b34a4f430a8336"><div class="ttname"><a href="class_f_w_1_1_timer.html#a2053118c97eac08332b34a4f430a8336">FW::Timer::operator=</a></div><div class="ttdeci">Timer &amp; operator=(const Timer &amp;other)</div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00079">Timer.hpp:79</a></div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html_a77418b644a0e3ed18b9f4df44d7fd205"><div class="ttname"><a href="class_f_w_1_1_timer.html#a77418b644a0e3ed18b9f4df44d7fd205">FW::Timer::~Timer</a></div><div class="ttdeci">~Timer(void)</div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00040">Timer.hpp:40</a></div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html_a68d8b744be4ad1379f50d46aa9b5e5b5"><div class="ttname"><a href="class_f_w_1_1_timer.html#a68d8b744be4ad1379f50d46aa9b5e5b5">FW::Timer::getElapsed</a></div><div class="ttdeci">F32 getElapsed(void)</div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00044">Timer.hpp:44</a></div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html_a8e630ddaa729c7a17d02c23d603f48ab"><div class="ttname"><a href="class_f_w_1_1_timer.html#a8e630ddaa729c7a17d02c23d603f48ab">FW::Timer::clearTotal</a></div><div class="ttdeci">void clearTotal(void)</div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00048">Timer.hpp:48</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5752cadd8276ecfd63d9b924f2a4d4b5.html">framework</a></li><li class="navelem"><a class="el" href="dir_770dd69c1961fc980a0ae1b5385ae5c9.html">base</a></li><li class="navelem"><b>Timer.hpp</b></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:36 for NTrace by
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5752cadd8276ecfd63d9b924f2a4d4b5.html">framework</a></li><li class="navelem"><a class="el" href="dir_770dd69c1961fc980a0ae1b5385ae5c9.html">base</a></li><li class="navelem"><a class="el" href="_timer_8hpp.html">Timer.hpp</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:15 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_common_controls_1_1_stat
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,17 +112,130 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_common_controls_1_1_stat
 </div><!--header-->
 <div class="contents">
 
+<p><code>#include &lt;<a class="el" href="_common_controls_8hpp_source.html">CommonControls.hpp</a>&gt;</code></p>
+
 <p>Inherited by <a class="el" href="class_f_w_1_1_app.html">FW::App</a>, and <a class="el" href="class_f_w_1_1_camera_controls.html">FW::CameraControls</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a55e2ce848098896d400282f241e8b2b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55e2ce848098896d400282f241e8b2b1"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>readState</b> (<a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;d)=0</td></tr>
+<tr class="memitem:a808992b43c65d26b2f86a51cd36f16cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_common_controls_1_1_state_object.html#a808992b43c65d26b2f86a51cd36f16cc">StateObject</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a808992b43c65d26b2f86a51cd36f16cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0008d6c3710424cbbf6f19c21da5ba1"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_common_controls_1_1_state_object.html#aa0008d6c3710424cbbf6f19c21da5ba1">~StateObject</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:aa0008d6c3710424cbbf6f19c21da5ba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55e2ce848098896d400282f241e8b2b1"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_common_controls_1_1_state_object.html#a55e2ce848098896d400282f241e8b2b1">readState</a> (<a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;d)=0</td></tr>
 <tr class="separator:a55e2ce848098896d400282f241e8b2b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73b341bd6faab306e05aded73c4123f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73b341bd6faab306e05aded73c4123f6"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>writeState</b> (<a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;d) const =0</td></tr>
+<tr class="memitem:a73b341bd6faab306e05aded73c4123f6"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_common_controls_1_1_state_object.html#a73b341bd6faab306e05aded73c4123f6">writeState</a> (<a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;d) const =0</td></tr>
 <tr class="separator:a73b341bd6faab306e05aded73c4123f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_common_controls_8hpp_source.html#l00067">67</a> of file <a class="el" href="_common_controls_8hpp_source.html">CommonControls.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a808992b43c65d26b2f86a51cd36f16cc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::CommonControls::StateObject::StateObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_common_controls_8hpp_source.html#l00070">70</a> of file <a class="el" href="_common_controls_8hpp_source.html">CommonControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa0008d6c3710424cbbf6f19c21da5ba1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual FW::CommonControls::StateObject::~StateObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_common_controls_8hpp_source.html#l00071">71</a> of file <a class="el" href="_common_controls_8hpp_source.html">CommonControls.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a55e2ce848098896d400282f241e8b2b1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CommonControls::StateObject::readState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;&#160;</td>
+          <td class="paramname"><em>d</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_f_w_1_1_camera_controls.html#add472b95a310c4aac96b144a88a46e14">FW::CameraControls</a>, and <a class="el" href="class_f_w_1_1_app.html#a1e11df4e18fd03e9fb02c10fd7b763d9">FW::App</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a73b341bd6faab306e05aded73c4123f6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CommonControls::StateObject::writeState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;&#160;</td>
+          <td class="paramname"><em>d</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_f_w_1_1_camera_controls.html#a685abea6a681a36860c968a96db22b35">FW::CameraControls</a>, and <a class="el" href="class_f_w_1_1_app.html#a48ec946011b391e801b319177158763d">FW::App</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/framework/gui/<a class="el" href="_common_controls_8hpp_source.html">CommonControls.hpp</a></li>
 </ul>
@@ -130,8 +244,8 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>writeState</b
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_common_controls.html">CommonControls</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_common_controls_1_1_state_object.html">StateObject</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_common_controls.html">CommonControls</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_common_controls_1_1_state_object.html">StateObject</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

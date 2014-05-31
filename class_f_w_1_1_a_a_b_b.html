@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_a_a_b_b.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,49 +111,419 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_a_a_b_b.html','');});
 <div class="title">FW::AABB Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_util_8hpp_source.html">Util.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a498eb164b98dc422f13ea05786cf5d7f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a498eb164b98dc422f13ea05786cf5d7f"></a>
-FW_CUDA_FUNC&#160;</td><td class="memItemRight" valign="bottom"><b>AABB</b> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;mn, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;mx)</td></tr>
+<tr class="memitem:af82822fa54d4e41ac448e1432097c76d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#af82822fa54d4e41ac448e1432097c76d">AABB</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:af82822fa54d4e41ac448e1432097c76d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a498eb164b98dc422f13ea05786cf5d7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#a498eb164b98dc422f13ea05786cf5d7f">AABB</a> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;mn, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;mx)</td></tr>
 <tr class="separator:a498eb164b98dc422f13ea05786cf5d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9f29e19bb240e27d19866776cf23583"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab9f29e19bb240e27d19866776cf23583"></a>
-FW_CUDA_FUNC void&#160;</td><td class="memItemRight" valign="bottom"><b>grow</b> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;pt)</td></tr>
+<tr class="memitem:ab9f29e19bb240e27d19866776cf23583"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#ab9f29e19bb240e27d19866776cf23583">grow</a> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;pt)</td></tr>
 <tr class="separator:ab9f29e19bb240e27d19866776cf23583"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a268a705cf07423e98236f62c91255df2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a268a705cf07423e98236f62c91255df2"></a>
-FW_CUDA_FUNC void&#160;</td><td class="memItemRight" valign="bottom"><b>grow</b> (const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;aabb)</td></tr>
+<tr class="memitem:a268a705cf07423e98236f62c91255df2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#a268a705cf07423e98236f62c91255df2">grow</a> (const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;aabb)</td></tr>
 <tr class="separator:a268a705cf07423e98236f62c91255df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e92fb835c5373263f48f36318a352cd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e92fb835c5373263f48f36318a352cd"></a>
-FW_CUDA_FUNC void&#160;</td><td class="memItemRight" valign="bottom"><b>intersect</b> (const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;aabb)</td></tr>
+<tr class="memitem:a7e92fb835c5373263f48f36318a352cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#a7e92fb835c5373263f48f36318a352cd">intersect</a> (const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;aabb)</td></tr>
 <tr class="separator:a7e92fb835c5373263f48f36318a352cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75c03a6b3b497a70509bd538ea5f6bad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a75c03a6b3b497a70509bd538ea5f6bad"></a>
-FW_CUDA_FUNC float&#160;</td><td class="memItemRight" valign="bottom"><b>volume</b> (void) const </td></tr>
+<tr class="memitem:a75c03a6b3b497a70509bd538ea5f6bad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#a75c03a6b3b497a70509bd538ea5f6bad">volume</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a75c03a6b3b497a70509bd538ea5f6bad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2ab9b5bced0b49dc3bf080ea666061b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2ab9b5bced0b49dc3bf080ea666061b"></a>
-FW_CUDA_FUNC float&#160;</td><td class="memItemRight" valign="bottom"><b>area</b> (void) const </td></tr>
+<tr class="memitem:ad2ab9b5bced0b49dc3bf080ea666061b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#ad2ab9b5bced0b49dc3bf080ea666061b">area</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ad2ab9b5bced0b49dc3bf080ea666061b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aceb65b378aef3cb196321a2064aa6324"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aceb65b378aef3cb196321a2064aa6324"></a>
-FW_CUDA_FUNC bool&#160;</td><td class="memItemRight" valign="bottom"><b>valid</b> (void) const </td></tr>
+<tr class="memitem:aceb65b378aef3cb196321a2064aa6324"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#aceb65b378aef3cb196321a2064aa6324">valid</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:aceb65b378aef3cb196321a2064aa6324"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9b18a00830088a314b13d5aa92ab553"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9b18a00830088a314b13d5aa92ab553"></a>
-FW_CUDA_FUNC <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>midPoint</b> (void) const </td></tr>
+<tr class="memitem:af9b18a00830088a314b13d5aa92ab553"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#af9b18a00830088a314b13d5aa92ab553">midPoint</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:af9b18a00830088a314b13d5aa92ab553"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c14455578eb58593e4f00e6c0528db1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c14455578eb58593e4f00e6c0528db1"></a>
-FW_CUDA_FUNC const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>min</b> (void) const </td></tr>
+<tr class="memitem:a6c14455578eb58593e4f00e6c0528db1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#a6c14455578eb58593e4f00e6c0528db1">min</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a6c14455578eb58593e4f00e6c0528db1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a914e5626b71fa2aaeb31e8980a14112b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a914e5626b71fa2aaeb31e8980a14112b"></a>
-FW_CUDA_FUNC const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>max</b> (void) const </td></tr>
+<tr class="memitem:a914e5626b71fa2aaeb31e8980a14112b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#a914e5626b71fa2aaeb31e8980a14112b">max</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a914e5626b71fa2aaeb31e8980a14112b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0d06328e89f618cf766a57bd6f08b35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0d06328e89f618cf766a57bd6f08b35"></a>
-FW_CUDA_FUNC <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>min</b> (void)</td></tr>
+<tr class="memitem:ac0d06328e89f618cf766a57bd6f08b35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#ac0d06328e89f618cf766a57bd6f08b35">min</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ac0d06328e89f618cf766a57bd6f08b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac879ae2bf1890ecf616214f4be561efa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac879ae2bf1890ecf616214f4be561efa"></a>
-FW_CUDA_FUNC <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>max</b> (void)</td></tr>
+<tr class="memitem:ac879ae2bf1890ecf616214f4be561efa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#ac879ae2bf1890ecf616214f4be561efa">max</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ac879ae2bf1890ecf616214f4be561efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b6352247be8889ca253d5f28d756a67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b6352247be8889ca253d5f28d756a67"></a>
-FW_CUDA_FUNC <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;aabb) const </td></tr>
+<tr class="memitem:a5b6352247be8889ca253d5f28d756a67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_a_a_b_b.html#a5b6352247be8889ca253d5f28d756a67">operator+</a> (const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;aabb) const </td></tr>
 <tr class="separator:a5b6352247be8889ca253d5f28d756a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00035">35</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="af82822fa54d4e41ac448e1432097c76d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> FW::AABB::AABB </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00038">38</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a498eb164b98dc422f13ea05786cf5d7f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> FW::AABB::AABB </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>mn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>mx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00039">39</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ad2ab9b5bced0b49dc3bf080ea666061b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> float FW::AABB::area </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00045">45</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab9f29e19bb240e27d19866776cf23583"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::AABB::grow </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>pt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00041">41</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a268a705cf07423e98236f62c91255df2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::AABB::grow </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;&#160;</td>
+          <td class="paramname"><em>aabb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00042">42</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7e92fb835c5373263f48f36318a352cd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::AABB::intersect </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;&#160;</td>
+          <td class="paramname"><em>aabb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00043">43</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a914e5626b71fa2aaeb31e8980a14112b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&amp; FW::AABB::max </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00049">49</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac879ae2bf1890ecf616214f4be561efa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&amp; FW::AABB::max </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00051">51</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af9b18a00830088a314b13d5aa92ab553"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> FW::AABB::midPoint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00047">47</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c14455578eb58593e4f00e6c0528db1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&amp; FW::AABB::min </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00048">48</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac0d06328e89f618cf766a57bd6f08b35"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&amp; FW::AABB::min </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00050">50</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5b6352247be8889ca253d5f28d756a67"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> FW::AABB::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;&#160;</td>
+          <td class="paramname"><em>aabb</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00053">53</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aceb65b378aef3cb196321a2064aa6324"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> bool FW::AABB::valid </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00046">46</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a75c03a6b3b497a70509bd538ea5f6bad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_defs_8hpp.html#abbe0febab5fe7b441fb26e5b8c085ff4">FW_CUDA_FUNC</a> float FW::AABB::volume </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_util_8hpp_source.html#l00044">44</a> of file <a class="el" href="_util_8hpp_source.html">Util.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/rt/<a class="el" href="_util_8hpp_source.html">Util.hpp</a></li>
 </ul>
@@ -161,8 +532,8 @@ FW_CUDA_FUNC <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:39 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_array64.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,193 +112,271 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_array64.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p><code>#include &lt;<a class="el" href="_array_8hpp_source.html">Array.hpp</a>&gt;</code></p>
+
 <p>Inherits <a class="el" href="class_f_w_1_1_array_base.html">FW::ArrayBase&lt; T, S64 &gt;</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af5f8ae2caa3832320da03dc1aba5aa4d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5f8ae2caa3832320da03dc1aba5aa4d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Array64</b> (const T &amp;item)</td></tr>
+<tr class="memitem:afc73259fe46c54355336da7d18e6d23d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array64.html#afc73259fe46c54355336da7d18e6d23d">Array64</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:afc73259fe46c54355336da7d18e6d23d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5f8ae2caa3832320da03dc1aba5aa4d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array64.html#af5f8ae2caa3832320da03dc1aba5aa4d">Array64</a> (const T &amp;item)</td></tr>
 <tr class="separator:af5f8ae2caa3832320da03dc1aba5aa4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8de8f2fdcc447f19da813fe874558d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8de8f2fdcc447f19da813fe874558d0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Array64</b> (const T *ptr, S64 size)</td></tr>
+<tr class="memitem:af8de8f2fdcc447f19da813fe874558d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array64.html#af8de8f2fdcc447f19da813fe874558d0">Array64</a> (const T *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:af8de8f2fdcc447f19da813fe874558d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c979aafb49ff8b0d8f8030ec2809cab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c979aafb49ff8b0d8f8030ec2809cab"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Array64</b> (const <a class="el" href="class_f_w_1_1_array64.html">Array64</a>&lt; T &gt; &amp;other)</td></tr>
+<tr class="memitem:a7c979aafb49ff8b0d8f8030ec2809cab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array64.html#a7c979aafb49ff8b0d8f8030ec2809cab">Array64</a> (const <a class="el" href="class_f_w_1_1_array64.html">Array64</a>&lt; T &gt; &amp;other)</td></tr>
 <tr class="separator:a7c979aafb49ff8b0d8f8030ec2809cab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_f_w_1_1_array_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_f_w_1_1_array_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_f_w_1_1_array_base.html">FW::ArrayBase&lt; T, S64 &gt;</a></td></tr>
-<tr class="memitem:abf3b1ec9976d0110666a2b5e72261a24 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf3b1ec9976d0110666a2b5e72261a24"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ArrayBase</b> (const T &amp;item)</td></tr>
+<tr class="memitem:a8806d874f797287446ccea0c08e9d386 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a8806d874f797287446ccea0c08e9d386">ArrayBase</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a8806d874f797287446ccea0c08e9d386 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf3b1ec9976d0110666a2b5e72261a24 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#abf3b1ec9976d0110666a2b5e72261a24">ArrayBase</a> (const T &amp;item)</td></tr>
 <tr class="separator:abf3b1ec9976d0110666a2b5e72261a24 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0820750bb6c04a1800138718abb5b9db inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0820750bb6c04a1800138718abb5b9db"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ArrayBase</b> (const T *ptr, S64size)</td></tr>
+<tr class="memitem:a0820750bb6c04a1800138718abb5b9db inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a0820750bb6c04a1800138718abb5b9db">ArrayBase</a> (const T *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, S64size)</td></tr>
 <tr class="separator:a0820750bb6c04a1800138718abb5b9db inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1be3c9f1b3d03278d0b3972da3fa7528 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1be3c9f1b3d03278d0b3972da3fa7528"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ArrayBase</b> (const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, S64 &gt; &amp;other)</td></tr>
+<tr class="memitem:a1be3c9f1b3d03278d0b3972da3fa7528 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a1be3c9f1b3d03278d0b3972da3fa7528">ArrayBase</a> (const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> &gt; &amp;other)</td></tr>
 <tr class="separator:a1be3c9f1b3d03278d0b3972da3fa7528 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a787c519021c55c4ba34729050b972d47 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a787c519021c55c4ba34729050b972d47"></a>
-S64&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> (void) const</td></tr>
+<tr class="memitem:a605bdbebc0e2a15412d8a67ad053c3a9 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a605bdbebc0e2a15412d8a67ad053c3a9">~ArrayBase</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a605bdbebc0e2a15412d8a67ad053c3a9 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a787c519021c55c4ba34729050b972d47 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a787c519021c55c4ba34729050b972d47">getSize</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const</td></tr>
 <tr class="separator:a787c519021c55c4ba34729050b972d47 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a440b1ae76c3114453f4a7440a56df07a inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a440b1ae76c3114453f4a7440a56df07a"></a>
-S64&#160;</td><td class="memItemRight" valign="bottom"><b>getCapacity</b> (void) const</td></tr>
+<tr class="memitem:a440b1ae76c3114453f4a7440a56df07a inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a440b1ae76c3114453f4a7440a56df07a">getCapacity</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const</td></tr>
 <tr class="separator:a440b1ae76c3114453f4a7440a56df07a inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8098f631f4e8ce914093bedbb4c5618 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8098f631f4e8ce914093bedbb4c5618"></a>
-const T *&#160;</td><td class="memItemRight" valign="bottom"><b>getPtr</b> (S64idx=0) const</td></tr>
+<tr class="memitem:aa8098f631f4e8ce914093bedbb4c5618 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">const T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#aa8098f631f4e8ce914093bedbb4c5618">getPtr</a> (S64idx=0) const</td></tr>
 <tr class="separator:aa8098f631f4e8ce914093bedbb4c5618 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c348e0d4ea12853aa2897b17cebcbc3 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c348e0d4ea12853aa2897b17cebcbc3"></a>
-T *&#160;</td><td class="memItemRight" valign="bottom"><b>getPtr</b> (S64idx=0)</td></tr>
+<tr class="memitem:a5c348e0d4ea12853aa2897b17cebcbc3 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a5c348e0d4ea12853aa2897b17cebcbc3">getPtr</a> (S64idx=0)</td></tr>
 <tr class="separator:a5c348e0d4ea12853aa2897b17cebcbc3 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abef1649d4d15fea375d10a1a059ad86d inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abef1649d4d15fea375d10a1a059ad86d"></a>
-S64&#160;</td><td class="memItemRight" valign="bottom"><b>getStride</b> (void) const</td></tr>
+<tr class="memitem:abef1649d4d15fea375d10a1a059ad86d inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#abef1649d4d15fea375d10a1a059ad86d">getStride</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const</td></tr>
 <tr class="separator:abef1649d4d15fea375d10a1a059ad86d inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3641df42c897ee220540ba5c38a90da inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3641df42c897ee220540ba5c38a90da"></a>
-S64&#160;</td><td class="memItemRight" valign="bottom"><b>getNumBytes</b> (void) const</td></tr>
+<tr class="memitem:aa3641df42c897ee220540ba5c38a90da inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#aa3641df42c897ee220540ba5c38a90da">getNumBytes</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const</td></tr>
 <tr class="separator:aa3641df42c897ee220540ba5c38a90da inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae10a20614801f00667f957b34aef5c09 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae10a20614801f00667f957b34aef5c09"></a>
-const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (S64idx) const</td></tr>
+<tr class="memitem:ae10a20614801f00667f957b34aef5c09 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#ae10a20614801f00667f957b34aef5c09">get</a> (S64idx) const</td></tr>
 <tr class="separator:ae10a20614801f00667f957b34aef5c09 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d0f6ddb73f8a17e6f2303a85da6fae2 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d0f6ddb73f8a17e6f2303a85da6fae2"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (S64idx)</td></tr>
+<tr class="memitem:a7d0f6ddb73f8a17e6f2303a85da6fae2 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a7d0f6ddb73f8a17e6f2303a85da6fae2">get</a> (S64idx)</td></tr>
 <tr class="separator:a7d0f6ddb73f8a17e6f2303a85da6fae2 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a3b20d39df94663beb9ae7e9c95a3ba inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a3b20d39df94663beb9ae7e9c95a3ba"></a>
-T&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (S64idx, const T &amp;item)</td></tr>
+<tr class="memitem:a7a3b20d39df94663beb9ae7e9c95a3ba inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a7a3b20d39df94663beb9ae7e9c95a3ba">set</a> (S64idx, const T &amp;item)</td></tr>
 <tr class="separator:a7a3b20d39df94663beb9ae7e9c95a3ba inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f26eadd5ac9a8b40ba491b7e4b479a5 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f26eadd5ac9a8b40ba491b7e4b479a5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const T *ptr, S64size)</td></tr>
+<tr class="memitem:a0f26eadd5ac9a8b40ba491b7e4b479a5 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a0f26eadd5ac9a8b40ba491b7e4b479a5">set</a> (const T *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, S64size)</td></tr>
 <tr class="separator:a0f26eadd5ac9a8b40ba491b7e4b479a5 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cd3a79f0362bb4df64d7888fdf7768b inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8cd3a79f0362bb4df64d7888fdf7768b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, S64 &gt; &amp;other)</td></tr>
+<tr class="memitem:a8cd3a79f0362bb4df64d7888fdf7768b inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a8cd3a79f0362bb4df64d7888fdf7768b">set</a> (const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> &gt; &amp;other)</td></tr>
 <tr class="separator:a8cd3a79f0362bb4df64d7888fdf7768b inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c03b59999515f56508c11332d96ce68 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c03b59999515f56508c11332d96ce68"></a>
-const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFirst</b> (void) const</td></tr>
+<tr class="memitem:a5c03b59999515f56508c11332d96ce68 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a5c03b59999515f56508c11332d96ce68">getFirst</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const</td></tr>
 <tr class="separator:a5c03b59999515f56508c11332d96ce68 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7016095e0ed1b0cd04f5fd4a44ac7bf1 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7016095e0ed1b0cd04f5fd4a44ac7bf1"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFirst</b> (void)</td></tr>
+<tr class="memitem:a7016095e0ed1b0cd04f5fd4a44ac7bf1 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a7016095e0ed1b0cd04f5fd4a44ac7bf1">getFirst</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a7016095e0ed1b0cd04f5fd4a44ac7bf1 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99a8569d1449b4491fecceb2e0e68965 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99a8569d1449b4491fecceb2e0e68965"></a>
-const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLast</b> (void) const</td></tr>
+<tr class="memitem:a99a8569d1449b4491fecceb2e0e68965 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a99a8569d1449b4491fecceb2e0e68965">getLast</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const</td></tr>
 <tr class="separator:a99a8569d1449b4491fecceb2e0e68965 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f24f9a48a26bc7dc228cd071ad667b5 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f24f9a48a26bc7dc228cd071ad667b5"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLast</b> (void)</td></tr>
+<tr class="memitem:a0f24f9a48a26bc7dc228cd071ad667b5 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a0f24f9a48a26bc7dc228cd071ad667b5">getLast</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a0f24f9a48a26bc7dc228cd071ad667b5 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50c1c6939606dc6a1b2ff4e98724d119 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50c1c6939606dc6a1b2ff4e98724d119"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>getRange</b> (S64start, S64end, T *ptr) const</td></tr>
+<tr class="memitem:a50c1c6939606dc6a1b2ff4e98724d119 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a50c1c6939606dc6a1b2ff4e98724d119">getRange</a> (S64start, S64end, T *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>) const</td></tr>
 <tr class="separator:a50c1c6939606dc6a1b2ff4e98724d119 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a788c825744d37c11cbaa99dd49fe2031 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a788c825744d37c11cbaa99dd49fe2031"></a>
-<a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, S64 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getRange</b> (S64start, S64end) const</td></tr>
+<tr class="memitem:a788c825744d37c11cbaa99dd49fe2031 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a788c825744d37c11cbaa99dd49fe2031">getRange</a> (S64start, S64end) const</td></tr>
 <tr class="separator:a788c825744d37c11cbaa99dd49fe2031 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8513a9f73c76c5e0914719c24499fcf5 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8513a9f73c76c5e0914719c24499fcf5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRange</b> (S64start, S64end, const T *ptr)</td></tr>
+<tr class="memitem:a8513a9f73c76c5e0914719c24499fcf5 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a8513a9f73c76c5e0914719c24499fcf5">setRange</a> (S64start, S64end, const T *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>)</td></tr>
 <tr class="separator:a8513a9f73c76c5e0914719c24499fcf5 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9bfade525b1fef02799cd55c36ce42b inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab9bfade525b1fef02799cd55c36ce42b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRange</b> (S64start, const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, S64 &gt; &amp;other)</td></tr>
+<tr class="memitem:ab9bfade525b1fef02799cd55c36ce42b inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#ab9bfade525b1fef02799cd55c36ce42b">setRange</a> (S64start, const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> &gt; &amp;other)</td></tr>
 <tr class="separator:ab9bfade525b1fef02799cd55c36ce42b inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2307e285170f993dab5e2acba17a949 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2307e285170f993dab5e2acba17a949"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (S64size=0)</td></tr>
+<tr class="memitem:ad2307e285170f993dab5e2acba17a949 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#ad2307e285170f993dab5e2acba17a949">reset</a> (S64size=0)</td></tr>
 <tr class="separator:ad2307e285170f993dab5e2acba17a949 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaabb4f049eee64ad8ac1edfa8e511b6 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abaabb4f049eee64ad8ac1edfa8e511b6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCapacity</b> (S64numElements)</td></tr>
+<tr class="memitem:abaabb4f049eee64ad8ac1edfa8e511b6 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#abaabb4f049eee64ad8ac1edfa8e511b6">setCapacity</a> (S64numElements)</td></tr>
 <tr class="separator:abaabb4f049eee64ad8ac1edfa8e511b6 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84506cf1159fd18c1d2240b2b6a7ce79 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84506cf1159fd18c1d2240b2b6a7ce79"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>compact</b> (void)</td></tr>
+<tr class="memitem:a84506cf1159fd18c1d2240b2b6a7ce79 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a84506cf1159fd18c1d2240b2b6a7ce79">compact</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a84506cf1159fd18c1d2240b2b6a7ce79 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c51af03ade8c9ab8c47b68804c9c523 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c51af03ade8c9ab8c47b68804c9c523"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (void)</td></tr>
+<tr class="memitem:a1c51af03ade8c9ab8c47b68804c9c523 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a1c51af03ade8c9ab8c47b68804c9c523">clear</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a1c51af03ade8c9ab8c47b68804c9c523 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade18f2e9d35489b1c55b6badee0f038a inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade18f2e9d35489b1c55b6badee0f038a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>resize</b> (S64size)</td></tr>
+<tr class="memitem:ade18f2e9d35489b1c55b6badee0f038a inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#ade18f2e9d35489b1c55b6badee0f038a">resize</a> (S64size)</td></tr>
 <tr class="separator:ade18f2e9d35489b1c55b6badee0f038a inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31446823ec3b71d585b53314d77dba62 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31446823ec3b71d585b53314d77dba62"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reserve</b> (S64numElements)</td></tr>
+<tr class="memitem:a31446823ec3b71d585b53314d77dba62 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a31446823ec3b71d585b53314d77dba62">reserve</a> (S64numElements)</td></tr>
 <tr class="separator:a31446823ec3b71d585b53314d77dba62 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5a81b8139e1b73f9f0288b4f7c2a770 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5a81b8139e1b73f9f0288b4f7c2a770"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (void)</td></tr>
+<tr class="memitem:af5a81b8139e1b73f9f0288b4f7c2a770 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#af5a81b8139e1b73f9f0288b4f7c2a770">add</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:af5a81b8139e1b73f9f0288b4f7c2a770 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad545eb2f4c6100e75e634d9a4dfce249 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad545eb2f4c6100e75e634d9a4dfce249"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (const T &amp;item)</td></tr>
+<tr class="memitem:ad545eb2f4c6100e75e634d9a4dfce249 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#ad545eb2f4c6100e75e634d9a4dfce249">add</a> (const T &amp;item)</td></tr>
 <tr class="separator:ad545eb2f4c6100e75e634d9a4dfce249 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ff950b5be39b183f85c92988fe74edb inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ff950b5be39b183f85c92988fe74edb"></a>
-T *&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (const T *ptr, S64size)</td></tr>
+<tr class="memitem:a4ff950b5be39b183f85c92988fe74edb inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a4ff950b5be39b183f85c92988fe74edb">add</a> (const T *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, S64size)</td></tr>
 <tr class="separator:a4ff950b5be39b183f85c92988fe74edb inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a5b287cb4b98e29472b52b434d80a62 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a5b287cb4b98e29472b52b434d80a62"></a>
-T *&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, S64 &gt; &amp;other)</td></tr>
+<tr class="memitem:a7a5b287cb4b98e29472b52b434d80a62 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a7a5b287cb4b98e29472b52b434d80a62">add</a> (const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> &gt; &amp;other)</td></tr>
 <tr class="separator:a7a5b287cb4b98e29472b52b434d80a62 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d19a979eaa6002efc8cd461b5a2cf2f inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d19a979eaa6002efc8cd461b5a2cf2f"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>insert</b> (S64idx)</td></tr>
+<tr class="memitem:a0d19a979eaa6002efc8cd461b5a2cf2f inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a0d19a979eaa6002efc8cd461b5a2cf2f">insert</a> (S64idx)</td></tr>
 <tr class="separator:a0d19a979eaa6002efc8cd461b5a2cf2f inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab71e8e6eff09d3456d4e3ddfcb3f6fce inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab71e8e6eff09d3456d4e3ddfcb3f6fce"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>insert</b> (S64idx, const T &amp;item)</td></tr>
+<tr class="memitem:ab71e8e6eff09d3456d4e3ddfcb3f6fce inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#ab71e8e6eff09d3456d4e3ddfcb3f6fce">insert</a> (S64idx, const T &amp;item)</td></tr>
 <tr class="separator:ab71e8e6eff09d3456d4e3ddfcb3f6fce inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace2b36e42a2ffdf5477846d074fc643e inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace2b36e42a2ffdf5477846d074fc643e"></a>
-T *&#160;</td><td class="memItemRight" valign="bottom"><b>insert</b> (S64idx, const T *ptr, S64size)</td></tr>
+<tr class="memitem:ace2b36e42a2ffdf5477846d074fc643e inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#ace2b36e42a2ffdf5477846d074fc643e">insert</a> (S64idx, const T *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, S64size)</td></tr>
 <tr class="separator:ace2b36e42a2ffdf5477846d074fc643e inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5efb379db22c9ec2bd1e61850422213 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac5efb379db22c9ec2bd1e61850422213"></a>
-T *&#160;</td><td class="memItemRight" valign="bottom"><b>insert</b> (S64idx, const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, S64 &gt; &amp;other)</td></tr>
+<tr class="memitem:ac5efb379db22c9ec2bd1e61850422213 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#ac5efb379db22c9ec2bd1e61850422213">insert</a> (S64idx, const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> &gt; &amp;other)</td></tr>
 <tr class="separator:ac5efb379db22c9ec2bd1e61850422213 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab37ec06d1c34b51ed34558bb6964f58d inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab37ec06d1c34b51ed34558bb6964f58d"></a>
-T&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> (S64idx)</td></tr>
+<tr class="memitem:ab37ec06d1c34b51ed34558bb6964f58d inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#ab37ec06d1c34b51ed34558bb6964f58d">remove</a> (S64idx)</td></tr>
 <tr class="separator:ab37ec06d1c34b51ed34558bb6964f58d inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78c422877517b419b024267b1aa2869b inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78c422877517b419b024267b1aa2869b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> (S64start, S64end)</td></tr>
+<tr class="memitem:a78c422877517b419b024267b1aa2869b inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a78c422877517b419b024267b1aa2869b">remove</a> (S64start, S64end)</td></tr>
 <tr class="separator:a78c422877517b419b024267b1aa2869b inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac26572881aae9ae91a7c269e5d090034 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac26572881aae9ae91a7c269e5d090034"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>removeLast</b> (void)</td></tr>
+<tr class="memitem:ac26572881aae9ae91a7c269e5d090034 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#ac26572881aae9ae91a7c269e5d090034">removeLast</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ac26572881aae9ae91a7c269e5d090034 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e7da3c5a413614c9ab21a9fc1ff970e inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e7da3c5a413614c9ab21a9fc1ff970e"></a>
-T&#160;</td><td class="memItemRight" valign="bottom"><b>removeSwap</b> (S64idx)</td></tr>
+<tr class="memitem:a8e7da3c5a413614c9ab21a9fc1ff970e inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a8e7da3c5a413614c9ab21a9fc1ff970e">removeSwap</a> (S64idx)</td></tr>
 <tr class="separator:a8e7da3c5a413614c9ab21a9fc1ff970e inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add33af0e2d4434c87626cbbdbe81d7d8 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add33af0e2d4434c87626cbbdbe81d7d8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeSwap</b> (S64start, S64end)</td></tr>
+<tr class="memitem:add33af0e2d4434c87626cbbdbe81d7d8 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#add33af0e2d4434c87626cbbdbe81d7d8">removeSwap</a> (S64start, S64end)</td></tr>
 <tr class="separator:add33af0e2d4434c87626cbbdbe81d7d8 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d06132567e54965d652f89c7479ea77 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d06132567e54965d652f89c7479ea77"></a>
-T *&#160;</td><td class="memItemRight" valign="bottom"><b>replace</b> (S64start, S64end, S64size)</td></tr>
+<tr class="memitem:a2d06132567e54965d652f89c7479ea77 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a2d06132567e54965d652f89c7479ea77">replace</a> (S64start, S64end, S64size)</td></tr>
 <tr class="separator:a2d06132567e54965d652f89c7479ea77 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34ade64ade65a9ce77efeb0d5ac3fbd7 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34ade64ade65a9ce77efeb0d5ac3fbd7"></a>
-T *&#160;</td><td class="memItemRight" valign="bottom"><b>replace</b> (S64start, S64end, const T *ptr, S64size)</td></tr>
+<tr class="memitem:a34ade64ade65a9ce77efeb0d5ac3fbd7 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a34ade64ade65a9ce77efeb0d5ac3fbd7">replace</a> (S64start, S64end, const T *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, S64size)</td></tr>
 <tr class="separator:a34ade64ade65a9ce77efeb0d5ac3fbd7 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb4378a3ba12f74cdd17456e30b393ec inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb4378a3ba12f74cdd17456e30b393ec"></a>
-T *&#160;</td><td class="memItemRight" valign="bottom"><b>replace</b> (S64start, S64end, const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, S64 &gt; &amp;other)</td></tr>
+<tr class="memitem:afb4378a3ba12f74cdd17456e30b393ec inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#afb4378a3ba12f74cdd17456e30b393ec">replace</a> (S64start, S64end, const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> &gt; &amp;other)</td></tr>
 <tr class="separator:afb4378a3ba12f74cdd17456e30b393ec inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ca0746d05b79af420cdc75032f6eae6 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ca0746d05b79af420cdc75032f6eae6"></a>
-S64&#160;</td><td class="memItemRight" valign="bottom"><b>indexOf</b> (const T &amp;item, S64fromIdx=0) const</td></tr>
+<tr class="memitem:a7ca0746d05b79af420cdc75032f6eae6 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a7ca0746d05b79af420cdc75032f6eae6">indexOf</a> (const T &amp;item, S64fromIdx=0) const</td></tr>
 <tr class="separator:a7ca0746d05b79af420cdc75032f6eae6 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73397c013dd2e662af521bcd915fe4a2 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73397c013dd2e662af521bcd915fe4a2"></a>
-S64&#160;</td><td class="memItemRight" valign="bottom"><b>lastIndexOf</b> (const T &amp;item) const</td></tr>
+<tr class="memitem:a73397c013dd2e662af521bcd915fe4a2 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a73397c013dd2e662af521bcd915fe4a2">lastIndexOf</a> (const T &amp;item) const</td></tr>
 <tr class="separator:a73397c013dd2e662af521bcd915fe4a2 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dbe545a06156c5efed690852275453a inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7dbe545a06156c5efed690852275453a"></a>
-S64&#160;</td><td class="memItemRight" valign="bottom"><b>lastIndexOf</b> (const T &amp;item, S64fromIdx) const</td></tr>
+<tr class="memitem:a7dbe545a06156c5efed690852275453a inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a7dbe545a06156c5efed690852275453a">lastIndexOf</a> (const T &amp;item, S64fromIdx) const</td></tr>
 <tr class="separator:a7dbe545a06156c5efed690852275453a inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24fc003558898df1f2d443775fb6ce9e inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24fc003558898df1f2d443775fb6ce9e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>contains</b> (const T &amp;item) const</td></tr>
+<tr class="memitem:a24fc003558898df1f2d443775fb6ce9e inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a24fc003558898df1f2d443775fb6ce9e">contains</a> (const T &amp;item) const</td></tr>
 <tr class="separator:a24fc003558898df1f2d443775fb6ce9e inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8bce6989040925cdac6562b495d3328 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8bce6989040925cdac6562b495d3328"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>removeItem</b> (const T &amp;item)</td></tr>
+<tr class="memitem:aa8bce6989040925cdac6562b495d3328 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#aa8bce6989040925cdac6562b495d3328">removeItem</a> (const T &amp;item)</td></tr>
 <tr class="separator:aa8bce6989040925cdac6562b495d3328 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f6ca83e43abd6d66c8ff1ee619dcf24 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f6ca83e43abd6d66c8ff1ee619dcf24"></a>
-const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (S64idx) const</td></tr>
+<tr class="memitem:a9f6ca83e43abd6d66c8ff1ee619dcf24 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a9f6ca83e43abd6d66c8ff1ee619dcf24">operator[]</a> (S64idx) const</td></tr>
 <tr class="separator:a9f6ca83e43abd6d66c8ff1ee619dcf24 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d1128d284af0da87b109a063366dfa2 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d1128d284af0da87b109a063366dfa2"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (S64idx)</td></tr>
+<tr class="memitem:a6d1128d284af0da87b109a063366dfa2 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a6d1128d284af0da87b109a063366dfa2">operator[]</a> (S64idx)</td></tr>
 <tr class="separator:a6d1128d284af0da87b109a063366dfa2 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79bbf6a9cf27e69e351bb3bc04024e91 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79bbf6a9cf27e69e351bb3bc04024e91"></a>
-<a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, S64 &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, S64 &gt; &amp;other)</td></tr>
+<tr class="memitem:a79bbf6a9cf27e69e351bb3bc04024e91 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a79bbf6a9cf27e69e351bb3bc04024e91">operator=</a> (const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> &gt; &amp;other)</td></tr>
 <tr class="separator:a79bbf6a9cf27e69e351bb3bc04024e91 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40057c9bf70a68d2864d9ad1f16dd8d7 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40057c9bf70a68d2864d9ad1f16dd8d7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, S64 &gt; &amp;other) const</td></tr>
+<tr class="memitem:a40057c9bf70a68d2864d9ad1f16dd8d7 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a40057c9bf70a68d2864d9ad1f16dd8d7">operator==</a> (const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> &gt; &amp;other) const</td></tr>
 <tr class="separator:a40057c9bf70a68d2864d9ad1f16dd8d7 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b40074efe1923700aa9d7b760760e42 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b40074efe1923700aa9d7b760760e42"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, S64 &gt; &amp;other) const</td></tr>
+<tr class="memitem:a0b40074efe1923700aa9d7b760760e42 inherit pub_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a0b40074efe1923700aa9d7b760760e42">operator!=</a> (const <a class="el" href="class_f_w_1_1_array_base.html">ArrayBase</a>&lt; T, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> &gt; &amp;other) const</td></tr>
 <tr class="separator:a0b40074efe1923700aa9d7b760760e42 inherit pub_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_methods_class_f_w_1_1_array_base"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_f_w_1_1_array_base')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="class_f_w_1_1_array_base.html">FW::ArrayBase&lt; T, S64 &gt;</a></td></tr>
-<tr class="memitem:a52abd9da4c75846573b2facdc129b7ee inherit pub_static_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52abd9da4c75846573b2facdc129b7ee"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>copy</b> (T *dst, const T *src, S64size)</td></tr>
+<tr class="memitem:a52abd9da4c75846573b2facdc129b7ee inherit pub_static_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#a52abd9da4c75846573b2facdc129b7ee">copy</a> (T *dst, const T *src, S64size)</td></tr>
 <tr class="separator:a52abd9da4c75846573b2facdc129b7ee inherit pub_static_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa618a8442a9a310dd509d07633c002cd inherit pub_static_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa618a8442a9a310dd509d07633c002cd"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>copyOverlap</b> (T *dst, const T *src, S64size)</td></tr>
+<tr class="memitem:aa618a8442a9a310dd509d07633c002cd inherit pub_static_methods_class_f_w_1_1_array_base"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_array_base.html#aa618a8442a9a310dd509d07633c002cd">copyOverlap</a> (T *dst, const T *src, S64size)</td></tr>
 <tr class="separator:aa618a8442a9a310dd509d07633c002cd inherit pub_static_methods_class_f_w_1_1_array_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class T&gt;<br/>
+class FW::Array64&lt; T &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="_array_8hpp_source.html#l00755">755</a> of file <a class="el" href="_array_8hpp_source.html">Array.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="afc73259fe46c54355336da7d18e6d23d"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_array64.html">FW::Array64</a>&lt; T &gt;::<a class="el" href="class_f_w_1_1_array64.html">Array64</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_array_8hpp_source.html#l00758">758</a> of file <a class="el" href="_array_8hpp_source.html">Array.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af5f8ae2caa3832320da03dc1aba5aa4d"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_array64.html">FW::Array64</a>&lt; T &gt;::<a class="el" href="class_f_w_1_1_array64.html">Array64</a> </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_array_8hpp_source.html#l00759">759</a> of file <a class="el" href="_array_8hpp_source.html">Array.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af8de8f2fdcc447f19da813fe874558d0"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_array64.html">FW::Array64</a>&lt; T &gt;::<a class="el" href="class_f_w_1_1_array64.html">Array64</a> </td>
+          <td>(</td>
+          <td class="paramtype">const T *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_array_8hpp_source.html#l00760">760</a> of file <a class="el" href="_array_8hpp_source.html">Array.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7c979aafb49ff8b0d8f8030ec2809cab"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_array64.html">FW::Array64</a>&lt; T &gt;::<a class="el" href="class_f_w_1_1_array64.html">Array64</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_array64.html">Array64</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_array_8hpp_source.html#l00761">761</a> of file <a class="el" href="_array_8hpp_source.html">Array.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/framework/base/<a class="el" href="_array_8hpp_source.html">Array.hpp</a></li>
 </ul>
@@ -306,8 +385,8 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>copyOverlap</b
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_array64.html">Array64</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_array64.html">Array64</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

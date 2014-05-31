@@ -1,12 +1,6 @@
 var searchData=
 [
-  ['task',['Task',['../struct_f_w_1_1_multicore_launcher_1_1_task.html',1,'FW::MulticoreLauncher']]],
-  ['taskspec',['TaskSpec',['../struct_f_w_1_1_task_spec.html',1,'FW']]],
-  ['texture',['Texture',['../class_f_w_1_1_texture.html',1,'FW']]],
-  ['textureatlas',['TextureAtlas',['../class_f_w_1_1_texture_atlas.html',1,'FW']]],
-  ['texturespec',['TextureSpec',['../struct_f_w_1_1_texture_spec.html',1,'FW']]],
-  ['thread',['Thread',['../class_f_w_1_1_thread.html',1,'FW']]],
-  ['timer',['Timer',['../class_f_w_1_1_timer.html',1,'FW']]],
-  ['triangle',['Triangle',['../struct_f_w_1_1_triangle.html',1,'FW']]],
-  ['type',['type',['../class_option.html#a397841eea188c0d17d72c19429791ad3',1,'Option']]]
+  ['qsort_5fmin_5fsize',['QSORT_MIN_SIZE',['../_sort_8cpp.html#a00932265b54c50081c8b42c5014d9948',1,'Sort.cpp']]],
+  ['qsort_5fstack_5fsize',['QSORT_STACK_SIZE',['../_sort_8cpp.html#a15b6b2d2067acd74b6ea57ba8878da47',1,'Sort.cpp']]],
+  ['queryticks',['queryTicks',['../class_f_w_1_1_timer.html#a85c1e1ac28c5b3af109f353ac16fd5bf',1,'FW::Timer']]]
 ];

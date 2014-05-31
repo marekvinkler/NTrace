@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_timer.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,60 +112,395 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_timer.html','');});
 <div class="title">FW::Timer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae90f6047bc4e60dbb8438b8d2c4707eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae90f6047bc4e60dbb8438b8d2c4707eb"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Timer</b> (bool started=false)</td></tr>
+<tr class="memitem:ae90f6047bc4e60dbb8438b8d2c4707eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_timer.html#ae90f6047bc4e60dbb8438b8d2c4707eb">Timer</a> (bool started=false)</td></tr>
 <tr class="separator:ae90f6047bc4e60dbb8438b8d2c4707eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af141af1537c0c724f50cd1047d0c5bde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af141af1537c0c724f50cd1047d0c5bde"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Timer</b> (const <a class="el" href="class_f_w_1_1_timer.html">Timer</a> &amp;other)</td></tr>
+<tr class="memitem:af141af1537c0c724f50cd1047d0c5bde"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_timer.html#af141af1537c0c724f50cd1047d0c5bde">Timer</a> (const <a class="el" href="class_f_w_1_1_timer.html">Timer</a> &amp;other)</td></tr>
 <tr class="separator:af141af1537c0c724f50cd1047d0c5bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e9053a2e1658bfdc543de560c444856"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e9053a2e1658bfdc543de560c444856"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> (void)</td></tr>
+<tr class="memitem:a77418b644a0e3ed18b9f4df44d7fd205"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_timer.html#a77418b644a0e3ed18b9f4df44d7fd205">~Timer</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a77418b644a0e3ed18b9f4df44d7fd205"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e9053a2e1658bfdc543de560c444856"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_timer.html#a7e9053a2e1658bfdc543de560c444856">start</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a7e9053a2e1658bfdc543de560c444856"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e96a257831e97b8e12e6da58724e6d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e96a257831e97b8e12e6da58724e6d9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>unstart</b> (void)</td></tr>
+<tr class="memitem:a7e96a257831e97b8e12e6da58724e6d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_timer.html#a7e96a257831e97b8e12e6da58724e6d9">unstart</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a7e96a257831e97b8e12e6da58724e6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68d8b744be4ad1379f50d46aa9b5e5b5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68d8b744be4ad1379f50d46aa9b5e5b5"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>getElapsed</b> (void)</td></tr>
+<tr class="memitem:a68d8b744be4ad1379f50d46aa9b5e5b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_timer.html#a68d8b744be4ad1379f50d46aa9b5e5b5">getElapsed</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a68d8b744be4ad1379f50d46aa9b5e5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cee2122cf413f84e86fef9dfd29bed4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9cee2122cf413f84e86fef9dfd29bed4"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> (void)</td></tr>
+<tr class="memitem:a9cee2122cf413f84e86fef9dfd29bed4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_timer.html#a9cee2122cf413f84e86fef9dfd29bed4">end</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a9cee2122cf413f84e86fef9dfd29bed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52c86b2a95ef73e0de41c94f43fed524"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52c86b2a95ef73e0de41c94f43fed524"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>getTotal</b> (void) const </td></tr>
+<tr class="memitem:a52c86b2a95ef73e0de41c94f43fed524"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_timer.html#a52c86b2a95ef73e0de41c94f43fed524">getTotal</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a52c86b2a95ef73e0de41c94f43fed524"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e630ddaa729c7a17d02c23d603f48ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e630ddaa729c7a17d02c23d603f48ab"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clearTotal</b> (void)</td></tr>
+<tr class="memitem:a8e630ddaa729c7a17d02c23d603f48ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_timer.html#a8e630ddaa729c7a17d02c23d603f48ab">clearTotal</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a8e630ddaa729c7a17d02c23d603f48ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2053118c97eac08332b34a4f430a8336"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2053118c97eac08332b34a4f430a8336"></a>
-<a class="el" href="class_f_w_1_1_timer.html">Timer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_timer.html">Timer</a> &amp;other)</td></tr>
+<tr class="memitem:a2053118c97eac08332b34a4f430a8336"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_timer.html">Timer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_timer.html#a2053118c97eac08332b34a4f430a8336">operator=</a> (const <a class="el" href="class_f_w_1_1_timer.html">Timer</a> &amp;other)</td></tr>
 <tr class="separator:a2053118c97eac08332b34a4f430a8336"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a2120aeb9232013a1495e38599ea4c269"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2120aeb9232013a1495e38599ea4c269"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>staticInit</b> (void)</td></tr>
+<tr class="memitem:a2120aeb9232013a1495e38599ea4c269"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_timer.html#a2120aeb9232013a1495e38599ea4c269">staticInit</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a2120aeb9232013a1495e38599ea4c269"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85c1e1ac28c5b3af109f353ac16fd5bf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85c1e1ac28c5b3af109f353ac16fd5bf"></a>
-static S64&#160;</td><td class="memItemRight" valign="bottom"><b>queryTicks</b> (void)</td></tr>
+<tr class="memitem:a85c1e1ac28c5b3af109f353ac16fd5bf"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_timer.html#a85c1e1ac28c5b3af109f353ac16fd5bf">queryTicks</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a85c1e1ac28c5b3af109f353ac16fd5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec744dbea3948ed032c37cba81e2d074"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec744dbea3948ed032c37cba81e2d074"></a>
-static F32&#160;</td><td class="memItemRight" valign="bottom"><b>ticksToSecs</b> (S64 ticks)</td></tr>
+<tr class="memitem:aec744dbea3948ed032c37cba81e2d074"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_timer.html#aec744dbea3948ed032c37cba81e2d074">ticksToSecs</a> (<a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> ticks)</td></tr>
 <tr class="separator:aec744dbea3948ed032c37cba81e2d074"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_timer_8hpp_source.html#l00035">35</a> of file <a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ae90f6047bc4e60dbb8438b8d2c4707eb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::Timer::Timer </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>started</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_timer_8hpp_source.html#l00038">38</a> of file <a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af141af1537c0c724f50cd1047d0c5bde"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::Timer::Timer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_timer.html">Timer</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_timer_8hpp_source.html#l00039">39</a> of file <a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a77418b644a0e3ed18b9f4df44d7fd205"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::Timer::~Timer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_timer_8hpp_source.html#l00040">40</a> of file <a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a8e630ddaa729c7a17d02c23d603f48ab"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Timer::clearTotal </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_timer_8hpp_source.html#l00048">48</a> of file <a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9cee2122cf413f84e86fef9dfd29bed4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::Timer::end </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_timer_8hpp_source.html#l00069">69</a> of file <a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a68d8b744be4ad1379f50d46aa9b5e5b5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::Timer::getElapsed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_timer_8hpp_source.html#l00044">44</a> of file <a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a52c86b2a95ef73e0de41c94f43fed524"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::Timer::getTotal </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_timer_8hpp_source.html#l00047">47</a> of file <a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2053118c97eac08332b34a4f430a8336"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_timer.html">Timer</a> &amp; FW::Timer::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_timer.html">Timer</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_timer_8hpp_source.html#l00079">79</a> of file <a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a85c1e1ac28c5b3af109f353ac16fd5bf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> FW::Timer::queryTicks </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_timer_8hpp_source.html#l00088">88</a> of file <a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7e9053a2e1658bfdc543de560c444856"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Timer::start </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_timer_8hpp_source.html#l00042">42</a> of file <a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2120aeb9232013a1495e38599ea4c269"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Timer::staticInit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_timer_8cpp_source.html#l00039">39</a> of file <a class="el" href="_timer_8cpp_source.html">Timer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aec744dbea3948ed032c37cba81e2d074"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::Timer::ticksToSecs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>ticks</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_timer_8hpp_source.html#l00099">99</a> of file <a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7e96a257831e97b8e12e6da58724e6d9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Timer::unstart </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_timer_8hpp_source.html#l00043">43</a> of file <a class="el" href="_timer_8hpp_source.html">Timer.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/base/<a class="el" href="_timer_8hpp_source.html">Timer.hpp</a></li>
-<li>src/framework/base/Timer.cpp</li>
+<li>src/framework/base/<a class="el" href="_timer_8cpp_source.html">Timer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_timer.html">Timer</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_timer.html">Timer</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

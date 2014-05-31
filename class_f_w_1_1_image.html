@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_image.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,138 +111,1354 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_image.html','');});
 <div class="title">FW::Image Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_image_8hpp_source.html">Image.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a612f4b93f31caaf7ed708fdab7f2320c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a612f4b93f31caaf7ed708fdab7f2320c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Image</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;size, const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;format=ImageFormat::ABGR_8888)</td></tr>
+<tr class="memitem:a612f4b93f31caaf7ed708fdab7f2320c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a612f4b93f31caaf7ed708fdab7f2320c">Image</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad4c33e9edd8edca569c34a03f3c9795e">format</a>=<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a008fb409dac056b74401ff5c8b7e1893">ImageFormat::ABGR_8888</a>)</td></tr>
 <tr class="separator:a612f4b93f31caaf7ed708fdab7f2320c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a162c94676ce4dc407c6509e92fb601e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a162c94676ce4dc407c6509e92fb601e1"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Image</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;size, const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;format, void *ptr, S64 stride)</td></tr>
+<tr class="memitem:a162c94676ce4dc407c6509e92fb601e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a162c94676ce4dc407c6509e92fb601e1">Image</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad4c33e9edd8edca569c34a03f3c9795e">format</a>, <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#a7e4fd8ad485109775db4cb3992574d8f">stride</a>)</td></tr>
 <tr class="separator:a162c94676ce4dc407c6509e92fb601e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bce98bd3183a420c739fc89745dd416"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9bce98bd3183a420c739fc89745dd416"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Image</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;size, const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;format, <a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;buffer, S64 ofs, S64 stride)</td></tr>
+<tr class="memitem:a9bce98bd3183a420c739fc89745dd416"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a9bce98bd3183a420c739fc89745dd416">Image</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad4c33e9edd8edca569c34a03f3c9795e">format</a>, <a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#a9dbca2ffca3195a70ff9a21d5c97b242">buffer</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> ofs, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#a7e4fd8ad485109775db4cb3992574d8f">stride</a>)</td></tr>
 <tr class="separator:a9bce98bd3183a420c739fc89745dd416"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a044c84c2162bd3b165f3df4a5904adba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a044c84c2162bd3b165f3df4a5904adba"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Image</b> (const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;other)</td></tr>
+<tr class="memitem:a044c84c2162bd3b165f3df4a5904adba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a044c84c2162bd3b165f3df4a5904adba">Image</a> (const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;other)</td></tr>
 <tr class="separator:a044c84c2162bd3b165f3df4a5904adba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8027e927144ff92a52464f68a9dfb14"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8027e927144ff92a52464f68a9dfb14"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>contains</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;size) const </td></tr>
+<tr class="memitem:a794ae7f8ff9b4b7b7306343ac2f56356"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a794ae7f8ff9b4b7b7306343ac2f56356">~Image</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a794ae7f8ff9b4b7b7306343ac2f56356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8027e927144ff92a52464f68a9dfb14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#ad8027e927144ff92a52464f68a9dfb14">contains</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>) const </td></tr>
 <tr class="separator:ad8027e927144ff92a52464f68a9dfb14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13d6de78e1834929f06e0c961d25ba49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13d6de78e1834929f06e0c961d25ba49"></a>
-const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> (void) const </td></tr>
+<tr class="memitem:a13d6de78e1834929f06e0c961d25ba49"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a13d6de78e1834929f06e0c961d25ba49">getSize</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a13d6de78e1834929f06e0c961d25ba49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8fd3697b306c9875649677f24f5efea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8fd3697b306c9875649677f24f5efea"></a>
-const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFormat</b> (void) const </td></tr>
+<tr class="memitem:ac8fd3697b306c9875649677f24f5efea"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#ac8fd3697b306c9875649677f24f5efea">getFormat</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ac8fd3697b306c9875649677f24f5efea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade9df9f9597f9150f97a704d076fb0b2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade9df9f9597f9150f97a704d076fb0b2"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getBPP</b> (void) const </td></tr>
+<tr class="memitem:ade9df9f9597f9150f97a704d076fb0b2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#ade9df9f9597f9150f97a704d076fb0b2">getBPP</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ade9df9f9597f9150f97a704d076fb0b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43a8e0f217c43bcebb636ba6226efb89"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43a8e0f217c43bcebb636ba6226efb89"></a>
-S64&#160;</td><td class="memItemRight" valign="bottom"><b>getStride</b> (void) const </td></tr>
+<tr class="memitem:a43a8e0f217c43bcebb636ba6226efb89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a43a8e0f217c43bcebb636ba6226efb89">getStride</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a43a8e0f217c43bcebb636ba6226efb89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a035d03d80592c7dcba003b70e3491978"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a035d03d80592c7dcba003b70e3491978"></a>
-<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getBuffer</b> (void) const </td></tr>
+<tr class="memitem:a035d03d80592c7dcba003b70e3491978"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a035d03d80592c7dcba003b70e3491978">getBuffer</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a035d03d80592c7dcba003b70e3491978"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab75419fb383cb1b2b17bcf7e71720b10"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab75419fb383cb1b2b17bcf7e71720b10"></a>
-S64&#160;</td><td class="memItemRight" valign="bottom"><b>getOffset</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos=0) const </td></tr>
+<tr class="memitem:ab75419fb383cb1b2b17bcf7e71720b10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#ab75419fb383cb1b2b17bcf7e71720b10">getOffset</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos=0) const </td></tr>
 <tr class="separator:ab75419fb383cb1b2b17bcf7e71720b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38876ef0380bcd3b279a47530e017a6c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38876ef0380bcd3b279a47530e017a6c"></a>
-const U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>getPtr</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos=0) const </td></tr>
+<tr class="memitem:a38876ef0380bcd3b279a47530e017a6c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a38876ef0380bcd3b279a47530e017a6c">getPtr</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos=0) const </td></tr>
 <tr class="separator:a38876ef0380bcd3b279a47530e017a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a337244bc302ef9453275504a099e9205"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a337244bc302ef9453275504a099e9205"></a>
-U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>getMutablePtr</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos=0)</td></tr>
+<tr class="memitem:a337244bc302ef9453275504a099e9205"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a337244bc302ef9453275504a099e9205">getMutablePtr</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos=0)</td></tr>
 <tr class="separator:a337244bc302ef9453275504a099e9205"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7726738445f9a2e07d5e2b47acaaffdc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7726738445f9a2e07d5e2b47acaaffdc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;format, void *ptr, S64 stride, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;size) const </td></tr>
+<tr class="memitem:a7726738445f9a2e07d5e2b47acaaffdc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a7726738445f9a2e07d5e2b47acaaffdc">read</a> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad4c33e9edd8edca569c34a03f3c9795e">format</a>, <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#a7e4fd8ad485109775db4cb3992574d8f">stride</a>, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>) const </td></tr>
 <tr class="separator:a7726738445f9a2e07d5e2b47acaaffdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac60627fa4376e5057eabb7088176d7c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac60627fa4376e5057eabb7088176d7c2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;format, void *ptr, S64 stride) const </td></tr>
+<tr class="memitem:ac60627fa4376e5057eabb7088176d7c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#ac60627fa4376e5057eabb7088176d7c2">read</a> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad4c33e9edd8edca569c34a03f3c9795e">format</a>, <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#a7e4fd8ad485109775db4cb3992574d8f">stride</a>) const </td></tr>
 <tr class="separator:ac60627fa4376e5057eabb7088176d7c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a072edfd5e6cc431c13b0f5fbc40985d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a072edfd5e6cc431c13b0f5fbc40985d5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;format, const void *ptr, S64 stride, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;size)</td></tr>
+<tr class="memitem:a072edfd5e6cc431c13b0f5fbc40985d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a072edfd5e6cc431c13b0f5fbc40985d5">write</a> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad4c33e9edd8edca569c34a03f3c9795e">format</a>, const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#a7e4fd8ad485109775db4cb3992574d8f">stride</a>, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:a072edfd5e6cc431c13b0f5fbc40985d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0e2947facbae656ddf1bebd163be1bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad0e2947facbae656ddf1bebd163be1bb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;format, const void *ptr, S64 stride)</td></tr>
+<tr class="memitem:ad0e2947facbae656ddf1bebd163be1bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#ad0e2947facbae656ddf1bebd163be1bb">write</a> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad4c33e9edd8edca569c34a03f3c9795e">format</a>, const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#a7e4fd8ad485109775db4cb3992574d8f">stride</a>)</td></tr>
 <tr class="separator:ad0e2947facbae656ddf1bebd163be1bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82a1a9a85d3dde23de6ae52a00dcd9a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82a1a9a85d3dde23de6ae52a00dcd9a7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;dstPos, const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;src, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;srcPos, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;size)</td></tr>
+<tr class="memitem:a82a1a9a85d3dde23de6ae52a00dcd9a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a82a1a9a85d3dde23de6ae52a00dcd9a7">set</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;dstPos, const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;src, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;srcPos, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:a82a1a9a85d3dde23de6ae52a00dcd9a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14812d8b80fb265b5e873e90868f0471"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14812d8b80fb265b5e873e90868f0471"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;src)</td></tr>
+<tr class="memitem:a14812d8b80fb265b5e873e90868f0471"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a14812d8b80fb265b5e873e90868f0471">set</a> (const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;src)</td></tr>
 <tr class="separator:a14812d8b80fb265b5e873e90868f0471"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1eb0561df9f4371481b8dad3f62f6e34"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1eb0561df9f4371481b8dad3f62f6e34"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (U32 abgr=0)</td></tr>
+<tr class="memitem:a1eb0561df9f4371481b8dad3f62f6e34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a1eb0561df9f4371481b8dad3f62f6e34">clear</a> (<a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> abgr=0)</td></tr>
 <tr class="separator:a1eb0561df9f4371481b8dad3f62f6e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e8d72ee9a779caa5c6709a1cfcbf0f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e8d72ee9a779caa5c6709a1cfcbf0f0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;color)</td></tr>
+<tr class="memitem:a3e8d72ee9a779caa5c6709a1cfcbf0f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a3e8d72ee9a779caa5c6709a1cfcbf0f0">clear</a> (const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#aad29334ffa561bd5ff0111b9d5a07fe6">color</a>)</td></tr>
 <tr class="separator:a3e8d72ee9a779caa5c6709a1cfcbf0f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa012141407a005a271b55a5663f2e6d1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa012141407a005a271b55a5663f2e6d1"></a>
-U32&#160;</td><td class="memItemRight" valign="bottom"><b>getABGR</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos) const </td></tr>
+<tr class="memitem:aa012141407a005a271b55a5663f2e6d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#aa012141407a005a271b55a5663f2e6d1">getABGR</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos) const </td></tr>
 <tr class="separator:aa012141407a005a271b55a5663f2e6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa20bdb38af4e9716eb26d6c2abc0195f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa20bdb38af4e9716eb26d6c2abc0195f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setABGR</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, U32 value)</td></tr>
+<tr class="memitem:aa20bdb38af4e9716eb26d6c2abc0195f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#aa20bdb38af4e9716eb26d6c2abc0195f">setABGR</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> <a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
 <tr class="separator:aa20bdb38af4e9716eb26d6c2abc0195f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84512e79d56fcbc043d15901adb48e33"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84512e79d56fcbc043d15901adb48e33"></a>
-<a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getVec4f</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos) const </td></tr>
+<tr class="memitem:a84512e79d56fcbc043d15901adb48e33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a84512e79d56fcbc043d15901adb48e33">getVec4f</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos) const </td></tr>
 <tr class="separator:a84512e79d56fcbc043d15901adb48e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9109649994fbb07a31bf1c5ce85dc973"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9109649994fbb07a31bf1c5ce85dc973"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setVec4f</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;value)</td></tr>
+<tr class="memitem:a9109649994fbb07a31bf1c5ce85dc973"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a9109649994fbb07a31bf1c5ce85dc973">setVec4f</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
 <tr class="separator:a9109649994fbb07a31bf1c5ce85dc973"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2c9e55788066e2e7fdb56a482dd61fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2c9e55788066e2e7fdb56a482dd61fb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>getChannels</b> (F32 *values, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, int first, int num) const </td></tr>
+<tr class="memitem:ae2c9e55788066e2e7fdb56a482dd61fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#ae2c9e55788066e2e7fdb56a482dd61fb">getChannels</a> (<a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> *values, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, int first, int num) const </td></tr>
 <tr class="separator:ae2c9e55788066e2e7fdb56a482dd61fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35ccaae19c199cc140802fa5281745b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35ccaae19c199cc140802fa5281745b7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>getChannels</b> (F32 *values, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos) const </td></tr>
+<tr class="memitem:a35ccaae19c199cc140802fa5281745b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a35ccaae19c199cc140802fa5281745b7">getChannels</a> (<a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> *values, const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos) const </td></tr>
 <tr class="separator:a35ccaae19c199cc140802fa5281745b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdb6ecbf74cf0d833f35470aec6e94ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abdb6ecbf74cf0d833f35470aec6e94ff"></a>
-const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; F32 &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getChannels</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos) const </td></tr>
+<tr class="memitem:abdb6ecbf74cf0d833f35470aec6e94ff"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#abdb6ecbf74cf0d833f35470aec6e94ff">getChannels</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos) const </td></tr>
 <tr class="separator:abdb6ecbf74cf0d833f35470aec6e94ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6130384a7cb000d7f9423d5a70aa482a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6130384a7cb000d7f9423d5a70aa482a"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>getChannel</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, int idx) const </td></tr>
+<tr class="memitem:a6130384a7cb000d7f9423d5a70aa482a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a6130384a7cb000d7f9423d5a70aa482a">getChannel</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, int idx) const </td></tr>
 <tr class="separator:a6130384a7cb000d7f9423d5a70aa482a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afae767bc0f01aec9510ce060d9a8126b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afae767bc0f01aec9510ce060d9a8126b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setChannels</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, const F32 *values, int first, int num)</td></tr>
+<tr class="memitem:afae767bc0f01aec9510ce060d9a8126b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#afae767bc0f01aec9510ce060d9a8126b">setChannels</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, const <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> *values, int first, int num)</td></tr>
 <tr class="separator:afae767bc0f01aec9510ce060d9a8126b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7362784ba0186e27ae15f39d34ba617"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7362784ba0186e27ae15f39d34ba617"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setChannels</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, const F32 *values)</td></tr>
+<tr class="memitem:ac7362784ba0186e27ae15f39d34ba617"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#ac7362784ba0186e27ae15f39d34ba617">setChannels</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, const <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> *values)</td></tr>
 <tr class="separator:ac7362784ba0186e27ae15f39d34ba617"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a64736a96e83a5137b818d4145ce11b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a64736a96e83a5137b818d4145ce11b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setChannel</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, int idx, F32 value)</td></tr>
+<tr class="memitem:a0a64736a96e83a5137b818d4145ce11b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a0a64736a96e83a5137b818d4145ce11b">setChannel</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;pos, int idx, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> <a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
 <tr class="separator:a0a64736a96e83a5137b818d4145ce11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a266a4ed2c8a13c04cf049d1b4182e5c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a266a4ed2c8a13c04cf049d1b4182e5c6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>flipX</b> (void)</td></tr>
+<tr class="memitem:a266a4ed2c8a13c04cf049d1b4182e5c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a266a4ed2c8a13c04cf049d1b4182e5c6">flipX</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a266a4ed2c8a13c04cf049d1b4182e5c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79a4fa75e9094ffbd578227f6aacb50b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79a4fa75e9094ffbd578227f6aacb50b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>flipY</b> (void)</td></tr>
+<tr class="memitem:a79a4fa75e9094ffbd578227f6aacb50b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a79a4fa75e9094ffbd578227f6aacb50b">flipY</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a79a4fa75e9094ffbd578227f6aacb50b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b9a41c6943bcad31e9d274472b26e26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b9a41c6943bcad31e9d274472b26e26"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>createGLTexture</b> (ImageFormat::ID desiredFormat=ImageFormat::ID_Max, bool generateMipmaps=true) const </td></tr>
+<tr class="memitem:a4b9a41c6943bcad31e9d274472b26e26"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a4b9a41c6943bcad31e9d274472b26e26">createGLTexture</a> (<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">ImageFormat::ID</a> desiredFormat=<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a014127cad95eef9c0d9d9a34168c426b">ImageFormat::ID_Max</a>, bool generateMipmaps=true) const </td></tr>
 <tr class="separator:a4b9a41c6943bcad31e9d274472b26e26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ce75aa6221b88eb82a1db63772c7710"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ce75aa6221b88eb82a1db63772c7710"></a>
-<a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><b>chooseCudaFormat</b> (CUDA_ARRAY_DESCRIPTOR *desc=NULL, ImageFormat::ID desiredFormat=ImageFormat::ID_Max) const </td></tr>
+<tr class="memitem:a0ce75aa6221b88eb82a1db63772c7710"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a0ce75aa6221b88eb82a1db63772c7710">chooseCudaFormat</a> (CUDA_ARRAY_DESCRIPTOR *desc=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">ImageFormat::ID</a> desiredFormat=<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a014127cad95eef9c0d9d9a34168c426b">ImageFormat::ID_Max</a>) const </td></tr>
 <tr class="separator:a0ce75aa6221b88eb82a1db63772c7710"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9629265761dff4d22d5f1a40175b53fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9629265761dff4d22d5f1a40175b53fe"></a>
-CUarray&#160;</td><td class="memItemRight" valign="bottom"><b>createCudaArray</b> (ImageFormat::ID desiredFormat=ImageFormat::ID_Max) const </td></tr>
+<tr class="memitem:a9629265761dff4d22d5f1a40175b53fe"><td class="memItemLeft" align="right" valign="top">CUarray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a9629265761dff4d22d5f1a40175b53fe">createCudaArray</a> (<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">ImageFormat::ID</a> desiredFormat=<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a014127cad95eef9c0d9d9a34168c426b">ImageFormat::ID_Max</a>) const </td></tr>
 <tr class="separator:a9629265761dff4d22d5f1a40175b53fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45891562a4afef4abee910eedd48614f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a45891562a4afef4abee910eedd48614f"></a>
-<a class="el" href="class_f_w_1_1_image.html">Image</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>downscale2x</b> (void) const </td></tr>
+<tr class="memitem:a45891562a4afef4abee910eedd48614f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_image.html">Image</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#a45891562a4afef4abee910eedd48614f">downscale2x</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a45891562a4afef4abee910eedd48614f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1fbe776bd2ff5f6419de66a09ff9e82"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1fbe776bd2ff5f6419de66a09ff9e82"></a>
-<a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;other)</td></tr>
+<tr class="memitem:ae1fbe776bd2ff5f6419de66a09ff9e82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image.html#ae1fbe776bd2ff5f6419de66a09ff9e82">operator=</a> (const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;other)</td></tr>
 <tr class="separator:ae1fbe776bd2ff5f6419de66a09ff9e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00132">132</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a612f4b93f31caaf7ed708fdab7f2320c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::Image::Image </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>format</em> = <code><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a008fb409dac056b74401ff5c8b7e1893">ImageFormat::ABGR_8888</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00135">135</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a162c94676ce4dc407c6509e92fb601e1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Image::Image </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>stride</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00239">239</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9bce98bd3183a420c739fc89745dd416"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Image::Image </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>ofs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>stride</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00260">260</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a044c84c2162bd3b165f3df4a5904adba"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::Image::Image </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00138">138</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a794ae7f8ff9b4b7b7306343ac2f56356"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Image::~Image </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00274">274</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a0ce75aa6221b88eb82a1db63772c7710"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> Image::chooseCudaFormat </td>
+          <td>(</td>
+          <td class="paramtype">CUDA_ARRAY_DESCRIPTOR *&#160;</td>
+          <td class="paramname"><em>desc</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">ImageFormat::ID</a>&#160;</td>
+          <td class="paramname"><em>desiredFormat</em> = <code><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a014127cad95eef9c0d9d9a34168c426b">ImageFormat::ID_Max</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00531">531</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1eb0561df9f4371481b8dad3f62f6e34"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Image::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>abgr</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00160">160</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3e8d72ee9a779caa5c6709a1cfcbf0f0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Image::clear </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00161">161</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad8027e927144ff92a52464f68a9dfb14"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::Image::contains </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00141">141</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9629265761dff4d22d5f1a40175b53fe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUarray Image::createCudaArray </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">ImageFormat::ID</a>&#160;</td>
+          <td class="paramname"><em>desiredFormat</em> = <code><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a014127cad95eef9c0d9d9a34168c426b">ImageFormat::ID_Max</a></code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00608">608</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4b9a41c6943bcad31e9d274472b26e26"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint Image::createGLTexture </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">ImageFormat::ID</a>&#160;</td>
+          <td class="paramname"><em>desiredFormat</em> = <code><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a014127cad95eef9c0d9d9a34168c426b">ImageFormat::ID_Max</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>generateMipmaps</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00475">475</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a45891562a4afef4abee910eedd48614f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_image.html">Image</a> * Image::downscale2x </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00673">673</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a266a4ed2c8a13c04cf049d1b4182e5c6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Image::flipX </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00440">440</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a79a4fa75e9094ffbd578227f6aacb50b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Image::flipY </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00459">459</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa012141407a005a271b55a5663f2e6d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> Image::getABGR </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00282">282</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ade9df9f9597f9150f97a704d076fb0b2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::Image::getBPP </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00145">145</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a035d03d80592c7dcba003b70e3491978"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a>&amp; FW::Image::getBuffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00148">148</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6130384a7cb000d7f9423d5a70aa482a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::Image::getChannel </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00170">170</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2c9e55788066e2e7fdb56a482dd61fb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Image::getChannels </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> *&#160;</td>
+          <td class="paramname"><em>values</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00167">167</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a35ccaae19c199cc140802fa5281745b7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Image::getChannels </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> *&#160;</td>
+          <td class="paramname"><em>values</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00168">168</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abdb6ecbf74cf0d833f35470aec6e94ff"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt;<a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&gt;&amp; FW::Image::getChannels </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00169">169</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac8fd3697b306c9875649677f24f5efea"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a>&amp; FW::Image::getFormat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00144">144</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a337244bc302ef9453275504a099e9205"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::Image::getMutablePtr </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00151">151</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab75419fb383cb1b2b17bcf7e71720b10"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> FW::Image::getOffset </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00149">149</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a38876ef0380bcd3b279a47530e017a6c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::Image::getPtr </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>0</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00150">150</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a13d6de78e1834929f06e0c961d25ba49"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&amp; FW::Image::getSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00143">143</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a43a8e0f217c43bcebb636ba6226efb89"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> FW::Image::getStride </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00146">146</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a84512e79d56fcbc043d15901adb48e33"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> Image::getVec4f </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00369">369</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae1fbe776bd2ff5f6419de66a09ff9e82"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_image.html">Image</a>&amp; FW::Image::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00185">185</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7726738445f9a2e07d5e2b47acaaffdc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Image::read </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>stride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00153">153</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac60627fa4376e5057eabb7088176d7c2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Image::read </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>stride</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00154">154</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a82a1a9a85d3dde23de6ae52a00dcd9a7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Image::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>dstPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>srcPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00157">157</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a14812d8b80fb265b5e873e90868f0471"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Image::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00158">158</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa20bdb38af4e9716eb26d6c2abc0195f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Image::setABGR </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00329">329</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0a64736a96e83a5137b818d4145ce11b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Image::setChannel </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00173">173</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afae767bc0f01aec9510ce060d9a8126b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Image::setChannels </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> *&#160;</td>
+          <td class="paramname"><em>values</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00171">171</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac7362784ba0186e27ae15f39d34ba617"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Image::setChannels </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> *&#160;</td>
+          <td class="paramname"><em>values</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00172">172</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9109649994fbb07a31bf1c5ce85dc973"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Image::setVec4f </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> &amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00406">406</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a072edfd5e6cc431c13b0f5fbc40985d5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Image::write </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>stride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00155">155</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad0e2947facbae656ddf1bebd163be1bb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Image::write </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>stride</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00156">156</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/gui/<a class="el" href="_image_8hpp_source.html">Image.hpp</a></li>
-<li>src/framework/gui/Image.cpp</li>
+<li>src/framework/gui/<a class="el" href="_image_8cpp_source.html">Image.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_image.html">Image</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_image.html">Image</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

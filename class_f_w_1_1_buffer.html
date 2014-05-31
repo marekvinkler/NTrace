@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_buffer.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -113,211 +114,2004 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_buffer.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p><code>#include &lt;<a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>&gt;</code></p>
+
 <p>Inherits <a class="el" href="class_f_w_1_1_serializable.html">FW::Serializable</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a6c1c118fbf58a9120a561b7b523982c9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>Module</b> { <br/>
-&#160;&#160;<b>CPU</b> = 1 &lt;&lt; 0, 
-<b>GL</b> = 1 &lt;&lt; 1, 
-<b>Cuda</b> = 1 &lt;&lt; 2, 
-<b>Module_None</b> = 0, 
+<tr class="memitem:a6c1c118fbf58a9120a561b7b523982c9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a6c1c118fbf58a9120a561b7b523982c9">Module</a> { <br/>
+&#160;&#160;<a class="el" href="class_f_w_1_1_buffer.html#a6c1c118fbf58a9120a561b7b523982c9ada2bbc648ce1ed4812d0f938b02052ee">CPU</a> = 1 &lt;&lt; 0, 
+<a class="el" href="class_f_w_1_1_buffer.html#a6c1c118fbf58a9120a561b7b523982c9a0ac9c854a1337d883c9e27eaa20a9657">GL</a> = 1 &lt;&lt; 1, 
+<a class="el" href="class_f_w_1_1_buffer.html#a6c1c118fbf58a9120a561b7b523982c9a7ba349a7628a36120e8aa99a7b10061b">Cuda</a> = 1 &lt;&lt; 2, 
+<a class="el" href="class_f_w_1_1_buffer.html#a6c1c118fbf58a9120a561b7b523982c9a63a2383221957a2f39c8edc8b0cdf126">Module_None</a> = 0, 
 <br/>
-&#160;&#160;<b>Module_All</b> = (1 &lt;&lt; 3) - 1
+&#160;&#160;<a class="el" href="class_f_w_1_1_buffer.html#a6c1c118fbf58a9120a561b7b523982c9a06a28cfe238003da8fc49a7e60bfb4c4">Module_All</a> = (1 &lt;&lt; 3) - 1
 <br/>
  }</td></tr>
 <tr class="separator:a6c1c118fbf58a9120a561b7b523982c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c66ac2842f7366d5f5fd56fab7f6aaa"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>Hint</b> { <b>Hint_PageLock</b> = 1 &lt;&lt; 0, 
-<b>Hint_CudaGL</b> = 1 &lt;&lt; 1, 
-<b>Hint_None</b> = 0, 
-<b>Hint_All</b> = (1 &lt;&lt; 2) - 1
+<tr class="memitem:a5c66ac2842f7366d5f5fd56fab7f6aaa"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaa">Hint</a> { <a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaaa4e6a371b4bfab1a9520e511e36c50a98">Hint_PageLock</a> = 1 &lt;&lt; 0, 
+<a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaaaa18223578b235090cae0ee24d32a857f">Hint_CudaGL</a> = 1 &lt;&lt; 1, 
+<a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaaa5f2b9e214c7a9f71456db3be0e2fc985">Hint_None</a> = 0, 
+<a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaaac6913788830e2d9339bc177ca506acbb">Hint_All</a> = (1 &lt;&lt; 2) - 1
  }</td></tr>
 <tr class="separator:a5c66ac2842f7366d5f5fd56fab7f6aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a737f6bc9010aa59bcd61e60541e6495c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a737f6bc9010aa59bcd61e60541e6495c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Buffer</b> (U32 hints=Hint_None)</td></tr>
+<tr class="memitem:a737f6bc9010aa59bcd61e60541e6495c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a737f6bc9010aa59bcd61e60541e6495c">Buffer</a> (<a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> hints=<a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaaa5f2b9e214c7a9f71456db3be0e2fc985">Hint_None</a>)</td></tr>
 <tr class="separator:a737f6bc9010aa59bcd61e60541e6495c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2324922e7815bc7d858620e1097d270"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2324922e7815bc7d858620e1097d270"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Buffer</b> (const void *ptr, S64 size, U32 hints=Hint_None, int align=1)</td></tr>
+<tr class="memitem:ae2324922e7815bc7d858620e1097d270"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#ae2324922e7815bc7d858620e1097d270">Buffer</a> (const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> hints=<a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaaa5f2b9e214c7a9f71456db3be0e2fc985">Hint_None</a>, int align=1)</td></tr>
 <tr class="separator:ae2324922e7815bc7d858620e1097d270"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d40b98429e79ba5cd9400c647cb2cf5"><td class="memTemplParams" colspan="2"><a class="anchor" id="a5d40b98429e79ba5cd9400c647cb2cf5"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a5d40b98429e79ba5cd9400c647cb2cf5"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Buffer</b> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;data, U32 hints=Hint_None, int align=1)</td></tr>
+<tr class="memitem:a5d40b98429e79ba5cd9400c647cb2cf5"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a5d40b98429e79ba5cd9400c647cb2cf5"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a5d40b98429e79ba5cd9400c647cb2cf5">Buffer</a> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> hints=<a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaaa5f2b9e214c7a9f71456db3be0e2fc985">Hint_None</a>, int align=1)</td></tr>
 <tr class="separator:a5d40b98429e79ba5cd9400c647cb2cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44f4b57ebfce2dc00ba10e8bef2cad99"><td class="memTemplParams" colspan="2"><a class="anchor" id="a44f4b57ebfce2dc00ba10e8bef2cad99"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a44f4b57ebfce2dc00ba10e8bef2cad99"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Buffer</b> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;data, int start, int end, U32 hints=Hint_None, int align=1)</td></tr>
+<tr class="memitem:a44f4b57ebfce2dc00ba10e8bef2cad99"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a44f4b57ebfce2dc00ba10e8bef2cad99"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a44f4b57ebfce2dc00ba10e8bef2cad99">Buffer</a> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>, int start, int end, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> hints=<a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaaa5f2b9e214c7a9f71456db3be0e2fc985">Hint_None</a>, int align=1)</td></tr>
 <tr class="separator:a44f4b57ebfce2dc00ba10e8bef2cad99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a82edbbbf82096553587602e6ef5131"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a82edbbbf82096553587602e6ef5131"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Buffer</b> (<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;other)</td></tr>
+<tr class="memitem:a6a82edbbbf82096553587602e6ef5131"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a6a82edbbbf82096553587602e6ef5131">Buffer</a> (<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;other)</td></tr>
 <tr class="separator:a6a82edbbbf82096553587602e6ef5131"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a0207b4d42d66379135c19165c2cc14"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a0207b4d42d66379135c19165c2cc14"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>wrapCPU</b> (void *cpuPtr, S64 size)</td></tr>
+<tr class="memitem:aa769fb5642311c46370dda47242857cd"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#aa769fb5642311c46370dda47242857cd">~Buffer</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:aa769fb5642311c46370dda47242857cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a0207b4d42d66379135c19165c2cc14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a5a0207b4d42d66379135c19165c2cc14">wrapCPU</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *cpuPtr, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:a5a0207b4d42d66379135c19165c2cc14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3265cc9f1e7a324f26a750c3beaded02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3265cc9f1e7a324f26a750c3beaded02"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>wrapGL</b> (GLuint glBuffer)</td></tr>
+<tr class="memitem:a3265cc9f1e7a324f26a750c3beaded02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a3265cc9f1e7a324f26a750c3beaded02">wrapGL</a> (GLuint glBuffer)</td></tr>
 <tr class="separator:a3265cc9f1e7a324f26a750c3beaded02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33dd259f52b953403c2d539e4e9a98db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33dd259f52b953403c2d539e4e9a98db"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>wrapCuda</b> (CUdeviceptr cudaPtr, S64 size)</td></tr>
+<tr class="memitem:a33dd259f52b953403c2d539e4e9a98db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a33dd259f52b953403c2d539e4e9a98db">wrapCuda</a> (CUdeviceptr cudaPtr, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:a33dd259f52b953403c2d539e4e9a98db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab73cf5a8f20060158cee1b23991fadb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab73cf5a8f20060158cee1b23991fadb"></a>
-S64&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> (void) const </td></tr>
+<tr class="memitem:aab73cf5a8f20060158cee1b23991fadb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#aab73cf5a8f20060158cee1b23991fadb">getSize</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:aab73cf5a8f20060158cee1b23991fadb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79b6b1749b8474358c285c5a5c8a4b5c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79b6b1749b8474358c285c5a5c8a4b5c"></a>
-U32&#160;</td><td class="memItemRight" valign="bottom"><b>getHints</b> (void) const </td></tr>
+<tr class="memitem:a79b6b1749b8474358c285c5a5c8a4b5c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a79b6b1749b8474358c285c5a5c8a4b5c">getHints</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a79b6b1749b8474358c285c5a5c8a4b5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7f184908ce510dfdb8f60150c4dc66e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7f184908ce510dfdb8f60150c4dc66e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getAlign</b> (void) const </td></tr>
+<tr class="memitem:ab7f184908ce510dfdb8f60150c4dc66e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#ab7f184908ce510dfdb8f60150c4dc66e">getAlign</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ab7f184908ce510dfdb8f60150c4dc66e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85f3b8a00fa0ef83ba5ca4659fc7b2d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85f3b8a00fa0ef83ba5ca4659fc7b2d3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setHintsAndAlign</b> (U32 hints, int align)</td></tr>
+<tr class="memitem:a85f3b8a00fa0ef83ba5ca4659fc7b2d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a85f3b8a00fa0ef83ba5ca4659fc7b2d3">setHintsAndAlign</a> (<a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> hints, int align)</td></tr>
 <tr class="separator:a85f3b8a00fa0ef83ba5ca4659fc7b2d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c16bcf9a9c5d2ff7e65b1e956dfce09"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c16bcf9a9c5d2ff7e65b1e956dfce09"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setHints</b> (U32 hints)</td></tr>
+<tr class="memitem:a9c16bcf9a9c5d2ff7e65b1e956dfce09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a9c16bcf9a9c5d2ff7e65b1e956dfce09">setHints</a> (<a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> hints)</td></tr>
 <tr class="separator:a9c16bcf9a9c5d2ff7e65b1e956dfce09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af89901a63f171aab65b5061322aa46f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af89901a63f171aab65b5061322aa46f5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setAlign</b> (int align)</td></tr>
+<tr class="memitem:af89901a63f171aab65b5061322aa46f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#af89901a63f171aab65b5061322aa46f5">setAlign</a> (int align)</td></tr>
 <tr class="separator:af89901a63f171aab65b5061322aa46f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae45728e7ceb34813af2f86d4e6c3840d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae45728e7ceb34813af2f86d4e6c3840d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (U32 hints, int align)</td></tr>
+<tr class="memitem:ae45728e7ceb34813af2f86d4e6c3840d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#ae45728e7ceb34813af2f86d4e6c3840d">reset</a> (<a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> hints, int align)</td></tr>
 <tr class="separator:ae45728e7ceb34813af2f86d4e6c3840d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c1a48b20ec295c88e0c57556e02adff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c1a48b20ec295c88e0c57556e02adff"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (U32 hints)</td></tr>
+<tr class="memitem:a0c1a48b20ec295c88e0c57556e02adff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a0c1a48b20ec295c88e0c57556e02adff">reset</a> (<a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> hints)</td></tr>
 <tr class="separator:a0c1a48b20ec295c88e0c57556e02adff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8debe856e010433c9fe715ff81116531"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8debe856e010433c9fe715ff81116531"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (void)</td></tr>
+<tr class="memitem:a8debe856e010433c9fe715ff81116531"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a8debe856e010433c9fe715ff81116531">reset</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a8debe856e010433c9fe715ff81116531"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2aab6c0044afb39828bb88e65f9f887f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aab6c0044afb39828bb88e65f9f887f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (const void *ptr, S64 size, U32 hints, int align)</td></tr>
+<tr class="memitem:a2aab6c0044afb39828bb88e65f9f887f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a2aab6c0044afb39828bb88e65f9f887f">reset</a> (const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> hints, int align)</td></tr>
 <tr class="separator:a2aab6c0044afb39828bb88e65f9f887f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae7c6560b308cc13996c44f4c2fe498e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae7c6560b308cc13996c44f4c2fe498e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (const void *ptr, S64 size, U32 hints)</td></tr>
+<tr class="memitem:aae7c6560b308cc13996c44f4c2fe498e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#aae7c6560b308cc13996c44f4c2fe498e">reset</a> (const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> hints)</td></tr>
 <tr class="separator:aae7c6560b308cc13996c44f4c2fe498e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a182b090120fc7b19928adfeaa4de0eba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a182b090120fc7b19928adfeaa4de0eba"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (const void *ptr, S64 size)</td></tr>
+<tr class="memitem:a182b090120fc7b19928adfeaa4de0eba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a182b090120fc7b19928adfeaa4de0eba">reset</a> (const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:a182b090120fc7b19928adfeaa4de0eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e5af1cb11fa413b9bc8845aa246c21c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e5af1cb11fa413b9bc8845aa246c21c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>resize</b> (S64 size)</td></tr>
+<tr class="memitem:a0e5af1cb11fa413b9bc8845aa246c21c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a0e5af1cb11fa413b9bc8845aa246c21c">resize</a> (<a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:a0e5af1cb11fa413b9bc8845aa246c21c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad975a1136a057b8b26ff930307928819"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad975a1136a057b8b26ff930307928819"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>resizeDiscard</b> (S64 size)</td></tr>
+<tr class="memitem:ad975a1136a057b8b26ff930307928819"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#ad975a1136a057b8b26ff930307928819">resizeDiscard</a> (<a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:ad975a1136a057b8b26ff930307928819"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae089771d787c6065a49c1a0b662cfb05"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae089771d787c6065a49c1a0b662cfb05"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>free</b> (Module module)</td></tr>
+<tr class="memitem:ae089771d787c6065a49c1a0b662cfb05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#ae089771d787c6065a49c1a0b662cfb05">free</a> (<a class="el" href="class_f_w_1_1_buffer.html#a6c1c118fbf58a9120a561b7b523982c9">Module</a> <a class="el" href="_d_l_l_imports_8inl.html#a975c27b9fa30a47886925f75103aa3c4">module</a>)</td></tr>
 <tr class="separator:ae089771d787c6065a49c1a0b662cfb05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7445cafd0f9fd71c931324cc3955bf87"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7445cafd0f9fd71c931324cc3955bf87"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>getRange</b> (void *dst, S64 srcOfs, S64 size, bool async=false, CUstream cudaStream=NULL) const </td></tr>
+<tr class="memitem:a7445cafd0f9fd71c931324cc3955bf87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a7445cafd0f9fd71c931324cc3955bf87">getRange</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *dst, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> srcOfs, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, bool async=false, CUstream cudaStream=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>) const </td></tr>
 <tr class="separator:a7445cafd0f9fd71c931324cc3955bf87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70c2f6e52bc1d3cbaa34de22282e2219"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70c2f6e52bc1d3cbaa34de22282e2219"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (void *ptr)</td></tr>
+<tr class="memitem:a70c2f6e52bc1d3cbaa34de22282e2219"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a70c2f6e52bc1d3cbaa34de22282e2219">get</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>)</td></tr>
 <tr class="separator:a70c2f6e52bc1d3cbaa34de22282e2219"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a664145d651c85bf9b7dac228968c56ca"><td class="memTemplParams" colspan="2"><a class="anchor" id="a664145d651c85bf9b7dac228968c56ca"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a664145d651c85bf9b7dac228968c56ca"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get</b> (<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;data)</td></tr>
+<tr class="memitem:a664145d651c85bf9b7dac228968c56ca"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a664145d651c85bf9b7dac228968c56ca"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a664145d651c85bf9b7dac228968c56ca">get</a> (<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>)</td></tr>
 <tr class="separator:a664145d651c85bf9b7dac228968c56ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01f34d9dde462dfaf7b8206b8c6462fc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01f34d9dde462dfaf7b8206b8c6462fc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRange</b> (S64 dstOfs, const void *src, S64 size, bool async=false, CUstream cudaStream=NULL)</td></tr>
+<tr class="memitem:a01f34d9dde462dfaf7b8206b8c6462fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a01f34d9dde462dfaf7b8206b8c6462fc">setRange</a> (<a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> dstOfs, const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *src, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, bool async=false, CUstream cudaStream=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</td></tr>
 <tr class="separator:a01f34d9dde462dfaf7b8206b8c6462fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa12c82446b30fb595ed48d0b7348e559"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa12c82446b30fb595ed48d0b7348e559"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRange</b> (S64 dstOfs, <a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;src, S64 srcOfs, S64 size, bool async=false, CUstream cudaStream=NULL)</td></tr>
+<tr class="memitem:aa12c82446b30fb595ed48d0b7348e559"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#aa12c82446b30fb595ed48d0b7348e559">setRange</a> (<a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> dstOfs, <a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;src, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> srcOfs, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, bool async=false, CUstream cudaStream=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</td></tr>
 <tr class="separator:aa12c82446b30fb595ed48d0b7348e559"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52ae8c2989ad2cb3309fc4168823a3cf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52ae8c2989ad2cb3309fc4168823a3cf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const void *ptr)</td></tr>
+<tr class="memitem:a52ae8c2989ad2cb3309fc4168823a3cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a52ae8c2989ad2cb3309fc4168823a3cf">set</a> (const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>)</td></tr>
 <tr class="separator:a52ae8c2989ad2cb3309fc4168823a3cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a299f4b420e34b79fb3c01f13c84058a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a299f4b420e34b79fb3c01f13c84058a6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const void *ptr, S64 size)</td></tr>
+<tr class="memitem:a299f4b420e34b79fb3c01f13c84058a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a299f4b420e34b79fb3c01f13c84058a6">set</a> (const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:a299f4b420e34b79fb3c01f13c84058a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a534410318bc46f688925593786f513f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a534410318bc46f688925593786f513f9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;other)</td></tr>
+<tr class="memitem:a534410318bc46f688925593786f513f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a534410318bc46f688925593786f513f9">set</a> (<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;other)</td></tr>
 <tr class="separator:a534410318bc46f688925593786f513f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42ae9eeb27bb112271cbeb9019d3f696"><td class="memTemplParams" colspan="2"><a class="anchor" id="a42ae9eeb27bb112271cbeb9019d3f696"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a42ae9eeb27bb112271cbeb9019d3f696"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;data)</td></tr>
+<tr class="memitem:a42ae9eeb27bb112271cbeb9019d3f696"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a42ae9eeb27bb112271cbeb9019d3f696"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a42ae9eeb27bb112271cbeb9019d3f696">set</a> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>)</td></tr>
 <tr class="separator:a42ae9eeb27bb112271cbeb9019d3f696"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f333c4105419ec7cb64c1ed0b6fc69f"><td class="memTemplParams" colspan="2"><a class="anchor" id="a4f333c4105419ec7cb64c1ed0b6fc69f"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a4f333c4105419ec7cb64c1ed0b6fc69f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;data, int start, int end)</td></tr>
+<tr class="memitem:a4f333c4105419ec7cb64c1ed0b6fc69f"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a4f333c4105419ec7cb64c1ed0b6fc69f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a4f333c4105419ec7cb64c1ed0b6fc69f">set</a> (const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;<a class="el" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>, int start, int end)</td></tr>
 <tr class="separator:a4f333c4105419ec7cb64c1ed0b6fc69f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0ab03c9e6cc82661b9612b48cf09fd2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0ab03c9e6cc82661b9612b48cf09fd2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clearRange</b> (S64 dstOfs, int value, S64 size, bool async=false, CUstream cudaStream=NULL)</td></tr>
+<tr class="memitem:ab0ab03c9e6cc82661b9612b48cf09fd2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#ab0ab03c9e6cc82661b9612b48cf09fd2">clearRange</a> (<a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> dstOfs, int <a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, bool async=false, CUstream cudaStream=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</td></tr>
 <tr class="separator:ab0ab03c9e6cc82661b9612b48cf09fd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fb639d628edc5a591283a4cabaa060a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fb639d628edc5a591283a4cabaa060a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (int value=0)</td></tr>
+<tr class="memitem:a1fb639d628edc5a591283a4cabaa060a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a1fb639d628edc5a591283a4cabaa060a">clear</a> (int <a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>=0)</td></tr>
 <tr class="separator:a1fb639d628edc5a591283a4cabaa060a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fde4d9b67881119cc3f8681a49d38c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2fde4d9b67881119cc3f8681a49d38c5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setOwner</b> (Module module, bool modify, bool async=false, CUstream cudaStream=NULL, S64 validSize=-1)</td></tr>
+<tr class="memitem:a2fde4d9b67881119cc3f8681a49d38c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a2fde4d9b67881119cc3f8681a49d38c5">setOwner</a> (<a class="el" href="class_f_w_1_1_buffer.html#a6c1c118fbf58a9120a561b7b523982c9">Module</a> <a class="el" href="_d_l_l_imports_8inl.html#a975c27b9fa30a47886925f75103aa3c4">module</a>, bool modify, bool async=false, CUstream cudaStream=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> validSize=-1)</td></tr>
 <tr class="separator:a2fde4d9b67881119cc3f8681a49d38c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5fd764467279f5044da89cd53557d23"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5fd764467279f5044da89cd53557d23"></a>
-Module&#160;</td><td class="memItemRight" valign="bottom"><b>getOwner</b> (void) const </td></tr>
+<tr class="memitem:ae5fd764467279f5044da89cd53557d23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html#a6c1c118fbf58a9120a561b7b523982c9">Module</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#ae5fd764467279f5044da89cd53557d23">getOwner</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ae5fd764467279f5044da89cd53557d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69441ec3153b1742f68bf4c141c378e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a69441ec3153b1742f68bf4c141c378e6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>discard</b> (void)</td></tr>
+<tr class="memitem:a69441ec3153b1742f68bf4c141c378e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a69441ec3153b1742f68bf4c141c378e6">discard</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a69441ec3153b1742f68bf4c141c378e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac32eae4bf1ef7b036f6fd081f86c3461"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac32eae4bf1ef7b036f6fd081f86c3461"></a>
-const U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>getPtr</b> (S64 ofs=0)</td></tr>
+<tr class="memitem:ac32eae4bf1ef7b036f6fd081f86c3461"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#ac32eae4bf1ef7b036f6fd081f86c3461">getPtr</a> (<a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> ofs=0)</td></tr>
 <tr class="separator:ac32eae4bf1ef7b036f6fd081f86c3461"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a47d811f257295ab434e5c2b192b8c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a47d811f257295ab434e5c2b192b8c7"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>getGLBuffer</b> (void)</td></tr>
+<tr class="memitem:a2a47d811f257295ab434e5c2b192b8c7"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a2a47d811f257295ab434e5c2b192b8c7">getGLBuffer</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a2a47d811f257295ab434e5c2b192b8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafa85e31db70b6b4fcefe9f5d82ab3b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aafa85e31db70b6b4fcefe9f5d82ab3b6"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>getCudaPtr</b> (S64 ofs=0)</td></tr>
+<tr class="memitem:aafa85e31db70b6b4fcefe9f5d82ab3b6"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#aafa85e31db70b6b4fcefe9f5d82ab3b6">getCudaPtr</a> (<a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> ofs=0)</td></tr>
 <tr class="separator:aafa85e31db70b6b4fcefe9f5d82ab3b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaafb694c38ebf4f8fd90e465de012e3f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaafb694c38ebf4f8fd90e465de012e3f"></a>
-U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>getMutablePtr</b> (S64 ofs=0)</td></tr>
+<tr class="memitem:aaafb694c38ebf4f8fd90e465de012e3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#aaafb694c38ebf4f8fd90e465de012e3f">getMutablePtr</a> (<a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> ofs=0)</td></tr>
 <tr class="separator:aaafb694c38ebf4f8fd90e465de012e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfccf813c156a3bc547d6ec93870dd37"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adfccf813c156a3bc547d6ec93870dd37"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>getMutableGLBuffer</b> (void)</td></tr>
+<tr class="memitem:adfccf813c156a3bc547d6ec93870dd37"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#adfccf813c156a3bc547d6ec93870dd37">getMutableGLBuffer</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:adfccf813c156a3bc547d6ec93870dd37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e47bb8f916e2eafd7194f8147f0978b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e47bb8f916e2eafd7194f8147f0978b"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>getMutableCudaPtr</b> (S64 ofs=0)</td></tr>
+<tr class="memitem:a5e47bb8f916e2eafd7194f8147f0978b"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a5e47bb8f916e2eafd7194f8147f0978b">getMutableCudaPtr</a> (<a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> ofs=0)</td></tr>
 <tr class="separator:a5e47bb8f916e2eafd7194f8147f0978b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6581ccb180093d5454d1b73336abc24d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6581ccb180093d5454d1b73336abc24d"></a>
-U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>getMutablePtrDiscard</b> (S64 ofs=0)</td></tr>
+<tr class="memitem:a6581ccb180093d5454d1b73336abc24d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a6581ccb180093d5454d1b73336abc24d">getMutablePtrDiscard</a> (<a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> ofs=0)</td></tr>
 <tr class="separator:a6581ccb180093d5454d1b73336abc24d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac559f964629d7cb31c4d5084c9511d4a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac559f964629d7cb31c4d5084c9511d4a"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>getMutableGLBufferDiscard</b> (void)</td></tr>
+<tr class="memitem:ac559f964629d7cb31c4d5084c9511d4a"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#ac559f964629d7cb31c4d5084c9511d4a">getMutableGLBufferDiscard</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ac559f964629d7cb31c4d5084c9511d4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9046ea2e9c81fa58abdd7835be3b707a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9046ea2e9c81fa58abdd7835be3b707a"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>getMutableCudaPtrDiscard</b> (S64 ofs=0)</td></tr>
+<tr class="memitem:a9046ea2e9c81fa58abdd7835be3b707a"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a9046ea2e9c81fa58abdd7835be3b707a">getMutableCudaPtrDiscard</a> (<a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> ofs=0)</td></tr>
 <tr class="separator:a9046ea2e9c81fa58abdd7835be3b707a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7c2be56d0349f75b197dce1e386787f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7c2be56d0349f75b197dce1e386787f"></a>
-<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;other)</td></tr>
+<tr class="memitem:ad7c2be56d0349f75b197dce1e386787f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#ad7c2be56d0349f75b197dce1e386787f">operator=</a> (<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;other)</td></tr>
 <tr class="separator:ad7c2be56d0349f75b197dce1e386787f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68217de5cbb2b856ff8daacaa1a1475b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68217de5cbb2b856ff8daacaa1a1475b"></a>
-U8&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (S64 idx)</td></tr>
+<tr class="memitem:a68217de5cbb2b856ff8daacaa1a1475b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a68217de5cbb2b856ff8daacaa1a1475b">operator[]</a> (<a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> idx)</td></tr>
 <tr class="separator:a68217de5cbb2b856ff8daacaa1a1475b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa43e3b564afcd9723f9364187b299696"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa43e3b564afcd9723f9364187b299696"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>readFromStream</b> (<a class="el" href="class_f_w_1_1_input_stream.html">InputStream</a> &amp;s)</td></tr>
+<tr class="memitem:aa43e3b564afcd9723f9364187b299696"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#aa43e3b564afcd9723f9364187b299696">readFromStream</a> (<a class="el" href="class_f_w_1_1_input_stream.html">InputStream</a> &amp;s)</td></tr>
 <tr class="separator:aa43e3b564afcd9723f9364187b299696"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a581f29cdf0292d9c01bf75b8c3ebb122"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a581f29cdf0292d9c01bf75b8c3ebb122"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>writeToStream</b> (<a class="el" href="class_f_w_1_1_output_stream.html">OutputStream</a> &amp;s) const </td></tr>
+<tr class="memitem:a581f29cdf0292d9c01bf75b8c3ebb122"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a581f29cdf0292d9c01bf75b8c3ebb122">writeToStream</a> (<a class="el" href="class_f_w_1_1_output_stream.html">OutputStream</a> &amp;s) const </td></tr>
 <tr class="separator:a581f29cdf0292d9c01bf75b8c3ebb122"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_f_w_1_1_serializable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_f_w_1_1_serializable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_f_w_1_1_serializable.html">FW::Serializable</a></td></tr>
+<tr class="memitem:a765cafcb185a172c531e8a28f07c0448 inherit pub_methods_class_f_w_1_1_serializable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_serializable.html#a765cafcb185a172c531e8a28f07c0448">Serializable</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a765cafcb185a172c531e8a28f07c0448 inherit pub_methods_class_f_w_1_1_serializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa44684135c04fcb06c96d753a028a2cf inherit pub_methods_class_f_w_1_1_serializable"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_serializable.html#aa44684135c04fcb06c96d753a028a2cf">~Serializable</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:aa44684135c04fcb06c96d753a028a2cf inherit pub_methods_class_f_w_1_1_serializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ab0b9738de19d823be71763f6d11c65b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0b9738de19d823be71763f6d11c65b9"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>memcpyHtoD</b> (CUdeviceptr dst, const void *src, S64 size, bool async=false, CUstream cudaStream=NULL)</td></tr>
+<tr class="memitem:ab0b9738de19d823be71763f6d11c65b9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#ab0b9738de19d823be71763f6d11c65b9">memcpyHtoD</a> (CUdeviceptr dst, const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *src, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, bool async=false, CUstream cudaStream=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</td></tr>
 <tr class="separator:ab0b9738de19d823be71763f6d11c65b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a172acecf9c8656e03194af69fd6404e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a172acecf9c8656e03194af69fd6404e2"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>memcpyDtoH</b> (void *dst, CUdeviceptr src, S64 size, bool async=false, CUstream cudaStream=NULL)</td></tr>
+<tr class="memitem:a172acecf9c8656e03194af69fd6404e2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#a172acecf9c8656e03194af69fd6404e2">memcpyDtoH</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *dst, CUdeviceptr src, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, bool async=false, CUstream cudaStream=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</td></tr>
 <tr class="separator:a172acecf9c8656e03194af69fd6404e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf0c5cd06c87aba8ee4bb44f390125f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf0c5cd06c87aba8ee4bb44f390125f3"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>memcpyDtoD</b> (CUdeviceptr dst, CUdeviceptr src, S64 size, bool async=false, CUstream cudaStream=NULL)</td></tr>
+<tr class="memitem:adf0c5cd06c87aba8ee4bb44f390125f3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffer.html#adf0c5cd06c87aba8ee4bb44f390125f3">memcpyDtoD</a> (CUdeviceptr dst, CUdeviceptr src, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, bool async=false, CUstream cudaStream=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</td></tr>
 <tr class="separator:adf0c5cd06c87aba8ee4bb44f390125f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00035">35</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a5c66ac2842f7366d5f5fd56fab7f6aaa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaa">FW::Buffer::Hint</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a5c66ac2842f7366d5f5fd56fab7f6aaaa4e6a371b4bfab1a9520e511e36c50a98"></a>Hint_PageLock</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a5c66ac2842f7366d5f5fd56fab7f6aaaaa18223578b235090cae0ee24d32a857f"></a>Hint_CudaGL</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a5c66ac2842f7366d5f5fd56fab7f6aaaa5f2b9e214c7a9f71456db3be0e2fc985"></a>Hint_None</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a5c66ac2842f7366d5f5fd56fab7f6aaaac6913788830e2d9339bc177ca506acbb"></a>Hint_All</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00048">48</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c1c118fbf58a9120a561b7b523982c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_f_w_1_1_buffer.html#a6c1c118fbf58a9120a561b7b523982c9">FW::Buffer::Module</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a6c1c118fbf58a9120a561b7b523982c9ada2bbc648ce1ed4812d0f938b02052ee"></a>CPU</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a6c1c118fbf58a9120a561b7b523982c9a0ac9c854a1337d883c9e27eaa20a9657"></a>GL</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a6c1c118fbf58a9120a561b7b523982c9a7ba349a7628a36120e8aa99a7b10061b"></a>Cuda</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a6c1c118fbf58a9120a561b7b523982c9a63a2383221957a2f39c8edc8b0cdf126"></a>Module_None</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a6c1c118fbf58a9120a561b7b523982c9a06a28cfe238003da8fc49a7e60bfb4c4"></a>Module_All</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00038">38</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a737f6bc9010aa59bcd61e60541e6495c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::Buffer::Buffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>hints</em> = <code><a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaaa5f2b9e214c7a9f71456db3be0e2fc985">Hint_None</a></code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00058">58</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2324922e7815bc7d858620e1097d270"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::Buffer::Buffer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>hints</em> = <code><a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaaa5f2b9e214c7a9f71456db3be0e2fc985">Hint_None</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>align</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00059">59</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5d40b98429e79ba5cd9400c647cb2cf5"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::Buffer::Buffer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>hints</em> = <code><a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaaa5f2b9e214c7a9f71456db3be0e2fc985">Hint_None</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>align</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00060">60</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a44f4b57ebfce2dc00ba10e8bef2cad99"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::Buffer::Buffer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>hints</em> = <code><a class="el" href="class_f_w_1_1_buffer.html#a5c66ac2842f7366d5f5fd56fab7f6aaaa5f2b9e214c7a9f71456db3be0e2fc985">Hint_None</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>align</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00061">61</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6a82edbbbf82096553587602e6ef5131"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::Buffer::Buffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00062">62</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa769fb5642311c46370dda47242857cd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual FW::Buffer::~Buffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00063">63</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a1fb639d628edc5a591283a4cabaa060a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::clear </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00100">100</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab0ab03c9e6cc82661b9612b48cf09fd2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Buffer::clearRange </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>dstOfs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>async</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUstream&#160;</td>
+          <td class="paramname"><em>cudaStream</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8cpp_source.html#l00202">202</a> of file <a class="el" href="_buffer_8cpp_source.html">Buffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a69441ec3153b1742f68bf4c141c378e6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::discard </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00104">104</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae089771d787c6065a49c1a0b662cfb05"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Buffer::free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_buffer.html#a6c1c118fbf58a9120a561b7b523982c9">Module</a>&#160;</td>
+          <td class="paramname"><em>module</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8cpp_source.html#l00080">80</a> of file <a class="el" href="_buffer_8cpp_source.html">Buffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a70c2f6e52bc1d3cbaa34de22282e2219"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00087">87</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a664145d651c85bf9b7dac228968c56ca"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00088">88</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab7f184908ce510dfdb8f60150c4dc66e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::Buffer::getAlign </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00071">71</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aafa85e31db70b6b4fcefe9f5d82ab3b6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::Buffer::getCudaPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>ofs</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00108">108</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2a47d811f257295ab434e5c2b192b8c7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint FW::Buffer::getGLBuffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00107">107</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a79b6b1749b8474358c285c5a5c8a4b5c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> FW::Buffer::getHints </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00070">70</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5e47bb8f916e2eafd7194f8147f0978b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::Buffer::getMutableCudaPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>ofs</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00112">112</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9046ea2e9c81fa58abdd7835be3b707a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::Buffer::getMutableCudaPtrDiscard </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>ofs</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00116">116</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adfccf813c156a3bc547d6ec93870dd37"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint FW::Buffer::getMutableGLBuffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00111">111</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac559f964629d7cb31c4d5084c9511d4a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint FW::Buffer::getMutableGLBufferDiscard </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00115">115</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaafb694c38ebf4f8fd90e465de012e3f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::Buffer::getMutablePtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>ofs</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00110">110</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6581ccb180093d5454d1b73336abc24d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::Buffer::getMutablePtrDiscard </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>ofs</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00114">114</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae5fd764467279f5044da89cd53557d23"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_buffer.html#a6c1c118fbf58a9120a561b7b523982c9">Module</a> FW::Buffer::getOwner </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00103">103</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac32eae4bf1ef7b036f6fd081f86c3461"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::Buffer::getPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>ofs</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00106">106</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7445cafd0f9fd71c931324cc3955bf87"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Buffer::getRange </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>srcOfs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>async</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUstream&#160;</td>
+          <td class="paramname"><em>cudaStream</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8cpp_source.html#l00114">114</a> of file <a class="el" href="_buffer_8cpp_source.html">Buffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aab73cf5a8f20060158cee1b23991fadb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> FW::Buffer::getSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00069">69</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adf0c5cd06c87aba8ee4bb44f390125f3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::memcpyDtoD </td>
+          <td>(</td>
+          <td class="paramtype">CUdeviceptr&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUdeviceptr&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>async</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUstream&#160;</td>
+          <td class="paramname"><em>cudaStream</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00126">126</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a172acecf9c8656e03194af69fd6404e2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::memcpyDtoH </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUdeviceptr&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>async</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUstream&#160;</td>
+          <td class="paramname"><em>cudaStream</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00125">125</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab0b9738de19d823be71763f6d11c65b9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::memcpyHtoD </td>
+          <td>(</td>
+          <td class="paramtype">CUdeviceptr&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>async</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUstream&#160;</td>
+          <td class="paramname"><em>cudaStream</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00124">124</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad7c2be56d0349f75b197dce1e386787f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a>&amp; FW::Buffer::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00118">118</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a68217de5cbb2b856ff8daacaa1a1475b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> FW::Buffer::operator[] </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00119">119</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa43e3b564afcd9723f9364187b299696"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Buffer::readFromStream </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_input_stream.html">InputStream</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_f_w_1_1_serializable.html#ade9f07563a29aab161b3e60224b94e3a">FW::Serializable</a>.</p>
+
+<p>Definition at line <a class="el" href="_buffer_8cpp_source.html#l00331">331</a> of file <a class="el" href="_buffer_8cpp_source.html">Buffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae45728e7ceb34813af2f86d4e6c3840d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>hints</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>align</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00076">76</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0c1a48b20ec295c88e0c57556e02adff"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>hints</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00077">77</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8debe856e010433c9fe715ff81116531"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00078">78</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2aab6c0044afb39828bb88e65f9f887f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::reset </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>hints</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>align</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00079">79</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aae7c6560b308cc13996c44f4c2fe498e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::reset </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>hints</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00080">80</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a182b090120fc7b19928adfeaa4de0eba"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::reset </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00081">81</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0e5af1cb11fa413b9bc8845aa246c21c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::resize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00082">82</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad975a1136a057b8b26ff930307928819"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::resizeDiscard </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00083">83</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a52ae8c2989ad2cb3309fc4168823a3cf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00092">92</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a299f4b420e34b79fb3c01f13c84058a6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00094">94</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a534410318bc46f688925593786f513f9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00095">95</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a42ae9eeb27bb112271cbeb9019d3f696"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00096">96</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4f333c4105419ec7cb64c1ed0b6fc69f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00097">97</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af89901a63f171aab65b5061322aa46f5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::setAlign </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>align</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00074">74</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9c16bcf9a9c5d2ff7e65b1e956dfce09"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::setHints </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>hints</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00073">73</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a85f3b8a00fa0ef83ba5ca4659fc7b2d3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Buffer::setHintsAndAlign </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>hints</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>align</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8hpp_source.html#l00072">72</a> of file <a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2fde4d9b67881119cc3f8681a49d38c5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Buffer::setOwner </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_buffer.html#a6c1c118fbf58a9120a561b7b523982c9">Module</a>&#160;</td>
+          <td class="paramname"><em>module</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>modify</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>async</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUstream&#160;</td>
+          <td class="paramname"><em>cudaStream</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>validSize</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8cpp_source.html#l00220">220</a> of file <a class="el" href="_buffer_8cpp_source.html">Buffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a01f34d9dde462dfaf7b8206b8c6462fc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Buffer::setRange </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>dstOfs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>async</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUstream&#160;</td>
+          <td class="paramname"><em>cudaStream</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8cpp_source.html#l00149">149</a> of file <a class="el" href="_buffer_8cpp_source.html">Buffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa12c82446b30fb595ed48d0b7348e559"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Buffer::setRange </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>dstOfs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>srcOfs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>async</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUstream&#160;</td>
+          <td class="paramname"><em>cudaStream</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8cpp_source.html#l00183">183</a> of file <a class="el" href="_buffer_8cpp_source.html">Buffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5a0207b4d42d66379135c19165c2cc14"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Buffer::wrapCPU </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>cpuPtr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8cpp_source.html#l00039">39</a> of file <a class="el" href="_buffer_8cpp_source.html">Buffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a33dd259f52b953403c2d539e4e9a98db"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Buffer::wrapCuda </td>
+          <td>(</td>
+          <td class="paramtype">CUdeviceptr&#160;</td>
+          <td class="paramname"><em>cudaPtr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8cpp_source.html#l00070">70</a> of file <a class="el" href="_buffer_8cpp_source.html">Buffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3265cc9f1e7a324f26a750c3beaded02"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Buffer::wrapGL </td>
+          <td>(</td>
+          <td class="paramtype">GLuint&#160;</td>
+          <td class="paramname"><em>glBuffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_buffer_8cpp_source.html#l00050">50</a> of file <a class="el" href="_buffer_8cpp_source.html">Buffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a581f29cdf0292d9c01bf75b8c3ebb122"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Buffer::writeToStream </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_output_stream.html">OutputStream</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_f_w_1_1_serializable.html#a78cc84dc75cf1de0e2aa93916d388b78">FW::Serializable</a>.</p>
+
+<p>Definition at line <a class="el" href="_buffer_8cpp_source.html#l00350">350</a> of file <a class="el" href="_buffer_8cpp_source.html">Buffer.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/gpu/<a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a></li>
-<li>src/framework/gpu/Buffer.cpp</li>
+<li>src/framework/gpu/<a class="el" href="_buffer_8cpp_source.html">Buffer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

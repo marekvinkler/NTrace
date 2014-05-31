@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_texture_atlas.html','');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,39 +112,260 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_texture_atlas.html','');
 <div class="title">FW::TextureAtlas Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_texture_atlas_8hpp_source.html">TextureAtlas.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abd6ec4e6541afffa7d6d6615e0301a57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd6ec4e6541afffa7d6d6615e0301a57"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TextureAtlas</b> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;format=ImageFormat::ABGR_8888)</td></tr>
+<tr class="memitem:abd6ec4e6541afffa7d6d6615e0301a57"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_texture_atlas.html#abd6ec4e6541afffa7d6d6615e0301a57">TextureAtlas</a> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ad4c33e9edd8edca569c34a03f3c9795e">format</a>=<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a008fb409dac056b74401ff5c8b7e1893">ImageFormat::ABGR_8888</a>)</td></tr>
 <tr class="separator:abd6ec4e6541afffa7d6d6615e0301a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1a221d4b0349bb8cb249f0bb904a153"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1a221d4b0349bb8cb249f0bb904a153"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (void)</td></tr>
+<tr class="memitem:ac5a269b34faaaac2e1ccb36d8d8d44e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_texture_atlas.html#ac5a269b34faaaac2e1ccb36d8d8d44e6">~TextureAtlas</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:ac5a269b34faaaac2e1ccb36d8d8d44e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1a221d4b0349bb8cb249f0bb904a153"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_texture_atlas.html#ae1a221d4b0349bb8cb249f0bb904a153">clear</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ae1a221d4b0349bb8cb249f0bb904a153"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af43127228ab66e164803b27548a656e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af43127228ab66e164803b27548a656e4"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>addTexture</b> (const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;tex, int border=1, bool wrap=true)</td></tr>
+<tr class="memitem:af43127228ab66e164803b27548a656e4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_texture_atlas.html#af43127228ab66e164803b27548a656e4">addTexture</a> (const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;tex, int <a class="el" href="_d_l_l_imports_8inl.html#a2f27320df57e15b063c357aa678980dd">border</a>=1, bool wrap=true)</td></tr>
 <tr class="separator:af43127228ab66e164803b27548a656e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afeac9d24244a6dbf1c2c0e55dff7514d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afeac9d24244a6dbf1c2c0e55dff7514d"></a>
-<a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getAtlasSize</b> (void)</td></tr>
+<tr class="memitem:afeac9d24244a6dbf1c2c0e55dff7514d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_texture_atlas.html#afeac9d24244a6dbf1c2c0e55dff7514d">getAtlasSize</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:afeac9d24244a6dbf1c2c0e55dff7514d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04fe33941de84ffa920175677cc9f9b2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04fe33941de84ffa920175677cc9f9b2"></a>
-<a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getTexturePos</b> (const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;tex)</td></tr>
+<tr class="memitem:a04fe33941de84ffa920175677cc9f9b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_texture_atlas.html#a04fe33941de84ffa920175677cc9f9b2">getTexturePos</a> (const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;tex)</td></tr>
 <tr class="separator:a04fe33941de84ffa920175677cc9f9b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a964a849d8551053e50ea6319858c9fe1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a964a849d8551053e50ea6319858c9fe1"></a>
-const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getAtlasTexture</b> (void)</td></tr>
+<tr class="memitem:a697e1d641e9a3796954c8165774e59bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_texture_atlas.html#a697e1d641e9a3796954c8165774e59bc">getTextureSize</a> (const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;tex)</td></tr>
+<tr class="separator:a697e1d641e9a3796954c8165774e59bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac24704df19f82b18fe4311b45c81dadf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec2f.html">Vec2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_texture_atlas.html#ac24704df19f82b18fe4311b45c81dadf">getTexturePosF</a> (const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;tex)</td></tr>
+<tr class="separator:ac24704df19f82b18fe4311b45c81dadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b9485b0be365b73bc1fba295cf56fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec2f.html">Vec2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_texture_atlas.html#aa1b9485b0be365b73bc1fba295cf56fb">getTextureSizeF</a> (const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;tex)</td></tr>
+<tr class="separator:aa1b9485b0be365b73bc1fba295cf56fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a964a849d8551053e50ea6319858c9fe1"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_texture_atlas.html#a964a849d8551053e50ea6319858c9fe1">getAtlasTexture</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a964a849d8551053e50ea6319858c9fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_texture_atlas_8hpp_source.html#l00035">35</a> of file <a class="el" href="_texture_atlas_8hpp_source.html">TextureAtlas.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="abd6ec4e6541afffa7d6d6615e0301a57"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TextureAtlas::TextureAtlas </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>format</em> = <code><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a008fb409dac056b74401ff5c8b7e1893">ImageFormat::ABGR_8888</a></code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_texture_atlas_8cpp_source.html#l00035">35</a> of file <a class="el" href="_texture_atlas_8cpp_source.html">TextureAtlas.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac5a269b34faaaac2e1ccb36d8d8d44e6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TextureAtlas::~TextureAtlas </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_texture_atlas_8cpp_source.html#l00043">43</a> of file <a class="el" href="_texture_atlas_8cpp_source.html">TextureAtlas.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="af43127228ab66e164803b27548a656e4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TextureAtlas::addTexture </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;&#160;</td>
+          <td class="paramname"><em>tex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>border</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>wrap</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_texture_atlas_8cpp_source.html#l00061">61</a> of file <a class="el" href="_texture_atlas_8cpp_source.html">TextureAtlas.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae1a221d4b0349bb8cb249f0bb904a153"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> TextureAtlas::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_texture_atlas_8cpp_source.html#l00049">49</a> of file <a class="el" href="_texture_atlas_8cpp_source.html">TextureAtlas.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afeac9d24244a6dbf1c2c0e55dff7514d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> FW::TextureAtlas::getAtlasSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_texture_atlas_8hpp_source.html#l00054">54</a> of file <a class="el" href="_texture_atlas_8hpp_source.html">TextureAtlas.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a964a849d8551053e50ea6319858c9fe1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_texture.html">Texture</a>&amp; FW::TextureAtlas::getAtlasTexture </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_texture_atlas_8hpp_source.html#l00059">59</a> of file <a class="el" href="_texture_atlas_8hpp_source.html">TextureAtlas.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a04fe33941de84ffa920175677cc9f9b2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> TextureAtlas::getTexturePos </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;&#160;</td>
+          <td class="paramname"><em>tex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_texture_atlas_8cpp_source.html#l00080">80</a> of file <a class="el" href="_texture_atlas_8cpp_source.html">TextureAtlas.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac24704df19f82b18fe4311b45c81dadf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec2f.html">Vec2f</a> TextureAtlas::getTexturePosF </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;&#160;</td>
+          <td class="paramname"><em>tex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_texture_atlas_8cpp_source.html#l00106">106</a> of file <a class="el" href="_texture_atlas_8cpp_source.html">TextureAtlas.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a697e1d641e9a3796954c8165774e59bc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> TextureAtlas::getTextureSize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;&#160;</td>
+          <td class="paramname"><em>tex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_texture_atlas_8cpp_source.html#l00093">93</a> of file <a class="el" href="_texture_atlas_8cpp_source.html">TextureAtlas.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa1b9485b0be365b73bc1fba295cf56fb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec2f.html">Vec2f</a> TextureAtlas::getTextureSizeF </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_texture.html">Texture</a> &amp;&#160;</td>
+          <td class="paramname"><em>tex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_texture_atlas_8cpp_source.html#l00121">121</a> of file <a class="el" href="_texture_atlas_8cpp_source.html">TextureAtlas.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/3d/<a class="el" href="_texture_atlas_8hpp_source.html">TextureAtlas.hpp</a></li>
-<li>src/framework/3d/TextureAtlas.cpp</li>
+<li>src/framework/3d/<a class="el" href="_texture_atlas_8cpp_source.html">TextureAtlas.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_texture_atlas.html">TextureAtlas</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_texture_atlas.html">TextureAtlas</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

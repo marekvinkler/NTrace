@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_ray_buffer.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,87 +111,830 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_ray_buffer.html','');});
 <div class="title">FW::RayBuffer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="struct_f_w_1_1_ray.html">Ray</a> buffer class. Stores rays.  
+ <a href="class_f_w_1_1_ray_buffer.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:affa7607adbcf322c351e42a537d02c29"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affa7607adbcf322c351e42a537d02c29"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>RayBuffer</b> (S32 n=0, bool closestHit=true)</td></tr>
+<tr class="memitem:affa7607adbcf322c351e42a537d02c29"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#affa7607adbcf322c351e42a537d02c29">RayBuffer</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#a7bfd2fdf58fb75abde6e36d72617c71b">n</a>=0, bool closestHit=true)</td></tr>
+<tr class="memdesc:affa7607adbcf322c351e42a537d02c29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#affa7607adbcf322c351e42a537d02c29">More...</a><br/></td></tr>
 <tr class="separator:affa7607adbcf322c351e42a537d02c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa03f7f5d97d8b2225e0a435fca6200cf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa03f7f5d97d8b2225e0a435fca6200cf"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> () const </td></tr>
+<tr class="memitem:aa03f7f5d97d8b2225e0a435fca6200cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#aa03f7f5d97d8b2225e0a435fca6200cf">getSize</a> () const </td></tr>
+<tr class="memdesc:aa03f7f5d97d8b2225e0a435fca6200cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets size of the buffer (number of rays).  <a href="#aa03f7f5d97d8b2225e0a435fca6200cf">More...</a><br/></td></tr>
 <tr class="separator:aa03f7f5d97d8b2225e0a435fca6200cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2b77636254270804bd2088a3e8802d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2b77636254270804bd2088a3e8802d4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>resize</b> (S32 n)</td></tr>
+<tr class="memitem:ae2b77636254270804bd2088a3e8802d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#ae2b77636254270804bd2088a3e8802d4">resize</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#a7bfd2fdf58fb75abde6e36d72617c71b">n</a>)</td></tr>
+<tr class="memdesc:ae2b77636254270804bd2088a3e8802d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes the buffer.  <a href="#ae2b77636254270804bd2088a3e8802d4">More...</a><br/></td></tr>
 <tr class="separator:ae2b77636254270804bd2088a3e8802d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb37c788a46492cbce1dd6f8ce80c430"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb37c788a46492cbce1dd6f8ce80c430"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRay</b> (S32 slot, const <a class="el" href="struct_f_w_1_1_ray.html">Ray</a> &amp;ray)</td></tr>
+<tr class="memitem:adb37c788a46492cbce1dd6f8ce80c430"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#adb37c788a46492cbce1dd6f8ce80c430">setRay</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> slot, const <a class="el" href="struct_f_w_1_1_ray.html">Ray</a> &amp;ray)</td></tr>
+<tr class="memdesc:adb37c788a46492cbce1dd6f8ce80c430"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns ray to a slot. Id is same as slot.  <a href="#adb37c788a46492cbce1dd6f8ce80c430">More...</a><br/></td></tr>
 <tr class="separator:adb37c788a46492cbce1dd6f8ce80c430"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6168a20da10b1fd372145660a591a83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6168a20da10b1fd372145660a591a83"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRay</b> (S32 slot, const <a class="el" href="struct_f_w_1_1_ray.html">Ray</a> &amp;ray, S32 id)</td></tr>
+<tr class="memitem:af6168a20da10b1fd372145660a591a83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#af6168a20da10b1fd372145660a591a83">setRay</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> slot, const <a class="el" href="struct_f_w_1_1_ray.html">Ray</a> &amp;ray, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> id)</td></tr>
+<tr class="memdesc:af6168a20da10b1fd372145660a591a83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns ray to a slot and to an id.  <a href="#af6168a20da10b1fd372145660a591a83">More...</a><br/></td></tr>
 <tr class="separator:af6168a20da10b1fd372145660a591a83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c8c44b0f3cc1580632aea640784070d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c8c44b0f3cc1580632aea640784070d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setResult</b> (S32 slot, const <a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a> &amp;r)</td></tr>
+<tr class="memitem:a8c8c44b0f3cc1580632aea640784070d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#a8c8c44b0f3cc1580632aea640784070d">setResult</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> slot, const <a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a> &amp;r)</td></tr>
+<tr class="memdesc:a8c8c44b0f3cc1580632aea640784070d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns ray result to a slot.  <a href="#a8c8c44b0f3cc1580632aea640784070d">More...</a><br/></td></tr>
 <tr class="separator:a8c8c44b0f3cc1580632aea640784070d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d43f5d909e2ca8945f2ecbf377f9bc3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d43f5d909e2ca8945f2ecbf377f9bc3"></a>
-const <a class="el" href="struct_f_w_1_1_ray.html">Ray</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getRayForSlot</b> (S32 slot) const </td></tr>
+<tr class="memitem:a6d43f5d909e2ca8945f2ecbf377f9bc3"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_f_w_1_1_ray.html">Ray</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#a6d43f5d909e2ca8945f2ecbf377f9bc3">getRayForSlot</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> slot) const </td></tr>
+<tr class="memdesc:a6d43f5d909e2ca8945f2ecbf377f9bc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a ray assigned to a given slot.  <a href="#a6d43f5d909e2ca8945f2ecbf377f9bc3">More...</a><br/></td></tr>
 <tr class="separator:a6d43f5d909e2ca8945f2ecbf377f9bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b72f4b36a248e2ef377f196264cd320"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b72f4b36a248e2ef377f196264cd320"></a>
-const <a class="el" href="struct_f_w_1_1_ray.html">Ray</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getRayForID</b> (S32 id) const </td></tr>
+<tr class="memitem:a6b72f4b36a248e2ef377f196264cd320"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_f_w_1_1_ray.html">Ray</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#a6b72f4b36a248e2ef377f196264cd320">getRayForID</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> id) const </td></tr>
+<tr class="memdesc:a6b72f4b36a248e2ef377f196264cd320"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a ray with a given id.  <a href="#a6b72f4b36a248e2ef377f196264cd320">More...</a><br/></td></tr>
 <tr class="separator:a6b72f4b36a248e2ef377f196264cd320"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98af23610952cb63ab42fa9de6473831"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98af23610952cb63ab42fa9de6473831"></a>
-const <a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getResultForSlot</b> (S32 slot) const </td></tr>
+<tr class="memitem:a98af23610952cb63ab42fa9de6473831"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#a98af23610952cb63ab42fa9de6473831">getResultForSlot</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> slot) const </td></tr>
+<tr class="memdesc:a98af23610952cb63ab42fa9de6473831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a ray result assigned to a given slot.  <a href="#a98af23610952cb63ab42fa9de6473831">More...</a><br/></td></tr>
 <tr class="separator:a98af23610952cb63ab42fa9de6473831"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65c848d7917489ea08ca5c0666b59330"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65c848d7917489ea08ca5c0666b59330"></a>
-<a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMutableResultForSlot</b> (S32 slot)</td></tr>
+<tr class="memitem:a65c848d7917489ea08ca5c0666b59330"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#a65c848d7917489ea08ca5c0666b59330">getMutableResultForSlot</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> slot)</td></tr>
+<tr class="memdesc:a65c848d7917489ea08ca5c0666b59330"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a mutable ray assigned to a given slot.  <a href="#a65c848d7917489ea08ca5c0666b59330">More...</a><br/></td></tr>
 <tr class="separator:a65c848d7917489ea08ca5c0666b59330"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8eee3871459f1570d25cd08ca99ca87"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8eee3871459f1570d25cd08ca99ca87"></a>
-const <a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getResultForID</b> (S32 id) const </td></tr>
+<tr class="memitem:aa8eee3871459f1570d25cd08ca99ca87"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#aa8eee3871459f1570d25cd08ca99ca87">getResultForID</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> id) const </td></tr>
+<tr class="memdesc:aa8eee3871459f1570d25cd08ca99ca87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a ray result with a given id.  <a href="#aa8eee3871459f1570d25cd08ca99ca87">More...</a><br/></td></tr>
 <tr class="separator:aa8eee3871459f1570d25cd08ca99ca87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1074124e9e913c70f80a9428aa2b4bb8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1074124e9e913c70f80a9428aa2b4bb8"></a>
-<a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMutableResultForID</b> (S32 id)</td></tr>
+<tr class="memitem:a1074124e9e913c70f80a9428aa2b4bb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#a1074124e9e913c70f80a9428aa2b4bb8">getMutableResultForID</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> id)</td></tr>
+<tr class="memdesc:a1074124e9e913c70f80a9428aa2b4bb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a mutable ray result with a given id.  <a href="#a1074124e9e913c70f80a9428aa2b4bb8">More...</a><br/></td></tr>
 <tr class="separator:a1074124e9e913c70f80a9428aa2b4bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9298c86025cb497429d6812f9f02b7f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9298c86025cb497429d6812f9f02b7f3"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>getSlotForID</b> (S32 id) const </td></tr>
+<tr class="memitem:a9298c86025cb497429d6812f9f02b7f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#a9298c86025cb497429d6812f9f02b7f3">getSlotForID</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> id) const </td></tr>
+<tr class="memdesc:a9298c86025cb497429d6812f9f02b7f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a ray slot for a given id.  <a href="#a9298c86025cb497429d6812f9f02b7f3">More...</a><br/></td></tr>
 <tr class="separator:a9298c86025cb497429d6812f9f02b7f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa86638d8a784b21ee3776bcb89320bc7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa86638d8a784b21ee3776bcb89320bc7"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>getIDForSlot</b> (S32 slot) const </td></tr>
+<tr class="memitem:aa86638d8a784b21ee3776bcb89320bc7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#aa86638d8a784b21ee3776bcb89320bc7">getIDForSlot</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> slot) const </td></tr>
+<tr class="memdesc:aa86638d8a784b21ee3776bcb89320bc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an id for a given ray slot.  <a href="#aa86638d8a784b21ee3776bcb89320bc7">More...</a><br/></td></tr>
 <tr class="separator:aa86638d8a784b21ee3776bcb89320bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5c8d0d29b2f76b433ffd8d7d29a1030"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5c8d0d29b2f76b433ffd8d7d29a1030"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setNeedClosestHit</b> (bool c)</td></tr>
+<tr class="memitem:ad5c8d0d29b2f76b433ffd8d7d29a1030"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#ad5c8d0d29b2f76b433ffd8d7d29a1030">setNeedClosestHit</a> (bool c)</td></tr>
+<tr class="memdesc:ad5c8d0d29b2f76b433ffd8d7d29a1030"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether the closet hit is needed.  <a href="#ad5c8d0d29b2f76b433ffd8d7d29a1030">More...</a><br/></td></tr>
 <tr class="separator:ad5c8d0d29b2f76b433ffd8d7d29a1030"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66d8f660ce883bc56585a1bb683c517c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66d8f660ce883bc56585a1bb683c517c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getNeedClosestHit</b> () const </td></tr>
+<tr class="memitem:a66d8f660ce883bc56585a1bb683c517c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#a66d8f660ce883bc56585a1bb683c517c">getNeedClosestHit</a> () const </td></tr>
+<tr class="memdesc:a66d8f660ce883bc56585a1bb683c517c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the closest hit is needed.  <a href="#a66d8f660ce883bc56585a1bb683c517c">More...</a><br/></td></tr>
 <tr class="separator:a66d8f660ce883bc56585a1bb683c517c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addf14cd10ce1fa463808dbf6c185762d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="addf14cd10ce1fa463808dbf6c185762d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>mortonSort</b> ()</td></tr>
+<tr class="memitem:addf14cd10ce1fa463808dbf6c185762d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#addf14cd10ce1fa463808dbf6c185762d">mortonSort</a> ()</td></tr>
+<tr class="memdesc:addf14cd10ce1fa463808dbf6c185762d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs morton sort.  <a href="#addf14cd10ce1fa463808dbf6c185762d">More...</a><br/></td></tr>
 <tr class="separator:addf14cd10ce1fa463808dbf6c185762d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7533a8a39754b276c765b122c088fa83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7533a8a39754b276c765b122c088fa83"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>randomSort</b> (U32 randomSeed=0)</td></tr>
+<tr class="memitem:a7533a8a39754b276c765b122c088fa83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#a7533a8a39754b276c765b122c088fa83">randomSort</a> (<a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> randomSeed=0)</td></tr>
+<tr class="memdesc:a7533a8a39754b276c765b122c088fa83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuffles rays in the buffer.  <a href="#a7533a8a39754b276c765b122c088fa83">More...</a><br/></td></tr>
 <tr class="separator:a7533a8a39754b276c765b122c088fa83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60beaacdf4ce9e745ec405fb4d2e79b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60beaacdf4ce9e745ec405fb4d2e79b9"></a>
-<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getRayBuffer</b> ()</td></tr>
+<tr class="memitem:a60beaacdf4ce9e745ec405fb4d2e79b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#a60beaacdf4ce9e745ec405fb4d2e79b9">getRayBuffer</a> ()</td></tr>
+<tr class="memdesc:a60beaacdf4ce9e745ec405fb4d2e79b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets ray buffer.  <a href="#a60beaacdf4ce9e745ec405fb4d2e79b9">More...</a><br/></td></tr>
 <tr class="separator:a60beaacdf4ce9e745ec405fb4d2e79b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab44b44ccd24566ce7d465c1513d8505d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab44b44ccd24566ce7d465c1513d8505d"></a>
-<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getResultBuffer</b> ()</td></tr>
+<tr class="memitem:ab44b44ccd24566ce7d465c1513d8505d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#ab44b44ccd24566ce7d465c1513d8505d">getResultBuffer</a> ()</td></tr>
+<tr class="memdesc:ab44b44ccd24566ce7d465c1513d8505d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets ray result buffer.  <a href="#ab44b44ccd24566ce7d465c1513d8505d">More...</a><br/></td></tr>
 <tr class="separator:ab44b44ccd24566ce7d465c1513d8505d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c81f3d0a9495532cd84b10193c0f199"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c81f3d0a9495532cd84b10193c0f199"></a>
-<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getIDToSlotBuffer</b> ()</td></tr>
+<tr class="memitem:a0c81f3d0a9495532cd84b10193c0f199"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#a0c81f3d0a9495532cd84b10193c0f199">getIDToSlotBuffer</a> ()</td></tr>
+<tr class="memdesc:a0c81f3d0a9495532cd84b10193c0f199"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets buffer mapping ids to slots.  <a href="#a0c81f3d0a9495532cd84b10193c0f199">More...</a><br/></td></tr>
 <tr class="separator:a0c81f3d0a9495532cd84b10193c0f199"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d81b1ac9426d96c84f4cb235273d4f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d81b1ac9426d96c84f4cb235273d4f5"></a>
-<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getSlotToIDBuffer</b> ()</td></tr>
+<tr class="memitem:a1d81b1ac9426d96c84f4cb235273d4f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_buffer.html#a1d81b1ac9426d96c84f4cb235273d4f5">getSlotToIDBuffer</a> ()</td></tr>
+<tr class="memdesc:a1d81b1ac9426d96c84f4cb235273d4f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets buffer slots to ids.  <a href="#a1d81b1ac9426d96c84f4cb235273d4f5">More...</a><br/></td></tr>
 <tr class="separator:a1d81b1ac9426d96c84f4cb235273d4f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="struct_f_w_1_1_ray.html">Ray</a> buffer class. Stores rays. </p>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00038">38</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="affa7607adbcf322c351e42a537d02c29"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::RayBuffer::RayBuffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>n</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>closestHit</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Size of the buffer (number of rays). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">closestHit</td><td>Flag whether closest hit is required. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00046">46</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aa86638d8a784b21ee3776bcb89320bc7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::RayBuffer::getIDForSlot </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>slot</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets an id for a given ray slot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">slot</td><td>Slot with the desired id. return Id of the given slot. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00138">138</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0c81f3d0a9495532cd84b10193c0f199"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a>&amp; FW::RayBuffer::getIDToSlotBuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets buffer mapping ids to slots. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> mapping ids to slots. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00179">179</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1074124e9e913c70f80a9428aa2b4bb8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a>&amp; FW::RayBuffer::getMutableResultForID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a mutable ray result with a given id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">id</td><td>Id of the mutable ray result. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Mutable ray result with the given id. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00124">124</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a65c848d7917489ea08ca5c0666b59330"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a>&amp; FW::RayBuffer::getMutableResultForSlot </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>slot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a mutable ray assigned to a given slot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">slot</td><td>Slot where the mutable ray is saved. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Mutable ray from the given slot. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00110">110</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a66d8f660ce883bc56585a1bb683c517c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::RayBuffer::getNeedClosestHit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns whether the closest hit is needed. </p>
+<dl class="section return"><dt>Returns</dt><dd>Closest hit flag. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00150">150</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a60beaacdf4ce9e745ec405fb4d2e79b9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a>&amp; FW::RayBuffer::getRayBuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets ray buffer. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_f_w_1_1_ray.html">Ray</a> buffer. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00167">167</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6b72f4b36a248e2ef377f196264cd320"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_f_w_1_1_ray.html">Ray</a>&amp; FW::RayBuffer::getRayForID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a ray with a given id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">id</td><td>Id of the ray. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_f_w_1_1_ray.html">Ray</a> with the given id. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00096">96</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6d43f5d909e2ca8945f2ecbf377f9bc3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_f_w_1_1_ray.html">Ray</a>&amp; FW::RayBuffer::getRayForSlot </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>slot</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a ray assigned to a given slot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">slot</td><td>Slot where the ray is saved. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_f_w_1_1_ray.html">Ray</a> from the given slot. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00089">89</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab44b44ccd24566ce7d465c1513d8505d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a>&amp; FW::RayBuffer::getResultBuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets ray result buffer. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_f_w_1_1_ray.html">Ray</a> result buffer. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00173">173</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa8eee3871459f1570d25cd08ca99ca87"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a>&amp; FW::RayBuffer::getResultForID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a ray result with a given id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">id</td><td>Id of the ray. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_f_w_1_1_ray.html">Ray</a> result with the given id. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00117">117</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a98af23610952cb63ab42fa9de6473831"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a>&amp; FW::RayBuffer::getResultForSlot </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>slot</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a ray result assigned to a given slot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">slot</td><td>Slot where the ray result is saved. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_f_w_1_1_ray.html">Ray</a> result from the given slot. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00103">103</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa03f7f5d97d8b2225e0a435fca6200cf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::RayBuffer::getSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets size of the buffer (number of rays). </p>
+<dl class="section return"><dt>Returns</dt><dd>Size of the buffer. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00052">52</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9298c86025cb497429d6812f9f02b7f3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::RayBuffer::getSlotForID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a ray slot for a given id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Id of the slot. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Slot with the given id. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00131">131</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1d81b1ac9426d96c84f4cb235273d4f5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a>&amp; FW::RayBuffer::getSlotToIDBuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets buffer slots to ids. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> mapping slots to ids. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00185">185</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="addf14cd10ce1fa463808dbf6c185762d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::RayBuffer::mortonSort </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Performs morton sort. </p>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8cpp_source.html#l00103">103</a> of file <a class="el" href="_ray_buffer_8cpp_source.html">RayBuffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7533a8a39754b276c765b122c088fa83"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::RayBuffer::randomSort </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>randomSeed</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Shuffles rays in the buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">randomSeed</td><td><a class="el" href="class_f_w_1_1_random.html">Random</a> seed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8cpp_source.html#l00066">66</a> of file <a class="el" href="_ray_buffer_8cpp_source.html">RayBuffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2b77636254270804bd2088a3e8802d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::RayBuffer::resize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resizes the buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>New size (number of rays). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8cpp_source.html#l00038">38</a> of file <a class="el" href="_ray_buffer_8cpp_source.html">RayBuffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad5c8d0d29b2f76b433ffd8d7d29a1030"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::RayBuffer::setNeedClosestHit </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets whether the closet hit is needed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>Closest hit flag. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00144">144</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adb37c788a46492cbce1dd6f8ce80c430"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::RayBuffer::setRay </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>slot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_ray.html">Ray</a> &amp;&#160;</td>
+          <td class="paramname"><em>ray</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Assigns ray to a slot. Id is same as slot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">slot</td><td>Slot for the ray. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ray</td><td><a class="el" href="struct_f_w_1_1_ray.html">Ray</a> to be assigned. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00065">65</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af6168a20da10b1fd372145660a591a83"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::RayBuffer::setRay </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>slot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_ray.html">Ray</a> &amp;&#160;</td>
+          <td class="paramname"><em>ray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Assigns ray to a slot and to an id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">slot</td><td>Slot for the ray. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ray</td><td><a class="el" href="struct_f_w_1_1_ray.html">Ray</a> to be assigned. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">id</td><td>Id of the ray. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8cpp_source.html#l00054">54</a> of file <a class="el" href="_ray_buffer_8cpp_source.html">RayBuffer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8c8c44b0f3cc1580632aea640784070d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::RayBuffer::setResult </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>slot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_ray_result.html">RayResult</a> &amp;&#160;</td>
+          <td class="paramname"><em>r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Assigns ray result to a slot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">slot</td><td>Slot for the ray. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">r</td><td><a class="el" href="struct_f_w_1_1_ray.html">Ray</a> result to be assigned. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_ray_buffer_8hpp_source.html#l00080">80</a> of file <a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/rt/ray/<a class="el" href="_ray_buffer_8hpp_source.html">RayBuffer.hpp</a></li>
-<li>src/rt/ray/RayBuffer.cpp</li>
+<li>src/rt/ray/<a class="el" href="_ray_buffer_8cpp_source.html">RayBuffer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

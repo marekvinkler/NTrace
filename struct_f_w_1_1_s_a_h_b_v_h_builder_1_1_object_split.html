@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_s_a_h_b_v_h_builder_1_1
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -104,31 +105,157 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_s_a_h_b_v_h_builder_1_1
 
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_object_split-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">FW::SAHBVHBuilder::ObjectSplit Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Structure holding info about a split of the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> node.  
+ <a href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_object_split.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a1eba439d7489902b4cec0f66d68efa1f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_object_split.html#a1eba439d7489902b4cec0f66d68efa1f">ObjectSplit</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="memdesc:a1eba439d7489902b4cec0f66d68efa1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a1eba439d7489902b4cec0f66d68efa1f">More...</a><br/></td></tr>
+<tr class="separator:a1eba439d7489902b4cec0f66d68efa1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a7b322581954ee266e9f4f900c029d9d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b322581954ee266e9f4f900c029d9d5"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>sah</b></td></tr>
+<tr class="memitem:a7b322581954ee266e9f4f900c029d9d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_object_split.html#a7b322581954ee266e9f4f900c029d9d5">sah</a></td></tr>
+<tr class="memdesc:a7b322581954ee266e9f4f900c029d9d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">SAH cost of the split.  <a href="#a7b322581954ee266e9f4f900c029d9d5">More...</a><br/></td></tr>
 <tr class="separator:a7b322581954ee266e9f4f900c029d9d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec1811621b6da740cad9d1a5160ccd2e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec1811621b6da740cad9d1a5160ccd2e"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>sortDim</b></td></tr>
+<tr class="memitem:aec1811621b6da740cad9d1a5160ccd2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_object_split.html#aec1811621b6da740cad9d1a5160ccd2e">sortDim</a></td></tr>
+<tr class="memdesc:aec1811621b6da740cad9d1a5160ccd2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dimension in which triangles are sorted.  <a href="#aec1811621b6da740cad9d1a5160ccd2e">More...</a><br/></td></tr>
 <tr class="separator:aec1811621b6da740cad9d1a5160ccd2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77c66700d06688e8f54efc057de1d5bc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77c66700d06688e8f54efc057de1d5bc"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>numLeft</b></td></tr>
+<tr class="memitem:a77c66700d06688e8f54efc057de1d5bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_object_split.html#a77c66700d06688e8f54efc057de1d5bc">numLeft</a></td></tr>
+<tr class="memdesc:a77c66700d06688e8f54efc057de1d5bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of triangles in left child node.  <a href="#a77c66700d06688e8f54efc057de1d5bc">More...</a><br/></td></tr>
 <tr class="separator:a77c66700d06688e8f54efc057de1d5bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a5d97e42aa9855f41c63a5d7dc3c769"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a5d97e42aa9855f41c63a5d7dc3c769"></a>
-<a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>leftBounds</b></td></tr>
+<tr class="memitem:a1a5d97e42aa9855f41c63a5d7dc3c769"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_object_split.html#a1a5d97e42aa9855f41c63a5d7dc3c769">leftBounds</a></td></tr>
+<tr class="memdesc:a1a5d97e42aa9855f41c63a5d7dc3c769"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> of a left child node.  <a href="#a1a5d97e42aa9855f41c63a5d7dc3c769">More...</a><br/></td></tr>
 <tr class="separator:a1a5d97e42aa9855f41c63a5d7dc3c769"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed3068431da36ec59dfb351ad4ff8fa7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed3068431da36ec59dfb351ad4ff8fa7"></a>
-<a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>rightBounds</b></td></tr>
+<tr class="memitem:aed3068431da36ec59dfb351ad4ff8fa7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_object_split.html#aed3068431da36ec59dfb351ad4ff8fa7">rightBounds</a></td></tr>
+<tr class="memdesc:aed3068431da36ec59dfb351ad4ff8fa7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> of a right child node.  <a href="#aed3068431da36ec59dfb351ad4ff8fa7">More...</a><br/></td></tr>
 <tr class="separator:aed3068431da36ec59dfb351ad4ff8fa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure holding info about a split of the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> node. </p>
+
+<p>Definition at line <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html#l00081">81</a> of file <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a1eba439d7489902b4cec0f66d68efa1f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::SAHBVHBuilder::ObjectSplit::ObjectSplit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+
+<p>Definition at line <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html#l00092">92</a> of file <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a1a5d97e42aa9855f41c63a5d7dc3c769"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> FW::SAHBVHBuilder::ObjectSplit::leftBounds</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> of a left child node. </p>
+
+<p>Definition at line <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html#l00086">86</a> of file <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a77c66700d06688e8f54efc057de1d5bc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::SAHBVHBuilder::ObjectSplit::numLeft</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of triangles in left child node. </p>
+
+<p>Definition at line <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html#l00085">85</a> of file <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aed3068431da36ec59dfb351ad4ff8fa7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> FW::SAHBVHBuilder::ObjectSplit::rightBounds</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> of a right child node. </p>
+
+<p>Definition at line <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html#l00087">87</a> of file <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7b322581954ee266e9f4f900c029d9d5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::SAHBVHBuilder::ObjectSplit::sah</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SAH cost of the split. </p>
+
+<p>Definition at line <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html#l00083">83</a> of file <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aec1811621b6da740cad9d1a5160ccd2e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::SAHBVHBuilder::ObjectSplit::sortDim</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dimension in which triangles are sorted. </p>
+
+<p>Definition at line <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html#l00084">84</a> of file <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/rt/bvh/<a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a></li>
 </ul>
@@ -137,8 +264,8 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><b>numLeft</b></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_s_a_h_b_v_h_builder.html">SAHBVHBuilder</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_object_split.html">ObjectSplit</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_s_a_h_b_v_h_builder.html">SAHBVHBuilder</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_object_split.html">ObjectSplit</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

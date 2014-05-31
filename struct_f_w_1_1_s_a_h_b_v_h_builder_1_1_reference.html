@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_s_a_h_b_v_h_builder_1_1
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -104,22 +105,100 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_s_a_h_b_v_h_builder_1_1
 
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_reference-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">FW::SAHBVHBuilder::Reference Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Structure holding triangle's index together with its bounding box.  
+ <a href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_reference.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a5d7bbc77b621ab24d044c3e33ba80183"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_reference.html#a5d7bbc77b621ab24d044c3e33ba80183">Reference</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="memdesc:a5d7bbc77b621ab24d044c3e33ba80183"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a5d7bbc77b621ab24d044c3e33ba80183">More...</a><br/></td></tr>
+<tr class="separator:a5d7bbc77b621ab24d044c3e33ba80183"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a69babfd93c163c92660451754db4d967"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a69babfd93c163c92660451754db4d967"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>triIdx</b></td></tr>
+<tr class="memitem:a69babfd93c163c92660451754db4d967"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_reference.html#a69babfd93c163c92660451754db4d967">triIdx</a></td></tr>
+<tr class="memdesc:a69babfd93c163c92660451754db4d967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of the triangle.  <a href="#a69babfd93c163c92660451754db4d967">More...</a><br/></td></tr>
 <tr class="separator:a69babfd93c163c92660451754db4d967"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83c4a07eac18dfbd5831ccbcf2bc413f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a83c4a07eac18dfbd5831ccbcf2bc413f"></a>
-<a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>bounds</b></td></tr>
+<tr class="memitem:a83c4a07eac18dfbd5831ccbcf2bc413f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_reference.html#a83c4a07eac18dfbd5831ccbcf2bc413f">bounds</a></td></tr>
+<tr class="memdesc:a83c4a07eac18dfbd5831ccbcf2bc413f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bounding box of the triangle.  <a href="#a83c4a07eac18dfbd5831ccbcf2bc413f">More...</a><br/></td></tr>
 <tr class="separator:a83c4a07eac18dfbd5831ccbcf2bc413f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure holding triangle's index together with its bounding box. </p>
+
+<p>Definition at line <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html#l00053">53</a> of file <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a5d7bbc77b621ab24d044c3e33ba80183"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::SAHBVHBuilder::Reference::Reference </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+
+<p>Definition at line <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html#l00061">61</a> of file <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a83c4a07eac18dfbd5831ccbcf2bc413f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> FW::SAHBVHBuilder::Reference::bounds</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bounding box of the triangle. </p>
+
+<p>Definition at line <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html#l00056">56</a> of file <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a69babfd93c163c92660451754db4d967"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::SAHBVHBuilder::Reference::triIdx</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Index of the triangle. </p>
+
+<p>Definition at line <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html#l00055">55</a> of file <a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/rt/bvh/<a class="el" href="_s_a_h_b_v_h_builder_8hpp_source.html">SAHBVHBuilder.hpp</a></li>
 </ul>
@@ -128,8 +207,8 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><b>triIdx</b></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_s_a_h_b_v_h_builder.html">SAHBVHBuilder</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_reference.html">Reference</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_s_a_h_b_v_h_builder.html">SAHBVHBuilder</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_reference.html">Reference</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -68,6 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -90,7 +92,7 @@ $(document).ready(function(){initNavTree('_fast_k_d_tree_builder_8hpp_source.htm
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -104,155 +106,193 @@ $(document).ready(function(){initNavTree('_fast_k_d_tree_builder_8hpp_source.htm
 <div class="title">FastKDTreeBuilder.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_fast_k_d_tree_builder_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="_k_d_tree_8hpp.html">kdtree/KDTree.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;base/Timer.hpp&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>FW</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_f_w_1_1_fast_k_d_tree_builder.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_f_w_1_1_fast_k_d_tree_builder.html">FastKDTreeBuilder</a></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">enum</span> EventType</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        End,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        Planar,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        Start</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    };</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">enum</span> SahSide</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        Left,</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        Right</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    };</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">enum</span> SplitSide</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        LeftOnly,</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        RightOnly,</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        Both</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    };</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">struct </span>Event</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        S32                 triIdx; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        F32                 pos;    </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        S32                 dim;    </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        EventType           type;   </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        Event() : triIdx(-1), pos(0.f), dim(-1) {}</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    };</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">struct </span>NodeSpec</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        S32                 numEv;  </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <a class="code" href="class_f_w_1_1_a_a_b_b.html">AABB</a>                bounds; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        S32                 numTri; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        NodeSpec(<span class="keywordtype">void</span>) : numEv(0), numTri(0) {}</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    };</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">struct </span>Split</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    {       </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        F32                 price;  </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        S32                 dim;    </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        F32                 pos;    </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        SahSide             side;   </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        Split() : price(FW_F32_MAX), dim(-1), pos(0.f) {}</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    };</div>
+<a href="_fast_k_d_tree_builder_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">*  Copyright (c) 2013, Radek Stibora</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">*  All rights reserved.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">*  Redistribution and use in source and binary forms, with or without</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">*  modification, are permitted provided that the following conditions are met:</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*      * Redistributions of source code must retain the above copyright</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">*        notice, this list of conditions and the following disclaimer.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">*      * Redistributions in binary form must reproduce the above copyright</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">*        notice, this list of conditions and the following disclaimer in the</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">*        documentation and/or other materials provided with the distribution.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">*      * Neither the name of the &lt;organization&gt; nor the</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">*        names of its contributors may be used to endorse or promote products</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">*        derived from this software without specific prior written permission.</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">*  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">*  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">*  DISCLAIMED. IN NO EVENT SHALL &lt;COPYRIGHT HOLDER&gt; BE LIABLE FOR ANY</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">*  DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">*  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">*  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">*  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">*  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="_k_d_tree_8hpp.html">kdtree/KDTree.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_timer_8hpp.html">base/Timer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">namespace </span>FW</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_f_w_1_1_fast_k_d_tree_builder.html">   39</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_f_w_1_1_fast_k_d_tree_builder.html">FastKDTreeBuilder</a></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">enum</span> EventType</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        End,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        Planar,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        Start</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    };</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">enum</span> SahSide</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        Left,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        Right</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    };</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">enum</span> SplitSide</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        LeftOnly,</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        RightOnly,</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        Both</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    };</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">struct </span>Event</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>                 triIdx; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>                 pos;    </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>                 <a class="code" href="_d_l_l_imports_8inl.html#afa19deda7e4b44859d7d11b6fada0a24">dim</a>;    </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        EventType           <a class="code" href="_d_l_l_imports_8inl.html#a1d14bae93fe47a03f0ace206fef6a34e">type</a>;   </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        Event() : triIdx(-1), pos(0.<a class="code" href="_d_l_l_imports_8inl.html#aae5e5f55e5704ab0c6fb5992d5b0a116">f</a>), <a class="code" href="_d_l_l_imports_8inl.html#afa19deda7e4b44859d7d11b6fada0a24">dim</a>(-1) {}</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    };</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">struct </span>NodeSpec</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>                 numEv;  </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="class_f_w_1_1_a_a_b_b.html">AABB</a>                bounds; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>                 numTri; </div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">struct </span>TriData</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="comment">//AABB              bounds;     //!&lt; Bounding box of the triangle.</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        SplitSide           side;       </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        TriData() : side(Both) {}</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    };</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                            <a class="code" href="class_f_w_1_1_fast_k_d_tree_builder.html#a219a85ccad46e4ae5ff62d21b4de6b91">FastKDTreeBuilder</a>       (<a class="code" href="class_f_w_1_1_k_d_tree.html">KDTree</a>&amp; kdtree, <span class="keyword">const</span> <a class="code" href="struct_f_w_1_1_k_d_tree_1_1_build_params.html">KDTree::BuildParams</a>&amp; params);</div>
-<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="class_f_w_1_1_fast_k_d_tree_builder.html#ac37e4ec4a32063cf5e476d38f00ed0e9">  123</a></span>&#160;                            <a class="code" href="class_f_w_1_1_fast_k_d_tree_builder.html#ac37e4ec4a32063cf5e476d38f00ed0e9">~FastKDTreeBuilder</a>      (<span class="keywordtype">void</span>)  {}</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a>*             <a class="code" href="class_f_w_1_1_fast_k_d_tree_builder.html#a61bcd0ebf9e2e42ca222ab2a25c441d9">run</a>                     (<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="class_f_w_1_1_fast_k_d_tree_builder.html#aef92542a9ac70964526601912f0068ef">  135</a></span>&#160;    S32                     <a class="code" href="class_f_w_1_1_fast_k_d_tree_builder.html#aef92542a9ac70964526601912f0068ef">getNumDuplicates</a>        (<span class="keywordtype">void</span>)  { <span class="keywordflow">return</span> m_numDuplicates; }</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <a class="code" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a>*             buildNode               (<span class="keyword">const</span> NodeSpec&amp; spec, <span class="keywordtype">int</span> level, <span class="keywordtype">int</span> forcedSplits, F32 progressStart, F32 progressEnd);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <a class="code" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a>*             createLeaf              (<span class="keyword">const</span> NodeSpec&amp; spec);</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    Split                   findSplit               (<span class="keyword">const</span> NodeSpec&amp; spec) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordtype">void</span>                    performSplit            (NodeSpec&amp; left, NodeSpec&amp; right, <span class="keyword">const</span> NodeSpec&amp; spec, <span class="keyword">const</span> Split&amp; split);</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span>             eventSortCompare        (<span class="keywordtype">void</span>* data, <span class="keywordtype">int</span> idxA, <span class="keywordtype">int</span> idxB);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span>             eventSortSwap           (<span class="keywordtype">void</span>* data, <span class="keywordtype">int</span> idxA, <span class="keywordtype">int</span> idxB);</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span>             eventCompare            (<span class="keyword">const</span> Event&amp; eventA, <span class="keyword">const</span> Event&amp; eventB);</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordtype">void</span>                    splitBounds             (<a class="code" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&amp; left, <a class="code" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&amp; right, S32 triIdx, <span class="keyword">const</span> Split&amp; split) <span class="keyword">const</span>; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        NodeSpec(<span class="keywordtype">void</span>) : numEv(0), numTri(0) {}</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    };</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">struct </span>Split</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    {       </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <a class="code" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>                 price;  </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>                 <a class="code" href="_d_l_l_imports_8inl.html#afa19deda7e4b44859d7d11b6fada0a24">dim</a>;    </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <a class="code" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>                 pos;    </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        SahSide             side;   </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        Split() : price(<a class="code" href="_defs_8hpp.html#a3cd06b1ab4f45a09ba8f9744ce15f0ce">FW_F32_MAX</a>), <a class="code" href="_d_l_l_imports_8inl.html#afa19deda7e4b44859d7d11b6fada0a24">dim</a>(-1), pos(0.<a class="code" href="_d_l_l_imports_8inl.html#aae5e5f55e5704ab0c6fb5992d5b0a116">f</a>) {}</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    };</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keyword">struct </span>TriData</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="comment">//AABB              bounds;     //!&lt; Bounding box of the triangle.</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        SplitSide           side;       </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        TriData() : side(Both) {}</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    };</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                            <a class="code" href="class_f_w_1_1_fast_k_d_tree_builder.html#a219a85ccad46e4ae5ff62d21b4de6b91">FastKDTreeBuilder</a>       (<a class="code" href="class_f_w_1_1_k_d_tree.html">KDTree</a>&amp; kdtree, <span class="keyword">const</span> <a class="code" href="struct_f_w_1_1_k_d_tree_1_1_build_params.html">KDTree::BuildParams</a>&amp; <a class="code" href="_d_l_l_imports_8inl.html#a4eaf2f499ca0434ce41d6b3014ef3ba0">params</a>);</div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="class_f_w_1_1_fast_k_d_tree_builder.html#ac37e4ec4a32063cf5e476d38f00ed0e9">  145</a></span>&#160;                            <a class="code" href="class_f_w_1_1_fast_k_d_tree_builder.html#ac37e4ec4a32063cf5e476d38f00ed0e9">~FastKDTreeBuilder</a>      (<span class="keywordtype">void</span>)  {}</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <a class="code" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a>*             <a class="code" href="class_f_w_1_1_fast_k_d_tree_builder.html#a61bcd0ebf9e2e42ca222ab2a25c441d9">run</a>                     (<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="class_f_w_1_1_fast_k_d_tree_builder.html#aef92542a9ac70964526601912f0068ef">  157</a></span>&#160;    <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>                     <a class="code" href="class_f_w_1_1_fast_k_d_tree_builder.html#aef92542a9ac70964526601912f0068ef">getNumDuplicates</a>        (<span class="keywordtype">void</span>)  { <span class="keywordflow">return</span> m_numDuplicates; }</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <a class="code" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a>*             buildNode               (<span class="keyword">const</span> NodeSpec&amp; spec, <span class="keywordtype">int</span> <a class="code" href="_d_l_l_imports_8inl.html#aeb907b7e4f0ae85cbdd82f5378f11eb8">level</a>, <span class="keywordtype">int</span> forcedSplits, <a class="code" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> progressStart, <a class="code" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> progressEnd);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <a class="code" href="class_f_w_1_1_k_d_tree_node.html">KDTreeNode</a>*             createLeaf              (<span class="keyword">const</span> NodeSpec&amp; spec);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    Split                   findSplit               (<span class="keyword">const</span> NodeSpec&amp; spec) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keywordtype">void</span>                    performSplit            (NodeSpec&amp; left, NodeSpec&amp; right, <span class="keyword">const</span> NodeSpec&amp; spec, <span class="keyword">const</span> Split&amp; split);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span>             eventSortCompare        (<span class="keywordtype">void</span>* <a class="code" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>, <span class="keywordtype">int</span> idxA, <span class="keywordtype">int</span> idxB);</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keywordtype">void</span>                    mergeEvents             (S32&amp; stackTop, <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>&amp; a, <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>&amp; b);</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    F32                     sahPrice                (<span class="keyword">const</span> Split&amp; split, <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&amp; bounds, S32 nl, S32 nr) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> msort(<a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>&amp; data);</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> mmerge(<a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>&amp; data, <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>&amp; left, <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>&amp; right);</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span>             eventSortSwap           (<span class="keywordtype">void</span>* <a class="code" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>, <span class="keywordtype">int</span> idxA, <span class="keywordtype">int</span> idxB);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span>             eventCompare            (<span class="keyword">const</span> Event&amp; eventA, <span class="keyword">const</span> Event&amp; eventB);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">void</span>                    splitBounds             (<a class="code" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&amp; left, <a class="code" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&amp; right, <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> triIdx, <span class="keyword">const</span> Split&amp; split) <span class="keyword">const</span>; </div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="class_f_w_1_1_k_d_tree.html">KDTree</a>&amp;                     m_kdtree;           </div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_platform.html">Platform</a>&amp;             m_platform;         </div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct_f_w_1_1_k_d_tree_1_1_build_params.html">KDTree::BuildParams</a>&amp;  m_params;           </div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keyword">const</span> S32                   m_maxDepth;         </div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keyword">const</span> S32                   m_maxFailSplits;    </div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordtype">void</span>                    mergeEvents             (<a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&amp; stackTop, <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>&amp; a, <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>&amp; b);</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>                m_evStack;          </div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;int&gt;</a>                  m_triStack;         </div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;TriData&gt;</a>              m_triData;          </div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <a class="code" href="class_f_w_1_1_timer.html">Timer</a>                       m_progressTimer;    </div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    S32                         m_numDuplicates;    </div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <a class="code" href="class_f_w_1_1_timer.html">Timer</a>                       m_measureTimer;</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>                m_eventsLO;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>                m_eventsRO;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>                m_eventsBL;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>                m_eventsBR;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;S32&gt;</a>                  m_leftTriIdx;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;S32&gt;</a>                  m_rightTriIdx;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;};</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;}</div>
-<div class="ttc" id="struct_f_w_1_1_k_d_tree_1_1_build_params_html"><div class="ttname"><a href="struct_f_w_1_1_k_d_tree_1_1_build_params.html">FW::KDTree::BuildParams</a></div><div class="ttdoc">Strucure holding build parameters. </div><div class="ttdef"><b>Definition:</b> KDTree.hpp:63</div></div>
-<div class="ttc" id="class_f_w_1_1_k_d_tree_html"><div class="ttname"><a href="class_f_w_1_1_k_d_tree.html">FW::KDTree</a></div><div class="ttdoc">K-d tree acceleration structure class. </div><div class="ttdef"><b>Definition:</b> KDTree.hpp:19</div></div>
-<div class="ttc" id="class_f_w_1_1_fast_k_d_tree_builder_html"><div class="ttname"><a href="class_f_w_1_1_fast_k_d_tree_builder.html">FW::FastKDTreeBuilder</a></div><div class="ttdoc">Fast k-d tree builder class. </div><div class="ttdef"><b>Definition:</b> FastKDTreeBuilder.hpp:17</div></div>
-<div class="ttc" id="_k_d_tree_8hpp_html"><div class="ttname"><a href="_k_d_tree_8hpp.html">KDTree.hpp</a></div><div class="ttdoc">Declarations for the K-d tree. </div></div>
-<div class="ttc" id="class_f_w_1_1_fast_k_d_tree_builder_html_a219a85ccad46e4ae5ff62d21b4de6b91"><div class="ttname"><a href="class_f_w_1_1_fast_k_d_tree_builder.html#a219a85ccad46e4ae5ff62d21b4de6b91">FW::FastKDTreeBuilder::FastKDTreeBuilder</a></div><div class="ttdeci">FastKDTreeBuilder(KDTree &amp;kdtree, const KDTree::BuildParams &amp;params)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> FastKDTreeBuilder.cpp:13</div></div>
-<div class="ttc" id="class_f_w_1_1_fast_k_d_tree_builder_html_a61bcd0ebf9e2e42ca222ab2a25c441d9"><div class="ttname"><a href="class_f_w_1_1_fast_k_d_tree_builder.html#a61bcd0ebf9e2e42ca222ab2a25c441d9">FW::FastKDTreeBuilder::run</a></div><div class="ttdeci">KDTreeNode * run(void)</div><div class="ttdoc">Builds k-d tree. </div><div class="ttdef"><b>Definition:</b> FastKDTreeBuilder.cpp:25</div></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <a class="code" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>                     sahPrice                (<span class="keyword">const</span> Split&amp; split, <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&amp; bounds, <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> nl, <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> nr) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordtype">void</span> msort(<a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>&amp; <a class="code" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>, <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> l, <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> h);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordtype">void</span> mmerge(<a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>&amp; <a class="code" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>, <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> l, <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> middle, <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> h);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <a class="code" href="class_f_w_1_1_k_d_tree.html">KDTree</a>&amp;                     m_kdtree;           </div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_platform.html">Platform</a>&amp;             m_platform;         </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct_f_w_1_1_k_d_tree_1_1_build_params.html">KDTree::BuildParams</a>&amp;  m_params;           </div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keyword">const</span> <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>                   m_maxDepth;         </div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keyword">const</span> <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>                   m_maxFailSplits;    </div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>                m_evStack;          </div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;int&gt;</a>                  m_triStack;         </div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;TriData&gt;</a>              m_triData;          </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <a class="code" href="class_f_w_1_1_timer.html">Timer</a>                       m_progressTimer;    </div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    <a class="code" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>                         m_numDuplicates;    </div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <a class="code" href="class_f_w_1_1_timer.html">Timer</a>                       m_measureTimer;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>                m_eventsLO;         </div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>                m_eventsRO;         </div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>                m_eventsBL;         </div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>                m_eventsBR;         </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;S32&gt;</a>                  m_leftTriIdx;       </div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;S32&gt;</a>                  m_rightTriIdx;      </div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <a class="code" href="class_f_w_1_1_array.html">Array&lt;Event&gt;</a>                m_mergeSortBuffer;  </div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;};  </div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;}</div>
+<div class="ttc" id="_defs_8hpp_html_a3cd06b1ab4f45a09ba8f9744ce15f0ce"><div class="ttname"><a href="_defs_8hpp.html#a3cd06b1ab4f45a09ba8f9744ce15f0ce">FW_F32_MAX</a></div><div class="ttdeci">#define FW_F32_MAX</div><div class="ttdef"><b>Definition:</b> <a href="_defs_8hpp_source.html#l00118">Defs.hpp:118</a></div></div>
+<div class="ttc" id="_d_l_l_imports_8inl_html_a156a9c7e986e0352d0fe500e629d5171"><div class="ttname"><a href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a></div><div class="ttdeci">CUdevice int ordinal char int CUdevice dev CUdevprop CUdevice dev CUcontext ctx CUcontext ctx CUcontext pctx CUmodule const void image CUmodule const void fatCubin CUfunction CUmodule const char name void p CUfunction unsigned int bytes CUtexref pTexRef CUtexref CUarray unsigned int Flags CUtexref int CUaddress_mode am CUtexref unsigned int Flags CUaddress_mode CUtexref int dim CUarray_format int CUtexref hTexRef CUfunction unsigned int numbytes CUfunction int float value CUfunction int CUtexref hTexRef CUfunction int int grid_height CUevent unsigned int Flags CUevent hEvent CUevent hEvent CUstream unsigned int Flags CUstream hStream GLuint bufferobj unsigned int CUdevice dev CUdeviceptr unsigned int CUmodule const char name CUdeviceptr unsigned int bytesize CUdeviceptr dptr void unsigned int bytesize void CUdeviceptr unsigned int ByteCount CUarray unsigned int CUdeviceptr unsigned int ByteCount CUarray unsigned int const void unsigned int ByteCount CUarray unsigned int CUarray unsigned int unsigned int ByteCount void CUarray unsigned int unsigned int CUstream hStream const CUDA_MEMCPY2D pCopy CUdeviceptr const void unsigned int CUstream hStream const CUDA_MEMCPY2D CUstream hStream CUdeviceptr unsigned char unsigned int N CUdeviceptr unsigned int unsigned int N CUdeviceptr unsigned int unsigned short unsigned int unsigned int Height CUarray const CUDA_ARRAY_DESCRIPTOR pAllocateArray CUarray const CUDA_ARRAY3D_DESCRIPTOR pAllocateArray unsigned int CUtexref CUdeviceptr unsigned int bytes CUcontext unsigned int CUdevice device GLenum texture GLenum GLuint buffer GLenum GLuint renderbuffer GLenum GLsizeiptr const GLvoid * data</div><div class="ttdef"><b>Definition:</b> <a href="_d_l_l_imports_8inl_source.html#l00319">DLLImports.inl:319</a></div></div>
+<div class="ttc" id="_d_l_l_imports_8inl_html_a4eaf2f499ca0434ce41d6b3014ef3ba0"><div class="ttname"><a href="_d_l_l_imports_8inl.html#a4eaf2f499ca0434ce41d6b3014ef3ba0">params</a></div><div class="ttdeci">CUdevice int ordinal char int CUdevice dev CUdevprop CUdevice dev CUcontext ctx CUcontext ctx CUcontext pctx CUmodule const void image CUmodule const void fatCubin CUfunction CUmodule const char name void p CUfunction unsigned int bytes CUtexref pTexRef CUtexref CUarray unsigned int Flags CUtexref int CUaddress_mode am CUtexref unsigned int Flags CUaddress_mode CUtexref int dim CUarray_format int CUtexref hTexRef CUfunction unsigned int numbytes CUfunction int float value CUfunction int CUtexref hTexRef CUfunction int int grid_height CUevent unsigned int Flags CUevent hEvent CUevent hEvent CUstream unsigned int Flags CUstream hStream GLuint bufferobj unsigned int CUdevice dev CUdeviceptr unsigned int CUmodule const char name CUdeviceptr unsigned int bytesize CUdeviceptr dptr void unsigned int bytesize void CUdeviceptr unsigned int ByteCount CUarray unsigned int CUdeviceptr unsigned int ByteCount CUarray unsigned int const void unsigned int ByteCount CUarray unsigned int CUarray unsigned int unsigned int ByteCount void CUarray unsigned int unsigned int CUstream hStream const CUDA_MEMCPY2D pCopy CUdeviceptr const void unsigned int CUstream hStream const CUDA_MEMCPY2D CUstream hStream CUdeviceptr unsigned char unsigned int N CUdeviceptr unsigned int unsigned int N CUdeviceptr unsigned int unsigned short unsigned int unsigned int Height CUarray const CUDA_ARRAY_DESCRIPTOR pAllocateArray CUarray const CUDA_ARRAY3D_DESCRIPTOR pAllocateArray unsigned int CUtexref CUdeviceptr unsigned int bytes CUcontext unsigned int CUdevice device GLenum texture GLenum GLuint buffer GLenum GLuint renderbuffer GLenum GLsizeiptr const GLvoid GLenum usage GLuint shader GLenum type GLsizei const GLuint framebuffers GLsizei const GLuint renderbuffers GLuint v GLuint v GLenum GLenum GLenum GLuint GLint level GLsizei GLuint framebuffers GLuint const GLchar name GLenum GLintptr GLsizeiptr GLvoid data GLuint GLenum GLint param GLuint GLenum GLint param GLhandleARB programObj GLenum GLenum GLsizei GLsizei height GLenum GLint GLint GLsizei GLsizei GLsizei GLint GLenum GLenum const GLvoid pixels GLint GLsizei const GLfloat value GLint GLfloat GLfloat v1 GLint GLfloat GLfloat GLfloat v2 GLint GLsizei const GLfloat value GLint GLsizei GLboolean const GLfloat value GLuint program GLuint GLfloat GLfloat GLfloat z GLuint GLint GLenum GLboolean GLsizei const GLvoid pointer GLuint GLuint const GLchar name GLenum GLsizei GLenum GLsizei GLsizei height GLenum GLuint renderbuffer GLenum GLenum GLint * params</div><div class="ttdef"><b>Definition:</b> <a href="_d_l_l_imports_8inl_source.html#l00373">DLLImports.inl:373</a></div></div>
+<div class="ttc" id="struct_f_w_1_1_k_d_tree_1_1_build_params_html"><div class="ttname"><a href="struct_f_w_1_1_k_d_tree_1_1_build_params.html">FW::KDTree::BuildParams</a></div><div class="ttdoc">Strucure holding build parameters. </div><div class="ttdef"><b>Definition:</b> <a href="_k_d_tree_8hpp_source.html#l00085">KDTree.hpp:85</a></div></div>
+<div class="ttc" id="class_f_w_1_1_k_d_tree_html"><div class="ttname"><a href="class_f_w_1_1_k_d_tree.html">FW::KDTree</a></div><div class="ttdoc">K-d tree acceleration structure class. </div><div class="ttdef"><b>Definition:</b> <a href="_k_d_tree_8hpp_source.html#l00041">KDTree.hpp:41</a></div></div>
+<div class="ttc" id="class_f_w_1_1_fast_k_d_tree_builder_html"><div class="ttname"><a href="class_f_w_1_1_fast_k_d_tree_builder.html">FW::FastKDTreeBuilder</a></div><div class="ttdoc">Fast k-d tree builder class. </div><div class="ttdef"><b>Definition:</b> <a href="_fast_k_d_tree_builder_8hpp_source.html#l00039">FastKDTreeBuilder.hpp:39</a></div></div>
+<div class="ttc" id="_k_d_tree_8hpp_html"><div class="ttname"><a href="_k_d_tree_8hpp.html">KDTree.hpp</a></div></div>
+<div class="ttc" id="namespace_f_w_html_a444682d451e41e6a951ce34c6be6aa1b"><div class="ttname"><a href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">FW::F32</a></div><div class="ttdeci">float F32</div><div class="ttdef"><b>Definition:</b> <a href="_defs_8hpp_source.html#l00089">Defs.hpp:89</a></div></div>
+<div class="ttc" id="class_f_w_1_1_fast_k_d_tree_builder_html_a219a85ccad46e4ae5ff62d21b4de6b91"><div class="ttname"><a href="class_f_w_1_1_fast_k_d_tree_builder.html#a219a85ccad46e4ae5ff62d21b4de6b91">FW::FastKDTreeBuilder::FastKDTreeBuilder</a></div><div class="ttdeci">FastKDTreeBuilder(KDTree &amp;kdtree, const KDTree::BuildParams &amp;params)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="_fast_k_d_tree_builder_8cpp_source.html#l00039">FastKDTreeBuilder.cpp:39</a></div></div>
+<div class="ttc" id="class_f_w_1_1_fast_k_d_tree_builder_html_a61bcd0ebf9e2e42ca222ab2a25c441d9"><div class="ttname"><a href="class_f_w_1_1_fast_k_d_tree_builder.html#a61bcd0ebf9e2e42ca222ab2a25c441d9">FW::FastKDTreeBuilder::run</a></div><div class="ttdeci">KDTreeNode * run(void)</div><div class="ttdoc">Builds k-d tree. </div><div class="ttdef"><b>Definition:</b> <a href="_fast_k_d_tree_builder_8cpp_source.html#l00051">FastKDTreeBuilder.cpp:51</a></div></div>
+<div class="ttc" id="namespace_f_w_html_aca8b0db4cb8058fa177cbec0280443d9"><div class="ttname"><a href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">FW::S32</a></div><div class="ttdeci">signed int S32</div><div class="ttdef"><b>Definition:</b> <a href="_defs_8hpp_source.html#l00088">Defs.hpp:88</a></div></div>
+<div class="ttc" id="_d_l_l_imports_8inl_html_afa19deda7e4b44859d7d11b6fada0a24"><div class="ttname"><a href="_d_l_l_imports_8inl.html#afa19deda7e4b44859d7d11b6fada0a24">dim</a></div><div class="ttdeci">CUdevice int ordinal char int CUdevice dev CUdevprop CUdevice dev CUcontext ctx CUcontext ctx CUcontext pctx CUmodule const void image CUmodule const void fatCubin CUfunction CUmodule const char name void p CUfunction unsigned int bytes CUtexref pTexRef CUtexref CUarray unsigned int Flags CUtexref int dim</div><div class="ttdef"><b>Definition:</b> <a href="_d_l_l_imports_8inl_source.html#l00074">DLLImports.inl:74</a></div></div>
 <div class="ttc" id="class_f_w_1_1_array_html"><div class="ttname"><a href="class_f_w_1_1_array.html">FW::Array&lt; Event &gt;</a></div></div>
-<div class="ttc" id="class_f_w_1_1_timer_html"><div class="ttname"><a href="class_f_w_1_1_timer.html">FW::Timer</a></div><div class="ttdef"><b>Definition:</b> Timer.hpp:35</div></div>
-<div class="ttc" id="class_f_w_1_1_platform_html"><div class="ttname"><a href="class_f_w_1_1_platform.html">FW::Platform</a></div><div class="ttdef"><b>Definition:</b> Platform.hpp:37</div></div>
-<div class="ttc" id="class_f_w_1_1_fast_k_d_tree_builder_html_aef92542a9ac70964526601912f0068ef"><div class="ttname"><a href="class_f_w_1_1_fast_k_d_tree_builder.html#aef92542a9ac70964526601912f0068ef">FW::FastKDTreeBuilder::getNumDuplicates</a></div><div class="ttdeci">S32 getNumDuplicates(void)</div><div class="ttdoc">Returns total number of duplicated triangle references. </div><div class="ttdef"><b>Definition:</b> FastKDTreeBuilder.hpp:135</div></div>
-<div class="ttc" id="class_f_w_1_1_fast_k_d_tree_builder_html_ac37e4ec4a32063cf5e476d38f00ed0e9"><div class="ttname"><a href="class_f_w_1_1_fast_k_d_tree_builder.html#ac37e4ec4a32063cf5e476d38f00ed0e9">FW::FastKDTreeBuilder::~FastKDTreeBuilder</a></div><div class="ttdeci">~FastKDTreeBuilder(void)</div><div class="ttdoc">Destructor. </div><div class="ttdef"><b>Definition:</b> FastKDTreeBuilder.hpp:123</div></div>
-<div class="ttc" id="class_f_w_1_1_a_a_b_b_html"><div class="ttname"><a href="class_f_w_1_1_a_a_b_b.html">FW::AABB</a></div><div class="ttdef"><b>Definition:</b> Util.hpp:35</div></div>
-<div class="ttc" id="class_f_w_1_1_k_d_tree_node_html"><div class="ttname"><a href="class_f_w_1_1_k_d_tree_node.html">FW::KDTreeNode</a></div><div class="ttdoc">K-d tree virtual parent node class. </div><div class="ttdef"><b>Definition:</b> KDTreeNode.hpp:29</div></div>
+<div class="ttc" id="class_f_w_1_1_timer_html"><div class="ttname"><a href="class_f_w_1_1_timer.html">FW::Timer</a></div><div class="ttdef"><b>Definition:</b> <a href="_timer_8hpp_source.html#l00035">Timer.hpp:35</a></div></div>
+<div class="ttc" id="_d_l_l_imports_8inl_html_aae5e5f55e5704ab0c6fb5992d5b0a116"><div class="ttname"><a href="_d_l_l_imports_8inl.html#aae5e5f55e5704ab0c6fb5992d5b0a116">f</a></div><div class="ttdeci">CUdevice int ordinal char int CUdevice dev CUdevprop CUdevice dev CUcontext ctx CUcontext ctx CUcontext pctx CUmodule const void image CUmodule const void fatCubin CUfunction CUmodule const char name void p CUfunction unsigned int bytes CUtexref pTexRef CUtexref CUarray unsigned int Flags CUtexref int CUaddress_mode am CUtexref unsigned int Flags CUaddress_mode CUtexref int dim CUarray_format int CUtexref hTexRef CUfunction unsigned int numbytes CUfunction int float value CUfunction int CUtexref hTexRef CUfunction f</div><div class="ttdef"><b>Definition:</b> <a href="_d_l_l_imports_8inl_source.html#l00088">DLLImports.inl:88</a></div></div>
+<div class="ttc" id="class_f_w_1_1_platform_html"><div class="ttname"><a href="class_f_w_1_1_platform.html">FW::Platform</a></div><div class="ttdoc">Class holding various SAH and batch processing parameters. </div><div class="ttdef"><b>Definition:</b> <a href="_platform_8hpp_source.html#l00046">Platform.hpp:46</a></div></div>
+<div class="ttc" id="_d_l_l_imports_8inl_html_aeb907b7e4f0ae85cbdd82f5378f11eb8"><div class="ttname"><a href="_d_l_l_imports_8inl.html#aeb907b7e4f0ae85cbdd82f5378f11eb8">level</a></div><div class="ttdeci">CUdevice int ordinal char int CUdevice dev CUdevprop CUdevice dev CUcontext ctx CUcontext ctx CUcontext pctx CUmodule const void image CUmodule const void fatCubin CUfunction CUmodule const char name void p CUfunction unsigned int bytes CUtexref pTexRef CUtexref CUarray unsigned int Flags CUtexref int CUaddress_mode am CUtexref unsigned int Flags CUaddress_mode CUtexref int dim CUarray_format int CUtexref hTexRef CUfunction unsigned int numbytes CUfunction int float value CUfunction int CUtexref hTexRef CUfunction int int grid_height CUevent unsigned int Flags CUevent hEvent CUevent hEvent CUstream unsigned int Flags CUstream hStream GLuint bufferobj unsigned int CUdevice dev CUdeviceptr unsigned int CUmodule const char name CUdeviceptr unsigned int bytesize CUdeviceptr dptr void unsigned int bytesize void CUdeviceptr unsigned int ByteCount CUarray unsigned int CUdeviceptr unsigned int ByteCount CUarray unsigned int const void unsigned int ByteCount CUarray unsigned int CUarray unsigned int unsigned int ByteCount void CUarray unsigned int unsigned int CUstream hStream const CUDA_MEMCPY2D pCopy CUdeviceptr const void unsigned int CUstream hStream const CUDA_MEMCPY2D CUstream hStream CUdeviceptr unsigned char unsigned int N CUdeviceptr unsigned int unsigned int N CUdeviceptr unsigned int unsigned short unsigned int unsigned int Height CUarray const CUDA_ARRAY_DESCRIPTOR pAllocateArray CUarray const CUDA_ARRAY3D_DESCRIPTOR pAllocateArray unsigned int CUtexref CUdeviceptr unsigned int bytes CUcontext unsigned int CUdevice device GLenum texture GLenum GLuint buffer GLenum GLuint renderbuffer GLenum GLsizeiptr const GLvoid GLenum usage GLuint shader GLenum type GLsizei const GLuint framebuffers GLsizei const GLuint renderbuffers GLuint v GLuint v GLenum GLenum GLenum GLuint GLint level</div><div class="ttdef"><b>Definition:</b> <a href="_d_l_l_imports_8inl_source.html#l00333">DLLImports.inl:333</a></div></div>
+<div class="ttc" id="_timer_8hpp_html"><div class="ttname"><a href="_timer_8hpp.html">Timer.hpp</a></div></div>
+<div class="ttc" id="class_f_w_1_1_fast_k_d_tree_builder_html_aef92542a9ac70964526601912f0068ef"><div class="ttname"><a href="class_f_w_1_1_fast_k_d_tree_builder.html#aef92542a9ac70964526601912f0068ef">FW::FastKDTreeBuilder::getNumDuplicates</a></div><div class="ttdeci">S32 getNumDuplicates(void)</div><div class="ttdoc">Returns total number of duplicated triangle references. </div><div class="ttdef"><b>Definition:</b> <a href="_fast_k_d_tree_builder_8hpp_source.html#l00157">FastKDTreeBuilder.hpp:157</a></div></div>
+<div class="ttc" id="class_f_w_1_1_fast_k_d_tree_builder_html_ac37e4ec4a32063cf5e476d38f00ed0e9"><div class="ttname"><a href="class_f_w_1_1_fast_k_d_tree_builder.html#ac37e4ec4a32063cf5e476d38f00ed0e9">FW::FastKDTreeBuilder::~FastKDTreeBuilder</a></div><div class="ttdeci">~FastKDTreeBuilder(void)</div><div class="ttdoc">Destructor. </div><div class="ttdef"><b>Definition:</b> <a href="_fast_k_d_tree_builder_8hpp_source.html#l00145">FastKDTreeBuilder.hpp:145</a></div></div>
+<div class="ttc" id="_d_l_l_imports_8inl_html_a1d14bae93fe47a03f0ace206fef6a34e"><div class="ttname"><a href="_d_l_l_imports_8inl.html#a1d14bae93fe47a03f0ace206fef6a34e">type</a></div><div class="ttdeci">CUdevice int ordinal char int CUdevice dev CUdevprop CUdevice dev CUcontext ctx CUcontext ctx CUcontext pctx CUmodule const void image CUmodule const void fatCubin CUfunction CUmodule const char name void p CUfunction unsigned int bytes CUtexref pTexRef CUtexref CUarray unsigned int Flags CUtexref int CUaddress_mode am CUtexref unsigned int Flags CUaddress_mode CUtexref int dim CUarray_format int CUtexref hTexRef CUfunction unsigned int numbytes CUfunction int float value CUfunction int CUtexref hTexRef CUfunction int int grid_height CUevent unsigned int Flags CUevent hEvent CUevent hEvent CUstream unsigned int Flags CUstream hStream GLuint bufferobj unsigned int CUdevice dev CUdeviceptr unsigned int CUmodule const char name CUdeviceptr unsigned int bytesize CUdeviceptr dptr void unsigned int bytesize void CUdeviceptr unsigned int ByteCount CUarray unsigned int CUdeviceptr unsigned int ByteCount CUarray unsigned int const void unsigned int ByteCount CUarray unsigned int CUarray unsigned int unsigned int ByteCount void CUarray unsigned int unsigned int CUstream hStream const CUDA_MEMCPY2D pCopy CUdeviceptr const void unsigned int CUstream hStream const CUDA_MEMCPY2D CUstream hStream CUdeviceptr unsigned char unsigned int N CUdeviceptr unsigned int unsigned int N CUdeviceptr unsigned int unsigned short unsigned int unsigned int Height CUarray const CUDA_ARRAY_DESCRIPTOR pAllocateArray CUarray const CUDA_ARRAY3D_DESCRIPTOR pAllocateArray unsigned int CUtexref CUdeviceptr unsigned int bytes CUcontext unsigned int CUdevice device GLenum texture GLenum GLuint buffer GLenum GLuint renderbuffer GLenum GLsizeiptr const GLvoid GLenum usage GLuint shader GLenum type</div><div class="ttdef"><b>Definition:</b> <a href="_d_l_l_imports_8inl_source.html#l00323">DLLImports.inl:323</a></div></div>
+<div class="ttc" id="class_f_w_1_1_a_a_b_b_html"><div class="ttname"><a href="class_f_w_1_1_a_a_b_b.html">FW::AABB</a></div><div class="ttdef"><b>Definition:</b> <a href="_util_8hpp_source.html#l00035">Util.hpp:35</a></div></div>
+<div class="ttc" id="class_f_w_1_1_k_d_tree_node_html"><div class="ttname"><a href="class_f_w_1_1_k_d_tree_node.html">FW::KDTreeNode</a></div><div class="ttdoc">K-d tree virtual parent node class. </div><div class="ttdef"><b>Definition:</b> <a href="_k_d_tree_node_8hpp_source.html#l00051">KDTreeNode.hpp:51</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_efcdd37e5809801e389fc22b12e0cfd9.html">rt</a></li><li class="navelem"><a class="el" href="dir_d4e18b34b64fbb34381073890a694764.html">kdtree</a></li><li class="navelem"><a class="el" href="_fast_k_d_tree_builder_8hpp.html">FastKDTreeBuilder.hpp</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="footer">Generated on Sat May 31 2014 15:56:20 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

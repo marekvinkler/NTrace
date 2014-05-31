@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_ray_stats.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,34 +112,212 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_ray_stats.html','');});
 <div class="title">FW::RayStats Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Structure holding ray statistics. Also provides print to the console. These statistics are used in a CPU trace method provided by this class.  
+ <a href="struct_f_w_1_1_ray_stats.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af09ab3ae10cce686a0067647ceb34fee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af09ab3ae10cce686a0067647ceb34fee"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
+<tr class="memitem:a100ad41b7b90963f8eced2a73b984719"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_stats.html#a100ad41b7b90963f8eced2a73b984719">RayStats</a> ()</td></tr>
+<tr class="memdesc:a100ad41b7b90963f8eced2a73b984719"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a100ad41b7b90963f8eced2a73b984719">More...</a><br/></td></tr>
+<tr class="separator:a100ad41b7b90963f8eced2a73b984719"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af09ab3ae10cce686a0067647ceb34fee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_stats.html#af09ab3ae10cce686a0067647ceb34fee">clear</a> ()</td></tr>
+<tr class="memdesc:af09ab3ae10cce686a0067647ceb34fee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the statistics to the default values.  <a href="#af09ab3ae10cce686a0067647ceb34fee">More...</a><br/></td></tr>
 <tr class="separator:af09ab3ae10cce686a0067647ceb34fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66a032c7e926730834c72879cd56db10"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66a032c7e926730834c72879cd56db10"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> () const </td></tr>
+<tr class="memitem:a66a032c7e926730834c72879cd56db10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_stats.html#a66a032c7e926730834c72879cd56db10">print</a> () const </td></tr>
+<tr class="memdesc:a66a032c7e926730834c72879cd56db10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints ray statistics to the console.  <a href="#a66a032c7e926730834c72879cd56db10">More...</a><br/></td></tr>
 <tr class="separator:a66a032c7e926730834c72879cd56db10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:abaf43b8cf64ac17e141fdeac59316cee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abaf43b8cf64ac17e141fdeac59316cee"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>numRays</b></td></tr>
+<tr class="memitem:abaf43b8cf64ac17e141fdeac59316cee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_stats.html#abaf43b8cf64ac17e141fdeac59316cee">numRays</a></td></tr>
+<tr class="memdesc:abaf43b8cf64ac17e141fdeac59316cee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of rays.  <a href="#abaf43b8cf64ac17e141fdeac59316cee">More...</a><br/></td></tr>
 <tr class="separator:abaf43b8cf64ac17e141fdeac59316cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79c5b2969bc4f45153a6e45a63d93b7c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79c5b2969bc4f45153a6e45a63d93b7c"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>numTriangleTests</b></td></tr>
+<tr class="memitem:a79c5b2969bc4f45153a6e45a63d93b7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_stats.html#a79c5b2969bc4f45153a6e45a63d93b7c">numTriangleTests</a></td></tr>
+<tr class="memdesc:a79c5b2969bc4f45153a6e45a63d93b7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of ray-triangle tests.  <a href="#a79c5b2969bc4f45153a6e45a63d93b7c">More...</a><br/></td></tr>
 <tr class="separator:a79c5b2969bc4f45153a6e45a63d93b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9342eec4c7c957b0ffae22e5a37409ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9342eec4c7c957b0ffae22e5a37409ad"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>numNodeTests</b></td></tr>
+<tr class="memitem:a9342eec4c7c957b0ffae22e5a37409ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_stats.html#a9342eec4c7c957b0ffae22e5a37409ad">numNodeTests</a></td></tr>
+<tr class="memdesc:a9342eec4c7c957b0ffae22e5a37409ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of ray-node tests.  <a href="#a9342eec4c7c957b0ffae22e5a37409ad">More...</a><br/></td></tr>
 <tr class="separator:a9342eec4c7c957b0ffae22e5a37409ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66dae217c2c3dc4bb6cd7832129e2a02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66dae217c2c3dc4bb6cd7832129e2a02"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>numTreelets</b></td></tr>
+<tr class="memitem:a66dae217c2c3dc4bb6cd7832129e2a02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_stats.html#a66dae217c2c3dc4bb6cd7832129e2a02">numTreelets</a></td></tr>
+<tr class="memdesc:a66dae217c2c3dc4bb6cd7832129e2a02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of traversal steps.  <a href="#a66dae217c2c3dc4bb6cd7832129e2a02">More...</a><br/></td></tr>
 <tr class="separator:a66dae217c2c3dc4bb6cd7832129e2a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7569c8973fd9b95e2002c732f0cf4bcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7569c8973fd9b95e2002c732f0cf4bcc"></a>
-<a class="el" href="class_f_w_1_1_platform.html">Platform</a>&#160;</td><td class="memItemRight" valign="bottom"><b>platform</b></td></tr>
+<tr class="memitem:a7569c8973fd9b95e2002c732f0cf4bcc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_platform.html">Platform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_ray_stats.html#a7569c8973fd9b95e2002c732f0cf4bcc">platform</a></td></tr>
+<tr class="memdesc:a7569c8973fd9b95e2002c732f0cf4bcc"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_f_w_1_1_platform.html" title="Class holding various SAH and batch processing parameters. ">Platform</a> settings of the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a>. <a class="el" href="class_f_w_1_1_set.html">Set</a> by whoever sets the stats.  <a href="#a7569c8973fd9b95e2002c732f0cf4bcc">More...</a><br/></td></tr>
 <tr class="separator:a7569c8973fd9b95e2002c732f0cf4bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure holding ray statistics. Also provides print to the console. These statistics are used in a CPU trace method provided by this class. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00045">45</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a100ad41b7b90963f8eced2a73b984719"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::RayStats::RayStats </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00050">50</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="af09ab3ae10cce686a0067647ceb34fee"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::RayStats::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets the statistics to the default values. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00055">55</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a66a032c7e926730834c72879cd56db10"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::RayStats::print </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints ray statistics to the console. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00060">60</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a9342eec4c7c957b0ffae22e5a37409ad"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::RayStats::numNodeTests</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Total number of ray-node tests. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00064">64</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abaf43b8cf64ac17e141fdeac59316cee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::RayStats::numRays</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Total number of rays. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00062">62</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a66dae217c2c3dc4bb6cd7832129e2a02"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::RayStats::numTreelets</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Total number of traversal steps. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00065">65</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a79c5b2969bc4f45153a6e45a63d93b7c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::RayStats::numTriangleTests</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Total number of ray-triangle tests. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00063">63</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7569c8973fd9b95e2002c732f0cf4bcc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_platform.html">Platform</a> FW::RayStats::platform</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_f_w_1_1_platform.html" title="Class holding various SAH and batch processing parameters. ">Platform</a> settings of the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a>. <a class="el" href="class_f_w_1_1_set.html">Set</a> by whoever sets the stats. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00066">66</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/rt/bvh/<a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a></li>
 </ul>
@@ -147,8 +326,8 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><b>numTreelets</b></td></
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="struct_f_w_1_1_ray_stats.html">RayStats</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_ray_stats.html">RayStats</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

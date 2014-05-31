@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_cuda_module.html','');})
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,114 +112,1047 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_cuda_module.html','');})
 <div class="title">FW::CudaModule Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_cuda_module_8hpp_source.html">CudaModule.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4c773078ba7d187c3771f25e672782df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c773078ba7d187c3771f25e672782df"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>CudaModule</b> (const void *cubin)</td></tr>
+<tr class="memitem:a4c773078ba7d187c3771f25e672782df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a4c773078ba7d187c3771f25e672782df">CudaModule</a> (const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *cubin)</td></tr>
 <tr class="separator:a4c773078ba7d187c3771f25e672782df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3dbc3ef08234c4be564b13a0bf7151c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3dbc3ef08234c4be564b13a0bf7151c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>CudaModule</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;cubinFile)</td></tr>
+<tr class="memitem:aa3dbc3ef08234c4be564b13a0bf7151c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#aa3dbc3ef08234c4be564b13a0bf7151c">CudaModule</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;cubinFile)</td></tr>
 <tr class="separator:aa3dbc3ef08234c4be564b13a0bf7151c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2035110df679a5c0d4deb01cac94e20b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2035110df679a5c0d4deb01cac94e20b"></a>
-CUmodule&#160;</td><td class="memItemRight" valign="bottom"><b>getHandle</b> (void)</td></tr>
+<tr class="memitem:a1caf85ec285eb703f549ab9020c15cd1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a1caf85ec285eb703f549ab9020c15cd1">~CudaModule</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a1caf85ec285eb703f549ab9020c15cd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2035110df679a5c0d4deb01cac94e20b"><td class="memItemLeft" align="right" valign="top">CUmodule&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a2035110df679a5c0d4deb01cac94e20b">getHandle</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a2035110df679a5c0d4deb01cac94e20b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb966fd15e62cd2627f838db2170e836"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb966fd15e62cd2627f838db2170e836"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasKernel</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;name)</td></tr>
+<tr class="memitem:afb966fd15e62cd2627f838db2170e836"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#afb966fd15e62cd2627f838db2170e836">hasKernel</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ab310c36935c01adfdede31b7dcc84cea">name</a>)</td></tr>
 <tr class="separator:afb966fd15e62cd2627f838db2170e836"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f0d62ac2eff62c5e0a2c93108233d39"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f0d62ac2eff62c5e0a2c93108233d39"></a>
-<a class="el" href="class_f_w_1_1_cuda_kernel.html">CudaKernel</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getKernel</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;name)</td></tr>
+<tr class="memitem:a2f0d62ac2eff62c5e0a2c93108233d39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_cuda_kernel.html">CudaKernel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a2f0d62ac2eff62c5e0a2c93108233d39">getKernel</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ab310c36935c01adfdede31b7dcc84cea">name</a>)</td></tr>
 <tr class="separator:a2f0d62ac2eff62c5e0a2c93108233d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f58dcb04ca39b1792dc0ecb065ae41c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f58dcb04ca39b1792dc0ecb065ae41c"></a>
-<a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getGlobal</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;name)</td></tr>
+<tr class="memitem:a032d7c1394dd3ede34bb4ac63da6bc8d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a032d7c1394dd3ede34bb4ac63da6bc8d">setParami</a> (CUfunction kernel, int <a class="el" href="_d_l_l_imports_8inl.html#a08fccce21fc4e2b456ae007e9b576c41">offset</a>, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
+<tr class="separator:a032d7c1394dd3ede34bb4ac63da6bc8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a514b7a61c66cec0186a3b6bcaa5de966"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a514b7a61c66cec0186a3b6bcaa5de966">setParamf</a> (CUfunction kernel, int <a class="el" href="_d_l_l_imports_8inl.html#a08fccce21fc4e2b456ae007e9b576c41">offset</a>, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> <a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
+<tr class="separator:a514b7a61c66cec0186a3b6bcaa5de966"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6584601202a9942212eada4d087e1c9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#ac6584601202a9942212eada4d087e1c9">setParamPtr</a> (CUfunction kernel, int <a class="el" href="_d_l_l_imports_8inl.html#a08fccce21fc4e2b456ae007e9b576c41">offset</a>, CUdeviceptr <a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
+<tr class="separator:ac6584601202a9942212eada4d087e1c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f58dcb04ca39b1792dc0ecb065ae41c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a7f58dcb04ca39b1792dc0ecb065ae41c">getGlobal</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ab310c36935c01adfdede31b7dcc84cea">name</a>)</td></tr>
 <tr class="separator:a7f58dcb04ca39b1792dc0ecb065ae41c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5942875425f3c3f5584765df670a5a49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5942875425f3c3f5584765df670a5a49"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateGlobals</b> (bool async=false, CUstream stream=NULL)</td></tr>
+<tr class="memitem:a5942875425f3c3f5584765df670a5a49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a5942875425f3c3f5584765df670a5a49">updateGlobals</a> (bool async=false, CUstream stream=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</td></tr>
 <tr class="separator:a5942875425f3c3f5584765df670a5a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a339f2b7cf6f3ef3a78355465c4b4836b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a339f2b7cf6f3ef3a78355465c4b4836b"></a>
-CUtexref&#160;</td><td class="memItemRight" valign="bottom"><b>getTexRef</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;name)</td></tr>
+<tr class="memitem:a339f2b7cf6f3ef3a78355465c4b4836b"><td class="memItemLeft" align="right" valign="top">CUtexref&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a339f2b7cf6f3ef3a78355465c4b4836b">getTexRef</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ab310c36935c01adfdede31b7dcc84cea">name</a>)</td></tr>
 <tr class="separator:a339f2b7cf6f3ef3a78355465c4b4836b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfe1a5bd06d1d3ea0c49086de58340b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abfe1a5bd06d1d3ea0c49086de58340b8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTexRefMode</b> (CUtexref texRef, bool wrap=true, bool bilinear=true, bool normalizedCoords=true, bool readAsInt=false)</td></tr>
+<tr class="memitem:abfe1a5bd06d1d3ea0c49086de58340b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#abfe1a5bd06d1d3ea0c49086de58340b8">setTexRefMode</a> (CUtexref texRef, bool wrap=true, bool bilinear=true, bool normalizedCoords=true, bool readAsInt=false)</td></tr>
 <tr class="separator:abfe1a5bd06d1d3ea0c49086de58340b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af562c42a60854fdef7c2897544da1e94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af562c42a60854fdef7c2897544da1e94"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTexRef</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;name, <a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;buf, CUarray_format format, int numComponents)</td></tr>
+<tr class="memitem:af562c42a60854fdef7c2897544da1e94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#af562c42a60854fdef7c2897544da1e94">setTexRef</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ab310c36935c01adfdede31b7dcc84cea">name</a>, <a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;buf, CUarray_format <a class="el" href="_d_l_l_imports_8inl.html#ad4c33e9edd8edca569c34a03f3c9795e">format</a>, int numComponents)</td></tr>
 <tr class="separator:af562c42a60854fdef7c2897544da1e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa69b163a6be22a71713e480802ff81e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa69b163a6be22a71713e480802ff81e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTexRef</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;name, CUdeviceptr ptr, S64 size, CUarray_format format, int numComponents)</td></tr>
+<tr class="memitem:afa69b163a6be22a71713e480802ff81e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#afa69b163a6be22a71713e480802ff81e">setTexRef</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ab310c36935c01adfdede31b7dcc84cea">name</a>, CUdeviceptr <a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, CUarray_format <a class="el" href="_d_l_l_imports_8inl.html#ad4c33e9edd8edca569c34a03f3c9795e">format</a>, int numComponents)</td></tr>
 <tr class="separator:afa69b163a6be22a71713e480802ff81e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc3b0388f90a38fe7a7be95effa71952"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc3b0388f90a38fe7a7be95effa71952"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTexRef</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;name, CUarray cudaArray, bool wrap=true, bool bilinear=true, bool normalizedCoords=true, bool readAsInt=false)</td></tr>
+<tr class="memitem:acc3b0388f90a38fe7a7be95effa71952"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#acc3b0388f90a38fe7a7be95effa71952">setTexRef</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ab310c36935c01adfdede31b7dcc84cea">name</a>, CUarray cudaArray, bool wrap=true, bool bilinear=true, bool normalizedCoords=true, bool readAsInt=false)</td></tr>
 <tr class="separator:acc3b0388f90a38fe7a7be95effa71952"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a8ba6ce31eb5dcf04d4aacaf5fa6867"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a8ba6ce31eb5dcf04d4aacaf5fa6867"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTexRef</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;name, const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;image, bool wrap=true, bool bilinear=true, bool normalizedCoords=true, bool readAsInt=false)</td></tr>
+<tr class="memitem:a6a8ba6ce31eb5dcf04d4aacaf5fa6867"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a6a8ba6ce31eb5dcf04d4aacaf5fa6867">setTexRef</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ab310c36935c01adfdede31b7dcc84cea">name</a>, const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#af213c44c249febd5dd9ecd01be302487">image</a>, bool wrap=true, bool bilinear=true, bool normalizedCoords=true, bool readAsInt=false)</td></tr>
 <tr class="separator:a6a8ba6ce31eb5dcf04d4aacaf5fa6867"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5356c37febffe67548611bb7173cf527"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5356c37febffe67548611bb7173cf527"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>unsetTexRef</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;name)</td></tr>
+<tr class="memitem:a5356c37febffe67548611bb7173cf527"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a5356c37febffe67548611bb7173cf527">unsetTexRef</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ab310c36935c01adfdede31b7dcc84cea">name</a>)</td></tr>
 <tr class="separator:a5356c37febffe67548611bb7173cf527"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0dede205dfc836ef3afc9351ac39855"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae0dede205dfc836ef3afc9351ac39855"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateTexRefs</b> (CUfunction kernel)</td></tr>
+<tr class="memitem:ae0dede205dfc836ef3afc9351ac39855"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#ae0dede205dfc836ef3afc9351ac39855">updateTexRefs</a> (CUfunction kernel)</td></tr>
 <tr class="separator:ae0dede205dfc836ef3afc9351ac39855"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacfba0f8beebafbe3d3a3a5c228e3442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacfba0f8beebafbe3d3a3a5c228e3442"></a>
-CUsurfref&#160;</td><td class="memItemRight" valign="bottom"><b>getSurfRef</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;name)</td></tr>
+<tr class="memitem:aacfba0f8beebafbe3d3a3a5c228e3442"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8hpp.html#aba057da10d5d0eb0a6f837dc75b59482">CUsurfref</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#aacfba0f8beebafbe3d3a3a5c228e3442">getSurfRef</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ab310c36935c01adfdede31b7dcc84cea">name</a>)</td></tr>
 <tr class="separator:aacfba0f8beebafbe3d3a3a5c228e3442"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9395967cb4000b5a19ca4419da40c48e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9395967cb4000b5a19ca4419da40c48e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setSurfRef</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;name, CUarray cudaArray)</td></tr>
+<tr class="memitem:a9395967cb4000b5a19ca4419da40c48e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a9395967cb4000b5a19ca4419da40c48e">setSurfRef</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#ab310c36935c01adfdede31b7dcc84cea">name</a>, CUarray cudaArray)</td></tr>
 <tr class="separator:a9395967cb4000b5a19ca4419da40c48e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a13e904e8f50e820268da8bce901ce41d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13e904e8f50e820268da8bce901ce41d"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>staticInit</b> (void)</td></tr>
+<tr class="memitem:a13e904e8f50e820268da8bce901ce41d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a13e904e8f50e820268da8bce901ce41d">staticInit</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a13e904e8f50e820268da8bce901ce41d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7847889464c984c90247b675c8c95ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae7847889464c984c90247b675c8c95ee"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>staticDeinit</b> (void)</td></tr>
+<tr class="memitem:ae7847889464c984c90247b675c8c95ee"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#ae7847889464c984c90247b675c8c95ee">staticDeinit</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ae7847889464c984c90247b675c8c95ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e6077f265c12a70ca60f33fac7f85c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e6077f265c12a70ca60f33fac7f85c8"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAvailable</b> (void)</td></tr>
+<tr class="memitem:a2e6077f265c12a70ca60f33fac7f85c8"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a2e6077f265c12a70ca60f33fac7f85c8">isAvailable</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a2e6077f265c12a70ca60f33fac7f85c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3690f037c53e931cb02713446bfd22f2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3690f037c53e931cb02713446bfd22f2"></a>
-static S64&#160;</td><td class="memItemRight" valign="bottom"><b>getMemoryUsed</b> (void)</td></tr>
+<tr class="memitem:a3690f037c53e931cb02713446bfd22f2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a3690f037c53e931cb02713446bfd22f2">getMemoryUsed</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a3690f037c53e931cb02713446bfd22f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fd15a1b9b23a8eba162097d4c06a4f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fd15a1b9b23a8eba162097d4c06a4f3"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>sync</b> (bool yield=true)</td></tr>
+<tr class="memitem:a8fd15a1b9b23a8eba162097d4c06a4f3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a8fd15a1b9b23a8eba162097d4c06a4f3">sync</a> (bool yield=true)</td></tr>
 <tr class="separator:a8fd15a1b9b23a8eba162097d4c06a4f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b12014b815644e2794fcdc60b9a6851"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b12014b815644e2794fcdc60b9a6851"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>checkError</b> (const char *funcName, CUresult res)</td></tr>
+<tr class="memitem:a8b12014b815644e2794fcdc60b9a6851"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a8b12014b815644e2794fcdc60b9a6851">checkError</a> (const char *funcName, CUresult res)</td></tr>
 <tr class="separator:a8b12014b815644e2794fcdc60b9a6851"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d6741d109bc975cd1d768ae2001991b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d6741d109bc975cd1d768ae2001991b"></a>
-static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>decodeError</b> (CUresult res)</td></tr>
+<tr class="memitem:a2d6741d109bc975cd1d768ae2001991b"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a2d6741d109bc975cd1d768ae2001991b">decodeError</a> (CUresult res)</td></tr>
 <tr class="separator:a2d6741d109bc975cd1d768ae2001991b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab56d208adf8ddab9a5249621c2d553ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab56d208adf8ddab9a5249621c2d553ba"></a>
-static CUdevice&#160;</td><td class="memItemRight" valign="bottom"><b>getDeviceHandle</b> (void)</td></tr>
+<tr class="memitem:ab56d208adf8ddab9a5249621c2d553ba"><td class="memItemLeft" align="right" valign="top">static CUdevice&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#ab56d208adf8ddab9a5249621c2d553ba">getDeviceHandle</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ab56d208adf8ddab9a5249621c2d553ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad37fbaac44625fce26b36135ae192e57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad37fbaac44625fce26b36135ae192e57"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>getDriverVersion</b> (void)</td></tr>
+<tr class="memitem:ad37fbaac44625fce26b36135ae192e57"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#ad37fbaac44625fce26b36135ae192e57">getDriverVersion</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ad37fbaac44625fce26b36135ae192e57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bae74092d82d33a89508c1c59ef25ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bae74092d82d33a89508c1c59ef25ef"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>getComputeCapability</b> (void)</td></tr>
+<tr class="memitem:a8bae74092d82d33a89508c1c59ef25ef"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a8bae74092d82d33a89508c1c59ef25ef">getComputeCapability</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a8bae74092d82d33a89508c1c59ef25ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57b1627e526cc9a6f8425ffc057a8b57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57b1627e526cc9a6f8425ffc057a8b57"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>getDeviceAttribute</b> (CUdevice_attribute attrib)</td></tr>
+<tr class="memitem:a57b1627e526cc9a6f8425ffc057a8b57"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#a57b1627e526cc9a6f8425ffc057a8b57">getDeviceAttribute</a> (CUdevice_attribute attrib)</td></tr>
 <tr class="separator:a57b1627e526cc9a6f8425ffc057a8b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd22f9084c0957ca0cb93ce22a4aa3e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd22f9084c0957ca0cb93ce22a4aa3e8"></a>
-static CUevent&#160;</td><td class="memItemRight" valign="bottom"><b>getStartEvent</b> (void)</td></tr>
+<tr class="memitem:abd22f9084c0957ca0cb93ce22a4aa3e8"><td class="memItemLeft" align="right" valign="top">static CUevent&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#abd22f9084c0957ca0cb93ce22a4aa3e8">getStartEvent</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:abd22f9084c0957ca0cb93ce22a4aa3e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab147b2c8660cc94aae383329b0392dd3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab147b2c8660cc94aae383329b0392dd3"></a>
-static CUevent&#160;</td><td class="memItemRight" valign="bottom"><b>getEndEvent</b> (void)</td></tr>
+<tr class="memitem:ab147b2c8660cc94aae383329b0392dd3"><td class="memItemLeft" align="right" valign="top">static CUevent&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_cuda_module.html#ab147b2c8660cc94aae383329b0392dd3">getEndEvent</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ab147b2c8660cc94aae383329b0392dd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_cuda_module_8hpp_source.html#l00036">36</a> of file <a class="el" href="_cuda_module_8hpp_source.html">CudaModule.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a4c773078ba7d187c3771f25e672782df"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CudaModule::CudaModule </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>cubin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00047">47</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa3dbc3ef08234c4be564b13a0bf7151c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CudaModule::CudaModule </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>cubinFile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00055">55</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1caf85ec285eb703f549ab9020c15cd1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CudaModule::~CudaModule </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00063">63</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a8b12014b815644e2794fcdc60b9a6851"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaModule::checkError </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>funcName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUresult&#160;</td>
+          <td class="paramname"><em>res</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00487">487</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2d6741d109bc975cd1d768ae2001991b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * CudaModule::decodeError </td>
+          <td>(</td>
+          <td class="paramtype">CUresult&#160;</td>
+          <td class="paramname"><em>res</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00426">426</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8bae74092d82d33a89508c1c59ef25ef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CudaModule::getComputeCapability </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00508">508</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a57b1627e526cc9a6f8425ffc057a8b57"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CudaModule::getDeviceAttribute </td>
+          <td>(</td>
+          <td class="paramtype">CUdevice_attribute&#160;</td>
+          <td class="paramname"><em>attrib</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00522">522</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab56d208adf8ddab9a5249621c2d553ba"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static CUdevice FW::CudaModule::getDeviceHandle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8hpp_source.html#l00074">74</a> of file <a class="el" href="_cuda_module_8hpp_source.html">CudaModule.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad37fbaac44625fce26b36135ae192e57"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CudaModule::getDriverVersion </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00495">495</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab147b2c8660cc94aae383329b0392dd3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static CUevent FW::CudaModule::getEndEvent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8hpp_source.html#l00079">79</a> of file <a class="el" href="_cuda_module_8hpp_source.html">CudaModule.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7f58dcb04ca39b1792dc0ecb065ae41c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp; CudaModule::getGlobal </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00117">117</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2035110df679a5c0d4deb01cac94e20b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUmodule FW::CudaModule::getHandle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8hpp_source.html#l00043">43</a> of file <a class="el" href="_cuda_module_8hpp_source.html">CudaModule.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2f0d62ac2eff62c5e0a2c93108233d39"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_cuda_kernel.html">CudaKernel</a> CudaModule::getKernel </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00080">80</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3690f037c53e931cb02713446bfd22f2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a> CudaModule::getMemoryUsed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00384">384</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abd22f9084c0957ca0cb93ce22a4aa3e8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static CUevent FW::CudaModule::getStartEvent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8hpp_source.html#l00078">78</a> of file <a class="el" href="_cuda_module_8hpp_source.html">CudaModule.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aacfba0f8beebafbe3d3a3a5c228e3442"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8hpp.html#aba057da10d5d0eb0a6f837dc75b59482">CUsurfref</a> CudaModule::getSurfRef </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00283">283</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a339f2b7cf6f3ef3a78355465c4b4836b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUtexref CudaModule::getTexRef </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00145">145</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afb966fd15e62cd2627f838db2170e836"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CudaModule::hasKernel </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00073">73</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2e6077f265c12a70ca60f33fac7f85c8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool FW::CudaModule::isAvailable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8hpp_source.html#l00068">68</a> of file <a class="el" href="_cuda_module_8hpp_source.html">CudaModule.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a514b7a61c66cec0186a3b6bcaa5de966"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CudaModule::setParamf </td>
+          <td>(</td>
+          <td class="paramtype">CUfunction&#160;</td>
+          <td class="paramname"><em>kernel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00099">99</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a032d7c1394dd3ede34bb4ac63da6bc8d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CudaModule::setParami </td>
+          <td>(</td>
+          <td class="paramtype">CUfunction&#160;</td>
+          <td class="paramname"><em>kernel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00090">90</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac6584601202a9942212eada4d087e1c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CudaModule::setParamPtr </td>
+          <td>(</td>
+          <td class="paramtype">CUfunction&#160;</td>
+          <td class="paramname"><em>kernel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUdeviceptr&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00108">108</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9395967cb4000b5a19ca4419da40c48e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaModule::setSurfRef </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUarray&#160;</td>
+          <td class="paramname"><em>cudaArray</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00298">298</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af562c42a60854fdef7c2897544da1e94"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaModule::setTexRef </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUarray_format&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numComponents</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00193">193</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afa69b163a6be22a71713e480802ff81e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaModule::setTexRef </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUdeviceptr&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a79e68c842b255fc3ffc278fa7c0ddd9a">S64</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUarray_format&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numComponents</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00200">200</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acc3b0388f90a38fe7a7be95effa71952"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaModule::setTexRef </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUarray&#160;</td>
+          <td class="paramname"><em>cudaArray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>wrap</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bilinear</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>normalizedCoords</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>readAsInt</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00209">209</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6a8ba6ce31eb5dcf04d4aacaf5fa6867"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaModule::setTexRef </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>wrap</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bilinear</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>normalizedCoords</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>readAsInt</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00223">223</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abfe1a5bd06d1d3ea0c49086de58340b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaModule::setTexRefMode </td>
+          <td>(</td>
+          <td class="paramtype">CUtexref&#160;</td>
+          <td class="paramname"><em>texRef</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>wrap</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bilinear</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>normalizedCoords</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>readAsInt</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00161">161</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae7847889464c984c90247b675c8c95ee"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaModule::staticDeinit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00361">361</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a13e904e8f50e820268da8bce901ce41d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaModule::staticInit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00311">311</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8fd15a1b9b23a8eba162097d4c06a4f3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaModule::sync </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>yield</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00398">398</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5356c37febffe67548611bb7173cf527"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaModule::unsetTexRef </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00256">256</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5942875425f3c3f5584765df670a5a49"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaModule::updateGlobals </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>async</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CUstream&#160;</td>
+          <td class="paramname"><em>stream</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00137">137</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae0dede205dfc836ef3afc9351ac39855"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CudaModule::updateTexRefs </td>
+          <td>(</td>
+          <td class="paramtype">CUfunction&#160;</td>
+          <td class="paramname"><em>kernel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_cuda_module_8cpp_source.html#l00264">264</a> of file <a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/gpu/<a class="el" href="_cuda_module_8hpp_source.html">CudaModule.hpp</a></li>
-<li>src/framework/gpu/CudaModule.cpp</li>
+<li>src/framework/gpu/<a class="el" href="_cuda_module_8cpp_source.html">CudaModule.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_cuda_module.html">CudaModule</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_cuda_module.html">CudaModule</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

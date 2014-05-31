@@ -2,6 +2,7 @@ var class_f_w_1_1_cuda_b_v_h =
 [
     [ "Align", "class_f_w_1_1_cuda_b_v_h.html#a7ab427f8130b5eeba501b8b3d191e72cad1a9573edf203c2352598531eaafa4fd", null ],
     [ "CudaBVH", "class_f_w_1_1_cuda_b_v_h.html#a68184f4a0b656fb9f863bfbcf8b4a71d", null ],
+    [ "CudaBVH", "class_f_w_1_1_cuda_b_v_h.html#a7524452a62b05ddf296461f7e634f2d8", null ],
     [ "CudaBVH", "class_f_w_1_1_cuda_b_v_h.html#a05b8149669334b5aa2a66850c22d299a", null ],
     [ "CudaBVH", "class_f_w_1_1_cuda_b_v_h.html#ab0c2bcf29091ca0e5309b05dc487f494", null ],
     [ "~CudaBVH", "class_f_w_1_1_cuda_b_v_h.html#aacde185dc594de5707f0871c0a4458b2", null ],
@@ -10,7 +11,7 @@ var class_f_w_1_1_cuda_b_v_h =
     [ "getNode", "class_f_w_1_1_cuda_b_v_h.html#ad9a3e4258fb276d99c15e8154ef430a1", null ],
     [ "getNodeBuffer", "class_f_w_1_1_cuda_b_v_h.html#ad7bfc9b39ad925ba5d11dbb73dc3fd9a", null ],
     [ "getNodeSubArray", "class_f_w_1_1_cuda_b_v_h.html#a4807401dd9d1ec4f4d86000a4ab2ee24", null ],
-    [ "getScene", "class_f_w_1_1_cuda_b_v_h.html#a418c243d246d99681f9f04b01223970c", null ],
+    [ "getScene", "class_f_w_1_1_cuda_b_v_h.html#ac520f39e3a2019e8eb688ed7140f4349", null ],
     [ "getTriangleIndices", "class_f_w_1_1_cuda_b_v_h.html#a27eb6537f5210c8575bc179385b2698f", null ],
     [ "getTriIndexBuffer", "class_f_w_1_1_cuda_b_v_h.html#a12ca8ac39f3a72e7038b676ba5b5d6ab", null ],
     [ "getTriWoopBuffer", "class_f_w_1_1_cuda_b_v_h.html#ab0b62c5358858a6bab555f7fe6fb3126", null ],

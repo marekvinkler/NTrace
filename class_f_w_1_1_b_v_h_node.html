@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_b_v_h_node.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -112,73 +113,522 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_b_v_h_node.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> virtual node. Parent class of both a leaf node and an inner node.  
+ <a href="class_f_w_1_1_b_v_h_node.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>&gt;</code></p>
+
 <p>Inherited by <a class="el" href="class_f_w_1_1_inner_node.html">FW::InnerNode</a>, and <a class="el" href="class_f_w_1_1_leaf_node.html">FW::LeafNode</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9ad94d62c3516a848fe62aacc2285bb0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ad94d62c3516a848fe62aacc2285bb0"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isLeaf</b> () const =0</td></tr>
+<tr class="memitem:abc4799e2d8dc85a50d8dbecb349fcfb3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#abc4799e2d8dc85a50d8dbecb349fcfb3">BVHNode</a> ()</td></tr>
+<tr class="memdesc:abc4799e2d8dc85a50d8dbecb349fcfb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#abc4799e2d8dc85a50d8dbecb349fcfb3">More...</a><br/></td></tr>
+<tr class="separator:abc4799e2d8dc85a50d8dbecb349fcfb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ad94d62c3516a848fe62aacc2285bb0"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#a9ad94d62c3516a848fe62aacc2285bb0">isLeaf</a> () const =0</td></tr>
 <tr class="separator:a9ad94d62c3516a848fe62aacc2285bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1db9f33a502a807594a54b6daf893574"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1db9f33a502a807594a54b6daf893574"></a>
-virtual S32&#160;</td><td class="memItemRight" valign="bottom"><b>getNumChildNodes</b> () const =0</td></tr>
+<tr class="memitem:a1db9f33a502a807594a54b6daf893574"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#a1db9f33a502a807594a54b6daf893574">getNumChildNodes</a> () const =0</td></tr>
 <tr class="separator:a1db9f33a502a807594a54b6daf893574"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52d121f8a5be759e04e5b523295f109e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52d121f8a5be759e04e5b523295f109e"></a>
-virtual <a class="el" href="class_f_w_1_1_b_v_h_node.html">BVHNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getChildNode</b> (S32 i) const =0</td></tr>
+<tr class="memitem:a52d121f8a5be759e04e5b523295f109e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_f_w_1_1_b_v_h_node.html">BVHNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#a52d121f8a5be759e04e5b523295f109e">getChildNode</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> i) const =0</td></tr>
+<tr class="memdesc:a52d121f8a5be759e04e5b523295f109e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns one of the node's child nodes.  <a href="#a52d121f8a5be759e04e5b523295f109e">More...</a><br/></td></tr>
 <tr class="separator:a52d121f8a5be759e04e5b523295f109e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1998e9ef01d2fcf6b002048af4ad54f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1998e9ef01d2fcf6b002048af4ad54f"></a>
-virtual S32&#160;</td><td class="memItemRight" valign="bottom"><b>getNumTriangles</b> () const </td></tr>
+<tr class="memitem:af1998e9ef01d2fcf6b002048af4ad54f"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#af1998e9ef01d2fcf6b002048af4ad54f">getNumTriangles</a> () const </td></tr>
 <tr class="separator:af1998e9ef01d2fcf6b002048af4ad54f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43235e2817b316ead6f0c38992391a36"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43235e2817b316ead6f0c38992391a36"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getArea</b> () const </td></tr>
+<tr class="memitem:a43235e2817b316ead6f0c38992391a36"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#a43235e2817b316ead6f0c38992391a36">getArea</a> () const </td></tr>
 <tr class="separator:a43235e2817b316ead6f0c38992391a36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a8f78066fe267d5590f33c2a2702da3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a8f78066fe267d5590f33c2a2702da3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getSubtreeSize</b> (BVH_STAT stat=BVH_STAT_NODE_COUNT) const </td></tr>
+<tr class="memitem:a3a8f78066fe267d5590f33c2a2702da3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#a3a8f78066fe267d5590f33c2a2702da3">getSubtreeSize</a> (<a class="el" href="namespace_f_w.html#a3bbea16231fdd8c11dc006c461f232b2">BVH_STAT</a> stat=<a class="el" href="namespace_f_w.html#a3bbea16231fdd8c11dc006c461f232b2a1519cd03b13fc45ef120cbb097a34abf">BVH_STAT_NODE_COUNT</a>) const </td></tr>
+<tr class="memdesc:a3a8f78066fe267d5590f33c2a2702da3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates various information about the node's subtree.  <a href="#a3a8f78066fe267d5590f33c2a2702da3">More...</a><br/></td></tr>
 <tr class="separator:a3a8f78066fe267d5590f33c2a2702da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ff1ac667e0891c4e3bc4ee584affd48"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ff1ac667e0891c4e3bc4ee584affd48"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>computeSubtreeProbabilities</b> (const <a class="el" href="class_f_w_1_1_platform.html">Platform</a> &amp;p, float parentProbability, float &amp;sah)</td></tr>
+<tr class="memitem:a7ff1ac667e0891c4e3bc4ee584affd48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#a7ff1ac667e0891c4e3bc4ee584affd48">computeSubtreeProbabilities</a> (const <a class="el" href="class_f_w_1_1_platform.html">Platform</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#a5a11afa44e3df9fa01e461dc15484392">p</a>, float parentProbability, float &amp;sah)</td></tr>
+<tr class="memdesc:a7ff1ac667e0891c4e3bc4ee584affd48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates node's subtree probabilities and also sah price.  <a href="#a7ff1ac667e0891c4e3bc4ee584affd48">More...</a><br/></td></tr>
 <tr class="separator:a7ff1ac667e0891c4e3bc4ee584affd48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22bd515bb9956c7932c21dee55aa98c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22bd515bb9956c7932c21dee55aa98c9"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>computeSubtreeSAHCost</b> (const <a class="el" href="class_f_w_1_1_platform.html">Platform</a> &amp;p) const </td></tr>
+<tr class="memitem:a22bd515bb9956c7932c21dee55aa98c9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#a22bd515bb9956c7932c21dee55aa98c9">computeSubtreeSAHCost</a> (const <a class="el" href="class_f_w_1_1_platform.html">Platform</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#a5a11afa44e3df9fa01e461dc15484392">p</a>) const </td></tr>
+<tr class="memdesc:a22bd515bb9956c7932c21dee55aa98c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates subtree SAH cost. Requires calculated probabilities.  <a href="#a22bd515bb9956c7932c21dee55aa98c9">More...</a><br/></td></tr>
 <tr class="separator:a22bd515bb9956c7932c21dee55aa98c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae157f25e3e7202d94cb42a47d5fbd8c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae157f25e3e7202d94cb42a47d5fbd8c7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>deleteSubtree</b> ()</td></tr>
+<tr class="memitem:ae157f25e3e7202d94cb42a47d5fbd8c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#ae157f25e3e7202d94cb42a47d5fbd8c7">deleteSubtree</a> ()</td></tr>
+<tr class="memdesc:ae157f25e3e7202d94cb42a47d5fbd8c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes node's subtree.  <a href="#ae157f25e3e7202d94cb42a47d5fbd8c7">More...</a><br/></td></tr>
 <tr class="separator:ae157f25e3e7202d94cb42a47d5fbd8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3877b9069a13979ba25058228e722b7c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3877b9069a13979ba25058228e722b7c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>assignIndicesDepthFirst</b> (S32 index=0, bool includeLeafNodes=true)</td></tr>
+<tr class="memitem:a3877b9069a13979ba25058228e722b7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#a3877b9069a13979ba25058228e722b7c">assignIndicesDepthFirst</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#abf1b96ba8e05b846fde16efb5851232e">index</a>=0, bool includeLeafNodes=true)</td></tr>
+<tr class="memdesc:a3877b9069a13979ba25058228e722b7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns node's sbutree indices in depth first order.  <a href="#a3877b9069a13979ba25058228e722b7c">More...</a><br/></td></tr>
 <tr class="separator:a3877b9069a13979ba25058228e722b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad887aa7c023307edc980048002ff6d33"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad887aa7c023307edc980048002ff6d33"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>assignIndicesBreadthFirst</b> (S32 index=0, bool includeLeafNodes=true)</td></tr>
+<tr class="memitem:ad887aa7c023307edc980048002ff6d33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#ad887aa7c023307edc980048002ff6d33">assignIndicesBreadthFirst</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#abf1b96ba8e05b846fde16efb5851232e">index</a>=0, bool includeLeafNodes=true)</td></tr>
+<tr class="memdesc:ad887aa7c023307edc980048002ff6d33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns node's subtree indices in breadth first order.  <a href="#ad887aa7c023307edc980048002ff6d33">More...</a><br/></td></tr>
 <tr class="separator:ad887aa7c023307edc980048002ff6d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a9529fcf69927bd68c710e36e05e478ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9529fcf69927bd68c710e36e05e478ac"></a>
-<a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_bounds</b></td></tr>
+<tr class="memitem:a9529fcf69927bd68c710e36e05e478ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#a9529fcf69927bd68c710e36e05e478ac">m_bounds</a></td></tr>
+<tr class="memdesc:a9529fcf69927bd68c710e36e05e478ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bounding box of the node.  <a href="#a9529fcf69927bd68c710e36e05e478ac">More...</a><br/></td></tr>
 <tr class="separator:a9529fcf69927bd68c710e36e05e478ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af046de500fd1cfd09f7c2463bb908b5b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af046de500fd1cfd09f7c2463bb908b5b"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>m_probability</b></td></tr>
+<tr class="memitem:af046de500fd1cfd09f7c2463bb908b5b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#af046de500fd1cfd09f7c2463bb908b5b">m_probability</a></td></tr>
+<tr class="memdesc:af046de500fd1cfd09f7c2463bb908b5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Probability of coming here (widebvh uses this).  <a href="#af046de500fd1cfd09f7c2463bb908b5b">More...</a><br/></td></tr>
 <tr class="separator:af046de500fd1cfd09f7c2463bb908b5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fd7357fc2da937ae37cc69c9a1b1a13"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fd7357fc2da937ae37cc69c9a1b1a13"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>m_parentProbability</b></td></tr>
+<tr class="memitem:a5fd7357fc2da937ae37cc69c9a1b1a13"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#a5fd7357fc2da937ae37cc69c9a1b1a13">m_parentProbability</a></td></tr>
+<tr class="memdesc:a5fd7357fc2da937ae37cc69c9a1b1a13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Probability of coming to parent (widebvh uses this).  <a href="#a5fd7357fc2da937ae37cc69c9a1b1a13">More...</a><br/></td></tr>
 <tr class="separator:a5fd7357fc2da937ae37cc69c9a1b1a13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63e0382ea5efbc00ec7ccbee3b1a9f93"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63e0382ea5efbc00ec7ccbee3b1a9f93"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_treelet</b></td></tr>
+<tr class="memitem:a63e0382ea5efbc00ec7ccbee3b1a9f93"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#a63e0382ea5efbc00ec7ccbee3b1a9f93">m_treelet</a></td></tr>
+<tr class="memdesc:a63e0382ea5efbc00ec7ccbee3b1a9f93"><td class="mdescLeft">&#160;</td><td class="mdescRight">For queuing tests (qmachine uses this).  <a href="#a63e0382ea5efbc00ec7ccbee3b1a9f93">More...</a><br/></td></tr>
 <tr class="separator:a63e0382ea5efbc00ec7ccbee3b1a9f93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61db3043e5d52d128cb190feff030fa9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61db3043e5d52d128cb190feff030fa9"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_index</b></td></tr>
+<tr class="memitem:a61db3043e5d52d128cb190feff030fa9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_b_v_h_node.html#a61db3043e5d52d128cb190feff030fa9">m_index</a></td></tr>
+<tr class="memdesc:a61db3043e5d52d128cb190feff030fa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">in linearized tree (qmachine uses this).  <a href="#a61db3043e5d52d128cb190feff030fa9">More...</a><br/></td></tr>
 <tr class="separator:a61db3043e5d52d128cb190feff030fa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> virtual node. Parent class of both a leaf node and an inner node. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00136">136</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="abc4799e2d8dc85a50d8dbecb349fcfb3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::BVHNode::BVHNode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00143">143</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ad887aa7c023307edc980048002ff6d33"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::BVHNode::assignIndicesBreadthFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>index</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>includeLeafNodes</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Assigns node's subtree indices in breadth first order. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Index to be assigned to the this node. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">includeLeafNodes</td><td>Flag whether to assign indices to leaf nodes as well. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8cpp_source.html#l00116">116</a> of file <a class="el" href="_b_v_h_node_8cpp_source.html">BVHNode.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3877b9069a13979ba25058228e722b7c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::BVHNode::assignIndicesDepthFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>index</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>includeLeafNodes</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Assigns node's sbutree indices in depth first order. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Index to be assigned to this node. [in] includeLeafNodes Flag whether to assign indices to leaf nodes as well. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8cpp_source.html#l00109">109</a> of file <a class="el" href="_b_v_h_node_8cpp_source.html">BVHNode.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7ff1ac667e0891c4e3bc4ee584affd48"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::BVHNode::computeSubtreeProbabilities </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_platform.html">Platform</a> &amp;&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>parentProbability</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>sah</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates node's subtree probabilities and also sah price. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">p</td><td><a class="el" href="class_f_w_1_1_platform.html" title="Class holding various SAH and batch processing parameters. ">Platform</a> settings. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">parentProbability</td><td>Parent node probability. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">sah</td><td>Calculated SAH cost. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8cpp_source.html#l00068">68</a> of file <a class="el" href="_b_v_h_node_8cpp_source.html">BVHNode.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a22bd515bb9956c7932c21dee55aa98c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FW::BVHNode::computeSubtreeSAHCost </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_platform.html">Platform</a> &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates subtree SAH cost. Requires calculated probabilities. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">p</td><td><a class="el" href="class_f_w_1_1_platform.html" title="Class holding various SAH and batch processing parameters. ">Platform</a> settings. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SAH cost of the node's subtree.. </dd></dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8cpp_source.html#l00087">87</a> of file <a class="el" href="_b_v_h_node_8cpp_source.html">BVHNode.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae157f25e3e7202d94cb42a47d5fbd8c7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::BVHNode::deleteSubtree </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deletes node's subtree. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8cpp_source.html#l00059">59</a> of file <a class="el" href="_b_v_h_node_8cpp_source.html">BVHNode.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a43235e2817b316ead6f0c38992391a36"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FW::BVHNode::getArea </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Surface area of the node. </dd></dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00170">170</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a52d121f8a5be759e04e5b523295f109e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="class_f_w_1_1_b_v_h_node.html">BVHNode</a>* FW::BVHNode::getChildNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns one of the node's child nodes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>Index of the child node. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Selected child node. </dd></dl>
+
+<p>Implemented in <a class="el" href="class_f_w_1_1_leaf_node.html#a81382050992a0946d8160655a3893002">FW::LeafNode</a>, and <a class="el" href="class_f_w_1_1_inner_node.html#a0c6a46855522705e7f3ffae8c57d3674">FW::InnerNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1db9f33a502a807594a54b6daf893574"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::BVHNode::getNumChildNodes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Number of the node's child nodes. </dd></dl>
+
+<p>Implemented in <a class="el" href="class_f_w_1_1_leaf_node.html#a286cef106e03a11d41d3067eef6aa443">FW::LeafNode</a>, and <a class="el" href="class_f_w_1_1_inner_node.html#af476416fac52287050ba744a147566b5">FW::InnerNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af1998e9ef01d2fcf6b002048af4ad54f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::BVHNode::getNumTriangles </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Number of node's triangles. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="class_f_w_1_1_leaf_node.html#ad9846d2deedd208d03363a9ec6ed5873">FW::LeafNode</a>.</p>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00165">165</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3a8f78066fe267d5590f33c2a2702da3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::BVHNode::getSubtreeSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a3bbea16231fdd8c11dc006c461f232b2">BVH_STAT</a>&#160;</td>
+          <td class="paramname"><em>stat</em> = <code><a class="el" href="namespace_f_w.html#a3bbea16231fdd8c11dc006c461f232b2a1519cd03b13fc45ef120cbb097a34abf">BVH_STAT_NODE_COUNT</a></code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates various information about the node's subtree. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">stat</td><td>Desired information. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Calculated information. </dd></dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8cpp_source.html#l00036">36</a> of file <a class="el" href="_b_v_h_node_8cpp_source.html">BVHNode.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9ad94d62c3516a848fe62aacc2285bb0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool FW::BVHNode::isLeaf </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Whether the node is a leaf node. </dd></dl>
+
+<p>Implemented in <a class="el" href="class_f_w_1_1_leaf_node.html#aaa7f5fa2fe41ef363c926ddfea054830">FW::LeafNode</a>, and <a class="el" href="class_f_w_1_1_inner_node.html#af1fb293a522dfcec29de40f8d5f65ea1">FW::InnerNode</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a9529fcf69927bd68c710e36e05e478ac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> FW::BVHNode::m_bounds</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bounding box of the node. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00172">172</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a61db3043e5d52d128cb190feff030fa9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::BVHNode::m_index</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>in linearized tree (qmachine uses this). </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00179">179</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5fd7357fc2da937ae37cc69c9a1b1a13"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FW::BVHNode::m_parentProbability</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Probability of coming to parent (widebvh uses this). </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00176">176</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af046de500fd1cfd09f7c2463bb908b5b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FW::BVHNode::m_probability</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Probability of coming here (widebvh uses this). </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00175">175</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a63e0382ea5efbc00ec7ccbee3b1a9f93"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::BVHNode::m_treelet</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>For queuing tests (qmachine uses this). </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00178">178</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/rt/bvh/<a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a></li>
-<li>src/rt/bvh/BVHNode.cpp</li>
+<li>src/rt/bvh/<a class="el" href="_b_v_h_node_8cpp_source.html">BVHNode.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_b_v_h_node.html">BVHNode</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_b_v_h_node.html">BVHNode</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -68,6 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -90,7 +92,7 @@ $(document).ready(function(){initNavTree('_pixel_table_8hpp_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -104,7 +106,7 @@ $(document).ready(function(){initNavTree('_pixel_table_8hpp_source.html','');});
 <div class="title">PixelTable.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<a href="_pixel_table_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> *  Copyright (c) 2009-2011, NVIDIA Corporation</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *  All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
@@ -132,7 +134,7 @@ $(document).ready(function(){initNavTree('_pixel_table_8hpp_source.html','');});
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &quot;gpu/Buffer.hpp&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="_buffer_8hpp.html">gpu/Buffer.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">namespace </span>FW</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
@@ -141,14 +143,14 @@ $(document).ready(function(){initNavTree('_pixel_table_8hpp_source.html','');});
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_f_w_1_1_pixel_table.html">   35</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_f_w_1_1_pixel_table.html">PixelTable</a></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                        <a class="code" href="class_f_w_1_1_pixel_table.html">PixelTable</a>      (<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                        ~<a class="code" href="class_f_w_1_1_pixel_table.html">PixelTable</a>     (<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                        <a class="code" href="class_f_w_1_1_pixel_table.html#a798d2cbf46a6c230d4c0512273dbb8b5">PixelTable</a>      (<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                        <a class="code" href="class_f_w_1_1_pixel_table.html#ab77577873db1b2f7ef4a4ae9f4e3019b">~PixelTable</a>     (<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span>                setSize         (<span class="keyword">const</span> <a class="code" href="class_f_w_1_1_vec2i.html">Vec2i</a>&amp; size);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span>                <a class="code" href="class_f_w_1_1_pixel_table.html#ae27cabee5491760f002d74125acc75b2">setSize</a>         (<span class="keyword">const</span> <a class="code" href="class_f_w_1_1_vec2i.html">Vec2i</a>&amp; <a class="code" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_vec2i.html">Vec2i</a>&amp;        getSize         (<span class="keywordtype">void</span>)<span class="keyword"> const    </span>{ <span class="keywordflow">return</span> m_size; }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_f_w_1_1_buffer.html">Buffer</a>&amp;             getIndexToPixel (<span class="keywordtype">void</span>)          { <span class="keywordflow">return</span> m_indexToPixel; }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_f_w_1_1_buffer.html">Buffer</a>&amp;             getPixelToIndex (<span class="keywordtype">void</span>)          { <span class="keywordflow">return</span> m_pixelToIndex; }</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_f_w_1_1_pixel_table.html#a1b4b1f843c55ef4e381c6dccda81d3af">   43</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="class_f_w_1_1_vec2i.html">Vec2i</a>&amp;        <a class="code" href="class_f_w_1_1_pixel_table.html#a1b4b1f843c55ef4e381c6dccda81d3af">getSize</a>         (<span class="keywordtype">void</span>)<span class="keyword"> const    </span>{ <span class="keywordflow">return</span> m_size; }</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_f_w_1_1_pixel_table.html#a20186443f0d35b685812d618ab234fd5">   44</a></span>&#160;    <a class="code" href="class_f_w_1_1_buffer.html">Buffer</a>&amp;             <a class="code" href="class_f_w_1_1_pixel_table.html#a20186443f0d35b685812d618ab234fd5">getIndexToPixel</a> (<span class="keywordtype">void</span>)          { <span class="keywordflow">return</span> m_indexToPixel; }</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_f_w_1_1_pixel_table.html#a3589f78256fbb0adc8efc114bdf5e937">   45</a></span>&#160;    <a class="code" href="class_f_w_1_1_buffer.html">Buffer</a>&amp;             <a class="code" href="class_f_w_1_1_pixel_table.html#a3589f78256fbb0adc8efc114bdf5e937">getPixelToIndex</a> (<span class="keywordtype">void</span>)          { <span class="keywordflow">return</span> m_pixelToIndex; }</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span>                recalculate     (<span class="keywordtype">void</span>);</div>
@@ -160,16 +162,24 @@ $(document).ready(function(){initNavTree('_pixel_table_8hpp_source.html','');});
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">//------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
-<div class="ttc" id="class_f_w_1_1_pixel_table_html"><div class="ttname"><a href="class_f_w_1_1_pixel_table.html">FW::PixelTable</a></div><div class="ttdef"><b>Definition:</b> PixelTable.hpp:35</div></div>
-<div class="ttc" id="class_f_w_1_1_vec2i_html"><div class="ttname"><a href="class_f_w_1_1_vec2i.html">FW::Vec2i</a></div><div class="ttdef"><b>Definition:</b> Math.hpp:238</div></div>
-<div class="ttc" id="class_f_w_1_1_buffer_html"><div class="ttname"><a href="class_f_w_1_1_buffer.html">FW::Buffer</a></div><div class="ttdef"><b>Definition:</b> Buffer.hpp:35</div></div>
+<div class="ttc" id="class_f_w_1_1_pixel_table_html_ab77577873db1b2f7ef4a4ae9f4e3019b"><div class="ttname"><a href="class_f_w_1_1_pixel_table.html#ab77577873db1b2f7ef4a4ae9f4e3019b">FW::PixelTable::~PixelTable</a></div><div class="ttdeci">~PixelTable(void)</div><div class="ttdef"><b>Definition:</b> <a href="_pixel_table_8cpp_source.html#l00041">PixelTable.cpp:41</a></div></div>
+<div class="ttc" id="class_f_w_1_1_pixel_table_html_a3589f78256fbb0adc8efc114bdf5e937"><div class="ttname"><a href="class_f_w_1_1_pixel_table.html#a3589f78256fbb0adc8efc114bdf5e937">FW::PixelTable::getPixelToIndex</a></div><div class="ttdeci">Buffer &amp; getPixelToIndex(void)</div><div class="ttdef"><b>Definition:</b> <a href="_pixel_table_8hpp_source.html#l00045">PixelTable.hpp:45</a></div></div>
+<div class="ttc" id="class_f_w_1_1_pixel_table_html_ae27cabee5491760f002d74125acc75b2"><div class="ttname"><a href="class_f_w_1_1_pixel_table.html#ae27cabee5491760f002d74125acc75b2">FW::PixelTable::setSize</a></div><div class="ttdeci">void setSize(const Vec2i &amp;size)</div><div class="ttdef"><b>Definition:</b> <a href="_pixel_table_8cpp_source.html#l00047">PixelTable.cpp:47</a></div></div>
+<div class="ttc" id="class_f_w_1_1_pixel_table_html_a798d2cbf46a6c230d4c0512273dbb8b5"><div class="ttname"><a href="class_f_w_1_1_pixel_table.html#a798d2cbf46a6c230d4c0512273dbb8b5">FW::PixelTable::PixelTable</a></div><div class="ttdeci">PixelTable(void)</div><div class="ttdef"><b>Definition:</b> <a href="_pixel_table_8cpp_source.html#l00034">PixelTable.cpp:34</a></div></div>
+<div class="ttc" id="class_f_w_1_1_pixel_table_html"><div class="ttname"><a href="class_f_w_1_1_pixel_table.html">FW::PixelTable</a></div><div class="ttdef"><b>Definition:</b> <a href="_pixel_table_8hpp_source.html#l00035">PixelTable.hpp:35</a></div></div>
+<div class="ttc" id="class_f_w_1_1_pixel_table_html_a20186443f0d35b685812d618ab234fd5"><div class="ttname"><a href="class_f_w_1_1_pixel_table.html#a20186443f0d35b685812d618ab234fd5">FW::PixelTable::getIndexToPixel</a></div><div class="ttdeci">Buffer &amp; getIndexToPixel(void)</div><div class="ttdef"><b>Definition:</b> <a href="_pixel_table_8hpp_source.html#l00044">PixelTable.hpp:44</a></div></div>
+<div class="ttc" id="class_f_w_1_1_pixel_table_html_a1b4b1f843c55ef4e381c6dccda81d3af"><div class="ttname"><a href="class_f_w_1_1_pixel_table.html#a1b4b1f843c55ef4e381c6dccda81d3af">FW::PixelTable::getSize</a></div><div class="ttdeci">const Vec2i &amp; getSize(void) const </div><div class="ttdef"><b>Definition:</b> <a href="_pixel_table_8hpp_source.html#l00043">PixelTable.hpp:43</a></div></div>
+<div class="ttc" id="class_f_w_1_1_vec2i_html"><div class="ttname"><a href="class_f_w_1_1_vec2i.html">FW::Vec2i</a></div><div class="ttdef"><b>Definition:</b> <a href="_math_8hpp_source.html#l00238">Math.hpp:238</a></div></div>
+<div class="ttc" id="class_f_w_1_1_buffer_html"><div class="ttname"><a href="class_f_w_1_1_buffer.html">FW::Buffer</a></div><div class="ttdef"><b>Definition:</b> <a href="_buffer_8hpp_source.html#l00035">Buffer.hpp:35</a></div></div>
+<div class="ttc" id="_d_l_l_imports_8inl_html_abcaf2e752dfff61ecb0b2d0a593966ee"><div class="ttname"><a href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a></div><div class="ttdeci">CUdevice int ordinal char int CUdevice dev CUdevprop CUdevice dev CUcontext ctx CUcontext ctx CUcontext pctx CUmodule const void image CUmodule const void fatCubin CUfunction CUmodule const char name void p CUfunction unsigned int bytes CUtexref pTexRef CUtexref CUarray unsigned int Flags CUtexref int CUaddress_mode am CUtexref unsigned int Flags CUaddress_mode CUtexref int dim CUarray_format int CUtexref hTexRef CUfunction unsigned int numbytes CUfunction int float value CUfunction int CUtexref hTexRef CUfunction int int grid_height CUevent unsigned int Flags CUevent hEvent CUevent hEvent CUstream unsigned int Flags CUstream hStream GLuint bufferobj unsigned int CUdevice dev CUdeviceptr unsigned int CUmodule const char name CUdeviceptr unsigned int bytesize CUdeviceptr dptr void unsigned int bytesize void CUdeviceptr unsigned int ByteCount CUarray unsigned int CUdeviceptr unsigned int ByteCount CUarray unsigned int const void unsigned int ByteCount CUarray unsigned int CUarray unsigned int unsigned int ByteCount void CUarray unsigned int unsigned int CUstream hStream const CUDA_MEMCPY2D pCopy CUdeviceptr const void unsigned int CUstream hStream const CUDA_MEMCPY2D CUstream hStream CUdeviceptr unsigned char unsigned int N CUdeviceptr unsigned int unsigned int N CUdeviceptr unsigned int unsigned short unsigned int unsigned int Height CUarray const CUDA_ARRAY_DESCRIPTOR pAllocateArray CUarray const CUDA_ARRAY3D_DESCRIPTOR pAllocateArray unsigned int CUtexref CUdeviceptr unsigned int bytes CUcontext unsigned int CUdevice device GLenum texture GLenum GLuint buffer GLenum GLuint renderbuffer GLenum GLsizeiptr size</div><div class="ttdef"><b>Definition:</b> <a href="_d_l_l_imports_8inl_source.html#l00319">DLLImports.inl:319</a></div></div>
+<div class="ttc" id="_buffer_8hpp_html"><div class="ttname"><a href="_buffer_8hpp.html">Buffer.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_efcdd37e5809801e389fc22b12e0cfd9.html">rt</a></li><li class="navelem"><a class="el" href="dir_233b17c9e728050d6c83e4f3bd073d37.html">ray</a></li><li class="navelem"><b>PixelTable.hpp</b></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_efcdd37e5809801e389fc22b12e0cfd9.html">rt</a></li><li class="navelem"><a class="el" href="dir_233b17c9e728050d6c83e4f3bd073d37.html">ray</a></li><li class="navelem"><a class="el" href="_pixel_table_8hpp.html">PixelTable.hpp</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:20 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

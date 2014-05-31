@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_camera_controls.html',''
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -112,153 +113,1082 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_camera_controls.html',''
 </div><!--header-->
 <div class="contents">
 
+<p><code>#include &lt;<a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>&gt;</code></p>
+
 <p>Inherits <a class="el" href="class_f_w_1_1_window_1_1_listener.html">FW::Window::Listener</a>, and <a class="el" href="class_f_w_1_1_common_controls_1_1_state_object.html">FW::CommonControls::StateObject</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ae59326453d923e25520c656821049bac"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>Feature</b> { <br/>
-&#160;&#160;<b>Feature_AlignYButton</b> = 1 &lt;&lt; 0, 
-<b>Feature_AlignZButton</b> = 1 &lt;&lt; 1, 
-<b>Feature_KeepAlignToggle</b> = 1 &lt;&lt; 2, 
-<b>Feature_SpeedSlider</b> = 1 &lt;&lt; 3, 
+<tr class="memitem:ae59326453d923e25520c656821049bac"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049bac">Feature</a> { <br/>
+&#160;&#160;<a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049baca613eb3a6b6fd769069a7c648ce74bac6">Feature_AlignYButton</a> = 1 &lt;&lt; 0, 
+<a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049baca32ad58d7d0fe5bb2ef0645b032d8ef7c">Feature_AlignZButton</a> = 1 &lt;&lt; 1, 
+<a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049bacab71c5a6e071299885d08e0e9ee7b166d">Feature_KeepAlignToggle</a> = 1 &lt;&lt; 2, 
+<a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049baca234067d5112369dfccd96e0fe40d376f">Feature_SpeedSlider</a> = 1 &lt;&lt; 3, 
 <br/>
-&#160;&#160;<b>Feature_FOVSlider</b> = 1 &lt;&lt; 4, 
-<b>Feature_NearSlider</b> = 1 &lt;&lt; 5, 
-<b>Feature_FarSlider</b> = 1 &lt;&lt; 6, 
-<b>Feature_StereoControls</b> = 1 &lt;&lt; 7, 
+&#160;&#160;<a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049bacafae61980de009c0000383fc847e2260d">Feature_FOVSlider</a> = 1 &lt;&lt; 4, 
+<a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049baca81a8c391971fae435d233a07477354b0">Feature_NearSlider</a> = 1 &lt;&lt; 5, 
+<a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049bacaf3272d981dd4bb1d3bd48db7c139dba7">Feature_FarSlider</a> = 1 &lt;&lt; 6, 
+<a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049bacabf4954d039745d46e7ebf783f81dea89">Feature_StereoControls</a> = 1 &lt;&lt; 7, 
 <br/>
-&#160;&#160;<b>Feature_None</b> = 0, 
-<b>Feature_All</b> = (1 &lt;&lt; 8) - 1, 
-<b>Feature_Default</b> = Feature_All &amp; ~Feature_StereoControls
+&#160;&#160;<a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049bacab84866064cd76cfd6369ab883d5a0d77">Feature_None</a> = 0, 
+<a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049baca6a37b86cb1677e49b941150e9a83592c">Feature_All</a> = (1 &lt;&lt; 8) - 1, 
+<a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049bacaf9a13535061d99b214333ac49d6a9c45">Feature_Default</a> = Feature_All &amp; ~Feature_StereoControls
 <br/>
  }</td></tr>
 <tr class="separator:ae59326453d923e25520c656821049bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:adcfc61c1a503e0cb82501d7bb44b66ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adcfc61c1a503e0cb82501d7bb44b66ee"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>CameraControls</b> (<a class="el" href="class_f_w_1_1_common_controls.html">CommonControls</a> *commonControls=NULL, U32 features=Feature_Default)</td></tr>
+<tr class="memitem:adcfc61c1a503e0cb82501d7bb44b66ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#adcfc61c1a503e0cb82501d7bb44b66ee">CameraControls</a> (<a class="el" href="class_f_w_1_1_common_controls.html">CommonControls</a> *commonControls=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> features=<a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049bacaf9a13535061d99b214333ac49d6a9c45">Feature_Default</a>)</td></tr>
 <tr class="separator:adcfc61c1a503e0cb82501d7bb44b66ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae49af4e464e44ac0e2e059ec264be936"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae49af4e464e44ac0e2e059ec264be936"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (const <a class="el" href="struct_f_w_1_1_window_1_1_event.html">Window::Event</a> &amp;ev)</td></tr>
+<tr class="memitem:aed5d218965082368bf3556b9c3cdaf37"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#aed5d218965082368bf3556b9c3cdaf37">~CameraControls</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:aed5d218965082368bf3556b9c3cdaf37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae49af4e464e44ac0e2e059ec264be936"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#ae49af4e464e44ac0e2e059ec264be936">handleEvent</a> (const <a class="el" href="struct_f_w_1_1_window_1_1_event.html">Window::Event</a> &amp;ev)</td></tr>
 <tr class="separator:ae49af4e464e44ac0e2e059ec264be936"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add472b95a310c4aac96b144a88a46e14"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add472b95a310c4aac96b144a88a46e14"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>readState</b> (<a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;d)</td></tr>
+<tr class="memitem:add472b95a310c4aac96b144a88a46e14"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#add472b95a310c4aac96b144a88a46e14">readState</a> (<a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;d)</td></tr>
 <tr class="separator:add472b95a310c4aac96b144a88a46e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a685abea6a681a36860c968a96db22b35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a685abea6a681a36860c968a96db22b35"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>writeState</b> (<a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;d) const </td></tr>
+<tr class="memitem:a685abea6a681a36860c968a96db22b35"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a685abea6a681a36860c968a96db22b35">writeState</a> (<a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;d) const </td></tr>
 <tr class="separator:a685abea6a681a36860c968a96db22b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0de7da52ca227b72fd0e91cab9ff4415"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0de7da52ca227b72fd0e91cab9ff4415"></a>
-const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> (void) const </td></tr>
+<tr class="memitem:a0de7da52ca227b72fd0e91cab9ff4415"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a0de7da52ca227b72fd0e91cab9ff4415">getPosition</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a0de7da52ca227b72fd0e91cab9ff4415"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad023bd42e2631334e650517557a586a3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad023bd42e2631334e650517557a586a3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;v)</td></tr>
+<tr class="memitem:ad023bd42e2631334e650517557a586a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#ad023bd42e2631334e650517557a586a3">setPosition</a> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:ad023bd42e2631334e650517557a586a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42a334c8195b0898c5257d8ce748a6e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42a334c8195b0898c5257d8ce748a6e1"></a>
-const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getForward</b> (void) const </td></tr>
+<tr class="memitem:a42a334c8195b0898c5257d8ce748a6e1"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a42a334c8195b0898c5257d8ce748a6e1">getForward</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a42a334c8195b0898c5257d8ce748a6e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee6bf7f7785310641dc8f4688e4ec48b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee6bf7f7785310641dc8f4688e4ec48b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setForward</b> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;v)</td></tr>
+<tr class="memitem:aee6bf7f7785310641dc8f4688e4ec48b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#aee6bf7f7785310641dc8f4688e4ec48b">setForward</a> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:aee6bf7f7785310641dc8f4688e4ec48b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f4c1fbbcca753007d419721d7649f43"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f4c1fbbcca753007d419721d7649f43"></a>
-const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getUp</b> (void) const </td></tr>
+<tr class="memitem:a7f4c1fbbcca753007d419721d7649f43"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a7f4c1fbbcca753007d419721d7649f43">getUp</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a7f4c1fbbcca753007d419721d7649f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9547cb96f8e4f60ce3bb056aec6d62b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9547cb96f8e4f60ce3bb056aec6d62b9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setUp</b> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;v)</td></tr>
+<tr class="memitem:a9547cb96f8e4f60ce3bb056aec6d62b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a9547cb96f8e4f60ce3bb056aec6d62b9">setUp</a> (const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a9547cb96f8e4f60ce3bb056aec6d62b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fcde6529599ecd7791892c8c6a87ca0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fcde6529599ecd7791892c8c6a87ca0"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getKeepAligned</b> (void) const </td></tr>
+<tr class="memitem:a5fcde6529599ecd7791892c8c6a87ca0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a5fcde6529599ecd7791892c8c6a87ca0">getKeepAligned</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a5fcde6529599ecd7791892c8c6a87ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6955fe9bcf14235aa7124c54c45ab26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6955fe9bcf14235aa7124c54c45ab26"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setKeepAligned</b> (bool v)</td></tr>
+<tr class="memitem:aa6955fe9bcf14235aa7124c54c45ab26"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#aa6955fe9bcf14235aa7124c54c45ab26">setKeepAligned</a> (bool <a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:aa6955fe9bcf14235aa7124c54c45ab26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6732bc27071f26a8c27f026777d76bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6732bc27071f26a8c27f026777d76bb"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>getSpeed</b> (void) const </td></tr>
+<tr class="memitem:ad6732bc27071f26a8c27f026777d76bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#ad6732bc27071f26a8c27f026777d76bb">getSpeed</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ad6732bc27071f26a8c27f026777d76bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03e893310289c4f8f4cbbe875eefe650"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03e893310289c4f8f4cbbe875eefe650"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setSpeed</b> (F32 v)</td></tr>
+<tr class="memitem:a03e893310289c4f8f4cbbe875eefe650"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a03e893310289c4f8f4cbbe875eefe650">setSpeed</a> (<a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> <a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a03e893310289c4f8f4cbbe875eefe650"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77e55425a1870422215e33638bc0aa75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77e55425a1870422215e33638bc0aa75"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>getFOV</b> (void) const </td></tr>
+<tr class="memitem:a77e55425a1870422215e33638bc0aa75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a77e55425a1870422215e33638bc0aa75">getFOV</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a77e55425a1870422215e33638bc0aa75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e212cdd4d425b2f65c1f6350d870a88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e212cdd4d425b2f65c1f6350d870a88"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setFOV</b> (F32 v)</td></tr>
+<tr class="memitem:a7e212cdd4d425b2f65c1f6350d870a88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a7e212cdd4d425b2f65c1f6350d870a88">setFOV</a> (<a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> <a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a7e212cdd4d425b2f65c1f6350d870a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7153ef0c3aad5f40ab58d14891a32c06"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7153ef0c3aad5f40ab58d14891a32c06"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>getNear</b> (void) const </td></tr>
+<tr class="memitem:a7153ef0c3aad5f40ab58d14891a32c06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a7153ef0c3aad5f40ab58d14891a32c06">getNear</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a7153ef0c3aad5f40ab58d14891a32c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbd7c58405718e04f44a33d0262150a9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afbd7c58405718e04f44a33d0262150a9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setNear</b> (F32 v)</td></tr>
+<tr class="memitem:afbd7c58405718e04f44a33d0262150a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#afbd7c58405718e04f44a33d0262150a9">setNear</a> (<a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> <a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:afbd7c58405718e04f44a33d0262150a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d6b782593fc95d8cece947fd4801dea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d6b782593fc95d8cece947fd4801dea"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>getFar</b> (void) const </td></tr>
+<tr class="memitem:a9d6b782593fc95d8cece947fd4801dea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a9d6b782593fc95d8cece947fd4801dea">getFar</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a9d6b782593fc95d8cece947fd4801dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc02c610fbb76749b76b2a2be5f4ea7e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc02c610fbb76749b76b2a2be5f4ea7e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setFar</b> (F32 v)</td></tr>
+<tr class="memitem:adc02c610fbb76749b76b2a2be5f4ea7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#adc02c610fbb76749b76b2a2be5f4ea7e">setFar</a> (<a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> <a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:adc02c610fbb76749b76b2a2be5f4ea7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfda10271c8c731b7b3937f9487f2a12"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acfda10271c8c731b7b3937f9487f2a12"></a>
-<a class="el" href="class_f_w_1_1_mat3f.html">Mat3f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getOrientation</b> (void) const </td></tr>
+<tr class="memitem:acfda10271c8c731b7b3937f9487f2a12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mat3f.html">Mat3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#acfda10271c8c731b7b3937f9487f2a12">getOrientation</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:acfda10271c8c731b7b3937f9487f2a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46369734c119d484c3433352e5d140c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46369734c119d484c3433352e5d140c1"></a>
-<a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getCameraToWorld</b> (void) const </td></tr>
+<tr class="memitem:a46369734c119d484c3433352e5d140c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a46369734c119d484c3433352e5d140c1">getCameraToWorld</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a46369734c119d484c3433352e5d140c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7496c83ed1c81104e1257cb2e0bb035c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7496c83ed1c81104e1257cb2e0bb035c"></a>
-<a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getWorldToCamera</b> (void) const </td></tr>
+<tr class="memitem:a7496c83ed1c81104e1257cb2e0bb035c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a7496c83ed1c81104e1257cb2e0bb035c">getWorldToCamera</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a7496c83ed1c81104e1257cb2e0bb035c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a114b1fb6e1ce995d5cf6c56aaa46d9ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a114b1fb6e1ce995d5cf6c56aaa46d9ff"></a>
-<a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getCameraToClip</b> (void) const </td></tr>
+<tr class="memitem:a114b1fb6e1ce995d5cf6c56aaa46d9ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a114b1fb6e1ce995d5cf6c56aaa46d9ff">getCameraToClip</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a114b1fb6e1ce995d5cf6c56aaa46d9ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d3f744ae8b918429a7795a410353530"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d3f744ae8b918429a7795a410353530"></a>
-<a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getWorldToClip</b> (void) const </td></tr>
+<tr class="memitem:a8d3f744ae8b918429a7795a410353530"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a8d3f744ae8b918429a7795a410353530">getWorldToClip</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a8d3f744ae8b918429a7795a410353530"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47ddbf42092d73ab631894cef2d107e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47ddbf42092d73ab631894cef2d107e3"></a>
-<a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getCameraToLeftEye</b> (void) const </td></tr>
+<tr class="memitem:a47ddbf42092d73ab631894cef2d107e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a47ddbf42092d73ab631894cef2d107e3">getCameraToLeftEye</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a47ddbf42092d73ab631894cef2d107e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16ebf7700244c79e1edf9ef3f7772eda"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16ebf7700244c79e1edf9ef3f7772eda"></a>
-<a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getCameraToRightEye</b> (void) const </td></tr>
+<tr class="memitem:a16ebf7700244c79e1edf9ef3f7772eda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a16ebf7700244c79e1edf9ef3f7772eda">getCameraToRightEye</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a16ebf7700244c79e1edf9ef3f7772eda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34570b6d39a5f2ec7be24a19187affaf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34570b6d39a5f2ec7be24a19187affaf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCameraToWorld</b> (const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;m)</td></tr>
+<tr class="memitem:a34570b6d39a5f2ec7be24a19187affaf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a34570b6d39a5f2ec7be24a19187affaf">setCameraToWorld</a> (const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;m)</td></tr>
 <tr class="separator:a34570b6d39a5f2ec7be24a19187affaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a7ad3574f7f52952bf0f3bf17031b00"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a7ad3574f7f52952bf0f3bf17031b00"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setWorldToCamera</b> (const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;m)</td></tr>
+<tr class="memitem:a0a7ad3574f7f52952bf0f3bf17031b00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a0a7ad3574f7f52952bf0f3bf17031b00">setWorldToCamera</a> (const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;m)</td></tr>
 <tr class="separator:a0a7ad3574f7f52952bf0f3bf17031b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad05ab31b82cd7c66d756d8c30377c7f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad05ab31b82cd7c66d756d8c30377c7f8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initDefaults</b> (void)</td></tr>
+<tr class="memitem:ad05ab31b82cd7c66d756d8c30377c7f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#ad05ab31b82cd7c66d756d8c30377c7f8">initDefaults</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ad05ab31b82cd7c66d756d8c30377c7f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a712e3d0c5f82954ecc892a00ed115cdb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a712e3d0c5f82954ecc892a00ed115cdb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initForMesh</b> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> *mesh)</td></tr>
+<tr class="memitem:a712e3d0c5f82954ecc892a00ed115cdb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a712e3d0c5f82954ecc892a00ed115cdb">initForMesh</a> (const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> *mesh)</td></tr>
 <tr class="separator:a712e3d0c5f82954ecc892a00ed115cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a181571c37bd39e0838862fc9221e5a97"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a181571c37bd39e0838862fc9221e5a97"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>encodeSignature</b> (void) const </td></tr>
+<tr class="memitem:a181571c37bd39e0838862fc9221e5a97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a181571c37bd39e0838862fc9221e5a97">encodeSignature</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a181571c37bd39e0838862fc9221e5a97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1eceb3945e703203c0aca03c2928064"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1eceb3945e703203c0aca03c2928064"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>decodeSignature</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;sig)</td></tr>
+<tr class="memitem:aa1eceb3945e703203c0aca03c2928064"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#aa1eceb3945e703203c0aca03c2928064">decodeSignature</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;sig)</td></tr>
 <tr class="separator:aa1eceb3945e703203c0aca03c2928064"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8622c06eedde4721fc91ac40b2a74c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8622c06eedde4721fc91ac40b2a74c0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (void)</td></tr>
+<tr class="memitem:ab8622c06eedde4721fc91ac40b2a74c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#ab8622c06eedde4721fc91ac40b2a74c0">print</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ab8622c06eedde4721fc91ac40b2a74c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a613ad781f7ae69f6dc4ff19fdcc6b144"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a613ad781f7ae69f6dc4ff19fdcc6b144"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addGUIControls</b> (void)</td></tr>
+<tr class="memitem:a613ad781f7ae69f6dc4ff19fdcc6b144"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a613ad781f7ae69f6dc4ff19fdcc6b144">addGUIControls</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a613ad781f7ae69f6dc4ff19fdcc6b144"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0983e40b667ccb9d045107b09571515"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad0983e40b667ccb9d045107b09571515"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeGUIControls</b> (void)</td></tr>
+<tr class="memitem:ad0983e40b667ccb9d045107b09571515"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#ad0983e40b667ccb9d045107b09571515">removeGUIControls</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ad0983e40b667ccb9d045107b09571515"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a3fb449fb9f5c8bd66011988ea0574d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a3fb449fb9f5c8bd66011988ea0574d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setEnableMovement</b> (bool enable)</td></tr>
+<tr class="memitem:a4a3fb449fb9f5c8bd66011988ea0574d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_camera_controls.html#a4a3fb449fb9f5c8bd66011988ea0574d">setEnableMovement</a> (bool enable)</td></tr>
 <tr class="separator:a4a3fb449fb9f5c8bd66011988ea0574d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_f_w_1_1_window_1_1_listener"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_f_w_1_1_window_1_1_listener')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_f_w_1_1_window_1_1_listener.html">FW::Window::Listener</a></td></tr>
+<tr class="memitem:a55d9c7f41bd0d2e87fee1d5353f8e1e0 inherit pub_methods_class_f_w_1_1_window_1_1_listener"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window_1_1_listener.html#a55d9c7f41bd0d2e87fee1d5353f8e1e0">Listener</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a55d9c7f41bd0d2e87fee1d5353f8e1e0 inherit pub_methods_class_f_w_1_1_window_1_1_listener"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea8219cdf2496da5dd02c639cd16020 inherit pub_methods_class_f_w_1_1_window_1_1_listener"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window_1_1_listener.html#a3ea8219cdf2496da5dd02c639cd16020">~Listener</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a3ea8219cdf2496da5dd02c639cd16020 inherit pub_methods_class_f_w_1_1_window_1_1_listener"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_f_w_1_1_common_controls_1_1_state_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_f_w_1_1_common_controls_1_1_state_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_f_w_1_1_common_controls_1_1_state_object.html">FW::CommonControls::StateObject</a></td></tr>
+<tr class="memitem:a808992b43c65d26b2f86a51cd36f16cc inherit pub_methods_class_f_w_1_1_common_controls_1_1_state_object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_common_controls_1_1_state_object.html#a808992b43c65d26b2f86a51cd36f16cc">StateObject</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a808992b43c65d26b2f86a51cd36f16cc inherit pub_methods_class_f_w_1_1_common_controls_1_1_state_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0008d6c3710424cbbf6f19c21da5ba1 inherit pub_methods_class_f_w_1_1_common_controls_1_1_state_object"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_common_controls_1_1_state_object.html#aa0008d6c3710424cbbf6f19c21da5ba1">~StateObject</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:aa0008d6c3710424cbbf6f19c21da5ba1 inherit pub_methods_class_f_w_1_1_common_controls_1_1_state_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00040">40</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="ae59326453d923e25520c656821049bac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049bac">FW::CameraControls::Feature</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ae59326453d923e25520c656821049baca613eb3a6b6fd769069a7c648ce74bac6"></a>Feature_AlignYButton</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae59326453d923e25520c656821049baca32ad58d7d0fe5bb2ef0645b032d8ef7c"></a>Feature_AlignZButton</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae59326453d923e25520c656821049bacab71c5a6e071299885d08e0e9ee7b166d"></a>Feature_KeepAlignToggle</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae59326453d923e25520c656821049baca234067d5112369dfccd96e0fe40d376f"></a>Feature_SpeedSlider</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae59326453d923e25520c656821049bacafae61980de009c0000383fc847e2260d"></a>Feature_FOVSlider</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae59326453d923e25520c656821049baca81a8c391971fae435d233a07477354b0"></a>Feature_NearSlider</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae59326453d923e25520c656821049bacaf3272d981dd4bb1d3bd48db7c139dba7"></a>Feature_FarSlider</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae59326453d923e25520c656821049bacabf4954d039745d46e7ebf783f81dea89"></a>Feature_StereoControls</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae59326453d923e25520c656821049bacab84866064cd76cfd6369ab883d5a0d77"></a>Feature_None</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae59326453d923e25520c656821049baca6a37b86cb1677e49b941150e9a83592c"></a>Feature_All</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae59326453d923e25520c656821049bacaf9a13535061d99b214333ac49d6a9c45"></a>Feature_Default</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00046">46</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="adcfc61c1a503e0cb82501d7bb44b66ee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CameraControls::CameraControls </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_common_controls.html">CommonControls</a> *&#160;</td>
+          <td class="paramname"><em>commonControls</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>features</em> = <code><a class="el" href="class_f_w_1_1_camera_controls.html#ae59326453d923e25520c656821049bacaf9a13535061d99b214333ac49d6a9c45">Feature_Default</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00043">43</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aed5d218965082368bf3556b9c3cdaf37"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CameraControls::~CameraControls </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00062">62</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a613ad781f7ae69f6dc4ff19fdcc6b144"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CameraControls::addGUIControls </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00411">411</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa1eceb3945e703203c0aca03c2928064"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CameraControls::decodeSignature </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>sig</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00360">360</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a181571c37bd39e0838862fc9221e5a97"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> CameraControls::encodeSignature </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00340">340</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a114b1fb6e1ce995d5cf6c56aaa46d9ff"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> FW::CameraControls::getCameraToClip </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00092">92</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a47ddbf42092d73ab631894cef2d107e3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> FW::CameraControls::getCameraToLeftEye </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00094">94</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a16ebf7700244c79e1edf9ef3f7772eda"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> FW::CameraControls::getCameraToRightEye </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00095">95</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a46369734c119d484c3433352e5d140c1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> CameraControls::getCameraToWorld </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00260">260</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9d6b782593fc95d8cece947fd4801dea"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::CameraControls::getFar </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00086">86</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a42a334c8195b0898c5257d8ce748a6e1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&amp; FW::CameraControls::getForward </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00074">74</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a77e55425a1870422215e33638bc0aa75"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::CameraControls::getFOV </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00082">82</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5fcde6529599ecd7791892c8c6a87ca0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::CameraControls::getKeepAligned </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00078">78</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7153ef0c3aad5f40ab58d14891a32c06"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::CameraControls::getNear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00084">84</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acfda10271c8c731b7b3937f9487f2a12"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_mat3f.html">Mat3f</a> CameraControls::getOrientation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00249">249</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0de7da52ca227b72fd0e91cab9ff4415"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&amp; FW::CameraControls::getPosition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00072">72</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad6732bc27071f26a8c27f026777d76bb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::CameraControls::getSpeed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00080">80</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7f4c1fbbcca753007d419721d7649f43"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a>&amp; FW::CameraControls::getUp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00076">76</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7496c83ed1c81104e1257cb2e0bb035c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> CameraControls::getWorldToCamera </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00273">273</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8d3f744ae8b918429a7795a410353530"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> FW::CameraControls::getWorldToClip </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00093">93</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae49af4e464e44ac0e2e059ec264be936"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CameraControls::handleEvent </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_window_1_1_event.html">Window::Event</a> &amp;&#160;</td>
+          <td class="paramname"><em>ev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_f_w_1_1_window_1_1_listener.html#a384968ef5bca68453f0d221e818fed6f">FW::Window::Listener</a>.</p>
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00068">68</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad05ab31b82cd7c66d756d8c30377c7f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CameraControls::initDefaults </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00297">297</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a712e3d0c5f82954ecc892a00ed115cdb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CameraControls::initForMesh </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> *&#160;</td>
+          <td class="paramname"><em>mesh</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00316">316</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab8622c06eedde4721fc91ac40b2a74c0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CameraControls::print </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00398">398</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="add472b95a310c4aac96b144a88a46e14"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CameraControls::readState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;&#160;</td>
+          <td class="paramname"><em>d</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_f_w_1_1_common_controls_1_1_state_object.html#a55e2ce848098896d400282f241e8b2b1">FW::CommonControls::StateObject</a>.</p>
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00210">210</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad0983e40b667ccb9d045107b09571515"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CameraControls::removeGUIControls </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00445">445</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a34570b6d39a5f2ec7be24a19187affaf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CameraControls::setCameraToWorld </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00286">286</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4a3fb449fb9f5c8bd66011988ea0574d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CameraControls::setEnableMovement </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00109">109</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adc02c610fbb76749b76b2a2be5f4ea7e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CameraControls::setFar </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00087">87</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aee6bf7f7785310641dc8f4688e4ec48b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CameraControls::setForward </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00075">75</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7e212cdd4d425b2f65c1f6350d870a88"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CameraControls::setFOV </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00083">83</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa6955fe9bcf14235aa7124c54c45ab26"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CameraControls::setKeepAligned </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00079">79</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afbd7c58405718e04f44a33d0262150a9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CameraControls::setNear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00085">85</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad023bd42e2631334e650517557a586a3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CameraControls::setPosition </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00073">73</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a03e893310289c4f8f4cbbe875eefe650"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CameraControls::setSpeed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00081">81</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9547cb96f8e4f60ce3bb056aec6d62b9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CameraControls::setUp </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00077">77</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0a7ad3574f7f52952bf0f3bf17031b00"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CameraControls::setWorldToCamera </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_camera_controls_8hpp_source.html#l00098">98</a> of file <a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a685abea6a681a36860c968a96db22b35"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CameraControls::writeState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;&#160;</td>
+          <td class="paramname"><em>d</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_f_w_1_1_common_controls_1_1_state_object.html#a73b341bd6faab306e05aded73c4123f6">FW::CommonControls::StateObject</a>.</p>
+
+<p>Definition at line <a class="el" href="_camera_controls_8cpp_source.html#l00230">230</a> of file <a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/3d/<a class="el" href="_camera_controls_8hpp_source.html">CameraControls.hpp</a></li>
-<li>src/framework/3d/CameraControls.cpp</li>
+<li>src/framework/3d/<a class="el" href="_camera_controls_8cpp_source.html">CameraControls.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_camera_controls.html">CameraControls</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_camera_controls.html">CameraControls</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:24 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

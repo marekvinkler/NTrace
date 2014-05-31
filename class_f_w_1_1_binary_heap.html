@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_binary_heap.html','');})
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,64 +112,590 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_binary_heap.html','');})
 <div class="title">FW::BinaryHeap&lt; T &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a708ca167855071768f51964a29d2fa1b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a708ca167855071768f51964a29d2fa1b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BinaryHeap</b> (const <a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a>&lt; T &gt; &amp;other)</td></tr>
+<tr class="memitem:a121ca26f196432bb97c51abc5165745d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a121ca26f196432bb97c51abc5165745d">BinaryHeap</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a121ca26f196432bb97c51abc5165745d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a708ca167855071768f51964a29d2fa1b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a708ca167855071768f51964a29d2fa1b">BinaryHeap</a> (const <a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a>&lt; T &gt; &amp;other)</td></tr>
 <tr class="separator:a708ca167855071768f51964a29d2fa1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c0c5a1d1d1f1642f6bcce2313aa424e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c0c5a1d1d1f1642f6bcce2313aa424e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>numIndices</b> (void) const </td></tr>
+<tr class="memitem:a3690f9ba1ebf7a81ff0b4741046ffe4b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a3690f9ba1ebf7a81ff0b4741046ffe4b">~BinaryHeap</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a3690f9ba1ebf7a81ff0b4741046ffe4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c0c5a1d1d1f1642f6bcce2313aa424e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a0c0c5a1d1d1f1642f6bcce2313aa424e">numIndices</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a0c0c5a1d1d1f1642f6bcce2313aa424e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45d523409167531bf52fa96b8d63c34c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a45d523409167531bf52fa96b8d63c34c"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>numItems</b> (void) const </td></tr>
+<tr class="memitem:a45d523409167531bf52fa96b8d63c34c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a45d523409167531bf52fa96b8d63c34c">numItems</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a45d523409167531bf52fa96b8d63c34c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1f6dbfd587ebc2b637142363e99d61d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1f6dbfd587ebc2b637142363e99d61d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isEmpty</b> (void) const </td></tr>
+<tr class="memitem:ae1f6dbfd587ebc2b637142363e99d61d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#ae1f6dbfd587ebc2b637142363e99d61d">isEmpty</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ae1f6dbfd587ebc2b637142363e99d61d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba8f1b100e6720d66c0a2b9874ca8393"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba8f1b100e6720d66c0a2b9874ca8393"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>contains</b> (int idx) const </td></tr>
+<tr class="memitem:aba8f1b100e6720d66c0a2b9874ca8393"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#aba8f1b100e6720d66c0a2b9874ca8393">contains</a> (int idx) const </td></tr>
 <tr class="separator:aba8f1b100e6720d66c0a2b9874ca8393"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32461b4db4ffb3efa8b1ab63190db377"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32461b4db4ffb3efa8b1ab63190db377"></a>
-const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (int idx) const </td></tr>
+<tr class="memitem:a32461b4db4ffb3efa8b1ab63190db377"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a32461b4db4ffb3efa8b1ab63190db377">get</a> (int idx) const </td></tr>
 <tr class="separator:a32461b4db4ffb3efa8b1ab63190db377"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a859717917d1ad5a7ddece71e6563701e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a859717917d1ad5a7ddece71e6563701e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (void)</td></tr>
+<tr class="memitem:a859717917d1ad5a7ddece71e6563701e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a859717917d1ad5a7ddece71e6563701e">clear</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a859717917d1ad5a7ddece71e6563701e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2743254410406126e2cc0e208e55927f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2743254410406126e2cc0e208e55927f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (void)</td></tr>
+<tr class="memitem:a2743254410406126e2cc0e208e55927f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a2743254410406126e2cc0e208e55927f">reset</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a2743254410406126e2cc0e208e55927f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d1abfe0c647e6d9a58199aba1f7bd8c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d1abfe0c647e6d9a58199aba1f7bd8c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a>&lt; T &gt; &amp;other)</td></tr>
+<tr class="memitem:a8d1abfe0c647e6d9a58199aba1f7bd8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a8d1abfe0c647e6d9a58199aba1f7bd8c">set</a> (const <a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a>&lt; T &gt; &amp;other)</td></tr>
 <tr class="separator:a8d1abfe0c647e6d9a58199aba1f7bd8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af68c78ce8581612c80ea019f8bd14d74"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af68c78ce8581612c80ea019f8bd14d74"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (int idx, const T &amp;value)</td></tr>
+<tr class="memitem:af68c78ce8581612c80ea019f8bd14d74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#af68c78ce8581612c80ea019f8bd14d74">add</a> (int idx, const T &amp;<a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
 <tr class="separator:af68c78ce8581612c80ea019f8bd14d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6724cf01cd42b48daf492fc69bf13b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6724cf01cd42b48daf492fc69bf13b3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (const T &amp;value)</td></tr>
+<tr class="memitem:ae6724cf01cd42b48daf492fc69bf13b3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#ae6724cf01cd42b48daf492fc69bf13b3">add</a> (const T &amp;<a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
 <tr class="separator:ae6724cf01cd42b48daf492fc69bf13b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92156dee486037bff6fef59e4899319c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92156dee486037bff6fef59e4899319c"></a>
-T&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> (int idx)</td></tr>
+<tr class="memitem:a92156dee486037bff6fef59e4899319c"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a92156dee486037bff6fef59e4899319c">remove</a> (int idx)</td></tr>
 <tr class="separator:a92156dee486037bff6fef59e4899319c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab585fe124b3c96f49259261e817e507b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab585fe124b3c96f49259261e817e507b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getMinIndex</b> (void)</td></tr>
+<tr class="memitem:ab585fe124b3c96f49259261e817e507b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#ab585fe124b3c96f49259261e817e507b">getMinIndex</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ab585fe124b3c96f49259261e817e507b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66e2a141637de853d000e80bd6b1e2d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66e2a141637de853d000e80bd6b1e2d7"></a>
-const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMin</b> (void)</td></tr>
+<tr class="memitem:a66e2a141637de853d000e80bd6b1e2d7"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a66e2a141637de853d000e80bd6b1e2d7">getMin</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a66e2a141637de853d000e80bd6b1e2d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a6fdba06ce73417f8f7b8762bdc4eb3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a6fdba06ce73417f8f7b8762bdc4eb3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>removeMinIndex</b> (void)</td></tr>
+<tr class="memitem:a7a6fdba06ce73417f8f7b8762bdc4eb3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a7a6fdba06ce73417f8f7b8762bdc4eb3">removeMinIndex</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a7a6fdba06ce73417f8f7b8762bdc4eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30da861e0d52ea0ffb25cf7f342bfe0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30da861e0d52ea0ffb25cf7f342bfe0d"></a>
-T&#160;</td><td class="memItemRight" valign="bottom"><b>removeMin</b> (void)</td></tr>
+<tr class="memitem:a30da861e0d52ea0ffb25cf7f342bfe0d"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a30da861e0d52ea0ffb25cf7f342bfe0d">removeMin</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a30da861e0d52ea0ffb25cf7f342bfe0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad48a912c715e1b7a2914af1bf5117804"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad48a912c715e1b7a2914af1bf5117804"></a>
-const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int idx) const </td></tr>
+<tr class="memitem:ad48a912c715e1b7a2914af1bf5117804"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#ad48a912c715e1b7a2914af1bf5117804">operator[]</a> (int idx) const </td></tr>
 <tr class="separator:ad48a912c715e1b7a2914af1bf5117804"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fcc451f1b8d3d9bade9c46d23085ca2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0fcc451f1b8d3d9bade9c46d23085ca2"></a>
-<a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a>&lt; T &gt; &amp;other)</td></tr>
+<tr class="memitem:a0fcc451f1b8d3d9bade9c46d23085ca2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_binary_heap.html#a0fcc451f1b8d3d9bade9c46d23085ca2">operator=</a> (const <a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a>&lt; T &gt; &amp;other)</td></tr>
 <tr class="separator:a0fcc451f1b8d3d9bade9c46d23085ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class T&gt;<br/>
+class FW::BinaryHeap&lt; T &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00035">35</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a121ca26f196432bb97c51abc5165745d"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::<a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00046">46</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a708ca167855071768f51964a29d2fa1b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::<a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00047">47</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3690f9ba1ebf7a81ff0b4741046ffe4b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::~<a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00048">48</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="af68c78ce8581612c80ea019f8bd14d74"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::add </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00094">94</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae6724cf01cd42b48daf492fc69bf13b3"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::add </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00128">128</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a859717917d1ad5a7ddece71e6563701e"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00056">56</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aba8f1b100e6720d66c0a2b9874ca8393"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::contains </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00053">53</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a32461b4db4ffb3efa8b1ab63190db377"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const T&amp; <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::get </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00054">54</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a66e2a141637de853d000e80bd6b1e2d7"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const T&amp; <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::getMin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00064">64</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab585fe124b3c96f49259261e817e507b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::getMinIndex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00195">195</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae1f6dbfd587ebc2b637142363e99d61d"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::isEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00052">52</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0c0c5a1d1d1f1642f6bcce2313aa424e"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::numIndices </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00050">50</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a45d523409167531bf52fa96b8d63c34c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::numItems </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00051">51</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0fcc451f1b8d3d9bade9c46d23085ca2"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a>&lt;T&gt;&amp; <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00069">69</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad48a912c715e1b7a2914af1bf5117804"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const T&amp; <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00068">68</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a92156dee486037bff6fef59e4899319c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::remove </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00154">154</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a30da861e0d52ea0ffb25cf7f342bfe0d"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::removeMin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00066">66</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7a6fdba06ce73417f8f7b8762bdc4eb3"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::removeMinIndex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00065">65</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2743254410406126e2cc0e208e55927f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00057">57</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8d1abfe0c647e6d9a58199aba1f7bd8c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_binary_heap.html">FW::BinaryHeap</a>&lt; T &gt;::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_binary_heap_8hpp_source.html#l00084">84</a> of file <a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/framework/base/<a class="el" href="_binary_heap_8hpp_source.html">BinaryHeap.hpp</a></li>
 </ul>
@@ -177,8 +704,8 @@ const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_binary_heap.html">BinaryHeap</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_buffered_input_stream.ht
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,68 +112,274 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_buffered_input_stream.ht
 </div><!--header-->
 <div class="contents">
 
+<p><code>#include &lt;<a class="el" href="_stream_8hpp_source.html">Stream.hpp</a>&gt;</code></p>
+
 <p>Inherits <a class="el" href="class_f_w_1_1_input_stream.html">FW::InputStream</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae4115a32fdc9e25f984a560c88881706"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4115a32fdc9e25f984a560c88881706"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BufferedInputStream</b> (<a class="el" href="class_f_w_1_1_input_stream.html">InputStream</a> &amp;stream, int bufferSize=64&lt;&lt; 10)</td></tr>
+<tr class="memitem:ae4115a32fdc9e25f984a560c88881706"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffered_input_stream.html#ae4115a32fdc9e25f984a560c88881706">BufferedInputStream</a> (<a class="el" href="class_f_w_1_1_input_stream.html">InputStream</a> &amp;stream, int bufferSize=64&lt;&lt; 10)</td></tr>
 <tr class="separator:ae4115a32fdc9e25f984a560c88881706"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa99a633477ff2b352cd3661bc0a967b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa99a633477ff2b352cd3661bc0a967b1"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (void *ptr, int size)</td></tr>
+<tr class="memitem:a6bedccd0475d9871c8d5f154232faa79"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffered_input_stream.html#a6bedccd0475d9871c8d5f154232faa79">~BufferedInputStream</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a6bedccd0475d9871c8d5f154232faa79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa99a633477ff2b352cd3661bc0a967b1"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffered_input_stream.html#aa99a633477ff2b352cd3661bc0a967b1">read</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, int <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:aa99a633477ff2b352cd3661bc0a967b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9633d293435195c4790473485c7fa61f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9633d293435195c4790473485c7fa61f"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>readLine</b> (bool combineWithBackslash=false, bool normalizeWhitespace=false)</td></tr>
+<tr class="memitem:a9633d293435195c4790473485c7fa61f"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffered_input_stream.html#a9633d293435195c4790473485c7fa61f">readLine</a> (bool combineWithBackslash=false, bool normalizeWhitespace=false)</td></tr>
 <tr class="separator:a9633d293435195c4790473485c7fa61f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a369481ef3e06c2cf6cf8bbf6015d2a69"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a369481ef3e06c2cf6cf8bbf6015d2a69"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>fillBuffer</b> (int size)</td></tr>
+<tr class="memitem:a369481ef3e06c2cf6cf8bbf6015d2a69"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffered_input_stream.html#a369481ef3e06c2cf6cf8bbf6015d2a69">fillBuffer</a> (int <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:a369481ef3e06c2cf6cf8bbf6015d2a69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc051034f2165936e9880307fbeec594"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc051034f2165936e9880307fbeec594"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getBufferSize</b> (void)</td></tr>
+<tr class="memitem:abc051034f2165936e9880307fbeec594"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffered_input_stream.html#abc051034f2165936e9880307fbeec594">getBufferSize</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:abc051034f2165936e9880307fbeec594"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bd946d9dc58f71235d6b462d82744a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5bd946d9dc58f71235d6b462d82744a8"></a>
-U8 *&#160;</td><td class="memItemRight" valign="bottom"><b>getBufferPtr</b> (void)</td></tr>
+<tr class="memitem:a5bd946d9dc58f71235d6b462d82744a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffered_input_stream.html#a5bd946d9dc58f71235d6b462d82744a8">getBufferPtr</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a5bd946d9dc58f71235d6b462d82744a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73a72ebb05fe205f8bde9415a3f4413a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73a72ebb05fe205f8bde9415a3f4413a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>consumeBuffer</b> (int num)</td></tr>
+<tr class="memitem:a73a72ebb05fe205f8bde9415a3f4413a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_buffered_input_stream.html#a73a72ebb05fe205f8bde9415a3f4413a">consumeBuffer</a> (int num)</td></tr>
 <tr class="separator:a73a72ebb05fe205f8bde9415a3f4413a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_f_w_1_1_input_stream"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_f_w_1_1_input_stream')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_f_w_1_1_input_stream.html">FW::InputStream</a></td></tr>
-<tr class="memitem:aa7707551991e9999b0d5a836d65988df inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7707551991e9999b0d5a836d65988df"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>readFully</b> (void *ptr, int size)</td></tr>
+<tr class="memitem:a2995a793de16d0ea36e8b0d82824eb23 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_input_stream.html#a2995a793de16d0ea36e8b0d82824eb23">InputStream</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a2995a793de16d0ea36e8b0d82824eb23 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c16f4b077b306fe4bdd09451b0fa57f inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_input_stream.html#a0c16f4b077b306fe4bdd09451b0fa57f">~InputStream</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a0c16f4b077b306fe4bdd09451b0fa57f inherit pub_methods_class_f_w_1_1_input_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7707551991e9999b0d5a836d65988df inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_input_stream.html#aa7707551991e9999b0d5a836d65988df">readFully</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, int <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:aa7707551991e9999b0d5a836d65988df inherit pub_methods_class_f_w_1_1_input_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab219fd01a948a6d58858ddcb6aa1db2d inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab219fd01a948a6d58858ddcb6aa1db2d"></a>
-U8&#160;</td><td class="memItemRight" valign="bottom"><b>readU8</b> (void)</td></tr>
+<tr class="memitem:ab219fd01a948a6d58858ddcb6aa1db2d inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_input_stream.html#ab219fd01a948a6d58858ddcb6aa1db2d">readU8</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ab219fd01a948a6d58858ddcb6aa1db2d inherit pub_methods_class_f_w_1_1_input_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b75197d9622e4e1191c089d82b135e7 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b75197d9622e4e1191c089d82b135e7"></a>
-U16&#160;</td><td class="memItemRight" valign="bottom"><b>readU16BE</b> (void)</td></tr>
+<tr class="memitem:a7b75197d9622e4e1191c089d82b135e7 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a32ea8868be792064f78d1ba219494aac">U16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_input_stream.html#a7b75197d9622e4e1191c089d82b135e7">readU16BE</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a7b75197d9622e4e1191c089d82b135e7 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30eacf428ea89ad13896464b72b13106 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30eacf428ea89ad13896464b72b13106"></a>
-U16&#160;</td><td class="memItemRight" valign="bottom"><b>readU16LE</b> (void)</td></tr>
+<tr class="memitem:a30eacf428ea89ad13896464b72b13106 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a32ea8868be792064f78d1ba219494aac">U16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_input_stream.html#a30eacf428ea89ad13896464b72b13106">readU16LE</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a30eacf428ea89ad13896464b72b13106 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56c9563de6bfbe089f104b87fa34cce5 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56c9563de6bfbe089f104b87fa34cce5"></a>
-U32&#160;</td><td class="memItemRight" valign="bottom"><b>readU32BE</b> (void)</td></tr>
+<tr class="memitem:a56c9563de6bfbe089f104b87fa34cce5 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_input_stream.html#a56c9563de6bfbe089f104b87fa34cce5">readU32BE</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a56c9563de6bfbe089f104b87fa34cce5 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea2bc637934c5a3643751c7885197aab inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aea2bc637934c5a3643751c7885197aab"></a>
-U32&#160;</td><td class="memItemRight" valign="bottom"><b>readU32LE</b> (void)</td></tr>
+<tr class="memitem:aea2bc637934c5a3643751c7885197aab inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_input_stream.html#aea2bc637934c5a3643751c7885197aab">readU32LE</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:aea2bc637934c5a3643751c7885197aab inherit pub_methods_class_f_w_1_1_input_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49d86d0451e845464e3044af64bfb4f4 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49d86d0451e845464e3044af64bfb4f4"></a>
-U64&#160;</td><td class="memItemRight" valign="bottom"><b>readU64BE</b> (void)</td></tr>
+<tr class="memitem:a49d86d0451e845464e3044af64bfb4f4 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a46915469b6a604ee336811b6bd78953d">U64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_input_stream.html#a49d86d0451e845464e3044af64bfb4f4">readU64BE</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a49d86d0451e845464e3044af64bfb4f4 inherit pub_methods_class_f_w_1_1_input_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac32fb5e72de93022fd68e1cd9cf4f7ae inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac32fb5e72de93022fd68e1cd9cf4f7ae"></a>
-U64&#160;</td><td class="memItemRight" valign="bottom"><b>readU64LE</b> (void)</td></tr>
+<tr class="memitem:ac32fb5e72de93022fd68e1cd9cf4f7ae inherit pub_methods_class_f_w_1_1_input_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a46915469b6a604ee336811b6bd78953d">U64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_input_stream.html#ac32fb5e72de93022fd68e1cd9cf4f7ae">readU64LE</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ac32fb5e72de93022fd68e1cd9cf4f7ae inherit pub_methods_class_f_w_1_1_input_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_stream_8hpp_source.html#l00080">80</a> of file <a class="el" href="_stream_8hpp_source.html">Stream.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ae4115a32fdc9e25f984a560c88881706"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BufferedInputStream::BufferedInputStream </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_input_stream.html">InputStream</a> &amp;&#160;</td>
+          <td class="paramname"><em>stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bufferSize</em> = <code>64&#160;&lt;&lt;&#160;10</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_stream_8cpp_source.html#l00049">49</a> of file <a class="el" href="_stream_8cpp_source.html">Stream.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6bedccd0475d9871c8d5f154232faa79"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BufferedInputStream::~BufferedInputStream </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_stream_8cpp_source.html#l00060">60</a> of file <a class="el" href="_stream_8cpp_source.html">Stream.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a73a72ebb05fe205f8bde9415a3f4413a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> BufferedInputStream::consumeBuffer </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_stream_8cpp_source.html#l00180">180</a> of file <a class="el" href="_stream_8cpp_source.html">Stream.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a369481ef3e06c2cf6cf8bbf6015d2a69"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BufferedInputStream::fillBuffer </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_stream_8cpp_source.html#l00149">149</a> of file <a class="el" href="_stream_8cpp_source.html">Stream.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5bd946d9dc58f71235d6b462d82744a8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>* FW::BufferedInputStream::getBufferPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_stream_8hpp_source.html#l00091">91</a> of file <a class="el" href="_stream_8hpp_source.html">Stream.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abc051034f2165936e9880307fbeec594"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::BufferedInputStream::getBufferSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_stream_8hpp_source.html#l00090">90</a> of file <a class="el" href="_stream_8hpp_source.html">Stream.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa99a633477ff2b352cd3661bc0a967b1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BufferedInputStream::read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_f_w_1_1_input_stream.html#a2a58d63e541d3baa6fea2021c3089579">FW::InputStream</a>.</p>
+
+<p>Definition at line <a class="el" href="_stream_8cpp_source.html#l00066">66</a> of file <a class="el" href="_stream_8cpp_source.html">Stream.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9633d293435195c4790473485c7fa61f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * BufferedInputStream::readLine </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>combineWithBackslash</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>normalizeWhitespace</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_stream_8cpp_source.html#l00089">89</a> of file <a class="el" href="_stream_8cpp_source.html">Stream.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/io/<a class="el" href="_stream_8hpp_source.html">Stream.hpp</a></li>
-<li>src/framework/io/Stream.cpp</li>
+<li>src/framework/io/<a class="el" href="_stream_8cpp_source.html">Stream.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_buffered_input_stream.html">BufferedInputStream</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_buffered_input_stream.html">BufferedInputStream</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -13,6 +13,7 @@ var class_f_w_1_1_cuda_compiler =
     [ "define", "class_f_w_1_1_cuda_compiler.html#a533675bd966f79a7dbdbb2a3f1bae70f", null ],
     [ "define", "class_f_w_1_1_cuda_compiler.html#ad3634d04a48247e0819147b455f649f4", null ],
     [ "include", "class_f_w_1_1_cuda_compiler.html#a0d145bffd1b8f8aecc6f88ebaa83d2d7", null ],
+    [ "loadDbgCubin", "class_f_w_1_1_cuda_compiler.html#aa7c86b6e0efc65868452e8665123b741", null ],
     [ "overrideSMArch", "class_f_w_1_1_cuda_compiler.html#ae2cfdbc88a708e5a62221972ea725f45", null ],
     [ "setCachePath", "class_f_w_1_1_cuda_compiler.html#a1d7ade5924b5921a628888d21c7ef726", null ],
     [ "setInlineSource", "class_f_w_1_1_cuda_compiler.html#a99dcb830210cc9b17c838db3c3d346ba", null ],

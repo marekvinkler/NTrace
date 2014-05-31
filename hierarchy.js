@@ -78,6 +78,9 @@ var hierarchy =
     [ "FW::ArrayBase< Message, S32 >", "class_f_w_1_1_array_base.html", [
       [ "FW::Array< Message >", "class_f_w_1_1_array.html", null ]
     ] ],
+    [ "FW::ArrayBase< NodeData, S32 >", "class_f_w_1_1_array_base.html", [
+      [ "FW::Array< NodeData >", "class_f_w_1_1_array.html", null ]
+    ] ],
     [ "FW::ArrayBase< Reference, S32 >", "class_f_w_1_1_array_base.html", [
       [ "FW::Array< Reference >", "class_f_w_1_1_array.html", null ]
     ] ],
@@ -102,6 +105,9 @@ var hierarchy =
     [ "FW::ArrayBase< TriData, S32 >", "class_f_w_1_1_array_base.html", [
       [ "FW::Array< TriData >", "class_f_w_1_1_array.html", null ]
     ] ],
+    [ "FW::ArrayBase< U32, S32 >", "class_f_w_1_1_array_base.html", [
+      [ "FW::Array< U32 >", "class_f_w_1_1_array.html", null ]
+    ] ],
     [ "FW::ArrayBase< U8, S32 >", "class_f_w_1_1_array_base.html", [
       [ "FW::Array< U8 >", "class_f_w_1_1_array.html", null ]
     ] ],
@@ -120,11 +126,19 @@ var hierarchy =
     [ "FW::GLContext::Config", "struct_f_w_1_1_g_l_context_1_1_config.html", null ],
     [ "FW::ConvexPolyhedron", "class_f_w_1_1_convex_polyhedron.html", null ],
     [ "FW::CountHitsInput", "struct_f_w_1_1_count_hits_input.html", null ],
-    [ "FW::CudaBVH", "class_f_w_1_1_cuda_b_v_h.html", null ],
+    [ "FW::CudaAS", "class_f_w_1_1_cuda_a_s.html", [
+      [ "FW::CudaBVH", "class_f_w_1_1_cuda_b_v_h.html", [
+        [ "FW::HLBVHBuilder", "class_f_w_1_1_h_l_b_v_h_builder.html", null ]
+      ] ],
+      [ "FW::CudaKDTree", "class_f_w_1_1_cuda_k_d_tree.html", null ]
+    ] ],
     [ "FW::CudaCompiler", "class_f_w_1_1_cuda_compiler.html", null ],
     [ "FW::CudaKernel", "class_f_w_1_1_cuda_kernel.html", null ],
     [ "FW::CudaModule", "class_f_w_1_1_cuda_module.html", null ],
-    [ "FW::CudaTracer", "class_f_w_1_1_cuda_tracer.html", null ],
+    [ "FW::CudaVirtualTracer", "class_f_w_1_1_cuda_virtual_tracer.html", [
+      [ "FW::CudaBVHTracer", "class_f_w_1_1_cuda_b_v_h_tracer.html", null ],
+      [ "FW::CudaKDTreeTracer", "class_f_w_1_1_cuda_k_d_tree_tracer.html", null ]
+    ] ],
     [ "FW::Deque< T >", "class_f_w_1_1_deque.html", null ],
     [ "FW::Deque< FW::MulticoreLauncher::Task >", "class_f_w_1_1_deque.html", null ],
     [ "double2", null, [
@@ -137,7 +151,9 @@ var hierarchy =
       [ "FW::Vec4d", "class_f_w_1_1_vec4d.html", null ]
     ] ],
     [ "FW::ConvexPolyhedron::Edge", "struct_f_w_1_1_convex_polyhedron_1_1_edge.html", null ],
-    [ "Environment", "class_environment.html", null ],
+    [ "Environment", "class_environment.html", [
+      [ "AppEnvironment", "class_app_environment.html", null ]
+    ] ],
     [ "FW::Window::Event", "struct_f_w_1_1_window_1_1_event.html", null ],
     [ "FW::ConvexPolyhedron::Face", "struct_f_w_1_1_convex_polyhedron_1_1_face.html", null ],
     [ "FW::ConvexPolyhedron::FaceEdge", "struct_f_w_1_1_convex_polyhedron_1_1_face_edge.html", null ],
@@ -173,6 +189,7 @@ var hierarchy =
     [ "FW::Hash< U64, FW::Array< U8 > * >", "class_f_w_1_1_hash.html", null ],
     [ "FW::Hash< U64, FW::CudaModule * >", "class_f_w_1_1_hash.html", null ],
     [ "FW::HashEntry< K, V >", "struct_f_w_1_1_hash_entry.html", null ],
+    [ "FW::HLBVHParams", "struct_f_w_1_1_h_l_b_v_h_params.html", null ],
     [ "HuffmanTree", "struct_huffman_tree.html", null ],
     [ "FW::Image", "class_f_w_1_1_image.html", null ],
     [ "FW::ImageFormat", "class_f_w_1_1_image_format.html", null ],
@@ -203,7 +220,10 @@ var hierarchy =
       [ "FW::App", "class_f_w_1_1_app.html", null ],
       [ "FW::CameraControls", "class_f_w_1_1_camera_controls.html", null ],
       [ "FW::CommonControls", "class_f_w_1_1_common_controls.html", null ],
-      [ "FW::VisualizationBVH", "class_f_w_1_1_visualization_b_v_h.html", null ]
+      [ "FW::Visualization", "class_f_w_1_1_visualization.html", [
+        [ "FW::VisualizationBVH", "class_f_w_1_1_visualization_b_v_h.html", null ],
+        [ "FW::VisualizationKDTree", "class_f_w_1_1_visualization_k_d_tree.html", null ]
+      ] ]
     ] ],
     [ "LodePNG_CompressSettings", "struct_lode_p_n_g___compress_settings.html", null ],
     [ "LodePNG_Decoder", "struct_lode_p_n_g___decoder.html", null ],
@@ -262,6 +282,7 @@ var hierarchy =
     ] ],
     [ "FW::SplitBVHBuilder::ObjectSplit", "struct_f_w_1_1_split_b_v_h_builder_1_1_object_split.html", null ],
     [ "Option", "class_option.html", null ],
+    [ "OtraceInput", "struct_otrace_input.html", null ],
     [ "FW::Output", "class_f_w_1_1_output.html", null ],
     [ "FW::OutputStream", "class_f_w_1_1_output_stream.html", [
       [ "FW::BufferedOutputStream", "class_f_w_1_1_buffered_output_stream.html", null ],
@@ -285,8 +306,8 @@ var hierarchy =
     [ "FW::RayStats", "struct_f_w_1_1_ray_stats.html", null ],
     [ "RayStruct", "struct_ray_struct.html", null ],
     [ "FW::ReconstructInput", "struct_f_w_1_1_reconstruct_input.html", null ],
-    [ "FW::SAHBVHBuilder::Reference", "struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_reference.html", null ],
     [ "FW::SplitBVHBuilder::Reference", "struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html", null ],
+    [ "FW::SAHBVHBuilder::Reference", "struct_f_w_1_1_s_a_h_b_v_h_builder_1_1_reference.html", null ],
     [ "FW::Renderer", "class_f_w_1_1_renderer.html", [
       [ "FW::CPURenderer", "class_f_w_1_1_c_p_u_renderer.html", null ],
       [ "FW::CudaRenderer", "class_f_w_1_1_cuda_renderer.html", null ]
@@ -306,10 +327,10 @@ var hierarchy =
     [ "SpatialBin", null, [
       [ "FW::OcclusionBVHBuilder::SpatialBinOcl", "struct_f_w_1_1_occlusion_b_v_h_builder_1_1_spatial_bin_ocl.html", null ]
     ] ],
+    [ "FW::SplitBVHBuilder::SpatialSplit", "struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_split.html", null ],
     [ "SpatialSplit", null, [
       [ "FW::OcclusionBVHBuilder::SpatialSplitOcl", "struct_f_w_1_1_occlusion_b_v_h_builder_1_1_spatial_split_ocl.html", null ]
     ] ],
-    [ "FW::SplitBVHBuilder::SpatialSplit", "struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_split.html", null ],
     [ "FW::Spinlock", "class_f_w_1_1_spinlock.html", [
       [ "SafeSpinlock", "class_safe_spinlock.html", null ]
     ] ],
@@ -317,13 +338,14 @@ var hierarchy =
       [ "FW::OcclusionBVHBuilder", "class_f_w_1_1_occlusion_b_v_h_builder.html", null ]
     ] ],
     [ "FW::SplitInfo", "class_f_w_1_1_split_info.html", null ],
+    [ "FW::VisualizationKDTree::SplitInfo", "struct_f_w_1_1_visualization_k_d_tree_1_1_split_info.html", null ],
     [ "FW::CommonControls::StateObject", "class_f_w_1_1_common_controls_1_1_state_object.html", [
       [ "FW::App", "class_f_w_1_1_app.html", null ],
       [ "FW::CameraControls", "class_f_w_1_1_camera_controls.html", null ]
     ] ],
     [ "FW::ImageFormat::StaticFormat", "struct_f_w_1_1_image_format_1_1_static_format.html", null ],
-    [ "FW::BVH::Stats", "struct_f_w_1_1_b_v_h_1_1_stats.html", null ],
     [ "FW::KDTree::Stats", "struct_f_w_1_1_k_d_tree_1_1_stats.html", null ],
+    [ "FW::BVH::Stats", "struct_f_w_1_1_b_v_h_1_1_stats.html", null ],
     [ "FW::String", "class_f_w_1_1_string.html", null ],
     [ "FW::MulticoreLauncher::Task", "struct_f_w_1_1_multicore_launcher_1_1_task.html", null ],
     [ "FW::TaskSpec", "struct_f_w_1_1_task_spec.html", null ],
@@ -332,7 +354,6 @@ var hierarchy =
     [ "FW::TextureSpec", "struct_f_w_1_1_texture_spec.html", null ],
     [ "FW::Thread", "class_f_w_1_1_thread.html", null ],
     [ "FW::Timer", "class_f_w_1_1_timer.html", null ],
-    [ "FW::Triangle", "struct_f_w_1_1_triangle.html", null ],
     [ "ucvector", "structucvector.html", null ],
     [ "uivector", "structuivector.html", null ],
     [ "FW::UnionFind", "class_f_w_1_1_union_find.html", null ],

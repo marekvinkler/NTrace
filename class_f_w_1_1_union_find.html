@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_union_find.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,54 +111,368 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_union_find.html','');});
 <div class="title">FW::UnionFind Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_union_find_8hpp_source.html">UnionFind.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a77be79c8c0798edc9db8075a05d0accd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77be79c8c0798edc9db8075a05d0accd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UnionFind</b> (int capacity=0)</td></tr>
+<tr class="memitem:a77be79c8c0798edc9db8075a05d0accd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_union_find.html#a77be79c8c0798edc9db8075a05d0accd">UnionFind</a> (int capacity=0)</td></tr>
 <tr class="separator:a77be79c8c0798edc9db8075a05d0accd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76a915a2a55ccaa066768653023f657a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76a915a2a55ccaa066768653023f657a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UnionFind</b> (const <a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a> &amp;other)</td></tr>
+<tr class="memitem:a76a915a2a55ccaa066768653023f657a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_union_find.html#a76a915a2a55ccaa066768653023f657a">UnionFind</a> (const <a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a> &amp;other)</td></tr>
 <tr class="separator:a76a915a2a55ccaa066768653023f657a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7da0d2192d4394a4205ef711d583a24"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7da0d2192d4394a4205ef711d583a24"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>unionSets</b> (int idxA, int idxB)</td></tr>
+<tr class="memitem:a3c42291bda41c620419ed4a58ce1eea3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_union_find.html#a3c42291bda41c620419ed4a58ce1eea3">~UnionFind</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a3c42291bda41c620419ed4a58ce1eea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7da0d2192d4394a4205ef711d583a24"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_union_find.html#aa7da0d2192d4394a4205ef711d583a24">unionSets</a> (int idxA, int idxB)</td></tr>
 <tr class="separator:aa7da0d2192d4394a4205ef711d583a24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae64d7f8929ca04c4a1c5556b55b6ca95"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae64d7f8929ca04c4a1c5556b55b6ca95"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>findSet</b> (int idx) const </td></tr>
+<tr class="memitem:ae64d7f8929ca04c4a1c5556b55b6ca95"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_union_find.html#ae64d7f8929ca04c4a1c5556b55b6ca95">findSet</a> (int idx) const </td></tr>
 <tr class="separator:ae64d7f8929ca04c4a1c5556b55b6ca95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a2a8a8b6226dce64edd27bcbdd9f765"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a2a8a8b6226dce64edd27bcbdd9f765"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isSameSet</b> (int idxA, int idxB) const </td></tr>
+<tr class="memitem:a4a2a8a8b6226dce64edd27bcbdd9f765"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_union_find.html#a4a2a8a8b6226dce64edd27bcbdd9f765">isSameSet</a> (int idxA, int idxB) const </td></tr>
 <tr class="separator:a4a2a8a8b6226dce64edd27bcbdd9f765"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51686e8ce4f700f3418a188bb273569f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51686e8ce4f700f3418a188bb273569f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (void)</td></tr>
+<tr class="memitem:a51686e8ce4f700f3418a188bb273569f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_union_find.html#a51686e8ce4f700f3418a188bb273569f">clear</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a51686e8ce4f700f3418a188bb273569f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb17b19f74153e8b6dcb34625ae794e0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb17b19f74153e8b6dcb34625ae794e0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (void)</td></tr>
+<tr class="memitem:adb17b19f74153e8b6dcb34625ae794e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_union_find.html#adb17b19f74153e8b6dcb34625ae794e0">reset</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:adb17b19f74153e8b6dcb34625ae794e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24c7de57df40cf8d76e19d6cb860e932"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24c7de57df40cf8d76e19d6cb860e932"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCapacity</b> (int capacity)</td></tr>
+<tr class="memitem:a24c7de57df40cf8d76e19d6cb860e932"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_union_find.html#a24c7de57df40cf8d76e19d6cb860e932">setCapacity</a> (int capacity)</td></tr>
 <tr class="separator:a24c7de57df40cf8d76e19d6cb860e932"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee375999a9d942c5c67f7da58306e9e7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee375999a9d942c5c67f7da58306e9e7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a> &amp;other)</td></tr>
+<tr class="memitem:aee375999a9d942c5c67f7da58306e9e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_union_find.html#aee375999a9d942c5c67f7da58306e9e7">set</a> (const <a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a> &amp;other)</td></tr>
 <tr class="separator:aee375999a9d942c5c67f7da58306e9e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abce5ad7e0a95915fb4007f0107411afe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abce5ad7e0a95915fb4007f0107411afe"></a>
-<a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a> &amp;other)</td></tr>
+<tr class="memitem:abce5ad7e0a95915fb4007f0107411afe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_union_find.html#abce5ad7e0a95915fb4007f0107411afe">operator=</a> (const <a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a> &amp;other)</td></tr>
 <tr class="separator:abce5ad7e0a95915fb4007f0107411afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2aded3ec8bd690f397c674d99b8b814"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2aded3ec8bd690f397c674d99b8b814"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int idx) const </td></tr>
+<tr class="memitem:ab2aded3ec8bd690f397c674d99b8b814"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_union_find.html#ab2aded3ec8bd690f397c674d99b8b814">operator[]</a> (int idx) const </td></tr>
 <tr class="separator:ab2aded3ec8bd690f397c674d99b8b814"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_union_find_8hpp_source.html#l00035">35</a> of file <a class="el" href="_union_find_8hpp_source.html">UnionFind.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a77be79c8c0798edc9db8075a05d0accd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::UnionFind::UnionFind </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>capacity</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_union_find_8hpp_source.html#l00038">38</a> of file <a class="el" href="_union_find_8hpp_source.html">UnionFind.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a76a915a2a55ccaa066768653023f657a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::UnionFind::UnionFind </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_union_find_8hpp_source.html#l00039">39</a> of file <a class="el" href="_union_find_8hpp_source.html">UnionFind.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3c42291bda41c620419ed4a58ce1eea3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::UnionFind::~UnionFind </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_union_find_8hpp_source.html#l00040">40</a> of file <a class="el" href="_union_find_8hpp_source.html">UnionFind.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a51686e8ce4f700f3418a188bb273569f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::UnionFind::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_union_find_8hpp_source.html#l00046">46</a> of file <a class="el" href="_union_find_8hpp_source.html">UnionFind.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae64d7f8929ca04c4a1c5556b55b6ca95"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int UnionFind::findSet </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_union_find_8cpp_source.html#l00057">57</a> of file <a class="el" href="_union_find_8cpp_source.html">UnionFind.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4a2a8a8b6226dce64edd27bcbdd9f765"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::UnionFind::isSameSet </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idxA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idxB</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_union_find_8hpp_source.html#l00044">44</a> of file <a class="el" href="_union_find_8hpp_source.html">UnionFind.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abce5ad7e0a95915fb4007f0107411afe"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a>&amp; FW::UnionFind::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_union_find_8hpp_source.html#l00051">51</a> of file <a class="el" href="_union_find_8hpp_source.html">UnionFind.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab2aded3ec8bd690f397c674d99b8b814"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::UnionFind::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_union_find_8hpp_source.html#l00052">52</a> of file <a class="el" href="_union_find_8hpp_source.html">UnionFind.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adb17b19f74153e8b6dcb34625ae794e0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::UnionFind::reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_union_find_8hpp_source.html#l00047">47</a> of file <a class="el" href="_union_find_8hpp_source.html">UnionFind.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aee375999a9d942c5c67f7da58306e9e7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::UnionFind::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_union_find_8hpp_source.html#l00049">49</a> of file <a class="el" href="_union_find_8hpp_source.html">UnionFind.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a24c7de57df40cf8d76e19d6cb860e932"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::UnionFind::setCapacity </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>capacity</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_union_find_8hpp_source.html#l00048">48</a> of file <a class="el" href="_union_find_8hpp_source.html">UnionFind.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa7da0d2192d4394a4205ef711d583a24"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int UnionFind::unionSets </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idxA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idxB</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_union_find_8cpp_source.html#l00034">34</a> of file <a class="el" href="_union_find_8cpp_source.html">UnionFind.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/base/<a class="el" href="_union_find_8hpp_source.html">UnionFind.hpp</a></li>
-<li>src/framework/base/UnionFind.cpp</li>
+<li>src/framework/base/<a class="el" href="_union_find_8cpp_source.html">UnionFind.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_union_find.html">UnionFind</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

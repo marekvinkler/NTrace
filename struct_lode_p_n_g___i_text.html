@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_lode_p_n_g___i_text.html','');}
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,25 +111,96 @@ $(document).ready(function(){initNavTree('struct_lode_p_n_g___i_text.html','');}
 <div class="title">LodePNG_IText Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="lodepng_8h_source.html">lodepng.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5af6eb21b9963d7f49e28d7ea181763c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5af6eb21b9963d7f49e28d7ea181763c"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>num</b></td></tr>
+<tr class="memitem:a5af6eb21b9963d7f49e28d7ea181763c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___i_text.html#a5af6eb21b9963d7f49e28d7ea181763c">num</a></td></tr>
 <tr class="separator:a5af6eb21b9963d7f49e28d7ea181763c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a487ca35406b7c5fdd13fd32e9c148c21"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a487ca35406b7c5fdd13fd32e9c148c21"></a>
-char **&#160;</td><td class="memItemRight" valign="bottom"><b>keys</b></td></tr>
+<tr class="memitem:a487ca35406b7c5fdd13fd32e9c148c21"><td class="memItemLeft" align="right" valign="top">char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___i_text.html#a487ca35406b7c5fdd13fd32e9c148c21">keys</a></td></tr>
 <tr class="separator:a487ca35406b7c5fdd13fd32e9c148c21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcb2f7a9848f6cf561e15e7c7f43fcb3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abcb2f7a9848f6cf561e15e7c7f43fcb3"></a>
-char **&#160;</td><td class="memItemRight" valign="bottom"><b>langtags</b></td></tr>
+<tr class="memitem:abcb2f7a9848f6cf561e15e7c7f43fcb3"><td class="memItemLeft" align="right" valign="top">char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___i_text.html#abcb2f7a9848f6cf561e15e7c7f43fcb3">langtags</a></td></tr>
 <tr class="separator:abcb2f7a9848f6cf561e15e7c7f43fcb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af20920b249db552b73ec00f259500cfc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af20920b249db552b73ec00f259500cfc"></a>
-char **&#160;</td><td class="memItemRight" valign="bottom"><b>transkeys</b></td></tr>
+<tr class="memitem:af20920b249db552b73ec00f259500cfc"><td class="memItemLeft" align="right" valign="top">char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___i_text.html#af20920b249db552b73ec00f259500cfc">transkeys</a></td></tr>
 <tr class="separator:af20920b249db552b73ec00f259500cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4e0811fdc21677603e387168179e66e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4e0811fdc21677603e387168179e66e"></a>
-char **&#160;</td><td class="memItemRight" valign="bottom"><b>strings</b></td></tr>
+<tr class="memitem:aa4e0811fdc21677603e387168179e66e"><td class="memItemLeft" align="right" valign="top">char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_lode_p_n_g___i_text.html#aa4e0811fdc21677603e387168179e66e">strings</a></td></tr>
 <tr class="separator:aa4e0811fdc21677603e387168179e66e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00465">465</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a487ca35406b7c5fdd13fd32e9c148c21"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char** LodePNG_IText::keys</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00473">473</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abcb2f7a9848f6cf561e15e7c7f43fcb3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char** LodePNG_IText::langtags</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00475">475</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5af6eb21b9963d7f49e28d7ea181763c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t LodePNG_IText::num</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00471">471</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa4e0811fdc21677603e387168179e66e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char** LodePNG_IText::strings</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00479">479</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af20920b249db552b73ec00f259500cfc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char** LodePNG_IText::transkeys</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="lodepng_8h_source.html#l00477">477</a> of file <a class="el" href="lodepng_8h_source.html">lodepng.h</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/framework/3rdparty/lodepng/<a class="el" href="lodepng_8h_source.html">lodepng.h</a></li>
 </ul>
@@ -138,7 +210,7 @@ char **&#160;</td><td class="memItemRight" valign="bottom"><b>strings</b></td></
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="struct_lode_p_n_g___i_text.html">LodePNG_IText</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="footer">Generated on Sat May 31 2014 15:56:24 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

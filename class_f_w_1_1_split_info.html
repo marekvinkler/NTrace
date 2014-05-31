@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_split_info.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,61 +112,414 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_split_info.html','');});
 <div class="title">FW::SplitInfo Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class holding information about a split of a <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> node.  
+ <a href="class_f_w_1_1_split_info.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:aea08a259ef9100d146aedb2b315f2295"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>SplitType</b> { <b>SAH</b>, 
-<b>SBVH</b>, 
-<b>OSAH</b>
+<tr class="memitem:aea08a259ef9100d146aedb2b315f2295"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_info.html#aea08a259ef9100d146aedb2b315f2295">SplitType</a> { <a class="el" href="class_f_w_1_1_split_info.html#aea08a259ef9100d146aedb2b315f2295a3efcf0c5b77d496bdee349e3bd5ed448">SAH</a>, 
+<a class="el" href="class_f_w_1_1_split_info.html#aea08a259ef9100d146aedb2b315f2295ac0f18b5502208babaeb058e16595633d">SBVH</a>, 
+<a class="el" href="class_f_w_1_1_split_info.html#aea08a259ef9100d146aedb2b315f2295a4866582093765f03021bdebc9ec24f6d">OSAH</a>
  }</td></tr>
+<tr class="memdesc:aea08a259ef9100d146aedb2b315f2295"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available split types.  <a href="class_f_w_1_1_split_info.html#aea08a259ef9100d146aedb2b315f2295">More...</a><br/></td></tr>
 <tr class="separator:aea08a259ef9100d146aedb2b315f2295"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa12d9c1f5d4267f63ad2a7897874c356"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>SplitAxis</b> { <b>SPLIT_X</b>, 
-<b>SPLIT_Y</b>, 
-<b>SPLIT_Z</b>
+<tr class="memitem:aa12d9c1f5d4267f63ad2a7897874c356"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_info.html#aa12d9c1f5d4267f63ad2a7897874c356">SplitAxis</a> { <a class="el" href="class_f_w_1_1_split_info.html#aa12d9c1f5d4267f63ad2a7897874c356a90bae0c80a0bcee6313dc30086d4f8e1">SPLIT_X</a>, 
+<a class="el" href="class_f_w_1_1_split_info.html#aa12d9c1f5d4267f63ad2a7897874c356a08813a94d2b5489e817574e83af6a4d8">SPLIT_Y</a>, 
+<a class="el" href="class_f_w_1_1_split_info.html#aa12d9c1f5d4267f63ad2a7897874c356a0dc5028b765ff405074683e3e1c95b29">SPLIT_Z</a>
  }</td></tr>
+<tr class="memdesc:aa12d9c1f5d4267f63ad2a7897874c356"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available split axes.  <a href="class_f_w_1_1_split_info.html#aa12d9c1f5d4267f63ad2a7897874c356">More...</a><br/></td></tr>
 <tr class="separator:aa12d9c1f5d4267f63ad2a7897874c356"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a63cf5b3d4de109983a49e45e7786aba6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63cf5b3d4de109983a49e45e7786aba6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SplitInfo</b> (S32 axis, SplitType splitType, bool osahTested)</td></tr>
+<tr class="memitem:a8a30496b6a4968a71534cb5b38eabcf9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_info.html#a8a30496b6a4968a71534cb5b38eabcf9">SplitInfo</a> ()</td></tr>
+<tr class="memdesc:a8a30496b6a4968a71534cb5b38eabcf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a8a30496b6a4968a71534cb5b38eabcf9">More...</a><br/></td></tr>
+<tr class="separator:a8a30496b6a4968a71534cb5b38eabcf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63cf5b3d4de109983a49e45e7786aba6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_info.html#a63cf5b3d4de109983a49e45e7786aba6">SplitInfo</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> axis, <a class="el" href="class_f_w_1_1_split_info.html#aea08a259ef9100d146aedb2b315f2295">SplitType</a> splitType, bool osahTested)</td></tr>
+<tr class="memdesc:a63cf5b3d4de109983a49e45e7786aba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a63cf5b3d4de109983a49e45e7786aba6">More...</a><br/></td></tr>
 <tr class="separator:a63cf5b3d4de109983a49e45e7786aba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c907cb2c053678d74e5ea4264ca609b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c907cb2c053678d74e5ea4264ca609b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SplitInfo</b> (unsigned long bitCode)</td></tr>
+<tr class="memitem:a5c907cb2c053678d74e5ea4264ca609b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_info.html#a5c907cb2c053678d74e5ea4264ca609b">SplitInfo</a> (unsigned long bitCode)</td></tr>
+<tr class="memdesc:a5c907cb2c053678d74e5ea4264ca609b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a5c907cb2c053678d74e5ea4264ca609b">More...</a><br/></td></tr>
 <tr class="separator:a5c907cb2c053678d74e5ea4264ca609b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d15425243d8338f4e9c75687ba6180a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d15425243d8338f4e9c75687ba6180a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getOSAHTested</b> () const </td></tr>
+<tr class="memitem:a1d15425243d8338f4e9c75687ba6180a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_info.html#a1d15425243d8338f4e9c75687ba6180a">getOSAHTested</a> () const </td></tr>
 <tr class="separator:a1d15425243d8338f4e9c75687ba6180a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad879a590a8aa31c1c24e75dfbbd4f186"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad879a590a8aa31c1c24e75dfbbd4f186"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getOSAHChosen</b> () const </td></tr>
+<tr class="memitem:ad879a590a8aa31c1c24e75dfbbd4f186"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_info.html#ad879a590a8aa31c1c24e75dfbbd4f186">getOSAHChosen</a> () const </td></tr>
 <tr class="separator:ad879a590a8aa31c1c24e75dfbbd4f186"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad144d83130a1b9eacb5e3c6710b24cd9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad144d83130a1b9eacb5e3c6710b24cd9"></a>
-SplitType&#160;</td><td class="memItemRight" valign="bottom"><b>getType</b> () const </td></tr>
+<tr class="memitem:ad144d83130a1b9eacb5e3c6710b24cd9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_split_info.html#aea08a259ef9100d146aedb2b315f2295">SplitType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_info.html#ad144d83130a1b9eacb5e3c6710b24cd9">getType</a> () const </td></tr>
 <tr class="separator:ad144d83130a1b9eacb5e3c6710b24cd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7fa57d5e41f9a6d523dc5fffc6909d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af7fa57d5e41f9a6d523dc5fffc6909d9"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getTypeName</b> () const </td></tr>
+<tr class="memitem:af7fa57d5e41f9a6d523dc5fffc6909d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_info.html#af7fa57d5e41f9a6d523dc5fffc6909d9">getTypeName</a> () const </td></tr>
 <tr class="separator:af7fa57d5e41f9a6d523dc5fffc6909d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c52e6a69afcf51bf399c871f7a9ba5d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c52e6a69afcf51bf399c871f7a9ba5d"></a>
-SplitAxis&#160;</td><td class="memItemRight" valign="bottom"><b>getAxis</b> () const </td></tr>
+<tr class="memitem:a0c52e6a69afcf51bf399c871f7a9ba5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_split_info.html#aa12d9c1f5d4267f63ad2a7897874c356">SplitAxis</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_info.html#a0c52e6a69afcf51bf399c871f7a9ba5d">getAxis</a> () const </td></tr>
 <tr class="separator:a0c52e6a69afcf51bf399c871f7a9ba5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed6aff2ac792841fbda6fcc5fb9984e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed6aff2ac792841fbda6fcc5fb9984e6"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getAxisName</b> () const </td></tr>
+<tr class="memitem:aed6aff2ac792841fbda6fcc5fb9984e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_info.html#aed6aff2ac792841fbda6fcc5fb9984e6">getAxisName</a> () const </td></tr>
 <tr class="separator:aed6aff2ac792841fbda6fcc5fb9984e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fc29d4eee677291a7fd542528ead5da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9fc29d4eee677291a7fd542528ead5da"></a>
-unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>getBitCode</b> () const </td></tr>
+<tr class="memitem:a9fc29d4eee677291a7fd542528ead5da"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_info.html#a9fc29d4eee677291a7fd542528ead5da">getBitCode</a> () const </td></tr>
 <tr class="separator:a9fc29d4eee677291a7fd542528ead5da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class holding information about a split of a <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> node. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00058">58</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="aa12d9c1f5d4267f63ad2a7897874c356"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_f_w_1_1_split_info.html#aa12d9c1f5d4267f63ad2a7897874c356">FW::SplitInfo::SplitAxis</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Available split axes. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="aa12d9c1f5d4267f63ad2a7897874c356a90bae0c80a0bcee6313dc30086d4f8e1"></a>SPLIT_X</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="aa12d9c1f5d4267f63ad2a7897874c356a08813a94d2b5489e817574e83af6a4d8"></a>SPLIT_Y</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="aa12d9c1f5d4267f63ad2a7897874c356a0dc5028b765ff405074683e3e1c95b29"></a>SPLIT_Z</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00070">70</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aea08a259ef9100d146aedb2b315f2295"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_f_w_1_1_split_info.html#aea08a259ef9100d146aedb2b315f2295">FW::SplitInfo::SplitType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Available split types. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="aea08a259ef9100d146aedb2b315f2295a3efcf0c5b77d496bdee349e3bd5ed448"></a>SAH</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="aea08a259ef9100d146aedb2b315f2295ac0f18b5502208babaeb058e16595633d"></a>SBVH</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="aea08a259ef9100d146aedb2b315f2295a4866582093765f03021bdebc9ec24f6d"></a>OSAH</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00065">65</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a8a30496b6a4968a71534cb5b38eabcf9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::SplitInfo::SplitInfo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00076">76</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a63cf5b3d4de109983a49e45e7786aba6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::SplitInfo::SplitInfo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>axis</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_split_info.html#aea08a259ef9100d146aedb2b315f2295">SplitType</a>&#160;</td>
+          <td class="paramname"><em>splitType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>osahTested</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">axis</td><td>Split axis. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">splitType</td><td>Type of the split. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">osahTested</td><td>Flag whether the split has been tested for a OSAH split. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00084">84</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5c907cb2c053678d74e5ea4264ca609b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::SplitInfo::SplitInfo </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>bitCode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bitCode</td><td><a class="el" href="class_f_w_1_1_split_info.html" title="Class holding information about a split of a BVH node. ">SplitInfo</a> encoded in long int form. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00090">90</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a0c52e6a69afcf51bf399c871f7a9ba5d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_split_info.html#aa12d9c1f5d4267f63ad2a7897874c356">SplitAxis</a> FW::SplitInfo::getAxis </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Split axis. </dd></dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00115">115</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aed6aff2ac792841fbda6fcc5fb9984e6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> FW::SplitInfo::getAxisName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Name of the split axis. </dd></dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00120">120</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9fc29d4eee677291a7fd542528ead5da"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long FW::SplitInfo::getBitCode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_f_w_1_1_split_info.html" title="Class holding information about a split of a BVH node. ">SplitInfo</a> encoded in an unsigned long integer. </dd></dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00125">125</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad879a590a8aa31c1c24e75dfbbd4f186"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::SplitInfo::getOSAHChosen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Whether the split has been chosen for OSAH. </dd></dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00100">100</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1d15425243d8338f4e9c75687ba6180a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::SplitInfo::getOSAHTested </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Whether the split has been tested for OSAH. </dd></dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00095">95</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad144d83130a1b9eacb5e3c6710b24cd9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_split_info.html#aea08a259ef9100d146aedb2b315f2295">SplitType</a> FW::SplitInfo::getType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Type of the split. </dd></dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00105">105</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af7fa57d5e41f9a6d523dc5fffc6909d9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> FW::SplitInfo::getTypeName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Name of the split type. </dd></dl>
+
+<p>Definition at line <a class="el" href="_b_v_h_node_8hpp_source.html#l00110">110</a> of file <a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/rt/bvh/<a class="el" href="_b_v_h_node_8hpp_source.html">BVHNode.hpp</a></li>
-<li>src/rt/bvh/BVHNode.cpp</li>
+<li>src/rt/bvh/<a class="el" href="_b_v_h_node_8cpp_source.html">BVHNode.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_split_info.html">SplitInfo</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_split_info.html">SplitInfo</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

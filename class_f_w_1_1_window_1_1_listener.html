@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_window_1_1_listener.html
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,14 +112,102 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_window_1_1_listener.html
 </div><!--header-->
 <div class="contents">
 
-<p>Inherited by <a class="el" href="class_f_w_1_1_app.html">FW::App</a>, <a class="el" href="class_f_w_1_1_camera_controls.html">FW::CameraControls</a>, <a class="el" href="class_f_w_1_1_common_controls.html">FW::CommonControls</a>, and <a class="el" href="class_f_w_1_1_visualization_b_v_h.html">FW::VisualizationBVH</a>.</p>
+<p><code>#include &lt;<a class="el" href="_window_8hpp_source.html">Window.hpp</a>&gt;</code></p>
+
+<p>Inherited by <a class="el" href="class_f_w_1_1_app.html">FW::App</a>, <a class="el" href="class_f_w_1_1_camera_controls.html">FW::CameraControls</a>, <a class="el" href="class_f_w_1_1_common_controls.html">FW::CommonControls</a>, and <a class="el" href="class_f_w_1_1_visualization.html">FW::Visualization</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a384968ef5bca68453f0d221e818fed6f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a384968ef5bca68453f0d221e818fed6f"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (const <a class="el" href="struct_f_w_1_1_window_1_1_event.html">Event</a> &amp;ev)=0</td></tr>
+<tr class="memitem:a55d9c7f41bd0d2e87fee1d5353f8e1e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window_1_1_listener.html#a55d9c7f41bd0d2e87fee1d5353f8e1e0">Listener</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a55d9c7f41bd0d2e87fee1d5353f8e1e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea8219cdf2496da5dd02c639cd16020"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window_1_1_listener.html#a3ea8219cdf2496da5dd02c639cd16020">~Listener</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a3ea8219cdf2496da5dd02c639cd16020"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a384968ef5bca68453f0d221e818fed6f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window_1_1_listener.html#a384968ef5bca68453f0d221e818fed6f">handleEvent</a> (const <a class="el" href="struct_f_w_1_1_window_1_1_event.html">Event</a> &amp;ev)=0</td></tr>
 <tr class="separator:a384968ef5bca68453f0d221e818fed6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00084">84</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a55d9c7f41bd0d2e87fee1d5353f8e1e0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::Window::Listener::Listener </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00087">87</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3ea8219cdf2496da5dd02c639cd16020"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual FW::Window::Listener::~Listener </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00088">88</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a384968ef5bca68453f0d221e818fed6f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool FW::Window::Listener::handleEvent </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_window_1_1_event.html">Event</a> &amp;&#160;</td>
+          <td class="paramname"><em>ev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_f_w_1_1_common_controls.html#a5c4e39ad0dcf8e1927302cb5cdd3dbe9">FW::CommonControls</a>, <a class="el" href="class_f_w_1_1_visualization_k_d_tree.html#a9be3ab408053963cde0827b34ca351ce">FW::VisualizationKDTree</a>, <a class="el" href="class_f_w_1_1_camera_controls.html#ae49af4e464e44ac0e2e059ec264be936">FW::CameraControls</a>, <a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a7c7344ce25d5dac9fe4ae6c85976d564">FW::VisualizationBVH</a>, and <a class="el" href="class_f_w_1_1_app.html#a7d59360d75ef9537e2ae653b4142a20a">FW::App</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/framework/gui/<a class="el" href="_window_8hpp_source.html">Window.hpp</a></li>
 </ul>
@@ -127,8 +216,8 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_window.html">Window</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_window_1_1_listener.html">Listener</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_window.html">Window</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_window_1_1_listener.html">Listener</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -68,6 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -90,7 +92,7 @@ $(document).ready(function(){initNavTree('_main_8hpp_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -104,7 +106,7 @@ $(document).ready(function(){initNavTree('_main_8hpp_source.html','');});
 <div class="title">Main.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<a href="_main_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> *  Copyright (c) 2009-2011, NVIDIA Corporation</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *  All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
@@ -132,31 +134,37 @@ $(document).ready(function(){initNavTree('_main_8hpp_source.html','');});
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &quot;base/Defs.hpp&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="_defs_8hpp.html">base/Defs.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">namespace </span>FW</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">//------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span>      argc;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">char</span>**   argv;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span>      exitCode;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span>      <a class="code" href="namespace_f_w.html#aa05bcda3f37a8a120091c65011fa9ce9">argc</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">char</span>**   <a class="code" href="namespace_f_w.html#acd3469616841c084fb4823c1ffe28c2c">argv</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span>      <a class="code" href="namespace_f_w.html#a062ff270e9f0fa6ae12b232bb9a326b1">exitCode</a>;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">//------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span>    init                (<span class="keywordtype">void</span>);     <span class="comment">// Main entry point, defined by the application.</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span>    <a class="code" href="namespace_f_w.html#a7a9ebb35bcfe670f24561a64dc480f48">init</a>                (<span class="keywordtype">void</span>);     <span class="comment">// Main entry point, defined by the application.</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span>    disableLeakCheck    (<span class="keywordtype">void</span>);     <span class="comment">// Call to disable memory leak check at application exit in debug build.</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span>    <a class="code" href="namespace_f_w.html#ae28f2662b51a5aa20fcd2d47caac0248">disableLeakCheck</a>    (<span class="keywordtype">void</span>);     <span class="comment">// Call to disable memory leak check at application exit in debug build.</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">//------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
+<div class="ttc" id="namespace_f_w_html_aa05bcda3f37a8a120091c65011fa9ce9"><div class="ttname"><a href="namespace_f_w.html#aa05bcda3f37a8a120091c65011fa9ce9">FW::argc</a></div><div class="ttdeci">int argc</div><div class="ttdef"><b>Definition:</b> <a href="_main_8cpp_source.html#l00043">Main.cpp:43</a></div></div>
+<div class="ttc" id="namespace_f_w_html_a062ff270e9f0fa6ae12b232bb9a326b1"><div class="ttname"><a href="namespace_f_w.html#a062ff270e9f0fa6ae12b232bb9a326b1">FW::exitCode</a></div><div class="ttdeci">int exitCode</div><div class="ttdef"><b>Definition:</b> <a href="_main_8cpp_source.html#l00045">Main.cpp:45</a></div></div>
+<div class="ttc" id="namespace_f_w_html_a7a9ebb35bcfe670f24561a64dc480f48"><div class="ttname"><a href="namespace_f_w.html#a7a9ebb35bcfe670f24561a64dc480f48">FW::init</a></div><div class="ttdeci">void init(void)</div><div class="ttdef"><b>Definition:</b> <a href="_app_8cpp_source.html#l00770">App.cpp:770</a></div></div>
+<div class="ttc" id="namespace_f_w_html_acd3469616841c084fb4823c1ffe28c2c"><div class="ttname"><a href="namespace_f_w.html#acd3469616841c084fb4823c1ffe28c2c">FW::argv</a></div><div class="ttdeci">char ** argv</div><div class="ttdef"><b>Definition:</b> <a href="_main_8cpp_source.html#l00044">Main.cpp:44</a></div></div>
+<div class="ttc" id="_defs_8hpp_html"><div class="ttname"><a href="_defs_8hpp.html">Defs.hpp</a></div></div>
+<div class="ttc" id="namespace_f_w_html_ae28f2662b51a5aa20fcd2d47caac0248"><div class="ttname"><a href="namespace_f_w.html#ae28f2662b51a5aa20fcd2d47caac0248">FW::disableLeakCheck</a></div><div class="ttdeci">void disableLeakCheck(void)</div><div class="ttdef"><b>Definition:</b> <a href="_main_8cpp_source.html#l00158">Main.cpp:158</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5752cadd8276ecfd63d9b924f2a4d4b5.html">framework</a></li><li class="navelem"><a class="el" href="dir_770dd69c1961fc980a0ae1b5385ae5c9.html">base</a></li><li class="navelem"><b>Main.hpp</b></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:35 for NTrace by
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5752cadd8276ecfd63d9b924f2a4d4b5.html">framework</a></li><li class="navelem"><a class="el" href="dir_770dd69c1961fc980a0ae1b5385ae5c9.html">base</a></li><li class="navelem"><a class="el" href="_main_8hpp.html">Main.hpp</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:13 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_image_format.html','');}
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -112,6 +113,8 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_image_format.html','');}
 <div class="title">FW::ImageFormat Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_image_8hpp_source.html">Image.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -122,104 +125,570 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a8b425fa7d4f34566176cb3670e9de6f8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>ID</b> { <br/>
-&#160;&#160;<b>R8_G8_B8</b> = 0, 
-<b>R8_G8_B8_A8</b>, 
-<b>A8</b>, 
-<b>XBGR_8888</b>, 
+<tr class="memitem:a8b425fa7d4f34566176cb3670e9de6f8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">ID</a> { <br/>
+&#160;&#160;<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8aa91f902a9016c1aa3bd7bcbcf74d5fdb">R8_G8_B8</a> = 0, 
+<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8ab62b26bf9b354b2bc8093e562c48255e">R8_G8_B8_A8</a>, 
+<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a9ba21866da00910c6085726a1accf930">A8</a>, 
+<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a5f4d0d9340ad1c268681ecd237ed7b69">XBGR_8888</a>, 
 <br/>
-&#160;&#160;<b>ABGR_8888</b>, 
-<b>RGB_565</b>, 
-<b>RGBA_5551</b>, 
-<b>RGB_Vec3f</b>, 
+&#160;&#160;<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a008fb409dac056b74401ff5c8b7e1893">ABGR_8888</a>, 
+<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a87b4a2ac5d72dd77f6d39ebda4e9f72d">RGB_565</a>, 
+<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a888b6c22648bc9157884b5a2ec7e8966">RGBA_5551</a>, 
+<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a470acc6723fec8409143e327b9727422">RGB_Vec3f</a>, 
 <br/>
-&#160;&#160;<b>RGBA_Vec4f</b>, 
-<b>A_F32</b>, 
-<b>ID_Generic</b>, 
-<b>ID_Max</b>
+&#160;&#160;<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a4347b955b3977e35f0dbafc15904b5e8">RGBA_Vec4f</a>, 
+<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a0e0d708e52f3626ac8c125ac40806a0d">A_F32</a>, 
+<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a5bded602429ee9b47b3bf0d2352ad9a6">ID_Generic</a>, 
+<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8a014127cad95eef9c0d9d9a34168c426b">ID_Max</a>
 <br/>
  }</td></tr>
 <tr class="separator:a8b425fa7d4f34566176cb3670e9de6f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca0c0d9239abad1a5ae4f7f9431d8d66"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>ChannelType</b> { <br/>
-&#160;&#160;<b>ChannelType_R</b> = 0, 
-<b>ChannelType_G</b>, 
-<b>ChannelType_B</b>, 
-<b>ChannelType_A</b>, 
+<tr class="memitem:aca0c0d9239abad1a5ae4f7f9431d8d66"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66">ChannelType</a> { <br/>
+&#160;&#160;<a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66a16a6699842a9c1f456f80582484b8bdd">ChannelType_R</a> = 0, 
+<a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66aa7edb3afd4b08836e9c20858cdd4b675">ChannelType_G</a>, 
+<a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66a3464a45009d7bf3afc760dadb50ef330">ChannelType_B</a>, 
+<a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66ab7022a54b9c4d249257283678a253813">ChannelType_A</a>, 
 <br/>
-&#160;&#160;<b>ChannelType_Generic</b>, 
-<b>ChannelType_Max</b>
+&#160;&#160;<a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66a908bcde822730a0ffa2a28b141687476">ChannelType_Generic</a>, 
+<a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66a91437649ed31b4cd11aa722b9a797cc6">ChannelType_Max</a>
 <br/>
  }</td></tr>
 <tr class="separator:aca0c0d9239abad1a5ae4f7f9431d8d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cae2861de9ce90a2ffe509a2b6edef0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>ChannelFormat</b> { <b>ChannelFormat_Clamp</b> = 0, 
-<b>ChannelFormat_Int</b>, 
-<b>ChannelFormat_Float</b>, 
-<b>ChannelFormat_Max</b>
+<tr class="memitem:a8cae2861de9ce90a2ffe509a2b6edef0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a8cae2861de9ce90a2ffe509a2b6edef0">ChannelFormat</a> { <a class="el" href="class_f_w_1_1_image_format.html#a8cae2861de9ce90a2ffe509a2b6edef0a7d8cac6026e94aa5adac3c90669e4517">ChannelFormat_Clamp</a> = 0, 
+<a class="el" href="class_f_w_1_1_image_format.html#a8cae2861de9ce90a2ffe509a2b6edef0a6ad638d054b3e48a1947fad2ced57f8d">ChannelFormat_Int</a>, 
+<a class="el" href="class_f_w_1_1_image_format.html#a8cae2861de9ce90a2ffe509a2b6edef0aec9b49d3ea1bc45ea4e2b03d4a9d5ff0">ChannelFormat_Float</a>, 
+<a class="el" href="class_f_w_1_1_image_format.html#a8cae2861de9ce90a2ffe509a2b6edef0a6f49b29c687a9aa94c296aca1487c9d5">ChannelFormat_Max</a>
  }</td></tr>
 <tr class="separator:a8cae2861de9ce90a2ffe509a2b6edef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a40c0d60936374a175fadcb7de1a121df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40c0d60936374a175fadcb7de1a121df"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ImageFormat</b> (ID id)</td></tr>
+<tr class="memitem:a84436130e3fbab787546f496f3cf8db9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a84436130e3fbab787546f496f3cf8db9">ImageFormat</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a84436130e3fbab787546f496f3cf8db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40c0d60936374a175fadcb7de1a121df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a40c0d60936374a175fadcb7de1a121df">ImageFormat</a> (<a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">ID</a> id)</td></tr>
 <tr class="separator:a40c0d60936374a175fadcb7de1a121df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef9ecf775cae15480bea92aa28c5ec31"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef9ecf775cae15480bea92aa28c5ec31"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ImageFormat</b> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;other)</td></tr>
+<tr class="memitem:aef9ecf775cae15480bea92aa28c5ec31"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#aef9ecf775cae15480bea92aa28c5ec31">ImageFormat</a> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;other)</td></tr>
 <tr class="separator:aef9ecf775cae15480bea92aa28c5ec31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c5dcf138433c3184f5985f738f8f3b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c5dcf138433c3184f5985f738f8f3b9"></a>
-ID&#160;</td><td class="memItemRight" valign="bottom"><b>getID</b> (void) const </td></tr>
+<tr class="memitem:a12776777471a1dbf1dbcfef0e270235b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a12776777471a1dbf1dbcfef0e270235b">~ImageFormat</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a12776777471a1dbf1dbcfef0e270235b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c5dcf138433c3184f5985f738f8f3b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">ID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a3c5dcf138433c3184f5985f738f8f3b9">getID</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a3c5dcf138433c3184f5985f738f8f3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62efc98bd8b0841fe254f6968ce98295"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62efc98bd8b0841fe254f6968ce98295"></a>
-const <a class="el" href="struct_f_w_1_1_image_format_1_1_static_format.html">StaticFormat</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getStaticFormat</b> (void) const </td></tr>
+<tr class="memitem:a62efc98bd8b0841fe254f6968ce98295"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_f_w_1_1_image_format_1_1_static_format.html">StaticFormat</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a62efc98bd8b0841fe254f6968ce98295">getStaticFormat</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a62efc98bd8b0841fe254f6968ce98295"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05c33b1c088ac8c6947bb7fc1c09f285"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05c33b1c088ac8c6947bb7fc1c09f285"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getBPP</b> (void) const </td></tr>
+<tr class="memitem:a05c33b1c088ac8c6947bb7fc1c09f285"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a05c33b1c088ac8c6947bb7fc1c09f285">getBPP</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a05c33b1c088ac8c6947bb7fc1c09f285"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55584c4d6f9ffccede7571663bf3d5b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55584c4d6f9ffccede7571663bf3d5b8"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumChannels</b> (void) const </td></tr>
+<tr class="memitem:a55584c4d6f9ffccede7571663bf3d5b8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a55584c4d6f9ffccede7571663bf3d5b8">getNumChannels</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a55584c4d6f9ffccede7571663bf3d5b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc70d26a190aee4e158c5b82841047ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc70d26a190aee4e158c5b82841047ba"></a>
-const <a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html">Channel</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getChannel</b> (int idx) const </td></tr>
+<tr class="memitem:afc70d26a190aee4e158c5b82841047ba"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html">Channel</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#afc70d26a190aee4e158c5b82841047ba">getChannel</a> (int idx) const </td></tr>
 <tr class="separator:afc70d26a190aee4e158c5b82841047ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac35a675ae25436382f53c1e4f725a8d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac35a675ae25436382f53c1e4f725a8d3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>findChannel</b> (ChannelType type) const </td></tr>
+<tr class="memitem:ac35a675ae25436382f53c1e4f725a8d3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#ac35a675ae25436382f53c1e4f725a8d3">findChannel</a> (<a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66">ChannelType</a> <a class="el" href="_d_l_l_imports_8inl.html#a1d14bae93fe47a03f0ace206fef6a34e">type</a>) const </td></tr>
 <tr class="separator:ac35a675ae25436382f53c1e4f725a8d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfe54a43d617b3c0d3e7513a02ada3c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abfe54a43d617b3c0d3e7513a02ada3c3"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasChannel</b> (ChannelType type) const </td></tr>
+<tr class="memitem:abfe54a43d617b3c0d3e7513a02ada3c3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#abfe54a43d617b3c0d3e7513a02ada3c3">hasChannel</a> (<a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66">ChannelType</a> <a class="el" href="_d_l_l_imports_8inl.html#a1d14bae93fe47a03f0ace206fef6a34e">type</a>) const </td></tr>
 <tr class="separator:abfe54a43d617b3c0d3e7513a02ada3c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae937aa8534bfee6652e6ffeb5bfe0d86"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae937aa8534bfee6652e6ffeb5bfe0d86"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;other)</td></tr>
+<tr class="memitem:ae937aa8534bfee6652e6ffeb5bfe0d86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#ae937aa8534bfee6652e6ffeb5bfe0d86">set</a> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;other)</td></tr>
 <tr class="separator:ae937aa8534bfee6652e6ffeb5bfe0d86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe5b1a8f5d7409da304c781e2d5a9afd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe5b1a8f5d7409da304c781e2d5a9afd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (void)</td></tr>
+<tr class="memitem:afe5b1a8f5d7409da304c781e2d5a9afd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#afe5b1a8f5d7409da304c781e2d5a9afd">clear</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:afe5b1a8f5d7409da304c781e2d5a9afd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a115c298c8e08a5ee3afba9083b68f8cd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a115c298c8e08a5ee3afba9083b68f8cd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addChannel</b> (const <a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html">Channel</a> &amp;channel)</td></tr>
+<tr class="memitem:a115c298c8e08a5ee3afba9083b68f8cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a115c298c8e08a5ee3afba9083b68f8cd">addChannel</a> (const <a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html">Channel</a> &amp;channel)</td></tr>
 <tr class="separator:a115c298c8e08a5ee3afba9083b68f8cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ccfc767bd3462c5af3c00b5a99405f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ccfc767bd3462c5af3c00b5a99405f7"></a>
-ID&#160;</td><td class="memItemRight" valign="bottom"><b>getGLFormat</b> (void) const </td></tr>
+<tr class="memitem:a3ccfc767bd3462c5af3c00b5a99405f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">ID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a3ccfc767bd3462c5af3c00b5a99405f7">getGLFormat</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a3ccfc767bd3462c5af3c00b5a99405f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41fdab9d2d486f1e785ea64bddda07e7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a41fdab9d2d486f1e785ea64bddda07e7"></a>
-<a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;other)</td></tr>
+<tr class="memitem:a41fdab9d2d486f1e785ea64bddda07e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a41fdab9d2d486f1e785ea64bddda07e7">operator=</a> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;other)</td></tr>
 <tr class="separator:a41fdab9d2d486f1e785ea64bddda07e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a676db0bd51250ee6ce948440b2dd75fa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a676db0bd51250ee6ce948440b2dd75fa"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;other) const </td></tr>
+<tr class="memitem:a676db0bd51250ee6ce948440b2dd75fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a676db0bd51250ee6ce948440b2dd75fa">operator==</a> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;other) const </td></tr>
 <tr class="separator:a676db0bd51250ee6ce948440b2dd75fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03ce3f98791c8274e1bc9307c7a3b1b5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03ce3f98791c8274e1bc9307c7a3b1b5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;other) const </td></tr>
+<tr class="memitem:a03ce3f98791c8274e1bc9307c7a3b1b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_image_format.html#a03ce3f98791c8274e1bc9307c7a3b1b5">operator!=</a> (const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;other) const </td></tr>
 <tr class="separator:a03ce3f98791c8274e1bc9307c7a3b1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00035">35</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a8cae2861de9ce90a2ffe509a2b6edef0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_f_w_1_1_image_format.html#a8cae2861de9ce90a2ffe509a2b6edef0">FW::ImageFormat::ChannelFormat</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a8cae2861de9ce90a2ffe509a2b6edef0a7d8cac6026e94aa5adac3c90669e4517"></a>ChannelFormat_Clamp</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8cae2861de9ce90a2ffe509a2b6edef0a6ad638d054b3e48a1947fad2ced57f8d"></a>ChannelFormat_Int</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8cae2861de9ce90a2ffe509a2b6edef0aec9b49d3ea1bc45ea4e2b03d4a9d5ff0"></a>ChannelFormat_Float</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8cae2861de9ce90a2ffe509a2b6edef0a6f49b29c687a9aa94c296aca1487c9d5"></a>ChannelFormat_Max</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00068">68</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aca0c0d9239abad1a5ae4f7f9431d8d66"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66">FW::ImageFormat::ChannelType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="aca0c0d9239abad1a5ae4f7f9431d8d66a16a6699842a9c1f456f80582484b8bdd"></a>ChannelType_R</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="aca0c0d9239abad1a5ae4f7f9431d8d66aa7edb3afd4b08836e9c20858cdd4b675"></a>ChannelType_G</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="aca0c0d9239abad1a5ae4f7f9431d8d66a3464a45009d7bf3afc760dadb50ef330"></a>ChannelType_B</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="aca0c0d9239abad1a5ae4f7f9431d8d66ab7022a54b9c4d249257283678a253813"></a>ChannelType_A</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="aca0c0d9239abad1a5ae4f7f9431d8d66a908bcde822730a0ffa2a28b141687476"></a>ChannelType_Generic</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="aca0c0d9239abad1a5ae4f7f9431d8d66a91437649ed31b4cd11aa722b9a797cc6"></a>ChannelType_Max</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00057">57</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8b425fa7d4f34566176cb3670e9de6f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">FW::ImageFormat::ID</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a8b425fa7d4f34566176cb3670e9de6f8aa91f902a9016c1aa3bd7bcbcf74d5fdb"></a>R8_G8_B8</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8b425fa7d4f34566176cb3670e9de6f8ab62b26bf9b354b2bc8093e562c48255e"></a>R8_G8_B8_A8</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8b425fa7d4f34566176cb3670e9de6f8a9ba21866da00910c6085726a1accf930"></a>A8</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8b425fa7d4f34566176cb3670e9de6f8a5f4d0d9340ad1c268681ecd237ed7b69"></a>XBGR_8888</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8b425fa7d4f34566176cb3670e9de6f8a008fb409dac056b74401ff5c8b7e1893"></a>ABGR_8888</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8b425fa7d4f34566176cb3670e9de6f8a87b4a2ac5d72dd77f6d39ebda4e9f72d"></a>RGB_565</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8b425fa7d4f34566176cb3670e9de6f8a888b6c22648bc9157884b5a2ec7e8966"></a>RGBA_5551</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8b425fa7d4f34566176cb3670e9de6f8a470acc6723fec8409143e327b9727422"></a>RGB_Vec3f</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8b425fa7d4f34566176cb3670e9de6f8a4347b955b3977e35f0dbafc15904b5e8"></a>RGBA_Vec4f</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8b425fa7d4f34566176cb3670e9de6f8a0e0d708e52f3626ac8c125ac40806a0d"></a>A_F32</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8b425fa7d4f34566176cb3670e9de6f8a5bded602429ee9b47b3bf0d2352ad9a6"></a>ID_Generic</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8b425fa7d4f34566176cb3670e9de6f8a014127cad95eef9c0d9d9a34168c426b"></a>ID_Max</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00038">38</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a84436130e3fbab787546f496f3cf8db9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::ImageFormat::ImageFormat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00099">99</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a40c0d60936374a175fadcb7de1a121df"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::ImageFormat::ImageFormat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">ID</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00100">100</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aef9ecf775cae15480bea92aa28c5ec31"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::ImageFormat::ImageFormat </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00101">101</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a12776777471a1dbf1dbcfef0e270235b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::ImageFormat::~ImageFormat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00102">102</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a115c298c8e08a5ee3afba9083b68f8cd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> ImageFormat::addChannel </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html">Channel</a> &amp;&#160;</td>
+          <td class="paramname"><em>channel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00168">168</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afe5b1a8f5d7409da304c781e2d5a9afd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> ImageFormat::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00159">159</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac35a675ae25436382f53c1e4f725a8d3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ImageFormat::findChannel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66">ChannelType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00136">136</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a05c33b1c088ac8c6947bb7fc1c09f285"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ImageFormat::getBPP </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00111">111</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afc70d26a190aee4e158c5b82841047ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_f_w_1_1_image_format_1_1_channel.html">ImageFormat::Channel</a> &amp; ImageFormat::getChannel </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00127">127</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3ccfc767bd3462c5af3c00b5a99405f7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">ImageFormat::ID</a> ImageFormat::getGLFormat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00184">184</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3c5dcf138433c3184f5985f738f8f3b9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_image_format.html#a8b425fa7d4f34566176cb3670e9de6f8">ImageFormat::ID</a> ImageFormat::getID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00078">78</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a55584c4d6f9ffccede7571663bf3d5b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ImageFormat::getNumChannels </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00119">119</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a62efc98bd8b0841fe254f6968ce98295"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_f_w_1_1_image_format_1_1_static_format.html">ImageFormat::StaticFormat</a> * ImageFormat::getStaticFormat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00102">102</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abfe54a43d617b3c0d3e7513a02ada3c3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::ImageFormat::hasChannel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_image_format.html#aca0c0d9239abad1a5ae4f7f9431d8d66">ChannelType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00110">110</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a03ce3f98791c8274e1bc9307c7a3b1b5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::ImageFormat::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00120">120</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a41fdab9d2d486f1e785ea64bddda07e7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a>&amp; FW::ImageFormat::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8hpp_source.html#l00118">118</a> of file <a class="el" href="_image_8hpp_source.html">Image.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a676db0bd51250ee6ce948440b2dd75fa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ImageFormat::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00226">226</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae937aa8534bfee6652e6ffeb5bfe0d86"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> ImageFormat::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00147">147</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/gui/<a class="el" href="_image_8hpp_source.html">Image.hpp</a></li>
-<li>src/framework/gui/Image.cpp</li>
+<li>src/framework/gui/<a class="el" href="_image_8cpp_source.html">Image.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_image_format.html">ImageFormat</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

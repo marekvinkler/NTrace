@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_c_p_u_renderer.html','')
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,145 +112,467 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_c_p_u_renderer.html','')
 </div><!--header-->
 <div class="contents">
 
+<p><code>#include &lt;<a class="el" href="_c_p_u_renderer_8hpp_source.html">CPURenderer.hpp</a>&gt;</code></p>
+
 <p>Inherits <a class="el" href="class_f_w_1_1_renderer.html">FW::Renderer</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab6b0b11110d6ca29474bb9b38ced5a45"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6b0b11110d6ca29474bb9b38ced5a45"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setParams</b> (const <a class="el" href="struct_f_w_1_1_renderer_1_1_params.html">Params</a> &amp;params)</td></tr>
+<tr class="memitem:a6dc92eb67edd4ad84505725a79e2013b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_c_p_u_renderer.html#a6dc92eb67edd4ad84505725a79e2013b">CPURenderer</a> (<a class="el" href="class_environment.html">Environment</a> *env)</td></tr>
+<tr class="separator:a6dc92eb67edd4ad84505725a79e2013b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a776e172b23109daa706bebe18652ce"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_c_p_u_renderer.html#a6a776e172b23109daa706bebe18652ce">~CPURenderer</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a6a776e172b23109daa706bebe18652ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6b0b11110d6ca29474bb9b38ced5a45"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_c_p_u_renderer.html#ab6b0b11110d6ca29474bb9b38ced5a45">setParams</a> (const <a class="el" href="struct_f_w_1_1_renderer_1_1_params.html">Params</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#a4eaf2f499ca0434ce41d6b3014ef3ba0">params</a>)</td></tr>
 <tr class="separator:ab6b0b11110d6ca29474bb9b38ced5a45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16734267c6fbd619442e8dc233c73939"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16734267c6fbd619442e8dc233c73939"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setMessageWindow</b> (<a class="el" href="class_f_w_1_1_window.html">Window</a> *window)</td></tr>
+<tr class="memitem:a16734267c6fbd619442e8dc233c73939"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_c_p_u_renderer.html#a16734267c6fbd619442e8dc233c73939">setMessageWindow</a> (<a class="el" href="class_f_w_1_1_window.html">Window</a> *window)</td></tr>
 <tr class="separator:a16734267c6fbd619442e8dc233c73939"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85345db7275ac11412b3c1f40abc3ff6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85345db7275ac11412b3c1f40abc3ff6"></a>
-virtual BVHLayout&#160;</td><td class="memItemRight" valign="bottom"><b>getLayout</b> (void)</td></tr>
+<tr class="memitem:a85345db7275ac11412b3c1f40abc3ff6"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_cuda_tracer_kernels_8hpp.html#a4340a2ec09290613da89196af6f875bf">BVHLayout</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_c_p_u_renderer.html#a85345db7275ac11412b3c1f40abc3ff6">getLayout</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a85345db7275ac11412b3c1f40abc3ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9de2c8f20a2b20388c3d49294e3fcbe6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9de2c8f20a2b20388c3d49294e3fcbe6"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>nextBatch</b> (void)</td></tr>
+<tr class="memitem:a9de2c8f20a2b20388c3d49294e3fcbe6"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_c_p_u_renderer.html#a9de2c8f20a2b20388c3d49294e3fcbe6">nextBatch</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a9de2c8f20a2b20388c3d49294e3fcbe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b4ced58c7e379b1a86ae7e748fd609c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b4ced58c7e379b1a86ae7e748fd609c"></a>
-virtual F32&#160;</td><td class="memItemRight" valign="bottom"><b>traceBatch</b> (<a class="el" href="struct_f_w_1_1_ray_stats.html">RayStats</a> *stats=NULL)</td></tr>
+<tr class="memitem:a7b4ced58c7e379b1a86ae7e748fd609c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_c_p_u_renderer.html#a7b4ced58c7e379b1a86ae7e748fd609c">traceBatch</a> (<a class="el" href="struct_f_w_1_1_ray_stats.html">RayStats</a> *stats=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</td></tr>
 <tr class="separator:a7b4ced58c7e379b1a86ae7e748fd609c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af231734c7cd4a2308394427ee8733442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af231734c7cd4a2308394427ee8733442"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>updateResult</b> (void)</td></tr>
+<tr class="memitem:af231734c7cd4a2308394427ee8733442"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_c_p_u_renderer.html#af231734c7cd4a2308394427ee8733442">updateResult</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:af231734c7cd4a2308394427ee8733442"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54ec511b9e3dc856acb7932e2fd8722f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54ec511b9e3dc856acb7932e2fd8722f"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>getTotalNumRays</b> (void)</td></tr>
+<tr class="memitem:a54ec511b9e3dc856acb7932e2fd8722f"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_c_p_u_renderer.html#a54ec511b9e3dc856acb7932e2fd8722f">getTotalNumRays</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a54ec511b9e3dc856acb7932e2fd8722f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ca6fa65eb1528d2b1a7b93eef1ba965"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ca6fa65eb1528d2b1a7b93eef1ba965"></a>
-<a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getPseudoColor</b> (F32 value, F32 minVal, F32 maxVal)</td></tr>
+<tr class="memitem:a9ca6fa65eb1528d2b1a7b93eef1ba965"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_c_p_u_renderer.html#a9ca6fa65eb1528d2b1a7b93eef1ba965">getPseudoColor</a> (<a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> <a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> minVal, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> maxVal)</td></tr>
 <tr class="separator:a9ca6fa65eb1528d2b1a7b93eef1ba965"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa10b30f7faaa7dea08412f55f84cf3df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa10b30f7faaa7dea08412f55f84cf3df"></a>
-<a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getDistanceColor</b> (F32 value, F32 minVal, F32 maxVal)</td></tr>
+<tr class="memitem:aa10b30f7faaa7dea08412f55f84cf3df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_c_p_u_renderer.html#aa10b30f7faaa7dea08412f55f84cf3df">getDistanceColor</a> (<a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> <a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> minVal, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> maxVal)</td></tr>
 <tr class="separator:aa10b30f7faaa7dea08412f55f84cf3df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_f_w_1_1_renderer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_f_w_1_1_renderer')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_f_w_1_1_renderer.html">FW::Renderer</a></td></tr>
-<tr class="memitem:a792e850145e9204c2f73ed96b6151317 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a792e850145e9204c2f73ed96b6151317"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setMesh</b> (<a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> *mesh)</td></tr>
+<tr class="memitem:ab778f9e32a09cae780e123880af6c076 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#ab778f9e32a09cae780e123880af6c076">Renderer</a> (<a class="el" href="class_f_w_1_1_renderer.html#aff36fcfa79df47528f46050a25ab94ba">AccelStructType</a> as, <a class="el" href="class_environment.html">Environment</a> *env)</td></tr>
+<tr class="separator:ab778f9e32a09cae780e123880af6c076 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99308d3d72cd9408dd8faa2136dec547 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a99308d3d72cd9408dd8faa2136dec547">~Renderer</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a99308d3d72cd9408dd8faa2136dec547 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a792e850145e9204c2f73ed96b6151317 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a792e850145e9204c2f73ed96b6151317">setMesh</a> (<a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> *mesh)</td></tr>
 <tr class="separator:a792e850145e9204c2f73ed96b6151317 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad47809822576df5d0bf3fdfe9d1c4d2d inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad47809822576df5d0bf3fdfe9d1c4d2d"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setBuildParams</b> (const <a class="el" href="struct_f_w_1_1_b_v_h_1_1_build_params.html">BVH::BuildParams</a> &amp;params)</td></tr>
-<tr class="separator:ad47809822576df5d0bf3fdfe9d1c4d2d inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2577acf7a634e62a26f80f2234821a96 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2577acf7a634e62a26f80f2234821a96"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>invalidateBVH</b> (void)</td></tr>
+<tr class="memitem:abb31e856cdad844f5824b870fd377d25 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#abb31e856cdad844f5824b870fd377d25">setBuildParams</a> (const <a class="el" href="struct_f_w_1_1_b_v_h_1_1_build_params.html">BVH::BuildParams</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#a4eaf2f499ca0434ce41d6b3014ef3ba0">params</a>)</td></tr>
+<tr class="separator:abb31e856cdad844f5824b870fd377d25 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2577acf7a634e62a26f80f2234821a96 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a2577acf7a634e62a26f80f2234821a96">invalidateBVH</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a2577acf7a634e62a26f80f2234821a96 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10af806035779aa29d29a470ebb2eb5c inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10af806035779aa29d29a470ebb2eb5c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setEnableRandom</b> (bool enable)</td></tr>
+<tr class="memitem:a6a454a388420faade8eb267cda86906a inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a6a454a388420faade8eb267cda86906a">setParams</a> (const <a class="el" href="struct_f_w_1_1_renderer_1_1_params.html">Params</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#a4eaf2f499ca0434ce41d6b3014ef3ba0">params</a>)</td></tr>
+<tr class="separator:a6a454a388420faade8eb267cda86906a inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26d633e9321d5101948e37f5009ad219 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a26d633e9321d5101948e37f5009ad219">setMessageWindow</a> (<a class="el" href="class_f_w_1_1_window.html">Window</a> *window)</td></tr>
+<tr class="separator:a26d633e9321d5101948e37f5009ad219 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10af806035779aa29d29a470ebb2eb5c inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a10af806035779aa29d29a470ebb2eb5c">setEnableRandom</a> (bool enable)</td></tr>
 <tr class="separator:a10af806035779aa29d29a470ebb2eb5c inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0b29cf98acab148e75369669b964df8 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0b29cf98acab148e75369669b964df8"></a>
-<a class="el" href="class_f_w_1_1_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getScene</b> (void) const </td></tr>
+<tr class="memitem:a3461e9552409ad122906d9215bbc30f8 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_cuda_virtual_tracer.html">CudaVirtualTracer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a3461e9552409ad122906d9215bbc30f8">getCudaTracer</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a3461e9552409ad122906d9215bbc30f8 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0b29cf98acab148e75369669b964df8 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#ab0b29cf98acab148e75369669b964df8">getScene</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ab0b29cf98acab148e75369669b964df8 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51c2b8d3ec941aa9225fc572ccc1fdbc inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51c2b8d3ec941aa9225fc572ccc1fdbc"></a>
-<a class="el" href="class_f_w_1_1_cuda_b_v_h.html">CudaBVH</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getCudaBVH</b> (void)</td></tr>
-<tr class="separator:a51c2b8d3ec941aa9225fc572ccc1fdbc inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a907813b01270c3793699e7e187a50973 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a907813b01270c3793699e7e187a50973"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>renderFrame</b> (<a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *gl, const <a class="el" href="class_f_w_1_1_camera_controls.html">CameraControls</a> &amp;camera)</td></tr>
+<tr class="memitem:aafc93eaa15fe4ff79cd94cd4f6d9dcc1 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_cuda_a_s.html">CudaAS</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#aafc93eaa15fe4ff79cd94cd4f6d9dcc1">getCudaBVH</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:aafc93eaa15fe4ff79cd94cd4f6d9dcc1 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a907813b01270c3793699e7e187a50973 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a907813b01270c3793699e7e187a50973">renderFrame</a> (<a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *gl, const <a class="el" href="class_f_w_1_1_camera_controls.html">CameraControls</a> &amp;camera)</td></tr>
 <tr class="separator:a907813b01270c3793699e7e187a50973 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aced8ff702aaac273dc92329d01590745 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#aced8ff702aaac273dc92329d01590745">beginFrame</a> (<a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *gl, const <a class="el" href="class_f_w_1_1_camera_controls.html">CameraControls</a> &amp;camera)</td></tr>
+<tr class="memitem:aced8ff702aaac273dc92329d01590745 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#aced8ff702aaac273dc92329d01590745">beginFrame</a> (<a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *gl, const <a class="el" href="class_f_w_1_1_camera_controls.html">CameraControls</a> &amp;camera)</td></tr>
 <tr class="separator:aced8ff702aaac273dc92329d01590745 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99904ec621d9b11c747832d976d42ef6 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99904ec621d9b11c747832d976d42ef6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>displayResult</b> (<a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *gl)</td></tr>
+<tr class="memitem:a56affe8cb24cc20bb383ad10536ff782 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a56affe8cb24cc20bb383ad10536ff782">nextBatch</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a56affe8cb24cc20bb383ad10536ff782 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6617a4262863082ff493e6e83ab3ff73 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a6617a4262863082ff493e6e83ab3ff73">traceBatch</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a6617a4262863082ff493e6e83ab3ff73 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4033b8e981eeb9d618bc55ce62c0d990 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a4033b8e981eeb9d618bc55ce62c0d990">updateResult</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a4033b8e981eeb9d618bc55ce62c0d990 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99904ec621d9b11c747832d976d42ef6 inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a99904ec621d9b11c747832d976d42ef6">displayResult</a> (<a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *gl)</td></tr>
 <tr class="separator:a99904ec621d9b11c747832d976d42ef6 inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc683beba755d057ef05b77504fb9f8b inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#afc683beba755d057ef05b77504fb9f8b">getTotalNumRays</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:afc683beba755d057ef05b77504fb9f8b inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2512c75a939ada7222932fe0d2175bf inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#ab2512c75a939ada7222932fe0d2175bf">calcNodeSAHCostKdtree</a> (const <a class="el" href="class_f_w_1_1_platform.html">Platform</a> &amp;platform, <a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> *nodes, <a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> *tri, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#a7bfd2fdf58fb75abde6e36d72617c71b">n</a>, <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> bbox, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#aa0f582e931135ed43bf07380b36a4e0b">depth</a>, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> &amp;maxDepth, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> &amp;sumDepth, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> &amp;numNodes, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> &amp;numLeaves, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> &amp;nodeArea, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> &amp;weightedLeafArea, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> &amp;test)</td></tr>
+<tr class="separator:ab2512c75a939ada7222932fe0d2175bf inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08926c2b5f401e454810a1563ebcf8af inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a08926c2b5f401e454810a1563ebcf8af">calcLeafSAHCostCompact</a> (const <a class="el" href="class_f_w_1_1_platform.html">Platform</a> &amp;platform, <a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> *triIdx, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#a7bfd2fdf58fb75abde6e36d72617c71b">n</a>, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> &amp;numLeaves)</td></tr>
+<tr class="separator:a08926c2b5f401e454810a1563ebcf8af inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0b61d8d25d112ff13a5d232842e9d6f inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#aa0b61d8d25d112ff13a5d232842e9d6f">calcLeafSAHCostNum</a> (const <a class="el" href="class_f_w_1_1_platform.html">Platform</a> &amp;platform, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> <a class="el" href="_d_l_l_imports_8inl.html#a7bfd2fdf58fb75abde6e36d72617c71b">n</a>, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> &amp;numLeaves)</td></tr>
+<tr class="separator:aa0b61d8d25d112ff13a5d232842e9d6f inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73b019410c8129c07c24022ea96842af inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_cuda_a_s.html">CudaAS</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a73b019410c8129c07c24022ea96842af">getCudaKDTree</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a73b019410c8129c07c24022ea96842af inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a991316431615d50ed9ca139517c527dd inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a991316431615d50ed9ca139517c527dd">startBVHVis</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a991316431615d50ed9ca139517c527dd inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c9ad8849cf594ced519577b17e6981f inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a3c9ad8849cf594ced519577b17e6981f">endBVHVis</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a3c9ad8849cf594ced519577b17e6981f inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6f44076985f7fe7e466ebcee38f0c8d inherit pub_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#ae6f44076985f7fe7e466ebcee38f0c8d">toggleBVHVis</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:ae6f44076985f7fe7e466ebcee38f0c8d inherit pub_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_types_class_f_w_1_1_renderer"><td colspan="2" onclick="javascript:toggleInherit('pub_types_class_f_w_1_1_renderer')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="class_f_w_1_1_renderer.html">FW::Renderer</a></td></tr>
-<tr class="memitem:ae40bec33d55eccd929adcc6fb59547b7 inherit pub_types_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>RayType</b> { <b>RayType_Primary</b> = 0, 
-<b>RayType_AO</b>, 
-<b>RayType_Diffuse</b>, 
-<b>RayType_Max</b>
+<tr class="memitem:aff36fcfa79df47528f46050a25ab94ba inherit pub_types_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#aff36fcfa79df47528f46050a25ab94ba">AccelStructType</a> { <a class="el" href="class_f_w_1_1_renderer.html#aff36fcfa79df47528f46050a25ab94baa837bf41d46807446a458b139e91f210b">tBVH</a> = 0, 
+<a class="el" href="class_f_w_1_1_renderer.html#aff36fcfa79df47528f46050a25ab94baae62aad9949e1851b916febcd3110db4a">tKDTree</a>
+ }</td></tr>
+<tr class="separator:aff36fcfa79df47528f46050a25ab94ba inherit pub_types_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae40bec33d55eccd929adcc6fb59547b7 inherit pub_types_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#ae40bec33d55eccd929adcc6fb59547b7">RayType</a> { <br/>
+&#160;&#160;<a class="el" href="class_f_w_1_1_renderer.html#ae40bec33d55eccd929adcc6fb59547b7a241fef1834e5001b8939b21ad1bf2b88">RayType_Primary</a> = 0, 
+<a class="el" href="class_f_w_1_1_renderer.html#ae40bec33d55eccd929adcc6fb59547b7a695817170a52f081439e0081231041ba">RayType_AO</a>, 
+<a class="el" href="class_f_w_1_1_renderer.html#ae40bec33d55eccd929adcc6fb59547b7ac40aab06fd6fa683860fb1f29ca93d45">RayType_Diffuse</a>, 
+<a class="el" href="class_f_w_1_1_renderer.html#ae40bec33d55eccd929adcc6fb59547b7a9227aba6a30b7738d48288a353f93844">RayType_Textured</a>, 
+<br/>
+&#160;&#160;<a class="el" href="class_f_w_1_1_renderer.html#ae40bec33d55eccd929adcc6fb59547b7a8564bf6786c03c01e53df9795aa3ee70">RayType_PathTracing</a>, 
+<a class="el" href="class_f_w_1_1_renderer.html#ae40bec33d55eccd929adcc6fb59547b7a707478c760c9a03488e0a231d66bbf9f">RayType_Max</a>
+<br/>
  }</td></tr>
 <tr class="separator:ae40bec33d55eccd929adcc6fb59547b7 inherit pub_types_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_f_w_1_1_renderer"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_f_w_1_1_renderer')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_f_w_1_1_renderer.html">FW::Renderer</a></td></tr>
-<tr class="memitem:af82af8c9d42d062c0f745322bfbaa3ba inherit pro_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af82af8c9d42d062c0f745322bfbaa3ba"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setTracerBVH</b> (<a class="el" href="class_f_w_1_1_cuda_b_v_h.html">CudaBVH</a> *bvh)</td></tr>
-<tr class="separator:af82af8c9d42d062c0f745322bfbaa3ba inherit pro_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1f72070721e18ada38c75e414f4b59b inherit pro_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#ae1f72070721e18ada38c75e414f4b59b">Renderer</a> (const <a class="el" href="class_f_w_1_1_renderer.html">Renderer</a> &amp;)</td></tr>
+<tr class="separator:ae1f72070721e18ada38c75e414f4b59b inherit pro_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2396f3d02f17be24410baf181fcba667 inherit pro_methods_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_renderer.html">Renderer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a2396f3d02f17be24410baf181fcba667">operator=</a> (const <a class="el" href="class_f_w_1_1_renderer.html">Renderer</a> &amp;)</td></tr>
+<tr class="separator:a2396f3d02f17be24410baf181fcba667 inherit pro_methods_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_f_w_1_1_renderer"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_f_w_1_1_renderer')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_f_w_1_1_renderer.html">FW::Renderer</a></td></tr>
-<tr class="memitem:a37247a8fd0589c34b51a138fac7c62e0 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37247a8fd0589c34b51a138fac7c62e0"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_bvhCachePath</b></td></tr>
+<tr class="memitem:a6b3657167b565482f02fa55e2ca04150 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_cuda_compiler.html">CudaCompiler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a6b3657167b565482f02fa55e2ca04150">m_compiler</a></td></tr>
+<tr class="separator:a6b3657167b565482f02fa55e2ca04150 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37247a8fd0589c34b51a138fac7c62e0 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a37247a8fd0589c34b51a138fac7c62e0">m_bvhCachePath</a></td></tr>
 <tr class="separator:a37247a8fd0589c34b51a138fac7c62e0 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a368e81e5d0747ae721e56a9a2496a1a1 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a368e81e5d0747ae721e56a9a2496a1a1"></a>
-<a class="el" href="class_f_w_1_1_platform.html">Platform</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_platform</b></td></tr>
+<tr class="memitem:a368e81e5d0747ae721e56a9a2496a1a1 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_platform.html">Platform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a368e81e5d0747ae721e56a9a2496a1a1">m_platform</a></td></tr>
 <tr class="separator:a368e81e5d0747ae721e56a9a2496a1a1 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae30aaafef482f8a321324d3f50fb2798 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae30aaafef482f8a321324d3f50fb2798"></a>
-<a class="el" href="struct_f_w_1_1_b_v_h_1_1_build_params.html">BVH::BuildParams</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_buildParams</b></td></tr>
+<tr class="memitem:ae30aaafef482f8a321324d3f50fb2798 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_f_w_1_1_b_v_h_1_1_build_params.html">BVH::BuildParams</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#ae30aaafef482f8a321324d3f50fb2798">m_buildParams</a></td></tr>
 <tr class="separator:ae30aaafef482f8a321324d3f50fb2798 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88136d98b0253c635330e082e6015faa inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88136d98b0253c635330e082e6015faa"></a>
-<a class="el" href="class_f_w_1_1_ray_gen.html">RayGen</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_raygen</b></td></tr>
+<tr class="memitem:a88136d98b0253c635330e082e6015faa inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_ray_gen.html">RayGen</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a88136d98b0253c635330e082e6015faa">m_raygen</a></td></tr>
 <tr class="separator:a88136d98b0253c635330e082e6015faa inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45a7ebb68fd02d2f4a6b97b9efd5a06c inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a45a7ebb68fd02d2f4a6b97b9efd5a06c"></a>
-<a class="el" href="class_f_w_1_1_random.html">Random</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_random</b></td></tr>
+<tr class="memitem:a45a7ebb68fd02d2f4a6b97b9efd5a06c inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_random.html">Random</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a45a7ebb68fd02d2f4a6b97b9efd5a06c">m_random</a></td></tr>
 <tr class="separator:a45a7ebb68fd02d2f4a6b97b9efd5a06c inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa576bba0cb6453e2443deaca00278983 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa576bba0cb6453e2443deaca00278983"></a>
-<a class="el" href="struct_f_w_1_1_renderer_1_1_params.html">Params</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_params</b></td></tr>
+<tr class="memitem:aa576bba0cb6453e2443deaca00278983 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_f_w_1_1_renderer_1_1_params.html">Params</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#aa576bba0cb6453e2443deaca00278983">m_params</a></td></tr>
 <tr class="separator:aa576bba0cb6453e2443deaca00278983 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90bff5385c954acd2f388b25eb57fdb7 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a90bff5385c954acd2f388b25eb57fdb7"></a>
-<a class="el" href="class_f_w_1_1_window.html">Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_window</b></td></tr>
+<tr class="memitem:a90bff5385c954acd2f388b25eb57fdb7 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_window.html">Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a90bff5385c954acd2f388b25eb57fdb7">m_window</a></td></tr>
 <tr class="separator:a90bff5385c954acd2f388b25eb57fdb7 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c8083d6885080dc0500dfa615e191fa inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c8083d6885080dc0500dfa615e191fa"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableRandom</b></td></tr>
+<tr class="memitem:a5c8083d6885080dc0500dfa615e191fa inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a5c8083d6885080dc0500dfa615e191fa">m_enableRandom</a></td></tr>
 <tr class="separator:a5c8083d6885080dc0500dfa615e191fa inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a155b67e30ace1198bd2539bb4c1209d4 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a155b67e30ace1198bd2539bb4c1209d4"></a>
-<a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_mesh</b></td></tr>
+<tr class="memitem:a155b67e30ace1198bd2539bb4c1209d4 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a155b67e30ace1198bd2539bb4c1209d4">m_mesh</a></td></tr>
 <tr class="separator:a155b67e30ace1198bd2539bb4c1209d4 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bcbd4fe4e6ed48e9f05bfdaa2a59e6a inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5bcbd4fe4e6ed48e9f05bfdaa2a59e6a"></a>
-<a class="el" href="class_f_w_1_1_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_scene</b></td></tr>
+<tr class="memitem:a5bcbd4fe4e6ed48e9f05bfdaa2a59e6a inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a5bcbd4fe4e6ed48e9f05bfdaa2a59e6a">m_scene</a></td></tr>
 <tr class="separator:a5bcbd4fe4e6ed48e9f05bfdaa2a59e6a inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fb7862391ec2ca841b29463b8a48c92 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fb7862391ec2ca841b29463b8a48c92"></a>
-<a class="el" href="class_f_w_1_1_cuda_b_v_h.html">CudaBVH</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_bvh</b></td></tr>
-<tr class="separator:a7fb7862391ec2ca841b29463b8a48c92 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f21c8bfd05caf157f2946f67b5948b5 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f21c8bfd05caf157f2946f67b5948b5"></a>
-<a class="el" href="class_f_w_1_1_image.html">Image</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_image</b></td></tr>
+<tr class="memitem:a0f21c8bfd05caf157f2946f67b5948b5 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_image.html">Image</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a0f21c8bfd05caf157f2946f67b5948b5">m_image</a></td></tr>
 <tr class="separator:a0f21c8bfd05caf157f2946f67b5948b5 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad378f42db3e7453b1c03a07eb6c0de27 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad378f42db3e7453b1c03a07eb6c0de27"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>m_cameraFar</b></td></tr>
+<tr class="memitem:ad378f42db3e7453b1c03a07eb6c0de27 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#ad378f42db3e7453b1c03a07eb6c0de27">m_cameraFar</a></td></tr>
 <tr class="separator:ad378f42db3e7453b1c03a07eb6c0de27 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64c3c9da0d25ae7929f43cc0b00ea7b7 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64c3c9da0d25ae7929f43cc0b00ea7b7"></a>
-<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_primaryRays</b></td></tr>
+<tr class="memitem:a64c3c9da0d25ae7929f43cc0b00ea7b7 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a64c3c9da0d25ae7929f43cc0b00ea7b7">m_primaryRays</a></td></tr>
 <tr class="separator:a64c3c9da0d25ae7929f43cc0b00ea7b7 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f5e1f514e073f5dbc55fe28ae91209a inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f5e1f514e073f5dbc55fe28ae91209a"></a>
-<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_secondaryRays</b></td></tr>
+<tr class="memitem:a1f5e1f514e073f5dbc55fe28ae91209a inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a1f5e1f514e073f5dbc55fe28ae91209a">m_secondaryRays</a></td></tr>
 <tr class="separator:a1f5e1f514e073f5dbc55fe28ae91209a inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37c7dab0546fe1b80fe74cc2998b8427 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37c7dab0546fe1b80fe74cc2998b8427"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_newBatch</b></td></tr>
+<tr class="memitem:a37c7dab0546fe1b80fe74cc2998b8427 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a37c7dab0546fe1b80fe74cc2998b8427">m_newBatch</a></td></tr>
 <tr class="separator:a37c7dab0546fe1b80fe74cc2998b8427 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e5c366ce15cd0213aebb30610615ab4 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e5c366ce15cd0213aebb30610615ab4"></a>
-<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_batchRays</b></td></tr>
+<tr class="memitem:a1e5c366ce15cd0213aebb30610615ab4 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a1e5c366ce15cd0213aebb30610615ab4">m_batchRays</a></td></tr>
 <tr class="separator:a1e5c366ce15cd0213aebb30610615ab4 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7713ce120fc112a3774a0d2f02d0477 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7713ce120fc112a3774a0d2f02d0477"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>m_batchStart</b></td></tr>
+<tr class="memitem:ab7713ce120fc112a3774a0d2f02d0477 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#ab7713ce120fc112a3774a0d2f02d0477">m_batchStart</a></td></tr>
 <tr class="separator:ab7713ce120fc112a3774a0d2f02d0477 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6fce660a2abc2ce05d5f95e4c354931 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_cuda_a_s.html">CudaAS</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#ae6fce660a2abc2ce05d5f95e4c354931">m_accelStruct</a></td></tr>
+<tr class="separator:ae6fce660a2abc2ce05d5f95e4c354931 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa35df606a0c46db496f2139ff3d6d5f5 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_cuda_virtual_tracer.html">CudaVirtualTracer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#aa35df606a0c46db496f2139ff3d6d5f5">m_cudaTracer</a></td></tr>
+<tr class="separator:aa35df606a0c46db496f2139ff3d6d5f5 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5585f242617406b7132e7d884a18e6d4 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_renderer.html#aff36fcfa79df47528f46050a25ab94ba">AccelStructType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a5585f242617406b7132e7d884a18e6d4">m_asType</a></td></tr>
+<tr class="separator:a5585f242617406b7132e7d884a18e6d4 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaa11432bdc4fae54e1f859d2a63c222 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_visualization.html">Visualization</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#adaa11432bdc4fae54e1f859d2a63c222">m_vis</a></td></tr>
+<tr class="separator:adaa11432bdc4fae54e1f859d2a63c222 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17468b185743629befcae066b150ada9 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_renderer.html#a17468b185743629befcae066b150ada9">m_showVis</a></td></tr>
+<tr class="separator:a17468b185743629befcae066b150ada9 inherit pro_attribs_class_f_w_1_1_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_c_p_u_renderer_8hpp_source.html#l00024">24</a> of file <a class="el" href="_c_p_u_renderer_8hpp_source.html">CPURenderer.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a6dc92eb67edd4ad84505725a79e2013b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPURenderer::CPURenderer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_environment.html">Environment</a> *&#160;</td>
+          <td class="paramname"><em>env</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_renderer_8cpp_source.html#l00023">23</a> of file <a class="el" href="_c_p_u_renderer_8cpp_source.html">CPURenderer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6a776e172b23109daa706bebe18652ce"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPURenderer::~CPURenderer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_renderer_8cpp_source.html#l00033">33</a> of file <a class="el" href="_c_p_u_renderer_8cpp_source.html">CPURenderer.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aa10b30f7faaa7dea08412f55f84cf3df"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> CPURenderer::getDistanceColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>minVal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>maxVal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_renderer_8cpp_source.html#l00457">457</a> of file <a class="el" href="_c_p_u_renderer_8cpp_source.html">CPURenderer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a85345db7275ac11412b3c1f40abc3ff6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="_cuda_tracer_kernels_8hpp.html#a4340a2ec09290613da89196af6f875bf">BVHLayout</a> FW::CPURenderer::getLayout </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_renderer_8hpp_source.html#l00033">33</a> of file <a class="el" href="_c_p_u_renderer_8hpp_source.html">CPURenderer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9ca6fa65eb1528d2b1a7b93eef1ba965"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec4f.html">Vec4f</a> CPURenderer::getPseudoColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>minVal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>maxVal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_renderer_8cpp_source.html#l00377">377</a> of file <a class="el" href="_c_p_u_renderer_8cpp_source.html">CPURenderer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a54ec511b9e3dc856acb7932e2fd8722f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CPURenderer::getTotalNumRays </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_renderer_8cpp_source.html#l00296">296</a> of file <a class="el" href="_c_p_u_renderer_8cpp_source.html">CPURenderer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9de2c8f20a2b20388c3d49294e3fcbe6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CPURenderer::nextBatch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_renderer_8cpp_source.html#l00046">46</a> of file <a class="el" href="_c_p_u_renderer_8cpp_source.html">CPURenderer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a16734267c6fbd619442e8dc233c73939"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::CPURenderer::setMessageWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_window.html">Window</a> *&#160;</td>
+          <td class="paramname"><em>window</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_renderer_8hpp_source.html#l00032">32</a> of file <a class="el" href="_c_p_u_renderer_8hpp_source.html">CPURenderer.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab6b0b11110d6ca29474bb9b38ced5a45"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CPURenderer::setParams </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_renderer_1_1_params.html">Params</a> &amp;&#160;</td>
+          <td class="paramname"><em>params</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_renderer_8cpp_source.html#l00039">39</a> of file <a class="el" href="_c_p_u_renderer_8cpp_source.html">CPURenderer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7b4ced58c7e379b1a86ae7e748fd609c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> CPURenderer::traceBatch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_f_w_1_1_ray_stats.html">RayStats</a> *&#160;</td>
+          <td class="paramname"><em>stats</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_renderer_8cpp_source.html#l00097">97</a> of file <a class="el" href="_c_p_u_renderer_8cpp_source.html">CPURenderer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af231734c7cd4a2308394427ee8733442"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> CPURenderer::updateResult </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_c_p_u_renderer_8cpp_source.html#l00132">132</a> of file <a class="el" href="_c_p_u_renderer_8cpp_source.html">CPURenderer.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/rt/cuda/<a class="el" href="_c_p_u_renderer_8hpp_source.html">CPURenderer.hpp</a></li>
-<li>src/rt/cuda/CPURenderer.cpp</li>
+<li>src/rt/cuda/<a class="el" href="_c_p_u_renderer_8cpp_source.html">CPURenderer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_c_p_u_renderer.html">CPURenderer</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_c_p_u_renderer.html">CPURenderer</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

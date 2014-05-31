@@ -5,7 +5,7 @@ var class_f_w_1_1_occlusion_b_v_h_builder =
     [ "SpatialBinOcl", "struct_f_w_1_1_occlusion_b_v_h_builder_1_1_spatial_bin_ocl.html", "struct_f_w_1_1_occlusion_b_v_h_builder_1_1_spatial_bin_ocl" ],
     [ "SpatialSplitOcl", "struct_f_w_1_1_occlusion_b_v_h_builder_1_1_spatial_split_ocl.html", "struct_f_w_1_1_occlusion_b_v_h_builder_1_1_spatial_split_ocl" ],
     [ "MaxVisibleDepth", "class_f_w_1_1_occlusion_b_v_h_builder.html#a5cd6e70ddbef9352df8bead6630004caa6e83b325ff1537b9426c27f7dd3fbcbc", null ],
-    [ "OcclusionBVHBuilder", "class_f_w_1_1_occlusion_b_v_h_builder.html#a42d9c13fe1d716066a973759e7cd2d2b", null ],
+    [ "OcclusionBVHBuilder", "class_f_w_1_1_occlusion_b_v_h_builder.html#a37afa796961cb15eb656f1b6c06070c2", null ],
     [ "~OcclusionBVHBuilder", "class_f_w_1_1_occlusion_b_v_h_builder.html#a0c7c1f6d6cd57d9534e31980ccef21ea", null ],
     [ "buildNode", "class_f_w_1_1_occlusion_b_v_h_builder.html#ada1ce3c743c32dcb32d166922ec0395e", null ],
     [ "findObjectOccludeSplit", "class_f_w_1_1_occlusion_b_v_h_builder.html#a91ef5a2f20a4b548a92809b9fd16ebf2", null ],

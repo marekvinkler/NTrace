@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_option.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,48 +111,96 @@ $(document).ready(function(){initNavTree('class_option.html','');});
 <div class="title">Option Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_environment_8h_source.html">Environment.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Option</div></td></tr>
 <tr><td colspan="2"><div class="groupText"></div></td></tr>
-<tr class="memitem:af517613005312013c576eb9099a50464"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af517613005312013c576eb9099a50464"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Option</b> ()</td></tr>
+<tr class="memitem:af517613005312013c576eb9099a50464"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_option.html#af517613005312013c576eb9099a50464">Option</a> ()</td></tr>
 <tr class="separator:af517613005312013c576eb9099a50464"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a397841eea188c0d17d72c19429791ad3"><td class="memItemLeft" align="right" valign="top">OptionType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_option.html#a397841eea188c0d17d72c19429791ad3">type</a></td></tr>
+<tr class="memitem:a397841eea188c0d17d72c19429791ad3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_environment_8h.html#a976bded296a67e09242af85291a639d6">OptionType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_option.html#a397841eea188c0d17d72c19429791ad3">type</a></td></tr>
 <tr class="separator:a397841eea188c0d17d72c19429791ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8aae24492e599aeb657d5f953044196c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8aae24492e599aeb657d5f953044196c"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+<tr class="memitem:a8aae24492e599aeb657d5f953044196c"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_option.html#a8aae24492e599aeb657d5f953044196c">name</a></td></tr>
 <tr class="separator:a8aae24492e599aeb657d5f953044196c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4457ff0702aacd0dda6df15ec8c04544"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4457ff0702aacd0dda6df15ec8c04544"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>value</b></td></tr>
+<tr class="memitem:a4457ff0702aacd0dda6df15ec8c04544"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_option.html#a4457ff0702aacd0dda6df15ec8c04544">value</a></td></tr>
 <tr class="separator:a4457ff0702aacd0dda6df15ec8c04544"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88c660db6634d418a537fc4bf6b4de14"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88c660db6634d418a537fc4bf6b4de14"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>abbrev</b></td></tr>
+<tr class="memitem:a88c660db6634d418a537fc4bf6b4de14"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_option.html#a88c660db6634d418a537fc4bf6b4de14">abbrev</a></td></tr>
 <tr class="separator:a88c660db6634d418a537fc4bf6b4de14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a341fb567adcb61ea967bc225ff52ddda"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a341fb567adcb61ea967bc225ff52ddda"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>defaultValue</b></td></tr>
+<tr class="memitem:a341fb567adcb61ea967bc225ff52ddda"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_option.html#a341fb567adcb61ea967bc225ff52ddda">defaultValue</a></td></tr>
 <tr class="separator:a341fb567adcb61ea967bc225ff52ddda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac68c2f4018c6d97601ea4d624e99046b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac68c2f4018c6d97601ea4d624e99046b"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>description</b></td></tr>
+<tr class="memitem:ac68c2f4018c6d97601ea4d624e99046b"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_option.html#ac68c2f4018c6d97601ea4d624e99046b">description</a></td></tr>
 <tr class="separator:ac68c2f4018c6d97601ea4d624e99046b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25aa1108316c450524130cc723cbf290"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25aa1108316c450524130cc723cbf290"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>pointer</b></td></tr>
+<tr class="memitem:a25aa1108316c450524130cc723cbf290"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_option.html#a25aa1108316c450524130cc723cbf290">pointer</a></td></tr>
 <tr class="separator:a25aa1108316c450524130cc723cbf290"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 ~Option</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp955028c978aacc5b5605f63e0587e94b"></a></p>
 </td></tr>
-<tr class="memitem:a51319077627d44640d65010abc14b3c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51319077627d44640d65010abc14b3c9"></a>
-virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Option</b> ()</td></tr>
+<tr class="memitem:a51319077627d44640d65010abc14b3c9"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_option.html#a51319077627d44640d65010abc14b3c9">~Option</a> ()</td></tr>
 <tr class="separator:a51319077627d44640d65010abc14b3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cc09125fe35819250698b39225bb0d8"><td class="memItemLeft" align="right" valign="top">ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_option.html#a4cc09125fe35819250698b39225bb0d8">operator&lt;&lt;</a> (ostream &amp;s, const <a class="el" href="class_option.html">Option</a> &amp;o)</td></tr>
 <tr class="separator:a4cc09125fe35819250698b39225bb0d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_environment_8h_source.html#l00060">60</a> of file <a class="el" href="_environment_8h_source.html">Environment.h</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="af517613005312013c576eb9099a50464"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Option::Option </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_environment_8h_source.html#l00084">84</a> of file <a class="el" href="_environment_8h_source.html">Environment.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a51319077627d44640d65010abc14b3c9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Option::~Option </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_environment_8h_source.html#l00103">103</a> of file <a class="el" href="_environment_8h_source.html">Environment.h</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Friends And Related Function Documentation</h2>
 <a class="anchor" id="a4cc09125fe35819250698b39225bb0d8"></a>
 <div class="memitem">
@@ -185,18 +234,106 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Option</b> ()</td
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="_environment_8h_source.html#l00122">122</a> of file <a class="el" href="_environment_8h_source.html">Environment.h</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a88c660db6634d418a537fc4bf6b4de14"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* Option::abbrev</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_environment_8h_source.html#l00069">69</a> of file <a class="el" href="_environment_8h_source.html">Environment.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a341fb567adcb61ea967bc225ff52ddda"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* Option::defaultValue</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_environment_8h_source.html#l00070">70</a> of file <a class="el" href="_environment_8h_source.html">Environment.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac68c2f4018c6d97601ea4d624e99046b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* Option::description</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_environment_8h_source.html#l00072">72</a> of file <a class="el" href="_environment_8h_source.html">Environment.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8aae24492e599aeb657d5f953044196c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* Option::name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_environment_8h_source.html#l00067">67</a> of file <a class="el" href="_environment_8h_source.html">Environment.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a25aa1108316c450524130cc723cbf290"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>* Option::pointer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_environment_8h_source.html#l00073">73</a> of file <a class="el" href="_environment_8h_source.html">Environment.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a397841eea188c0d17d72c19429791ad3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">OptionType Option::type</td>
+          <td class="memname"><a class="el" href="_environment_8h.html#a976bded296a67e09242af85291a639d6">OptionType</a> Option::type</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_environment_8h_source.html#l00066">66</a> of file <a class="el" href="_environment_8h_source.html">Environment.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4457ff0702aacd0dda6df15ec8c04544"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* Option::value</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_environment_8h_source.html#l00068">68</a> of file <a class="el" href="_environment_8h_source.html">Environment.h</a>.</p>
 
 </div>
 </div>
@@ -209,7 +346,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Option</b> ()</td
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_option.html">Option</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="footer">Generated on Sat May 31 2014 15:56:24 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

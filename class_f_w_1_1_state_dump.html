@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_state_dump.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,80 +112,616 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_state_dump.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p><code>#include &lt;<a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>&gt;</code></p>
+
 <p>Inherits <a class="el" href="class_f_w_1_1_serializable.html">FW::Serializable</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9a72f9ea8f89c60cabf91e05ea48f647"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a72f9ea8f89c60cabf91e05ea48f647"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>StateDump</b> (const <a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;other)</td></tr>
+<tr class="memitem:afe1961aa170a76ca07771487657384b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#afe1961aa170a76ca07771487657384b8">StateDump</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:afe1961aa170a76ca07771487657384b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a72f9ea8f89c60cabf91e05ea48f647"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#a9a72f9ea8f89c60cabf91e05ea48f647">StateDump</a> (const <a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;other)</td></tr>
 <tr class="separator:a9a72f9ea8f89c60cabf91e05ea48f647"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80e319aeefd71f9233c138b4bc3c56fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80e319aeefd71f9233c138b4bc3c56fd"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>readFromStream</b> (<a class="el" href="class_f_w_1_1_input_stream.html">InputStream</a> &amp;s)</td></tr>
+<tr class="memitem:a7dedc0fcfbbdee1b2585b1f6ef28731a"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#a7dedc0fcfbbdee1b2585b1f6ef28731a">~StateDump</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a7dedc0fcfbbdee1b2585b1f6ef28731a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80e319aeefd71f9233c138b4bc3c56fd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#a80e319aeefd71f9233c138b4bc3c56fd">readFromStream</a> (<a class="el" href="class_f_w_1_1_input_stream.html">InputStream</a> &amp;s)</td></tr>
 <tr class="separator:a80e319aeefd71f9233c138b4bc3c56fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd27c671a0b6c9dae1eaee856de62f6a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd27c671a0b6c9dae1eaee856de62f6a"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>writeToStream</b> (<a class="el" href="class_f_w_1_1_output_stream.html">OutputStream</a> &amp;s) const </td></tr>
+<tr class="memitem:acd27c671a0b6c9dae1eaee856de62f6a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#acd27c671a0b6c9dae1eaee856de62f6a">writeToStream</a> (<a class="el" href="class_f_w_1_1_output_stream.html">OutputStream</a> &amp;s) const </td></tr>
 <tr class="separator:acd27c671a0b6c9dae1eaee856de62f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac379d4ed02b940ae7a55c7cf1f53931c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac379d4ed02b940ae7a55c7cf1f53931c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (void)</td></tr>
+<tr class="memitem:ac379d4ed02b940ae7a55c7cf1f53931c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#ac379d4ed02b940ae7a55c7cf1f53931c">clear</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ac379d4ed02b940ae7a55c7cf1f53931c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7449ca19e7c7178580ca63f4c17b06e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7449ca19e7c7178580ca63f4c17b06e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (const <a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;other)</td></tr>
+<tr class="memitem:ad7449ca19e7c7178580ca63f4c17b06e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#ad7449ca19e7c7178580ca63f4c17b06e">add</a> (const <a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;other)</td></tr>
 <tr class="separator:ad7449ca19e7c7178580ca63f4c17b06e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae46a7e997f298e484e65618e02c2ca71"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae46a7e997f298e484e65618e02c2ca71"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;other)</td></tr>
+<tr class="memitem:ae46a7e997f298e484e65618e02c2ca71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#ae46a7e997f298e484e65618e02c2ca71">set</a> (const <a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;other)</td></tr>
 <tr class="separator:ae46a7e997f298e484e65618e02c2ca71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43de336f2321ac67b87c5092697652de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43de336f2321ac67b87c5092697652de"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pushOwner</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id)</td></tr>
+<tr class="memitem:a43de336f2321ac67b87c5092697652de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#a43de336f2321ac67b87c5092697652de">pushOwner</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id)</td></tr>
 <tr class="separator:a43de336f2321ac67b87c5092697652de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac1954897001b461fd8c94b5c857bcc4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac1954897001b461fd8c94b5c857bcc4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>popOwner</b> (void)</td></tr>
+<tr class="memitem:aac1954897001b461fd8c94b5c857bcc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#aac1954897001b461fd8c94b5c857bcc4">popOwner</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:aac1954897001b461fd8c94b5c857bcc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c56da0a37248946307765f97fe9000d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c56da0a37248946307765f97fe9000d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>has</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id) const </td></tr>
+<tr class="memitem:a8c56da0a37248946307765f97fe9000d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#a8c56da0a37248946307765f97fe9000d">has</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id) const </td></tr>
 <tr class="separator:a8c56da0a37248946307765f97fe9000d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f748bb9c4145ee78fc2c44f53b350b2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f748bb9c4145ee78fc2c44f53b350b2"></a>
-const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; U8 &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id) const </td></tr>
+<tr class="memitem:a5f748bb9c4145ee78fc2c44f53b350b2"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#a5f748bb9c4145ee78fc2c44f53b350b2">get</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id) const </td></tr>
 <tr class="separator:a5f748bb9c4145ee78fc2c44f53b350b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abffe7b74eda070aa5038020ab213d96d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abffe7b74eda070aa5038020ab213d96d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (void *ptr, int size, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id)</td></tr>
+<tr class="memitem:abffe7b74eda070aa5038020ab213d96d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#abffe7b74eda070aa5038020ab213d96d">get</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, int <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id)</td></tr>
 <tr class="separator:abffe7b74eda070aa5038020ab213d96d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f2b9b800aa6f8517e150a3cafcd42a1"><td class="memTemplParams" colspan="2"><a class="anchor" id="a0f2b9b800aa6f8517e150a3cafcd42a1"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a0f2b9b800aa6f8517e150a3cafcd42a1"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get</b> (T &amp;value, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id) const </td></tr>
+<tr class="memitem:a0f2b9b800aa6f8517e150a3cafcd42a1"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a0f2b9b800aa6f8517e150a3cafcd42a1"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#a0f2b9b800aa6f8517e150a3cafcd42a1">get</a> (T &amp;<a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id) const </td></tr>
 <tr class="separator:a0f2b9b800aa6f8517e150a3cafcd42a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7976d2f76e4727d3059c4cafc4206859"><td class="memTemplParams" colspan="2"><a class="anchor" id="a7976d2f76e4727d3059c4cafc4206859"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a7976d2f76e4727d3059c4cafc4206859"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get</b> (T &amp;value, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id, const T &amp;defValue) const </td></tr>
+<tr class="memitem:a7976d2f76e4727d3059c4cafc4206859"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a7976d2f76e4727d3059c4cafc4206859"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#a7976d2f76e4727d3059c4cafc4206859">get</a> (T &amp;<a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id, const T &amp;defValue) const </td></tr>
 <tr class="separator:a7976d2f76e4727d3059c4cafc4206859"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfed867fa14a2098a38c97a7b1177524"><td class="memTemplParams" colspan="2"><a class="anchor" id="abfed867fa14a2098a38c97a7b1177524"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:abfed867fa14a2098a38c97a7b1177524"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><b>get</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id, const T &amp;defValue) const </td></tr>
+<tr class="memitem:abfed867fa14a2098a38c97a7b1177524"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:abfed867fa14a2098a38c97a7b1177524"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#abfed867fa14a2098a38c97a7b1177524">get</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id, const T &amp;defValue) const </td></tr>
 <tr class="separator:abfed867fa14a2098a38c97a7b1177524"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af353a41358a69a0bbc0f4366f6365c4e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af353a41358a69a0bbc0f4366f6365c4e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const void *ptr, int size, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id)</td></tr>
+<tr class="memitem:af353a41358a69a0bbc0f4366f6365c4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#af353a41358a69a0bbc0f4366f6365c4e">set</a> (const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, int <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id)</td></tr>
 <tr class="separator:af353a41358a69a0bbc0f4366f6365c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62989b59b2f88fda0f6bdbe192e9fc1b"><td class="memTemplParams" colspan="2"><a class="anchor" id="a62989b59b2f88fda0f6bdbe192e9fc1b"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a62989b59b2f88fda0f6bdbe192e9fc1b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>set</b> (const T &amp;value, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id)</td></tr>
+<tr class="memitem:a62989b59b2f88fda0f6bdbe192e9fc1b"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a62989b59b2f88fda0f6bdbe192e9fc1b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#a62989b59b2f88fda0f6bdbe192e9fc1b">set</a> (const T &amp;<a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id)</td></tr>
 <tr class="separator:a62989b59b2f88fda0f6bdbe192e9fc1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd26820d3c382a24a1f43c6e20e3f6cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd26820d3c382a24a1f43c6e20e3f6cb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>unset</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id)</td></tr>
+<tr class="memitem:abd26820d3c382a24a1f43c6e20e3f6cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#abd26820d3c382a24a1f43c6e20e3f6cb">unset</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;id)</td></tr>
 <tr class="separator:abd26820d3c382a24a1f43c6e20e3f6cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adea8dc19fc5df77e642a1d38bcfa9746"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adea8dc19fc5df77e642a1d38bcfa9746"></a>
-<a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;other)</td></tr>
+<tr class="memitem:adea8dc19fc5df77e642a1d38bcfa9746"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_state_dump.html#adea8dc19fc5df77e642a1d38bcfa9746">operator=</a> (const <a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;other)</td></tr>
 <tr class="separator:adea8dc19fc5df77e642a1d38bcfa9746"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_f_w_1_1_serializable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_f_w_1_1_serializable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_f_w_1_1_serializable.html">FW::Serializable</a></td></tr>
+<tr class="memitem:a765cafcb185a172c531e8a28f07c0448 inherit pub_methods_class_f_w_1_1_serializable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_serializable.html#a765cafcb185a172c531e8a28f07c0448">Serializable</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a765cafcb185a172c531e8a28f07c0448 inherit pub_methods_class_f_w_1_1_serializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa44684135c04fcb06c96d753a028a2cf inherit pub_methods_class_f_w_1_1_serializable"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_serializable.html#aa44684135c04fcb06c96d753a028a2cf">~Serializable</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:aa44684135c04fcb06c96d753a028a2cf inherit pub_methods_class_f_w_1_1_serializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00037">37</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="afe1961aa170a76ca07771487657384b8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::StateDump::StateDump </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00040">40</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9a72f9ea8f89c60cabf91e05ea48f647"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::StateDump::StateDump </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00041">41</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7dedc0fcfbbdee1b2585b1f6ef28731a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual FW::StateDump::~StateDump </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00042">42</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ad7449ca19e7c7178580ca63f4c17b06e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> StateDump::add </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8cpp_source.html#l00068">68</a> of file <a class="el" href="_state_dump_8cpp_source.html">StateDump.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac379d4ed02b940ae7a55c7cf1f53931c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> StateDump::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8cpp_source.html#l00059">59</a> of file <a class="el" href="_state_dump_8cpp_source.html">StateDump.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5f748bb9c4145ee78fc2c44f53b350b2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> &gt; * StateDump::get </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8cpp_source.html#l00077">77</a> of file <a class="el" href="_state_dump_8cpp_source.html">StateDump.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abffe7b74eda070aa5038020ab213d96d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool StateDump::get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8cpp_source.html#l00085">85</a> of file <a class="el" href="_state_dump_8cpp_source.html">StateDump.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0f2b9b800aa6f8517e150a3cafcd42a1"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::StateDump::get </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00081">81</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7976d2f76e4727d3059c4cafc4206859"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::StateDump::get </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>defValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00095">95</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abfed867fa14a2098a38c97a7b1177524"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T FW::StateDump::get </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>defValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00105">105</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8c56da0a37248946307765f97fe9000d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::StateDump::has </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00054">54</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adea8dc19fc5df77e642a1d38bcfa9746"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a>&amp; FW::StateDump::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00065">65</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aac1954897001b461fd8c94b5c857bcc4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::StateDump::popOwner </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00052">52</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a43de336f2321ac67b87c5092697652de"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::StateDump::pushOwner </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00051">51</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a80e319aeefd71f9233c138b4bc3c56fd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> StateDump::readFromStream </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_input_stream.html">InputStream</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_f_w_1_1_serializable.html#ade9f07563a29aab161b3e60224b94e3a">FW::Serializable</a>.</p>
+
+<p>Definition at line <a class="el" href="_state_dump_8cpp_source.html#l00034">34</a> of file <a class="el" href="_state_dump_8cpp_source.html">StateDump.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae46a7e997f298e484e65618e02c2ca71"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::StateDump::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00049">49</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af353a41358a69a0bbc0f4366f6365c4e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> StateDump::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8cpp_source.html#l00101">101</a> of file <a class="el" href="_state_dump_8cpp_source.html">StateDump.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a62989b59b2f88fda0f6bdbe192e9fc1b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::StateDump::set </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00114">114</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abd26820d3c382a24a1f43c6e20e3f6cb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::StateDump::unset </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_state_dump_8hpp_source.html#l00063">63</a> of file <a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acd27c671a0b6c9dae1eaee856de62f6a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> StateDump::writeToStream </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_output_stream.html">OutputStream</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_f_w_1_1_serializable.html#a78cc84dc75cf1de0e2aa93916d388b78">FW::Serializable</a>.</p>
+
+<p>Definition at line <a class="el" href="_state_dump_8cpp_source.html#l00050">50</a> of file <a class="el" href="_state_dump_8cpp_source.html">StateDump.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/io/<a class="el" href="_state_dump_8hpp_source.html">StateDump.hpp</a></li>
-<li>src/framework/io/StateDump.cpp</li>
+<li>src/framework/io/<a class="el" href="_state_dump_8cpp_source.html">StateDump.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_state_dump.html">StateDump</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

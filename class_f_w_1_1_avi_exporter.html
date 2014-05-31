@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_avi_exporter.html','');}
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,39 +111,208 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_avi_exporter.html','');}
 <div class="title">FW::AviExporter Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_avi_exporter_8hpp_source.html">AviExporter.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abcb7a69748b46272c22e92baf0783013"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abcb7a69748b46272c22e92baf0783013"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>AviExporter</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;fileName, <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> size, int fps)</td></tr>
+<tr class="memitem:abcb7a69748b46272c22e92baf0783013"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_avi_exporter.html#abcb7a69748b46272c22e92baf0783013">AviExporter</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;fileName, <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>, int fps)</td></tr>
 <tr class="separator:abcb7a69748b46272c22e92baf0783013"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5b360792d620c0247bf61e0c0b63f69"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5b360792d620c0247bf61e0c0b63f69"></a>
-const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFrame</b> (void) const </td></tr>
+<tr class="memitem:aa8b7240b30565b959e704a62bff79a5f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_avi_exporter.html#aa8b7240b30565b959e704a62bff79a5f">~AviExporter</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:aa8b7240b30565b959e704a62bff79a5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5b360792d620c0247bf61e0c0b63f69"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_avi_exporter.html#ae5b360792d620c0247bf61e0c0b63f69">getFrame</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ae5b360792d620c0247bf61e0c0b63f69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0451cc116d565f477938870af5e00e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0451cc116d565f477938870af5e00e4"></a>
-<a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFrame</b> (void)</td></tr>
+<tr class="memitem:ac0451cc116d565f477938870af5e00e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_image.html">Image</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_avi_exporter.html#ac0451cc116d565f477938870af5e00e4">getFrame</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ac0451cc116d565f477938870af5e00e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2771634df5ca81bcd465dbe52e7cc8c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2771634df5ca81bcd465dbe52e7cc8c3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getFPS</b> (void) const </td></tr>
+<tr class="memitem:a2771634df5ca81bcd465dbe52e7cc8c3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_avi_exporter.html#a2771634df5ca81bcd465dbe52e7cc8c3">getFPS</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a2771634df5ca81bcd465dbe52e7cc8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca1007ffbe54a3c54ea7dbf8c926817f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca1007ffbe54a3c54ea7dbf8c926817f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>exportFrame</b> (void)</td></tr>
+<tr class="memitem:aca1007ffbe54a3c54ea7dbf8c926817f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_avi_exporter.html#aca1007ffbe54a3c54ea7dbf8c926817f">exportFrame</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:aca1007ffbe54a3c54ea7dbf8c926817f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10724ad6ab85b05c990bc6046140f426"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10724ad6ab85b05c990bc6046140f426"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>flush</b> (void)</td></tr>
+<tr class="memitem:a10724ad6ab85b05c990bc6046140f426"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_avi_exporter.html#a10724ad6ab85b05c990bc6046140f426">flush</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a10724ad6ab85b05c990bc6046140f426"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_avi_exporter_8hpp_source.html#l00037">37</a> of file <a class="el" href="_avi_exporter_8hpp_source.html">AviExporter.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="abcb7a69748b46272c22e92baf0783013"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AviExporter::AviExporter </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>fileName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fps</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_avi_exporter_8cpp_source.html#l00038">38</a> of file <a class="el" href="_avi_exporter_8cpp_source.html">AviExporter.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa8b7240b30565b959e704a62bff79a5f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AviExporter::~AviExporter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_avi_exporter_8cpp_source.html#l00053">53</a> of file <a class="el" href="_avi_exporter_8cpp_source.html">AviExporter.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aca1007ffbe54a3c54ea7dbf8c926817f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> AviExporter::exportFrame </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_avi_exporter_8cpp_source.html#l00059">59</a> of file <a class="el" href="_avi_exporter_8cpp_source.html">AviExporter.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a10724ad6ab85b05c990bc6046140f426"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> AviExporter::flush </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_avi_exporter_8cpp_source.html#l00124">124</a> of file <a class="el" href="_avi_exporter_8cpp_source.html">AviExporter.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2771634df5ca81bcd465dbe52e7cc8c3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FW::AviExporter::getFPS </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_avi_exporter_8hpp_source.html#l00045">45</a> of file <a class="el" href="_avi_exporter_8hpp_source.html">AviExporter.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae5b360792d620c0247bf61e0c0b63f69"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_image.html">Image</a>&amp; FW::AviExporter::getFrame </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_avi_exporter_8hpp_source.html#l00043">43</a> of file <a class="el" href="_avi_exporter_8hpp_source.html">AviExporter.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac0451cc116d565f477938870af5e00e4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_image.html">Image</a>&amp; FW::AviExporter::getFrame </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_avi_exporter_8hpp_source.html#l00044">44</a> of file <a class="el" href="_avi_exporter_8hpp_source.html">AviExporter.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/io/<a class="el" href="_avi_exporter_8hpp_source.html">AviExporter.hpp</a></li>
-<li>src/framework/io/AviExporter.cpp</li>
+<li>src/framework/io/<a class="el" href="_avi_exporter_8cpp_source.html">AviExporter.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_avi_exporter.html">AviExporter</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_avi_exporter.html">AviExporter</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

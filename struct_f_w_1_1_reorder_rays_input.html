@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_reorder_rays_input.html
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,31 +111,128 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_reorder_rays_input.html
 <div class="title">FW::ReorderRaysInput Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_ray_buffer_kernels_8hpp_source.html">RayBufferKernels.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a4bb8a0d7fdfcf5e19ad8bfdd23e24f46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4bb8a0d7fdfcf5e19ad8bfdd23e24f46"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>numRays</b></td></tr>
+<tr class="memitem:a4bb8a0d7fdfcf5e19ad8bfdd23e24f46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reorder_rays_input.html#a4bb8a0d7fdfcf5e19ad8bfdd23e24f46">numRays</a></td></tr>
 <tr class="separator:a4bb8a0d7fdfcf5e19ad8bfdd23e24f46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18036b4e4ac8901fb75adbb89e68bcce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18036b4e4ac8901fb75adbb89e68bcce"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>inKeys</b></td></tr>
+<tr class="memitem:a18036b4e4ac8901fb75adbb89e68bcce"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reorder_rays_input.html#a18036b4e4ac8901fb75adbb89e68bcce">inKeys</a></td></tr>
 <tr class="separator:a18036b4e4ac8901fb75adbb89e68bcce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42f98aa0cbcaf03a79e6025785fb2dc3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42f98aa0cbcaf03a79e6025785fb2dc3"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>inRays</b></td></tr>
+<tr class="memitem:a42f98aa0cbcaf03a79e6025785fb2dc3"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reorder_rays_input.html#a42f98aa0cbcaf03a79e6025785fb2dc3">inRays</a></td></tr>
 <tr class="separator:a42f98aa0cbcaf03a79e6025785fb2dc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e4fea240741c391195243ec0081d794"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e4fea240741c391195243ec0081d794"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>inSlotToID</b></td></tr>
+<tr class="memitem:a8e4fea240741c391195243ec0081d794"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reorder_rays_input.html#a8e4fea240741c391195243ec0081d794">inSlotToID</a></td></tr>
 <tr class="separator:a8e4fea240741c391195243ec0081d794"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab929136244a4e99aca8ff0047ca34c8c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab929136244a4e99aca8ff0047ca34c8c"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>outRays</b></td></tr>
+<tr class="memitem:ab929136244a4e99aca8ff0047ca34c8c"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reorder_rays_input.html#ab929136244a4e99aca8ff0047ca34c8c">outRays</a></td></tr>
 <tr class="separator:ab929136244a4e99aca8ff0047ca34c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92e76598b3b7ab1446ac4ec68f175eaa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92e76598b3b7ab1446ac4ec68f175eaa"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>outIDToSlot</b></td></tr>
+<tr class="memitem:a92e76598b3b7ab1446ac4ec68f175eaa"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reorder_rays_input.html#a92e76598b3b7ab1446ac4ec68f175eaa">outIDToSlot</a></td></tr>
 <tr class="separator:a92e76598b3b7ab1446ac4ec68f175eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7471910f03d041dabea36ff9047ed26e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7471910f03d041dabea36ff9047ed26e"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>outSlotToID</b></td></tr>
+<tr class="memitem:a7471910f03d041dabea36ff9047ed26e"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reorder_rays_input.html#a7471910f03d041dabea36ff9047ed26e">outSlotToID</a></td></tr>
 <tr class="separator:a7471910f03d041dabea36ff9047ed26e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_ray_buffer_kernels_8hpp_source.html#l00081">81</a> of file <a class="el" href="_ray_buffer_kernels_8hpp_source.html">RayBufferKernels.hpp</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a18036b4e4ac8901fb75adbb89e68bcce"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReorderRaysInput::inKeys</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_buffer_kernels_8hpp_source.html#l00084">84</a> of file <a class="el" href="_ray_buffer_kernels_8hpp_source.html">RayBufferKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a42f98aa0cbcaf03a79e6025785fb2dc3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReorderRaysInput::inRays</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_buffer_kernels_8hpp_source.html#l00085">85</a> of file <a class="el" href="_ray_buffer_kernels_8hpp_source.html">RayBufferKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8e4fea240741c391195243ec0081d794"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReorderRaysInput::inSlotToID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_buffer_kernels_8hpp_source.html#l00086">86</a> of file <a class="el" href="_ray_buffer_kernels_8hpp_source.html">RayBufferKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4bb8a0d7fdfcf5e19ad8bfdd23e24f46"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::ReorderRaysInput::numRays</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_buffer_kernels_8hpp_source.html#l00083">83</a> of file <a class="el" href="_ray_buffer_kernels_8hpp_source.html">RayBufferKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a92e76598b3b7ab1446ac4ec68f175eaa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReorderRaysInput::outIDToSlot</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_buffer_kernels_8hpp_source.html#l00088">88</a> of file <a class="el" href="_ray_buffer_kernels_8hpp_source.html">RayBufferKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab929136244a4e99aca8ff0047ca34c8c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReorderRaysInput::outRays</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_buffer_kernels_8hpp_source.html#l00087">87</a> of file <a class="el" href="_ray_buffer_kernels_8hpp_source.html">RayBufferKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7471910f03d041dabea36ff9047ed26e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReorderRaysInput::outSlotToID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ray_buffer_kernels_8hpp_source.html#l00089">89</a> of file <a class="el" href="_ray_buffer_kernels_8hpp_source.html">RayBufferKernels.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/rt/ray/<a class="el" href="_ray_buffer_kernels_8hpp_source.html">RayBufferKernels.hpp</a></li>
 </ul>
@@ -143,8 +241,8 @@ CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>outSlotToID</b
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="struct_f_w_1_1_reorder_rays_input.html">ReorderRaysInput</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:39 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_reorder_rays_input.html">ReorderRaysInput</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

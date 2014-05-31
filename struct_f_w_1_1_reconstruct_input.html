@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_reconstruct_input.html'
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,49 +111,352 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_reconstruct_input.html'
 <div class="title">FW::ReconstructInput Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aef6dd60751ee9875e7c0dab1fcf0a1e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef6dd60751ee9875e7c0dab1fcf0a1e2"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>numRaysPerPrimary</b></td></tr>
+<tr class="memitem:aef6dd60751ee9875e7c0dab1fcf0a1e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#aef6dd60751ee9875e7c0dab1fcf0a1e2">numRaysPerPrimary</a></td></tr>
 <tr class="separator:aef6dd60751ee9875e7c0dab1fcf0a1e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a518c4009c9ab1cf0de0928a88ce925b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a518c4009c9ab1cf0de0928a88ce925b9"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>firstPrimary</b></td></tr>
+<tr class="memitem:a518c4009c9ab1cf0de0928a88ce925b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#a518c4009c9ab1cf0de0928a88ce925b9">firstPrimary</a></td></tr>
 <tr class="separator:a518c4009c9ab1cf0de0928a88ce925b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a812c5b6b3bdde5c7b371be8d9f56619e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a812c5b6b3bdde5c7b371be8d9f56619e"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>numPrimary</b></td></tr>
+<tr class="memitem:a812c5b6b3bdde5c7b371be8d9f56619e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#a812c5b6b3bdde5c7b371be8d9f56619e">numPrimary</a></td></tr>
 <tr class="separator:a812c5b6b3bdde5c7b371be8d9f56619e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a795dd5af071097b3b325050176bc62ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a795dd5af071097b3b325050176bc62ab"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isPrimary</b></td></tr>
+<tr class="memitem:a795dd5af071097b3b325050176bc62ab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#a795dd5af071097b3b325050176bc62ab">isPrimary</a></td></tr>
 <tr class="separator:a795dd5af071097b3b325050176bc62ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a018cf92f9a8d6cd7d6e3c4649c026f2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a018cf92f9a8d6cd7d6e3c4649c026f2a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAO</b></td></tr>
+<tr class="memitem:a018cf92f9a8d6cd7d6e3c4649c026f2a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#a018cf92f9a8d6cd7d6e3c4649c026f2a">isAO</a></td></tr>
 <tr class="separator:a018cf92f9a8d6cd7d6e3c4649c026f2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c0cfd631dcbf2af9167cdacbb88bf2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c0cfd631dcbf2af9167cdacbb88bf2a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDiffuse</b></td></tr>
+<tr class="memitem:a9c0cfd631dcbf2af9167cdacbb88bf2a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#a9c0cfd631dcbf2af9167cdacbb88bf2a">isDiffuse</a></td></tr>
 <tr class="separator:a9c0cfd631dcbf2af9167cdacbb88bf2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e091592ca830b6539e2e6246234c058"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e091592ca830b6539e2e6246234c058"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>primarySlotToID</b></td></tr>
+<tr class="memitem:adedc77615a3c4c6cf8feba244c0e3fe5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#adedc77615a3c4c6cf8feba244c0e3fe5">isTextured</a></td></tr>
+<tr class="separator:adedc77615a3c4c6cf8feba244c0e3fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90b62f90e5508ea79f5eec192ce24d92"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#a90b62f90e5508ea79f5eec192ce24d92">isPathTraced</a></td></tr>
+<tr class="separator:a90b62f90e5508ea79f5eec192ce24d92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e091592ca830b6539e2e6246234c058"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#a7e091592ca830b6539e2e6246234c058">primarySlotToID</a></td></tr>
 <tr class="separator:a7e091592ca830b6539e2e6246234c058"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab52eab0178d71a2dc6c960f22c1815f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab52eab0178d71a2dc6c960f22c1815f1"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>primaryResults</b></td></tr>
+<tr class="memitem:ab52eab0178d71a2dc6c960f22c1815f1"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#ab52eab0178d71a2dc6c960f22c1815f1">primaryResults</a></td></tr>
 <tr class="separator:ab52eab0178d71a2dc6c960f22c1815f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3bc231ceb88849a47ba78f58aa239db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3bc231ceb88849a47ba78f58aa239db"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>batchIDToSlot</b></td></tr>
+<tr class="memitem:ae3bc231ceb88849a47ba78f58aa239db"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#ae3bc231ceb88849a47ba78f58aa239db">batchIDToSlot</a></td></tr>
 <tr class="separator:ae3bc231ceb88849a47ba78f58aa239db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48503e9496cc4837f6e936a15c4a6ec1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48503e9496cc4837f6e936a15c4a6ec1"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>batchResults</b></td></tr>
+<tr class="memitem:a48503e9496cc4837f6e936a15c4a6ec1"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#a48503e9496cc4837f6e936a15c4a6ec1">batchResults</a></td></tr>
 <tr class="separator:a48503e9496cc4837f6e936a15c4a6ec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bcf6a2a4670f7283e1d7fb54f35a8bf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bcf6a2a4670f7283e1d7fb54f35a8bf"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>triMaterialColor</b></td></tr>
+<tr class="memitem:a8bcf6a2a4670f7283e1d7fb54f35a8bf"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#a8bcf6a2a4670f7283e1d7fb54f35a8bf">triMaterialColor</a></td></tr>
 <tr class="separator:a8bcf6a2a4670f7283e1d7fb54f35a8bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a729fbdb779c805692625d904bfc759ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a729fbdb779c805692625d904bfc759ee"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>triShadedColor</b></td></tr>
+<tr class="memitem:a729fbdb779c805692625d904bfc759ee"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#a729fbdb779c805692625d904bfc759ee">triShadedColor</a></td></tr>
 <tr class="separator:a729fbdb779c805692625d904bfc759ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac07f875b443b9f0daf820f58159787c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac07f875b443b9f0daf820f58159787c8"></a>
-CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>pixels</b></td></tr>
+<tr class="memitem:ac07f875b443b9f0daf820f58159787c8"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#ac07f875b443b9f0daf820f58159787c8">pixels</a></td></tr>
 <tr class="separator:ac07f875b443b9f0daf820f58159787c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7336e057bb51b43cbf81b2871df689f4"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#a7336e057bb51b43cbf81b2871df689f4">texCoords</a></td></tr>
+<tr class="separator:a7336e057bb51b43cbf81b2871df689f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed2ed1b230ebebb67ecaba0571e61324"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#aed2ed1b230ebebb67ecaba0571e61324">normals</a></td></tr>
+<tr class="separator:aed2ed1b230ebebb67ecaba0571e61324"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa2d5b9a02310636a32f215003042e9b"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#aaa2d5b9a02310636a32f215003042e9b">triVertIndex</a></td></tr>
+<tr class="separator:aaa2d5b9a02310636a32f215003042e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbd3eeea597784e34f4af74fbd1f083f"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#abbd3eeea597784e34f4af74fbd1f083f">atlasInfo</a></td></tr>
+<tr class="separator:abbd3eeea597784e34f4af74fbd1f083f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b17a6d52d0903d83d3a69fba5405189"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#a5b17a6d52d0903d83d3a69fba5405189">matId</a></td></tr>
+<tr class="separator:a5b17a6d52d0903d83d3a69fba5405189"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e856f1ea0345909f96807aeccb7657e"><td class="memItemLeft" align="right" valign="top">CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_reconstruct_input.html#a0e856f1ea0345909f96807aeccb7657e">matInfo</a></td></tr>
+<tr class="separator:a0e856f1ea0345909f96807aeccb7657e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00044">44</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="abbd3eeea597784e34f4af74fbd1f083f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReconstructInput::atlasInfo</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00065">65</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae3bc231ceb88849a47ba78f58aa239db"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReconstructInput::batchIDToSlot</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00056">56</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a48503e9496cc4837f6e936a15c4a6ec1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReconstructInput::batchResults</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00057">57</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a518c4009c9ab1cf0de0928a88ce925b9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::ReconstructInput::firstPrimary</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00047">47</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a018cf92f9a8d6cd7d6e3c4649c026f2a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::ReconstructInput::isAO</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00050">50</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9c0cfd631dcbf2af9167cdacbb88bf2a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::ReconstructInput::isDiffuse</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00051">51</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a90b62f90e5508ea79f5eec192ce24d92"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::ReconstructInput::isPathTraced</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00053">53</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a795dd5af071097b3b325050176bc62ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::ReconstructInput::isPrimary</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00049">49</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adedc77615a3c4c6cf8feba244c0e3fe5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::ReconstructInput::isTextured</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00052">52</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5b17a6d52d0903d83d3a69fba5405189"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReconstructInput::matId</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00066">66</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0e856f1ea0345909f96807aeccb7657e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReconstructInput::matInfo</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00067">67</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aed2ed1b230ebebb67ecaba0571e61324"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReconstructInput::normals</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00063">63</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a812c5b6b3bdde5c7b371be8d9f56619e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::ReconstructInput::numPrimary</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00048">48</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aef6dd60751ee9875e7c0dab1fcf0a1e2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::ReconstructInput::numRaysPerPrimary</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00046">46</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac07f875b443b9f0daf820f58159787c8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReconstructInput::pixels</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00060">60</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab52eab0178d71a2dc6c960f22c1815f1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReconstructInput::primaryResults</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00055">55</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7e091592ca830b6539e2e6246234c058"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReconstructInput::primarySlotToID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00054">54</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7336e057bb51b43cbf81b2871df689f4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReconstructInput::texCoords</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00062">62</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8bcf6a2a4670f7283e1d7fb54f35a8bf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReconstructInput::triMaterialColor</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00058">58</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a729fbdb779c805692625d904bfc759ee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReconstructInput::triShadedColor</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00059">59</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaa2d5b9a02310636a32f215003042e9b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CUdeviceptr FW::ReconstructInput::triVertIndex</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_renderer_kernels_8hpp_source.html#l00064">64</a> of file <a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/rt/cuda/<a class="el" href="_renderer_kernels_8hpp_source.html">RendererKernels.hpp</a></li>
 </ul>
@@ -161,8 +465,8 @@ CUdeviceptr&#160;</td><td class="memItemRight" valign="bottom"><b>pixels</b></td
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="struct_f_w_1_1_reconstruct_input.html">ReconstructInput</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_reconstruct_input.html">ReconstructInput</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

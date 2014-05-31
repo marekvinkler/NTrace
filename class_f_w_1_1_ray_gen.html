@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_ray_gen.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,51 +111,721 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_ray_gen.html','');});
 <div class="title">FW::RayGen Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="struct_f_w_1_1_ray.html">Ray</a> generator class. Generates rays for both the GPU and the CPU.  
+ <a href="class_f_w_1_1_ray_gen.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_ray_gen_8hpp_source.html">RayGen.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abc55f1af34d1935b1213e74df52da2ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc55f1af34d1935b1213e74df52da2ae"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>RayGen</b> (S32 maxBatchSize=8 *1024 *1024)</td></tr>
+<tr class="memitem:abc55f1af34d1935b1213e74df52da2ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_gen.html#abc55f1af34d1935b1213e74df52da2ae">RayGen</a> (<a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> maxBatchSize=8 *1024 *1024)</td></tr>
+<tr class="memdesc:abc55f1af34d1935b1213e74df52da2ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#abc55f1af34d1935b1213e74df52da2ae">More...</a><br/></td></tr>
 <tr class="separator:abc55f1af34d1935b1213e74df52da2ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7643be640aaa8533942aa096f2dcab2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7643be640aaa8533942aa096f2dcab2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>primary</b> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;origin, const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;nscreenToWorld, S32 w, S32 h, float maxDist)</td></tr>
+<tr class="memitem:ac7643be640aaa8533942aa096f2dcab2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_gen.html#ac7643be640aaa8533942aa096f2dcab2">primary</a> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;origin, const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;nscreenToWorld, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> w, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> h, float maxDist)</td></tr>
+<tr class="memdesc:ac7643be640aaa8533942aa096f2dcab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates primary rays on the GPU.  <a href="#ac7643be640aaa8533942aa096f2dcab2">More...</a><br/></td></tr>
 <tr class="separator:ac7643be640aaa8533942aa096f2dcab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a00be2a7c83bf7a892ab1f9943d077e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a00be2a7c83bf7a892ab1f9943d077e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>shadow</b> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, <a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;irays, int numSamples, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;lightPos, float lightRadius, bool &amp;newBatch, U32 randomSeed=0)</td></tr>
+<tr class="memitem:a2a00be2a7c83bf7a892ab1f9943d077e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_gen.html#a2a00be2a7c83bf7a892ab1f9943d077e">shadow</a> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, <a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;irays, int numSamples, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;lightPos, float lightRadius, bool &amp;newBatch, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> randomSeed=0)</td></tr>
+<tr class="memdesc:a2a00be2a7c83bf7a892ab1f9943d077e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates shadow rays on the GPU. Batches rays if necessary.  <a href="#a2a00be2a7c83bf7a892ab1f9943d077e">More...</a><br/></td></tr>
 <tr class="separator:a2a00be2a7c83bf7a892ab1f9943d077e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4265acb08cf8e520b9404df83a245b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4265acb08cf8e520b9404df83a245b94"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>ao</b> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, <a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;irays, <a class="el" href="class_f_w_1_1_scene.html">Scene</a> &amp;scene, int numSamples, float maxDist, bool &amp;newBatch, U32 randomSeed=0)</td></tr>
+<tr class="memitem:a4265acb08cf8e520b9404df83a245b94"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_gen.html#a4265acb08cf8e520b9404df83a245b94">ao</a> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, <a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;irays, <a class="el" href="class_f_w_1_1_scene.html">Scene</a> &amp;scene, int numSamples, float maxDist, bool &amp;newBatch, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> randomSeed=0)</td></tr>
+<tr class="memdesc:a4265acb08cf8e520b9404df83a245b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates ao rays on the GPU. Batches rays if necessary.  <a href="#a4265acb08cf8e520b9404df83a245b94">More...</a><br/></td></tr>
 <tr class="separator:a4265acb08cf8e520b9404df83a245b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bf1bca0cb3339d541e6f17d4e55859b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9bf1bca0cb3339d541e6f17d4e55859b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>primaryCPU</b> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;origin, const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;nscreenToWorld, S32 w, S32 h, float maxDist)</td></tr>
+<tr class="memitem:a9bf1bca0cb3339d541e6f17d4e55859b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_gen.html#a9bf1bca0cb3339d541e6f17d4e55859b">primaryCPU</a> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;origin, const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;nscreenToWorld, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> w, <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> h, float maxDist)</td></tr>
+<tr class="memdesc:a9bf1bca0cb3339d541e6f17d4e55859b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates primary rays on the CPU.  <a href="#a9bf1bca0cb3339d541e6f17d4e55859b">More...</a><br/></td></tr>
 <tr class="separator:a9bf1bca0cb3339d541e6f17d4e55859b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad123acd53f8ef7f858a76a6dad752180"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad123acd53f8ef7f858a76a6dad752180"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>shadowCPU</b> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, <a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;irays, int numSamples, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;lightPos, float lightRadius, bool &amp;newBatch, U32 randomSeed=0)</td></tr>
+<tr class="memitem:ad123acd53f8ef7f858a76a6dad752180"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_gen.html#ad123acd53f8ef7f858a76a6dad752180">shadowCPU</a> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, <a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;irays, int numSamples, const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;lightPos, float lightRadius, bool &amp;newBatch, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> randomSeed=0)</td></tr>
+<tr class="memdesc:ad123acd53f8ef7f858a76a6dad752180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates shadow rays on the CPU. Batches rays if necessary.  <a href="#ad123acd53f8ef7f858a76a6dad752180">More...</a><br/></td></tr>
 <tr class="separator:ad123acd53f8ef7f858a76a6dad752180"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f670ca00fffbcea7d2bde34e3b20063"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f670ca00fffbcea7d2bde34e3b20063"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>aoCPU</b> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, <a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;irays, <a class="el" href="class_f_w_1_1_scene.html">Scene</a> &amp;scene, int numSamples, float maxDist, bool &amp;newBatch, U32 randomSeed=0)</td></tr>
+<tr class="memitem:a9f670ca00fffbcea7d2bde34e3b20063"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_gen.html#a9f670ca00fffbcea7d2bde34e3b20063">aoCPU</a> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, <a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;irays, <a class="el" href="class_f_w_1_1_scene.html">Scene</a> &amp;scene, int numSamples, float maxDist, bool &amp;newBatch, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> randomSeed=0)</td></tr>
+<tr class="memdesc:a9f670ca00fffbcea7d2bde34e3b20063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates ao rays on the CPU. Batches rays if necessary.  <a href="#a9f670ca00fffbcea7d2bde34e3b20063">More...</a><br/></td></tr>
 <tr class="separator:a9f670ca00fffbcea7d2bde34e3b20063"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66fc86221078e5c64c5cb65234a80281"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66fc86221078e5c64c5cb65234a80281"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>random</b> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;bounds, int numRays, bool closestHit, bool PosDir=false, U32 randomSeed=0)</td></tr>
+<tr class="memitem:a66fc86221078e5c64c5cb65234a80281"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_gen.html#a66fc86221078e5c64c5cb65234a80281">random</a> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;bounds, int numRays, bool closestHit, bool PosDir=false, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> randomSeed=0)</td></tr>
+<tr class="memdesc:a66fc86221078e5c64c5cb65234a80281"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates random rays. Used for various tests.  <a href="#a66fc86221078e5c64c5cb65234a80281">More...</a><br/></td></tr>
 <tr class="separator:a66fc86221078e5c64c5cb65234a80281"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03101cc0dcf25ab755f2ca9971facb23"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03101cc0dcf25ab755f2ca9971facb23"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>random</b> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;bounds, int numRays, bool closestHit, bool PosDir, bool &amp;newBatch, U32 randomSeed=0)</td></tr>
+<tr class="memitem:a03101cc0dcf25ab755f2ca9971facb23"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_gen.html#a03101cc0dcf25ab755f2ca9971facb23">random</a> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;bounds, int numRays, bool closestHit, bool PosDir, bool &amp;newBatch, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> randomSeed=0)</td></tr>
+<tr class="memdesc:a03101cc0dcf25ab755f2ca9971facb23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates random rays.  <a href="#a03101cc0dcf25ab755f2ca9971facb23">More...</a><br/></td></tr>
 <tr class="separator:a03101cc0dcf25ab755f2ca9971facb23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6679090330a8cecb54769404fdf0447b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6679090330a8cecb54769404fdf0447b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>randomReflection</b> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, <a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;irays, <a class="el" href="class_f_w_1_1_scene.html">Scene</a> &amp;scene, int numSamples, float maxDist, bool &amp;newBatch, U32 randomSeed=0)</td></tr>
+<tr class="memitem:a6679090330a8cecb54769404fdf0447b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_ray_gen.html#a6679090330a8cecb54769404fdf0447b">randomReflection</a> (<a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;orays, <a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;irays, <a class="el" href="class_f_w_1_1_scene.html">Scene</a> &amp;scene, int numSamples, float maxDist, bool &amp;newBatch, <a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> randomSeed=0)</td></tr>
+<tr class="memdesc:a6679090330a8cecb54769404fdf0447b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates random reflection rays.  <a href="#a6679090330a8cecb54769404fdf0447b">More...</a><br/></td></tr>
 <tr class="separator:a6679090330a8cecb54769404fdf0447b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="struct_f_w_1_1_ray.html">Ray</a> generator class. Generates rays for both the GPU and the CPU. </p>
+
+<p>Definition at line <a class="el" href="_ray_gen_8hpp_source.html#l00047">47</a> of file <a class="el" href="_ray_gen_8hpp_source.html">RayGen.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="abc55f1af34d1935b1213e74df52da2ae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::RayGen::RayGen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>maxBatchSize</em> = <code>8*1024*1024</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxBatchSize</td><td>Maximum number of secondary rays in one batch. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_ray_gen_8cpp_source.html#l00035">35</a> of file <a class="el" href="_ray_gen_8cpp_source.html">RayGen.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a4265acb08cf8e520b9404df83a245b94"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::RayGen::ao </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>orays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>irays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_scene.html">Scene</a> &amp;&#160;</td>
+          <td class="paramname"><em>scene</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numSamples</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxDist</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>newBatch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>randomSeed</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates ao rays on the GPU. Batches rays if necessary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">orays</td><td>Generated rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irays</td><td>Source rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">scene</td><td>Source scene. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numSamples</td><td>Number of ao rays for each source ray. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxDist</td><td>Maximum length of generated rays. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">newBatch</td><td>Batching flag. [aram[in] randomSeed <a class="el" href="class_f_w_1_1_random.html">Random</a> seed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if batch contiunes. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_gen_8cpp_source.html#l00196">196</a> of file <a class="el" href="_ray_gen_8cpp_source.html">RayGen.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9f670ca00fffbcea7d2bde34e3b20063"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::RayGen::aoCPU </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>orays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>irays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_scene.html">Scene</a> &amp;&#160;</td>
+          <td class="paramname"><em>scene</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numSamples</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxDist</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>newBatch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>randomSeed</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates ao rays on the CPU. Batches rays if necessary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">orays</td><td>Generated rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irays</td><td>Source rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">scene</td><td>Source scene. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numSamples</td><td>Number of ao rays for each source ray. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxDist</td><td>Maximum length of generated rays. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">newBatch</td><td>Batching flag. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">randomSeed</td><td><a class="el" href="class_f_w_1_1_random.html">Random</a> seed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if batch contiunes. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_gen_8cpp_source.html#l00232">232</a> of file <a class="el" href="_ray_gen_8cpp_source.html">RayGen.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac7643be640aaa8533942aa096f2dcab2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::RayGen::primary </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>orays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>origin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;&#160;</td>
+          <td class="paramname"><em>nscreenToWorld</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxDist</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates primary rays on the GPU. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">Generated</td><td>rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">origin</td><td>Point from which rays will be cast. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nscreenToWorld</td><td>Transformation view matrix. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">w</td><td>Horizontal resolution. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h</td><td>Vertical resolution. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxDist</td><td>Maximum length of generated rays. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_ray_gen_8cpp_source.html#l00044">44</a> of file <a class="el" href="_ray_gen_8cpp_source.html">RayGen.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9bf1bca0cb3339d541e6f17d4e55859b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::RayGen::primaryCPU </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>orays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>origin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_mat4f.html">Mat4f</a> &amp;&#160;</td>
+          <td class="paramname"><em>nscreenToWorld</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td>
+          <td class="paramname"><em>h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxDist</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates primary rays on the CPU. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">Generated</td><td>rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">origin</td><td>Point from which rays will be cast. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nscreenToWorld</td><td>Transformation view matrix. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">w</td><td>Horizontal resolution. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h</td><td>Vertical resolution. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxDist</td><td>Maximum length of generated rays. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_ray_gen_8cpp_source.html#l00074">74</a> of file <a class="el" href="_ray_gen_8cpp_source.html">RayGen.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a66fc86221078e5c64c5cb65234a80281"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::RayGen::random </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>orays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;&#160;</td>
+          <td class="paramname"><em>bounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numRays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>closestHit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>PosDir</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>randomSeed</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates random rays. Used for various tests. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">orays</td><td>Generated rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bounds</td><td>Box in which rays will be generated. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numRays</td><td>Number of generated rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">closestHit</td><td>Flag whether rays require closest hit. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">PosDir</td><td>If false, direction of generated rays will be absolute position in the scene. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">randomSeed</td><td><a class="el" href="class_f_w_1_1_random.html">Random</a> seed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if batch continues. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_gen_8cpp_source.html#l00340">340</a> of file <a class="el" href="_ray_gen_8cpp_source.html">RayGen.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a03101cc0dcf25ab755f2ca9971facb23"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::RayGen::random </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>orays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &amp;&#160;</td>
+          <td class="paramname"><em>bounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numRays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>closestHit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>PosDir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>newBatch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>randomSeed</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates random rays. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">orays</td><td>Generated rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bounds</td><td>Box in which rays will be generated. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numRays</td><td>Number of generated rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">closestHit</td><td>Flag whether rays require closest hit. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">PosDir</td><td>If false, direction of generated rays will be absolute position in the scene. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">newBatch</td><td>Batching flag. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">randomSeed</td><td><a class="el" href="class_f_w_1_1_random.html">Random</a> seed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if batch continues. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_gen_8cpp_source.html#l00346">346</a> of file <a class="el" href="_ray_gen_8cpp_source.html">RayGen.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6679090330a8cecb54769404fdf0447b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::RayGen::randomReflection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>orays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>irays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_scene.html">Scene</a> &amp;&#160;</td>
+          <td class="paramname"><em>scene</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numSamples</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxDist</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>newBatch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>randomSeed</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates random reflection rays. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">orays</td><td>Generated rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irays</td><td>Source rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">scene</td><td>Source scene, necessary for normals. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numSamples</td><td>Number of reflection rays for each source ray. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxDist</td><td>Maximum length of reflection rays. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">newBatch</td><td>Batching flag. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">randomSeed</td><td><a class="el" href="class_f_w_1_1_random.html">Random</a> seed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if batch continues. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_gen_8cpp_source.html#l00374">374</a> of file <a class="el" href="_ray_gen_8cpp_source.html">RayGen.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2a00be2a7c83bf7a892ab1f9943d077e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::RayGen::shadow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>orays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>irays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numSamples</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>lightPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>lightRadius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>newBatch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>randomSeed</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates shadow rays on the GPU. Batches rays if necessary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">orays</td><td>Generated rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irays</td><td>Source rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numSamples</td><td>Number of shadow rays for each source ray. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lightPos</td><td>Position of a light source that casts these shadow rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lightRadius</td><td>Radius of the light source. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">newBatch</td><td>Batching flag. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">randomSeed</td><td><a class="el" href="class_f_w_1_1_random.html">Random</a> seed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if batch continues. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_gen_8cpp_source.html#l00112">112</a> of file <a class="el" href="_ray_gen_8cpp_source.html">RayGen.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad123acd53f8ef7f858a76a6dad752180"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::RayGen::shadowCPU </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>orays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>irays</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numSamples</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec3f.html">Vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>lightPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>lightRadius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>newBatch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td>
+          <td class="paramname"><em>randomSeed</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates shadow rays on the CPU. Batches rays if necessary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">orays</td><td>Generated rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irays</td><td>Source rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numSamples</td><td>Number of shadow rays for each source ray. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lightPos</td><td>Position of a light source that casts these shadow rays. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lightRadius</td><td>Radius of the light source. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">newBatch</td><td>Batching flag. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">randomSeed</td><td><a class="el" href="class_f_w_1_1_random.html">Random</a> seed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if batch continues. </dd></dl>
+
+<p>Definition at line <a class="el" href="_ray_gen_8cpp_source.html#l00150">150</a> of file <a class="el" href="_ray_gen_8cpp_source.html">RayGen.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/rt/ray/<a class="el" href="_ray_gen_8hpp_source.html">RayGen.hpp</a></li>
-<li>src/rt/ray/RayGen.cpp</li>
+<li>src/rt/ray/<a class="el" href="_ray_gen_8cpp_source.html">RayGen.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_ray_gen.html">RayGen</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:39 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_ray_gen.html">RayGen</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

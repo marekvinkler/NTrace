@@ -22,6 +22,7 @@ var class_f_w_1_1_cuda_kernel =
     [ "setAsync", "class_f_w_1_1_cuda_kernel.html#a6ec20d311fabbd11b42964d158c6b0ea", null ],
     [ "setGrid", "class_f_w_1_1_cuda_kernel.html#afbf62ac677f85684de3ed11c2ebb5d61", null ],
     [ "setGrid", "class_f_w_1_1_cuda_kernel.html#ab132ebbf72bd79bdf1bfef334b72e516", null ],
+    [ "setGridExact", "class_f_w_1_1_cuda_kernel.html#a0631c7d28981c8428731548e97011147", null ],
     [ "setParams", "class_f_w_1_1_cuda_kernel.html#af2b07571692a39e9e71eecb06aa0815b", null ],
     [ "setParams", "class_f_w_1_1_cuda_kernel.html#ab1d635984053fbf3222873648f0612ba", null ],
     [ "setParams", "class_f_w_1_1_cuda_kernel.html#ac59b41cd87e63cc2e5ce28c369dfbc7b", null ],

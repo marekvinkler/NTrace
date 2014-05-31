@@ -1,37 +1,67 @@
 var NAVTREE =
 [
   [ "NTrace", "index.html", [
+    [ "Namespaces", null, [
+      [ "Namespace List", "namespaces.html", "namespaces" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", "namespacemembers_dup" ],
+        [ "Functions", "namespacemembers_func.html", "namespacemembers_func" ],
+        [ "Variables", "namespacemembers_vars.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ],
+        [ "Enumerator", "namespacemembers_eval.html", null ]
+      ] ]
+    ] ],
     [ "Classes", null, [
       [ "Class List", "annotated.html", "annotated" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", "functions_func" ],
+        [ "Variables", "functions_vars.html", "functions_vars" ],
+        [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
+        [ "Enumerator", "functions_eval.html", null ],
         [ "Related Functions", "functions_rela.html", null ]
       ] ]
     ] ],
     [ "Files", null, [
-      [ "File List", "files.html", "files" ]
+      [ "File List", "files.html", "files" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", "globals_dup" ],
+        [ "Functions", "globals_func.html", "globals_func" ],
+        [ "Variables", "globals_vars.html", "globals_vars" ],
+        [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
+        [ "Enumerator", "globals_eval.html", null ],
+        [ "Macros", "globals_defs.html", "globals_defs" ]
+      ] ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-".html",
-"class_f_w_1_1_binary_heap.html#a45d523409167531bf52fa96b8d63c34c",
-"class_f_w_1_1_cuda_b_v_h.html#a833e46e5b030d7d393e869df5648808b",
-"class_f_w_1_1_g_l_context_1_1_program.html#ae18b412e16b6a68eafa8d4cc6ccad65d",
-"class_f_w_1_1_mat3f.html#abd7af72d46f9fb079025f9d16a6f9416",
-"class_f_w_1_1_mesh_base.html#ac7255377c52f49fc20cc14a9ac3ecf67a871568ebe5710e5f79ef668f5459f279",
-"class_f_w_1_1_scene.html",
-"class_f_w_1_1_vec2f.html#a288a4efeb9db0f7afdf272cceac8fc2e",
-"class_f_w_1_1_window.html#af1199ef2aac2cbf56b5d06e68a49448e",
-"struct_f_w_1_1_ray_gen_a_o_input.html#adbc01c0d42ae6490fdf87b94e40bf1db",
-"struct_profile_timer.html"
+"_acceleration_8cpp.html",
+"_d_l_l_imports_8hpp.html#a66babbe2e30a6fed6c6c60eae6453391",
+"_d_l_l_imports_8inl.html#a45a58542c9a45094a27d0e532ad77b25",
+"_d_l_l_imports_8inl.html#ae3e226b5d55f4a41738b0efcf11dec78",
+"_image_8cpp.html#a94074b1a1d5f7af0f7d5bdb7cf0e0e02",
+"_keys_8hpp.html#ad63d34f929d386a1bb6e0cb5ddecc17e",
+"_sort_8hpp.html#aa6f1be42ccb93e02593910e42b8a0e1f",
+"class_f_w_1_1_array_base.html#a8806d874f797287446ccea0c08e9d386",
+"class_f_w_1_1_common_controls.html#a7a8ffd51e4c046afa712ac2d7066047f",
+"class_f_w_1_1_deque.html#affb64bab566f2fe45310f5441fceb406",
+"class_f_w_1_1_image_format.html#afc70d26a190aee4e158c5b82841047ba",
+"class_f_w_1_1_matrix_base.html#aae31c25704c573cce4ad8c21af2b79e2",
+"class_f_w_1_1_random.html#a892f9aefcd5b10b2d63f54ebcac43b7f",
+"class_f_w_1_1_state_dump.html",
+"class_f_w_1_1_vec4f.html#a8b9baf006d9876c5b840166b7e4d5cfe",
+"functions.html",
+"lodepng_8cpp.html#ad7beb96e92dd01a605c669af79a54a00",
+"struct_f_w_1_1_find_a_a_b_b_input.html#a89173afd2d6bf80dfa8d23ca1b7aa216",
+"struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_split.html#abf5d2aa54c22c44ac36c568e57531890"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

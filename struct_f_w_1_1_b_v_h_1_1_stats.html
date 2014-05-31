@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_b_v_h_1_1_stats.html','
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,37 +112,231 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_b_v_h_1_1_stats.html','
 <div class="title">FW::BVH::Stats Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Sturcture for holding statistics about the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a>.  
+ <a href="struct_f_w_1_1_b_v_h_1_1_stats.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a59a9b2664d6beb3e0a18f4b11d7e0843"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59a9b2664d6beb3e0a18f4b11d7e0843"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
+<tr class="memitem:a781350844e7b65ecc8ef7bd5e6611c48"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_b_v_h_1_1_stats.html#a781350844e7b65ecc8ef7bd5e6611c48">Stats</a> ()</td></tr>
+<tr class="memdesc:a781350844e7b65ecc8ef7bd5e6611c48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a781350844e7b65ecc8ef7bd5e6611c48">More...</a><br/></td></tr>
+<tr class="separator:a781350844e7b65ecc8ef7bd5e6611c48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59a9b2664d6beb3e0a18f4b11d7e0843"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_b_v_h_1_1_stats.html#a59a9b2664d6beb3e0a18f4b11d7e0843">clear</a> ()</td></tr>
+<tr class="memdesc:a59a9b2664d6beb3e0a18f4b11d7e0843"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the statistics to the default values.  <a href="#a59a9b2664d6beb3e0a18f4b11d7e0843">More...</a><br/></td></tr>
 <tr class="separator:a59a9b2664d6beb3e0a18f4b11d7e0843"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63e02d0d536c033770f5712936ba73f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63e02d0d536c033770f5712936ba73f1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> () const </td></tr>
+<tr class="memitem:a63e02d0d536c033770f5712936ba73f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_b_v_h_1_1_stats.html#a63e02d0d536c033770f5712936ba73f1">print</a> () const </td></tr>
+<tr class="memdesc:a63e02d0d536c033770f5712936ba73f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the statistics to the console.  <a href="#a63e02d0d536c033770f5712936ba73f1">More...</a><br/></td></tr>
 <tr class="separator:a63e02d0d536c033770f5712936ba73f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:af562408fb0901aaf96f17031dee451bc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af562408fb0901aaf96f17031dee451bc"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>SAHCost</b></td></tr>
+<tr class="memitem:af562408fb0901aaf96f17031dee451bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_b_v_h_1_1_stats.html#af562408fb0901aaf96f17031dee451bc">SAHCost</a></td></tr>
+<tr class="memdesc:af562408fb0901aaf96f17031dee451bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total sah cost of the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a>.  <a href="#af562408fb0901aaf96f17031dee451bc">More...</a><br/></td></tr>
 <tr class="separator:af562408fb0901aaf96f17031dee451bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d35702a2ad55a4aa5f0ef1fcf241b97"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d35702a2ad55a4aa5f0ef1fcf241b97"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>branchingFactor</b></td></tr>
+<tr class="memitem:a2d35702a2ad55a4aa5f0ef1fcf241b97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_b_v_h_1_1_stats.html#a2d35702a2ad55a4aa5f0ef1fcf241b97">branchingFactor</a></td></tr>
+<tr class="memdesc:a2d35702a2ad55a4aa5f0ef1fcf241b97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of children nodes per one parent node.  <a href="#a2d35702a2ad55a4aa5f0ef1fcf241b97">More...</a><br/></td></tr>
 <tr class="separator:a2d35702a2ad55a4aa5f0ef1fcf241b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace24d2bfb2eb305ea6938614724f9f1b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace24d2bfb2eb305ea6938614724f9f1b"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>numInnerNodes</b></td></tr>
+<tr class="memitem:ace24d2bfb2eb305ea6938614724f9f1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_b_v_h_1_1_stats.html#ace24d2bfb2eb305ea6938614724f9f1b">numInnerNodes</a></td></tr>
+<tr class="memdesc:ace24d2bfb2eb305ea6938614724f9f1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of inner nodes.  <a href="#ace24d2bfb2eb305ea6938614724f9f1b">More...</a><br/></td></tr>
 <tr class="separator:ace24d2bfb2eb305ea6938614724f9f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2af5ea272825c56b1999bfec16d90bed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2af5ea272825c56b1999bfec16d90bed"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>numLeafNodes</b></td></tr>
+<tr class="memitem:a2af5ea272825c56b1999bfec16d90bed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_b_v_h_1_1_stats.html#a2af5ea272825c56b1999bfec16d90bed">numLeafNodes</a></td></tr>
+<tr class="memdesc:a2af5ea272825c56b1999bfec16d90bed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of leaf nodes.  <a href="#a2af5ea272825c56b1999bfec16d90bed">More...</a><br/></td></tr>
 <tr class="separator:a2af5ea272825c56b1999bfec16d90bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b13127cd33333eff941e86b0bbd376f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b13127cd33333eff941e86b0bbd376f"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>numChildNodes</b></td></tr>
+<tr class="memitem:a7b13127cd33333eff941e86b0bbd376f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_b_v_h_1_1_stats.html#a7b13127cd33333eff941e86b0bbd376f">numChildNodes</a></td></tr>
+<tr class="memdesc:a7b13127cd33333eff941e86b0bbd376f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of children nodes.  <a href="#a7b13127cd33333eff941e86b0bbd376f">More...</a><br/></td></tr>
 <tr class="separator:a7b13127cd33333eff941e86b0bbd376f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81552b56e74303c308fb604ac93784d2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81552b56e74303c308fb604ac93784d2"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>numTris</b></td></tr>
+<tr class="memitem:a81552b56e74303c308fb604ac93784d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_b_v_h_1_1_stats.html#a81552b56e74303c308fb604ac93784d2">numTris</a></td></tr>
+<tr class="memdesc:a81552b56e74303c308fb604ac93784d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of triangles.  <a href="#a81552b56e74303c308fb604ac93784d2">More...</a><br/></td></tr>
 <tr class="separator:a81552b56e74303c308fb604ac93784d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Sturcture for holding statistics about the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a>. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00081">81</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a781350844e7b65ecc8ef7bd5e6611c48"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::BVH::Stats::Stats </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00086">86</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a59a9b2664d6beb3e0a18f4b11d7e0843"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::BVH::Stats::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets the statistics to the default values. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00091">91</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a63e02d0d536c033770f5712936ba73f1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::BVH::Stats::print </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints the statistics to the console. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00096">96</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a2d35702a2ad55a4aa5f0ef1fcf241b97"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::BVH::Stats::branchingFactor</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of children nodes per one parent node. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00099">99</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7b13127cd33333eff941e86b0bbd376f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::BVH::Stats::numChildNodes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Total number of children nodes. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00102">102</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ace24d2bfb2eb305ea6938614724f9f1b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::BVH::Stats::numInnerNodes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Total number of inner nodes. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00100">100</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2af5ea272825c56b1999bfec16d90bed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::BVH::Stats::numLeafNodes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Total number of leaf nodes. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00101">101</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a81552b56e74303c308fb604ac93784d2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::BVH::Stats::numTris</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Total number of triangles. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00103">103</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af562408fb0901aaf96f17031dee451bc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::BVH::Stats::SAHCost</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Total sah cost of the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a>. </p>
+
+<p>Definition at line <a class="el" href="_b_v_h_8hpp_source.html#l00098">98</a> of file <a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/rt/bvh/<a class="el" href="_b_v_h_8hpp_source.html">BVH.hpp</a></li>
 </ul>
@@ -150,8 +345,8 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><b>numTris</b></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_b_v_h.html">BVH</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_b_v_h_1_1_stats.html">Stats</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_b_v_h.html">BVH</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_b_v_h_1_1_stats.html">Stats</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

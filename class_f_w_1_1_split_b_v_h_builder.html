@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_split_b_v_h_builder.html
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,7 +107,9 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_split_b_v_h_builder.html
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-types">Protected Types</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_f_w_1_1_split_b_v_h_builder-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -114,82 +117,942 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_split_b_v_h_builder.html
 </div><!--header-->
 <div class="contents">
 
+<p>Class performing SBVH build.  
+ <a href="class_f_w_1_1_split_b_v_h_builder.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>&gt;</code></p>
+
 <p>Inherited by <a class="el" href="class_f_w_1_1_occlusion_b_v_h_builder.html">FW::OcclusionBVHBuilder</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure holding specifications of the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a>'s node.  <a href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_object_split.html">ObjectSplit</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure holding info about object split of a <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> node.  <a href="struct_f_w_1_1_split_b_v_h_builder_1_1_object_split.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html">Reference</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure holding triangle's index together with its bounding box.  <a href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_bin.html">SpatialBin</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure holding info about a spatial bin.  <a href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_bin.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_split.html">SpatialSplit</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure holding info about spatial split of a <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> node.  <a href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_split.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a602679b550c84eaa46ba8c30cf56da0f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a602679b550c84eaa46ba8c30cf56da0f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SplitBVHBuilder</b> (<a class="el" href="class_f_w_1_1_b_v_h.html">BVH</a> &amp;bvh, const <a class="el" href="struct_f_w_1_1_b_v_h_1_1_build_params.html">BVH::BuildParams</a> &amp;params)</td></tr>
+<tr class="memitem:a602679b550c84eaa46ba8c30cf56da0f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a602679b550c84eaa46ba8c30cf56da0f">SplitBVHBuilder</a> (<a class="el" href="class_f_w_1_1_b_v_h.html">BVH</a> &amp;bvh, const <a class="el" href="struct_f_w_1_1_b_v_h_1_1_build_params.html">BVH::BuildParams</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#a4eaf2f499ca0434ce41d6b3014ef3ba0">params</a>)</td></tr>
+<tr class="memdesc:a602679b550c84eaa46ba8c30cf56da0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a602679b550c84eaa46ba8c30cf56da0f">More...</a><br/></td></tr>
 <tr class="separator:a602679b550c84eaa46ba8c30cf56da0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a014db9f0466472f861ca2afe84cbc1d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a014db9f0466472f861ca2afe84cbc1d0"></a>
-<a class="el" href="class_f_w_1_1_b_v_h_node.html">BVHNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (void)</td></tr>
+<tr class="memitem:a38c8732156a2768f1c10af308c6b4f39"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a38c8732156a2768f1c10af308c6b4f39">~SplitBVHBuilder</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="memdesc:a38c8732156a2768f1c10af308c6b4f39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#a38c8732156a2768f1c10af308c6b4f39">More...</a><br/></td></tr>
+<tr class="separator:a38c8732156a2768f1c10af308c6b4f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a014db9f0466472f861ca2afe84cbc1d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_b_v_h_node.html">BVHNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a014db9f0466472f861ca2afe84cbc1d0">run</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="memdesc:a014db9f0466472f861ca2afe84cbc1d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the actual build.  <a href="#a014db9f0466472f861ca2afe84cbc1d0">More...</a><br/></td></tr>
 <tr class="separator:a014db9f0466472f861ca2afe84cbc1d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d33cc27230a5128558b0034c068f682"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a2d33cc27230a5128558b0034c068f682">splitReference</a> (<a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html">Reference</a> &amp;left, <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html">Reference</a> &amp;right, const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html">Reference</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#a23103ffebcafe9e0e385dfae5c54a9e6">ref</a>, int <a class="el" href="_d_l_l_imports_8inl.html#afa19deda7e4b44859d7d11b6fada0a24">dim</a>, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> pos)</td></tr>
+<tr class="memdesc:a2d33cc27230a5128558b0034c068f682"><td class="mdescLeft">&#160;</td><td class="mdescRight">Splits the triangle's bounding box.  <a href="#a2d33cc27230a5128558b0034c068f682">More...</a><br/></td></tr>
+<tr class="separator:a2d33cc27230a5128558b0034c068f682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aa1c2f673466f03ddbf953f51cc7c0db9"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#aa1c2f673466f03ddbf953f51cc7c0db9">sortCompare</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>, int idxA, int idxB)</td></tr>
+<tr class="memdesc:aa1c2f673466f03ddbf953f51cc7c0db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort comparator. Sorts references according to their position in descending order. For details see framework/base.Sort.hpp.  <a href="#aa1c2f673466f03ddbf953f51cc7c0db9">More...</a><br/></td></tr>
+<tr class="separator:aa1c2f673466f03ddbf953f51cc7c0db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac54ab6f72651f48a3dcbe33b2fbdad12"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#ac54ab6f72651f48a3dcbe33b2fbdad12">sortSwap</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8inl.html#a156a9c7e986e0352d0fe500e629d5171">data</a>, int idxA, int idxB)</td></tr>
+<tr class="memdesc:ac54ab6f72651f48a3dcbe33b2fbdad12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort swap function. Swaps two references placed in the reference stack. For details see framework/base.Sort.hpp.  <a href="#ac54ab6f72651f48a3dcbe33b2fbdad12">More...</a><br/></td></tr>
+<tr class="separator:ac54ab6f72651f48a3dcbe33b2fbdad12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:a2655ecc602724ee86b28b6341286cb8c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>MaxDepth</b> = 64, 
-<b>MaxSpatialDepth</b> = 48, 
-<b>NumSpatialBins</b> = 128
+<tr class="memitem:a2655ecc602724ee86b28b6341286cb8c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a2655ecc602724ee86b28b6341286cb8cacb6605857dc5f3d105e76b6d112ac229">MaxDepth</a> = 64, 
+<a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a2655ecc602724ee86b28b6341286cb8caff3024383ae89061e66cd8ff386b6738">MaxSpatialDepth</a> = 48, 
+<a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a2655ecc602724ee86b28b6341286cb8cad265be3322b37b49577c1826e103bd39">NumSpatialBins</a> = 128
  }</td></tr>
+<tr class="memdesc:a2655ecc602724ee86b28b6341286cb8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Several tree build constrains.  <a href="class_f_w_1_1_split_b_v_h_builder.html#a2655ecc602724ee86b28b6341286cb8c">More...</a><br/></td></tr>
 <tr class="separator:a2655ecc602724ee86b28b6341286cb8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a39041f318d5d5edfdbff315f057163b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_b_v_h_node.html">BVHNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a39041f318d5d5edfdbff315f057163b3">buildNode</a> (<a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> spec, int <a class="el" href="_d_l_l_imports_8inl.html#aeb907b7e4f0ae85cbdd82f5378f11eb8">level</a>, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> progressStart, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> progressEnd)</td></tr>
+<tr class="memdesc:a39041f318d5d5edfdbff315f057163b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> node. The built node may be an inner node as well as a leaf node.  <a href="#a39041f318d5d5edfdbff315f057163b3">More...</a><br/></td></tr>
+<tr class="separator:a39041f318d5d5edfdbff315f057163b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27109594914318784f517c9c1e0ce851"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_b_v_h_node.html">BVHNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a27109594914318784f517c9c1e0ce851">createLeaf</a> (const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;spec)</td></tr>
+<tr class="memdesc:a27109594914318784f517c9c1e0ce851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a leaf node.  <a href="#a27109594914318784f517c9c1e0ce851">More...</a><br/></td></tr>
+<tr class="separator:a27109594914318784f517c9c1e0ce851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0e37349491aaf659e74725120d6aa33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_object_split.html">ObjectSplit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#ab0e37349491aaf659e74725120d6aa33">findObjectSplit</a> (const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;spec, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> nodeSAH)</td></tr>
+<tr class="memdesc:ab0e37349491aaf659e74725120d6aa33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds best object split of the node.  <a href="#ab0e37349491aaf659e74725120d6aa33">More...</a><br/></td></tr>
+<tr class="separator:ab0e37349491aaf659e74725120d6aa33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d988a2049d6508dcd7303a9a904fb53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a1d988a2049d6508dcd7303a9a904fb53">performObjectSplit</a> (<a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;left, <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;right, const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;spec, const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_object_split.html">ObjectSplit</a> &amp;split)</td></tr>
+<tr class="memdesc:a1d988a2049d6508dcd7303a9a904fb53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the object split operation.  <a href="#a1d988a2049d6508dcd7303a9a904fb53">More...</a><br/></td></tr>
+<tr class="separator:a1d988a2049d6508dcd7303a9a904fb53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9fa7dddc08c7bb5bc1eb2279b568cfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_split.html">SpatialSplit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#af9fa7dddc08c7bb5bc1eb2279b568cfa">findSpatialSplit</a> (const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;spec, <a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> nodeSAH)</td></tr>
+<tr class="memdesc:af9fa7dddc08c7bb5bc1eb2279b568cfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the best spatial split of the node.  <a href="#af9fa7dddc08c7bb5bc1eb2279b568cfa">More...</a><br/></td></tr>
+<tr class="separator:af9fa7dddc08c7bb5bc1eb2279b568cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54f883da35e3588dd24f7254bd2c744a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a54f883da35e3588dd24f7254bd2c744a">performSpatialSplit</a> (<a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;left, <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;right, const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;spec, const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_split.html">SpatialSplit</a> &amp;split)</td></tr>
+<tr class="memdesc:a54f883da35e3588dd24f7254bd2c744a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the spatial split operation.  <a href="#a54f883da35e3588dd24f7254bd2c744a">More...</a><br/></td></tr>
+<tr class="separator:a54f883da35e3588dd24f7254bd2c744a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a6ce05822361d87dc25716eae2fa6c5b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ce05822361d87dc25716eae2fa6c5b6"></a>
-<a class="el" href="class_f_w_1_1_b_v_h.html">BVH</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>m_bvh</b></td></tr>
+<tr class="memitem:a6ce05822361d87dc25716eae2fa6c5b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_b_v_h.html">BVH</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a6ce05822361d87dc25716eae2fa6c5b6">m_bvh</a></td></tr>
+<tr class="memdesc:a6ce05822361d87dc25716eae2fa6c5b6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> being built.  <a href="#a6ce05822361d87dc25716eae2fa6c5b6">More...</a><br/></td></tr>
 <tr class="separator:a6ce05822361d87dc25716eae2fa6c5b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa47ab09be4c47a8cb015c4a7f5bde708"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa47ab09be4c47a8cb015c4a7f5bde708"></a>
-const <a class="el" href="class_f_w_1_1_platform.html">Platform</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>m_platform</b></td></tr>
+<tr class="memitem:aa47ab09be4c47a8cb015c4a7f5bde708"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_platform.html">Platform</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#aa47ab09be4c47a8cb015c4a7f5bde708">m_platform</a></td></tr>
+<tr class="memdesc:aa47ab09be4c47a8cb015c4a7f5bde708"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_f_w_1_1_platform.html" title="Class holding various SAH and batch processing parameters. ">Platform</a> settings.  <a href="#aa47ab09be4c47a8cb015c4a7f5bde708">More...</a><br/></td></tr>
 <tr class="separator:aa47ab09be4c47a8cb015c4a7f5bde708"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a334f1ec6892b63abafa9849041ba9465"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a334f1ec6892b63abafa9849041ba9465"></a>
-const <a class="el" href="struct_f_w_1_1_b_v_h_1_1_build_params.html">BVH::BuildParams</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>m_params</b></td></tr>
+<tr class="memitem:a334f1ec6892b63abafa9849041ba9465"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_f_w_1_1_b_v_h_1_1_build_params.html">BVH::BuildParams</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a334f1ec6892b63abafa9849041ba9465">m_params</a></td></tr>
+<tr class="memdesc:a334f1ec6892b63abafa9849041ba9465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build parameters.  <a href="#a334f1ec6892b63abafa9849041ba9465">More...</a><br/></td></tr>
 <tr class="separator:a334f1ec6892b63abafa9849041ba9465"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af33170ad3fb53ba04f07e7976abbbfaf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af33170ad3fb53ba04f07e7976abbbfaf"></a>
-<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html">Reference</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_refStack</b></td></tr>
+<tr class="memitem:af33170ad3fb53ba04f07e7976abbbfaf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html">Reference</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#af33170ad3fb53ba04f07e7976abbbfaf">m_refStack</a></td></tr>
+<tr class="memdesc:af33170ad3fb53ba04f07e7976abbbfaf"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html" title="Structure holding triangle&#39;s index together with its bounding box. ">Reference</a> stack.  <a href="#af33170ad3fb53ba04f07e7976abbbfaf">More...</a><br/></td></tr>
 <tr class="separator:af33170ad3fb53ba04f07e7976abbbfaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9951faf8af948748d5ad84eb84f2e708"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9951faf8af948748d5ad84eb84f2e708"></a>
-F32&#160;</td><td class="memItemRight" valign="bottom"><b>m_minOverlap</b></td></tr>
+<tr class="memitem:a9951faf8af948748d5ad84eb84f2e708"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a9951faf8af948748d5ad84eb84f2e708">m_minOverlap</a></td></tr>
+<tr class="memdesc:a9951faf8af948748d5ad84eb84f2e708"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum overlap of the left and right <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> of the object split needed to make spatial split worth finding.  <a href="#a9951faf8af948748d5ad84eb84f2e708">More...</a><br/></td></tr>
 <tr class="separator:a9951faf8af948748d5ad84eb84f2e708"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50eb0dbb3892f1f48ebd41b8e56cbaea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50eb0dbb3892f1f48ebd41b8e56cbaea"></a>
-<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_rightBounds</b></td></tr>
+<tr class="memitem:a50eb0dbb3892f1f48ebd41b8e56cbaea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a50eb0dbb3892f1f48ebd41b8e56cbaea">m_rightBounds</a></td></tr>
+<tr class="memdesc:a50eb0dbb3892f1f48ebd41b8e56cbaea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bounding boxes of all the possible right children.  <a href="#a50eb0dbb3892f1f48ebd41b8e56cbaea">More...</a><br/></td></tr>
 <tr class="separator:a50eb0dbb3892f1f48ebd41b8e56cbaea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51dfd1d7d4011944bc235505777ef692"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51dfd1d7d4011944bc235505777ef692"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>m_sortDim</b></td></tr>
+<tr class="memitem:a51dfd1d7d4011944bc235505777ef692"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a51dfd1d7d4011944bc235505777ef692">m_sortDim</a></td></tr>
+<tr class="memdesc:a51dfd1d7d4011944bc235505777ef692"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort dimension. Used by sort method.  <a href="#a51dfd1d7d4011944bc235505777ef692">More...</a><br/></td></tr>
 <tr class="separator:a51dfd1d7d4011944bc235505777ef692"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fc111519af5af5b34324d8b77f5fa5d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3fc111519af5af5b34324d8b77f5fa5d"></a>
-<a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_bin.html">SpatialBin</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_bins</b> [3][NumSpatialBins]</td></tr>
+<tr class="memitem:a3fc111519af5af5b34324d8b77f5fa5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_bin.html">SpatialBin</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a3fc111519af5af5b34324d8b77f5fa5d">m_bins</a> [3][<a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a2655ecc602724ee86b28b6341286cb8cad265be3322b37b49577c1826e103bd39">NumSpatialBins</a>]</td></tr>
+<tr class="memdesc:a3fc111519af5af5b34324d8b77f5fa5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spatial bins.  <a href="#a3fc111519af5af5b34324d8b77f5fa5d">More...</a><br/></td></tr>
 <tr class="separator:a3fc111519af5af5b34324d8b77f5fa5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaed66b1d4c80f0f5315e5fdf6d4a25ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaed66b1d4c80f0f5315e5fdf6d4a25ce"></a>
-<a class="el" href="class_f_w_1_1_timer.html">Timer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_progressTimer</b></td></tr>
+<tr class="memitem:aaed66b1d4c80f0f5315e5fdf6d4a25ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_timer.html">Timer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#aaed66b1d4c80f0f5315e5fdf6d4a25ce">m_progressTimer</a></td></tr>
+<tr class="memdesc:aaed66b1d4c80f0f5315e5fdf6d4a25ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Progress timer.  <a href="#aaed66b1d4c80f0f5315e5fdf6d4a25ce">More...</a><br/></td></tr>
 <tr class="separator:aaed66b1d4c80f0f5315e5fdf6d4a25ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84d9ac666e1af7b548b64a04b4db4c5b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84d9ac666e1af7b548b64a04b4db4c5b"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>m_numDuplicates</b></td></tr>
+<tr class="memitem:a84d9ac666e1af7b548b64a04b4db4c5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a84d9ac666e1af7b548b64a04b4db4c5b">m_numDuplicates</a></td></tr>
+<tr class="memdesc:a84d9ac666e1af7b548b64a04b4db4c5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of duplicated references.  <a href="#a84d9ac666e1af7b548b64a04b4db4c5b">More...</a><br/></td></tr>
 <tr class="separator:a84d9ac666e1af7b548b64a04b4db4c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class performing SBVH build. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00044">44</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a2655ecc602724ee86b28b6341286cb8c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Several tree build constrains. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a2655ecc602724ee86b28b6341286cb8cacb6605857dc5f3d105e76b6d112ac229"></a>MaxDepth</em>&#160;</td><td class="fielddoc">
+<p>Maximum depth of the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> tree. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a2655ecc602724ee86b28b6341286cb8caff3024383ae89061e66cd8ff386b6738"></a>MaxSpatialDepth</em>&#160;</td><td class="fielddoc">
+<p>Maximum depth of the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> where spatial split will still be used. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a2655ecc602724ee86b28b6341286cb8cad265be3322b37b49577c1826e103bd39"></a>NumSpatialBins</em>&#160;</td><td class="fielddoc">
+<p>Number of spatial bins per node in each axis. </p>
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00051">51</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a602679b550c84eaa46ba8c30cf56da0f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SplitBVHBuilder::SplitBVHBuilder </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_b_v_h.html">BVH</a> &amp;&#160;</td>
+          <td class="paramname"><em>bvh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_b_v_h_1_1_build_params.html">BVH::BuildParams</a> &amp;&#160;</td>
+          <td class="paramname"><em>params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">bvh</td><td>Emtpy <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> to be built. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">params</td><td>Build parameters. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8cpp_source.html#l00035">35</a> of file <a class="el" href="_split_b_v_h_builder_8cpp_source.html">SplitBVHBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a38c8732156a2768f1c10af308c6b4f39"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SplitBVHBuilder::~SplitBVHBuilder </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8cpp_source.html#l00046">46</a> of file <a class="el" href="_split_b_v_h_builder_8cpp_source.html">SplitBVHBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a39041f318d5d5edfdbff315f057163b3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_b_v_h_node.html">BVHNode</a> * SplitBVHBuilder::buildNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a>&#160;</td>
+          <td class="paramname"><em>spec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>progressStart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>progressEnd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Builds a <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> node. The built node may be an inner node as well as a leaf node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spec</td><td>Specifications of the node. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">level</td><td>Level of the node in the tree. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">proggressStart</td><td>Percentage of already built subtree. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">progressEnd</td><td>Percentage of already built subtree including node's subtree. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Built node. </dd></dl>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8cpp_source.html#l00114">114</a> of file <a class="el" href="_split_b_v_h_builder_8cpp_source.html">SplitBVHBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a27109594914318784f517c9c1e0ce851"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_b_v_h_node.html">BVHNode</a> * SplitBVHBuilder::createLeaf </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;&#160;</td>
+          <td class="paramname"><em>spec</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Builds a leaf node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spec</td><td>Specifications of the node. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Built leaf node. </dd></dl>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8cpp_source.html#l00183">183</a> of file <a class="el" href="_split_b_v_h_builder_8cpp_source.html">SplitBVHBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab0e37349491aaf659e74725120d6aa33"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_object_split.html">SplitBVHBuilder::ObjectSplit</a> SplitBVHBuilder::findObjectSplit </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;&#160;</td>
+          <td class="paramname"><em>spec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>nodeSAH</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds best object split of the node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spec</td><td>Specifications of the node. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nodeSAH</td><td>Cost of the split without the cost of the triangles. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Found split. </dd></dl>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8cpp_source.html#l00193">193</a> of file <a class="el" href="_split_b_v_h_builder_8cpp_source.html">SplitBVHBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af9fa7dddc08c7bb5bc1eb2279b568cfa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_split.html">SplitBVHBuilder::SpatialSplit</a> SplitBVHBuilder::findSpatialSplit </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;&#160;</td>
+          <td class="paramname"><em>spec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>nodeSAH</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds the best spatial split of the node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spec</td><td>Specifications of the node. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nodeSAH</td><td>Cost of the split without the cost of the triangles. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Found split. </dd></dl>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8cpp_source.html#l00251">251</a> of file <a class="el" href="_split_b_v_h_builder_8cpp_source.html">SplitBVHBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1d988a2049d6508dcd7303a9a904fb53"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> SplitBVHBuilder::performObjectSplit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;&#160;</td>
+          <td class="paramname"><em>right</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;&#160;</td>
+          <td class="paramname"><em>spec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_object_split.html">ObjectSplit</a> &amp;&#160;</td>
+          <td class="paramname"><em>split</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Performs the object split operation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">left</td><td>Left child node specification. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">right</td><td>Right child node specification. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">spec</td><td>Specification of the node being split. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">split</td><td>Object split information. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8cpp_source.html#l00238">238</a> of file <a class="el" href="_split_b_v_h_builder_8cpp_source.html">SplitBVHBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a54f883da35e3588dd24f7254bd2c744a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> SplitBVHBuilder::performSpatialSplit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;&#160;</td>
+          <td class="paramname"><em>right</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_node_spec.html">NodeSpec</a> &amp;&#160;</td>
+          <td class="paramname"><em>spec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_split.html">SpatialSplit</a> &amp;&#160;</td>
+          <td class="paramname"><em>split</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Performs the spatial split operation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">left</td><td>Left child node specification. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">right</td><td>Right child node specification. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">spec</td><td>Specification of the node being split. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">split</td><td>Spatial split information. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8cpp_source.html#l00334">334</a> of file <a class="el" href="_split_b_v_h_builder_8cpp_source.html">SplitBVHBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a014db9f0466472f861ca2afe84cbc1d0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_b_v_h_node.html">BVHNode</a> * SplitBVHBuilder::run </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Performs the actual build. </p>
+<dl class="section return"><dt>Returns</dt><dd>Root node of the built <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a>. </dd></dl>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8cpp_source.html#l00052">52</a> of file <a class="el" href="_split_b_v_h_builder_8cpp_source.html">SplitBVHBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa1c2f673466f03ddbf953f51cc7c0db9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SplitBVHBuilder::sortCompare </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idxA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idxB</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sort comparator. Sorts references according to their position in descending order. For details see framework/base.Sort.hpp. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if idxB should go before idxA. </dd></dl>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8cpp_source.html#l00093">93</a> of file <a class="el" href="_split_b_v_h_builder_8cpp_source.html">SplitBVHBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac54ab6f72651f48a3dcbe33b2fbdad12"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> SplitBVHBuilder::sortSwap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idxA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idxB</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sort swap function. Swaps two references placed in the reference stack. For details see framework/base.Sort.hpp. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8cpp_source.html#l00106">106</a> of file <a class="el" href="_split_b_v_h_builder_8cpp_source.html">SplitBVHBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2d33cc27230a5128558b0034c068f682"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> SplitBVHBuilder::splitReference </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html">Reference</a> &amp;&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html">Reference</a> &amp;&#160;</td>
+          <td class="paramname"><em>right</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html">Reference</a> &amp;&#160;</td>
+          <td class="paramname"><em>ref</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a>&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Splits the triangle's bounding box. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">left</td><td>Left reference. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">right</td><td>Right reference. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ref</td><td><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html" title="Structure holding triangle&#39;s index together with its bounding box. ">Reference</a> being split. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dim</td><td>Axis of the split. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>Position of the split. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8cpp_source.html#l00430">430</a> of file <a class="el" href="_split_b_v_h_builder_8cpp_source.html">SplitBVHBuilder.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a3fc111519af5af5b34324d8b77f5fa5d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_bin.html">SpatialBin</a> FW::SplitBVHBuilder::m_bins[3][<a class="el" href="class_f_w_1_1_split_b_v_h_builder.html#a2655ecc602724ee86b28b6341286cb8cad265be3322b37b49577c1826e103bd39">NumSpatialBins</a>]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Spatial bins. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00236">236</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6ce05822361d87dc25716eae2fa6c5b6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_b_v_h.html">BVH</a>&amp; FW::SplitBVHBuilder::m_bvh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> being built. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00228">228</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9951faf8af948748d5ad84eb84f2e708"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#a444682d451e41e6a951ce34c6be6aa1b">F32</a> FW::SplitBVHBuilder::m_minOverlap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Minimum overlap of the left and right <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> of the object split needed to make spatial split worth finding. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00233">233</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a84d9ac666e1af7b548b64a04b4db4c5b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::SplitBVHBuilder::m_numDuplicates</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of duplicated references. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00239">239</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a334f1ec6892b63abafa9849041ba9465"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_f_w_1_1_b_v_h_1_1_build_params.html">BVH::BuildParams</a>&amp; FW::SplitBVHBuilder::m_params</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Build parameters. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00230">230</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa47ab09be4c47a8cb015c4a7f5bde708"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_platform.html">Platform</a>&amp; FW::SplitBVHBuilder::m_platform</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_f_w_1_1_platform.html" title="Class holding various SAH and batch processing parameters. ">Platform</a> settings. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00229">229</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaed66b1d4c80f0f5315e5fdf6d4a25ce"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_timer.html">Timer</a> FW::SplitBVHBuilder::m_progressTimer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Progress timer. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00238">238</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af33170ad3fb53ba04f07e7976abbbfaf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt;<a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html">Reference</a>&gt; FW::SplitBVHBuilder::m_refStack</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="struct_f_w_1_1_split_b_v_h_builder_1_1_reference.html" title="Structure holding triangle&#39;s index together with its bounding box. ">Reference</a> stack. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00232">232</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a50eb0dbb3892f1f48ebd41b8e56cbaea"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt;<a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a>&gt; FW::SplitBVHBuilder::m_rightBounds</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bounding boxes of all the possible right children. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00234">234</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a51dfd1d7d4011944bc235505777ef692"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::SplitBVHBuilder::m_sortDim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sort dimension. Used by sort method. </p>
+
+<p>Definition at line <a class="el" href="_split_b_v_h_builder_8hpp_source.html#l00235">235</a> of file <a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/rt/bvh/<a class="el" href="_split_b_v_h_builder_8hpp_source.html">SplitBVHBuilder.hpp</a></li>
-<li>src/rt/bvh/SplitBVHBuilder.cpp</li>
+<li>src/rt/bvh/<a class="el" href="_split_b_v_h_builder_8cpp_source.html">SplitBVHBuilder.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html">SplitBVHBuilder</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_split_b_v_h_builder.html">SplitBVHBuilder</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

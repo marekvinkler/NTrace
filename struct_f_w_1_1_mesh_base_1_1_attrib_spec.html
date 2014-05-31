@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_mesh_base_1_1_attrib_sp
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,25 +111,96 @@ $(document).ready(function(){initNavTree('struct_f_w_1_1_mesh_base_1_1_attrib_sp
 <div class="title">FW::MeshBase::AttribSpec Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aa6ed5c3d828af9e801c018442a78cf1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6ed5c3d828af9e801c018442a78cf1a"></a>
-AttribType&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
+<tr class="memitem:aa6ed5c3d828af9e801c018442a78cf1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84">AttribType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_mesh_base_1_1_attrib_spec.html#aa6ed5c3d828af9e801c018442a78cf1a">type</a></td></tr>
 <tr class="separator:aa6ed5c3d828af9e801c018442a78cf1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe39ba4a72fa377eb8601a2626448931"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe39ba4a72fa377eb8601a2626448931"></a>
-AttribFormat&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr>
+<tr class="memitem:abe39ba4a72fa377eb8601a2626448931"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_mesh_base.html#ae0e0ea98f849b0c833e1b2b1e3abbbbd">AttribFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_mesh_base_1_1_attrib_spec.html#abe39ba4a72fa377eb8601a2626448931">format</a></td></tr>
 <tr class="separator:abe39ba4a72fa377eb8601a2626448931"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaedb99654c95a2225554567c2f147ec3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaedb99654c95a2225554567c2f147ec3"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>length</b></td></tr>
+<tr class="memitem:aaedb99654c95a2225554567c2f147ec3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_mesh_base_1_1_attrib_spec.html#aaedb99654c95a2225554567c2f147ec3">length</a></td></tr>
 <tr class="separator:aaedb99654c95a2225554567c2f147ec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acaaaffbc3e5378250e6590b14c66d64c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acaaaffbc3e5378250e6590b14c66d64c"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>offset</b></td></tr>
+<tr class="memitem:acaaaffbc3e5378250e6590b14c66d64c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_mesh_base_1_1_attrib_spec.html#acaaaffbc3e5378250e6590b14c66d64c">offset</a></td></tr>
 <tr class="separator:acaaaffbc3e5378250e6590b14c66d64c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5104f1b520be591507cea333ac775429"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5104f1b520be591507cea333ac775429"></a>
-S32&#160;</td><td class="memItemRight" valign="bottom"><b>bytes</b></td></tr>
+<tr class="memitem:a5104f1b520be591507cea333ac775429"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_f_w_1_1_mesh_base_1_1_attrib_spec.html#a5104f1b520be591507cea333ac775429">bytes</a></td></tr>
 <tr class="separator:a5104f1b520be591507cea333ac775429"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00071">71</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a5104f1b520be591507cea333ac775429"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::MeshBase::AttribSpec::bytes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00077">77</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abe39ba4a72fa377eb8601a2626448931"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_mesh_base.html#ae0e0ea98f849b0c833e1b2b1e3abbbbd">AttribFormat</a> FW::MeshBase::AttribSpec::format</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00074">74</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaedb99654c95a2225554567c2f147ec3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::MeshBase::AttribSpec::length</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00075">75</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acaaaffbc3e5378250e6590b14c66d64c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> FW::MeshBase::AttribSpec::offset</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00076">76</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa6ed5c3d828af9e801c018442a78cf1a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_mesh_base.html#a7d0794560a30691570b9554951cf3b84">AttribType</a> FW::MeshBase::AttribSpec::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mesh_8hpp_source.html#l00073">73</a> of file <a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/framework/3d/<a class="el" href="_mesh_8hpp_source.html">Mesh.hpp</a></li>
 </ul>
@@ -137,8 +209,8 @@ S32&#160;</td><td class="memItemRight" valign="bottom"><b>bytes</b></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_mesh_base_1_1_attrib_spec.html">AttribSpec</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_mesh_base.html">MeshBase</a></li><li class="navelem"><a class="el" href="struct_f_w_1_1_mesh_base_1_1_attrib_spec.html">AttribSpec</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

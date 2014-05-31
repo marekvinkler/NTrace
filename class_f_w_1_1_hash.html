@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_hash.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,118 +112,1142 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_hash.html','');});
 <div class="title">FW::Hash&lt; K, V &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a867c86422e6fbed14fc8b11bb130d187"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a867c86422e6fbed14fc8b11bb130d187"></a>
-typedef <a class="el" href="struct_f_w_1_1_hash_entry.html">HashEntry</a>&lt; K, V &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Entry</b></td></tr>
+<tr class="memitem:a867c86422e6fbed14fc8b11bb130d187"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="struct_f_w_1_1_hash_entry.html">HashEntry</a>&lt; K, V &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a></td></tr>
 <tr class="separator:a867c86422e6fbed14fc8b11bb130d187"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac3f6e4dac96e4f9142f4a6287b5ca578"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac3f6e4dac96e4f9142f4a6287b5ca578"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Hash</b> (const <a class="el" href="class_f_w_1_1_hash.html">Hash</a>&lt; K, V &gt; &amp;other)</td></tr>
+<tr class="memitem:a269d2335ab140712a020c51d5439cc90"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a269d2335ab140712a020c51d5439cc90">Hash</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a269d2335ab140712a020c51d5439cc90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3f6e4dac96e4f9142f4a6287b5ca578"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#ac3f6e4dac96e4f9142f4a6287b5ca578">Hash</a> (const <a class="el" href="class_f_w_1_1_hash.html">Hash</a>&lt; K, V &gt; &amp;other)</td></tr>
 <tr class="separator:ac3f6e4dac96e4f9142f4a6287b5ca578"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0617a2fdcffd40ac13371293db5a9ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0617a2fdcffd40ac13371293db5a9ea"></a>
-const <a class="el" href="class_f_w_1_1_set.html">Set</a>&lt; <a class="el" href="struct_f_w_1_1_hash_entry.html">Entry</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getEntries</b> (void) const </td></tr>
+<tr class="memitem:ae99f6f62ad41e0254ff6c7740b784fd5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#ae99f6f62ad41e0254ff6c7740b784fd5">~Hash</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:ae99f6f62ad41e0254ff6c7740b784fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0617a2fdcffd40ac13371293db5a9ea"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_set.html">Set</a>&lt; <a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#ac0617a2fdcffd40ac13371293db5a9ea">getEntries</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ac0617a2fdcffd40ac13371293db5a9ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5507d02eaf0565772c7ab233a2464d93"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5507d02eaf0565772c7ab233a2464d93"></a>
-<a class="el" href="class_f_w_1_1_set.html">Set</a>&lt; <a class="el" href="struct_f_w_1_1_hash_entry.html">Entry</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getEntries</b> (void)</td></tr>
+<tr class="memitem:a5507d02eaf0565772c7ab233a2464d93"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_set.html">Set</a>&lt; <a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a5507d02eaf0565772c7ab233a2464d93">getEntries</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a5507d02eaf0565772c7ab233a2464d93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b732e4d3dc1632de645ef6e873192c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b732e4d3dc1632de645ef6e873192c8"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> (void) const </td></tr>
+<tr class="memitem:a5b732e4d3dc1632de645ef6e873192c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a5b732e4d3dc1632de645ef6e873192c8">getSize</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a5b732e4d3dc1632de645ef6e873192c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa95c748e90bdc9d03e8f0f1437053d14"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa95c748e90bdc9d03e8f0f1437053d14"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>contains</b> (const K &amp;key) const </td></tr>
+<tr class="memitem:aa95c748e90bdc9d03e8f0f1437053d14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#aa95c748e90bdc9d03e8f0f1437053d14">contains</a> (const K &amp;key) const </td></tr>
 <tr class="separator:aa95c748e90bdc9d03e8f0f1437053d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08941b353144ffec135093c713c085e7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08941b353144ffec135093c713c085e7"></a>
-const <a class="el" href="struct_f_w_1_1_hash_entry.html">Entry</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>searchEntry</b> (const K &amp;key) const </td></tr>
+<tr class="memitem:a08941b353144ffec135093c713c085e7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a08941b353144ffec135093c713c085e7">searchEntry</a> (const K &amp;key) const </td></tr>
 <tr class="separator:a08941b353144ffec135093c713c085e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9eee909577fefce2470da110c289369"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9eee909577fefce2470da110c289369"></a>
-<a class="el" href="struct_f_w_1_1_hash_entry.html">Entry</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>searchEntry</b> (const K &amp;key)</td></tr>
+<tr class="memitem:aa9eee909577fefce2470da110c289369"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#aa9eee909577fefce2470da110c289369">searchEntry</a> (const K &amp;key)</td></tr>
 <tr class="separator:aa9eee909577fefce2470da110c289369"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b59f026cbdab52dde5c3e6e4dd220c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b59f026cbdab52dde5c3e6e4dd220c8"></a>
-const K *&#160;</td><td class="memItemRight" valign="bottom"><b>searchKey</b> (const K &amp;key) const </td></tr>
+<tr class="memitem:a2b59f026cbdab52dde5c3e6e4dd220c8"><td class="memItemLeft" align="right" valign="top">const K *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a2b59f026cbdab52dde5c3e6e4dd220c8">searchKey</a> (const K &amp;key) const </td></tr>
 <tr class="separator:a2b59f026cbdab52dde5c3e6e4dd220c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba0c0adcef1475919c337d76d47e8c46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba0c0adcef1475919c337d76d47e8c46"></a>
-K *&#160;</td><td class="memItemRight" valign="bottom"><b>searchKey</b> (const K &amp;key)</td></tr>
+<tr class="memitem:aba0c0adcef1475919c337d76d47e8c46"><td class="memItemLeft" align="right" valign="top">K *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#aba0c0adcef1475919c337d76d47e8c46">searchKey</a> (const K &amp;key)</td></tr>
 <tr class="separator:aba0c0adcef1475919c337d76d47e8c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac23b487b1fa7c91419a5919cb71ac46b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac23b487b1fa7c91419a5919cb71ac46b"></a>
-const V *&#160;</td><td class="memItemRight" valign="bottom"><b>search</b> (const K &amp;key) const </td></tr>
+<tr class="memitem:ac23b487b1fa7c91419a5919cb71ac46b"><td class="memItemLeft" align="right" valign="top">const V *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#ac23b487b1fa7c91419a5919cb71ac46b">search</a> (const K &amp;key) const </td></tr>
 <tr class="separator:ac23b487b1fa7c91419a5919cb71ac46b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0e77f30d1a652fd9c2afe2eb3ba368b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0e77f30d1a652fd9c2afe2eb3ba368b"></a>
-V *&#160;</td><td class="memItemRight" valign="bottom"><b>search</b> (const K &amp;key)</td></tr>
+<tr class="memitem:ac0e77f30d1a652fd9c2afe2eb3ba368b"><td class="memItemLeft" align="right" valign="top">V *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#ac0e77f30d1a652fd9c2afe2eb3ba368b">search</a> (const K &amp;key)</td></tr>
 <tr class="separator:ac0e77f30d1a652fd9c2afe2eb3ba368b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2e582bbc5a9255e6532810b8f4b5866"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2e582bbc5a9255e6532810b8f4b5866"></a>
-const <a class="el" href="struct_f_w_1_1_hash_entry.html">Entry</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getEntry</b> (const K &amp;key) const </td></tr>
+<tr class="memitem:aa2e582bbc5a9255e6532810b8f4b5866"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#aa2e582bbc5a9255e6532810b8f4b5866">getEntry</a> (const K &amp;key) const </td></tr>
 <tr class="separator:aa2e582bbc5a9255e6532810b8f4b5866"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7a84fd157834b4e700f1cf17cf8c50f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af7a84fd157834b4e700f1cf17cf8c50f"></a>
-<a class="el" href="struct_f_w_1_1_hash_entry.html">Entry</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getEntry</b> (const K &amp;key)</td></tr>
+<tr class="memitem:af7a84fd157834b4e700f1cf17cf8c50f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#af7a84fd157834b4e700f1cf17cf8c50f">getEntry</a> (const K &amp;key)</td></tr>
 <tr class="separator:af7a84fd157834b4e700f1cf17cf8c50f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2795b5f5f2bb80df896a104a8d6f721b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2795b5f5f2bb80df896a104a8d6f721b"></a>
-const K &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getKey</b> (const K &amp;key) const </td></tr>
+<tr class="memitem:a2795b5f5f2bb80df896a104a8d6f721b"><td class="memItemLeft" align="right" valign="top">const K &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a2795b5f5f2bb80df896a104a8d6f721b">getKey</a> (const K &amp;key) const </td></tr>
 <tr class="separator:a2795b5f5f2bb80df896a104a8d6f721b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0de213cee8fdee150d27d42ce90f0d82"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0de213cee8fdee150d27d42ce90f0d82"></a>
-K &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getKey</b> (const K &amp;key)</td></tr>
+<tr class="memitem:a0de213cee8fdee150d27d42ce90f0d82"><td class="memItemLeft" align="right" valign="top">K &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a0de213cee8fdee150d27d42ce90f0d82">getKey</a> (const K &amp;key)</td></tr>
 <tr class="separator:a0de213cee8fdee150d27d42ce90f0d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c2ab6275500d63891ceef0cbdc8c3e7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c2ab6275500d63891ceef0cbdc8c3e7"></a>
-const V &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (const K &amp;key) const </td></tr>
+<tr class="memitem:a9c2ab6275500d63891ceef0cbdc8c3e7"><td class="memItemLeft" align="right" valign="top">const V &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a9c2ab6275500d63891ceef0cbdc8c3e7">get</a> (const K &amp;key) const </td></tr>
 <tr class="separator:a9c2ab6275500d63891ceef0cbdc8c3e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a419ca57b3c8e81e653692dc52007d5d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a419ca57b3c8e81e653692dc52007d5d6"></a>
-V &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (const K &amp;key)</td></tr>
+<tr class="memitem:a419ca57b3c8e81e653692dc52007d5d6"><td class="memItemLeft" align="right" valign="top">V &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a419ca57b3c8e81e653692dc52007d5d6">get</a> (const K &amp;key)</td></tr>
 <tr class="separator:a419ca57b3c8e81e653692dc52007d5d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac09bb310f2d63ec3f609a8c6c2aaf9b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac09bb310f2d63ec3f609a8c6c2aaf9b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (void)</td></tr>
+<tr class="memitem:aac09bb310f2d63ec3f609a8c6c2aaf9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#aac09bb310f2d63ec3f609a8c6c2aaf9b">clear</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:aac09bb310f2d63ec3f609a8c6c2aaf9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fcbada80601a4e8612f9001fc4dc4d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fcbada80601a4e8612f9001fc4dc4d3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (void)</td></tr>
+<tr class="memitem:a8fcbada80601a4e8612f9001fc4dc4d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a8fcbada80601a4e8612f9001fc4dc4d3">reset</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a8fcbada80601a4e8612f9001fc4dc4d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d7f5bd268d464feddee1b32624f2372"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d7f5bd268d464feddee1b32624f2372"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCapacity</b> (int numItems)</td></tr>
+<tr class="memitem:a4d7f5bd268d464feddee1b32624f2372"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a4d7f5bd268d464feddee1b32624f2372">setCapacity</a> (int numItems)</td></tr>
 <tr class="separator:a4d7f5bd268d464feddee1b32624f2372"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d2b6a971abc3a1764d22ebe516ad38c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d2b6a971abc3a1764d22ebe516ad38c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>compact</b> (void)</td></tr>
+<tr class="memitem:a9d2b6a971abc3a1764d22ebe516ad38c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a9d2b6a971abc3a1764d22ebe516ad38c">compact</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a9d2b6a971abc3a1764d22ebe516ad38c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf98266b9b34926734dd7a1eb9ab6cbe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf98266b9b34926734dd7a1eb9ab6cbe"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="class_f_w_1_1_hash.html">Hash</a>&lt; K, V &gt; &amp;other)</td></tr>
+<tr class="memitem:adf98266b9b34926734dd7a1eb9ab6cbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#adf98266b9b34926734dd7a1eb9ab6cbe">set</a> (const <a class="el" href="class_f_w_1_1_hash.html">Hash</a>&lt; K, V &gt; &amp;other)</td></tr>
 <tr class="separator:adf98266b9b34926734dd7a1eb9ab6cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82015169c507db99ba1a83a0fbc5b82c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82015169c507db99ba1a83a0fbc5b82c"></a>
-V &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (const K &amp;key, const V &amp;value)</td></tr>
+<tr class="memitem:a82015169c507db99ba1a83a0fbc5b82c"><td class="memItemLeft" align="right" valign="top">V &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a82015169c507db99ba1a83a0fbc5b82c">add</a> (const K &amp;key, const V &amp;<a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
 <tr class="separator:a82015169c507db99ba1a83a0fbc5b82c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae18decc5e3b448efc7ae5a8e594c4aa2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae18decc5e3b448efc7ae5a8e594c4aa2"></a>
-V &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (const K &amp;key)</td></tr>
+<tr class="memitem:ae18decc5e3b448efc7ae5a8e594c4aa2"><td class="memItemLeft" align="right" valign="top">V &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#ae18decc5e3b448efc7ae5a8e594c4aa2">add</a> (const K &amp;key)</td></tr>
 <tr class="separator:ae18decc5e3b448efc7ae5a8e594c4aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fe4170edef526efa9bea801d662ca1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fe4170edef526efa9bea801d662ca1f"></a>
-V &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> (const K &amp;key)</td></tr>
+<tr class="memitem:a1fe4170edef526efa9bea801d662ca1f"><td class="memItemLeft" align="right" valign="top">V &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a1fe4170edef526efa9bea801d662ca1f">remove</a> (const K &amp;key)</td></tr>
 <tr class="separator:a1fe4170edef526efa9bea801d662ca1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75f46e6146f8c16930110b7f62dd9732"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a75f46e6146f8c16930110b7f62dd9732"></a>
-V&#160;</td><td class="memItemRight" valign="bottom"><b>replace</b> (const K &amp;key, const V &amp;value)</td></tr>
+<tr class="memitem:a75f46e6146f8c16930110b7f62dd9732"><td class="memItemLeft" align="right" valign="top">V&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a75f46e6146f8c16930110b7f62dd9732">replace</a> (const K &amp;key, const V &amp;<a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
 <tr class="separator:a75f46e6146f8c16930110b7f62dd9732"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2530352754d317bc1d22d020897d1540"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2530352754d317bc1d22d020897d1540"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>findSlot</b> (const K &amp;key) const </td></tr>
+<tr class="memitem:a2530352754d317bc1d22d020897d1540"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a2530352754d317bc1d22d020897d1540">findSlot</a> (const K &amp;key) const </td></tr>
 <tr class="separator:a2530352754d317bc1d22d020897d1540"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a727be76a75497fcce7d60b24096cd815"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a727be76a75497fcce7d60b24096cd815"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>firstSlot</b> (void) const </td></tr>
+<tr class="memitem:a727be76a75497fcce7d60b24096cd815"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a727be76a75497fcce7d60b24096cd815">firstSlot</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a727be76a75497fcce7d60b24096cd815"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a567e836dc692f8bd95b3b8631e5ea555"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a567e836dc692f8bd95b3b8631e5ea555"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>nextSlot</b> (int slot) const </td></tr>
+<tr class="memitem:a567e836dc692f8bd95b3b8631e5ea555"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a567e836dc692f8bd95b3b8631e5ea555">nextSlot</a> (int slot) const </td></tr>
 <tr class="separator:a567e836dc692f8bd95b3b8631e5ea555"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6a2d1858c58c0456e622bc7b2fe7774"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6a2d1858c58c0456e622bc7b2fe7774"></a>
-const <a class="el" href="struct_f_w_1_1_hash_entry.html">Entry</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getSlot</b> (int slot) const </td></tr>
+<tr class="memitem:af6a2d1858c58c0456e622bc7b2fe7774"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#af6a2d1858c58c0456e622bc7b2fe7774">getSlot</a> (int slot) const </td></tr>
 <tr class="separator:af6a2d1858c58c0456e622bc7b2fe7774"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c442e202c87e8822f5eb028b6b9069c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c442e202c87e8822f5eb028b6b9069c"></a>
-<a class="el" href="struct_f_w_1_1_hash_entry.html">Entry</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getSlot</b> (int slot)</td></tr>
+<tr class="memitem:a8c442e202c87e8822f5eb028b6b9069c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#a8c442e202c87e8822f5eb028b6b9069c">getSlot</a> (int slot)</td></tr>
 <tr class="separator:a8c442e202c87e8822f5eb028b6b9069c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfe66374e6c60d80acadfba9c0ea576d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abfe66374e6c60d80acadfba9c0ea576d"></a>
-<a class="el" href="class_f_w_1_1_hash.html">Hash</a>&lt; K, V &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_f_w_1_1_hash.html">Hash</a>&lt; K, V &gt; &amp;other)</td></tr>
+<tr class="memitem:abfe66374e6c60d80acadfba9c0ea576d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_hash.html">Hash</a>&lt; K, V &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#abfe66374e6c60d80acadfba9c0ea576d">operator=</a> (const <a class="el" href="class_f_w_1_1_hash.html">Hash</a>&lt; K, V &gt; &amp;other)</td></tr>
 <tr class="separator:abfe66374e6c60d80acadfba9c0ea576d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3a25f74b2dbaaaf814b5306e136aa76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac3a25f74b2dbaaaf814b5306e136aa76"></a>
-const V &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (const K &amp;key) const </td></tr>
+<tr class="memitem:ac3a25f74b2dbaaaf814b5306e136aa76"><td class="memItemLeft" align="right" valign="top">const V &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#ac3a25f74b2dbaaaf814b5306e136aa76">operator[]</a> (const K &amp;key) const </td></tr>
 <tr class="separator:ac3a25f74b2dbaaaf814b5306e136aa76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af75c494aca34c439af0831d983ced794"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af75c494aca34c439af0831d983ced794"></a>
-V &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (const K &amp;key)</td></tr>
+<tr class="memitem:af75c494aca34c439af0831d983ced794"><td class="memItemLeft" align="right" valign="top">V &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_hash.html#af75c494aca34c439af0831d983ced794">operator[]</a> (const K &amp;key)</td></tr>
 <tr class="separator:af75c494aca34c439af0831d983ced794"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class K, class V&gt;<br/>
+class FW::Hash&lt; K, V &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00110">110</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a class="anchor" id="a867c86422e6fbed14fc8b11bb130d187"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="struct_f_w_1_1_hash_entry.html">HashEntry</a>&lt;K, V&gt; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::<a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00113">113</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a269d2335ab140712a020c51d5439cc90"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::<a class="el" href="class_f_w_1_1_hash.html">Hash</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00116">116</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac3f6e4dac96e4f9142f4a6287b5ca578"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::<a class="el" href="class_f_w_1_1_hash.html">Hash</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_hash.html">Hash</a>&lt; K, V &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00117">117</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae99f6f62ad41e0254ff6c7740b784fd5"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::~<a class="el" href="class_f_w_1_1_hash.html">Hash</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00118">118</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a82015169c507db99ba1a83a0fbc5b82c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">V&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::add </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const V &amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00143">143</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae18decc5e3b448efc7ae5a8e594c4aa2"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">V&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::add </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00144">144</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aac09bb310f2d63ec3f609a8c6c2aaf9b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00137">137</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9d2b6a971abc3a1764d22ebe516ad38c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::compact </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00140">140</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa95c748e90bdc9d03e8f0f1437053d14"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::contains </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00123">123</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2530352754d317bc1d22d020897d1540"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::findSlot </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00148">148</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a727be76a75497fcce7d60b24096cd815"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::firstSlot </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00149">149</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9c2ab6275500d63891ceef0cbdc8c3e7"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const V&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::get </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00134">134</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a419ca57b3c8e81e653692dc52007d5d6"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">V&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::get </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00135">135</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac0617a2fdcffd40ac13371293db5a9ea"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_set.html">Set</a>&lt;<a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a>&gt;&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::getEntries </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00120">120</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5507d02eaf0565772c7ab233a2464d93"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_set.html">Set</a>&lt;<a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a>&gt;&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::getEntries </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00121">121</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa2e582bbc5a9255e6532810b8f4b5866"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a>&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::getEntry </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00130">130</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af7a84fd157834b4e700f1cf17cf8c50f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a>&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::getEntry </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00131">131</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2795b5f5f2bb80df896a104a8d6f721b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const K&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::getKey </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00132">132</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0de213cee8fdee150d27d42ce90f0d82"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">K&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::getKey </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00133">133</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5b732e4d3dc1632de645ef6e873192c8"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::getSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00122">122</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af6a2d1858c58c0456e622bc7b2fe7774"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a>&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::getSlot </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>slot</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00151">151</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8c442e202c87e8822f5eb028b6b9069c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a>&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::getSlot </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>slot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00152">152</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a567e836dc692f8bd95b3b8631e5ea555"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::nextSlot </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>slot</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00150">150</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abfe66374e6c60d80acadfba9c0ea576d"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_hash.html">Hash</a>&lt;K, V&gt;&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_hash.html">Hash</a>&lt; K, V &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00154">154</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac3a25f74b2dbaaaf814b5306e136aa76"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const V&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00155">155</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af75c494aca34c439af0831d983ced794"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">V&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00156">156</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1fe4170edef526efa9bea801d662ca1f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">V&amp; <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::remove </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00145">145</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a75f46e6146f8c16930110b7f62dd9732"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">V <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::replace </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const V &amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00146">146</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8fcbada80601a4e8612f9001fc4dc4d3"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00138">138</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac23b487b1fa7c91419a5919cb71ac46b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const V* <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::search </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00128">128</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac0e77f30d1a652fd9c2afe2eb3ba368b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">V* <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::search </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00129">129</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a08941b353144ffec135093c713c085e7"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a>* <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::searchEntry </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00124">124</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa9eee909577fefce2470da110c289369"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_hash.html#a867c86422e6fbed14fc8b11bb130d187">Entry</a>* <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::searchEntry </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00125">125</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2b59f026cbdab52dde5c3e6e4dd220c8"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const K* <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::searchKey </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00126">126</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aba0c0adcef1475919c337d76d47e8c46"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">K* <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::searchKey </td>
+          <td>(</td>
+          <td class="paramtype">const K &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00127">127</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adf98266b9b34926734dd7a1eb9ab6cbe"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_hash.html">Hash</a>&lt; K, V &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00141">141</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4d7f5bd268d464feddee1b32624f2372"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class K, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> <a class="el" href="class_f_w_1_1_hash.html">FW::Hash</a>&lt; K, V &gt;::setCapacity </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numItems</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_hash_8hpp_source.html#l00139">139</a> of file <a class="el" href="_hash_8hpp_source.html">Hash.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/framework/base/<a class="el" href="_hash_8hpp_source.html">Hash.hpp</a></li>
 </ul>
@@ -231,8 +1256,8 @@ V &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (co
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_hash.html">Hash</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:37 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_hash.html">Hash</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

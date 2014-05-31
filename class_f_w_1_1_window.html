@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_window.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -113,6 +114,8 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_window.html','');});
 <div class="title">FW::Window Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_window_8hpp_source.html">Window.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -123,162 +126,1185 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a7da912e362322637d21290be7ee14f83"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>EventType</b> { <br/>
-&#160;&#160;<b>EventType_AddListener</b>, 
-<b>EventType_RemoveListener</b>, 
-<b>EventType_Close</b>, 
-<b>EventType_Resize</b>, 
+<tr class="memitem:a7da912e362322637d21290be7ee14f83"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83">EventType</a> { <br/>
+&#160;&#160;<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83a85519326110a98d6f4af7bd44869cabd">EventType_AddListener</a>, 
+<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83af261c199d3f7619bef9a1182459ee92d">EventType_RemoveListener</a>, 
+<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83aa51304b208ffc36033e355fc158034cb">EventType_Close</a>, 
+<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83a4d0769939b539d5eeadf6d4b0f7bd167">EventType_Resize</a>, 
 <br/>
-&#160;&#160;<b>EventType_KeyDown</b>, 
-<b>EventType_KeyUp</b>, 
-<b>EventType_Char</b>, 
-<b>EventType_Mouse</b>, 
+&#160;&#160;<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83af7ef8038864d097a9a0c824f6cf94296">EventType_KeyDown</a>, 
+<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83a71ca879cc922fa2b4790ff483e6c7a87">EventType_KeyUp</a>, 
+<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83abaece792711ec4910b384d94e9385de9">EventType_Char</a>, 
+<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83ad8334feba841c771f9e598af04948d90">EventType_Mouse</a>, 
 <br/>
-&#160;&#160;<b>EventType_Paint</b>, 
-<b>EventType_PrePaint</b>, 
-<b>EventType_PostPaint</b>, 
-<b>EventType_DropFiles</b>, 
+&#160;&#160;<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83a436680993bdba942573720d25be167dc">EventType_Paint</a>, 
+<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83a6fbab9229a09d8590dacbe8ecdaa23f5">EventType_PrePaint</a>, 
+<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83ac49ce1c7731637dbae6cd6857c45173f">EventType_PostPaint</a>, 
+<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83a6071b496cd0fb5d32aa7c87a6ccabefd">EventType_DropFiles</a>, 
 <br/>
-&#160;&#160;<b>EventType_PasteFiles</b>, 
-<b>EventType_PasteImage</b>
+&#160;&#160;<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83a0fe9931a1563351c2fd6841ad71e10e0">EventType_PasteFiles</a>, 
+<a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83abf36db1e44b57a8acf188459852ef2fc">EventType_PasteImage</a>
 <br/>
  }</td></tr>
 <tr class="separator:a7da912e362322637d21290be7ee14f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae97535bb6a32cdd9ca40f2123b8184e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae97535bb6a32cdd9ca40f2123b8184e6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTitle</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;title)</td></tr>
+<tr class="memitem:ab1802798ee89032e9241ba68c009e998"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#ab1802798ee89032e9241ba68c009e998">Window</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:ab1802798ee89032e9241ba68c009e998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1367dd865683b20712a93b8089457dbe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a1367dd865683b20712a93b8089457dbe">~Window</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a1367dd865683b20712a93b8089457dbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae97535bb6a32cdd9ca40f2123b8184e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#ae97535bb6a32cdd9ca40f2123b8184e6">setTitle</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;title)</td></tr>
 <tr class="separator:ae97535bb6a32cdd9ca40f2123b8184e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d785823316a7a4390e9469ac051528e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3d785823316a7a4390e9469ac051528e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setSize</b> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;size)</td></tr>
+<tr class="memitem:a3d785823316a7a4390e9469ac051528e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a3d785823316a7a4390e9469ac051528e">setSize</a> (const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;<a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:a3d785823316a7a4390e9469ac051528e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a124b62a992e0e7b38819a416b571dffb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a124b62a992e0e7b38819a416b571dffb"></a>
-<a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> (void) const </td></tr>
+<tr class="memitem:a124b62a992e0e7b38819a416b571dffb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a124b62a992e0e7b38819a416b571dffb">getSize</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a124b62a992e0e7b38819a416b571dffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a118e0356bb6fcf081955f2bd97686036"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a118e0356bb6fcf081955f2bd97686036"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setVisible</b> (bool visible)</td></tr>
+<tr class="memitem:a118e0356bb6fcf081955f2bd97686036"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a118e0356bb6fcf081955f2bd97686036">setVisible</a> (bool visible)</td></tr>
 <tr class="separator:a118e0356bb6fcf081955f2bd97686036"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31986f380b8a1191d6f9cfed007af7da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31986f380b8a1191d6f9cfed007af7da"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isVisible</b> (void) const </td></tr>
+<tr class="memitem:a31986f380b8a1191d6f9cfed007af7da"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a31986f380b8a1191d6f9cfed007af7da">isVisible</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a31986f380b8a1191d6f9cfed007af7da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1199ef2aac2cbf56b5d06e68a49448e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1199ef2aac2cbf56b5d06e68a49448e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setFullScreen</b> (bool isFull)</td></tr>
+<tr class="memitem:af1199ef2aac2cbf56b5d06e68a49448e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#af1199ef2aac2cbf56b5d06e68a49448e">setFullScreen</a> (bool isFull)</td></tr>
 <tr class="separator:af1199ef2aac2cbf56b5d06e68a49448e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad800b23c487d99325524adda4460357c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad800b23c487d99325524adda4460357c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isFullScreen</b> (void) const </td></tr>
+<tr class="memitem:ad800b23c487d99325524adda4460357c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#ad800b23c487d99325524adda4460357c">isFullScreen</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ad800b23c487d99325524adda4460357c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac49a39b602dd6a66fb419aad6c7e3efb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac49a39b602dd6a66fb419aad6c7e3efb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>toggleFullScreen</b> (void)</td></tr>
+<tr class="memitem:ac49a39b602dd6a66fb419aad6c7e3efb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#ac49a39b602dd6a66fb419aad6c7e3efb">toggleFullScreen</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ac49a39b602dd6a66fb419aad6c7e3efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa41e72fb8fb576931b425345ccc9a9a3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa41e72fb8fb576931b425345ccc9a9a3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>realize</b> (void)</td></tr>
+<tr class="memitem:aa41e72fb8fb576931b425345ccc9a9a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#aa41e72fb8fb576931b425345ccc9a9a3">realize</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:aa41e72fb8fb576931b425345ccc9a9a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a471843169a187ea9484b08690aa0330f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a471843169a187ea9484b08690aa0330f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setGLConfig</b> (const <a class="el" href="struct_f_w_1_1_g_l_context_1_1_config.html">GLContext::Config</a> &amp;config)</td></tr>
+<tr class="memitem:a471843169a187ea9484b08690aa0330f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a471843169a187ea9484b08690aa0330f">setGLConfig</a> (const <a class="el" href="struct_f_w_1_1_g_l_context_1_1_config.html">GLContext::Config</a> &amp;config)</td></tr>
 <tr class="separator:a471843169a187ea9484b08690aa0330f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1ee143c72ac76e67511b64a391078b2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1ee143c72ac76e67511b64a391078b2"></a>
-const <a class="el" href="struct_f_w_1_1_g_l_context_1_1_config.html">GLContext::Config</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getGLConfig</b> (void) const </td></tr>
+<tr class="memitem:ae1ee143c72ac76e67511b64a391078b2"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_f_w_1_1_g_l_context_1_1_config.html">GLContext::Config</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#ae1ee143c72ac76e67511b64a391078b2">getGLConfig</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ae1ee143c72ac76e67511b64a391078b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32ec843b345e27e2122259db33f6cf09"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32ec843b345e27e2122259db33f6cf09"></a>
-<a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getGL</b> (void)</td></tr>
+<tr class="memitem:a32ec843b345e27e2122259db33f6cf09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a32ec843b345e27e2122259db33f6cf09">getGL</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a32ec843b345e27e2122259db33f6cf09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c0df02b2960aba70e8011c6e338d614"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c0df02b2960aba70e8011c6e338d614"></a>
-HWND&#160;</td><td class="memItemRight" valign="bottom"><b>getHandle</b> (void) const </td></tr>
+<tr class="memitem:a3c0df02b2960aba70e8011c6e338d614"><td class="memItemLeft" align="right" valign="top">HWND&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a3c0df02b2960aba70e8011c6e338d614">getHandle</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a3c0df02b2960aba70e8011c6e338d614"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92b4a86da2fe76f9883e8f239d7da7ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92b4a86da2fe76f9883e8f239d7da7ac"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>repaint</b> (void)</td></tr>
+<tr class="memitem:a92b4a86da2fe76f9883e8f239d7da7ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a92b4a86da2fe76f9883e8f239d7da7ac">repaint</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a92b4a86da2fe76f9883e8f239d7da7ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55cf22e42a9faa8a20931bfca8e534fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55cf22e42a9faa8a20931bfca8e534fe"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>repaintNow</b> (void)</td></tr>
+<tr class="memitem:a55cf22e42a9faa8a20931bfca8e534fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a55cf22e42a9faa8a20931bfca8e534fe">repaintNow</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a55cf22e42a9faa8a20931bfca8e534fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a008d822ed6546e85819c2ac26c226e45"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a008d822ed6546e85819c2ac26c226e45"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>requestClose</b> (void)</td></tr>
+<tr class="memitem:a008d822ed6546e85819c2ac26c226e45"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a008d822ed6546e85819c2ac26c226e45">requestClose</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a008d822ed6546e85819c2ac26c226e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a32d8e7666006d01a501274c4e65361"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a32d8e7666006d01a501274c4e65361"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>enableDrop</b> (bool enable)</td></tr>
+<tr class="memitem:a3a32d8e7666006d01a501274c4e65361"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a3a32d8e7666006d01a501274c4e65361">enableDrop</a> (bool enable)</td></tr>
 <tr class="separator:a3a32d8e7666006d01a501274c4e65361"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acda65515b7fc89858f14012b3fd2173d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acda65515b7fc89858f14012b3fd2173d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>enablePaste</b> (bool enable)</td></tr>
+<tr class="memitem:acda65515b7fc89858f14012b3fd2173d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#acda65515b7fc89858f14012b3fd2173d">enablePaste</a> (bool enable)</td></tr>
 <tr class="separator:acda65515b7fc89858f14012b3fd2173d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39b0fe852430118c91828fa5ab8ea6a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39b0fe852430118c91828fa5ab8ea6a5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addListener</b> (<a class="el" href="class_f_w_1_1_window_1_1_listener.html">Listener</a> *listener)</td></tr>
+<tr class="memitem:a39b0fe852430118c91828fa5ab8ea6a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a39b0fe852430118c91828fa5ab8ea6a5">addListener</a> (<a class="el" href="class_f_w_1_1_window_1_1_listener.html">Listener</a> *listener)</td></tr>
 <tr class="separator:a39b0fe852430118c91828fa5ab8ea6a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7ffc4f1c701b6be336f276582328a2d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7ffc4f1c701b6be336f276582328a2d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeListener</b> (<a class="el" href="class_f_w_1_1_window_1_1_listener.html">Listener</a> *listener)</td></tr>
+<tr class="memitem:ab7ffc4f1c701b6be336f276582328a2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#ab7ffc4f1c701b6be336f276582328a2d">removeListener</a> (<a class="el" href="class_f_w_1_1_window_1_1_listener.html">Listener</a> *listener)</td></tr>
 <tr class="separator:ab7ffc4f1c701b6be336f276582328a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a060ec78fe5177ff4ddc38159a83b3c20"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a060ec78fe5177ff4ddc38159a83b3c20"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeListeners</b> (void)</td></tr>
+<tr class="memitem:a060ec78fe5177ff4ddc38159a83b3c20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a060ec78fe5177ff4ddc38159a83b3c20">removeListeners</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a060ec78fe5177ff4ddc38159a83b3c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd40c16a11619176cbd077e168debb96"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd40c16a11619176cbd077e168debb96"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isKeyDown</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;key) const </td></tr>
+<tr class="memitem:afd40c16a11619176cbd077e168debb96"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#afd40c16a11619176cbd077e168debb96">isKeyDown</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;key) const </td></tr>
 <tr class="separator:afd40c16a11619176cbd077e168debb96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76355b1629e5316ac4faec5cb7b69395"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76355b1629e5316ac4faec5cb7b69395"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMouseKnown</b> (void) const </td></tr>
+<tr class="memitem:a76355b1629e5316ac4faec5cb7b69395"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a76355b1629e5316ac4faec5cb7b69395">isMouseKnown</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a76355b1629e5316ac4faec5cb7b69395"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88b746fbbe71cf379f87102b51b086cc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88b746fbbe71cf379f87102b51b086cc"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMouseDragging</b> (void) const </td></tr>
+<tr class="memitem:a88b746fbbe71cf379f87102b51b086cc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a88b746fbbe71cf379f87102b51b086cc">isMouseDragging</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a88b746fbbe71cf379f87102b51b086cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7eb9cbc0be6360930c774d7e1acfe88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7eb9cbc0be6360930c774d7e1acfe88"></a>
-const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMousePos</b> (void) const </td></tr>
+<tr class="memitem:ab7eb9cbc0be6360930c774d7e1acfe88"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#ab7eb9cbc0be6360930c774d7e1acfe88">getMousePos</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:ab7eb9cbc0be6360930c774d7e1acfe88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0addd49cd51f66625b1e610b02afd33"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0addd49cd51f66625b1e610b02afd33"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>showMessageDialog</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;title, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;text)</td></tr>
+<tr class="memitem:ac0addd49cd51f66625b1e610b02afd33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#ac0addd49cd51f66625b1e610b02afd33">showMessageDialog</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;title, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;text)</td></tr>
 <tr class="separator:ac0addd49cd51f66625b1e610b02afd33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a335274c78ef96a6bffc55aa33fd14288"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a335274c78ef96a6bffc55aa33fd14288"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>showFileDialog</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;title, bool save, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;filters=&quot;&quot;, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;initialDir=&quot;&quot;, bool forceInitialDir=false)</td></tr>
+<tr class="memitem:a335274c78ef96a6bffc55aa33fd14288"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a335274c78ef96a6bffc55aa33fd14288">showFileDialog</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;title, bool save, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;filters=&quot;&quot;, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;initialDir=&quot;&quot;, bool forceInitialDir=false)</td></tr>
 <tr class="separator:a335274c78ef96a6bffc55aa33fd14288"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27caebef7d9c41c527c949284edd0775"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27caebef7d9c41c527c949284edd0775"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>showFileLoadDialog</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;title, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;filters=&quot;&quot;, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;initialDir=&quot;&quot;, bool forceInitialDir=false)</td></tr>
+<tr class="memitem:a27caebef7d9c41c527c949284edd0775"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a27caebef7d9c41c527c949284edd0775">showFileLoadDialog</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;title, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;filters=&quot;&quot;, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;initialDir=&quot;&quot;, bool forceInitialDir=false)</td></tr>
 <tr class="separator:a27caebef7d9c41c527c949284edd0775"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade1becae20ec368b18e11ca5f32b7a1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade1becae20ec368b18e11ca5f32b7a1a"></a>
-<a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>showFileSaveDialog</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;title, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;filters=&quot;&quot;, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;initialDir=&quot;&quot;, bool forceInitialDir=false)</td></tr>
+<tr class="memitem:ade1becae20ec368b18e11ca5f32b7a1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#ade1becae20ec368b18e11ca5f32b7a1a">showFileSaveDialog</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;title, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;filters=&quot;&quot;, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;initialDir=&quot;&quot;, bool forceInitialDir=false)</td></tr>
 <tr class="separator:ade1becae20ec368b18e11ca5f32b7a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a649afdf1413a24dbe58fe7bb7fcec9cd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a649afdf1413a24dbe58fe7bb7fcec9cd"></a>
-<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_string.html">String</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>showDirLoadDialog</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;title, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;initialDir=&quot;&quot;)</td></tr>
+<tr class="memitem:a649afdf1413a24dbe58fe7bb7fcec9cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_string.html">String</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a649afdf1413a24dbe58fe7bb7fcec9cd">showDirLoadDialog</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;title, const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;initialDir=&quot;&quot;)</td></tr>
 <tr class="separator:a649afdf1413a24dbe58fe7bb7fcec9cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa469c3f4404c4ec64dab12483d625f4e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa469c3f4404c4ec64dab12483d625f4e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>showModalMessage</b> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;msg)</td></tr>
+<tr class="memitem:aa469c3f4404c4ec64dab12483d625f4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#aa469c3f4404c4ec64dab12483d625f4e">showModalMessage</a> (const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;msg)</td></tr>
 <tr class="separator:aa469c3f4404c4ec64dab12483d625f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a7256383da44c73cd86a2b7d6f71e95ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7256383da44c73cd86a2b7d6f71e95ff"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>staticInit</b> (void)</td></tr>
+<tr class="memitem:a7256383da44c73cd86a2b7d6f71e95ff"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a7256383da44c73cd86a2b7d6f71e95ff">staticInit</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a7256383da44c73cd86a2b7d6f71e95ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a609ba2dfc4146d23dce6c71a5d283990"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a609ba2dfc4146d23dce6c71a5d283990"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>staticDeinit</b> (void)</td></tr>
+<tr class="memitem:a609ba2dfc4146d23dce6c71a5d283990"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a609ba2dfc4146d23dce6c71a5d283990">staticDeinit</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a609ba2dfc4146d23dce6c71a5d283990"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4af853ff4f5bfe76135b9c7866270cd9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4af853ff4f5bfe76135b9c7866270cd9"></a>
-static HWND&#160;</td><td class="memItemRight" valign="bottom"><b>createHWND</b> (void)</td></tr>
+<tr class="memitem:a4af853ff4f5bfe76135b9c7866270cd9"><td class="memItemLeft" align="right" valign="top">static HWND&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a4af853ff4f5bfe76135b9c7866270cd9">createHWND</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a4af853ff4f5bfe76135b9c7866270cd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ba2d8557bd6205d59f6f460738c4d7f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ba2d8557bd6205d59f6f460738c4d7f"></a>
-static UPTR&#160;</td><td class="memItemRight" valign="bottom"><b>setWindowLong</b> (HWND hwnd, int idx, UPTR value)</td></tr>
+<tr class="memitem:a5ba2d8557bd6205d59f6f460738c4d7f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_f_w.html#aedecb2337fb74ffe18776cea6585497b">UPTR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a5ba2d8557bd6205d59f6f460738c4d7f">setWindowLong</a> (HWND hwnd, int idx, <a class="el" href="namespace_f_w.html#aedecb2337fb74ffe18776cea6585497b">UPTR</a> <a class="el" href="_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570">value</a>)</td></tr>
 <tr class="separator:a5ba2d8557bd6205d59f6f460738c4d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa515fbe5587ae18c5f32e20f3b5f0b06"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa515fbe5587ae18c5f32e20f3b5f0b06"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumOpen</b> (void)</td></tr>
+<tr class="memitem:aa515fbe5587ae18c5f32e20f3b5f0b06"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#aa515fbe5587ae18c5f32e20f3b5f0b06">getNumOpen</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:aa515fbe5587ae18c5f32e20f3b5f0b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ea85aba852aa1811f70b8e2fd39f823"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ea85aba852aa1811f70b8e2fd39f823"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>realizeAll</b> (void)</td></tr>
+<tr class="memitem:a5ea85aba852aa1811f70b8e2fd39f823"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a5ea85aba852aa1811f70b8e2fd39f823">realizeAll</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a5ea85aba852aa1811f70b8e2fd39f823"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c557e0932c1dd56483b80c254475715"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c557e0932c1dd56483b80c254475715"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>pollMessages</b> (void)</td></tr>
+<tr class="memitem:a6c557e0932c1dd56483b80c254475715"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#a6c557e0932c1dd56483b80c254475715">pollMessages</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a6c557e0932c1dd56483b80c254475715"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed63c53914af6c2c17860ce54b6230de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed63c53914af6c2c17860ce54b6230de"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>traverseDirectory</b> (const char *root, <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_string.html">String</a> &gt; &amp;names)</td></tr>
+<tr class="memitem:aed63c53914af6c2c17860ce54b6230de"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window.html#aed63c53914af6c2c17860ce54b6230de">traverseDirectory</a> (const char *root, <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_string.html">String</a> &gt; &amp;names)</td></tr>
 <tr class="separator:aed63c53914af6c2c17860ce54b6230de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00041">41</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a7da912e362322637d21290be7ee14f83"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_f_w_1_1_window.html#a7da912e362322637d21290be7ee14f83">FW::Window::EventType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83a85519326110a98d6f4af7bd44869cabd"></a>EventType_AddListener</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83af261c199d3f7619bef9a1182459ee92d"></a>EventType_RemoveListener</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83aa51304b208ffc36033e355fc158034cb"></a>EventType_Close</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83a4d0769939b539d5eeadf6d4b0f7bd167"></a>EventType_Resize</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83af7ef8038864d097a9a0c824f6cf94296"></a>EventType_KeyDown</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83a71ca879cc922fa2b4790ff483e6c7a87"></a>EventType_KeyUp</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83abaece792711ec4910b384d94e9385de9"></a>EventType_Char</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83ad8334feba841c771f9e598af04948d90"></a>EventType_Mouse</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83a436680993bdba942573720d25be167dc"></a>EventType_Paint</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83a6fbab9229a09d8590dacbe8ecdaa23f5"></a>EventType_PrePaint</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83ac49ce1c7731637dbae6cd6857c45173f"></a>EventType_PostPaint</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83a6071b496cd0fb5d32aa7c87a6ccabefd"></a>EventType_DropFiles</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83a0fe9931a1563351c2fd6841ad71e10e0"></a>EventType_PasteFiles</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a7da912e362322637d21290be7ee14f83abf36db1e44b57a8acf188459852ef2fc"></a>EventType_PasteImage</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00047">47</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ab1802798ee89032e9241ba68c009e998"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Window::Window </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00054">54</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1367dd865683b20712a93b8089457dbe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Window::~Window </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00085">85</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a39b0fe852430118c91828fa5ab8ea6a5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::addListener </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_window_1_1_listener.html">Listener</a> *&#160;</td>
+          <td class="paramname"><em>listener</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00282">282</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4af853ff4f5bfe76135b9c7866270cd9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">HWND Window::createHWND </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00550">550</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3a32d8e7666006d01a501274c4e65361"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::enableDrop </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00268">268</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acda65515b7fc89858f14012b3fd2173d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::enablePaste </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00275">275</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a32ec843b345e27e2122259db33f6cf09"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> * Window::getGL </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00203">203</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae1ee143c72ac76e67511b64a391078b2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_f_w_1_1_g_l_context_1_1_config.html">GLContext::Config</a>&amp; FW::Window::getGLConfig </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00112">112</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3c0df02b2960aba70e8011c6e338d614"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">HWND FW::Window::getHandle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00115">115</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab7eb9cbc0be6360930c774d7e1acfe88"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a>&amp; FW::Window::getMousePos </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00131">131</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa515fbe5587ae18c5f32e20f3b5f0b06"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int FW::Window::getNumOpen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00145">145</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a124b62a992e0e7b38819a416b571dffb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> Window::getSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00129">129</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad800b23c487d99325524adda4460357c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::Window::isFullScreen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00107">107</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afd40c16a11619176cbd077e168debb96"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::Window::isKeyDown </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00128">128</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a88b746fbbe71cf379f87102b51b086cc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::Window::isMouseDragging </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00130">130</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a76355b1629e5316ac4faec5cb7b69395"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::Window::isMouseKnown </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00129">129</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a31986f380b8a1191d6f9cfed007af7da"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FW::Window::isVisible </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00105">105</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c557e0932c1dd56483b80c254475715"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::pollMessages </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00593">593</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa41e72fb8fb576931b425345ccc9a9a3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::realize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00184">184</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5ea85aba852aa1811f70b8e2fd39f823"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::realizeAll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00584">584</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab7ffc4f1c701b6be336f276582328a2d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::removeListener </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_window_1_1_listener.html">Listener</a> *&#160;</td>
+          <td class="paramname"><em>listener</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00293">293</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a060ec78fe5177ff4ddc38159a83b3c20"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::removeListeners </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00304">304</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a92b4a86da2fe76f9883e8f239d7da7ac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::repaint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00216">216</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a55cf22e42a9faa8a20931bfca8e534fe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::repaintNow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00223">223</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a008d822ed6546e85819c2ac26c226e45"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::requestClose </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00261">261</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af1199ef2aac2cbf56b5d06e68a49448e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::setFullScreen </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isFull</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00147">147</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a471843169a187ea9484b08690aa0330f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::setGLConfig </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_f_w_1_1_g_l_context_1_1_config.html">GLContext::Config</a> &amp;&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00195">195</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3d785823316a7a4390e9469ac051528e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::setSize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_vec2i.html">Vec2i</a> &amp;&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00106">106</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae97535bb6a32cdd9ca40f2123b8184e6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::setTitle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>title</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00095">95</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a118e0356bb6fcf081955f2bd97686036"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::setVisible </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>visible</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00138">138</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5ba2d8557bd6205d59f6f460738c4d7f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_f_w.html#aedecb2337fb74ffe18776cea6585497b">UPTR</a> Window::setWindowLong </td>
+          <td>(</td>
+          <td class="paramtype">HWND&#160;</td>
+          <td class="paramname"><em>hwnd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_f_w.html#aedecb2337fb74ffe18776cea6585497b">UPTR</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00573">573</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a649afdf1413a24dbe58fe7bb7fcec9cd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_string.html">String</a> &gt; Window::showDirLoadDialog </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>initialDir</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00455">455</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a335274c78ef96a6bffc55aa33fd14288"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> Window::showFileDialog </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>save</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>filters</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>initialDir</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>forceInitialDir</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00321">321</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a27caebef7d9c41c527c949284edd0775"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> FW::Window::showFileLoadDialog </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>filters</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>initialDir</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>forceInitialDir</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00135">135</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ade1becae20ec368b18e11ca5f32b7a1a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_string.html">String</a> FW::Window::showFileSaveDialog </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>filters</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>initialDir</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>forceInitialDir</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00136">136</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac0addd49cd51f66625b1e610b02afd33"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::showMessageDialog </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00312">312</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa469c3f4404c4ec64dab12483d625f4e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::showModalMessage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_w_1_1_string.html">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00487">487</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a609ba2dfc4146d23dce6c71a5d283990"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::staticDeinit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00535">535</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7256383da44c73cd86a2b7d6f71e95ff"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::staticInit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00502">502</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac49a39b602dd6a66fb419aad6c7e3efb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::Window::toggleFullScreen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8hpp_source.html#l00108">108</a> of file <a class="el" href="_window_8hpp_source.html">Window.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aed63c53914af6c2c17860ce54b6230de"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> Window::traverseDirectory </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_string.html">String</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>names</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_window_8cpp_source.html#l00609">609</a> of file <a class="el" href="_window_8cpp_source.html">Window.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/gui/<a class="el" href="_window_8hpp_source.html">Window.hpp</a></li>
-<li>src/framework/gui/Window.cpp</li>
+<li>src/framework/gui/<a class="el" href="_window_8cpp_source.html">Window.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_window.html">Window</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_window.html">Window</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:25 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

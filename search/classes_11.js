@@ -6,6 +6,5 @@ var searchData=
   ['textureatlas',['TextureAtlas',['../class_f_w_1_1_texture_atlas.html',1,'FW']]],
   ['texturespec',['TextureSpec',['../struct_f_w_1_1_texture_spec.html',1,'FW']]],
   ['thread',['Thread',['../class_f_w_1_1_thread.html',1,'FW']]],
-  ['timer',['Timer',['../class_f_w_1_1_timer.html',1,'FW']]],
-  ['triangle',['Triangle',['../struct_f_w_1_1_triangle.html',1,'FW']]]
+  ['timer',['Timer',['../class_f_w_1_1_timer.html',1,'FW']]]
 ];

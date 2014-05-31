@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_visualization_b_v_h.html
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -112,62 +113,150 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_visualization_b_v_h.html
 </div><!--header-->
 <div class="contents">
 
-<p>Class for the <a class="el" href="class_f_w_1_1_b_v_h.html">BVH</a> visualization.  
+<p>Class for the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> visualization.  
  <a href="class_f_w_1_1_visualization_b_v_h.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_visualization_b_v_h_8hpp_source.html">VisualizationBVH.hpp</a>&gt;</code></p>
 
-<p>Inherits <a class="el" href="class_f_w_1_1_window_1_1_listener.html">FW::Window::Listener</a>.</p>
+<p>Inherits <a class="el" href="class_f_w_1_1_visualization.html">FW::Visualization</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:added7b10e047f0a0479c999ef2579137"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#added7b10e047f0a0479c999ef2579137">VisualizationBVH</a> (<a class="el" href="class_f_w_1_1_cuda_b_v_h.html">CudaBVH</a> *bvh, const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &gt; &amp;emptyBoxes, const <a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> *rays=NULL, <a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> *visibility=NULL)</td></tr>
-<tr class="memdesc:added7b10e047f0a0479c999ef2579137"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#added7b10e047f0a0479c999ef2579137">More...</a><br/></td></tr>
-<tr class="separator:added7b10e047f0a0479c999ef2579137"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00278539b2bb85032ba84d54141e2ca5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00278539b2bb85032ba84d54141e2ca5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a00278539b2bb85032ba84d54141e2ca5">~VisualizationBVH</a> (void)</td></tr>
-<tr class="memdesc:a00278539b2bb85032ba84d54141e2ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br/></td></tr>
+<tr class="memitem:ab223f3ddabb523c46be59a7daec86373"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#ab223f3ddabb523c46be59a7daec86373">VisualizationBVH</a> (<a class="el" href="class_f_w_1_1_cuda_b_v_h.html">CudaBVH</a> *bvh, <a class="el" href="class_f_w_1_1_scene.html">Scene</a> *scene, const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &gt; &amp;emptyBoxes, const <a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> *rays=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> *visibility=<a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</td></tr>
+<tr class="memdesc:ab223f3ddabb523c46be59a7daec86373"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#ab223f3ddabb523c46be59a7daec86373">More...</a><br/></td></tr>
+<tr class="separator:ab223f3ddabb523c46be59a7daec86373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00278539b2bb85032ba84d54141e2ca5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a00278539b2bb85032ba84d54141e2ca5">~VisualizationBVH</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="memdesc:a00278539b2bb85032ba84d54141e2ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#a00278539b2bb85032ba84d54141e2ca5">More...</a><br/></td></tr>
 <tr class="separator:a00278539b2bb85032ba84d54141e2ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c7344ce25d5dac9fe4ae6c85976d564"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a7c7344ce25d5dac9fe4ae6c85976d564">handleEvent</a> (const <a class="el" href="struct_f_w_1_1_window_1_1_event.html">Window::Event</a> &amp;ev)</td></tr>
 <tr class="memdesc:a7c7344ce25d5dac9fe4ae6c85976d564"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles visualization events - key commands influencing the output.  <a href="#a7c7344ce25d5dac9fe4ae6c85976d564">More...</a><br/></td></tr>
 <tr class="separator:a7c7344ce25d5dac9fe4ae6c85976d564"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5c446f487fb958ff358eae7bc221c05"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#aa5c446f487fb958ff358eae7bc221c05">isVisible</a> () const </td></tr>
-<tr class="memdesc:aa5c446f487fb958ff358eae7bc221c05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return whether the visualization renders its output.  <a href="#aa5c446f487fb958ff358eae7bc221c05">More...</a><br/></td></tr>
-<tr class="separator:aa5c446f487fb958ff358eae7bc221c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37be26d40eb8146e1f410ab76b90bb93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a37be26d40eb8146e1f410ab76b90bb93">setVisible</a> (bool visible)</td></tr>
-<tr class="memdesc:a37be26d40eb8146e1f410ab76b90bb93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether the visualization should be rendered or not.  <a href="#a37be26d40eb8146e1f410ab76b90bb93">More...</a><br/></td></tr>
-<tr class="separator:a37be26d40eb8146e1f410ab76b90bb93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8317b0584d3b82d1a86702956391c6a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8317b0584d3b82d1a86702956391c6a8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a8317b0584d3b82d1a86702956391c6a8">moveToParent</a> ()</td></tr>
-<tr class="memdesc:a8317b0584d3b82d1a86702956391c6a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the node to be visualized to be the parent of the currently visualized node. <br/></td></tr>
+<tr class="memitem:a8317b0584d3b82d1a86702956391c6a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a8317b0584d3b82d1a86702956391c6a8">moveToParent</a> ()</td></tr>
+<tr class="memdesc:a8317b0584d3b82d1a86702956391c6a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the node to be visualized to be the parent of the currently visualized node.  <a href="#a8317b0584d3b82d1a86702956391c6a8">More...</a><br/></td></tr>
 <tr class="separator:a8317b0584d3b82d1a86702956391c6a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41ac645d8cbb6b9b42041cfec8571272"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a41ac645d8cbb6b9b42041cfec8571272"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a41ac645d8cbb6b9b42041cfec8571272">moveToSibling</a> ()</td></tr>
-<tr class="memdesc:a41ac645d8cbb6b9b42041cfec8571272"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the node to be visualized to be the sibling of the currently visualized node. <br/></td></tr>
+<tr class="memitem:a41ac645d8cbb6b9b42041cfec8571272"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a41ac645d8cbb6b9b42041cfec8571272">moveToSibling</a> ()</td></tr>
+<tr class="memdesc:a41ac645d8cbb6b9b42041cfec8571272"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the node to be visualized to be the sibling of the currently visualized node.  <a href="#a41ac645d8cbb6b9b42041cfec8571272">More...</a><br/></td></tr>
 <tr class="separator:a41ac645d8cbb6b9b42041cfec8571272"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abeeee41c409ed341be2af960ef22ec16"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abeeee41c409ed341be2af960ef22ec16"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#abeeee41c409ed341be2af960ef22ec16">moveToLeft</a> ()</td></tr>
-<tr class="memdesc:abeeee41c409ed341be2af960ef22ec16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the node to be visualized to be the left child of the currently visualized node. <br/></td></tr>
+<tr class="memitem:abeeee41c409ed341be2af960ef22ec16"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#abeeee41c409ed341be2af960ef22ec16">moveToLeft</a> ()</td></tr>
+<tr class="memdesc:abeeee41c409ed341be2af960ef22ec16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the node to be visualized to be the left child of the currently visualized node.  <a href="#abeeee41c409ed341be2af960ef22ec16">More...</a><br/></td></tr>
 <tr class="separator:abeeee41c409ed341be2af960ef22ec16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f60f324614eee71323dcaa56b6a65ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f60f324614eee71323dcaa56b6a65ab"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a1f60f324614eee71323dcaa56b6a65ab">moveToRight</a> ()</td></tr>
-<tr class="memdesc:a1f60f324614eee71323dcaa56b6a65ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the node to be visualized to be the right child of the currently visualized node. <br/></td></tr>
+<tr class="memitem:a1f60f324614eee71323dcaa56b6a65ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a1f60f324614eee71323dcaa56b6a65ab">moveToRight</a> ()</td></tr>
+<tr class="memdesc:a1f60f324614eee71323dcaa56b6a65ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the node to be visualized to be the right child of the currently visualized node.  <a href="#a1f60f324614eee71323dcaa56b6a65ab">More...</a><br/></td></tr>
 <tr class="separator:a1f60f324614eee71323dcaa56b6a65ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a123dcd2562fdcf51187fe925f4a83fa3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a123dcd2562fdcf51187fe925f4a83fa3">moveUp</a> ()</td></tr>
+<tr class="memitem:a123dcd2562fdcf51187fe925f4a83fa3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a123dcd2562fdcf51187fe925f4a83fa3">moveUp</a> ()</td></tr>
 <tr class="memdesc:a123dcd2562fdcf51187fe925f4a83fa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the node to be visualized to be the predecesor of the currently visualized node on the set path.  <a href="#a123dcd2562fdcf51187fe925f4a83fa3">More...</a><br/></td></tr>
 <tr class="separator:a123dcd2562fdcf51187fe925f4a83fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f0740747e281b3e76f0d801bb2d8916"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a1f0740747e281b3e76f0d801bb2d8916">moveDown</a> ()</td></tr>
+<tr class="memitem:a1f0740747e281b3e76f0d801bb2d8916"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a1f0740747e281b3e76f0d801bb2d8916">moveDown</a> ()</td></tr>
 <tr class="memdesc:a1f0740747e281b3e76f0d801bb2d8916"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the node to be visualized to be the succesor of the currently visualized node on the set path.  <a href="#a1f0740747e281b3e76f0d801bb2d8916">More...</a><br/></td></tr>
 <tr class="separator:a1f0740747e281b3e76f0d801bb2d8916"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad11340ea37eed9c3363eb5ffb66dca61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#ad11340ea37eed9c3363eb5ffb66dca61">draw</a> (<a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *gl, <a class="el" href="class_f_w_1_1_camera_controls.html">CameraControls</a> &amp;camera)</td></tr>
+<tr class="memitem:ad11340ea37eed9c3363eb5ffb66dca61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html#ad11340ea37eed9c3363eb5ffb66dca61">draw</a> (<a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *gl, <a class="el" href="class_f_w_1_1_camera_controls.html">CameraControls</a> &amp;camera)</td></tr>
 <tr class="memdesc:ad11340ea37eed9c3363eb5ffb66dca61"><td class="mdescLeft">&#160;</td><td class="mdescRight">The method used to draw the current state of visualization to the OpenGL context.  <a href="#ad11340ea37eed9c3363eb5ffb66dca61">More...</a><br/></td></tr>
 <tr class="separator:ad11340ea37eed9c3363eb5ffb66dca61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_f_w_1_1_visualization"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_f_w_1_1_visualization')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_f_w_1_1_visualization.html">FW::Visualization</a></td></tr>
+<tr class="memitem:a9bda90272f65cce7a7a7ef0322f1e093 inherit pub_methods_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a9bda90272f65cce7a7a7ef0322f1e093">Visualization</a> (<a class="el" href="class_f_w_1_1_scene.html">Scene</a> *scene)</td></tr>
+<tr class="separator:a9bda90272f65cce7a7a7ef0322f1e093 inherit pub_methods_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c83491500e13023820b9203e308fcb inherit pub_methods_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a11c83491500e13023820b9203e308fcb">~Visualization</a> ()</td></tr>
+<tr class="separator:a11c83491500e13023820b9203e308fcb inherit pub_methods_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad820c9aa4a55c0c705db297cc7ea5ac8 inherit pub_methods_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#ad820c9aa4a55c0c705db297cc7ea5ac8">isVisible</a> () const </td></tr>
+<tr class="memdesc:ad820c9aa4a55c0c705db297cc7ea5ac8 inherit pub_methods_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return whether the visualization renders its output.  <a href="#ad820c9aa4a55c0c705db297cc7ea5ac8">More...</a><br/></td></tr>
+<tr class="separator:ad820c9aa4a55c0c705db297cc7ea5ac8 inherit pub_methods_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e4244344da79f867240e504090c639b inherit pub_methods_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a3e4244344da79f867240e504090c639b">setVisible</a> (bool visible)</td></tr>
+<tr class="memdesc:a3e4244344da79f867240e504090c639b inherit pub_methods_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether the visualization should be rendered or not.  <a href="#a3e4244344da79f867240e504090c639b">More...</a><br/></td></tr>
+<tr class="separator:a3e4244344da79f867240e504090c639b inherit pub_methods_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_f_w_1_1_window_1_1_listener"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_f_w_1_1_window_1_1_listener')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_f_w_1_1_window_1_1_listener.html">FW::Window::Listener</a></td></tr>
+<tr class="memitem:a55d9c7f41bd0d2e87fee1d5353f8e1e0 inherit pub_methods_class_f_w_1_1_window_1_1_listener"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window_1_1_listener.html#a55d9c7f41bd0d2e87fee1d5353f8e1e0">Listener</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a55d9c7f41bd0d2e87fee1d5353f8e1e0 inherit pub_methods_class_f_w_1_1_window_1_1_listener"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea8219cdf2496da5dd02c639cd16020 inherit pub_methods_class_f_w_1_1_window_1_1_listener"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_window_1_1_listener.html#a3ea8219cdf2496da5dd02c639cd16020">~Listener</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a3ea8219cdf2496da5dd02c639cd16020 inherit pub_methods_class_f_w_1_1_window_1_1_listener"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_class_f_w_1_1_visualization"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_f_w_1_1_visualization')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_f_w_1_1_visualization.html">FW::Visualization</a></td></tr>
+<tr class="memitem:a880aec5ab65448045f1f484e33ca56fa inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_string.html">String</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a880aec5ab65448045f1f484e33ca56fa">m_splitPath</a></td></tr>
+<tr class="memdesc:a880aec5ab65448045f1f484e33ca56fa inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Text representation of the VisualizationBVH::m_nodeStack path.  <a href="#a880aec5ab65448045f1f484e33ca56fa">More...</a><br/></td></tr>
+<tr class="separator:a880aec5ab65448045f1f484e33ca56fa inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae561d49c58acedf00f061e73551c0de0 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#ae561d49c58acedf00f061e73551c0de0">m_osahSplits</a> [3]</td></tr>
+<tr class="memdesc:ae561d49c58acedf00f061e73551c0de0 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counters of the number of OSAH splits in the subtree under the set node in the x, y and z dimensions.  <a href="#ae561d49c58acedf00f061e73551c0de0">More...</a><br/></td></tr>
+<tr class="separator:ae561d49c58acedf00f061e73551c0de0 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bf798c031bf81ddffbe54df79237dd8 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a4bf798c031bf81ddffbe54df79237dd8">m_currentDepth</a></td></tr>
+<tr class="memdesc:a4bf798c031bf81ddffbe54df79237dd8 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current node's depth information.  <a href="#a4bf798c031bf81ddffbe54df79237dd8">More...</a><br/></td></tr>
+<tr class="separator:a4bf798c031bf81ddffbe54df79237dd8 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfa2e119bc6d3fe9713e9eae20aecf55 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="namespace_f_w.html#aca8b0db4cb8058fa177cbec0280443d9">S32</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#abfa2e119bc6d3fe9713e9eae20aecf55">m_visibility</a></td></tr>
+<tr class="memdesc:abfa2e119bc6d3fe9713e9eae20aecf55 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visibility of individual triangles.  <a href="#abfa2e119bc6d3fe9713e9eae20aecf55">More...</a><br/></td></tr>
+<tr class="separator:abfa2e119bc6d3fe9713e9eae20aecf55 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60f3cb6415519ec827543d20c7d91822 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a60f3cb6415519ec827543d20c7d91822">m_nodeColor</a></td></tr>
+<tr class="memdesc:a60f3cb6415519ec827543d20c7d91822 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color of the current node.  <a href="#a60f3cb6415519ec827543d20c7d91822">More...</a><br/></td></tr>
+<tr class="separator:a60f3cb6415519ec827543d20c7d91822 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bbfb628603b2634c88d02d5f208b26a inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a0bbfb628603b2634c88d02d5f208b26a">m_siblingColor</a></td></tr>
+<tr class="memdesc:a0bbfb628603b2634c88d02d5f208b26a inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color of the sibling of the current node.  <a href="#a0bbfb628603b2634c88d02d5f208b26a">More...</a><br/></td></tr>
+<tr class="separator:a0bbfb628603b2634c88d02d5f208b26a inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b0af30693534ca8257d7ac30ea053df inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a0b0af30693534ca8257d7ac30ea053df">m_leftColor</a></td></tr>
+<tr class="memdesc:a0b0af30693534ca8257d7ac30ea053df inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color of the left child of the current node.  <a href="#a0b0af30693534ca8257d7ac30ea053df">More...</a><br/></td></tr>
+<tr class="separator:a0b0af30693534ca8257d7ac30ea053df inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89aab5e5fe6968b1742350061817050b inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a89aab5e5fe6968b1742350061817050b">m_leftPrims</a></td></tr>
+<tr class="memdesc:a89aab5e5fe6968b1742350061817050b inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of primitives in the left child of the current node.  <a href="#a89aab5e5fe6968b1742350061817050b">More...</a><br/></td></tr>
+<tr class="separator:a89aab5e5fe6968b1742350061817050b inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0ce4f190c056225df2892e8d15dae15 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#ac0ce4f190c056225df2892e8d15dae15">m_rightColor</a></td></tr>
+<tr class="memdesc:ac0ce4f190c056225df2892e8d15dae15 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color of the right child of the current node.  <a href="#ac0ce4f190c056225df2892e8d15dae15">More...</a><br/></td></tr>
+<tr class="separator:ac0ce4f190c056225df2892e8d15dae15 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad32c457f66cf4f6cb9791019edc94e10 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#ad32c457f66cf4f6cb9791019edc94e10">m_rightPrims</a></td></tr>
+<tr class="memdesc:ad32c457f66cf4f6cb9791019edc94e10 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of primitives in the right child of the current node.  <a href="#ad32c457f66cf4f6cb9791019edc94e10">More...</a><br/></td></tr>
+<tr class="separator:ad32c457f66cf4f6cb9791019edc94e10 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ff0fef96ebb7817e79a3b9d3f0bbea1 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a3ff0fef96ebb7817e79a3b9d3f0bbea1">m_rays</a></td></tr>
+<tr class="memdesc:a3ff0fef96ebb7817e79a3b9d3f0bbea1 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> holding some rays as line segments.  <a href="#a3ff0fef96ebb7817e79a3b9d3f0bbea1">More...</a><br/></td></tr>
+<tr class="separator:a3ff0fef96ebb7817e79a3b9d3f0bbea1 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a093a2574c30277679c83cced40480863 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a093a2574c30277679c83cced40480863">m_rayColor</a></td></tr>
+<tr class="memdesc:a093a2574c30277679c83cced40480863 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color of the ray line indices.  <a href="#a093a2574c30277679c83cced40480863">More...</a><br/></td></tr>
+<tr class="separator:a093a2574c30277679c83cced40480863 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1620eaba67bb226c0163535878287372 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a1620eaba67bb226c0163535878287372">m_boxes</a></td></tr>
+<tr class="memdesc:a1620eaba67bb226c0163535878287372 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> holding selected boxes as quad primitives.  <a href="#a1620eaba67bb226c0163535878287372">More...</a><br/></td></tr>
+<tr class="separator:a1620eaba67bb226c0163535878287372 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4449b274f1fc3c39c81d3e8c2a7105c inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#ae4449b274f1fc3c39c81d3e8c2a7105c">m_emptyBoxes</a></td></tr>
+<tr class="memdesc:ae4449b274f1fc3c39c81d3e8c2a7105c inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> holding empty boxes as quad primitives.  <a href="#ae4449b274f1fc3c39c81d3e8c2a7105c">More...</a><br/></td></tr>
+<tr class="separator:ae4449b274f1fc3c39c81d3e8c2a7105c inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69e54cfdaa05aa63683b9a4ba16bcf83 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a69e54cfdaa05aa63683b9a4ba16bcf83">m_emptyColors</a></td></tr>
+<tr class="memdesc:a69e54cfdaa05aa63683b9a4ba16bcf83 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> holding colors of empty boxes as quad primitives.  <a href="#a69e54cfdaa05aa63683b9a4ba16bcf83">More...</a><br/></td></tr>
+<tr class="separator:a69e54cfdaa05aa63683b9a4ba16bcf83 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa00f323783365543aa44301dfc1454eb inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#aa00f323783365543aa44301dfc1454eb">m_emptyLineColors</a></td></tr>
+<tr class="memdesc:aa00f323783365543aa44301dfc1454eb inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> holding line colors of empty boxes as quad primitives.  <a href="#aa00f323783365543aa44301dfc1454eb">More...</a><br/></td></tr>
+<tr class="separator:aa00f323783365543aa44301dfc1454eb inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d9242d88292a9d610bc59235f3cf77a inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a8d9242d88292a9d610bc59235f3cf77a">m_invisTris</a></td></tr>
+<tr class="memdesc:a8d9242d88292a9d610bc59235f3cf77a inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> holding visible selected triangles.  <a href="#a8d9242d88292a9d610bc59235f3cf77a">More...</a><br/></td></tr>
+<tr class="separator:a8d9242d88292a9d610bc59235f3cf77a inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5947721d0fc2f6a812a3938b59cd7680 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a5947721d0fc2f6a812a3938b59cd7680">m_visTris</a></td></tr>
+<tr class="memdesc:a5947721d0fc2f6a812a3938b59cd7680 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> holding invisible selected triangles.  <a href="#a5947721d0fc2f6a812a3938b59cd7680">More...</a><br/></td></tr>
+<tr class="separator:a5947721d0fc2f6a812a3938b59cd7680 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71142aefe670a1b3ee82dfdc9dd6bac2 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a71142aefe670a1b3ee82dfdc9dd6bac2">m_visible</a></td></tr>
+<tr class="memdesc:a71142aefe670a1b3ee82dfdc9dd6bac2 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag whether to show the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> visualization.  <a href="#a71142aefe670a1b3ee82dfdc9dd6bac2">More...</a><br/></td></tr>
+<tr class="separator:a71142aefe670a1b3ee82dfdc9dd6bac2 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c2a1bb6fde419efb1aadb63c0c37f8d inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a8c2a1bb6fde419efb1aadb63c0c37f8d">m_showRays</a></td></tr>
+<tr class="memdesc:a8c2a1bb6fde419efb1aadb63c0c37f8d inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag whether to show the ray segments.  <a href="#a8c2a1bb6fde419efb1aadb63c0c37f8d">More...</a><br/></td></tr>
+<tr class="separator:a8c2a1bb6fde419efb1aadb63c0c37f8d inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3337f6ed2ed8938bcdfae9146e1126f inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#ad3337f6ed2ed8938bcdfae9146e1126f">m_splitColors</a></td></tr>
+<tr class="memdesc:ad3337f6ed2ed8938bcdfae9146e1126f inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag whether to map left/right children colors based on the split type.  <a href="#ad3337f6ed2ed8938bcdfae9146e1126f">More...</a><br/></td></tr>
+<tr class="separator:ad3337f6ed2ed8938bcdfae9146e1126f inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af91dc81c392504f518b28699cd9c5d66 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#af91dc81c392504f518b28699cd9c5d66">m_showChildren</a></td></tr>
+<tr class="memdesc:af91dc81c392504f518b28699cd9c5d66 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag whether to show children of the current node.  <a href="#af91dc81c392504f518b28699cd9c5d66">More...</a><br/></td></tr>
+<tr class="separator:af91dc81c392504f518b28699cd9c5d66 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27e812ce7f8a77a61a215355be02979e inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a27e812ce7f8a77a61a215355be02979e">m_showAllOSAH</a></td></tr>
+<tr class="memdesc:a27e812ce7f8a77a61a215355be02979e inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag whether to show all OSAH split nodes.  <a href="#a27e812ce7f8a77a61a215355be02979e">More...</a><br/></td></tr>
+<tr class="separator:a27e812ce7f8a77a61a215355be02979e inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52f80c557255cb5fbdeeb5e39484ecfd inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a52f80c557255cb5fbdeeb5e39484ecfd">m_showEmpty</a></td></tr>
+<tr class="memdesc:a52f80c557255cb5fbdeeb5e39484ecfd inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag whether to show empty nodes.  <a href="#a52f80c557255cb5fbdeeb5e39484ecfd">More...</a><br/></td></tr>
+<tr class="separator:a52f80c557255cb5fbdeeb5e39484ecfd inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a249a848ecf0a9bdcc5ca259a16b4e218 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#a249a848ecf0a9bdcc5ca259a16b4e218">m_showCurrTris</a></td></tr>
+<tr class="memdesc:a249a848ecf0a9bdcc5ca259a16b4e218 inherit pro_attribs_class_f_w_1_1_visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag whether to show triangles of the current node.};.  <a href="#a249a848ecf0a9bdcc5ca259a16b4e218">More...</a><br/></td></tr>
+<tr class="separator:a249a848ecf0a9bdcc5ca259a16b4e218 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab38657a4448e17805f5fa8c1f8ab3729 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_visualization.html#ab38657a4448e17805f5fa8c1f8ab3729">m_scene</a></td></tr>
+<tr class="separator:ab38657a4448e17805f5fa8c1f8ab3729 inherit pro_attribs_class_f_w_1_1_visualization"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class for the <a class="el" href="class_f_w_1_1_b_v_h.html">BVH</a> visualization. </p>
+<div class="textblock"><p>Class for the <a class="el" href="class_f_w_1_1_b_v_h.html" title="BVH acceleration structure class. ">BVH</a> visualization. </p>
 <p>In the standard visualization current node's bounding box, its sibling's bounding box and its childrens' bounding boxes are visualized. </p>
+
+<p>Definition at line <a class="el" href="_visualization_b_v_h_8hpp_source.html#l00047">47</a> of file <a class="el" href="_visualization_b_v_h_8hpp_source.html">VisualizationBVH.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="added7b10e047f0a0479c999ef2579137"></a>
+<a class="anchor" id="ab223f3ddabb523c46be59a7daec86373"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -183,6 +272,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="class_f_w_1_1_scene.html">Scene</a> *&#160;</td>
+          <td class="paramname"><em>scene</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="class_f_w_1_1_a_a_b_b.html">AABB</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>emptyBoxes</em>, </td>
         </tr>
@@ -190,13 +285,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="class_f_w_1_1_ray_buffer.html">RayBuffer</a> *&#160;</td>
-          <td class="paramname"><em>rays</em> = <code>NULL</code>, </td>
+          <td class="paramname"><em>rays</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_f_w_1_1_buffer.html">Buffer</a> *&#160;</td>
-          <td class="paramname"><em>visibility</em> = <code>NULL</code>&#160;</td>
+          <td class="paramname"><em>visibility</em> = <code><a class="el" href="_defs_8hpp.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -222,15 +317,40 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="_visualization_b_v_h_8cpp_source.html#l00073">73</a> of file <a class="el" href="_visualization_b_v_h_8cpp_source.html">VisualizationBVH.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a00278539b2bb85032ba84d54141e2ca5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VisualizationBVH::~VisualizationBVH </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
+
+<p>Definition at line <a class="el" href="_visualization_b_v_h_8cpp_source.html#l00181">181</a> of file <a class="el" href="_visualization_b_v_h_8cpp_source.html">VisualizationBVH.cpp</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ad11340ea37eed9c3363eb5ffb66dca61"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void VisualizationBVH::draw </td>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> VisualizationBVH::draw </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_f_w_1_1_g_l_context.html">GLContext</a> *&#160;</td>
           <td class="paramname"><em>gl</em>, </td>
@@ -247,6 +367,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>The method used to draw the current state of visualization to the OpenGL context. </p>
@@ -257,6 +382,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </table>
   </dd>
 </dl>
+
+<p>Implements <a class="el" href="class_f_w_1_1_visualization.html#af0b1e7e980ce0e1f803ac5da3564ffc1">FW::Visualization</a>.</p>
+
+<p>Definition at line <a class="el" href="_visualization_b_v_h_8cpp_source.html#l00367">367</a> of file <a class="el" href="_visualization_b_v_h_8cpp_source.html">VisualizationBVH.cpp</a>.</p>
 
 </div>
 </div>
@@ -291,34 +420,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the event has been processed. </dd></dl>
 
-<p>Implements <a class="el" href="class_f_w_1_1_window_1_1_listener.html">FW::Window::Listener</a>.</p>
+<p>Implements <a class="el" href="class_f_w_1_1_window_1_1_listener.html#a384968ef5bca68453f0d221e818fed6f">FW::Window::Listener</a>.</p>
 
-</div>
-</div>
-<a class="anchor" id="aa5c446f487fb958ff358eae7bc221c05"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool FW::VisualizationBVH::isVisible </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Return whether the visualization renders its output. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns true if the visualization is rendering, false otherwise. </dd></dl>
+<p>Definition at line <a class="el" href="_visualization_b_v_h_8cpp_source.html#l00187">187</a> of file <a class="el" href="_visualization_b_v_h_8cpp_source.html">VisualizationBVH.cpp</a>.</p>
 
 </div>
 </div>
@@ -327,7 +431,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void VisualizationBVH::moveDown </td>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> VisualizationBVH::moveDown </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -338,6 +442,84 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the node to be visualized to be the succesor of the currently visualized node on the set path. </p>
 <p>Unlike moveToLeftChild() or moveToRightChild does not change the current path from root to the lowest discovered node. Only changes which node to visualize on this path. </p>
 
+<p>Definition at line <a class="el" href="_visualization_b_v_h_8cpp_source.html#l00356">356</a> of file <a class="el" href="_visualization_b_v_h_8cpp_source.html">VisualizationBVH.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abeeee41c409ed341be2af960ef22ec16"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> VisualizationBVH::moveToLeft </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the node to be visualized to be the left child of the currently visualized node. </p>
+
+<p>Definition at line <a class="el" href="_visualization_b_v_h_8cpp_source.html#l00277">277</a> of file <a class="el" href="_visualization_b_v_h_8cpp_source.html">VisualizationBVH.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8317b0584d3b82d1a86702956391c6a8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> VisualizationBVH::moveToParent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the node to be visualized to be the parent of the currently visualized node. </p>
+
+<p>Definition at line <a class="el" href="_visualization_b_v_h_8cpp_source.html#l00234">234</a> of file <a class="el" href="_visualization_b_v_h_8cpp_source.html">VisualizationBVH.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1f60f324614eee71323dcaa56b6a65ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> VisualizationBVH::moveToRight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the node to be visualized to be the right child of the currently visualized node. </p>
+
+<p>Definition at line <a class="el" href="_visualization_b_v_h_8cpp_source.html#l00311">311</a> of file <a class="el" href="_visualization_b_v_h_8cpp_source.html">VisualizationBVH.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a41ac645d8cbb6b9b42041cfec8571272"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> VisualizationBVH::moveToSibling </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the node to be visualized to be the sibling of the currently visualized node. </p>
+
+<p>Definition at line <a class="el" href="_visualization_b_v_h_8cpp_source.html#l00247">247</a> of file <a class="el" href="_visualization_b_v_h_8cpp_source.html">VisualizationBVH.cpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a123dcd2562fdcf51187fe925f4a83fa3"></a>
@@ -345,7 +527,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void VisualizationBVH::moveUp </td>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> VisualizationBVH::moveUp </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -356,51 +538,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Sets the node to be visualized to be the predecesor of the currently visualized node on the set path. </p>
 <p>Unlike <a class="el" href="class_f_w_1_1_visualization_b_v_h.html#a8317b0584d3b82d1a86702956391c6a8" title="Sets the node to be visualized to be the parent of the currently visualized node. ...">moveToParent()</a> does not change the current path from root to the lowest discovered node. Only changes which node to visualize on this path. </p>
 
-</div>
-</div>
-<a class="anchor" id="a37be26d40eb8146e1f410ab76b90bb93"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FW::VisualizationBVH::setVisible </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>visible</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets whether the visualization should be rendered or not. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">visible</td><td>The visibility value. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Definition at line <a class="el" href="_visualization_b_v_h_8cpp_source.html#l00345">345</a> of file <a class="el" href="_visualization_b_v_h_8cpp_source.html">VisualizationBVH.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/rt/tools/<a class="el" href="_visualization_b_v_h_8hpp_source.html">VisualizationBVH.hpp</a></li>
-<li>src/rt/tools/VisualizationBVH.cpp</li>
+<li>src/rt/tools/<a class="el" href="_visualization_b_v_h_8cpp_source.html">VisualizationBVH.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html">VisualizationBVH</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:39 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_visualization_b_v_h.html">VisualizationBVH</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

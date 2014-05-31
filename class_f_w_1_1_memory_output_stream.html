@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_memory_output_stream.htm
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,62 +112,258 @@ $(document).ready(function(){initNavTree('class_f_w_1_1_memory_output_stream.htm
 </div><!--header-->
 <div class="contents">
 
+<p><code>#include &lt;<a class="el" href="_stream_8hpp_source.html">Stream.hpp</a>&gt;</code></p>
+
 <p>Inherits <a class="el" href="class_f_w_1_1_output_stream.html">FW::OutputStream</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac9659dc54c8b2bf7b732f564052a17b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9659dc54c8b2bf7b732f564052a17b4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MemoryOutputStream</b> (int capacity=0)</td></tr>
+<tr class="memitem:ac9659dc54c8b2bf7b732f564052a17b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_memory_output_stream.html#ac9659dc54c8b2bf7b732f564052a17b4">MemoryOutputStream</a> (int capacity=0)</td></tr>
 <tr class="separator:ac9659dc54c8b2bf7b732f564052a17b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cec45e2cb8cda168b78eb0306589182"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9cec45e2cb8cda168b78eb0306589182"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const void *ptr, int size)</td></tr>
+<tr class="memitem:a51ab94a7074e08be2438949d733f188f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_memory_output_stream.html#a51ab94a7074e08be2438949d733f188f">~MemoryOutputStream</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a51ab94a7074e08be2438949d733f188f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cec45e2cb8cda168b78eb0306589182"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_memory_output_stream.html#a9cec45e2cb8cda168b78eb0306589182">write</a> (const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *<a class="el" href="_d_l_l_imports_8cpp.html#a3f9c944700a4d6f4d7c0edb04a2caca8">ptr</a>, int <a class="el" href="_d_l_l_imports_8inl.html#abcaf2e752dfff61ecb0b2d0a593966ee">size</a>)</td></tr>
 <tr class="separator:a9cec45e2cb8cda168b78eb0306589182"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab13733e2c0ee445a63b54232dc6d1d83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab13733e2c0ee445a63b54232dc6d1d83"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>flush</b> (void)</td></tr>
+<tr class="memitem:ab13733e2c0ee445a63b54232dc6d1d83"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_memory_output_stream.html#ab13733e2c0ee445a63b54232dc6d1d83">flush</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:ab13733e2c0ee445a63b54232dc6d1d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b8dc94a3813806c13e621e0a64931e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b8dc94a3813806c13e621e0a64931e3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> (void)</td></tr>
+<tr class="memitem:a0b8dc94a3813806c13e621e0a64931e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_memory_output_stream.html#a0b8dc94a3813806c13e621e0a64931e3">clear</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a0b8dc94a3813806c13e621e0a64931e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ccb4d3c8f675b5ccd3da6de6604f15e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ccb4d3c8f675b5ccd3da6de6604f15e"></a>
-<a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; U8 &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> (void)</td></tr>
+<tr class="memitem:a2ccb4d3c8f675b5ccd3da6de6604f15e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_memory_output_stream.html#a2ccb4d3c8f675b5ccd3da6de6604f15e">getData</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
 <tr class="separator:a2ccb4d3c8f675b5ccd3da6de6604f15e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62b6ab5b2dfbc639a927b3987425b6c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62b6ab5b2dfbc639a927b3987425b6c2"></a>
-const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; U8 &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> (void) const </td></tr>
+<tr class="memitem:a62b6ab5b2dfbc639a927b3987425b6c2"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt; <a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_memory_output_stream.html#a62b6ab5b2dfbc639a927b3987425b6c2">getData</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>) const </td></tr>
 <tr class="separator:a62b6ab5b2dfbc639a927b3987425b6c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_f_w_1_1_output_stream"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_f_w_1_1_output_stream')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_f_w_1_1_output_stream.html">FW::OutputStream</a></td></tr>
-<tr class="memitem:ace23265380bfc6a3fc0c8d0cd9b13968 inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace23265380bfc6a3fc0c8d0cd9b13968"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>writeU8</b> (U32 v)</td></tr>
+<tr class="memitem:a9975f7bf4b4e34d25b3b33fd61577975 inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_output_stream.html#a9975f7bf4b4e34d25b3b33fd61577975">OutputStream</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a9975f7bf4b4e34d25b3b33fd61577975 inherit pub_methods_class_f_w_1_1_output_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a56e59f036a66376b466ceb6ccfe0bf inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_output_stream.html#a1a56e59f036a66376b466ceb6ccfe0bf">~OutputStream</a> (<a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>)</td></tr>
+<tr class="separator:a1a56e59f036a66376b466ceb6ccfe0bf inherit pub_methods_class_f_w_1_1_output_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace23265380bfc6a3fc0c8d0cd9b13968 inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_output_stream.html#ace23265380bfc6a3fc0c8d0cd9b13968">writeU8</a> (<a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> <a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:ace23265380bfc6a3fc0c8d0cd9b13968 inherit pub_methods_class_f_w_1_1_output_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bd93dd73e190a6ad90337320479cb3a inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1bd93dd73e190a6ad90337320479cb3a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>writeU16BE</b> (U32 v)</td></tr>
+<tr class="memitem:a1bd93dd73e190a6ad90337320479cb3a inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_output_stream.html#a1bd93dd73e190a6ad90337320479cb3a">writeU16BE</a> (<a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> <a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a1bd93dd73e190a6ad90337320479cb3a inherit pub_methods_class_f_w_1_1_output_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53c312594a9d40f1b1b4a3db40fe0f1b inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53c312594a9d40f1b1b4a3db40fe0f1b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>writeU16LE</b> (U32 v)</td></tr>
+<tr class="memitem:a53c312594a9d40f1b1b4a3db40fe0f1b inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_output_stream.html#a53c312594a9d40f1b1b4a3db40fe0f1b">writeU16LE</a> (<a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> <a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a53c312594a9d40f1b1b4a3db40fe0f1b inherit pub_methods_class_f_w_1_1_output_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84c4544ecc6c5c6f42797997af309303 inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84c4544ecc6c5c6f42797997af309303"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>writeU32BE</b> (U32 v)</td></tr>
+<tr class="memitem:a84c4544ecc6c5c6f42797997af309303 inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_output_stream.html#a84c4544ecc6c5c6f42797997af309303">writeU32BE</a> (<a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> <a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a84c4544ecc6c5c6f42797997af309303 inherit pub_methods_class_f_w_1_1_output_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68d0e85b1d5f7804ded8f24b737cd29f inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68d0e85b1d5f7804ded8f24b737cd29f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>writeU32LE</b> (U32 v)</td></tr>
+<tr class="memitem:a68d0e85b1d5f7804ded8f24b737cd29f inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_output_stream.html#a68d0e85b1d5f7804ded8f24b737cd29f">writeU32LE</a> (<a class="el" href="namespace_f_w.html#aa9e6318d2f21fa8ff6c253178f2eb949">U32</a> <a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a68d0e85b1d5f7804ded8f24b737cd29f inherit pub_methods_class_f_w_1_1_output_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7735ae5c767799e4d4467b1abe0f5abb inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7735ae5c767799e4d4467b1abe0f5abb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>writeU64BE</b> (U64 v)</td></tr>
+<tr class="memitem:a7735ae5c767799e4d4467b1abe0f5abb inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_output_stream.html#a7735ae5c767799e4d4467b1abe0f5abb">writeU64BE</a> (<a class="el" href="namespace_f_w.html#a46915469b6a604ee336811b6bd78953d">U64</a> <a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:a7735ae5c767799e4d4467b1abe0f5abb inherit pub_methods_class_f_w_1_1_output_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5103f420ca4ebec93726f243187a4a9 inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab5103f420ca4ebec93726f243187a4a9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>writeU64LE</b> (U64 v)</td></tr>
+<tr class="memitem:ab5103f420ca4ebec93726f243187a4a9 inherit pub_methods_class_f_w_1_1_output_stream"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_w_1_1_output_stream.html#ab5103f420ca4ebec93726f243187a4a9">writeU64LE</a> (<a class="el" href="namespace_f_w.html#a46915469b6a604ee336811b6bd78953d">U64</a> <a class="el" href="_d_l_l_imports_8inl.html#aa775029a6efb12d0b0eeef97c1814d04">v</a>)</td></tr>
 <tr class="separator:ab5103f420ca4ebec93726f243187a4a9 inherit pub_methods_class_f_w_1_1_output_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_stream_8hpp_source.html#l00171">171</a> of file <a class="el" href="_stream_8hpp_source.html">Stream.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ac9659dc54c8b2bf7b732f564052a17b4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FW::MemoryOutputStream::MemoryOutputStream </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>capacity</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_stream_8hpp_source.html#l00174">174</a> of file <a class="el" href="_stream_8hpp_source.html">Stream.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a51ab94a7074e08be2438949d733f188f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MemoryOutputStream::~MemoryOutputStream </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_stream_8cpp_source.html#l00375">375</a> of file <a class="el" href="_stream_8cpp_source.html">Stream.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a0b8dc94a3813806c13e621e0a64931e3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> FW::MemoryOutputStream::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_stream_8hpp_source.html#l00180">180</a> of file <a class="el" href="_stream_8hpp_source.html">Stream.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab13733e2c0ee445a63b54232dc6d1d83"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MemoryOutputStream::flush </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_f_w_1_1_output_stream.html#ae797f7c823e2cf23e6042807657d790d">FW::OutputStream</a>.</p>
+
+<p>Definition at line <a class="el" href="_stream_8cpp_source.html#l00388">388</a> of file <a class="el" href="_stream_8cpp_source.html">Stream.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2ccb4d3c8f675b5ccd3da6de6604f15e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_f_w_1_1_array.html">Array</a>&lt;<a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>&gt;&amp; FW::MemoryOutputStream::getData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_stream_8hpp_source.html#l00181">181</a> of file <a class="el" href="_stream_8hpp_source.html">Stream.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a62b6ab5b2dfbc639a927b3987425b6c2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_f_w_1_1_array.html">Array</a>&lt;<a class="el" href="namespace_f_w.html#a44e80c25c648ef514f1fb52f25f93757">U8</a>&gt;&amp; FW::MemoryOutputStream::getData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_stream_8hpp_source.html#l00182">182</a> of file <a class="el" href="_stream_8hpp_source.html">Stream.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9cec45e2cb8cda168b78eb0306589182"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> MemoryOutputStream::write </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_f_w_1_1_output_stream.html#aa6581e94153052d515345eb22a9e19c5">FW::OutputStream</a>.</p>
+
+<p>Definition at line <a class="el" href="_stream_8cpp_source.html#l00381">381</a> of file <a class="el" href="_stream_8cpp_source.html">Stream.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/framework/io/<a class="el" href="_stream_8hpp_source.html">Stream.hpp</a></li>
-<li>src/framework/io/Stream.cpp</li>
+<li>src/framework/io/<a class="el" href="_stream_8cpp_source.html">Stream.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>FW</b></li><li class="navelem"><a class="el" href="class_f_w_1_1_memory_output_stream.html">MemoryOutputStream</a></li>
-    <li class="footer">Generated on Sat Feb 22 2014 12:57:38 for NTrace by
+    <li class="navelem"><a class="el" href="namespace_f_w.html">FW</a></li><li class="navelem"><a class="el" href="class_f_w_1_1_memory_output_stream.html">MemoryOutputStream</a></li>
+    <li class="footer">Generated on Sat May 31 2014 15:56:26 for NTrace by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
