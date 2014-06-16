@@ -49,6 +49,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CudaCompile>
     <CudaCompile Include="src\rt\kernels\otracer_basic.cu" />
+    <CudaCompile Include="src\rt\kernels\otracer_shading.cu" />
     <CudaCompile Include="src\rt\kernels\tesla_persistent_packet.cu">
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

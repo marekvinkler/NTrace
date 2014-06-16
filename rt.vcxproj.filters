@@ -110,6 +110,9 @@
     <ClCompile Include="src\rt\bvh\OcclusionBVHBuilder.cpp">
       <Filter>bvh</Filter>
     </ClCompile>
+    <ClCompile Include="src\rt\cuda\CudaPersistentBVHTracer.cpp">
+      <Filter>cuda</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\rt\bvh\BVH.hpp">
@@ -203,6 +206,9 @@
     </ClInclude>
     <ClInclude Include="src\rt\bvh\OcclusionBVHBuilder.hpp">
       <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\cuda\CudaPersistentBVHTracer.hpp">
+      <Filter>cuda</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

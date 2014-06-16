@@ -257,6 +257,9 @@
     <ClCompile Include="src\rt\cuda\CudaBVHTracer.cpp" />
     <ClCompile Include="src\rt\cuda\CudaKDTree.cpp" />
     <ClCompile Include="src\rt\cuda\CudaKDTreeTracer.cpp" />
+    <ClCompile Include="src\rt\cuda\CudaPersistentBVHTracer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\rt\cuda\CudaRenderer.cpp" />
     <ClCompile Include="src\rt\cuda\Renderer.cpp" />
     <ClCompile Include="src\rt\Environment.cpp" />
@@ -291,6 +294,9 @@
     <ClInclude Include="src\rt\cuda\CudaBVHTracer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaKDTree.hpp" />
     <ClInclude Include="src\rt\cuda\CudaKDTreeTracer.hpp" />
+    <ClInclude Include="src\rt\cuda\CudaPersistentBVHTracer.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="src\rt\cuda\CudaRenderer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaVirtualTracer.hpp" />
     <ClInclude Include="src\rt\cuda\Renderer.hpp" />
