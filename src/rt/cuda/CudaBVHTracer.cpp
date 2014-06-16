@@ -188,7 +188,7 @@ F32 CudaBVHTracer::traceBatch(RayBuffer& rays)
 		OtraceInput& in			= *(OtraceInput*)module->getGlobal("c_OtraceInput").getMutablePtr();
 		in.numRays				= numRays;
 		in.anyHit				= (rays.getNeedClosestHit()) ? 0 : 1;
-		in.rays					= rays.getRayBuffer().getCudaPtr();
+		in.rays					= rays.getRayBuffer().getMutableCudaPtr();
 		in.results				= rays.getResultBuffer().getMutableCudaPtr();
 		in.nodesA				= nodePtr + nodeOfsA.x;
 		in.nodesB				= nodePtr + nodeOfsB.x;
@@ -206,6 +206,13 @@ F32 CudaBVHTracer::traceBatch(RayBuffer& rays)
 			in.atlasInfo			= m_scene->getTextureAtlasInfo().getCudaPtr();
 			in.matId				= m_scene->getMaterialIds().getCudaPtr();
 			in.matInfo				= m_scene->getMaterialInfo().getCudaPtr();
+			in.emissiveNum			= m_scene->getNumEmissive();
+			in.emissive				= m_scene->getEmissiveTris().getCudaPtr();
+			in.trisCount			= m_scene->getNumTriangles();
+			in.tris					= m_scene->getTriVtxIndexBuffer().getCudaPtr();
+			in.vertsCount			= m_scene->getNumVertices();
+			in.verts				= m_scene->getVtxPosBuffer().getCudaPtr();
+			in.randomSeed			= rand();
 		}
 
 		// Set texture references.

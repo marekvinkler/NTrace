@@ -295,7 +295,7 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
 
     // Secondary rays enabled => trace primary rays.
 
-	if (m_params.rayType != RayType_Primary || m_params.rayType != RayType_Textured || m_params.rayType != RayType_PathTracing)
+	if (m_params.rayType != RayType_Primary && m_params.rayType != RayType_Textured && m_params.rayType != RayType_PathTracing)
 	{
 		m_cudaTracer->traceBatch(m_primaryRays);
 	}

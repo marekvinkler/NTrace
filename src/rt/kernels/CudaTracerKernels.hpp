@@ -134,6 +134,13 @@ struct OtraceInput
 	CUdeviceptr		atlasInfo;			/* Texture atlas */
 	CUdeviceptr		matId;				/* Material ID */
 	CUdeviceptr		matInfo;			/* Material data */
+	int				emissiveNum;		/* Number of emissive triangles */
+	CUdeviceptr		emissive;			/* Emissive triangles buffer */
+	int				trisCount;			/* Number of triangles */
+	int				vertsCount;			/* Number of vertices */
+	CUdeviceptr		tris;				/* int3 vertex index data */
+	CUdeviceptr		verts;				/* float3 vertices data */
+	int				randomSeed;			/* RNG seed */
 };
 
 //------------------------------------------------------------------------
