@@ -27,7 +27,7 @@
 
 /**
  * \file
- * \brief Definitions for BVH node.
+ * \brief Declarations for a BVH node.
  */
 
 #pragma once
@@ -235,8 +235,8 @@ public:
 	 * \param[in] child0 Left child node.
 	 * \param[in] child1 Right child node.
 	 */
-    InnerNode(const AABB& bounds,BVHNode* child0,BVHNode* child1) { m_bounds=bounds; m_children[0] = child0; m_children[1] = child1; };
-
+    InnerNode(const AABB& bounds, BVHNode* child0, BVHNode* child1) { m_bounds=bounds; m_children[0] = child0; m_children[1] = child1; };
+    
 	/**
 	 * \brief Constructor.
 	 * \param[in] bounds Node's bounding box.
@@ -246,7 +246,7 @@ public:
 	 * \param[in] splitType Type of the node's split.
 	 * \param[in] osahTested Flag whether the split was tested for OSAH.
 	 */
-    InnerNode(const AABB& bounds,BVHNode* child0,BVHNode* child1, S32 axis, SplitInfo::SplitType splitType, bool osahTested): m_splitInfo(axis, splitType, osahTested) { m_bounds=bounds; m_children[0] = child0; m_children[1] = child1; };
+	InnerNode(const AABB& bounds, BVHNode* child0, BVHNode* child1, S32 axis, SplitInfo::SplitType splitType, bool osahTested): m_splitInfo(axis, splitType, osahTested) { m_bounds=bounds; m_children[0] = child0; m_children[1] = child1; };
 
 	/**
 	 * \return Whether the node is a leaf node (always false).

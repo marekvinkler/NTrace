@@ -27,7 +27,7 @@
 
 /**
  * \file
- * \brief Definitions for SplitBVHBuilder.
+ * \brief Declarations for SplitBVHBuilder.
  */
 
 #pragma once

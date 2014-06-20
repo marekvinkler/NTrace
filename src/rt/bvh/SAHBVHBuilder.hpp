@@ -16,7 +16,7 @@
 
 /**
  * \file
- * \brief Definitions for SAH BVH builder.
+ * \brief Declarations for SAHBVHBuilder.
  */
 
 #pragma once

@@ -60,7 +60,7 @@ public:
 	 * \param[in] nodeBatchSize Size of a node batch.
 	 * \param[in] triBatchSize Size of a triangle batch.
 	 */
-    Platform(const String& name,float nodeCost=1.f, float triCost=1.f, S32 nodeBatchSize=1, S32 triBatchSize=1) { m_name=name; m_SAHNodeCost = nodeCost; m_SAHTriangleCost = triCost; m_nodeBatchSize = nodeBatchSize; m_triBatchSize = triBatchSize; m_minLeafSize=1; m_maxLeafSize=0x7FFFFFF; }
+	Platform(const String& name, float nodeCost=1.f, float triCost=1.f, S32 nodeBatchSize=1, S32 triBatchSize=1) { m_name=name; m_SAHNodeCost = nodeCost; m_SAHTriangleCost = triCost; m_nodeBatchSize = nodeBatchSize; m_triBatchSize = triBatchSize; m_minLeafSize=1; m_maxLeafSize=0x7FFFFFF; }
 
 	/**
 	 * \return Name of the platform settings.
@@ -85,7 +85,7 @@ public:
 	 * \param[in] numTrix Number of triangles.
 	 * \return SAH cost of a node.
 	 */
-    float getCost(int numChildNodes,int numTris) const  { return getNodeCost(numChildNodes) + getTriangleCost(numTris); }
+    float getCost(int numChildNodes, int numTris) const	{ return getNodeCost(numChildNodes) + getTriangleCost(numTris); }
 
 	/**
 	 * \brief Calcuates cost of a given number of triangles rounded to the batch size.
@@ -122,7 +122,7 @@ public:
 	 * \brief Sets node batch size to a given value.
 	 * \param[in] nodeBatchSize New node batch size.
 	 */
-    void  setNodeBatchSize(S32 nodeBatchSize)           { m_nodeBatchSize= nodeBatchSize; }
+    void  setNodeBatchSize(S32 nodeBatchSize)           { m_nodeBatchSize = nodeBatchSize; }
 
 	/**
 	 * \brief Rounds given value up to the nearest triangle batch size multiple.
@@ -144,7 +144,7 @@ public:
 	 * \param[in] minSize Minimum leaf size.
 	 * \param[in] maxSize Maximum leaf size.
 	 */
-    void  setLeafPreferences(S32 minSize,S32 maxSize)   { m_minLeafSize=minSize; m_maxLeafSize=maxSize; }
+    void  setLeafPreferences(S32 minSize, S32 maxSize)	{ m_minLeafSize=minSize; m_maxLeafSize=maxSize; }
 
 	/**
 	* \return Minimum leaf size.

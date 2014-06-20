@@ -25,6 +25,11 @@
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * \file
+ * \brief Declarations for the Cuda version of the BVH.
+ */
+
 #pragma once
 #include "gpu/Buffer.hpp"
 #include "io/Stream.hpp"
@@ -81,6 +86,10 @@ namespace FW
 //      triIndex[tri*4] = origIdx
 //------------------------------------------------------------------------
 
+/**
+ * \brief Cuda BVH class.
+ * \details Graphic card friendly version of the BVH acceleration structure.
+ */
 class CudaBVH : public CudaAS
 {
 public:
@@ -90,24 +99,81 @@ public:
     };
 
 public:
+	/**
+	 * \brief Constructor.
+	 * \param[in] bvh Existing BVH that will be converted.
+	 * \param[in] layout Layout of buffers.
+	 */
     explicit    CudaBVH             (const BVH& bvh, BVHLayout layout);
+
+	/**
+	 * \brief Constructor
+	 * \param[in] layout Layout of buffers.
+	 */
 	explicit    CudaBVH             (BVHLayout layout) : m_layout(layout) { ; }
+
+	/**
+	 * \brief Copy constructor.
+	 * \param[in] other Existing Cuda BVH to be copied.
+	 */
                 CudaBVH             (CudaBVH& other)        { operator=(other); }
+
+	/**
+	 * \brief Constructor. Reads Cuda BVH from a file.
+	 * \param[in] in Input stream to read the Cuda BVH from.
+	 */
     explicit    CudaBVH             (InputStream& in);
+
+	/**
+	 * \brief Destructor.
+	 */
                 ~CudaBVH            (void);
 
+	/**
+	 * \return Layout of buffers.
+	 */
     BVHLayout   getLayout           (void) const            { return m_layout; }
+
+	/**
+	 * \return Node buffer.
+	 */
     Buffer&     getNodeBuffer       (void)                  { return m_nodes; }
+
+	/**
+	 * \return Woop triangle buffer.
+	 */
     Buffer&     getTriWoopBuffer    (void)                  { return m_triWoop; }
+
+	/**
+	 * \return Triangle index buffer.
+	 */
     Buffer&     getTriIndexBuffer   (void)                  { return m_triIndex; }
 
-    // AOS: idx ignored, returns entire buffer
-    // SOA: 0 <= idx < 4, returns one subarray
+	/**
+	 * \brief Returns node subarray.
+	 * \details AOS: idx ignored, returns entire buffer; SOA: 0 <= idx < 4, returns one subarray.
+	 * \return Node subarray.
+	 */
     Vec2i       getNodeSubArray     (int idx) const; // (ofs, size)
+
+	/**
+	 * \brief Returns woop triangle subarray.
+	 * \details AOS: idx ignored, returns entire buffer; SOA: 0 <= idx < 4, returns one subarray.
+	 * \return Woop triangle subarray.
+	 */
     Vec2i       getTriWoopSubArray  (int idx) const; // (ofs, size)
 
+	/**
+	 * \brief Assignment operator.
+	 * \param[in] other Cuda BVH to assign.
+	 * \return Result of the assignment.
+	 */
     CudaBVH&    operator=           (CudaBVH& other);
 
+	/**
+	 * \brief Writes Cuda BVH to the output stream.
+	 * \param[in] Target to write to.
+	 */
     void        serialize           (OutputStream& out);
 
 	void        setTraceParams      (Platform* platform, Scene* scene) { FW_ASSERT(platform && scene); m_platform = platform; m_scene = scene; }
