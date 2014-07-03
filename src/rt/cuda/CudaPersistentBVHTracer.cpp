@@ -18,7 +18,7 @@ using namespace FW;
 #include "kernels/thrustTest.hpp"
 #endif
 
-CudaPersistentBVHTracer::CudaPersistentBVHTracer(const Scene& scene, F32 epsilon)
+CudaPersistentBVHTracer::CudaPersistentBVHTracer(Scene& scene, F32 epsilon)
 {
 	m_epsilon = epsilon;
 
@@ -38,38 +38,56 @@ CudaPersistentBVHTracer::CudaPersistentBVHTracer(const Scene& scene, F32 epsilon
 	m_numMaterials      = 1;
 	m_numShadingNormals = m_numVerts;
 	m_numTextureCoords  = m_numVerts;
-	m_bbox = scene.box;
+	//m_bbox = scene.box;
+	scene.getBBox(m_bboxMin, m_bboxMax);
 	
-	m_tris.resizeDiscard(m_numTris * sizeof(SceneTriangle));
+	m_tris.resizeDiscard(m_numTris * sizeof(Vec3f));
 	m_triNormals.resizeDiscard(m_numTris * sizeof(Vec3f));
 	//m_verts.resizeDiscard(m_numVerts * sizeof(Vec3f));
-	m_materials.resizeDiscard(m_numMaterials * sizeof(Material));
-	m_shadingNormals.resizeDiscard(m_numVerts * sizeof(Vec3f));
-	m_shadedColor.resizeDiscard(m_numTris * sizeof(Vec3f));
-	m_materialColor.resizeDiscard(m_numTris * sizeof(Vec3f));
+	//m_materials.resizeDiscard(m_numMaterials * sizeof(Material));
+	//m_shadingNormals.resizeDiscard(m_numVerts * sizeof(Vec3f));
+	//m_shadedColor.resizeDiscard(m_numTris * sizeof(Vec3f));
+	//m_materialColor.resizeDiscard(m_numTris * sizeof(Vec3f));
 	//m_textureCoords.resizeDiscard(m_numTextureCoords * sizeof(Vec2f));
 	//m_trisBox.resizeDiscard(m_numTris * sizeof(CudaAABB));
 
 	m_trisCompact.resizeDiscard(m_numTris * 3 * sizeof(Vec4f));
 	m_trisIndex.resizeDiscard(m_numTris * sizeof(S32));
 
-	SceneTriangle* tout  = (SceneTriangle*)m_tris.getMutablePtr();
+	Vec3f*         tout  = (Vec3f*)m_tris.getMutablePtr();
 	Vec3f*         nout = (Vec3f*)m_triNormals.getMutablePtr();
-	//Vec3f*         vout  = (Vec3f*)m_verts.getMutablePtr();
-	Material*      mout  = (Material*)m_materials.getMutablePtr();
-	Vec3f*         snout = (Vec3f*)m_shadingNormals.getMutablePtr();
-	U32*           scout = (U32*)m_shadedColor.getMutablePtr();
-	U32*           mcout = (U32*)m_materialColor.getMutablePtr();
+	Vec3f*         vout  = (Vec3f*)m_verts.getMutablePtr();
+	//Material*      mout  = (Material*)m_materials.getMutablePtr();
+	//Vec3f*         snout = (Vec3f*)m_shadingNormals.getMutablePtr();
+	//U32*           scout = (U32*)m_shadedColor.getMutablePtr();
+	//U32*           mcout = (U32*)m_materialColor.getMutablePtr();
 	//Vec2f*         uvout = (Vec2f*)m_textureCoords.getMutablePtr();
-	//CudaAABB*      bout  = (CudaAABB*)m_trisBox.getMutablePtr();
+	float3*         bout  = (float3*)m_trisBox.getMutablePtr();
 
 	Vec4f* tcout  = (Vec4f*)m_trisCompact.getMutablePtr();
 	S32*   tiout  = (S32*)m_trisIndex.getMutablePtr();
 
 	// load vertices
+	const Vec3i* tris = (const Vec3i*)(scene.getTriVtxIndexBuffer().getPtr());
+	const Vec3f* verts = (const Vec3f*)(scene.getVtxPosBuffer().getPtr());
 	for (int i = 0; i < m_numTris; i++)
 	{
-		Triangle& tris = *scene.triangles[i];
+		for (int j = 0; j < 3; j++)
+		{
+			vout[i * 3 + j] = Vec3f(verts[tris[i][j]].x, verts[tris[i][j]].y, verts[tris[i][j]].z);
+			*tcout = Vec4f(verts[tris[i][j]].x, verts[tris[i][j]].y, verts[tris[i][j]].z,0);
+			tcout++;
+		}
+
+		*tiout = i;
+		tiout++;
+
+		Vec3f minV = min(vout[i*3+0], vout[i*3+1], vout[i*3+2]);
+		bout[i * 2 + 0] = make_float3(minV.x, minV.y, minV.z);
+		Vec3f maxV = max(vout[i*3+0], vout[i*3+1], vout[i*3+2]);
+		bout[i* 2 + 1] = make_float3(maxV.x, maxV.y, maxV.z);
+
+		/*Triangle& tris = *scene.triangles[i];
 		for(int j = 0; j < 3; j++)
 		{			
 			//vout[i*3+j]  = Vec3f(tris.vertices[j].x,tris.vertices[j].y,tris.vertices[j].z);
@@ -80,29 +98,33 @@ CudaPersistentBVHTracer::CudaPersistentBVHTracer(const Scene& scene, F32 epsilon
 			tcout++;
 		}
 
-		/*Vec3f minV = min(vout[i*3+0], vout[i*3+1], vout[i*3+2]);
+		Vec3f minV = min(vout[i*3+0], vout[i*3+1], vout[i*3+2]);
 		bout[i].m_mn = make_float3(minV.x, minV.y, minV.z);
 		Vec3f maxV = max(vout[i*3+0], vout[i*3+1], vout[i*3+2]);
 		bout[i].m_mx = make_float3(maxV.x, maxV.y, maxV.z);*/
 	}
 
 	// default material
-	Material m;
+	/*Material m;
 	m.diffuse      = Vec3f(1.0f,1.0f,1.0f);
 	m.specular     = Vec3f(0.0f,0.0f,0.0f);
 	m.type         = MeshBase::Material::MaterialType_Phong;
 	m.texID        = -1; // no texture
 	m.gloss_alpha  = Vec2f(0.0f, 0.f);
-	mout[0] = m;
+	mout[0] = m;*/
 
-	unsigned int matid = 1;
+	//unsigned int matid = 1;
 
 	// load triangles
 	Vec4f defaultColor(1.0f,1.0f,1.0f,1.0f);
 	for(int i=0,j=0;i<m_numTris;i++,j+=3)
 	{
+		tout[i] = Vec3i(j, j + 1, j + 2);
+		nout[i] = ((vout[j + 1] - vout[j]).cross(vout[j + 2] - vout[j]));
+		nout[i].normalize();
+
 		// triangle data
-		tout->vertices = Vec3i(j,j+1,j+2);
+		/*tout->vertices = Vec3i(j,j+1,j+2);
 		Triangle& tris = *scene.triangles[i];
 		Vector3 normalVec = tris.GetNormal();
 		tout->normal = Vec3f(normalVec.x,normalVec.y,normalVec.z);
@@ -124,7 +146,7 @@ CudaPersistentBVHTracer::CudaPersistentBVHTracer(const Scene& scene, F32 epsilon
 		mcout++;
 
 		tout++;
-		nout++;
+		nout++;*/
 	}
 
 	m_sizeTask = 0.f;
@@ -368,9 +390,9 @@ F32 CudaPersistentBVHTracer::traceBatchBVH(RayBuffer& rays, RayStats* stats)
 	m_module = m_compiler.compile();
 	failIfError();
 
-	CUfunction queryKernel = m_module->getKernel("queryConfig");
-    if (!queryKernel)
-        fail("Config query kernel not found!");
+	CudaKernel queryKernel = m_module->getKernel("queryConfig");
+    //if (!queryKernel)
+    //    fail("Config query kernel not found!");
 
     // Initialize config with default values.
 	KernelConfig& kernelConfig = *(KernelConfig*)m_module->getGlobal("g_config").getMutablePtr();
@@ -381,16 +403,17 @@ F32 CudaPersistentBVHTracer::traceBatchBVH(RayBuffer& rays, RayStats* stats)
 
     // Query config.
 
-    m_module->launchKernel(queryKernel, 1, 1);
+	queryKernel.launchTimed(Vec2i(1, 1));
+    //m_module->launchKernel(queryKernel, 1, 1);
     kernelConfig = *(const KernelConfig*)m_module->getGlobal("g_config").getPtr();
 
-	CUfunction kernel;
+	CudaKernel kernel;
 	if(stats != NULL)
 		kernel = m_module->getKernel("trace_stats");
 	else
 		kernel = m_module->getKernel("trace");
-	if (!kernel)
-		fail("Trace kernel not found!");
+	//if (!kernel)
+	//	fail("Trace kernel not found!");
 
 	KernelInput& in = *(KernelInput*)m_module->getGlobal("c_in").getMutablePtr();
 	// Start the timer

@@ -35,10 +35,10 @@ class CudaPersistentBVHTracer
 	Buffer m_verts;
 	Buffer m_tris;
 	Buffer m_triNormals;
-	Buffer m_materials;
-	Buffer m_shadingNormals;
-	Buffer m_shadedColor;
-	Buffer m_materialColor;
+	//Buffer m_materials;
+	//Buffer m_shadingNormals;
+	//Buffer m_shadedColor;
+	//Buffer m_materialColor;
 
 	Buffer m_raysIndex;
 	Buffer m_trisIndex;
@@ -113,7 +113,7 @@ class CudaPersistentBVHTracer
 	void prepareDynamicMemory();
 	int setDynamicMemory();
 public:
-	CudaPersistentBVHTracer(const Scene& scene, F32 epsilon);
+	CudaPersistentBVHTracer(Scene& scene, F32 epsilon);
 
 	F32 traceBatch(RayBuffer& rays);
 	F32 buildBVH(bool sbvh);
