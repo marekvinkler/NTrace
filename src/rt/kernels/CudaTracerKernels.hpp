@@ -143,6 +143,29 @@ struct OtraceInput
 	int				randomSeed;			/* RNG seed */
 };
 
+
+//------------------------------------------------------------------------
+// Input parameters for trace().
+//------------------------------------------------------------------------
+
+struct KernelInput
+{
+    int             numRays;        // Total number of rays in the batch.
+    bool            anyHit;         // False if rays need to find the closest hit.
+	float3          bmin;            // AABB min
+	float3          bmax;            // AABB min
+
+    CUdeviceptr     rays;           // Ray input: float3 origin, float tmin, float3 direction, float tmax.
+    CUdeviceptr     results;        // Ray output: int triangleID, float hitT, int2 padding.
+    CUdeviceptr     nodesA;         // SOA: bytes 0-15 of each node, AOS/Compact: 64 bytes per node.
+	CUdeviceptr     shadowNodes;
+	CUdeviceptr     parentNodes;
+    CUdeviceptr     trisA;          // SOA: bytes 0-15 of each triangle, AOS: 64 bytes per triangle, Compact: 48 bytes per triangle.
+    CUdeviceptr     triIndices;     // Triangle index remapping table.
+
+	CUdeviceptr		debugArr;
+};
+
 //------------------------------------------------------------------------
 // Temporary data stored in shared memory to reduce register pressure.
 //------------------------------------------------------------------------
@@ -165,12 +188,15 @@ extern "C"
 {
 
 __device__ KernelConfig g_config;   // Output of queryConfig().
+__constant__ KernelInput c_in;      // Input of trace().
 
 texture<float4, 1> t_rays;          // Linear textures wrapping the corresponding parameter arrays.
 texture<float4, 1> t_nodesA;
 texture<float4, 1> t_nodesB;
 texture<float4, 1> t_nodesC;
 texture<float4, 1> t_nodesD;
+texture<int4, 1> t_nodesI;
+texture<float4, 1> t_parentNodes;
 texture<float4, 1> t_trisA;
 texture<float4, 1> t_trisB;
 texture<float4, 1> t_trisC;

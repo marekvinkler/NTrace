@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="src\rt\ray\RayGenKernels.hpp">
-      <Filter>ray</Filter>
-    </ClInclude>
     <ClInclude Include="src\rt\ray\RayBufferKernels.hpp">
       <Filter>ray</Filter>
     </ClInclude>
@@ -12,6 +9,9 @@
     </ClInclude>
     <ClInclude Include="src\rt\cuda\RendererKernels.hpp">
       <Filter>shading</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\ray\RayGenKernels.hpp">
+      <Filter>ray</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +54,30 @@
     <CudaCompile Include="src\rt\kernels\otracer_shading.cu">
       <Filter>traversal</Filter>
     </CudaCompile>
+    <CudaCompile Include="src\rt\kernels\otracer_bidir.cu">
+      <Filter>traversal</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\kernels\fermi_persistent_speculative_while_while_inter.cu">
+      <Filter>persistentbvh</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\kernels\persistent_bvh_dynAlloc.cu">
+      <Filter>persistentbvh</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\kernels\persistent_bvh_sahTermSplit.cu">
+      <Filter>persistentbvh</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\kernels\persistent_nostruct.cu">
+      <Filter>persistentbvh</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\kernels\persistent_ondemand.cu">
+      <Filter>persistentbvh</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\kernels\persistent_sbvh.cu">
+      <Filter>persistentbvh</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\kernels\persistent_test.cu">
+      <Filter>persistentbvh</Filter>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="traversal">
@@ -67,6 +91,9 @@
     </Filter>
     <Filter Include="shading">
       <UniqueIdentifier>{8b5af90d-086c-47b8-91f5-bf8520b94b9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="persistentbvh">
+      <UniqueIdentifier>{66f12106-32b5-4c56-ae8c-644d15a21f6b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
