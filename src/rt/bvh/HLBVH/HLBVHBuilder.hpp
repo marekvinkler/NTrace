@@ -17,6 +17,7 @@
 #pragma once
 #include "cuda/CudaBVH.hpp"
 #include "base/Timer.hpp"
+#include "gpu/CudaModule.hpp"
 
 namespace FW
 {

@@ -242,7 +242,6 @@ F32 CudaBVHTracer::traceBatch(RayBuffer& rays)
 		int numBlocks = (desiredWarps + blockWarps - 1) / blockWarps;
 
 		// Launch.
-
 		return kernel.launchTimed(numBlocks * blockSize.x * blockSize.y, blockSize);
 	}
 }

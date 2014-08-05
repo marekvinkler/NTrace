@@ -158,8 +158,6 @@ struct KernelInput
     CUdeviceptr     rays;           // Ray input: float3 origin, float tmin, float3 direction, float tmax.
     CUdeviceptr     results;        // Ray output: int triangleID, float hitT, int2 padding.
     CUdeviceptr     nodesA;         // SOA: bytes 0-15 of each node, AOS/Compact: 64 bytes per node.
-	CUdeviceptr     shadowNodes;
-	CUdeviceptr     parentNodes;
     CUdeviceptr     trisA;          // SOA: bytes 0-15 of each triangle, AOS: 64 bytes per triangle, Compact: 48 bytes per triangle.
     CUdeviceptr     triIndices;     // Triangle index remapping table.
 
