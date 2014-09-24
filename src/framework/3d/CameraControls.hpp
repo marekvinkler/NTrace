@@ -108,6 +108,8 @@ public:
     void                removeGUIControls   (void);
     void                setEnableMovement   (bool enable)       { m_enableMovement = enable; }
 
+	bool				hasMoved			(void)				{ return m_moved; }
+
 private:
     bool                hasFeature          (Feature feature)   { return ((m_features & feature) != 0); }
     void                repaint             (void)              { if (m_window) m_window->repaint(); }
@@ -151,6 +153,8 @@ private:
     bool                m_enableStereo;
     F32                 m_stereoSeparation;
     F32                 m_stereoConvergence;
+
+	bool				m_moved;
 };
 
 //------------------------------------------------------------------------

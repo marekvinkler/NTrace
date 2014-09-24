@@ -423,6 +423,10 @@ void App::render(GLContext* gl)
 
     // Render.
 
+	if (m_cameraCtrl.hasMoved())
+	{
+		m_renderer->resetSampling();
+	}
 	m_renderer->setMesh(m_mesh);
 	F32 launchTime = m_renderer->renderFrame(gl, m_cameraCtrl);
 	int numRays = m_renderer->getTotalNumRays();
@@ -540,6 +544,11 @@ void App::resetCamera(void)
     }
 
     // Not found => initialize based on mesh bounds.
+
+	if (m_renderer)
+	{
+		m_renderer->resetSampling();
+	}
 
     m_cameraCtrl.initForMesh(m_mesh);
 }
@@ -791,7 +800,7 @@ void FW::init(void)
     // Parse options.
 
     String          logFile;
-    Vec2i           frameSize       = Vec2i(1024, 768);
+    Vec2i           frameSize       = Vec2i(640, 480);
     String          stateFile;
     String          meshFile;
     Array<String>   cameras;

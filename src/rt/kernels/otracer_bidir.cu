@@ -368,7 +368,7 @@ extern "C" __global__ void otrace_kernel(void)
 	float4 tempDir;
 	float mult_val = 1.0f;
 
-	for (int spp = 0; spp < 4; spp++)
+	for (int spp = 0; spp < 32; spp++)
 	{
 		rays[rayidx * 2 + 0] = primO;
 		rays[rayidx * 2 + 1] = primD;

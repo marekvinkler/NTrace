@@ -8,6 +8,10 @@ d  1.0
 Ns  0.0
 illum 2
 map_Kd floor_d.tga
+emissivity 0.0
+reflectivity 1.0
+refractivity 0.0
+IOR 1.0
 #
 newmtl 02_-_Default
 Ka  0.6 0.6 0.6
@@ -17,6 +21,10 @@ d  1.0
 Ns  0.0
 illum 2
 map_Kd brick_d.tga
+emissivity 0.0
+reflectivity 0.0
+refractivity 0.0
+IOR 1.0
 #
 newmtl 03_-_Default
 Ka  0.6 0.6 0.6
@@ -26,6 +34,10 @@ d  1.0
 Ns  0.0
 illum 2
 map_Kd stone_d.tga
+emissivity 0.0
+reflectivity 0.0
+refractivity 0.0
+IOR 1.0
 #
 newmtl 04_-_Default
 Ka  0.6 0.6 0.6
@@ -35,5 +47,8 @@ d  1.0
 Ns  0.0
 illum 2
 emissivity 1.0
+reflectivity 0.0
+refractivity 0.0
+IOR 1.0
 #
 # EOF

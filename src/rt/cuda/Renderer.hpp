@@ -117,6 +117,8 @@ public:
 	void                endBVHVis           (void);
 	void                toggleBVHVis        (void)					{ m_showVis = !m_showVis; m_showVis ? startBVHVis() : endBVHVis(); }
 
+	void				resetSampling		(void)					{ m_sampleCount = 0.0f; }
+
 protected:
                         Renderer            (const Renderer&); // forbidden
     Renderer&           operator=           (const Renderer&); // forbidden
@@ -137,6 +139,8 @@ protected:
     Scene*              m_scene;
 
     Image*              m_image;
+	Image*				m_sampleImage;
+	float				m_sampleCount;
     F32                 m_cameraFar;
     RayBuffer           m_primaryRays;
     RayBuffer           m_secondaryRays;

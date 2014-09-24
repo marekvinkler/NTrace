@@ -17,6 +17,7 @@ Renderer::Renderer(AccelStructType as, Environment* env)
     m_mesh              (NULL),
     m_scene             (NULL),
 
+	m_sampleImage		(NULL),
     m_image             (NULL),
     m_cameraFar         (0.0f),
 
@@ -58,6 +59,7 @@ Renderer::~Renderer(void)
 {
     setMesh(NULL);
 
+	delete m_sampleImage;
     delete m_image;
 	delete m_cudaTracer;
 	delete m_accelStruct;
@@ -279,6 +281,10 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
     const Vec2i& size = gl->getViewSize();
     if (!m_image || m_image->getSize() != size)
     {
+		delete m_sampleImage;
+		m_sampleImage = new Image(size, ImageFormat::RGBA_Vec4f);
+		m_sampleImage->getBuffer().setHints(Buffer::Hint_CudaGL);
+		m_sampleImage->clear();
         delete m_image;
         m_image = new Image(size, ImageFormat::ABGR_8888);
         m_image->getBuffer().setHints(Buffer::Hint_CudaGL);
@@ -373,6 +379,8 @@ F32 Renderer::traceBatch(void)
 void Renderer::updateResult(void)
 {
     FW_ASSERT(m_scene && m_image && m_batchRays);
+	
+	m_sampleCount += 1.0f;
 
     // Compile kernel.
 
@@ -403,6 +411,8 @@ void Renderer::updateResult(void)
 	in.atlasInfo			= m_scene->getTextureAtlasInfo().getCudaPtr();
 	in.matId				= m_scene->getMaterialIds().getCudaPtr();
 	in.matInfo				= m_scene->getMaterialInfo().getCudaPtr();
+	in.outputColor			= m_sampleImage->getBuffer().getMutableCudaPtr();
+	in.samplesCount			= m_sampleCount;
 
 	module->setTexRef("t_textures", *m_scene->getTextureAtlas()->getAtlasTexture().getImage(), true, true, true, false);
 

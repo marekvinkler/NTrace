@@ -36,6 +36,7 @@
 
 #include "CudaTracerKernels.hpp"
 #include <helper_math.h>
+#include <curand.h>
 
 //------------------------------------------------------------------------
 
@@ -267,6 +268,9 @@ __device__ bool traversal(int rayidx, int numRays, float4* rays, float4* nodesA,
 
 //-----------------------------------------------------------------------
 
+#define SAMPLES_PER_PIXEL 1
+#define MAX_PATH_LENGTH 4
+
 extern "C" __device__ inline float interpolateAttribute1f(float3 bary, float attribA, float attribB, float attribC)
 {
 	return attribA * bary.x + attribB * bary.y + attribC * bary.z;
@@ -323,6 +327,30 @@ __device__ inline void jenkinsMix(int& a, int& b, int& c)
 
 //------------------------------------------------------------------------
 
+__device__ inline float random(int seed, int offset)
+{
+	int hashA = seed + offset;
+	int hashB = 0x9e3779b9u;
+	int hashC = 0x9e3779b9u;
+	jenkinsMix(hashA, hashB, hashC);
+	jenkinsMix(hashA, hashB, hashC);
+	jenkinsMix(hashA, hashB, hashC);
+	return ((float)hashA * exp2f(-32)) + 0.5f;
+}
+
+//------------------------------------------------------------------------
+
+__device__ inline int randomInt(int seed, int offset)
+{
+	int hashA = seed + offset;
+	int hashB = 0x9e3779b9u;
+	int hashC = 0x9e3779b9u;
+	jenkinsMix(hashA, hashB, hashC);
+	return hashA;
+}
+
+//------------------------------------------------------------------------
+
 extern "C" __global__ void otrace_kernel(void)
 {
 	// Get information from constant memory
@@ -368,12 +396,178 @@ extern "C" __global__ void otrace_kernel(void)
 	float4 tempDir;
 	float mult_val = 1.0f;
 
-	for (int spp = 0; spp < 4; spp++)
+	/*result = make_float4(-random(in.randomSeed, rayidx),
+		-random(in.randomSeed, rayidx),
+		-random(in.randomSeed, rayidx),
+		1.0f);
+    STORE_RESULT(rayidx, hitIndex, result.x, result.y, result.z);
+	return;*/
+
+	// For each sample per pixel
+	for (int spp = 0; spp < SAMPLES_PER_PIXEL; spp++)
 	{
+		// Grab primitive origin and direction
 		rays[rayidx * 2 + 0] = primO;
 		rays[rayidx * 2 + 1] = primD;
 
-		for (int path = 0; path < 3; path++)
+		int depth = 0;
+		float4 color = make_float4(0.0f, 0.0f, 0.0f, 1.0f);				// Accumulated color
+		float4 reflectance = make_float4(1.0f, 1.0f, 1.0f, 1.0f);		// Accumulated reflectance
+		while(true)
+		{
+			// If we miss, return black
+			bool hit = traversal(rayidx, numRays, rays, nodesA, anyHit, results, &hitIndex, &hitT, &hitU, &hitV);
+			if (hit == false || hitIndex == -1)
+			{
+				break;
+			}
+			
+			// Get hit triangle index, compute barycentric coordinates, texture coordinates, hitpoint and normal; break on hitting light
+			int tri = hitIndex;
+			if (matInfo[matId[tri]].x > 0.0f)
+			{
+				color = color + reflectance * make_float4(matInfo[matId[tri]].x, matInfo[matId[tri]].x, matInfo[matId[tri]].x, 1.0f);
+				break;
+			}
+			float3 bary = make_float3(hitU, hitV, 1.0f - hitU - hitV);
+			float4 hitPoint = rays[rayidx * 2 + 0] + rays[rayidx * 2 + 1] * hitT * 0.99f;
+			float4 hitPointBehind = rays[rayidx * 2 + 0] + rays[rayidx * 2 + 1] * hitT * 1.01f;
+			float3 normal = interpolateAttribute3f(bary, normals[vertIdx[tri].x], normals[vertIdx[tri].y], normals[vertIdx[tri].z]);
+			float2 tc = interpolateAttribute2f(bary, texCoords[vertIdx[tri].x], texCoords[vertIdx[tri].y], texCoords[vertIdx[tri].z]);
+			// Calculate normal (always directing towards ray origin)
+			float3 normalDir = dot(normal, make_float3(rays[rayidx * 2 + 1])) < 0.0f ? normal : normal * -1;
+			// Sample color	
+			float4 f = matInfo[matId[tri]].x > 0.0f ? make_float4(matInfo[matId[tri]].x, matInfo[matId[tri]].x, matInfo[matId[tri]].x, 1.0f) : 
+				matInfo[matId[tri]].w == 0.0f ? make_float4(1.0f, 1.0f, 1.0f, 1.0f) : sample2D(bary, tc, atlasInfo[tri], t_textureAtlas);
+			f.x = powf(f.x, 2.2f);
+			f.y = powf(f.y, 2.2f);
+			f.z = powf(f.z, 2.2f);
+			// Calculate maximum reflectance
+			float p = f.x > f.y && f.x > f.z ? f.x : f.y > f.z ? f.y : f.z;
+			
+			// Store previous ray dir
+			float4 raydir = rays[rayidx * 2 + 1];
+
+			// Explicit step
+			if (matInfo[matId[tri]].y == 0.0f && matInfo[matId[tri]].z == 0.0f)
+			{
+				int emiId = (uint)randomInt(in.randomSeed, rayidx + (spp + 127) * (rayidx + (depth + 334) * (rayidx + 72))) % emissiveCount;
+				float3 baryRand = make_float3(random(in.randomSeed, rayidx + (spp + 17) * (rayidx + (depth + 68) * (rayidx + 62))), 
+					random(in.randomSeed, rayidx + (spp + 63) * (rayidx + (depth + 68) * (rayidx + 628))), 
+					0.0f);
+				if(baryRand.x + baryRand.y > 1.0f)
+				{
+					baryRand.x = 1.0f - baryRand.x;
+					baryRand.y = 1.0f - baryRand.y;
+				}
+				baryRand.z = 1.0f - baryRand.x - baryRand.y;
+				float3 sp = interpolateAttribute3f(baryRand, verts[emissive[emiId].x], verts[emissive[emiId].y], verts[emissive[emiId].z]);
+				float3 l = sp - make_float3(hitPoint);
+				float atten = sqrtf(1.0f / (length(l) + 1.0f));
+				l = normalize(l);
+				rays[rayidx * 2 + 0] = hitPoint;
+				rays[rayidx * 2 + 0].w = 0.01f;
+				rays[rayidx * 2 + 1] = make_float4(l, 10000.0f);
+				hit = traversal(rayidx, numRays, rays, nodesA, anyHit, results, &hitIndex, &hitT, &hitU, &hitV);
+				float4 expl = make_float4(0.0f, 0.0f, 0.0f, 0.0f);
+				if (hit && matInfo[matId[hitIndex]].x > 0.0f)
+				{
+					expl = matInfo[matId[hitIndex]].x * f * dot(normalDir, l) * atten;
+				}
+
+				color = color + reflectance * (matInfo[matId[tri]].x > 0.0f ? matInfo[matId[tri]].x : 0.0f) + reflectance * expl;
+			}
+			else
+			{
+				color = color + reflectance * (matInfo[matId[tri]].x > 0.0f ? matInfo[matId[tri]].x : 0.0f);
+			}
+
+			// Russian roulette
+			if (++depth > 3)
+			{
+				if (random(in.randomSeed, rayidx + spp * (rayidx + depth * (rayidx + 256))) < p)
+				{
+					f = f * (1.0f / p);
+
+					if (depth > MAX_PATH_LENGTH)
+					{
+						break;
+					}
+				}
+				else
+				{
+					break;
+				}
+			}
+			
+			reflectance = reflectance * f;
+			// Diffuse
+			if (matInfo[matId[tri]].y == 0.0f && matInfo[matId[tri]].z == 0.0f)
+			{
+				float r1 = 2.0f * 3.141592654f * random(in.randomSeed, rayidx + (spp + 37) * (rayidx + (depth + 17) * (rayidx + 171)));
+				float r2 = random(in.randomSeed, rayidx + (spp + 63) * (rayidx + (depth + 94) * (rayidx + 317)));
+				float r2s = sqrtf(r2);
+				float3 w = normalDir;
+				float3 u = normalize(cross((fabsf(w.x) > 0.1f ? make_float3(0.0f, 1.0f, 0.0f) : make_float3(1.0f, 0.0f, 0.0f)), w));
+				float3 v = cross(w, u);
+				float3 d = normalize(u * cosf(r1) * r2s + v * sinf(r1) * r2s + w * sqrtf(1.0f - r2));
+				rays[rayidx * 2 + 0] = hitPoint;
+				rays[rayidx * 2 + 0].w = 0.01f;
+				rays[rayidx * 2 + 1] = make_float4(d, 10000.0f);
+			}
+			// Ideal dielectric reflection
+			else if (matInfo[matId[tri]].z == 0.0f)
+			{
+				rays[rayidx * 2 + 0] = hitPoint;
+				rays[rayidx * 2 + 0].w = 0.01f;
+				rays[rayidx * 2 + 1] = raydir - 2.0f * make_float4(normal, 0.0f) * dot(make_float4(normal, 0.0f), raydir);
+			}
+			// Ideal dielectric refraction
+			else if (matInfo[matId[tri]].y == 0.0f)
+			{
+				rays[rayidx * 2 + 0] = hitPoint;
+				rays[rayidx * 2 + 0].w = 0.01f;
+				rays[rayidx * 2 + 1] = raydir - 2.0f * make_float4(normal, 0.0f) * dot(make_float4(normal, 0.0f), raydir);
+
+				bool into = dot(normal, normalDir) > 0.0f;
+				float nc = 1.0f;
+				float nt = 1.5f;
+				float nnt = into ? nc / nt : nt / nc;
+				float ddn = dot(make_float3(raydir), normalDir);
+				float cos2t = 1.0f - nnt * nnt * (1.0f - ddn * ddn);
+				if (cos2t < 0.0f)
+				{
+					continue;
+				}
+				float3 tdir = normalize(make_float3(raydir) * nnt - normal * ((into ? 1.0f : -1.f) * (ddn * nnt + sqrtf(cos2t))));
+				//float3 tdir = normalize(make_float3(raydir));
+				float a = nt - nc;
+				float b = nt + nc;
+				float c = 1.0f - (into ? -ddn : dot(tdir, normal));
+				float Re = matInfo[matId[tri]].y + (1.0f - matInfo[matId[tri]].y) * c * c * c * c * c;
+				float Tr = 1.0f - Re;
+				float P = 0.25f + 0.5f * Re;
+				float RP = Re / P;
+				float TP = Tr / (1.0f - P);
+
+				if (random(in.randomSeed, rayidx + (spp + 63) * (rayidx + (depth + 94) * (rayidx + 317))) < P)
+				{
+					reflectance = reflectance * RP;
+				}
+				else
+				{
+					reflectance = reflectance * TP;
+					rays[rayidx * 2 + 0] = hitPointBehind;
+					rays[rayidx * 2 + 0].w = 0.01f;
+					rays[rayidx * 2 + 1] = make_float4(tdir, 10000.0f);
+				}
+			}
+		}
+		
+		result = result + color;
+
+		// Until path is terminated or path maximum length is reached
+		/*for (int path = 0; path < MAX_PATH_LENGTH; path++)
 		{
 			float4 color = make_float4(0.0f, 0.0f, 0.0f, 1.0f);
 			float3 normal = make_float3(0.0f, 0.0f, 0.0f);
@@ -382,36 +576,44 @@ extern "C" __global__ void otrace_kernel(void)
 		
 			tempDir = rays[rayidx * 2 + 1];
 
+			// Check hit
 			hit = traversal(rayidx, numRays, rays, nodesA, anyHit, results, &hitIndex, &hitT, &hitU, &hitV);
 			if(hit)
 			{
 				int tri = hitIndex;
 				if (tri == -1)
 				{
+					// Invalid triangle hit - return black
 					color = make_float4(0.0f, 0.0f, 0.0f, 1.0f);
 				}
 				else
 				{
 					if(matInfo[matId[tri]].w == 0.0f)
 					{
+						// We hit a light
 						color = make_float4(1.0f, 1.0f, 1.0f, 1.0f);
 						normal = make_float3(rays[rayidx * 2 + 1]);
 					}
 					else
 					{
+						// We hit a triangle
 						float3 bary = make_float3(hitU, hitV, 1.0f - hitU - hitV);
 
 						// Sample diffuse texture for color
 						float2 tc = interpolateAttribute2f(bary, texCoords[vertIdx[tri].x], texCoords[vertIdx[tri].y], texCoords[vertIdx[tri].z]);
 						color = sample2D(bary, tc, atlasInfo[tri], t_textureAtlas);
 
+						// Interpolate normal
 						normal = interpolateAttribute3f(bary, normals[vertIdx[tri].x], normals[vertIdx[tri].y], normals[vertIdx[tri].z]);
 				
+						// Generate random value for emissive triangle ID
 						int hashA = in.randomSeed + path * spp + spp + path + rayidx * (path + threadIdx.x + 17);
 						int hashB = 0x9e3779b9u;
 						int hashC = 0x9e3779b9u;
 						jenkinsMix(hashA, hashB, hashC);
 						int emiId = (uint)hashC % emissiveCount;
+
+						// Generate random barycentric coordinate
 						float3 baryRand = make_float3((float)hashA * exp2f(-32), (float)hashB * exp2f(-32), 0.0f);
 						if(baryRand.x + baryRand.y > 1.0f)
 						{
@@ -420,6 +622,7 @@ extern "C" __global__ void otrace_kernel(void)
 						}
 						baryRand.z = 1.0f - baryRand.x - baryRand.y;
 
+						// Calculate new origin and direction to light
 						rays[rayidx * 2 + 0] = rays[rayidx * 2 + 0] + rays[rayidx * 2 + 1] * hitT * 0.99f;
 						rays[rayidx * 2 + 0].w = 0.01f;
 						float3 pos = interpolateAttribute3f(baryRand, verts[emissive[emiId].x], verts[emissive[emiId].y], verts[emissive[emiId].z]);
@@ -427,16 +630,20 @@ extern "C" __global__ void otrace_kernel(void)
 						len = length(dir);
 						dir = normalize(dir);
 						rays[rayidx * 2 + 1] = make_float4(dir, 10000.0f);
+
+						// Calculate BRDF
+						
 						color = color * max(dot(dir, normal), 0.0f);
 					}
 				}
 			}
-			__syncthreads();
 
+			// Cast a ray against random light source position
 			int hitIdx;
 			hit = traversal(rayidx, numRays, rays, nodesA, anyHit, results, &hitIdx, &hitT, &hitU, &hitV);
 			if (hit)
 			{
+				// Hit means shadow, unless emissive material
 				if (hitIdx != -1)
 				{
 					if(matInfo[matId[hitIdx]].w != 0.0f)
@@ -446,6 +653,7 @@ extern "C" __global__ void otrace_kernel(void)
 				}
 			}
 		
+			// Generate random value for next step
 			int hashA = in.randomSeed + path * spp + spp + path * 4 + 27 + rayidx * (path + threadIdx.x + 34);
 			int hashB = 0x9e3779b9u;
 			int hashC = 0x9e3779b9u;
@@ -453,16 +661,15 @@ extern "C" __global__ void otrace_kernel(void)
 			rays[rayidx * 2 + 0].w = 0.01f;
 			rays[rayidx * 2 + 1] = normalize(make_float4((float)hashA * exp2f(-32), (float)hashB * exp2f(-32), (float)hashC * exp2f(-32), 0.0f));
 			rays[rayidx * 2 + 1].w = 10000.0f;
-			__syncthreads();
 		
 			mult_val = dot(tempDir, make_float4(-normal, 0.0f));
 			color.x = max(color.x, 0.0f);
 			color.y = max(color.y, 0.0f);
 			color.z = max(color.z, 0.0f);
 			result += color * mult_val;
-		}
+		}*/
 	}
-	result *= 0.25f;
+	result /= SAMPLES_PER_PIXEL;
 
     STORE_RESULT(rayidx, hitIndex, result.x, result.y, result.z);
 }

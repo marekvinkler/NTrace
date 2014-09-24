@@ -52,6 +52,7 @@ CameraControls::CameraControls(CommonControls* commonControls, U32 features)
     m_alignY            (false),
     m_alignZ            (false)
 {
+	m_moved = false;
     initDefaults();
     if ((m_features & Feature_StereoControls) != 0 && !GLContext::isStereoAvailable())
         m_features &= ~Feature_StereoControls;
@@ -69,6 +70,7 @@ bool CameraControls::handleEvent(const Window::Event& ev)
 {
     if (!m_commonControls)
         fail("CameraControls attached to a window without CommonControls!");
+	m_moved = false;
     CommonControls& cc = *m_commonControls;
     FW_ASSERT(m_window == ev.window || ev.type == Window::EventType_AddListener);
 
@@ -132,19 +134,19 @@ bool CameraControls::handleEvent(const Window::Event& ev)
             Vec3f   rotateTmp   = 0.0f;
             bool    alt         = m_window->isKeyDown(FW_KEY_ALT);
 
-            if (m_window->isKeyDown(FW_KEY_A) || (m_window->isKeyDown(FW_KEY_LEFT) && alt))     move.x -= 1.0f;
-            if (m_window->isKeyDown(FW_KEY_D) || (m_window->isKeyDown(FW_KEY_RIGHT) && alt))    move.x += 1.0f;
-            if (m_window->isKeyDown(FW_KEY_F) || m_window->isKeyDown(FW_KEY_PAGE_DOWN))         move.y -= 1.0f;
-            if (m_window->isKeyDown(FW_KEY_R) || m_window->isKeyDown(FW_KEY_PAGE_UP))           move.y += 1.0f;
-            if (m_window->isKeyDown(FW_KEY_W) || (m_window->isKeyDown(FW_KEY_UP) && alt))       move.z -= 1.0f;
-            if (m_window->isKeyDown(FW_KEY_S) || (m_window->isKeyDown(FW_KEY_DOWN) && alt))     move.z += 1.0f;
+			if (m_window->isKeyDown(FW_KEY_A) || (m_window->isKeyDown(FW_KEY_LEFT) && alt))     { move.x -= 1.0f; m_moved = true; }
+			if (m_window->isKeyDown(FW_KEY_D) || (m_window->isKeyDown(FW_KEY_RIGHT) && alt))    { move.x += 1.0f; m_moved = true; }
+            if (m_window->isKeyDown(FW_KEY_F) || m_window->isKeyDown(FW_KEY_PAGE_DOWN))         { move.y -= 1.0f; m_moved = true; }
+            if (m_window->isKeyDown(FW_KEY_R) || m_window->isKeyDown(FW_KEY_PAGE_UP))           { move.y += 1.0f; m_moved = true; }
+            if (m_window->isKeyDown(FW_KEY_W) || (m_window->isKeyDown(FW_KEY_UP) && alt))       { move.z -= 1.0f; m_moved = true; }
+			if (m_window->isKeyDown(FW_KEY_S) || (m_window->isKeyDown(FW_KEY_DOWN) && alt))     { move.z += 1.0f; m_moved = true; }
 
-            if (m_window->isKeyDown(FW_KEY_LEFT) && !alt)                                       rotateTmp.x -= 1.0f;
-            if (m_window->isKeyDown(FW_KEY_RIGHT) && !alt)                                      rotateTmp.x += 1.0f;
-            if (m_window->isKeyDown(FW_KEY_DOWN) && !alt)                                       rotateTmp.y -= 1.0f;
-            if (m_window->isKeyDown(FW_KEY_UP) && !alt)                                         rotateTmp.y += 1.0f;
-            if (m_window->isKeyDown(FW_KEY_E) || m_window->isKeyDown(FW_KEY_HOME))              rotateTmp.z -= 1.0f;
-            if (m_window->isKeyDown(FW_KEY_Q) || m_window->isKeyDown(FW_KEY_INSERT))            rotateTmp.z += 1.0f;
+            if (m_window->isKeyDown(FW_KEY_LEFT) && !alt)                                       { rotateTmp.x -= 1.0f; m_moved = true; }
+            if (m_window->isKeyDown(FW_KEY_RIGHT) && !alt)                                      { rotateTmp.x += 1.0f; m_moved = true; }
+            if (m_window->isKeyDown(FW_KEY_DOWN) && !alt)                                       { rotateTmp.y -= 1.0f; m_moved = true; }
+            if (m_window->isKeyDown(FW_KEY_UP) && !alt)                                         { rotateTmp.y += 1.0f; m_moved = true; }
+            if (m_window->isKeyDown(FW_KEY_E) || m_window->isKeyDown(FW_KEY_HOME))              { rotateTmp.z -= 1.0f; m_moved = true; }
+            if (m_window->isKeyDown(FW_KEY_Q) || m_window->isKeyDown(FW_KEY_INSERT))            { rotateTmp.z += 1.0f; m_moved = true; }
 
             move *= timeDelta * m_speed * boost;
             rotate += rotateTmp * timeDelta * s_keyRotateSpeed * boost;

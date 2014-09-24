@@ -65,6 +65,8 @@ struct ReconstructInput
 	CUdeviceptr atlasInfo;			// const Vec4f*
 	CUdeviceptr matId;				// const U32*
 	CUdeviceptr matInfo;			// const Vec4f*
+	CUdeviceptr outputColor;		// const Vec4f*
+	float		samplesCount;	
 };
 
 //------------------------------------------------------------------------

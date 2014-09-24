@@ -78,6 +78,9 @@
     <CudaCompile Include="src\rt\kernels\persistent_test.cu">
       <Filter>persistentbvh</Filter>
     </CudaCompile>
+    <CudaCompile Include="src\rt\kernels\otracer_bidir_test.cu">
+      <Filter>traversal</Filter>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="traversal">

@@ -80,6 +80,13 @@ extern "C" __global__ void reconstructKernel(void)
 	const Vec4f*			atlasInfo		= (const Vec4f*)in.atlasInfo;
 	const U32*				matId			= (const U32*)in.matId;
 	const Vec4f*			matInfo			= (const Vec4f*)in.matInfo;
+	Vec4f*					outColor		= (Vec4f*)in.outputColor;
+	float					samples			= in.samplesCount;
+
+	if (samples == 1.0f)
+	{
+		outColor[primaryID] = Vec4f(0.0f);
+	}
 
     // Accumulate color from each ray in the batch.
 
@@ -147,7 +154,14 @@ extern "C" __global__ void reconstructKernel(void)
     int tri = primaryResult.id;
     if (in.isAO && tri == -1)   color = bgColor;
     if (in.isDiffuse)			color *= (tri == -1) ? bgColor : fromABGR(triMaterialColor[tri]);
-
+	if(in.isPathTraced)
+	{
+		outColor[primaryID] = outColor[primaryID] + color;
+		color = outColor[primaryID] / samples;
+		color.x = powf(color.x, 1.0f / 2.2f);
+		color.y = powf(color.y, 1.0f / 2.2f);
+		color.z = powf(color.z, 1.0f / 2.2f);
+	}
     // Write result.
 
     pixel = toABGR(color);
