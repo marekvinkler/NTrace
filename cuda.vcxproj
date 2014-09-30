@@ -202,7 +202,11 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
       <NvccCompilation>cubin</NvccCompilation>
       <CompileOut>$(IntDir)%(Filename)%(Extension)bin</CompileOut>
       <Include>src/rt;src/framework;</Include>
+      <CudaRuntime>Shared</CudaRuntime>
     </CudaCompile>
+    <CudaLink>
+      <AdditionalDependencies>cudart.lib</AdditionalDependencies>
+    </CudaLink>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

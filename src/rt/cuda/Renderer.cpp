@@ -292,12 +292,13 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
     }
 
     // Generate primary rays.
-
+	
+    U32 randomSeed = (m_enableRandom) ? m_random.getU32() : 0;
     m_raygen.primary(m_primaryRays,
         camera.getPosition(),
         invert(gl->xformFitToView(-1.0f, 2.0f) * camera.getWorldToClip()),
         size.x, size.y,
-        camera.getFar());
+        camera.getFar(), randomSeed);
 
     // Secondary rays enabled => trace primary rays.
 

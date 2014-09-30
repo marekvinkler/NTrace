@@ -41,7 +41,7 @@ RayGen::RayGen(S32 maxBatchSize)
     m_compiler.include("src/framework");
 }
 
-void RayGen::primary(RayBuffer& orays, const Vec3f& origin, const Mat4f& nscreenToWorld, S32 w,S32 h,float maxDist)
+void RayGen::primary(RayBuffer& orays, const Vec3f& origin, const Mat4f& nscreenToWorld, S32 w,S32 h,float maxDist, U32 randomSeed)
 {
     // doesn't do batching
 
@@ -65,6 +65,7 @@ void RayGen::primary(RayBuffer& orays, const Vec3f& origin, const Mat4f& nscreen
     in.idToSlot             = orays.getIDToSlotBuffer().getMutableCudaPtr();
     in.slotToID             = orays.getSlotToIDBuffer().getMutableCudaPtr();
     in.indexToPixel         = m_pixelTable.getIndexToPixel().getCudaPtr();
+    in.randomSeed			= Random(randomSeed).getU32();
 
     // Launch.
 

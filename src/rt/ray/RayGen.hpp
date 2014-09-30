@@ -64,7 +64,7 @@ public:
 	 * \param[in] h Vertical resolution.
 	 * \param[in] maxDist Maximum length of generated rays.
 	 */
-    void    primary   (RayBuffer& orays, const Vec3f& origin, const Mat4f& nscreenToWorld, S32 w,S32 h,float maxDist);
+    void    primary   (RayBuffer& orays, const Vec3f& origin, const Mat4f& nscreenToWorld, S32 w,S32 h,float maxDist, U32 randomSeed);
 
 	/**
 	 * \brief Generates shadow rays on the GPU. Batches rays if necessary.

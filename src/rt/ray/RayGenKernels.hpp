@@ -45,6 +45,7 @@ struct RayGenPrimaryInput
     CUdeviceptr idToSlot;       // S32*
     CUdeviceptr slotToID;       // S32*
     CUdeviceptr indexToPixel;   // const S32*
+    U32         randomSeed;
 };
 
 //------------------------------------------------------------------------

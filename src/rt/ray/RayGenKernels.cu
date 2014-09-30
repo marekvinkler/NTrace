@@ -94,6 +94,18 @@ extern "C" __global__ void rayGenPrimaryKernel(void)
     nscreenPos.z = 0.0f;
     nscreenPos.w = 1.0f;
 
+    // Pick random offset.
+
+    U32 hashA = in.randomSeed + taskIdx;
+    U32 hashB = 0x9e3779b9u;
+    U32 hashC = 0x9e3779b9u;
+    jenkinsMix(hashA, hashB, hashC);
+    jenkinsMix(hashA, hashB, hashC);
+	Vec3f offset((F32)hashA*exp2(-32),(F32)hashB*exp2(-32),(F32)hashC*exp2(-32));
+	
+	nscreenPos.x = nscreenPos.x + offset.x * 0.005f;
+	nscreenPos.y = nscreenPos.y + offset.y * 0.005f;
+
     Vec4f worldPos4D = in.nscreenToWorld * nscreenPos;
     Vec3f worldPos = worldPos4D.getXYZ() / worldPos4D.w;
 
