@@ -36,7 +36,6 @@
 #include "bvh/BVH.hpp"
 #include "CudaAS.hpp"
 #include "kernels/CudaTracerKernels.hpp"
-#include "gpu/CudaModule.hpp"
 
 namespace FW
 {
