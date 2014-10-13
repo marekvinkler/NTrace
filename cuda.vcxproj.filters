@@ -19,6 +19,12 @@
     <ClInclude Include="src\rt\persistentbvh\CudaTracerDefines.h">
       <Filter>persistentbvh</Filter>
     </ClInclude>
+    <ClInclude Include="src\rt\persistentbvh\Allocators.hpp">
+      <Filter>persistentbvh</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentbvh\ScatterAlloc\utils.h">
+      <Filter>persistentbvh\ScatterAlloc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="src\rt\kernels\fermi_speculative_while_while.cu">
@@ -63,9 +69,6 @@
     <CudaCompile Include="src\rt\kernels\otracer_bidir.cu">
       <Filter>traversal</Filter>
     </CudaCompile>
-    <CudaCompile Include="src\rt\kernels\otracer_bidir_test.cu">
-      <Filter>traversal</Filter>
-    </CudaCompile>
     <CudaCompile Include="src\rt\persistentbvh\persistent_bvh.cu">
       <Filter>persistentbvh</Filter>
     </CudaCompile>
@@ -76,6 +79,9 @@
       <Filter>persistentbvh</Filter>
     </CudaCompile>
     <CudaCompile Include="src\rt\persistentbvh\warp_common.cu">
+      <Filter>persistentbvh</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\persistentbvh\allocators.cu">
       <Filter>persistentbvh</Filter>
     </CudaCompile>
   </ItemGroup>
@@ -95,6 +101,9 @@
     <Filter Include="persistentbvh">
       <UniqueIdentifier>{66f12106-32b5-4c56-ae8c-644d15a21f6b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="persistentbvh\ScatterAlloc">
+      <UniqueIdentifier>{23223281-0bed-4946-bb7b-519c45b0c867}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cuh">
@@ -108,6 +117,12 @@
     </None>
     <None Include="src\rt\persistentbvh\tri_box_overlap.cuh">
       <Filter>persistentbvh</Filter>
+    </None>
+    <None Include="src\rt\persistentbvh\ScatterAlloc\heap.cuh">
+      <Filter>persistentbvh\ScatterAlloc</Filter>
+    </None>
+    <None Include="src\rt\persistentbvh\ScatterAlloc\heap_impl.cuh">
+      <Filter>persistentbvh\ScatterAlloc</Filter>
     </None>
   </ItemGroup>
 </Project>

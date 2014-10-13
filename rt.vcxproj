@@ -306,6 +306,7 @@
     <ClInclude Include="src\rt\kdtree\KDTreeNode.hpp" />
     <ClInclude Include="src\rt\kdtree\NaiveKDTreeBuilder.hpp" />
     <ClInclude Include="src\rt\kernels\CudaTracerKernels.hpp" />
+    <ClInclude Include="src\rt\persistentbvh\CudaBuilderKernels.hpp" />
     <ClInclude Include="src\rt\ray\PixelTable.hpp" />
     <ClInclude Include="src\rt\ray\RayBuffer.hpp" />
     <ClInclude Include="src\rt\ray\RayGen.hpp" />

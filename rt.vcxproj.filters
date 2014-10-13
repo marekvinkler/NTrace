@@ -25,6 +25,9 @@
     <Filter Include="bvh\HLBVH">
       <UniqueIdentifier>{5324f46a-b961-4591-aed2-6fd1ddf4e2a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="persistentbvh">
+      <UniqueIdentifier>{45ba06a5-982d-45a6-b5d2-96f4080a8257}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\rt\bvh\BVH.cpp">
@@ -209,6 +212,9 @@
     </ClInclude>
     <ClInclude Include="src\rt\cuda\CudaPersistentBVHTracer.hpp">
       <Filter>cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentbvh\CudaBuilderKernels.hpp">
+      <Filter>persistentbvh</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -27,7 +27,7 @@
 #include "pool_common.cu"
 #endif
 #include "CudaTracerDefines.h"
-#include "CudaTracerKernels.hpp"
+#include "kernels/CudaTracerKernels.hpp"
 
 //------------------------------------------------------------------------
 // Common and debugging constants.

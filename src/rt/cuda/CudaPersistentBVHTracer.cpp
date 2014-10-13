@@ -44,7 +44,7 @@ CudaPersistentBVHTracer::CudaPersistentBVHTracer(Scene& scene, F32 epsilon) : m_
 	// convert from scene
 	Vec3f light = Vec3f(1.0f, 2.0f, 3.0f).normalized();
 
-	m_numTris           = scene.triangles.size();
+	m_numTris = scene.getTriVtxIndexBuffer().getSize() / sizeof(Vec3i);
 	m_numVerts          = m_numTris * 3;
 	m_numMaterials      = 1;
 	m_numShadingNormals = m_numVerts;

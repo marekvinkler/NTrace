@@ -45,7 +45,6 @@
 	Rewritten to CUDA by Marek Vinkler.
 */
 
-#include "cutil_math.h"
 #include <math_constants.h>
 
 //#define TRI_EPS 1e-8f
