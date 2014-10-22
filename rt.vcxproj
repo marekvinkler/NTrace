@@ -188,7 +188,7 @@
     <Link>
       <AdditionalDependencies>cudart.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(ProjectName)_$(Platform)_$(Configuration).exe</OutputFile>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -198,7 +198,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>$(CUDA_LIB_PATH);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(CUDA_PATH)\lib\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -259,6 +259,7 @@
     <ClCompile Include="src\rt\cuda\CudaKDTreeTracer.cpp" />
     <ClCompile Include="src\rt\cuda\CudaPersistentBVHTracer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\rt\cuda\CudaRenderer.cpp" />
     <ClCompile Include="src\rt\cuda\Renderer.cpp" />
@@ -296,6 +297,7 @@
     <ClInclude Include="src\rt\cuda\CudaKDTreeTracer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaPersistentBVHTracer.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="src\rt\cuda\CudaRenderer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaVirtualTracer.hpp" />

@@ -153,10 +153,10 @@ CudaModule* CudaCompiler::compile(bool enablePrints, bool autoFail)
     if (found)
         return *found;
 
-#if FW_DEBUG
+//#if FW_DEBUG
 	// Load CUBIN file.
-	//return loadDbgCubin(enablePrints);
-#endif
+	return loadDbgCubin(enablePrints);
+//#endif
 
     // Compile CUBIN file.
 
