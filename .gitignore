@@ -1,8 +1,15 @@
+Debug/
+Release/
 build/
 bvhcache/
 cudacache/
+data/
 NTrace_*.exe
 NTrace_*.pdb
 vc100.pdb
 rt.suo
 state_rt_001.dat
+*.sdf
+*.opensdf
+*.suo
+*.pdb
