@@ -86,8 +86,8 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>src/framework;$(CUDA_INC_PATH);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\projekty\assimp_compiled\include;src/framework;$(CUDA_INC_PATH);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>USE_ASSIMP;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -101,7 +101,8 @@
     </ClCompile>
     <Lib>
       <AdditionalOptions>/ignore:4006 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\projekty\assimp_compiled;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimpd.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -225,6 +226,7 @@
     <ClCompile Include="src\framework\io\ImageRawPngIO.cpp" />
     <ClCompile Include="src\framework\io\ImageTargaIO.cpp" />
     <ClCompile Include="src\framework\io\ImageTiffIO.cpp" />
+    <ClCompile Include="src\framework\io\MeshAssimpIO.cpp" />
     <ClCompile Include="src\framework\io\MeshBinaryIO.cpp" />
     <ClCompile Include="src\framework\io\MeshWavefrontIO.cpp" />
     <ClCompile Include="src\framework\io\StateDump.cpp" />
@@ -278,6 +280,7 @@
     <ClInclude Include="src\framework\io\ImageRawPngIO.hpp" />
     <ClInclude Include="src\framework\io\ImageTargaIO.hpp" />
     <ClInclude Include="src\framework\io\ImageTiffIO.hpp" />
+    <ClInclude Include="src\framework\io\MeshAssimpIO.hpp" />
     <ClInclude Include="src\framework\io\MeshBinaryIO.hpp" />
     <ClInclude Include="src\framework\io\MeshWavefrontIO.hpp" />
     <ClInclude Include="src\framework\io\StateDump.hpp" />

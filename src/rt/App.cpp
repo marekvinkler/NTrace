@@ -241,7 +241,7 @@ bool App::handleEvent(const Window::Event& ev)
 
     Action action = m_action;
     m_action = Action_None;
-    String name;
+    Array<String> fileNames;
 
     switch (action)
     {
@@ -252,9 +252,15 @@ bool App::handleEvent(const Window::Event& ev)
         m_window.showMessageDialog("About", s_aboutText);
         break;
 
+	case Action_LoadMeshSequence:
+		fileNames = m_window.showFileLoadSequenceDialog("Load Mesh Sequence", getMeshImportFilter(), s_initialMeshDir); 
+		if (fileNames.getSize() > 0 && loadMesh(fileNames))
+			resetCamera();
+		break;
+
     case Action_LoadMesh:
-        name = m_window.showFileLoadDialog("Load mesh", getMeshImportFilter(), s_initialMeshDir);
-        if (name.getLength() && loadMesh(name))
+		fileNames.add(m_window.showFileLoadDialog("Load mesh", getMeshImportFilter(), s_initialMeshDir));
+		if (fileNames.getSize() > 0 && fileNames.get(0).getLength() > 0 && loadMesh(fileNames))
             resetCamera();
         break;
 
@@ -325,7 +331,7 @@ void App::readState(StateDump& s)
     s.popOwner();
 
     if (m_meshFileName != meshFileName && meshFileName.getLength())
-        loadMesh(meshFileName);
+        loadMesh(Array<String>(m_meshFileName));
     if (m_kernelNames.contains(kernelName))
         m_kernelNameIdx = m_kernelNames.indexOf(kernelName);
     rebuildGui();
@@ -355,6 +361,7 @@ void App::rebuildGui(void)
     cc.addToggle(&m_showHelp,                                   FW_KEY_F1,      "Show help [F1]");
     cc.addButton((S32*)&m_action, Action_About,                 FW_KEY_NONE,    "About...");
     cc.addButton((S32*)&m_action, Action_LoadMesh,              FW_KEY_M,       "Load mesh... [M]");
+	cc.addButton((S32*)&m_action, Action_LoadMeshSequence,		FW_KEY_NONE,	"Load mesh sequence...");
     cc.addSeparator();
 
     cc.addToggle((S32*)&m_rayType, Renderer::RayType_Primary,   FW_KEY_F2,      "Trace primary rays [F2]", &m_guiDirty);
@@ -493,18 +500,22 @@ void App::renderGuiHelp(GLContext* gl)
 
 //------------------------------------------------------------------------
 
-bool App::loadMesh(const String& fileName)
+bool App::loadMesh(const Array<String>& fileNames)
 {
-    m_window.showModalMessage(sprintf("Loading mesh from '%s'...\nThis will take a few seconds.", fileName.getFileName().getPtr()));
+	if(fileNames.getSize() == 1)
+		m_window.showModalMessage(sprintf("Loading mesh from '%s'...\nThis will take a few seconds.", fileNames.get(0).getFileName().getPtr()));
+	else
+		m_window.showModalMessage(sprintf("Loading mesh sequence '%s' of '%i' files...\nThis will take a few seconds.", 
+			fileNames.get(0).getFileName().getPtr(), fileNames.getSize()));
 
     String oldError = clearError();
-    MeshBase* mesh = importMesh(fileName);
+    MeshBase* mesh = importMesh(fileNames);
     String newError = getError();
 
     if (restoreError(oldError))
     {
         delete mesh;
-        String msg = sprintf("Error while loading '%s': %s", fileName.getPtr(), newError.getPtr());
+        String msg = sprintf("Error while loading '%s': %s", fileNames.get(0).getPtr(), newError.getPtr());
         printf("%s\n", msg.getPtr());
         m_commonCtrl.message(msg);
         return false;
@@ -512,9 +523,9 @@ bool App::loadMesh(const String& fileName)
 
 	m_renderer->setMesh(NULL);
     delete m_mesh;
-    m_meshFileName = fileName;
+    m_meshFileName = fileNames.get(0);
     m_mesh = mesh;
-    m_commonCtrl.message(sprintf("Loaded mesh from '%s'", fileName.getPtr()));
+    m_commonCtrl.message(sprintf("Loaded mesh from '%s'", fileNames.get(0).getPtr()));
     return true;
 }
 
@@ -571,7 +582,7 @@ void App::firstTimeInit(void)
 
     // Load mesh.
 
-    loadMesh(s_defaultMeshFile);
+    loadMesh(Array<String>(s_defaultMeshFile));
     resetCamera();
 
     // Save state.
@@ -628,6 +639,7 @@ void FW::runInteractive(const Vec2i& frameSize, const String& stateFile)
 
 //------------------------------------------------------------------------
 
+// TODO: benchmark animation
 void FW::runBenchmark(
     const Vec2i&            frameSize,
     const String&           meshFile,
@@ -661,7 +673,7 @@ void FW::runBenchmark(
 	Renderer* renderer = new Renderer(Renderer::tBVH, NULL);
 	//Renderer* renderer = new Renderer(Renderer::tKDTree);
     renderer->setBuildParams(buildParams);
-	renderer->setMesh(importMesh(meshFile));
+	renderer->setMesh(importMesh(Array<String>(meshFile)));
 
     // Create window.
 

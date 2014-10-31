@@ -48,6 +48,7 @@ private:
 
         Action_About,
         Action_LoadMesh,
+		Action_LoadMeshSequence,
 
         Action_ResetCamera,
         Action_ExportCameraSignature,
@@ -73,7 +74,7 @@ private:
     void                render          (GLContext* gl);
     void                renderGuiHelp   (GLContext* gl);
 
-    bool                loadMesh        (const String& fileName);
+    bool                loadMesh        (const Array<String>& fileNames);
     void                resetCamera     (void);
     void                firstTimeInit   (void);
 

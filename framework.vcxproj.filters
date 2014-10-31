@@ -150,6 +150,9 @@
     <ClCompile Include="src\framework\gpu\CudaKernel.cpp">
       <Filter>gpu</Filter>
     </ClCompile>
+    <ClCompile Include="src\framework\io\MeshAssimpIO.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\framework\base\Array.hpp">
@@ -277,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="src\framework\gpu\CudaKernel.hpp">
       <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\framework\io\MeshAssimpIO.hpp">
+      <Filter>io</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -289,6 +289,26 @@ String String::getFileName(void) const
 
 //------------------------------------------------------------------------
 
+String String::stripSeqNumber(void) const
+{
+	int idx = lastIndexOf('.') - 1;
+
+	S32 val;
+	String subs = substring(idx, idx + 1);
+	const char * subsPtr = subs.getPtr();
+
+	while (parseInt(subsPtr, val))
+	{
+		idx--;
+		subs = substring(idx, idx + 1);
+		subsPtr = subs.getPtr();
+	}
+
+	return substring(max(lastIndexOf('\\') + 1, lastIndexOf('/') + 1), idx+1).append(substring(lastIndexOf('.')));
+}
+
+//------------------------------------------------------------------------
+
 String String::getDirName(void) const
 {
     int idx = max(lastIndexOf('/'), lastIndexOf('\\'));

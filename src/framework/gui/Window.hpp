@@ -135,6 +135,7 @@ public:
     String                  showFileLoadDialog  (const String& title, const String& filters = "", const String& initialDir = "", bool forceInitialDir = false) { return showFileDialog(title, false, filters, initialDir, forceInitialDir); }
     String                  showFileSaveDialog  (const String& title, const String& filters = "", const String& initialDir = "", bool forceInitialDir = false) { return showFileDialog(title, true, filters, initialDir, forceInitialDir); }
 	Array<String>		    showDirLoadDialog   (const String& title, const String& initialDir = "");
+	Array<String>			showFileLoadSequenceDialog (const String& title, const String& filters = "", const String& initialDir = "", bool forceInitialDir = false);
 
     void                    showModalMessage    (const String& msg);
 

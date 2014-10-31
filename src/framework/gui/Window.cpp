@@ -484,6 +484,25 @@ Array<String> Window::showDirLoadDialog(const String& title, const String& initi
 
 //------------------------------------------------------------------------
 
+Array<String> Window::showFileLoadSequenceDialog (const String& title, const String& filters, const String& initialDir, bool forceInitialDir)
+{
+	const String selectedFileName = showFileDialog(title, false, filters, initialDir, forceInitialDir);
+
+	Array<String> allFiles;
+	Array<String> filteredFiles;
+	traverseDirectory(selectedFileName.getDirName().getPtr(), allFiles);
+
+	for (int i = 0; i < allFiles.getSize(); i++)
+	{
+		if (allFiles[i].getDirName() == selectedFileName.getDirName() && allFiles[i].stripSeqNumber() == selectedFileName.stripSeqNumber())
+			filteredFiles.add(allFiles[i]);
+	}
+
+	return filteredFiles;
+}
+
+//------------------------------------------------------------------------
+
 void Window::showModalMessage(const String& msg)
 {
     if (!m_isRealized || !m_isVisible)

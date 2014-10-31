@@ -32,6 +32,10 @@
 #include "base/UnionFind.hpp"
 #include "base/BinaryHeap.hpp"
 
+#ifdef USE_ASSIMP
+#include "io/MeshAssimpIO.hpp"
+#endif
+
 using namespace FW;
 
 //------------------------------------------------------------------------
@@ -171,8 +175,8 @@ void MeshBase::append(const MeshBase& other)
     {
         if (copy.getSize())
         {
-            const U8* src = &other.m_vertices[i * other.m_stride];
-            U8* dst = &m_vertices[(i + oldNumVertices) * m_stride];
+            const U8* src = &((*other.m_vertices)[i * other.m_stride]);
+            U8* dst = &((*m_vertices)[(i + oldNumVertices) * m_stride]);
             for (int j = 0; j < copy.getSize(); j++)
                 dst[copy[j].y] = src[copy[j].x];
         }
@@ -200,7 +204,7 @@ void MeshBase::append(const MeshBase& other)
 void MeshBase::compact(void)
 {
     m_attribs.compact();
-    m_vertices.compact();
+    m_vertices->compact();
     m_submeshes.compact();
 
     for (int i = 0; i < m_submeshes.getSize(); i++)
@@ -215,9 +219,9 @@ void MeshBase::resetVertices(int num)
     FW_ASSERT(num >= 0);
     FW_ASSERT(isInMemory());
 
-    m_vertices.reset(num * m_stride);
+    m_vertices->reset(num * m_stride);
     if (num > m_numVertices)
-        memset(m_vertices.getPtr(m_numVertices * m_stride), 0, (num - m_numVertices) * m_stride);
+        memset(m_vertices->getPtr(m_numVertices * m_stride), 0, (num - m_numVertices) * m_stride);
     m_numVertices = num;
     freeVBO();
 }
@@ -229,9 +233,9 @@ void MeshBase::resizeVertices(int num)
     FW_ASSERT(num >= 0);
     FW_ASSERT(isInMemory());
 
-    m_vertices.resize(num * m_stride);
+    m_vertices->resize(num * m_stride);
     if (num > m_numVertices)
-        memset(m_vertices.getPtr(m_numVertices * m_stride), 0, (num - m_numVertices) * m_stride);
+        memset(m_vertices->getPtr(m_numVertices * m_stride), 0, (num - m_numVertices) * m_stride);
     m_numVertices = num;
     freeVBO();
 }
@@ -313,7 +317,7 @@ Buffer& MeshBase::getVBO(void)
         return m_vbo;
 
     FW_ASSERT(m_isInMemory);
-    int ofs = m_vertices.getSize();
+    int ofs = m_vertices->getSize();
     for (int i = 0; i < m_submeshes.getSize(); i++)
     {
         m_submeshes[i].ofsInVBO = ofs;
@@ -322,7 +326,7 @@ Buffer& MeshBase::getVBO(void)
     }
 
     m_vbo.resizeDiscard(ofs);
-    memcpy(m_vbo.getMutablePtr(), m_vertices.getPtr(), m_vertices.getSize());
+    memcpy(m_vbo.getMutablePtr(), m_vertices->getPtr(), m_vertices->getSize());
     for (int i = 0; i < m_submeshes.getSize(); i++)
     {
         memcpy(
@@ -548,7 +552,7 @@ void MeshBase::freeMemory(void)
         return;
 
     m_isInMemory = false;
-    m_vertices.reset();
+    m_vertices->reset();
     for (int i = 0; i < m_submeshes.getSize(); i++)
     {
         delete m_submeshes[i].indices;
@@ -1124,6 +1128,20 @@ void MeshBase::simplify(F32 maxError)
 
 //------------------------------------------------------------------------
 
+void MeshBase::setActiveFrame(S32 frameNumber)
+{
+	for (int i = 0; i < frameNumber - getFrameCount() + 1; i++)
+	{
+		m_frames.add();
+	}
+
+	m_vertices = &(m_frames.get(frameNumber).vertices);
+	
+	m_activeFrame = frameNumber;
+}
+
+//------------------------------------------------------------------------
+
 void FW::addCubeToMesh(Mesh<VertexPNC>& mesh, int submesh, const Vec3f& lo, const Vec3f& hi, const Vec4f& color, bool forceNormal, const Vec3f& normal)
 {
     VertexPNC vertexArray[] =
@@ -1182,9 +1200,19 @@ void FW::addCubeToMesh(Mesh<VertexPNC>& mesh, int submesh, const Vec3f& lo, cons
 
 //------------------------------------------------------------------------
 
-MeshBase* FW::importMesh(const String& fileName)
+
+MeshBase* FW::importMesh(const Array<String>& fileNames)
 {
-    String lower = fileName.toLower();
+#ifdef USE_ASSIMP
+
+	MeshBase* importedMesh = importAssimpMesh(fileNames);
+	if(importedMesh == NULL)
+		setError("importMesh(): Unsupported file extension!");
+	return importedMesh;
+
+#else
+	// TODO: obj animation sequence loading using non assimp obj loader
+	String lower = fileNames.get(0).toLower();
 
 #define STREAM(CALL) { File file(fileName, File::Read); BufferedInputStream stream(file); return CALL; }
     if (lower.endsWith(".bin")) STREAM(importBinaryMesh(stream))
@@ -1193,6 +1221,7 @@ MeshBase* FW::importMesh(const String& fileName)
 
     setError("importMesh(): Unsupported file extension '%s'!", fileName.getPtr());
     return NULL;
+#endif
 }
 
 //------------------------------------------------------------------------
@@ -1214,9 +1243,32 @@ void FW::exportMesh(const String& fileName, const MeshBase* mesh)
 
 String FW::getMeshImportFilter(void)
 {
+#ifdef USE_ASSIMP
+	return
+		"dae:Collada,"
+		"blend:Blender,"
+		"3ds:3ds Max 3ds,"
+		"ase:3ds Max ase,"
+		"obj:Wavefront object,"
+		"ifc:Industry Foundation Classes,"
+		"xgl:XGL,"
+		"ply:Stanford Polygon Library,"
+		"dxf:AutoCAD DXF,"
+		"lwo:LightWave,"
+		"lws:LightWave Scene,"
+		"lxo:Modo,"
+		"stl:Stereolithography,"
+		"x:DirectX X,"
+		"ac:AC3D,"
+		"ms3d:Milkshape 3D,"
+		"cob:Truespace,"
+		"scn:Truespace";
+
+#else
     return
         "obj:Wavefront Mesh,"
         "bin:Binary Mesh";
+#endif
 }
 
 //------------------------------------------------------------------------

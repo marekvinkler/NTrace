@@ -115,6 +115,14 @@ private:
         S32             sizeInVBO;
     };
 
+	struct Frame
+	{
+		Array<U8>		vertices;
+		F32				time;
+
+		Frame() { time = 0.f; }
+	};
+
 public:
                         MeshBase            (void)                          { init(); }
                         MeshBase            (const MeshBase& other)         { init(); addAttribs(other); set(other); }
@@ -138,14 +146,14 @@ public:
     void                resetVertices       (int num);
     void                clearVertices       (void)                          { resizeVertices(0); }
     void                resizeVertices      (int num);
-    const U8*           getVertexPtr        (int idx = 0) const             { FW_ASSERT(isInMemory() && idx >= 0 && idx <= numVertices()); return m_vertices.getPtr() + idx * m_stride; }
-    U8*                 getMutableVertexPtr (int idx = 0)                   { FW_ASSERT(isInMemory() && idx >= 0 && idx <= numVertices()); freeVBO(); return m_vertices.getPtr() + idx * m_stride; }
+    const U8*           getVertexPtr        (int idx = 0) const             { FW_ASSERT(isInMemory() && idx >= 0 && idx <= numVertices()); return m_vertices->getPtr() + idx * m_stride; }
+    U8*                 getMutableVertexPtr (int idx = 0)                   { FW_ASSERT(isInMemory() && idx >= 0 && idx <= numVertices()); freeVBO(); return m_vertices->getPtr() + idx * m_stride; }
     const U8*           vertex              (int idx) const                 { FW_ASSERT(isInMemory() && idx >= 0 && idx < numVertices()); return getVertexPtr(idx); }
     U8*                 mutableVertex       (int idx)                       { FW_ASSERT(isInMemory() && idx >= 0 && idx < numVertices()); return getMutableVertexPtr(idx); }
     void                setVertex           (int idx, const void* ptr)      { setVertices(idx, ptr, 1); }
     void                setVertices         (int idx, const void* ptr, int num) { FW_ASSERT(ptr && num >= 0 && idx + num <= numVertices()); memcpy(getMutableVertexPtr(idx), ptr, num * m_stride); }
     U8*                 addVertex           (const void* ptr = NULL)        { return addVertices(ptr, 1); }
-    U8*                 addVertices         (const void* ptr, int num)      { FW_ASSERT(isInMemory() && num >= 0); freeVBO(); m_numVertices += num; U8* slot = m_vertices.add(NULL, num * m_stride); if (ptr) memcpy(slot, ptr, num * m_stride); return slot; }
+    U8*                 addVertices         (const void* ptr, int num)      { FW_ASSERT(isInMemory() && num >= 0); freeVBO(); m_numVertices += num; U8* slot = m_vertices->add(NULL, num * m_stride); if (ptr) memcpy(slot, ptr, num * m_stride); return slot; }
     Vec4f               getVertexAttrib     (int idx, int attrib) const;
     void                setVertexAttrib     (int idx, int attrib, const Vec4f& v);
 
@@ -194,8 +202,13 @@ public:
     MeshBase&           operator=           (const MeshBase& other)         { set(other); return *this; }
     MeshBase&           operator+=          (const MeshBase& other)         { append(other); return *this; }
 
+	const Array<Frame>&	getFrames			() const						{ return m_frames; }
+	const S32			getFrameCount		() const						{ return m_frames.getSize(); }
+	void				setActiveFrame		(S32 frameNumber);
+
+
 private:
-    void                init                (void)                          { m_stride = 0; m_numVertices = 0; m_isInMemory = true; m_isInVBO = false; }
+	void                init                (void)                          { m_stride = 0; m_numVertices = 0; m_isInMemory = true; m_isInVBO = false; setActiveFrame(0); }
 
 private:
     S32                 m_stride;           // Bytes per vertex in m_vertices and m_vbo.
@@ -203,8 +216,11 @@ private:
     bool                m_isInMemory;       // Whether m_vertices and m_submeshes[].indices are valid.
     bool                m_isInVBO;          // Whether m_vbo is valid.
 
+	Array<Frame>		m_frames;			// Animation data.
+	S32					m_activeFrame;		// Active frame number.
+
     Array<AttribSpec>   m_attribs;
-    Array<U8>           m_vertices;
+    Array<U8>*          m_vertices;
     Array<Submesh>      m_submeshes;
     Buffer              m_vbo;
 };
@@ -305,7 +321,7 @@ struct VertexPNT
 
 //------------------------------------------------------------------------
 
-MeshBase*   importMesh          (const String& fileName);
+MeshBase*   importMesh          (const Array<String>& fileNames);
 void        exportMesh          (const String& fileName, const MeshBase* mesh);
 String      getMeshImportFilter (void);
 String      getMeshExportFilter (void);

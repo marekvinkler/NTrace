@@ -87,6 +87,7 @@ public:
 
     String          getFileName (void) const;
     String          getDirName  (void) const;
+	String			stripSeqNumber(void) const;
 
     char            operator[]  (int idx) const                 { return getChar(idx); }
     String&         operator=   (const String& other)           { set(other); return *this; }
