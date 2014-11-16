@@ -155,6 +155,9 @@ protected:
 	AccelStructType		m_asType;
 	Visualization*		m_vis;
 	bool				m_showVis;
+
+	bool				m_animate;
+	Timer				m_timer;
 };
 
 //------------------------------------------------------------------------

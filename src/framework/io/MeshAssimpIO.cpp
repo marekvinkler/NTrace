@@ -136,27 +136,6 @@ void fillVerticesRecursive(ImportState& s, aiNode* node, aiMatrix4x4 transformat
 		fillVerticesRecursive(s, node->mChildren[i], node->mTransformation * transformation, aiscene);
 }
 
-
-//------------------------------------------------------------------------
-
-//Mesh<VertexPNT>* FW::importAssimpMesh(const String& path)
-//{
-//	Assimp::Importer importer;
-//	const aiScene* aiscene = importer.ReadFile(path.getPtr(), aiProcessPreset_TargetRealtime_Quality);
-//	
-//	ImportState s;
-//	s.mesh = new Mesh<VertexPNT>();
-//
-//	s.mesh->clearVertices();
-//
-//	fillVerticesRecursive(s, aiscene->mRootNode, aiMatrix4x4(), aiscene);
-//
-//	// why does aiscene destruction take so long?
-//	return s.mesh;
-//}
-
-//-----------------------------------------------------------------------
-
 Mesh<VertexPNT>* FW::importAssimpMesh(const Array<String>& files)
 {
 	Assimp::Importer importer;
@@ -170,11 +149,11 @@ Mesh<VertexPNT>* FW::importAssimpMesh(const Array<String>& files)
 	{
 		aiscene = importer.ReadFile(files.get(i).getPtr(), aiProcessPreset_TargetRealtime_Quality);
 		s.mesh->setActiveFrame(i);
+		s.mesh->setTime((F32)i);
 		s.mesh->clear();
 		fillVerticesRecursive(s, aiscene->mRootNode, aiMatrix4x4(), aiscene);
 		s.idxOffset = 0;
 		s.submeshOffset = 0;
-
 	}
 
 	s.mesh->setActiveFrame(0);

@@ -505,8 +505,8 @@ bool App::loadMesh(const Array<String>& fileNames)
 	if(fileNames.getSize() == 1)
 		m_window.showModalMessage(sprintf("Loading mesh from '%s'...\nThis will take a few seconds.", fileNames.get(0).getFileName().getPtr()));
 	else
-		m_window.showModalMessage(sprintf("Loading mesh sequence '%s' of '%i' files...\nThis will take a few seconds.", 
-			fileNames.get(0).getFileName().getPtr(), fileNames.getSize()));
+		m_window.showModalMessage(sprintf("Loading mesh sequence '%s' of %i files...\nThis will take a few seconds.", 
+		fileNames.get(0).getFileName().stripSeqNumber().getPtr(), fileNames.getSize()));
 
     String oldError = clearError();
     MeshBase* mesh = importMesh(fileNames);

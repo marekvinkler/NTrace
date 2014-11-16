@@ -33,6 +33,7 @@
 #include "base/Math.hpp"
 #include "3d/Mesh.hpp"
 #include "3d/TextureAtlas.hpp"
+#include "gpu/CudaCompiler.hpp"
 
 namespace FW
 {
@@ -160,10 +161,45 @@ public:
 	 * \param[out] lo Minimum vector.
 	 * \param[out] hi Maximum vector.
 	 */
-	void			getBBox(Vec3f& lo, Vec3f &hi) const	{lo = m_AABBMin; hi = m_AABBMax;};
+	void			getBBox(Vec3f& lo, Vec3f &hi);
+
+	/**
+	 * \brief Sets scene animation time. Interpolates scene geometry.
+	 * \param[in] newTime Desired time.
+	 */
+	void			setTime(F32 newTime);
+
+	//void			setFrame(int nthFrame) { setTime((m_frames.get(m_frames.getSize()-1).time / m_numRenderFrames) * nthFrame); }
+
+	/**
+	 * \brief Gets animation length (in seconds).
+	 * \return Animation length (seconds). If scene doesn't have animation, 0 is returned.
+	 */
+	F32				getAnimationLength() const;
+
+	/**
+	 * \brief Gets animation frame rate (number of frames per second).
+	 * \retrun Animation frame rate.
+	 */
+	F32				getFrameRate() const { return m_framerate; }
+
+	/**
+	 * \brief Recalculates frame rate.
+	 * \param[in] Desired frame rate.
+	 */
+	void			setFrameRate(F32 framerate);
+
 private:
                     Scene               (const Scene&); // forbidden
     Scene&          operator=           (const Scene&); // forbidden
+
+	struct Frame
+	{
+		Buffer*		vertices;
+		F32				time;
+
+		Frame() { vertices = NULL; time = 0.f; }
+	};
 
 private:
     S32             m_numTriangles;			//!< Number of triangles.
@@ -182,6 +218,12 @@ private:
 	Buffer			m_matInfo;				//!< Material information. Vec4f[numMaterials] - material information (emissivity, reflectivity, refractivity, texture?)
 	Vec3f			m_AABBMin, m_AABBMax;	//!< BBox of the scene
 	TextureAtlas*	m_texture;				//!< Texture atlas holding scene's textures
+
+	S32				m_numRenderFrames;
+	F32				m_framerate;			//!< Framerate of the animation.
+	bool			m_recalculateBBox;		//!< Flag whether the scene's AABB should be recalculated when getBBox() is called.
+	Array<Frame>	m_frames;				//!< Keyframed vertex positions.
+	CudaCompiler    m_compiler;				//!< CUDA kernel compiler.
 };
 
 //------------------------------------------------------------------------

@@ -54,6 +54,8 @@ Renderer::Renderer(AccelStructType as, Environment* env)
 
 	m_accelStruct		(NULL),
 
+	m_animate			(false),
+
 	m_asType			(as),
 	m_vis				(NULL),
 	m_showVis			(false)
@@ -115,6 +117,12 @@ void Renderer::setMesh(MeshBase* mesh)
 	{
         m_scene = new Scene(*mesh);
 		m_cudaTracer->setScene(m_scene);
+
+		if(m_scene->getAnimationLength() > 0.f)
+		{
+			m_animate = true;
+			m_timer.unstart();
+		}
 	}
 }
 
@@ -187,9 +195,12 @@ CudaAS* Renderer::getCudaBVH(void)
 
     // Display status.
 
-    printf("\nBuilding BVH...\nThis will take a while.\n");
-    if (m_window)
-        m_window->showModalMessage("Building BVH...");
+	if(!m_animate)
+	{
+		printf("\nBuilding BVH...\nThis will take a while.\n");
+		if (m_window)
+			m_window->showModalMessage("Building BVH...");
+	}
 
     // Build BVH.
 
@@ -243,9 +254,12 @@ CudaAS*	Renderer::getCudaKDTree(void)
 	delete m_accelStruct;
 	m_accelStruct = NULL;
 
-	printf("\nBuilding k-d tree...\nThis will take a while.\n");
-    if (m_window)
-        m_window->showModalMessage("Building k-d tree...");
+	if(!m_animate)
+	{
+		printf("\nBuilding k-d tree...\nThis will take a while.\n");
+		if (m_window)
+			m_window->showModalMessage("Building k-d tree...");
+	}
 
 	KDTree::BuildParams params;
 	params.enablePrints = m_buildParams.enablePrints;
@@ -277,6 +291,24 @@ CudaAS*	Renderer::getCudaKDTree(void)
 F32 Renderer::renderFrame(GLContext* gl, const CameraControls& camera)
 {
     F32 launchTime = 0.0f;
+
+	const F32 speedAdjust = 1.f;
+
+	if(m_animate)
+	{
+		float time = m_timer.getElapsed() * speedAdjust;
+		time = fmod(time, m_scene->getAnimationLength());
+		time = time < 0 ? 0 : time;
+
+		m_scene->setTime(time);
+		invalidateBVH();
+		
+		if(m_asType == tBVH)
+			m_cudaTracer->setBVH(getCudaBVH());
+		else
+			m_cudaTracer->setBVH(getCudaKDTree());
+	}
+
     beginFrame(gl, camera);
     while (nextBatch())
     {

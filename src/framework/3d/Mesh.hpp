@@ -203,8 +203,11 @@ public:
     MeshBase&           operator+=          (const MeshBase& other)         { append(other); return *this; }
 
 	const Array<Frame>&	getFrames			() const						{ return m_frames; }
-	const S32			getFrameCount		() const						{ return m_frames.getSize(); }
+	S32					getFrameCount		() const						{ return m_frames.getSize(); }
 	void				setActiveFrame		(S32 frameNumber);
+	void				setTime				(F32 time)						{ m_frames[m_activeFrame].time = time; }
+	F32					getTime				() const						{ return m_frames.get(m_activeFrame).time; }
+
 
 
 private:
