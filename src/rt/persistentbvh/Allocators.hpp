@@ -78,8 +78,6 @@ template __global__ void GPUTools::initHeap<HEAPARGS>(DeviceHeap<HEAPARGS>* heap
 //------------------------------------------------------------------------
 // FDGMalloc
 //------------------------------------------------------------------------
-//#include "fdg/FDGMalloc.cuh"
-//#include "fdg/FDGMalloc.cu"
 
 //------------------------------------------------------------------------
 
@@ -107,9 +105,6 @@ __device__ __forceinline__ void freeCircularMallocFused(void* ptr);
 
 __device__ __forceinline__ void* mallocScatterAlloc(uint allocSize);
 __device__ __forceinline__ void freeScatterAlloc(void* ptr);
-
-//__device__ __forceinline__ void* mallocFDGMalloc(FDG::Warp* warp, uint allocSize);
-//__device__ __forceinline__ void freeFDGMalloc(FDG::Warp* warp);
 
 extern "C" __global__ void CircularMallocPrepare1(uint numChunks);
 extern "C" __global__ void CircularMallocPrepare2(uint numChunks);
