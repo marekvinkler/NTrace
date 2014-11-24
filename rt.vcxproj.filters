@@ -217,4 +217,7 @@
       <Filter>persistentbvh</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="config.conf" />
+  </ItemGroup>
 </Project>

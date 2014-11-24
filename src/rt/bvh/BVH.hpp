@@ -132,6 +132,7 @@ public:
 			//camera			= NULL;
 			cameraIdx       = 0;
 			twoTrees        = false;
+			visibility		= NULL;
         }
 
 		/**

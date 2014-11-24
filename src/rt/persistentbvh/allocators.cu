@@ -811,17 +811,17 @@ __device__ __forceinline__ void freeScatterAlloc(void* ptr)
 // FDGMalloc
 //------------------------------------------------------------------------
 
-__device__ __forceinline__ void* mallocFDGMalloc(FDG::Warp* warp, uint allocSize)
+/*__device__ __forceinline__ void* mallocFDGMalloc(FDG::Warp* warp, uint allocSize)
 {
 	return warp->alloc(allocSize);
-}
+}*/
 
 //------------------------------------------------------------------------
 
-__device__ __forceinline__ void freeFDGMalloc(FDG::Warp* warp)
+/*__device__ __forceinline__ void freeFDGMalloc(FDG::Warp* warp)
 {
 	warp->end();
-}
+}*/
 
 //------------------------------------------------------------------------
 // CircularMalloc - Allocator using a circular linked list of chunks

@@ -23,7 +23,7 @@ using namespace FW;
 #endif
 
 // Alignment to multiply of S
-template<typename T, int  S>
+template<typename T, int  S6
 T align(T a)
 {
 	 return (a+S-1) & -S;

@@ -39,17 +39,17 @@ OcclusionBVHBuilder::OcclusionBVHBuilder(BVH& bvh, const BVH::BuildParams& param
 {
 	m_cameraPos = cameraPosition;
 
-	//if(m_params.visibility != NULL)
-	//{
-	//	const U8* ptr = m_params.visibility->getPtr();
-	//	for(S32 i = 0; i < m_params.visibility->getSize(); i++) // For each byte
-	//	{
-	//		for(S32 j = 0; j < 8; j++) // For each bit
-	//		{
-	//			m_visibility.push_back((*ptr) & (1<<j));
-	//		}
-	//	}
-	//}
+	if(m_params.visibility != NULL)
+	{
+		const U8* ptr = m_params.visibility->getPtr();
+		for(S32 i = 0; i < m_params.visibility->getSize(); i++) // For each byte
+		{
+			for(S32 j = 0; j < 8; j++) // For each bit
+			{
+				m_visibility.add((*ptr) & (1<<j));
+			}
+		}
+	}
 
 	// Other options
 	// - Extend Array class so that it can operate on not owned arrays
@@ -255,6 +255,19 @@ BVHNode* OcclusionBVHBuilder::run(void)
 		m_bvh.getTriIndices().compact();
 		return new InnerNode(visibleSpec.bounds + invisibleSpec.bounds, visible, invisible, 0, SplitInfo::SAH, false);
 	}
+}
+
+//------------------------------------------------------------------------
+
+bool OcclusionBVHBuilder::sortCompare(void* data, int idxA, int idxB)
+{
+    const OcclusionBVHBuilder* ptr = (const OcclusionBVHBuilder*)data;
+    int dim = ptr->m_sortDim;
+    const Reference& ra = ptr->m_refStack[idxA];
+    const Reference& rb = ptr->m_refStack[idxB];
+    F32 ca = ra.bounds.min()[dim] + ra.bounds.max()[dim];
+    F32 cb = rb.bounds.min()[dim] + rb.bounds.max()[dim];
+    return (ca < cb || (ca == cb && ra.triIdx < rb.triIdx));
 }
 
 //------------------------------------------------------------------------

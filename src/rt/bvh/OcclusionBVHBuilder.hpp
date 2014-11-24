@@ -75,6 +75,7 @@ public:
     virtual BVHNode*        run							(void);
 
 protected:
+	static bool				sortCompare					(void* data, int idxA, int idxB);
     static void             sortSwap					(void* data, int idxA, int idxB);
 
 	BVHNode*				buildNode					(const NodeSpecOcl& spec, int start, int end, int level, F32 progressStart, F32 progressEnd);
