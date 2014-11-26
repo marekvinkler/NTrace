@@ -178,6 +178,10 @@ App::App(void)
 	{
 		m_renderer = new Renderer(Renderer::tBVH, m_env);
 	}
+	else if (bvh == "PersistentBVH")
+	{
+		m_renderer = new Renderer(Renderer::tPersistentBVH, m_env);
+	}
 	else if (bvh == "KDTree")
 	{
 		m_renderer = new Renderer(Renderer::tKDTree, m_env);

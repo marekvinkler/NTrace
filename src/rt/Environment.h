@@ -481,21 +481,5 @@ public:
       **/
     virtual ~Environment();
 };
-
-
-  /*bool Parse(const int argc, char **argv, bool useExePath, char* overridePath = NULL, const char* overrideDefault = "default.env");
-
-  void
-  CodeString(char *buff, int max);
-
-  void
-  DecodeString(char *buff, int max);
-
-  void
-  SaveCodedFile(char *filenameText,
-		char *filenameCoded);
-
-  
-  virtual void RegisterOptions() = 0;*/
   
 #endif

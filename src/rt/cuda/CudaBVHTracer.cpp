@@ -206,6 +206,7 @@ F32 CudaBVHTracer::traceBatch(RayBuffer& rays)
 			in.atlasInfo			= m_scene->getTextureAtlasInfo().getCudaPtr();
 			in.matId				= m_scene->getMaterialIds().getCudaPtr();
 			in.matInfo				= m_scene->getMaterialInfo().getCudaPtr();
+			in.matColor				= m_scene->getTriMaterialColorBuffer().getCudaPtr();
 			in.emissiveNum			= m_scene->getNumEmissive();
 			in.emissive				= m_scene->getEmissiveTris().getCudaPtr();
 			in.trisCount			= m_scene->getNumTriangles();

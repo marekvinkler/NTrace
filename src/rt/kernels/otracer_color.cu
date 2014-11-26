@@ -35,6 +35,7 @@
 */
 
 #include "CudaTracerKernels.hpp"
+#include "otracer_func.cuh"
 
 //------------------------------------------------------------------------
 
@@ -285,15 +286,7 @@ extern "C" __global__ void otrace_kernel(void)
 	float4* rays = (float4*)in.rays;
 	int4* results = (int4*)in.results;
 	float4* nodesA = (float4*)in.nodesA;
-	float4* nodesB = (float4*)in.nodesB;
-    float4* nodesC = (float4*)in.nodesC;
-    float4* nodesD = (float4*)in.nodesD;
-    float4* trisA = (float4*)in.trisA;
-    float4* trisB = (float4*)in.trisB;
-    float4* trisC = (float4*)in.trisC;
-	int* triIndices = (int*)in.triIndices;
 	float2*	texCoords = (float2*)in.texCoords;
-	float3* normals = (float3*)in.normals;
 	int3* vertIdx = (int3*)in.triVertIndex;
 	float4* atlasInfo = (float4*)in.atlasInfo;
 	int* matId = (int*)in.matId;
@@ -319,32 +312,13 @@ extern "C" __global__ void otrace_kernel(void)
 		}
 		else
 		{
-			float u = hitU;
-			float v = hitV;
-			float w = 1.0f - u - v;
-
-			float tU = texCoords[vertIdx[tri].x].x * u + texCoords[vertIdx[tri].y].x * v + texCoords[vertIdx[tri].z].x * w;
-			float tV = texCoords[vertIdx[tri].x].y * u + texCoords[vertIdx[tri].y].y * v + texCoords[vertIdx[tri].z].y * w;
-		
-			tU = tU - floorf(tU);
-			tV = tV - floorf(tV);
-		
-			tU = tU * atlasInfo[tri].z + atlasInfo[tri].x;
-			tV = tV * atlasInfo[tri].w + atlasInfo[tri].y;
-				
+			float3 barycentric = make_float3(hitU, hitV, 1.0f - hitU - hitV);
+			float2 texCoord = interpolateAttribute2f(barycentric, texCoords[vertIdx[tri].x], texCoords[vertIdx[tri].y], texCoords[vertIdx[tri].z]);
 			float4 diffuseColor = fromABGR(triMaterialColor[tri]);
 
-			if(matInfo[matId[tri]].x > 0.0f)
+			if (matInfo[matId[tri]].w > 0.0f)
 			{
-				color = make_float4(1.0f, 1.0f, 1.0f, 1.0f);
-			}
-			else if (matInfo[matId[tri]].w == 0.0f)
-			{
-				color = make_float4(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);
-			}
-			else
-			{
-				diffuseColor = tex2D(t_textureAtlas, tU, tV);
+				diffuseColor = sample2D(barycentric, texCoord, atlasInfo[tri], t_textureAtlas);
 				color = make_float4(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);// * shadow * diffuse;
 			}
 		}

@@ -30,9 +30,10 @@
 #include "base/Random.hpp"
 #include "cuda/CudaBVHTracer.hpp"
 #include "ray/RayGen.hpp"
-
+#include "cuda/CudaPersistentBVHTracer.hpp"
 #include "cuda/CudaKDTreeTracer.hpp"
 #include "tools/visualizationKDTree.hpp"
+#include "tools/visualizationBVH.hpp"
 #include "Environment.h"
 
 
@@ -46,6 +47,7 @@ public:
 	enum AccelStructType
 	{
 		tBVH = 0,
+		tPersistentBVH,
 		tKDTree
 	};
 

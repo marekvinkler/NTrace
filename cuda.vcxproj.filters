@@ -84,6 +84,12 @@
     <CudaCompile Include="src\rt\persistentbvh\allocators.cu">
       <Filter>persistentbvh</Filter>
     </CudaCompile>
+    <CudaCompile Include="src\rt\kernels\otracer_color.cu">
+      <Filter>traversal</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\kernels\otracer_transparency.cu">
+      <Filter>traversal</Filter>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="traversal">
@@ -123,6 +129,9 @@
     </None>
     <None Include="src\rt\persistentbvh\ScatterAlloc\heap_impl.cuh">
       <Filter>persistentbvh\ScatterAlloc</Filter>
+    </None>
+    <None Include="src\rt\kernels\otracer_func.cuh">
+      <Filter>traversal</Filter>
     </None>
   </ItemGroup>
 </Project>

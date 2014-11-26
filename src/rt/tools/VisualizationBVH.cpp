@@ -410,7 +410,7 @@ void VisualizationBVH::draw(GLContext* gl, CameraControls& camera)
 	gl->setVGXform(oldXform);
 
 	// Draw path information
-	drawPathInfo(gl);
+	//drawPathInfo(gl);
 }
 
 //------------------------------------------------------------------------

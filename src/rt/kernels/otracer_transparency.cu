@@ -35,6 +35,7 @@
 */
 
 #include "CudaTracerKernels.hpp"
+#include "otracer_func.cuh"
 
 //------------------------------------------------------------------------
 
@@ -51,7 +52,7 @@ extern "C" __global__ void queryConfig(void)
 
 //------------------------------------------------------------------------
 
-bool __device__ traversal(int rayidx, int numRays, float4* rays, float4* nodesA, bool anyHit, int4* results, int* hitIdx, float* bU, float* bV)
+__device__ bool traversal(int rayidx, int numRays, float4* rays, float4* nodesA, bool anyHit, int4* results, int* hitIdx, float* dist, float* bU, float* bV)
 {
     // Traversal stack in CUDA thread-local memory.
 
@@ -255,6 +256,7 @@ bool __device__ traversal(int rayidx, int numRays, float4* rays, float4* nodesA,
 	{
         hitIndex = tex1Dfetch(t_triIndices, hitIndex);
 		*hitIdx = hitIndex;
+		*dist = hitT;
 		*bU = hitU;
 		*bV = hitV;
 		return true;
@@ -285,15 +287,7 @@ extern "C" __global__ void otrace_kernel(void)
 	float4* rays = (float4*)in.rays;
 	int4* results = (int4*)in.results;
 	float4* nodesA = (float4*)in.nodesA;
-	float4* nodesB = (float4*)in.nodesB;
-    float4* nodesC = (float4*)in.nodesC;
-    float4* nodesD = (float4*)in.nodesD;
-    float4* trisA = (float4*)in.trisA;
-    float4* trisB = (float4*)in.trisB;
-    float4* trisC = (float4*)in.trisC;
-	int* triIndices = (int*)in.triIndices;
 	float2*	texCoords = (float2*)in.texCoords;
-	float3* normals = (float3*)in.normals;
 	int3* vertIdx = (int3*)in.triVertIndex;
 	float4* atlasInfo = (float4*)in.atlasInfo;
 	int* matId = (int*)in.matId;
@@ -303,54 +297,61 @@ extern "C" __global__ void otrace_kernel(void)
     int rayidx = threadIdx.x + blockDim.x * (threadIdx.y + blockDim.y * (blockIdx.x + gridDim.x * blockIdx.y));
     if (rayidx >= numRays)
         return;
-
-	int hitIndex;
-	float hitU;
-	float hitV;
-	bool hit = traversal(rayidx, numRays, rays, nodesA, anyHit, results, &hitIndex, &hitU, &hitV);
 	
 	float4 color = make_float4(0.0f, 0.0f, 0.0f, 1.0f);
-	if (hit)
+
+	float accumAlpha = 1.0f;
+	int hitIndex;
+
+	while (true)
 	{
-		int tri = hitIndex;
-		if (tri == -1)
+		float hitU;
+		float hitV;
+		float hitT;
+		bool hit = traversal(rayidx, numRays, rays, nodesA, false, results, &hitIndex, &hitT, &hitU, &hitV);
+		if (hit)
 		{
-			color = make_float4(0.0f, 0.0f, 0.0f, 1.0f);
-		}
-		else
-		{
-			float u = hitU;
-			float v = hitV;
-			float w = 1.0f - u - v;
-
-			float tU = texCoords[vertIdx[tri].x].x * u + texCoords[vertIdx[tri].y].x * v + texCoords[vertIdx[tri].z].x * w;
-			float tV = texCoords[vertIdx[tri].x].y * u + texCoords[vertIdx[tri].y].y * v + texCoords[vertIdx[tri].z].y * w;
-		
-			tU = tU - floorf(tU);
-			tV = tV - floorf(tV);
-		
-			tU = tU * atlasInfo[tri].z + atlasInfo[tri].x;
-			tV = tV * atlasInfo[tri].w + atlasInfo[tri].y;
-				
-			float4 diffuseColor = fromABGR(triMaterialColor[tri]);
-
-			if(matInfo[matId[tri]].x > 0.0f)
+			if (hitIndex == -1)
 			{
-				color = make_float4(1.0f, 1.0f, 1.0f, 1.0f);
-			}
-			else if (matInfo[matId[tri]].w == 0.0f)
-			{
-				color = make_float4(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);
+				accumAlpha = 1.0f;
+				break;
 			}
 			else
 			{
-				diffuseColor = tex2D(t_textureAtlas, tU, tV);
-				color = make_float4(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);// * shadow * diffuse;
+				float3 barycentric = make_float3(hitU, hitV, 1.0f - hitU - hitV);
+				float2 texCoord = interpolateAttribute2f(barycentric, texCoords[vertIdx[hitIndex].x], texCoords[vertIdx[hitIndex].y], texCoords[vertIdx[hitIndex].z]);
+				float4 diffuseColor = fromABGR(triMaterialColor[hitIndex]);
+				float4 hitPoint = rays[rayidx * 2 + 0] + rays[rayidx * 2 + 1] * hitT * 0.99f;
+				float4 hitPointBehind = rays[rayidx * 2 + 0] + rays[rayidx * 2 + 1] * hitT * 1.01f;
+
+				if (matInfo[matId[hitIndex]].w > 0.0f)
+				{
+					diffuseColor = sample2D(barycentric, texCoord, atlasInfo[hitIndex], t_textureAtlas);
+					color = color + accumAlpha * diffuseColor.w * make_float4(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);
+					accumAlpha *= 1.0 - diffuseColor.w;
+					
+					rays[rayidx * 2 + 0] = hitPoint;
+					rays[rayidx * 2 + 0].w = 0.1f;
+					rays[rayidx * 2 + 1].w = 10000.0f;
+
+					if (accumAlpha <= 0.0f)
+					{
+						break;
+					}
+				}
+				else
+				{
+					color = color + (1.0 - accumAlpha) * fromABGR(triMaterialColor[hitIndex]);
+					break;
+				}
 			}
 		}
+		else
+		{
+			break;
+		}
 	}
-
-    STORE_RESULT(rayidx, hitIndex, color.x, color.y, color.z);
+	STORE_RESULT(rayidx, hitIndex, color.x, color.y, color.z);
 }
 
 //------------------------------------------------------------------------

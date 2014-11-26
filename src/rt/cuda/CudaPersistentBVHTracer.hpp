@@ -80,9 +80,9 @@ class CudaPersistentBVHTracer : public CudaBVH
 	int floatToOrderedInt(float floatVal);
 	void initPool(int numRays = 0, Buffer* rayBuffer = NULL, Buffer* nodeBuffer = NULL);
 	void deinitPool(int numRays = 0);
-	void printPoolHeader(TaskStackBase* tasks, int* header, int numWarps, FW::String state);
-	void printPool(TaskStackBVH& tasks, int numWarps);
-	void printPool(TaskStack& tasks, int numWarps);
+	//void printPoolHeader(TaskStackBase* tasks, int* header, int numWarps, FW::String state);
+	//void printPool(TaskStackBVH& tasks, int numWarps);
+	//void printPool(TaskStack& tasks, int numWarps);
 
 	F32 buildCudaBVH();
 public:

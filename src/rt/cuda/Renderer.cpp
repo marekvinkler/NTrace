@@ -64,6 +64,10 @@ Renderer::Renderer(AccelStructType as, Environment* env)
 	{
 		m_cudaTracer = new CudaKDTreeTracer();
 	}
+	else if (m_asType == tPersistentBVH)
+	{
+		//m_cudaTracer = new CudaPersistentBVHTracer();
+	}
 	else
 	{
 		m_cudaTracer = new CudaBVHTracer();
@@ -164,13 +168,13 @@ CudaAS* Renderer::getCudaBVH(void)
 	}
 
     // Determine cache file name.
-
-    String cacheFileName = sprintf("%s/%08x.dat", m_bvhCachePath.getPtr(), hashBits(
+	
+    String cacheFileName = FW::sprintf("%s/%08x_%s.dat", m_bvhCachePath.getPtr(), hashBits(
         m_scene->hash(),
         m_platform.computeHash(),
         m_buildParams.computeHash(),
         layout,
-		m_asType));
+		m_asType), bvhBuilder.c_str());
 
     // Cache file exists => import.
 
@@ -616,7 +620,15 @@ void Renderer::startBVHVis(void)
 	//	traceBatch();
 	//}
 
-	m_vis = new VisualizationKDTree((CudaKDTree*)m_accelStruct, m_scene, Array<AABB>());
+	if (m_asType == tKDTree)
+	{
+		m_vis = new VisualizationKDTree((CudaKDTree*)m_accelStruct, m_scene, Array<AABB>());
+	}
+	else
+	{
+		CudaBVH* bvh = (CudaBVH*)getCudaBVH();
+		m_vis = new VisualizationBVH(bvh, m_scene, Array<AABB>());
+	}
 	m_vis->setVisible(true);
 	m_window->addListener(m_vis);
 
