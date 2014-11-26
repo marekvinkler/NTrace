@@ -86,7 +86,16 @@ public:
 	 * \return Launch time in seconds.
 	 */
     F32                 traceBatch              (RayBuffer& rays); // returns launch time in seconds
+	
+	/**
+	 * \brief Compute visibility
+	 */
+	void				setVisibility			(void);
 
+	/**
+	 * \brief Returns triangle visibility buffer
+	 */
+	Buffer&             getVisibilityBuffer     (void)                  { return m_triangleVisibility; }
 private:
 
 	/**
@@ -105,6 +114,7 @@ private:
     KernelConfig        m_kernelConfig;			//!< Configuration of the kernel.
     CudaBVH*            m_bvh;					//!< BVH being traversed.
 	bool				m_otrace;				//!< Flag whether to use otracer kernels.
+	Buffer              m_triangleVisibility;	//!< Visibility buffer
 };
 
 //------------------------------------------------------------------------

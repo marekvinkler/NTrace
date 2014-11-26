@@ -118,6 +118,7 @@ void Renderer::setMesh(MeshBase* mesh)
     if (mesh)
 	{
         m_scene = new Scene(*mesh);
+		getVisibleTriangles(m_scene->getNumTriangles(), true); // Initialize visibility information
 		m_cudaTracer->setScene(m_scene);
 	}
 }
@@ -133,7 +134,7 @@ void Renderer::setParams(const Params& params)
 
 //------------------------------------------------------------------------
 
-CudaAS* Renderer::getCudaBVH(void)
+CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 {
 	string bvhBuilder;
 	m_env->GetStringValue("BVHBuilder", bvhBuilder);
@@ -167,6 +168,50 @@ CudaAS* Renderer::getCudaBVH(void)
 		return bvh;
 	}
 
+	// For OcclusionBVH - first build SAHBVH and then build OcclusionBVH
+	if (bvhBuilder == "OcclusionBVH")
+	{
+		bvhBuilder = "SAHBVH";
+		
+		// Build BVH.
+		BVH bvh(m_scene, m_platform, m_buildParams, m_env, bvhBuilder);
+		stats.print();
+		m_accelStruct = new CudaBVH(bvh, layout);
+		CudaBVH* cudaBvh = (CudaBVH*)m_accelStruct;
+		failIfError();
+
+		cudaBvh->setTraceParams(&m_platform, m_scene);
+		m_cudaTracer->setBVH(cudaBvh);
+		m_buildParams.visibility = &getVisibleTriangles(m_scene->getNumTriangles(), true);
+		
+		// Generate primary rays.
+		const Vec2i& size = gl->getViewSize();
+		U32 randomSeed = (m_enableRandom) ? m_random.getU32() : 0;
+		m_raygen.primary(m_primaryRays,
+			camera.getPosition(),
+			invert(gl->xformFitToView(-1.0f, 2.0f) * camera.getWorldToClip()),
+			size.x, size.y,
+			camera.getFar(), randomSeed);
+
+		// Secondary rays enabled => trace primary rays.
+		if (m_params.rayType != RayType_Primary && m_params.rayType != RayType_Textured && m_params.rayType != RayType_PathTracing)
+		{
+			m_cudaTracer->traceBatch(m_primaryRays);
+		}
+
+		m_cameraFar     = camera.getFar();
+		m_newBatch      = true;
+		m_batchRays		= &m_primaryRays;
+		m_batchStart    = 0;
+		while (nextBatch())
+		{
+			traceBatch();
+		}
+		m_buildParams.visibility = &getVisibleTriangles(m_scene->getNumTriangles(), false);
+
+		bvhBuilder = "OcclusionBVH";
+	}
+
     // Determine cache file name.
 	
     String cacheFileName = FW::sprintf("%s/%08x_%s.dat", m_bvhCachePath.getPtr(), hashBits(
@@ -196,8 +241,7 @@ CudaAS* Renderer::getCudaBVH(void)
         m_window->showModalMessage("Building BVH...");
 
     // Build BVH.
-
-    BVH bvh(m_scene, m_platform, m_buildParams, m_env);
+	BVH bvh(m_scene, m_platform, m_buildParams, m_env);
     stats.print();
     m_accelStruct = new CudaBVH(bvh, layout);
     failIfError();
@@ -303,7 +347,7 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
 
     // Setup BVH.
 	if(m_asType == tBVH)
-		m_cudaTracer->setBVH(getCudaBVH());
+		m_cudaTracer->setBVH(getCudaBVH(gl, camera));
 	else
 		m_cudaTracer->setBVH(getCudaKDTree());
 
@@ -646,3 +690,25 @@ void Renderer::endBVHVis(void)
 
 	m_showVis = false;
 }
+
+//------------------------------------------------------------------------
+
+Buffer& Renderer::getVisibleTriangles(S32 triangleCount, bool setValue, S32 initValue)
+{
+	Buffer &vis = ((CudaBVHTracer*)m_cudaTracer)->getVisibilityBuffer();
+	//S64 bitSize = (triangleCount + sizeof(U32) - 1) / sizeof(U32); // Round up to CUDA machine word
+	S64 bitSize = triangleCount*sizeof(S32);
+
+	// Initialize the buffer if needed
+	vis.resize(bitSize);
+	
+	if(setValue)
+		vis.clear(initValue);
+
+	((CudaBVHTracer*)m_cudaTracer)->setVisibility();
+
+	// Return the buffer
+	return vis;
+}
+
+//------------------------------------------------------------------------

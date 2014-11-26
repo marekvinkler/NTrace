@@ -437,7 +437,7 @@ void App::render(GLContext* gl)
 
     // Show statistics.
 
-	CudaAS* bvh = m_renderer->getCudaBVH();
+	CudaAS* bvh = m_renderer->getCudaBVH(gl, m_cameraCtrl);
     S64 nodeBytes = bvh->getNodeBuffer().getSize();
     S64 triBytes = bvh->getTriWoopBuffer().getSize() + bvh->getTriIndexBuffer().getSize();
 

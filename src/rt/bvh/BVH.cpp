@@ -33,12 +33,15 @@
 
 using namespace FW;
 
-BVH::BVH(Scene* scene, const Platform& platform, const BuildParams& params, Environment* env) : AccelerationStructure(scene, platform)
+BVH::BVH(Scene* scene, const Platform& platform, const BuildParams& params, Environment* env, const string& builder) : AccelerationStructure(scene, platform)
 {
 	m_env = env;
 	
-	string bvhBuilder;
-	m_env->GetStringValue("BVHBuilder", bvhBuilder);
+	string bvhBuilder = builder;
+	if (builder == "")
+	{
+		m_env->GetStringValue("BVHBuilder", bvhBuilder);
+	}
 
     if (params.enablePrints)
         printf("BVH builder: %d tris, %d vertices\n", scene->getNumTriangles(), scene->getNumVertices());
