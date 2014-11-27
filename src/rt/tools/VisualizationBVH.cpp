@@ -70,7 +70,7 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-VisualizationBVH::VisualizationBVH(CudaBVH* bvh, Scene* scene, const Array<AABB> &emptyBoxes, const RayBuffer* rays, Buffer* visibility)
+VisualizationBVH::VisualizationBVH(CudaBVH* bvh, Scene* scene, const RayBuffer* rays, Buffer* visibility)
 :	Visualization(scene),
 	m_bvh(bvh)
 {	
@@ -116,9 +116,9 @@ VisualizationBVH::VisualizationBVH(CudaBVH* bvh, Scene* scene, const Array<AABB>
 			float t;
 			if(rays->getResultForSlot(i*stride).hit())
 				//t = rays->getResultForSlot(i*stride).t;
-				t = rays->getResultForSlot(i*stride).padA;
+				t = (float)rays->getResultForSlot(i*stride).padA;
 			else
-				t = ray.tmax;
+				t = (float)ray.tmax;
 			lines.add(Vec4f(ray.origin, 1.0f));
 			lines.add(Vec4f(ray.origin + t*ray.direction, 1.0f));
 		}
@@ -130,33 +130,6 @@ VisualizationBVH::VisualizationBVH(CudaBVH* bvh, Scene* scene, const Array<AABB>
 	{
 		m_showRays = false;
 	}
-
-	// Initialize empty boxes
-	Array<Vec4f> boxes, colors, lineColors, colorPalette;
-	for(int i = 0; i < emptyBoxes.getSize(); i++)
-		addBoxQuads(emptyBoxes[i], boxes);
-	m_emptyBoxes.resizeDiscard(boxes.getNumBytes());
-	m_emptyBoxes.set(boxes.getPtr(), boxes.getNumBytes());
-	// Initialize colors for empty boxes
-	/*for(int r = 1; r > -1; r--)
-		for(int g = 1; g > -1; g--)
-			for(int b = 1; b > -1; b--)*/
-	for(int r = 0; r < 2; r++)
-		for(int g = 0; g < 2; g++)
-			for(int b = 0; b < 2; b++)
-				if(r+g+b < 3)
-					colorPalette.add(Vec4f((float)r, (float)g, (float)b, 0.33f));
-	for(int i = 0; i < emptyBoxes.getSize(); i++)
-		for(int j = 0; j < 6*4; j++) // Repeate for each vertex of the box 6 faces * 4 vertices per face
-		{
-			colors.add(colorPalette[i % colorPalette.getSize()]);
-			lineColors.add(colorPalette[i % colorPalette.getSize()]);
-			lineColors.getLast().w = 1.0f;
-		}
-	m_emptyColors.resizeDiscard(colors.getNumBytes());
-	m_emptyColors.set(colors.getPtr(), colors.getNumBytes());
-	m_emptyLineColors.resizeDiscard(lineColors.getNumBytes());
-	m_emptyLineColors.set(lineColors.getPtr(), lineColors.getNumBytes());
 
 	// Initialize visibility
 	if(visibility != NULL)
@@ -210,7 +183,6 @@ bool VisualizationBVH::handleEvent(const Window::Event& ev)
 			if (ev.key == FW_KEY_B)									{ m_splitColors = !m_splitColors; setColorMapping(); }
 			if (ev.key == FW_KEY_J)									{ m_showChildren = !m_showChildren; }
 			if (ev.key == FW_KEY_U && m_rays.getSize() > 0)			{ m_showRays = !m_showRays; }
-			if (ev.key == FW_KEY_P && m_emptyBoxes.getSize() > 0)   { m_showEmpty = !m_showEmpty; }
 			if (ev.key == FW_KEY_O)									{ m_showCurrTris = !m_showCurrTris; prepareTreeData(m_node.addr); }
 			if (ev.key == FW_KEY_L)									{ m_showAllOSAH = !m_showAllOSAH; prepareTreeData(m_node.addr); }
 			if (ev.key == FW_KEY_T)									{ moveToParent(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node.addr); }
@@ -410,7 +382,7 @@ void VisualizationBVH::draw(GLContext* gl, CameraControls& camera)
 	gl->setVGXform(oldXform);
 
 	// Draw path information
-	//drawPathInfo(gl);
+	drawPathInfo(gl);
 }
 
 //------------------------------------------------------------------------
@@ -495,21 +467,16 @@ void VisualizationBVH::drawNodes(GLContext* gl, bool onlyChildren)
 	}
 
 	// Draw visible child of the OSAH split
-	if(m_showAllOSAH || m_showEmpty)
+	if(m_showAllOSAH)
 	{
 		if(!onlyChildren)
 		{
-			// Draw filled faces
-			if(m_showEmpty)
-				gl->drawColorBuffer(m_emptyBoxes, m_emptyColors, GL_QUADS, 0);
 			//glDepthFunc(GL_ALWAYS);
 
 			// Draw edges, use opaque ray color
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 			if(m_showAllOSAH)
 				gl->drawBuffer(m_boxes, GL_QUADS, 0, COLOR_RAY);
-			if(m_showEmpty)
-				gl->drawColorBuffer(m_emptyBoxes, m_emptyLineColors, GL_QUADS, 0);
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			//glDepthFunc(GL_LEQUAL);
 		}
@@ -567,7 +534,7 @@ void VisualizationBVH::drawPathInfo(GLContext* gl)
 	Mat4f oldXform = gl->setVGXform(gl->xformMatchPixels());
 	gl->setFont("Arial", fontSize, GLContext::FontStyle_Bold);
 	
-	char leftBox[100], rightBox[100];
+	char leftBox[200], rightBox[200];
 	m_left.box.min().sprint(leftBox, 100);
 	strcat_s(leftBox, ", ");
 	m_left.box.max().sprint(leftBox + strlen(leftBox), 100-strlen(leftBox));
@@ -701,12 +668,10 @@ void VisualizationBVH::prepareTreeData(S32 node)
 						if(m_visibility[indices[i]])
 							ptr = &verticesVis;
 
-						//const Vec3i& ind = m_bvh->getScene()->getTriangle(indices[i]).vertices;
-						const Vec3i& ind = *(Vec3i*)m_scene->getTriVtxIndexBuffer().getPtr();
+						const Vec3i& ind = ((const Vec3i*)m_scene->getTriVtxIndexBuffer().getPtr())[indices[i]];
 						for(int j = 0; j < 3; j++)
 						{
-							//const Vec3f& v = m_bvh->getScene()->getVertex(ind[j]);
-							const Vec3f& v = (Vec3f)(m_scene->getVtxPosBuffer()[ind[j]]);
+							const Vec3f& v = ((const Vec3f*)m_scene->getVtxPosBuffer().getPtr())[ind[j]];
 							ptr->add(Vec4f(v, 1.0f));
 						}
 					}

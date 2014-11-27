@@ -20,8 +20,8 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-CPURenderer::CPURenderer(Environment* env)
-:   Renderer(Renderer::tBVH, env),
+CPURenderer::CPURenderer()
+:   Renderer(),
 m_layout(BVHLayout_CPU)
 {
     m_platform = Platform("CPU");

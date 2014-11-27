@@ -44,13 +44,6 @@ namespace FW
 class Renderer
 {
 public:
-	enum AccelStructType
-	{
-		tBVH = 0,
-		tPersistentBVH,
-		tKDTree
-	};
-
     enum RayType
     {
         RayType_Primary = 0,
@@ -80,11 +73,8 @@ public:
         }
     };
 
-private:
-	Environment* m_env;
-
 public:
-						Renderer			(AccelStructType as, Environment* env);
+						Renderer			();
                         ~Renderer           (void);
 
     void                setMesh             (MeshBase* mesh);
@@ -127,7 +117,7 @@ protected:
 
 protected:
     CudaCompiler        m_compiler;
-    String              m_bvhCachePath;
+    String              m_cachePath;
     Platform            m_platform;
     BVH::BuildParams    m_buildParams;
     RayGen              m_raygen;
@@ -154,7 +144,6 @@ protected:
 	CudaAS*				m_accelStruct;
 	CudaVirtualTracer*	m_cudaTracer;
 
-	AccelStructType		m_asType;
 	Visualization*		m_vis;
 	bool				m_showVis;
 };

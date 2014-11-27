@@ -114,6 +114,7 @@ int main(int argc, char* argv[])
 
     // Clean up.
 
+	FW::deinit();
     failIfError();
     CudaCompiler::staticDeinit();
     CudaModule::staticDeinit();

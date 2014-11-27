@@ -1,5 +1,5 @@
 /* 
- *  Copyright (c) 2013, Vilem Otte
+ *  Copyright (c) 2013, Faculty of Informatics, Masaryk University
  *  All rights reserved.
  *  
  *  Redistribution and use in source and binary forms, with or without
@@ -23,6 +23,11 @@
  *  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ *  Authors:
+ *  Tomas Kopal, 1996
+ *  Vilem Otte <vilem.otte@post.cz>
+ *
  */
 
 #include "Environment.h"
@@ -33,6 +38,22 @@
 
 Environment* Environment::mEnvironment = NULL;
 
+char *GetPath(const char *s)
+{
+  int i=strlen(s);
+  for (; i>0; i--) {
+    if (s[i]=='/' || s[i]=='\\')
+      break;
+  }
+  
+  char *path = new char[i+1];
+  int j = 0;
+  for (; j<i; j++)
+    path[j] = s[j];
+  path[j] = 0;
+  return path;
+}
+
 /**
   * Method for checking variable type.
   * @name CheckVariableType
@@ -42,7 +63,7 @@ Environment* Environment::mEnvironment = NULL;
   **/
 bool Environment::CheckVariableType(const char* value, const OptionType type) const
 {
-    char *s, *t, *u;
+    char *t;
 
     switch(type)
     {
@@ -245,10 +266,123 @@ void Environment::PrintUsage(ostream &s) const
   **/
 void Environment::SetStaticOptions()
 {
-    // TODO
-    /*GetFloatValue("Limits.threshold", Limits::Threshold);
-    GetFloatValue("Limits.small", Limits::Small);
-    GetFloatValue("Limits.infinity", Limits::Infinity);*/
+}
+
+bool Environment::Parse(const int argc, char **argv, bool useExePath, char* overridePath, const char* overrideDefault)
+{
+  bool result = true;
+  // Read the names of the scene, environment and output files
+  ReadCmdlineParams(argc, argv, "");
+
+  char *envFilename = new char[128];
+  char filename[64];
+
+  // Get the environment file name
+  if (!GetParam(' ', 0, filename)) {
+    // user didn't specify environment file explicitly, so
+    strcpy(filename, overrideDefault);
+  }
+  cout << "Using environment file: " << filename << endl;
+  
+  if (useExePath) {
+    char *path = GetPath(argv[0]);
+    if (*path != 0)
+      sprintf(envFilename, "%s/%s", path, filename);
+    else
+      strcpy(envFilename, filename);
+    
+    delete path;
+  }
+  else if(overridePath != NULL) {
+	  sprintf(envFilename, "%s/%s", overridePath, filename);
+  }
+  else
+    strcpy(envFilename, filename);
+
+  
+  // Now it's time to read in environment file.
+  if (!ReadEnvFile(envFilename)) {
+    // error - bad input file name specified ?
+    cerr<<"Error parsing environment file "<<envFilename<<endl;
+	result = false;
+  }
+  delete [] envFilename;
+
+  // Parse the command line; options given on the command line subsume
+  // stuff specified in the input environment file.
+  ParseCmdline(argc, argv, 0);
+
+  SetStaticOptions();
+
+  // Check for request for help
+  if (CheckForSwitch(argc, argv, '?')) {
+    PrintUsage(cout);
+    exit(0);
+  }
+  
+  return true;
+}
+
+const char code[] = "JIDHipewhfdhyd74387hHO&{WK:DOKQEIDKJPQ*H#@USX:#FWCQ*EJMQAHPQP(@G#RD";
+
+void Environment::DecodeString(char *buff, int max)
+{
+  buff[max] = 0;
+  char *p = buff;
+  const char *cp = code; 
+  for (; *p; p++) {
+    if (*p != '\n')
+      *p = *p ^ *cp;
+    ++cp;
+    if (*cp == 0)
+      cp = code;
+  }
+}
+
+void Environment::CodeString(char *buff, int max)
+{
+  buff[max] = 0;
+  char *p = buff;
+  const char *cp = code; 
+  for (; *p; p++) {
+    if (*p != '\n')
+      *p = *p ^ *cp;
+    ++cp;
+    if (*cp == 0)
+      cp = code;
+  }
+}
+
+void Environment::SaveCodedFile(char *filenameText, char *filenameCoded)
+{
+  ifstream envStream(filenameText);
+  
+  // some error had occured
+  if (envStream.fail()) {
+    cerr << "Error: Can't open file " << filenameText << " for reading (err. "
+         << envStream.rdstate() << ").\n";
+    return;
+  }
+
+  char buff[256];
+  envStream.getline(buff, 255);
+  buff[8] = 0;
+  if (strcmp(buff, "CGX_CF10") == 0)
+    return;
+  
+  ofstream cStream(filenameCoded);
+  cStream<<"CGX_CF10";
+  
+  // main loop
+  for (;;) {
+    // read in one line
+    envStream.getline(buff, 255);
+    if (!envStream)
+      break;
+    CodeString(buff, 255);
+    cStream<<buff;
+  }
+  
 }
 
 /** Method for registering new option.

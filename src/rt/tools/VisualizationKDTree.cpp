@@ -55,7 +55,7 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-VisualizationKDTree::VisualizationKDTree(CudaKDTree* kdtree, Scene* scene, const Array<AABB> &emptyBoxes, const RayBuffer* rays, Buffer* visibility)
+VisualizationKDTree::VisualizationKDTree(CudaKDTree* kdtree, Scene* scene, const RayBuffer* rays, Buffer* visibility)
 :	Visualization(scene),
 	m_kdtree(kdtree)
 {
@@ -106,9 +106,9 @@ VisualizationKDTree::VisualizationKDTree(CudaKDTree* kdtree, Scene* scene, const
 			float t;
 			if(rays->getResultForSlot(i*stride).hit())
 				//t = rays->getResultForSlot(i*stride).t;
-				t = rays->getResultForSlot(i*stride).padA;
+				t = (float)rays->getResultForSlot(i*stride).padA;
 			else
-				t = ray.tmax;
+				t = (float)ray.tmax;
 			lines.add(Vec4f(ray.origin, 1.0f));
 			lines.add(Vec4f(ray.origin + t*ray.direction, 1.0f));
 		}
@@ -120,33 +120,6 @@ VisualizationKDTree::VisualizationKDTree(CudaKDTree* kdtree, Scene* scene, const
 	{
 		m_showRays = false;
 	}
-
-	// Initialize empty boxes
-	Array<Vec4f> boxes, colors, lineColors, colorPalette;
-	for(int i = 0; i < emptyBoxes.getSize(); i++)
-		addBoxQuads(emptyBoxes[i], boxes);
-	m_emptyBoxes.resizeDiscard(boxes.getNumBytes());
-	m_emptyBoxes.set(boxes.getPtr(), boxes.getNumBytes());
-	// Initialize colors for empty boxes
-	/*for(int r = 1; r > -1; r--)
-		for(int g = 1; g > -1; g--)
-			for(int b = 1; b > -1; b--)*/
-	for(int r = 0; r < 2; r++)
-		for(int g = 0; g < 2; g++)
-			for(int b = 0; b < 2; b++)
-				if(r+g+b < 3)
-					colorPalette.add(Vec4f((float)r, (float)g, (float)b, 0.33f));
-	for(int i = 0; i < emptyBoxes.getSize(); i++)
-		for(int j = 0; j < 6*4; j++) // Repeate for each vertex of the box 6 faces * 4 vertices per face
-		{
-			colors.add(colorPalette[i % colorPalette.getSize()]);
-			lineColors.add(colorPalette[i % colorPalette.getSize()]);
-			lineColors.getLast().w = 1.0f;
-		}
-	m_emptyColors.resizeDiscard(colors.getNumBytes());
-	m_emptyColors.set(colors.getPtr(), colors.getNumBytes());
-	m_emptyLineColors.resizeDiscard(lineColors.getNumBytes());
-	m_emptyLineColors.set(lineColors.getPtr(), lineColors.getNumBytes());
 
 	// Initialize visibility
 	if(visibility != NULL)
@@ -200,7 +173,6 @@ bool VisualizationKDTree::handleEvent(const Window::Event& ev)
 			if (ev.key == FW_KEY_B)									{ m_splitColors = !m_splitColors; setColorMapping(); }
 			if (ev.key == FW_KEY_J)									{ m_showChildren = !m_showChildren; }
 			if (ev.key == FW_KEY_U && m_rays.getSize() > 0)			{ m_showRays = !m_showRays; }
-			if (ev.key == FW_KEY_P && m_emptyBoxes.getSize() > 0)   { m_showEmpty = !m_showEmpty; }
 			if (ev.key == FW_KEY_O)									{ m_showCurrTris = !m_showCurrTris; prepareTreeData(m_node); }
 			if (ev.key == FW_KEY_L)									{ m_showAllOSAH = !m_showAllOSAH; prepareTreeData(m_node); }
 			if (ev.key == FW_KEY_T)									{ moveToParent(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node); }
@@ -497,21 +469,16 @@ void VisualizationKDTree::drawNodes(GLContext* gl, bool onlyChildren)
 	}
 
 	// Draw visible child of the OSAH split
-	if(m_showAllOSAH || m_showEmpty)
+	if(m_showAllOSAH)
 	{
 		if(!onlyChildren)
 		{
-			// Draw filled faces
-			if(m_showEmpty)
-				gl->drawColorBuffer(m_emptyBoxes, m_emptyColors, GL_QUADS, 0);
 			//glDepthFunc(GL_ALWAYS);
 
 			// Draw edges, use opaque ray color
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 			if(m_showAllOSAH)
 				gl->drawBuffer(m_boxes, GL_QUADS, 0, COLOR_RAY);
-			if(m_showEmpty)
-				gl->drawColorBuffer(m_emptyBoxes, m_emptyLineColors, GL_QUADS, 0);
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			//glDepthFunc(GL_LEQUAL);
 		}
@@ -739,17 +706,6 @@ void VisualizationKDTree::prepareTreeData(NodeData node)
 				splitNode(node, child0Addr, child1Addr, child0, child1, m_nodeSplit);
 				if(m_showCurrTris && rightChild == 0)
 					rightChild = child1Addr;
-
-				if(true)/*m_showAllOSAH && splitInfo.getOSAHChosen()) */// Process split
-				{
-					//m_osahSplits[splitInfo.getAxis()]++;
-					// Compute the box
-					//AABB bbox = child0 + child1;
-					//AABB bbox = child0; // child with more visible triangles in case of OSAH split
-					//addBoxQuads(bbox, boxes);
-					addBoxQuads(child0, boxes);
-					addBoxQuads(child1, boxes);
-				}
 
 				node.addr = child0Addr;
 				stack[stackIndex++].addr = child1Addr;

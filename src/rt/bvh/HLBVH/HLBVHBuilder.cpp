@@ -333,7 +333,7 @@ void HLBVHBuilder::buildBottomLevel(Buffer *q_in, Buffer *q_out, U32 &nodeWritte
 #endif
 
 	F32 cudaTime = 0.0f;
-	S32 level = 0;
+	U32 level = 0;
 	while((level < (n_bits-bit_ofs)) && nodeCreated > 0) {
 		*(CUdeviceptr*)module->getGlobal("g_inQueueMem").getMutablePtr() = q_in->getCudaPtr();
 		*(CUdeviceptr*)module->getGlobal("g_outQueueMem").getMutablePtr() = q_out->getMutableCudaPtr();

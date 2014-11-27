@@ -56,17 +56,16 @@ public:
 
 		SplitInfo(void) : pos(0), dim(-1) {}
 		FW::String	getPos(void)		{ return String(pos); }
-		FW::String	getAxisName(void)	{ if (dim == 0) return String('X'); else if (dim == 1) return String('Y'); else if (dim == 2) return('Z'); }
+		FW::String	getAxisName(void)	{ if (dim == 0) return "X"; else if (dim == 1) return "Y"; else if (dim == 2) return "Z"; else return "NA"; }
 	};
 
 	/*!
 	 *  \brief Constructor.
 	 *  \param[in] bvh			CudaBVH to visualize.
-	 *  \param[in] emptyBoxes	Array of empty boxes to be visualized.
 	 *  \param[in] rays			Rays to visualize, pass NULL if no rays should be visualized.
 	 *  \param[in] visibility	Array of triangle visibility flags.
 	 */
-    explicit    VisualizationKDTree    (CudaKDTree* kdtree, Scene* scene, const Array<AABB> &emptyBoxes, const RayBuffer* rays = NULL, Buffer* visibility = NULL);
+    explicit    VisualizationKDTree    (CudaKDTree* kdtree, Scene* scene, const RayBuffer* rays = NULL, Buffer* visibility = NULL);
 	/*!
 	 *  \brief Destructor.
 	 */

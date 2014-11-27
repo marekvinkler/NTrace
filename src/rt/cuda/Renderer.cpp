@@ -35,11 +35,11 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-Renderer::Renderer(AccelStructType as, Environment* env)
+Renderer::Renderer()
 :   m_raygen            (1 << 20),
 
     m_window            (NULL),
-    m_enableRandom      (false),
+    m_enableRandom      (Environment::GetSingleton()->GetBool("Raygen.random")),
 
     m_mesh              (NULL),
     m_scene             (NULL),
@@ -54,31 +54,36 @@ Renderer::Renderer(AccelStructType as, Environment* env)
 
 	m_accelStruct		(NULL),
 
-	m_asType			(as),
 	m_vis				(NULL),
 	m_showVis			(false)
 {
-	m_env = env;
+	string as;
+	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", as);
 
-	if (m_asType == tKDTree)
-	{
-		m_cudaTracer = new CudaKDTreeTracer();
-	}
-	else if (m_asType == tPersistentBVH)
-	{
-		//m_cudaTracer = new CudaPersistentBVHTracer();
-	}
-	else
+	if(as == "BVH")
 	{
 		m_cudaTracer = new CudaBVHTracer();
 	}
+	else if(as == "PersistentBVH")
+	{
+		//m_cudaTracer = new CudaPersistentBVHTracer();
+	}
+	else if(as == "KDTree")
+	{
+		m_cudaTracer = new CudaKDTreeTracer();
+	}
+	else
+	{
+		fail("Incorrect data structure type!");
+	}
+
 	m_cudaTracer->setScene(NULL);
 
     m_compiler.setSourceFile("src/rt/cuda/RendererKernels.cu");
     m_compiler.addOptions("-use_fast_math");
     m_compiler.include("src/rt");
     m_compiler.include("src/framework");
-    m_bvhCachePath = "bvhcache";
+    m_cachePath = "bvhcache";
 
     m_platform = Platform("GPU");
     m_platform.setLeafPreferences(1, 1);
@@ -135,8 +140,10 @@ void Renderer::setParams(const Params& params)
 
 CudaAS* Renderer::getCudaBVH(void)
 {
+	string as;
+	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", as);
 	string bvhBuilder;
-	m_env->GetStringValue("BVHBuilder", bvhBuilder);
+	Environment::GetSingleton()->GetStringValue("Renderer.builder", bvhBuilder);
 
     // BVH is already valid => done.
 
@@ -169,12 +176,12 @@ CudaAS* Renderer::getCudaBVH(void)
 
     // Determine cache file name.
 	
-    String cacheFileName = FW::sprintf("%s/%08x_%s.dat", m_bvhCachePath.getPtr(), hashBits(
+    String cacheFileName = FW::sprintf("%s/%08x_%s.dat", m_cachePath.getPtr(), hashBits(
         m_scene->hash(),
         m_platform.computeHash(),
         m_buildParams.computeHash(),
         layout,
-		m_asType), bvhBuilder.c_str());
+		hash<String>(as.c_str())), bvhBuilder.c_str());
 
     // Cache file exists => import.
 
@@ -197,7 +204,7 @@ CudaAS* Renderer::getCudaBVH(void)
 
     // Build BVH.
 
-    BVH bvh(m_scene, m_platform, m_buildParams, m_env);
+    BVH bvh(m_scene, m_platform, m_buildParams);
     stats.print();
     m_accelStruct = new CudaBVH(bvh, layout);
     failIfError();
@@ -206,7 +213,7 @@ CudaAS* Renderer::getCudaBVH(void)
 
     if (!hasError())
     {
-        CreateDirectory(m_bvhCachePath.getPtr(), NULL);
+        CreateDirectory(m_cachePath.getPtr(), NULL);
         File file(cacheFileName, File::Create);
         m_accelStruct->serialize(file);
         clearError();
@@ -222,16 +229,21 @@ CudaAS* Renderer::getCudaBVH(void)
 
 CudaAS*	Renderer::getCudaKDTree(void)
 {
+	string as;
+	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", as);
+	string kdtreeBuilder;
+	Environment::GetSingleton()->GetStringValue("Renderer.builder", kdtreeBuilder);
+
 	BVHLayout layout = m_cudaTracer->getDesiredBVHLayout();
 	if (!m_mesh || (m_accelStruct && m_accelStruct->getLayout() == layout))
 		return m_accelStruct;
 
-	String cacheFileName = sprintf("%s/%08x.dat", m_bvhCachePath.getPtr(), hashBits(
+	String cacheFileName = sprintf("%s/%08x_%s.dat", m_cachePath.getPtr(), hashBits(
 		m_scene->hash(),
 		m_platform.computeHash(),
 		m_buildParams.computeHash(),
 		layout,
-		m_asType));
+		hash<String>(as.c_str())), kdtreeBuilder.c_str());
 
 	if(!hasError())
 	{
@@ -254,7 +266,6 @@ CudaAS*	Renderer::getCudaKDTree(void)
 	KDTree::BuildParams params;
 	params.enablePrints = m_buildParams.enablePrints;
 	params.stats = new KDTree::Stats();
-	params.builder = KDTree::SAH;
 
 	KDTree kdtree(m_scene, m_platform, params);
 	m_accelStruct = new CudaKDTree(kdtree);
@@ -265,7 +276,7 @@ CudaAS*	Renderer::getCudaKDTree(void)
 
     //if (!hasError())
     //{
-    //    CreateDirectory(m_bvhCachePath.getPtr(), NULL);
+    //    CreateDirectory(m_cachePath.getPtr(), NULL);
     //    File file(cacheFileName, File::Create);
     //    m_accelStruct->serialize(file);
     //    clearError();
@@ -301,10 +312,13 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
 {
     FW_ASSERT(gl && m_mesh);
 
-    // Setup BVH.
-	if(m_asType == tBVH)
+    // Setup Data Structure.
+	string as;
+	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", as);
+
+	if(as == "BVH")
 		m_cudaTracer->setBVH(getCudaBVH());
-	else
+	else if(as == "KDTree")
 		m_cudaTracer->setBVH(getCudaKDTree());
 
     // Setup result image.
@@ -620,15 +634,18 @@ void Renderer::startBVHVis(void)
 	//	traceBatch();
 	//}
 
-	if (m_asType == tKDTree)
+	string as;
+	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", as);
+
+	if(as == "BVH")
 	{
-		m_vis = new VisualizationKDTree((CudaKDTree*)m_accelStruct, m_scene, Array<AABB>());
+		m_vis = new VisualizationBVH((CudaBVH*)getCudaBVH(), m_scene);
 	}
-	else
+	else if(as == "KDTree")
 	{
-		CudaBVH* bvh = (CudaBVH*)getCudaBVH();
-		m_vis = new VisualizationBVH(bvh, m_scene, Array<AABB>());
+		m_vis = new VisualizationKDTree((CudaKDTree*)getCudaKDTree(), m_scene);
 	}
+
 	m_vis->setVisible(true);
 	m_window->addListener(m_vis);
 

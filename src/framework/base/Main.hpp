@@ -39,6 +39,7 @@ extern int      exitCode;
 //------------------------------------------------------------------------
 
 void    init                (void);     // Main entry point, defined by the application.
+void    deinit              (void);     // Cleanup.
 
 void    disableLeakCheck    (void);     // Call to disable memory leak check at application exit in debug build.
 

@@ -40,8 +40,8 @@ using namespace FW;
 //------------------------------------------------------------------------
 
 static const char* const s_kernelDir        = "src/rt/kernels";
-static const char* const s_initialMeshDir   = "scenes/rt/sibenik";
-static const char* const s_defaultMeshFile  = "scenes/rt/sibenik/sibenik.obj";
+static const char* const s_initialMeshDir   = "data/models";
+static const char* const s_defaultMeshFile  = "data/models/sponza.obj";
 
 //------------------------------------------------------------------------
 
@@ -169,23 +169,7 @@ App::App(void)
     if (!m_kernelNames.getSize())
         fail("No CUDA kernel sources found!");
 
-	m_env = new AppEnvironment();
-	m_env->ReadEnvFile("config.conf");
-
-	string bvh;
-	m_env->GetStringValue("AccelerationStructure", bvh);
-	if (bvh == "BVH")
-	{
-		m_renderer = new Renderer(Renderer::tBVH, m_env);
-	}
-	else if (bvh == "PersistentBVH")
-	{
-		m_renderer = new Renderer(Renderer::tPersistentBVH, m_env);
-	}
-	else if (bvh == "KDTree")
-	{
-		m_renderer = new Renderer(Renderer::tKDTree, m_env);
-	}
+	m_renderer = new Renderer();
 
     m_commonCtrl.showFPS(true);
     m_commonCtrl.addStateObject(this);
@@ -423,7 +407,6 @@ void App::render(GLContext* gl)
 
     m_renderer->setParams(params);
 	m_renderer->setMessageWindow(&m_window);
-	m_renderer->setEnableRandom(true);
 
     // Render.
 
@@ -662,8 +645,7 @@ void FW::runBenchmark(
     BVH::BuildParams buildParams;
     buildParams.splitAlpha = sbvhAlpha;
 
-	Renderer* renderer = new Renderer(Renderer::tBVH, NULL);
-	//Renderer* renderer = new Renderer(Renderer::tKDTree);
+	Renderer* renderer = new Renderer();
     renderer->setBuildParams(buildParams);
 	renderer->setMesh(importMesh(meshFile));
 
@@ -782,6 +764,20 @@ void FW::runBenchmark(
 
 void FW::init(void)
 {
+	Environment* env = new AppEnvironment();
+	
+	if (!env->Parse(argc, argv, false, NULL, "config.conf"))
+	{
+		fail("Error: when parsing environment file!");
+		env->PrintUsage(cout);
+		exit(1);
+	}
+
+	env->SetStaticOptions();
+	Environment::SetSingleton(env);
+
+	// TODO: Get rid of the old command line
+
     // Parse mode.
 
     bool modeInteractive    = false;
@@ -941,6 +937,13 @@ void FW::init(void)
         clearError();
         return;
     }
+}
+
+//------------------------------------------------------------------------
+
+void FW::deinit(void)
+{
+	Environment::DeleteSingleton();
 }
 
 //------------------------------------------------------------------------

@@ -44,7 +44,6 @@ Visualization::Visualization(Scene* scene)
 :	m_currentDepth(0),
 	m_visible(false),
 	m_showRays(false),
-	m_showEmpty(false),
 	m_splitColors(false),
 	m_showChildren(true),
 	m_showAllOSAH(false),

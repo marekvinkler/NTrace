@@ -50,11 +50,10 @@ public:
 	/*!
 	 *  \brief Constructor.
 	 *  \param[in] bvh			CudaBVH to visualize.
-	 *  \param[in] emptyBoxes	Array of empty boxes to be visualized.
 	 *  \param[in] rays			Rays to visualize, pass NULL if no rays should be visualized.
 	 *  \param[in] visibility	Array of triangle visibility flags.
 	 */
-    explicit    VisualizationBVH    (CudaBVH* bvh, Scene* scene, const Array<AABB> &emptyBoxes, const RayBuffer* rays = NULL, Buffer* visibility = NULL);
+    explicit    VisualizationBVH    (CudaBVH* bvh, Scene* scene, const RayBuffer* rays = NULL, Buffer* visibility = NULL);
 	/*!
 	 *  \brief Destructor.
 	 */

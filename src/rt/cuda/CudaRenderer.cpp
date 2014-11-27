@@ -7,8 +7,8 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-CudaRenderer::CudaRenderer(Environment* env)
-:   Renderer(Renderer::tBVH, env)
+CudaRenderer::CudaRenderer()
+:   Renderer()
 {
     m_compiler.setSourceFile("src/rt/cuda/RendererKernels.cu");
     m_compiler.addOptions("-use_fast_math");

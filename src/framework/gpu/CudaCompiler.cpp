@@ -179,7 +179,7 @@ CudaModule* CudaCompiler::loadDbgCubin(bool enablePrints)
 #if !FW_64
 	String cubinDir  = "build\\Win32";
 #else
-	String cubinDir  = "build\\x64_Debug\\cuda";
+	String cubinDir  = "build\\x64";
 #endif
 #if FW_DEBUG
 	cubinDir += "_Debug\\cuda";
