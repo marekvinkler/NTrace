@@ -34,11 +34,9 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-OcclusionBVHBuilder::OcclusionBVHBuilder(BVH& bvh, const BVH::BuildParams& params, const Vec3f& cameraPosition)
+OcclusionBVHBuilder::OcclusionBVHBuilder(BVH& bvh, const BVH::BuildParams& params)
 :   SplitBVHBuilder (bvh, params), m_MaxVisibleDepth(48)
 {
-	m_cameraPos = cameraPosition;
-
 	if(m_params.visibility != NULL)
 	{
 		const U8* ptr = m_params.visibility->getPtr();

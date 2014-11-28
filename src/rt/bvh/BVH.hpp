@@ -112,12 +112,9 @@ public:
         bool					enablePrints;	//!< Flag whether to enable prints about build progress.
         F32						splitAlpha;     //!< Spatial split area threshold.
 		F32                     osahWeight;     //!< Weighting factor for OSAH construction.
-		String	                accelerator;    //!< The name of the acceleration data structure method for ray tracing.
 		Array<AABB>				empty_boxes;	//!< Information about boxes with no triangles inside.
 		Buffer*                 visibility;		//!< Visibility buffer for the CPU renderer.
 		String					logDirectory;	//!< Directory where the log file will be saved.
-		String					buildName;		//!< Build name.
-		int						cameraIdx;		//!< Camera index.
 		bool                    twoTrees;       //!< Flag whether to build BVH from two separate trees.
 
 		/**
@@ -129,8 +126,6 @@ public:
             enablePrints    = true;
             splitAlpha      = 1.0e-5f;
 			osahWeight      = 0.9f;
-			//camera			= NULL;
-			cameraIdx       = 0;
 			twoTrees        = false;
 			visibility		= NULL;
         }
@@ -153,7 +148,7 @@ public:
 	 *  \param[in] platform		Platform settings.
 	 *  \param[in] params		Build parameters.
 	 */
-                        BVH                     (Scene* scene, const Platform& platform, const BuildParams& params, Environment* env, const string& builder = "");
+                        BVH                     (Scene* scene, const Platform& platform, const BuildParams& params);
 
 	/**
 	 *  \brief Destructor.
@@ -199,7 +194,6 @@ private:
 	
     BVHNode*            m_root;				//!< Root node.
     Array<S32>          m_triIndices;		//!< Array of indices pointing to the scene triangle array.
-	Environment*		m_env;				//!< Environment settings.
 };
 
 }

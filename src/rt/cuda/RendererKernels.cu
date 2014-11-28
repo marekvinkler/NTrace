@@ -222,3 +222,28 @@ extern "C" __global__ void countHitsKernel(void)
 }
 
 //------------------------------------------------------------------------
+
+extern "C" __global__ void getVisibility(const float4* rayResults, int numRays, int* visibility)
+{
+    // Pick a bunch of rays for the block.
+
+    int bidx        = blockIdx.x + blockIdx.y * gridDim.x;
+    int tidx        = threadIdx.x + threadIdx.y * Visibility_BlockWidth;
+    int blockSize   = Visibility_BlockWidth * Visibility_BlockHeight;
+    int blockStart  = bidx * blockSize;
+    int blockEnd    = ::min(blockStart + blockSize, numRays);
+
+    if (blockStart >= blockEnd)
+        return;
+
+    // Mark hit triangles.
+
+    for (int i = blockStart + tidx; i < blockEnd; i += blockSize)
+	{
+		int hitIndex = ((const RayResult*)rayResults)[i].id;
+        if (hitIndex >= 0)
+            visibility[hitIndex] = 1;
+	}
+}
+
+//------------------------------------------------------------------------

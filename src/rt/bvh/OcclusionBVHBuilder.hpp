@@ -69,7 +69,7 @@ protected:
     };
 
 public:
-                            OcclusionBVHBuilder			(BVH& bvh, const BVH::BuildParams& params, const Vec3f& cameraPosition);
+                            OcclusionBVHBuilder			(BVH& bvh, const BVH::BuildParams& params);
     virtual                 ~OcclusionBVHBuilder		(void);
 
     virtual BVHNode*        run							(void);
@@ -96,7 +96,6 @@ private:
 protected:
 	//Array<AABB>             m_rightVisibleBounds;
 	SpatialBinOcl           m_bins[3][NumSpatialBins];
-	Vec3f					m_cameraPos; // position of the camera
 	Array<S32>              m_visibility;
 	S32                     m_MaxVisibleDepth;
 };

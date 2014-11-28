@@ -35,11 +35,11 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-Renderer::Renderer(AccelStructType as, Environment* env)
+Renderer::Renderer()
 :   m_raygen            (1 << 20),
 
     m_window            (NULL),
-    m_enableRandom      (false),
+	m_enableRandom      (Environment::GetSingleton()->GetBool("Raygen.random")),
 
     m_mesh              (NULL),
     m_scene             (NULL),
@@ -54,31 +54,30 @@ Renderer::Renderer(AccelStructType as, Environment* env)
 
 	m_accelStruct		(NULL),
 
-	m_asType			(as),
 	m_vis				(NULL),
 	m_showVis			(false)
 {
-	m_env = env;
 
-	if (m_asType == tKDTree)
-	{
-		m_cudaTracer = new CudaKDTreeTracer();
-	}
-	else if (m_asType == tPersistentBVH)
-	{
-		//m_cudaTracer = new CudaPersistentBVHTracer();
-	}
-	else
-	{
+	string ds;
+	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
+
+    // Setup BVH.
+	if(ds == "BVH")
 		m_cudaTracer = new CudaBVHTracer();
-	}
+	else if (ds == "PersistentBVH")
+		;//m_cudaTracer = new CudaPersistentBVHTracer();
+	else if(ds == "KDTree")
+		m_cudaTracer = new CudaKDTreeTracer();
+	else
+		FW_ASSERT(0);
+
 	m_cudaTracer->setScene(NULL);
 
     m_compiler.setSourceFile("src/rt/cuda/RendererKernels.cu");
     m_compiler.addOptions("-use_fast_math");
     m_compiler.include("src/rt");
     m_compiler.include("src/framework");
-    m_bvhCachePath = "bvhcache";
+    m_cachePath = "bvhcache";
 
     m_platform = Platform("GPU");
     m_platform.setLeafPreferences(1, 1);
@@ -118,7 +117,6 @@ void Renderer::setMesh(MeshBase* mesh)
     if (mesh)
 	{
         m_scene = new Scene(*mesh);
-		getVisibleTriangles(m_scene->getNumTriangles(), true); // Initialize visibility information
 		m_cudaTracer->setScene(m_scene);
 	}
 }
@@ -136,9 +134,6 @@ void Renderer::setParams(const Params& params)
 
 CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 {
-	string bvhBuilder;
-	m_env->GetStringValue("BVHBuilder", bvhBuilder);
-
     // BVH is already valid => done.
 
     BVHLayout layout = m_cudaTracer->getDesiredBVHLayout();
@@ -155,9 +150,15 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
     BVH::Stats stats;
     m_buildParams.stats = &stats;
 
+	string ds;
+	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
+
+	string builder;
+	Environment::GetSingleton()->GetStringValue("Renderer.builder", builder);
+
 	// If we use HLBVH, use HLBVH
 
-	if (bvhBuilder == "HLBVH")
+	if (builder == "HLBVH")
 	{
 		HLBVHParams params;
 		params.hlbvh = true;
@@ -169,20 +170,22 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 	}
 
 	// For OcclusionBVH - first build SAHBVH and then build OcclusionBVH
-	if (bvhBuilder == "OcclusionBVH")
+	if (builder == "OcclusionBVH")
 	{
-		bvhBuilder = "SAHBVH";
+		Environment::GetSingleton()->SetString("Renderer.builder", "SAHBVH");
 		
 		// Build BVH.
-		BVH bvh(m_scene, m_platform, m_buildParams, m_env, bvhBuilder);
+		BVH bvh(m_scene, m_platform, m_buildParams);
 		stats.print();
-		m_accelStruct = new CudaBVH(bvh, layout);
-		CudaBVH* cudaBvh = (CudaBVH*)m_accelStruct;
+		CudaBVH cudaBvh(bvh, layout);
 		failIfError();
 
-		cudaBvh->setTraceParams(&m_platform, m_scene);
-		m_cudaTracer->setBVH(cudaBvh);
-		m_buildParams.visibility = &getVisibleTriangles(m_scene->getNumTriangles(), true);
+		cudaBvh.setTraceParams(&m_platform, m_scene);
+		m_cudaTracer->setBVH(&cudaBvh);
+		
+		// Initialize the visibility buffer
+		m_triangleVisibility.resize(m_scene->getNumTriangles() * sizeof(S32));
+		m_triangleVisibility.clear(0);
 		
 		// Generate primary rays.
 		const Vec2i& size = gl->getViewSize();
@@ -197,6 +200,7 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 		if (m_params.rayType != RayType_Primary && m_params.rayType != RayType_Textured && m_params.rayType != RayType_PathTracing)
 		{
 			m_cudaTracer->traceBatch(m_primaryRays);
+			getVisibleTriangles(&m_primaryRays);
 		}
 
 		m_cameraFar     = camera.getFar();
@@ -206,20 +210,21 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 		while (nextBatch())
 		{
 			traceBatch();
+			getVisibleTriangles(m_batchRays);
 		}
-		m_buildParams.visibility = &getVisibleTriangles(m_scene->getNumTriangles(), false);
+		m_buildParams.visibility = &m_triangleVisibility;
 
-		bvhBuilder = "OcclusionBVH";
+		Environment::GetSingleton()->SetString("Renderer.builder", builder.c_str());
 	}
 
     // Determine cache file name.
 	
-    String cacheFileName = FW::sprintf("%s/%08x_%s.dat", m_bvhCachePath.getPtr(), hashBits(
+    String cacheFileName = FW::sprintf("%s/%08x_%s.dat", m_cachePath.getPtr(), hashBits(
         m_scene->hash(),
         m_platform.computeHash(),
         m_buildParams.computeHash(),
         layout,
-		m_asType), bvhBuilder.c_str());
+		hash<String>(String(ds.c_str()))), builder.c_str());
 
     // Cache file exists => import.
 
@@ -241,7 +246,7 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
         m_window->showModalMessage("Building BVH...");
 
     // Build BVH.
-	BVH bvh(m_scene, m_platform, m_buildParams, m_env);
+	BVH bvh(m_scene, m_platform, m_buildParams);
     stats.print();
     m_accelStruct = new CudaBVH(bvh, layout);
     failIfError();
@@ -250,7 +255,7 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 
     if (!hasError())
     {
-        CreateDirectory(m_bvhCachePath.getPtr(), NULL);
+        CreateDirectory(m_cachePath.getPtr(), NULL);
         File file(cacheFileName, File::Create);
         m_accelStruct->serialize(file);
         clearError();
@@ -270,12 +275,21 @@ CudaAS*	Renderer::getCudaKDTree(void)
 	if (!m_mesh || (m_accelStruct && m_accelStruct->getLayout() == layout))
 		return m_accelStruct;
 
-	String cacheFileName = sprintf("%s/%08x.dat", m_bvhCachePath.getPtr(), hashBits(
+	delete m_accelStruct;
+	m_accelStruct = NULL;
+
+	string ds;
+	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
+
+	string builder;
+	Environment::GetSingleton()->GetStringValue("Renderer.builder", builder);
+
+	String cacheFileName = sprintf("%s/%08x_%s.dat", m_cachePath.getPtr(), hashBits(
 		m_scene->hash(),
 		m_platform.computeHash(),
 		m_buildParams.computeHash(),
 		layout,
-		m_asType));
+		hash<String>(String(ds.c_str()))), builder.c_str());
 
 	if(!hasError())
 	{
@@ -288,17 +302,16 @@ CudaAS*	Renderer::getCudaKDTree(void)
 		clearError();
 	}
 
-	delete m_accelStruct;
-	m_accelStruct = NULL;
-
 	printf("\nBuilding k-d tree...\nThis will take a while.\n");
     if (m_window)
         m_window->showModalMessage("Building k-d tree...");
 
+	// Setup build parameters.
+
 	KDTree::BuildParams params;
 	params.enablePrints = m_buildParams.enablePrints;
-	params.stats = new KDTree::Stats();
-	params.builder = KDTree::SAH;
+	KDTree::Stats stats;
+    params.stats = &stats;
 
 	KDTree kdtree(m_scene, m_platform, params);
 	m_accelStruct = new CudaKDTree(kdtree);
@@ -345,11 +358,16 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
 {
     FW_ASSERT(gl && m_mesh);
 
+	string ds;
+	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
+
     // Setup BVH.
-	if(m_asType == tBVH)
+	if(ds == "BVH")
 		m_cudaTracer->setBVH(getCudaBVH(gl, camera));
-	else
+	else if(ds == "KDTree")
 		m_cudaTracer->setBVH(getCudaKDTree());
+	else
+		FW_ASSERT(0);
 
     // Setup result image.
 
@@ -664,14 +682,17 @@ void Renderer::startBVHVis(void)
 	//	traceBatch();
 	//}
 
-	if (m_asType == tKDTree)
+	string ds;
+	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
+
+    // Setup BVH.
+	if(ds == "BVH")
 	{
-		m_vis = new VisualizationKDTree((CudaKDTree*)m_accelStruct, m_scene, Array<AABB>());
+		m_vis = new VisualizationBVH((CudaBVH*)getCudaBVH(), m_scene);
 	}
-	else
+	else if(ds == "KDTree")
 	{
-		CudaBVH* bvh = (CudaBVH*)getCudaBVH();
-		m_vis = new VisualizationBVH(bvh, m_scene, Array<AABB>());
+		m_vis = new VisualizationKDTree((CudaKDTree*)getCudaKDTree(), m_scene);
 	}
 	m_vis->setVisible(true);
 	m_window->addListener(m_vis);
@@ -693,22 +714,23 @@ void Renderer::endBVHVis(void)
 
 //------------------------------------------------------------------------
 
-Buffer& Renderer::getVisibleTriangles(S32 triangleCount, bool setValue, S32 initValue)
+void Renderer::getVisibleTriangles(RayBuffer* rayBuffer)
 {
-	Buffer &vis = ((CudaBVHTracer*)m_cudaTracer)->getVisibilityBuffer();
-	//S64 bitSize = (triangleCount + sizeof(U32) - 1) / sizeof(U32); // Round up to CUDA machine word
-	S64 bitSize = triangleCount*sizeof(S32);
+	// Compile kernel.
+    CudaModule* module = m_compiler.compile();
 
-	// Initialize the buffer if needed
-	vis.resize(bitSize);
-	
-	if(setValue)
-		vis.clear(initValue);
+	CudaKernel kernel = module->getKernel("getVisibility");
 
-	((CudaBVHTracer*)m_cudaTracer)->setVisibility();
+	// Set parameters.
 
-	// Return the buffer
-	return vis;
+	kernel.setParams(
+		rayBuffer->getResultBuffer().getCudaPtr(),   // results
+		rayBuffer->getSize(),                      // number of rays
+		m_triangleVisibility.getMutableCudaPtr()); // visibility
+
+    // Get information about triangles hit by rays.
+
+    kernel.launch(rayBuffer->getSize(), Vec2i(CountHits_BlockWidth, CountHits_BlockHeight));
 }
 
 //------------------------------------------------------------------------

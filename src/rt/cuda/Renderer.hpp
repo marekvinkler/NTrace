@@ -110,7 +110,7 @@ public:
 	void                toggleBVHVis        (void)					{ m_showVis = !m_showVis; m_showVis ? startBVHVis() : endBVHVis(); }
 
 	void				resetSampling		(void)					{ m_sampleCount = 0.0f; }
-	virtual Buffer&     getVisibleTriangles (S32 triangleCount, bool setValue, S32 initValue = 0); // gets the bit array of triangle visibility. If sizes do not match it is initialized
+	void                getVisibleTriangles (RayBuffer* rayBuffer);
 
 protected:
                         Renderer            (const Renderer&); // forbidden
@@ -137,6 +137,7 @@ protected:
     F32                 m_cameraFar;
     RayBuffer           m_primaryRays;
     RayBuffer           m_secondaryRays;
+	Buffer              m_triangleVisibility;	//!< Visibility buffer
 
     bool                m_newBatch;
     RayBuffer*          m_batchRays;
