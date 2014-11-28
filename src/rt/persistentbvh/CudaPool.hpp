@@ -32,7 +32,7 @@
 #include <assert.h>
 #include <stdio.h>
 //#include <cutil_math.h>
-#include <helper_math.h>
+#include "helper_math.h"
 #include <math_constants.h>
 #endif
 

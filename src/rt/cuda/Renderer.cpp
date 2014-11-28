@@ -35,11 +35,11 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-Renderer::Renderer()
+Renderer::Renderer(AccelStructType as, Environment* env)
 :   m_raygen            (1 << 20),
 
     m_window            (NULL),
-    m_enableRandom      (Environment::GetSingleton()->GetBool("Raygen.random")),
+    m_enableRandom      (false),
 
     m_mesh              (NULL),
     m_scene             (NULL),
@@ -54,36 +54,31 @@ Renderer::Renderer()
 
 	m_accelStruct		(NULL),
 
+	m_asType			(as),
 	m_vis				(NULL),
 	m_showVis			(false)
 {
-	string as;
-	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", as);
+	m_env = env;
 
-	if(as == "BVH")
-	{
-		m_cudaTracer = new CudaBVHTracer();
-	}
-	else if(as == "PersistentBVH")
-	{
-		//m_cudaTracer = new CudaPersistentBVHTracer();
-	}
-	else if(as == "KDTree")
+	if (m_asType == tKDTree)
 	{
 		m_cudaTracer = new CudaKDTreeTracer();
 	}
+	else if (m_asType == tPersistentBVH)
+	{
+		//m_cudaTracer = new CudaPersistentBVHTracer();
+	}
 	else
 	{
-		fail("Incorrect data structure type!");
+		m_cudaTracer = new CudaBVHTracer();
 	}
-
 	m_cudaTracer->setScene(NULL);
 
     m_compiler.setSourceFile("src/rt/cuda/RendererKernels.cu");
     m_compiler.addOptions("-use_fast_math");
     m_compiler.include("src/rt");
     m_compiler.include("src/framework");
-    m_cachePath = "bvhcache";
+    m_bvhCachePath = "bvhcache";
 
     m_platform = Platform("GPU");
     m_platform.setLeafPreferences(1, 1);
@@ -123,6 +118,7 @@ void Renderer::setMesh(MeshBase* mesh)
     if (mesh)
 	{
         m_scene = new Scene(*mesh);
+		getVisibleTriangles(m_scene->getNumTriangles(), true); // Initialize visibility information
 		m_cudaTracer->setScene(m_scene);
 	}
 }
@@ -138,12 +134,10 @@ void Renderer::setParams(const Params& params)
 
 //------------------------------------------------------------------------
 
-CudaAS* Renderer::getCudaBVH(void)
+CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 {
-	string as;
-	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", as);
 	string bvhBuilder;
-	Environment::GetSingleton()->GetStringValue("Renderer.builder", bvhBuilder);
+	m_env->GetStringValue("BVHBuilder", bvhBuilder);
 
     // BVH is already valid => done.
 
@@ -174,14 +168,58 @@ CudaAS* Renderer::getCudaBVH(void)
 		return bvh;
 	}
 
+	// For OcclusionBVH - first build SAHBVH and then build OcclusionBVH
+	if (bvhBuilder == "OcclusionBVH")
+	{
+		bvhBuilder = "SAHBVH";
+		
+		// Build BVH.
+		BVH bvh(m_scene, m_platform, m_buildParams, m_env, bvhBuilder);
+		stats.print();
+		m_accelStruct = new CudaBVH(bvh, layout);
+		CudaBVH* cudaBvh = (CudaBVH*)m_accelStruct;
+		failIfError();
+
+		cudaBvh->setTraceParams(&m_platform, m_scene);
+		m_cudaTracer->setBVH(cudaBvh);
+		m_buildParams.visibility = &getVisibleTriangles(m_scene->getNumTriangles(), true);
+		
+		// Generate primary rays.
+		const Vec2i& size = gl->getViewSize();
+		U32 randomSeed = (m_enableRandom) ? m_random.getU32() : 0;
+		m_raygen.primary(m_primaryRays,
+			camera.getPosition(),
+			invert(gl->xformFitToView(-1.0f, 2.0f) * camera.getWorldToClip()),
+			size.x, size.y,
+			camera.getFar(), randomSeed);
+
+		// Secondary rays enabled => trace primary rays.
+		if (m_params.rayType != RayType_Primary && m_params.rayType != RayType_Textured && m_params.rayType != RayType_PathTracing)
+		{
+			m_cudaTracer->traceBatch(m_primaryRays);
+		}
+
+		m_cameraFar     = camera.getFar();
+		m_newBatch      = true;
+		m_batchRays		= &m_primaryRays;
+		m_batchStart    = 0;
+		while (nextBatch())
+		{
+			traceBatch();
+		}
+		m_buildParams.visibility = &getVisibleTriangles(m_scene->getNumTriangles(), false);
+
+		bvhBuilder = "OcclusionBVH";
+	}
+
     // Determine cache file name.
 	
-    String cacheFileName = FW::sprintf("%s/%08x_%s.dat", m_cachePath.getPtr(), hashBits(
+    String cacheFileName = FW::sprintf("%s/%08x_%s.dat", m_bvhCachePath.getPtr(), hashBits(
         m_scene->hash(),
         m_platform.computeHash(),
         m_buildParams.computeHash(),
         layout,
-		hash<String>(as.c_str())), bvhBuilder.c_str());
+		m_asType), bvhBuilder.c_str());
 
     // Cache file exists => import.
 
@@ -203,8 +241,7 @@ CudaAS* Renderer::getCudaBVH(void)
         m_window->showModalMessage("Building BVH...");
 
     // Build BVH.
-
-    BVH bvh(m_scene, m_platform, m_buildParams);
+	BVH bvh(m_scene, m_platform, m_buildParams, m_env);
     stats.print();
     m_accelStruct = new CudaBVH(bvh, layout);
     failIfError();
@@ -213,7 +250,7 @@ CudaAS* Renderer::getCudaBVH(void)
 
     if (!hasError())
     {
-        CreateDirectory(m_cachePath.getPtr(), NULL);
+        CreateDirectory(m_bvhCachePath.getPtr(), NULL);
         File file(cacheFileName, File::Create);
         m_accelStruct->serialize(file);
         clearError();
@@ -229,21 +266,16 @@ CudaAS* Renderer::getCudaBVH(void)
 
 CudaAS*	Renderer::getCudaKDTree(void)
 {
-	string as;
-	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", as);
-	string kdtreeBuilder;
-	Environment::GetSingleton()->GetStringValue("Renderer.builder", kdtreeBuilder);
-
 	BVHLayout layout = m_cudaTracer->getDesiredBVHLayout();
 	if (!m_mesh || (m_accelStruct && m_accelStruct->getLayout() == layout))
 		return m_accelStruct;
 
-	String cacheFileName = sprintf("%s/%08x_%s.dat", m_cachePath.getPtr(), hashBits(
+	String cacheFileName = sprintf("%s/%08x.dat", m_bvhCachePath.getPtr(), hashBits(
 		m_scene->hash(),
 		m_platform.computeHash(),
 		m_buildParams.computeHash(),
 		layout,
-		hash<String>(as.c_str())), kdtreeBuilder.c_str());
+		m_asType));
 
 	if(!hasError())
 	{
@@ -266,6 +298,7 @@ CudaAS*	Renderer::getCudaKDTree(void)
 	KDTree::BuildParams params;
 	params.enablePrints = m_buildParams.enablePrints;
 	params.stats = new KDTree::Stats();
+	params.builder = KDTree::SAH;
 
 	KDTree kdtree(m_scene, m_platform, params);
 	m_accelStruct = new CudaKDTree(kdtree);
@@ -276,7 +309,7 @@ CudaAS*	Renderer::getCudaKDTree(void)
 
     //if (!hasError())
     //{
-    //    CreateDirectory(m_cachePath.getPtr(), NULL);
+    //    CreateDirectory(m_bvhCachePath.getPtr(), NULL);
     //    File file(cacheFileName, File::Create);
     //    m_accelStruct->serialize(file);
     //    clearError();
@@ -312,13 +345,10 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
 {
     FW_ASSERT(gl && m_mesh);
 
-    // Setup Data Structure.
-	string as;
-	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", as);
-
-	if(as == "BVH")
-		m_cudaTracer->setBVH(getCudaBVH());
-	else if(as == "KDTree")
+    // Setup BVH.
+	if(m_asType == tBVH)
+		m_cudaTracer->setBVH(getCudaBVH(gl, camera));
+	else
 		m_cudaTracer->setBVH(getCudaKDTree());
 
     // Setup result image.
@@ -634,18 +664,15 @@ void Renderer::startBVHVis(void)
 	//	traceBatch();
 	//}
 
-	string as;
-	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", as);
-
-	if(as == "BVH")
+	if (m_asType == tKDTree)
 	{
-		m_vis = new VisualizationBVH((CudaBVH*)getCudaBVH(), m_scene);
+		m_vis = new VisualizationKDTree((CudaKDTree*)m_accelStruct, m_scene, Array<AABB>());
 	}
-	else if(as == "KDTree")
+	else
 	{
-		m_vis = new VisualizationKDTree((CudaKDTree*)getCudaKDTree(), m_scene);
+		CudaBVH* bvh = (CudaBVH*)getCudaBVH();
+		m_vis = new VisualizationBVH(bvh, m_scene, Array<AABB>());
 	}
-
 	m_vis->setVisible(true);
 	m_window->addListener(m_vis);
 
@@ -663,3 +690,25 @@ void Renderer::endBVHVis(void)
 
 	m_showVis = false;
 }
+
+//------------------------------------------------------------------------
+
+Buffer& Renderer::getVisibleTriangles(S32 triangleCount, bool setValue, S32 initValue)
+{
+	Buffer &vis = ((CudaBVHTracer*)m_cudaTracer)->getVisibilityBuffer();
+	//S64 bitSize = (triangleCount + sizeof(U32) - 1) / sizeof(U32); // Round up to CUDA machine word
+	S64 bitSize = triangleCount*sizeof(S32);
+
+	// Initialize the buffer if needed
+	vis.resize(bitSize);
+	
+	if(setValue)
+		vis.clear(initValue);
+
+	((CudaBVHTracer*)m_cudaTracer)->setVisibility();
+
+	// Return the buffer
+	return vis;
+}
+
+//------------------------------------------------------------------------

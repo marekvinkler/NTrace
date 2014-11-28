@@ -29,33 +29,34 @@
 #include "bvh/SplitBVHBuilder.hpp"
 #include "bvh/SAHBVHBuilder.hpp"
 #include "bvh/OcclusionBVHBuilder.hpp"
-#include "Environment.h"
+#include "bvh/HLBVH/HLBVHBuilder.hpp"
 
 using namespace FW;
 
-BVH::BVH(Scene* scene, const Platform& platform, const BuildParams& params) : AccelerationStructure(scene, platform)
+BVH::BVH(Scene* scene, const Platform& platform, const BuildParams& params, Environment* env, const string& builder) : AccelerationStructure(scene, platform)
 {
-	string builder;
-	Environment::GetSingleton()->GetStringValue("Renderer.builder", builder);
+	m_env = env;
+	
+	string bvhBuilder = builder;
+	if (builder == "")
+	{
+		m_env->GetStringValue("BVHBuilder", bvhBuilder);
+	}
 
     if (params.enablePrints)
         printf("BVH builder: %d tris, %d vertices\n", scene->getNumTriangles(), scene->getNumVertices());
 
-	if (builder == "SplitBVH")
+	if (bvhBuilder == "SplitBVH")
 	{
 		m_root = SplitBVHBuilder(*this, params).run();
 	}
-	else if (builder == "SAHBVH")
+	else if (bvhBuilder == "SAHBVH")
 	{
 		m_root = SAHBVHBuilder(*this, params).run();
 	}
-	else if (builder == "OcclusionBVH")
+	else if (bvhBuilder == "OcclusionBVH")
 	{
 		m_root = OcclusionBVHBuilder(*this, params, FW::Vec3f(0.0f, 0.0f, 0.0f)).run();
-	}
-	else
-	{
-		FW_ASSERT(0);
 	}
 
     if (params.enablePrints)

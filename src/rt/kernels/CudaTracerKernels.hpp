@@ -102,6 +102,7 @@ struct KernelConfig
         bool            anyHit,         /* False if rays need to find the closest hit. */ \
         float4*         rays,           /* Ray input: float3 origin, float tmin, float3 direction, float tmax. */ \
         int4*           results,        /* Ray output: int triangleID, float hitT, int2 padding. */ \
+		int*			visibility,		/* Visibility output */ \
         float4*         nodesA,         /* SOA: bytes 0-15 of each node, AOS/Compact: 64 bytes per node. */ \
         float4*         nodesB,         /* SOA: bytes 16-31 of each node, AOS/Compact: unused. */ \
         float4*         nodesC,         /* SOA: bytes 32-47 of each node, AOS/Compact: unused. */ \
@@ -161,7 +162,7 @@ struct KernelInput
     CUdeviceptr     nodesA;         // SOA: bytes 0-15 of each node, AOS/Compact: 64 bytes per node.
     CUdeviceptr     trisA;          // SOA: bytes 0-15 of each triangle, AOS: 64 bytes per triangle, Compact: 48 bytes per triangle.
     CUdeviceptr     triIndices;     // Triangle index remapping table.
-
+	CUdeviceptr		visibility;		// Visibility buffer
 	CUdeviceptr		debugArr;
 };
 

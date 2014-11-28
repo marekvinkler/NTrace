@@ -258,7 +258,10 @@ TRACE_FUNC_BVH
     // Remap intersected triangle index, and store the result.
 
     if (hitIndex != -1)
+	{
         hitIndex = tex1Dfetch(t_triIndices, hitIndex);
+		visibility[hitIndex] = 1;
+	}
     STORE_RESULT(rayidx, hitIndex, hitT, hitU, hitV);
 }
 

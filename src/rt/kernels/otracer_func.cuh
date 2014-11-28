@@ -1,7 +1,7 @@
 #ifndef __OTRACER_FUNC__CUH__
 #define __OTRACER_FUNC__CUH__
 
-#include <helper_math.h>
+#include "helper_math.h"
 
 /**
  * Sample 2D texture

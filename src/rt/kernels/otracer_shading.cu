@@ -35,7 +35,7 @@
 */
 
 #include "CudaTracerKernels.hpp"
-#include <helper_math.h>
+#include "helper_math.h"
 #include <curand.h>
 
 //------------------------------------------------------------------------
@@ -266,6 +266,17 @@ __device__ bool traversal(int rayidx, int numRays, float4* rays, float4* nodesA,
 	return false;
 }
 
+//------------------------------------------------------------------------
+
+__device__ inline float4 fromABGR(unsigned int abgr)
+{
+    return make_float4(
+		(float)(abgr & 0xFF) * (1.0f / 255.0f),
+		(float)((abgr >> 8) & 0xFF) * (1.0f / 255.0f),
+		(float)((abgr >> 16) & 0xFF) * (1.0f / 255.0f),
+		(float)(abgr >> 24) * (1.0f / 255.0f));
+}
+
 //-----------------------------------------------------------------------
 
 #define SAMPLES_PER_PIXEL 1
@@ -380,6 +391,7 @@ extern "C" __global__ void otrace_kernel(void)
 	int vertsCount = in.vertsCount;
 	float3* verts = (float3*)in.verts;
 	int randomSeed = in.randomSeed;
+	unsigned int* triMaterialColor    = (unsigned int*)in.matColor;
 
     int rayidx = threadIdx.x + blockDim.x * (threadIdx.y + blockDim.y * (blockIdx.x + gridDim.x * blockIdx.y));
     if (rayidx >= numRays)
@@ -438,7 +450,7 @@ extern "C" __global__ void otrace_kernel(void)
 			float3 normalDir = dot(normal, make_float3(rays[rayidx * 2 + 1])) < 0.0f ? normal : normal * -1;
 			// Sample color	
 			float4 f = matInfo[matId[tri]].x > 0.0f ? make_float4(matInfo[matId[tri]].x, matInfo[matId[tri]].x, matInfo[matId[tri]].x, 1.0f) : 
-				matInfo[matId[tri]].w == 0.0f ? make_float4(1.0f, 1.0f, 1.0f, 1.0f) : sample2D(bary, tc, atlasInfo[tri], t_textureAtlas);
+				matInfo[matId[tri]].w == 0.0f ? fromABGR(triMaterialColor[tri]) : sample2D(bary, tc, atlasInfo[tri], t_textureAtlas);
 			f.x = powf(f.x, 2.2f);
 			f.y = powf(f.y, 2.2f);
 			f.z = powf(f.z, 2.2f);

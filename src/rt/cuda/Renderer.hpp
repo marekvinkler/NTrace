@@ -87,7 +87,7 @@ public:
 
     CudaVirtualTracer&  getCudaTracer       (void)                  { return *m_cudaTracer; }
     Scene*              getScene            (void) const            { return m_scene; }
-    CudaAS*             getCudaBVH          (void);
+	CudaAS*             getCudaBVH          (GLContext* gl = NULL, const CameraControls& camera = CameraControls());
 
     F32                 renderFrame         (GLContext* gl, const CameraControls& camera); // returns total launch time
 
@@ -110,6 +110,7 @@ public:
 	void                toggleBVHVis        (void)					{ m_showVis = !m_showVis; m_showVis ? startBVHVis() : endBVHVis(); }
 
 	void				resetSampling		(void)					{ m_sampleCount = 0.0f; }
+	virtual Buffer&     getVisibleTriangles (S32 triangleCount, bool setValue, S32 initValue = 0); // gets the bit array of triangle visibility. If sizes do not match it is initialized
 
 protected:
                         Renderer            (const Renderer&); // forbidden
