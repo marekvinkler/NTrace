@@ -123,6 +123,10 @@ void Renderer::setMesh(MeshBase* mesh)
 			m_animate = true;
 			m_timer.unstart();
 		}
+		else
+		{
+			m_animate = false;
+		}
 	}
 }
 

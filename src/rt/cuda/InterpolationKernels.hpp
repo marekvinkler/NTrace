@@ -1,18 +1,30 @@
 
 #pragma once
-#include "../Util.hpp"
-#include "../../framework/base/DLLImports.hpp"
+#include "Util.hpp"
+#include "base/Math.hpp"
+#include "base/DLLImports.hpp"
 
 namespace FW
 {
 
-struct InterpolationInput
+struct VertInterpolationInput
 {
 	float			weight;
 	int				vertCount;
-	CUdeviceptr		verticesA;
-	CUdeviceptr		verticesB;
-	CUdeviceptr		verticesIntrp;
+	CUdeviceptr		posA;
+	CUdeviceptr		posB;
+	CUdeviceptr		posIntrp;
+	CUdeviceptr		normalA;
+	CUdeviceptr		normalB;
+	CUdeviceptr		normalIntrp;
+};
+
+struct TriInterpolationInput
+{
+	int				triCount;
+	CUdeviceptr		triIdx;
+	CUdeviceptr		vertPos;
+	CUdeviceptr		triNormal;
 };
 
 //------------------------------------------------------------------------
@@ -20,7 +32,8 @@ struct InterpolationInput
 #if FW_CUDA
 extern "C"
 {
-	__constant__ InterpolationInput c_InterpolationInput;
+	__constant__ TriInterpolationInput c_TriInterpolationInput;
+	__constant__ VertInterpolationInput c_VertInterpolationInput;
 
 }
 #endif

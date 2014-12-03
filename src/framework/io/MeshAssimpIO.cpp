@@ -152,6 +152,7 @@ Mesh<VertexPNT>* FW::importAssimpMesh(const Array<String>& files)
 		s.mesh->setTime((F32)i);
 		s.mesh->clear();
 		fillVerticesRecursive(s, aiscene->mRootNode, aiMatrix4x4(), aiscene);
+		s.mesh->compact();
 		s.idxOffset = 0;
 		s.submeshOffset = 0;
 	}

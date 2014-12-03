@@ -1209,18 +1209,26 @@ MeshBase* FW::importMesh(const Array<String>& fileNames)
 	if(importedMesh == NULL)
 		setError("importMesh(): Unsupported file extension!");
 	return importedMesh;
-
 #else
-	// TODO: obj animation sequence loading using non assimp obj loader
 	String lower = fileNames.get(0).toLower();
 
+	if(fileNames.getSize() != 0 && lower.endsWith(".obj"))
+	{
+		MeshBase* importedMesh = importWavefrontMesh(fileNames);
+	}
+	else
+	{
+
+		String lower = fileNames.get(0).toLower();
+
 #define STREAM(CALL) { File file(fileName, File::Read); BufferedInputStream stream(file); return CALL; }
-    if (lower.endsWith(".bin")) STREAM(importBinaryMesh(stream))
-    if (lower.endsWith(".obj")) STREAM(importWavefrontMesh(stream, fileName))
+		if (lower.endsWith(".bin")) STREAM(importBinaryMesh(stream))
+		if (lower.endsWith(".obj")) STREAM(importWavefrontMesh(stream, fileName))
 #undef STREAM
 
-    setError("importMesh(): Unsupported file extension '%s'!", fileName.getPtr());
-    return NULL;
+		setError("importMesh(): Unsupported file extension '%s'!", fileName.getPtr());
+		return NULL;
+	}
 #endif
 }
 

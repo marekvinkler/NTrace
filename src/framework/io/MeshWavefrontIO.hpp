@@ -38,6 +38,7 @@ class BufferedOutputStream;
 //------------------------------------------------------------------------
 
 Mesh<VertexPNT>*    importWavefrontMesh (BufferedInputStream& stream, const String& fileName);
+Mesh<VertexPNT>*	importWavefrontMesh (const Array<String>& fileNames);
 void                exportWavefrontMesh (BufferedOutputStream& stream, const MeshBase* mesh, const String& fileName);
 
 //------------------------------------------------------------------------

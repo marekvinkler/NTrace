@@ -573,6 +573,64 @@ Mesh<VertexPNT>* FW::importWavefrontMesh(BufferedInputStream& stream, const Stri
 
 //------------------------------------------------------------------------
 
+Mesh<VertexPNT>* FW::importWavefrontMesh (const Array<String>& fileNames)
+{
+	int vertexCapacity = 4 << 10;
+    int indexCapacity = 4 << 10;
+
+	ImportState s;
+	s.mesh = new Mesh<VertexPNT>;
+	s.mesh->resizeVertices(vertexCapacity);
+	s.positions.setCapacity(vertexCapacity);
+	s.texCoords.setCapacity(vertexCapacity);
+	s.normals.setCapacity(vertexCapacity);
+	s.vertexHash.setCapacity(vertexCapacity);
+    s.indexTmp.setCapacity(indexCapacity);
+
+	for(int i = 0; i < fileNames.getSize() - 1; i++)
+	{
+		File file(fileNames.get(i), File::Read); BufferedInputStream stream(file);
+
+		s.mesh->setActiveFrame(i);
+		
+		s.mesh->clearVertices();
+		s.positions.clear();
+		s.texCoords.clear();
+		s.normals.clear();
+		s.vertexHash.clear();
+		s.materialHash.clear();
+		s.indexTmp.clear();
+		s.vertexTmp.clear();
+
+		s.mesh->setTime((F32) i);
+		loadObj(s, stream, fileNames.get(i).getDirName());
+		s.mesh->clearSubmeshes();
+		s.mesh->compact();
+	}
+
+	File file(fileNames.get(fileNames.getSize() - 1), File::Read); BufferedInputStream stream(file);
+
+	s.mesh->setActiveFrame(fileNames.getSize() - 1);
+		
+	s.mesh->clearVertices();
+	s.positions.clear();
+	s.texCoords.clear();
+	s.normals.clear();
+	s.vertexHash.clear();
+	s.materialHash.clear();
+	s.indexTmp.clear();
+	s.vertexTmp.clear();
+
+	s.mesh->setTime((F32) fileNames.getSize() - 1);
+	loadObj(s, stream, fileNames.get(fileNames.getSize() - 1).getDirName());
+	s.mesh->compact();
+
+	s.mesh ->setActiveFrame(0);
+	return s.mesh;
+}
+
+//------------------------------------------------------------------------
+
 void FW::exportWavefrontMesh(BufferedOutputStream& stream, const MeshBase* mesh, const String& fileName)
 {
     FW_ASSERT(mesh);

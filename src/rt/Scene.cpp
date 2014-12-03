@@ -167,6 +167,7 @@ Scene::Scene(const MeshBase& mesh)
 	// Copy animation data
 	m_frames.reset();
 	m_framerate = 0.f;
+	m_numRenderFrames = 0;
 
 	for (int i = 0; i < mesh.getFrames().getSize(); i++)
 	{
@@ -174,20 +175,23 @@ Scene::Scene(const MeshBase& mesh)
 		frame.time = mesh.getFrames().get(i).time;
 		frame.vertices = new Buffer;
 		frame.vertices->resizeDiscard(m_numVertices * sizeof(Vec3f));
+		frame.normals = new Buffer;
+		frame.normals->resizeDiscard(m_numVertices * sizeof(Vec3f));
 
 		Vec3f* pos = (Vec3f*)frame.vertices->getMutablePtr();
+		Vec3f* normal = (Vec3f*)frame.normals->getMutablePtr();
 		const VertexPNT* vv = (const VertexPNT*)mesh.getFrames().get(i).vertices.getPtr();
 
 		for (int vc = 0; vc < m_numVertices; vc++)
 		{
 			pos[vc] = vv[vc].p;
+			normal[vc] = vv[vc].n;			
 		}
 	}
 
 	if(m_frames.getSize() != 0)
 	{
 		m_framerate = 1.f;
-		m_numRenderFrames = 0;
 		setFrameRate(5.f);
 	}
 
@@ -201,7 +205,10 @@ Scene::Scene(const MeshBase& mesh)
 Scene::~Scene(void)
 {
 	for (int i = 0; i < m_frames.getSize(); i++)
+	{
 		delete m_frames[i].vertices;
+		delete m_frames[i].normals;
+	}
 }
 
 //------------------------------------------------------------------------
@@ -252,41 +259,106 @@ F32 Scene::getAnimationLength() const
 
 void Scene::setTime(F32 newTime)
 {
+	if(m_frames.getSize() == 0)
+		return;
+	printf("\ntime: %f\n", newTime);
+
 	m_recalculateBBox = true;
 	int interpolateIdx = 0;
 
 	while (interpolateIdx < m_frames.getSize() -1 && m_frames[interpolateIdx].time < newTime)
 		interpolateIdx++;
 
-	if (interpolateIdx > 1)
-		m_frames.get(interpolateIdx - 2).vertices->free(FW::Buffer::Module::Cuda);
-
-	if (interpolateIdx == m_frames.getSize())
+	/*
+	for(int i = 0; i < interpolateIdx - 1; i++)
 	{
-		m_frames.get(interpolateIdx - 1).vertices->free(FW::Buffer::Module::Cuda);
-		return;
+		if(m_frames.get(i).vertices->getOwner() == FW::Buffer::Module::Cuda)
+			m_frames.get(i).vertices->free(FW::Buffer::Module::Cuda);
+		if(m_frames.get(i).normals->getOwner() == FW::Buffer::Module::Cuda)
+			m_frames.get(i).normals->free(FW::Buffer::Module::Cuda);
 	}
 
-	CudaModule* module = m_compiler.compile();
-	InterpolationInput& in = *(InterpolationInput*)module->getGlobal("c_InterpolationInput").getMutablePtr();
-	
-	if(interpolateIdx == 0)
+	for(int i = interpolateIdx + 1; i < m_frames.getSize(); i++)
 	{
-		in.weight = 0.f;
-		in.verticesB = (m_frames.get(interpolateIdx).vertices)->getCudaPtr();
-		in.verticesA = (m_frames.get(interpolateIdx).vertices)->getCudaPtr();
+		if(m_frames.get(i).vertices->getOwner() == FW::Buffer::Module::Cuda)
+			m_frames.get(i).vertices->free(FW::Buffer::Module::Cuda);
+		if(m_frames.get(i).normals->getOwner() == FW::Buffer::Module::Cuda)
+			m_frames.get(i).normals->free(FW::Buffer::Module::Cuda);
+	}
+	*/
+
+	if(interpolateIdx == m_frames.getSize())
+		return;
+
+	CudaModule* module = m_compiler.compile();
+	VertInterpolationInput& in = *(VertInterpolationInput*)module->getGlobal("c_VertInterpolationInput").getMutablePtr();
+
+	// load data
+	if(interpolateIdx != 0)
+	{
+		in.weight = (newTime - m_frames.get(interpolateIdx - 1).time) / (m_frames.get(interpolateIdx).time - m_frames.get(interpolateIdx - 1).time);
+		in.posA = (m_frames.get(interpolateIdx - 1).vertices)->getCudaPtr();
+		in.normalA = (m_frames.get(interpolateIdx - 1).normals)->getCudaPtr();
 	}
 	else
 	{
-		in.weight = (newTime - m_frames.get(interpolateIdx - 1).time) / (m_frames.get(interpolateIdx).time - m_frames.get(interpolateIdx - 1).time);
-		in.verticesA = (m_frames.get(interpolateIdx - 1).vertices)->getCudaPtr();
-		in.verticesB = (m_frames.get(interpolateIdx).vertices)->getCudaPtr();
+		in.weight = 0.f;
+		in.posA = (m_frames.get(interpolateIdx).vertices)->getCudaPtr();
+		in.normalA = (m_frames.get(interpolateIdx).normals)->getCudaPtr();
 	}
+	
+	in.posB = (m_frames.get(interpolateIdx).vertices)->getCudaPtr();
+	in.normalB = (m_frames.get(interpolateIdx).normals)->getCudaPtr();
 
-	in.verticesIntrp = m_vtxPos.getMutableCudaPtr();
+	in.posIntrp = m_vtxPos.getMutableCudaPtr();
+	in.normalIntrp = m_vtxNorm.getMutableCudaPtr();
 	in.vertCount = m_frames.get(interpolateIdx).vertices->getSize();
 
+	// perform interpolation
 	module->getKernel("interpolateVertices").launch(m_frames.get(interpolateIdx).vertices->getSize());
+
+	// free gpu memory
+	m_vtxPos.free(FW::Buffer::Module::Cuda);
+	m_vtxNorm.free(FW::Buffer::Module::Cuda);
+
+	if(interpolateIdx != 0)
+		m_frames.get(interpolateIdx - 1).vertices->free(FW::Buffer::Module::Cuda);
+	m_frames.get(interpolateIdx).vertices->free(FW::Buffer::Module::Cuda);
+
+	//cuMemGetInfo(free*, total*)
+}
+
+//-----------------------------------------------------------------------
+
+void Scene::setFrame(S32 frameNumber)
+{
+	frameNumber %= m_frames.getSize();
+	
+	this->setTime(m_frames.get(frameNumber).time);
+}
+
+//-----------------------------------------------------------------------
+
+void Scene::nextFrame(bool reset)
+{
+	if(m_numRenderFrames == 0)
+		return;
+
+	if(m_nextFrame == m_numRenderFrames)
+	{
+		m_numRenderFrames = 0;
+		m_nextFrame = 0;
+		return;
+	}
+
+	if(reset)
+	{
+		m_nextFrame = 0;
+	}
+
+	F32 timePerFrame = getAnimationLength() / m_numRenderFrames;
+	setTime(timePerFrame * m_nextFrame);
+	m_nextFrame++;
 }
 
 //-----------------------------------------------------------------------
@@ -298,8 +370,8 @@ void Scene::setFrameRate(F32 newFramerate)
 
 	if(newFramerate < 0)
 	{
-		m_numRenderFrames = -(S32)(newFramerate);
-		return;
+		m_numRenderFrames = -newFramerate;
+		m_nextFrame = 0;
 	}
 
 	const F32 conversionRate = m_framerate / newFramerate;

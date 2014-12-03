@@ -28,7 +28,6 @@
 /**
  * \brief Scene class declarations.
  */
-
 #pragma once
 #include "base/Math.hpp"
 #include "3d/Mesh.hpp"
@@ -169,11 +168,18 @@ public:
 	 */
 	void			setTime(F32 newTime);
 
-	//void			setFrame(int nthFrame) { setTime((m_frames.get(m_frames.getSize()-1).time / m_numRenderFrames) * nthFrame); }
+	/**
+	 * \brief Sets scene animation time to match time of a chosen frame.
+	 * \param[in] frameNum Desired frame number.
+	 */
+	void			setFrame(S32 frameNum);
+
+	
+	void			nextFrame(bool reset = false);
 
 	/**
 	 * \brief Gets animation length (in seconds).
-	 * \return Animation length (seconds). If scene doesn't have animation, 0 is returned.
+	 * \return Animation length (in seconds). If scene doesn't have animation, 0 is returned.
 	 */
 	F32				getAnimationLength() const;
 
@@ -195,10 +201,11 @@ private:
 
 	struct Frame
 	{
-		Buffer*		vertices;
+		Buffer*			vertices;
+		Buffer*			normals;
 		F32				time;
 
-		Frame() { vertices = NULL; time = 0.f; }
+		Frame() { vertices = NULL; normals = NULL; time = 0.f; }
 	};
 
 private:
@@ -220,6 +227,8 @@ private:
 	TextureAtlas*	m_texture;				//!< Texture atlas holding scene's textures
 
 	S32				m_numRenderFrames;
+	S32				m_nextFrame;
+
 	F32				m_framerate;			//!< Framerate of the animation.
 	bool			m_recalculateBBox;		//!< Flag whether the scene's AABB should be recalculated when getBBox() is called.
 	Array<Frame>	m_frames;				//!< Keyframed vertex positions.
