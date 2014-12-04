@@ -96,10 +96,14 @@ public:
 
         F32     SAHCost;				//!< Total sah cost of the BVH.
         S32     branchingFactor;		//!< Number of children nodes per one parent node.
+        S32     maxDepth;				//!< Maximum depth of the tree.
         S32     numInnerNodes;			//!< Total number of inner nodes.
         S32     numLeafNodes;			//!< Total number of leaf nodes.
         S32     numChildNodes;			//!< Total number of children nodes.
         S32     numTris;				//!< Total number of triangles.
+        S32     numOSAHTested;			//!< Number of splits tested for OSAH.
+        S32     numOSAHChosen;			//!< Number of splits where OSAH was chosen.
+        F32     buildTime;				//!< Time to build the hierarchy.
     };
 
 	/**
@@ -111,9 +115,7 @@ public:
         bool					enablePrints;	//!< Flag whether to enable prints about build progress.
         F32						splitAlpha;     //!< Spatial split area threshold.
 		F32                     osahWeight;     //!< Weighting factor for OSAH construction.
-		Array<AABB>				empty_boxes;	//!< Information about boxes with no triangles inside.
 		Buffer*                 visibility;		//!< Visibility buffer for the CPU renderer.
-		String					logDirectory;	//!< Directory where the log file will be saved.
 		bool                    twoTrees;       //!< Flag whether to build BVH from two separate trees.
 
 		/**

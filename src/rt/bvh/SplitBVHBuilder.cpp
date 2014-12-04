@@ -33,11 +33,8 @@ using namespace FW;
 //------------------------------------------------------------------------
 
 SplitBVHBuilder::SplitBVHBuilder(BVH& bvh, const BVH::BuildParams& params)
-:   m_bvh           (bvh),
-    m_platform      (bvh.getPlatform()),
-    m_params        (params),
-    m_minOverlap    (0.0f),
-    m_sortDim       (-1)
+:  SAHBVHBuilder   (bvh, params),
+   m_minOverlap    (0.0f)
 {
 }
 
@@ -90,27 +87,6 @@ BVHNode* SplitBVHBuilder::run(void)
 
 //------------------------------------------------------------------------
 
-bool SplitBVHBuilder::sortCompare(void* data, int idxA, int idxB)
-{
-    const SplitBVHBuilder* ptr = (const SplitBVHBuilder*)data;
-    int dim = ptr->m_sortDim;
-    const Reference& ra = ptr->m_refStack[idxA];
-    const Reference& rb = ptr->m_refStack[idxB];
-    F32 ca = ra.bounds.min()[dim] + ra.bounds.max()[dim];
-    F32 cb = rb.bounds.min()[dim] + rb.bounds.max()[dim];
-    return (ca < cb || (ca == cb && ra.triIdx < rb.triIdx));
-}
-
-//------------------------------------------------------------------------
-
-void SplitBVHBuilder::sortSwap(void* data, int idxA, int idxB)
-{
-    SplitBVHBuilder* ptr = (SplitBVHBuilder*)data;
-    swap(ptr->m_refStack[idxA], ptr->m_refStack[idxB]);
-}
-
-//------------------------------------------------------------------------
-
 BVHNode* SplitBVHBuilder::buildNode(NodeSpec spec, int level, F32 progressStart, F32 progressEnd)
 {
     // Display progress.
@@ -136,7 +112,7 @@ BVHNode* SplitBVHBuilder::buildNode(NodeSpec spec, int level, F32 progressStart,
 
     // Small enough or too deep => create leaf.
 
-    if (spec.numRef <= m_platform.getMinLeafSize() || level >= MaxDepth)
+    if (level != 0 && spec.numRef <= m_platform.getMinLeafSize() || level >= MaxDepth) // Make sure we do not make the root a leaf -> GPU traversal will fail
         return createLeaf(spec);
 
     // Find split candidates.
@@ -144,6 +120,9 @@ BVHNode* SplitBVHBuilder::buildNode(NodeSpec spec, int level, F32 progressStart,
     F32 area = spec.bounds.area();
     F32 leafSAH = area * m_platform.getTriangleCost(spec.numRef);
     F32 nodeSAH = area * m_platform.getNodeCost(2);
+
+	SplitInfo::SplitType splitType = SplitInfo::SAH;
+	S32 axis = 0;
     ObjectSplit object = findObjectSplit(spec, nodeSAH);
 
     SpatialSplit spatial;
@@ -158,7 +137,7 @@ BVHNode* SplitBVHBuilder::buildNode(NodeSpec spec, int level, F32 progressStart,
     // Leaf SAH is the lowest => create leaf.
 
     F32 minSAH = min(leafSAH, object.sah, spatial.sah);
-    if (minSAH == leafSAH && spec.numRef <= m_platform.getMaxLeafSize())
+    if (level != 0 && minSAH == leafSAH && spec.numRef <= m_platform.getMaxLeafSize()) // Make sure we do not make the root a leaf -> GPU traversal will fail
         return createLeaf(spec);
 
     // Perform split.
@@ -167,7 +146,15 @@ BVHNode* SplitBVHBuilder::buildNode(NodeSpec spec, int level, F32 progressStart,
     if (minSAH == spatial.sah)
         performSpatialSplit(left, right, spec, spatial);
     if (!left.numRef || !right.numRef)
+    {
         performObjectSplit(left, right, spec, object);
+        axis = object.sortDim;
+    }
+    else
+    {
+        splitType = SplitInfo::SBVH;
+        axis = spatial.dim;
+    }
 
     // Create inner node.
 
@@ -175,75 +162,7 @@ BVHNode* SplitBVHBuilder::buildNode(NodeSpec spec, int level, F32 progressStart,
     F32 progressMid = lerp(progressStart, progressEnd, (F32)right.numRef / (F32)(left.numRef + right.numRef));
     BVHNode* rightNode = buildNode(right, level + 1, progressStart, progressMid);
     BVHNode* leftNode = buildNode(left, level + 1, progressMid, progressEnd);
-    return new InnerNode(spec.bounds, leftNode, rightNode);
-}
-
-//------------------------------------------------------------------------
-
-BVHNode* SplitBVHBuilder::createLeaf(const NodeSpec& spec)
-{
-    Array<S32>& tris = m_bvh.getTriIndices();
-    for (int i = 0; i < spec.numRef; i++)
-        tris.add(m_refStack.removeLast().triIdx);
-    return new LeafNode(spec.bounds, tris.getSize() - spec.numRef, tris.getSize());
-}
-
-//------------------------------------------------------------------------
-
-SplitBVHBuilder::ObjectSplit SplitBVHBuilder::findObjectSplit(const NodeSpec& spec, F32 nodeSAH)
-{
-    ObjectSplit split;
-    const Reference* refPtr = m_refStack.getPtr(m_refStack.getSize() - spec.numRef);
-    F32 bestTieBreak = FW_F32_MAX;
-
-    // Sort along each dimension.
-
-    for (m_sortDim = 0; m_sortDim < 3; m_sortDim++)
-    {
-        sort(this, m_refStack.getSize() - spec.numRef, m_refStack.getSize(), sortCompare, sortSwap);
-
-        // Sweep right to left and determine bounds.
-
-        AABB rightBounds;
-        for (int i = spec.numRef - 1; i > 0; i--)
-        {
-            rightBounds.grow(refPtr[i].bounds);
-            m_rightBounds[i - 1] = rightBounds;
-        }
-
-        // Sweep left to right and select lowest SAH.
-
-        AABB leftBounds;
-        for (int i = 1; i < spec.numRef; i++)
-        {
-            leftBounds.grow(refPtr[i - 1].bounds);
-            F32 sah = nodeSAH + leftBounds.area() * m_platform.getTriangleCost(i) + m_rightBounds[i - 1].area() * m_platform.getTriangleCost(spec.numRef - i);
-            F32 tieBreak = sqr((F32)i) + sqr((F32)(spec.numRef - i));
-            if (sah < split.sah || (sah == split.sah && tieBreak < bestTieBreak))
-            {
-                split.sah = sah;
-                split.sortDim = m_sortDim;
-                split.numLeft = i;
-                split.leftBounds = leftBounds;
-                split.rightBounds = m_rightBounds[i - 1];
-                bestTieBreak = tieBreak;
-            }
-        }
-    }
-    return split;
-}
-
-//------------------------------------------------------------------------
-
-void SplitBVHBuilder::performObjectSplit(NodeSpec& left, NodeSpec& right, const NodeSpec& spec, const ObjectSplit& split)
-{
-    m_sortDim = split.sortDim;
-    sort(this, m_refStack.getSize() - spec.numRef, m_refStack.getSize(), sortCompare, sortSwap);
-
-    left.numRef = split.numLeft;
-    left.bounds = split.leftBounds;
-    right.numRef = spec.numRef - split.numLeft;
-    right.bounds = split.rightBounds;
+    return new InnerNode(spec.bounds, leftNode, rightNode, axis, splitType, false);
 }
 
 //------------------------------------------------------------------------

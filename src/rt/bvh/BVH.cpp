@@ -41,6 +41,7 @@ BVH::BVH(Scene* scene, const Platform& platform, const BuildParams& params) : Ac
     if (params.enablePrints)
         printf("BVH builder: %d tris, %d vertices\n", scene->getNumTriangles(), scene->getNumVertices());
 
+	Timer timer(true);
 	if (builder == "SplitBVH")
 	{
 		m_root = SplitBVHBuilder(*this, params).run();
@@ -55,8 +56,9 @@ BVH::BVH(Scene* scene, const Platform& platform, const BuildParams& params) : Ac
 	}
 	else
 	{
-		FW_ASSERT(0);
+		fail("Unsupported BVH builder %s\n", builder.c_str());
 	}
+	F32 time = timer.getElapsed();
 
     if (params.enablePrints)
         printf("BVH: Scene bounds: (%.1f,%.1f,%.1f) - (%.1f,%.1f,%.1f)\n", m_root->m_bounds.min().x, m_root->m_bounds.min().y, m_root->m_bounds.min().z,
@@ -71,10 +73,14 @@ BVH::BVH(Scene* scene, const Platform& platform, const BuildParams& params) : Ac
     {
         params.stats->SAHCost           = sah;
         params.stats->branchingFactor   = 2;
+		params.stats->maxDepth          = m_root->getSubtreeSize(BVH_STAT_MAX_DEPTH);
         params.stats->numLeafNodes      = m_root->getSubtreeSize(BVH_STAT_LEAF_COUNT);
         params.stats->numInnerNodes     = m_root->getSubtreeSize(BVH_STAT_INNER_COUNT);
         params.stats->numTris           = m_root->getSubtreeSize(BVH_STAT_TRIANGLE_COUNT);
         params.stats->numChildNodes     = m_root->getSubtreeSize(BVH_STAT_CHILDNODE_COUNT);
+		params.stats->numOSAHTested     = m_root->getSubtreeSize(BVH_STAT_OSAH_TESTED);
+		params.stats->numOSAHChosen     = m_root->getSubtreeSize(BVH_STAT_OSAH_CHOSEN);
+		params.stats->buildTime         = time;
     }
 }
 
