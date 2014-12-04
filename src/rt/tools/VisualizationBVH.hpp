@@ -161,12 +161,6 @@ private:
 	 *  \param[in] node			The root of the subtree to process.
 	 */
 	void        prepareTreeData     (S32 node);
-	/*!
-	 *  \brief Converts a min,max representation of a box to a series of faces(quads) representation and adds it to the buffer.
-	 *  \param[in] box			The box to convert.
-	 *  \param[in] buffer		Array to add the new representation into.
-	 */
-	void        addBoxQuads				(const AABB &box, Array<Vec4f> &buffer);
 
 private:
 	// Global and path data

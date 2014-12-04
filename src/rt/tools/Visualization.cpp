@@ -35,12 +35,13 @@
 
 #pragma once
 #include "Visualization.hpp"
+//#include "ray/PixelTable.hpp"
 
 namespace FW
 {
 //------------------------------------------------------------------------
 
-Visualization::Visualization(Scene* scene) 
+Visualization::Visualization(Scene* scene, const RayBuffer* rays, Buffer* visibility) 
 :	m_currentDepth(0),
 	m_visible(false),
 	m_showRays(false),
@@ -50,6 +51,63 @@ Visualization::Visualization(Scene* scene)
 	m_showCurrTris(false),
 	m_scene(scene)
 {
+	// Clear the osah split counts in current node
+	memset(m_osahSplits, 0, sizeof(m_osahSplits));
+
+	// Initialize rays
+	if(rays != NULL)
+	{
+		Array<Vec4f> lines;
+		const int stride = 4096;
+
+		//PixelTable pixelTable;
+		//pixelTable.setSize(Vec2i(1024, 768));
+
+		//for(S32 i = 0; i < 1024*32; i++)
+		//{
+		//	int index = pixelTable.getPixelToIndex().getMutablePtr()[i];
+		//	Ray ray = rays->getRayForSlot(index);
+		//	float t;
+		//	if(rays->getResultForSlot(index).hit())
+		//		//t = rays->getResultForSlot(i*stride).t;
+		//		t = rays->getResultForSlot(index).padA;
+		//	else
+		//		t = ray.tmax;
+		//	lines.add(Vec4f(ray.origin, 1.0f));
+		//	lines.add(Vec4f(ray.origin + t*ray.direction, 1.0f));
+		//}
+
+		for(S32 i = 0; i < rays->getSize()/stride; i++)
+		{
+			Ray ray = rays->getRayForSlot(i*stride);
+			float t;
+			if(rays->getResultForSlot(i*stride).hit())
+				t = rays->getResultForSlot(i*stride).t;
+				//t = (float)rays->getResultForSlot(i*stride).padA;
+			else
+				t = ray.tmax;
+			lines.add(Vec4f(ray.origin, 1.0f));
+			lines.add(Vec4f(ray.origin + t*ray.direction, 1.0f));
+		}
+
+		m_rays.resizeDiscard(lines.getNumBytes());
+		m_rays.set(lines.getPtr(), lines.getNumBytes());
+	}
+	else
+	{
+		m_showRays = false;
+	}
+
+	// Initialize visibility
+	if(visibility != NULL)
+	{
+		m_visibility.set((S32*)visibility->getPtr(), m_scene->getNumTriangles());
+	}
+	else
+	{
+		m_visibility.reset(m_scene->getNumTriangles());
+		memset(m_visibility.getPtr(), 0, m_visibility.getNumBytes());
+	}
 }
 
 //------------------------------------------------------------------------
@@ -57,5 +115,46 @@ Visualization::Visualization(Scene* scene)
 Visualization::~Visualization()
 {
 }
+
+//-----------------------------------------------------------------------
+
+void Visualization::addBoxQuads(const AABB &box, Array<Vec4f> &buffer)
+{
+	Vec3f min = box.min();
+	Vec3f max = box.max();
+	// Add buffer as 4 quads
+	// Min x
+	buffer.add(Vec4f(min.x, min.y, min.z, 1.0f));
+	buffer.add(Vec4f(min.x, max.y, min.z, 1.0f));
+	buffer.add(Vec4f(min.x, max.y, max.z, 1.0f));
+	buffer.add(Vec4f(min.x, min.y, max.z, 1.0f));
+	// Max x
+	buffer.add(Vec4f(max.x, max.y, max.z, 1.0f));
+	buffer.add(Vec4f(max.x, max.y, min.z, 1.0f));
+	buffer.add(Vec4f(max.x, min.y, min.z, 1.0f));
+	buffer.add(Vec4f(max.x, min.y, max.z, 1.0f));
+	// Min y
+	buffer.add(Vec4f(min.x, min.y, min.z, 1.0f));
+	buffer.add(Vec4f(min.x, min.y, max.z, 1.0f));
+	buffer.add(Vec4f(max.x, min.y, max.z, 1.0f));
+	buffer.add(Vec4f(max.x, min.y, min.z, 1.0f));
+	// Max y
+	buffer.add(Vec4f(max.x, max.y, max.z, 1.0f));
+	buffer.add(Vec4f(min.x, max.y, max.z, 1.0f));
+	buffer.add(Vec4f(min.x, max.y, min.z, 1.0f));
+	buffer.add(Vec4f(max.x, max.y, min.z, 1.0f));
+	// Min z
+	buffer.add(Vec4f(min.x, min.y, min.z, 1.0f));
+	buffer.add(Vec4f(max.x, min.y, min.z, 1.0f));
+	buffer.add(Vec4f(max.x, max.y, min.z, 1.0f));
+	buffer.add(Vec4f(min.x, max.y, min.z, 1.0f));
+	// Max z
+	buffer.add(Vec4f(max.x, max.y, max.z, 1.0f));
+	buffer.add(Vec4f(max.x, min.y, max.z, 1.0f));
+	buffer.add(Vec4f(min.x, min.y, max.z, 1.0f));
+	buffer.add(Vec4f(min.x, max.y, max.z, 1.0f));
+}
+
+//-----------------------------------------------------------------------
 
 }

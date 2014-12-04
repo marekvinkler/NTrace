@@ -54,7 +54,7 @@ public:
     //virtual CudaAS&						operator=			(CudaAS& other) = 0;
 
 	/**
-	* \brief Writes buffers to outpu stream.
+	* \brief Writes buffers to output stream.
 	* \param[in] out	Output stream to write to.
 	*/
     virtual void						serialize           (OutputStream& out) = 0;

@@ -44,7 +44,7 @@ namespace FW
 //      nodes[innerOfs + 0 ] = Vec4f(c0.lo.x, c0.hi.x, c0.lo.y, c0.hi.y)
 //      nodes[innerOfs + 16] = Vec4f(c1.lo.x, c1.hi.x, c1.lo.y, c1.hi.y)
 //      nodes[innerOfs + 32] = Vec4f(c0.lo.z, c0.hi.z, c1.lo.z, c1.hi.z)
-//      nodes[innerOfs + 48] = Vec4i(c0.innerOfs or ~c0.triOfs, c1.innerOfs or ~c1.triOfs, 0, 0)
+//      nodes[innerOfs + 48] = Vec4i(c0.innerOfs or ~c0.triOfs, c1.innerOfs or ~c1.triOfs, bitFlag, 0)
 //
 // TriWoop / BVHLayout_Compact
 //      triWoop[triOfs*16 + 0 ] = Vec4f(woopZ)
@@ -62,14 +62,14 @@ namespace FW
 //      nodes[node*64  + 16] = Vec4f(c1.lo.x, c1.hi.x, c1.lo.y, c1.hi.y)
 //      nodes[node*64  + 32] = Vec4f(c0.lo.z, c0.hi.z, c1.lo.z, c1.hi.z)
 //      nodes[inner*64 + 48] = Vec4f(c0.inner or ~c0.leaf, c1.inner or ~c1.leaf, 0, 0)
-//      nodes[leaf*64  + 48] = Vec4i(triStart, triEnd, 0, 0)
+//      nodes[leaf*64  + 48] = Vec4i(triStart, triEnd, bitFlag, 0)
 //
 // Nodes / BVHLayout_SOA_AOS, BVHLayout_SOA_SOA
 //      nodes[node*16  + size*0/4] = Vec4f(c0.lo.x, c0.hi.x, c0.lo.y, c0.hi.y)
 //      nodes[node*16  + size*1/4] = Vec4f(c1.lo.x, c1.hi.x, c1.lo.y, c1.hi.y)
 //      nodes[node*16  + size*2/4] = Vec4f(c0.lo.z, c0.hi.z, c1.lo.z, c1.hi.z)
 //      nodes[inner*16 + size*3/4] = Vec4f(c0.inner or ~c0.leaf, c1.inner or ~c1.leaf, 0, 0)
-//      nodes[leaf*16  + size*3/4] = Vec4i(triStart, triEnd, 0, 0)
+//      nodes[leaf*16  + size*3/4] = Vec4i(triStart, triEnd, bitFlag, 0)
 //
 // TriWoop / BVHLayout_AOS_AOS, BVHLayout_SOA_AOS
 //      triWoop[tri*64 + 0 ] = Vec4f(woopZ)
@@ -84,6 +84,9 @@ namespace FW
 // TriIndex / BVHLayout_AOS_AOS, BVHLayout_AOS_SOA, BVHLayout_SOA_AOS, BVHLayout_SOA_SOA
 //      triIndex[tri*4] = origIdx
 //------------------------------------------------------------------------
+
+//#define VISIBLE_CUDA_TESTED
+#define VISIBLE_RAY_HITS
 
 /**
  * \brief Cuda BVH class.

@@ -50,7 +50,7 @@ namespace FW
 class Visualization : public Window::Listener
 {
 public:
-	                   Visualization   (Scene* scene);
+	                   Visualization   (Scene* scene, const RayBuffer* rays, Buffer* visibility);
 	virtual           ~Visualization   ();
 
 	/*!
@@ -71,6 +71,14 @@ public:
 	 *  \param[in] visible	The visibility value.	
 	 */
 	void               setVisible      (bool visible)            { m_visible = visible; }
+
+protected:
+	/*!
+	 *  \brief Converts a min,max representation of a box to a series of faces(quads) representation and adds it to the buffer.
+	 *  \param[in] box			The box to convert.
+	 *  \param[in] buffer		Array to add the new representation into.
+	 */
+	void               addBoxQuads     (const AABB &box, Array<Vec4f> &buffer);
 
 protected:	
 	Array<String>       m_splitPath;	//!< Text representation of the VisualizationBVH::m_nodeStack path.

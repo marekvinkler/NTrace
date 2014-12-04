@@ -29,7 +29,7 @@
 #include "bvh/SplitBVHBuilder.hpp"
 #include "bvh/SAHBVHBuilder.hpp"
 #include "bvh/OcclusionBVHBuilder.hpp"
-#include "bvh/HLBVH/HLBVHBuilder.hpp"
+#include "Environment.h"
 
 using namespace FW;
 

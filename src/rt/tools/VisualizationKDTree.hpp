@@ -176,13 +176,14 @@ private:
 	 */
 	void        prepareTreeData     (NodeData node);
 	/*!
-	 *  \brief Converts a min,max representation of a box to a series of faces(quads) representation and adds it to the buffer.
-	 *  \param[in] box			The box to convert.
-	 *  \param[in] buffer		Array to add the new representation into.
-	 */
-	void        addBoxQuads				(const AABB &box, Array<Vec4f> &buffer);
-
-	
+	 *  \brief Computes the left and right child bounding boxes from the parent box and gets visualization data.
+	 *  \param[in] currNode			The parent node.
+	 *  \param[out] leftAdd			The left child address.
+	 *  \param[out] rightAdd		The right child address.
+	 *  \param[out] leftBox			The left child bounding box.
+	 *  \param[out] rightBox		The right child bounding box.
+	 *  \param[out] split			Information about the split axis.
+	 */	
 	void		splitNode			(const NodeData& currNode, S32& leftAdd, S32& rightAdd, AABB& leftBox, AABB& rightBox, SplitInfo& split);
 
 private:

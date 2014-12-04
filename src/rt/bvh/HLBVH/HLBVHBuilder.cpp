@@ -372,6 +372,11 @@ void HLBVHBuilder::buildBottomLevel(Buffer *q_in, Buffer *q_out, U32 &nodeWritte
 #endif
 	
 	m_progressTimer.end();
+
+	// free unused data to make space
+	q_in->reset();
+	q_out->reset();
+
 	U32 leafs = *(U32*)(module->getGlobal("g_leafsPtr").getPtr(0));
 	//printf("Resizing node buffer %d -> %d [%d]\n", getNodeBuffer().getSize(), nodeWritten*64, getNodeBuffer().getSize() - nodeWritten*64);
 	getNodeBuffer().resize(nodeWritten*64);
@@ -733,16 +738,13 @@ void HLBVHBuilder::buildHLBVH(void)
 	
 	F32* root = (F32*)getNodeBuffer().getPtr();
 	U32 leafs = *(U32*)(module->getGlobal("g_leafsPtr").getPtr());
-	/*printf("=== BVH stats: nodes %d, leafs %d\n", nodeWritten, leafs);
+	printf("=== BVH stats: nodes %d, leafs %d\n", nodeWritten, leafs);
 	printf("=== AABB: (%.1f %.1f %.1f) - (%.1f %.1f %.1f)\n",   min(root[0],root[4]),
 																min(root[2],root[6]),
 																min(root[8],root[10]),
 																max(root[1],root[5]),	
 																max(root[3],root[7]),	
-																max(root[9],root[11]));	*/
-	
-	/*Debug << "BVH Top = " << nodeWritten << " => number of inner nodes (number of tasks) = " << nodeWritten << " + number of leaves = " << leafs << "\n";
-	Debug << "Sorted tris = " << triCnt << "\n\n";*/
+																max(root[9],root[11]));
 	m_nodes = nodeWritten;
 	m_leafs = leafs;
 }
@@ -769,8 +771,13 @@ F32 HLBVHBuilder::calcSAHGPU() {
 
 void HLBVHBuilder::initMemory(Buffer& q_in, Buffer& q_out, int leafSize) {
 	S64 size = 2*(triCnt/leafSize);
+#ifndef LOWMEM
 	getNodeBuffer().resize(size * 64);
+#else
+	getNodeBuffer().resize(size/2 * 64);
+#endif
 	*(CUdeviceptr*)module->getGlobal("g_outNodes").getMutablePtr() = getNodeBuffer().getMutableCudaPtr();
+	m_sizeADS = getNodeBuffer().getSize() / MB;
 	
 	q_in.resize(3*sizeof(S32) * size);
 	q_out.resizeDiscard(3*sizeof(S32) * size);

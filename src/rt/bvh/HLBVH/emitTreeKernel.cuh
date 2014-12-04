@@ -14,6 +14,7 @@
 #define WARP_SIZE 32
 
 //#define DOPRINTF
+//#define LOWMEM
 //#define MEASURE_STATS
 //#define LEAF_HISTOGRAM
 #define WOOP_TRIANGLES

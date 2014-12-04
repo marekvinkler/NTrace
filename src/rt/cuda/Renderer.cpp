@@ -39,12 +39,12 @@ Renderer::Renderer()
 :   m_raygen            (1 << 20),
 
     m_window            (NULL),
-	m_enableRandom      (Environment::GetSingleton()->GetBool("Raygen.random")),
+    m_enableRandom      (Environment::GetSingleton()->GetBool("Raygen.random")),
 
     m_mesh              (NULL),
     m_scene             (NULL),
 
-	m_sampleImage		(NULL),
+    m_sampleImage		(NULL),
     m_image             (NULL),
     m_cameraFar         (0.0f),
 
@@ -52,16 +52,16 @@ Renderer::Renderer()
     m_batchRays         (NULL),
     m_batchStart        (0),
 
-	m_accelStruct		(NULL),
+    m_accelStruct		(NULL),
 
-	m_vis				(NULL),
-	m_showVis			(false)
+    m_vis				(NULL),
+    m_showVis			(false)
 {
 
 	string ds;
 	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
 
-    // Setup BVH.
+    // Setup data structure.
 	if(ds == "BVH")
 		m_cudaTracer = new CudaBVHTracer();
 	else if (ds == "PersistentBVH")
@@ -69,7 +69,7 @@ Renderer::Renderer()
 	else if(ds == "KDTree")
 		m_cudaTracer = new CudaKDTreeTracer();
 	else
-		FW_ASSERT(0);
+		fail("Incorrect data structure type!");
 
 	m_cudaTracer->setScene(NULL);
 
@@ -156,6 +156,34 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 	string builder;
 	Environment::GetSingleton()->GetStringValue("Renderer.builder", builder);
 
+    // Determine cache file name.
+	
+    String cacheFileName = FW::sprintf("%s/%08x_%s.dat", m_cachePath.getPtr(), hashBits(
+        m_scene->hash(),
+        m_platform.computeHash(),
+        m_buildParams.computeHash(),
+        layout,
+		hash<String>(String(ds.c_str()))), builder.c_str());
+
+    // Cache file exists => import.
+
+    if (!hasError())
+    {
+        File file(cacheFileName, File::Read);
+        if (!hasError())
+        {
+            m_accelStruct = new CudaBVH(file);
+            return m_accelStruct;
+        }
+        clearError();
+    }
+
+    // Display status.
+
+    printf("\nBuilding BVH...\nThis will take a while.\n");
+    if (m_window)
+        m_window->showModalMessage("Building BVH...");
+
 	// If we use HLBVH, use HLBVH
 
 	if (builder == "HLBVH")
@@ -165,8 +193,7 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 		params.hlbvhBits = 4;
 		params.leafSize = 8;
 		params.epsilon = 0.001f;
-		HLBVHBuilder* bvh = new HLBVHBuilder(m_scene, m_platform, params);
-		return bvh;
+		m_accelStruct = new HLBVHBuilder(m_scene, m_platform, params);
 	}
 
 	// For OcclusionBVH - first build SAHBVH and then build OcclusionBVH
@@ -217,39 +244,14 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 		Environment::GetSingleton()->SetString("Renderer.builder", builder.c_str());
 	}
 
-    // Determine cache file name.
-	
-    String cacheFileName = FW::sprintf("%s/%08x_%s.dat", m_cachePath.getPtr(), hashBits(
-        m_scene->hash(),
-        m_platform.computeHash(),
-        m_buildParams.computeHash(),
-        layout,
-		hash<String>(String(ds.c_str()))), builder.c_str());
-
-    // Cache file exists => import.
-
-    if (!hasError())
-    {
-        File file(cacheFileName, File::Read);
-        if (!hasError())
-        {
-            m_accelStruct = new CudaBVH(file);
-            return m_accelStruct;
-        }
-        clearError();
-    }
-
-    // Display status.
-
-    printf("\nBuilding BVH...\nThis will take a while.\n");
-    if (m_window)
-        m_window->showModalMessage("Building BVH...");
-
     // Build BVH.
-	BVH bvh(m_scene, m_platform, m_buildParams);
-    stats.print();
-    m_accelStruct = new CudaBVH(bvh, layout);
-    failIfError();
+	if(m_accelStruct == NULL)
+	{
+		BVH bvh(m_scene, m_platform, m_buildParams);
+		stats.print();
+		m_accelStruct = new CudaBVH(bvh, layout);
+		failIfError();
+	}
 
     // Write to cache.
 
@@ -314,23 +316,24 @@ CudaAS*	Renderer::getCudaKDTree(void)
     params.stats = &stats;
 
 	KDTree kdtree(m_scene, m_platform, params);
+	stats.print();
 	m_accelStruct = new CudaKDTree(kdtree);
-
 	failIfError();
 
     // Write to cache.
 
-    //if (!hasError())
-    //{
-    //    CreateDirectory(m_bvhCachePath.getPtr(), NULL);
-    //    File file(cacheFileName, File::Create);
-    //    m_accelStruct->serialize(file);
-    //    clearError();
-    //}
+    if (!hasError())
+    {
+        CreateDirectory(m_cachePath.getPtr(), NULL);
+        File file(cacheFileName, File::Create);
+        m_accelStruct->serialize(file);
+        clearError();
+    }
 
-	params.stats->print();
+	// Display status.
 
-	return m_accelStruct;
+    printf("Done.\n\n");
+    return m_accelStruct;
 }
 
 //------------------------------------------------------------------------
@@ -367,7 +370,7 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
 	else if(ds == "KDTree")
 		m_cudaTracer->setBVH(getCudaKDTree());
 	else
-		FW_ASSERT(0);
+		fail("Incorrect data structure type!");
 
     // Setup result image.
 
@@ -685,15 +688,19 @@ void Renderer::startBVHVis(void)
 	string ds;
 	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
 
-    // Setup BVH.
+	string builder;
+	Environment::GetSingleton()->GetStringValue("Renderer.builder", builder);
+
+    // Setup visualization.
+	Buffer* visib = NULL;
+	if (builder == "OcclusionBVH")
+		visib = &m_triangleVisibility;
+
 	if(ds == "BVH")
-	{
-		m_vis = new VisualizationBVH((CudaBVH*)getCudaBVH(), m_scene);
-	}
+		m_vis = new VisualizationBVH((CudaBVH*)getCudaBVH(), m_scene, &m_primaryRays, visib);
 	else if(ds == "KDTree")
-	{
-		m_vis = new VisualizationKDTree((CudaKDTree*)getCudaKDTree(), m_scene);
-	}
+		m_vis = new VisualizationKDTree((CudaKDTree*)getCudaKDTree(), m_scene, &m_primaryRays, visib);
+
 	m_vis->setVisible(true);
 	m_window->addListener(m_vis);
 

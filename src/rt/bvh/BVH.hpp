@@ -34,7 +34,6 @@
 #include "bvh/BVHNode.hpp"
 #include "ray/RayBuffer.hpp"
 #include "acceleration\Acceleration.hpp"
-#include "Environment.h"
 
 namespace FW
 {
