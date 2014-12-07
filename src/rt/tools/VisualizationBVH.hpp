@@ -50,11 +50,10 @@ public:
 	/*!
 	 *  \brief Constructor.
 	 *  \param[in] bvh			CudaBVH to visualize.
-	 *  \param[in] emptyBoxes	Array of empty boxes to be visualized.
 	 *  \param[in] rays			Rays to visualize, pass NULL if no rays should be visualized.
 	 *  \param[in] visibility	Array of triangle visibility flags.
 	 */
-    explicit    VisualizationBVH    (CudaBVH* bvh, Scene* scene, const Array<AABB> &emptyBoxes, const RayBuffer* rays = NULL, Buffer* visibility = NULL);
+    explicit    VisualizationBVH    (CudaBVH* bvh, Scene* scene, const RayBuffer* rays = NULL, Buffer* visibility = NULL);
 	/*!
 	 *  \brief Destructor.
 	 */
@@ -162,12 +161,6 @@ private:
 	 *  \param[in] node			The root of the subtree to process.
 	 */
 	void        prepareTreeData     (S32 node);
-	/*!
-	 *  \brief Converts a min,max representation of a box to a series of faces(quads) representation and adds it to the buffer.
-	 *  \param[in] box			The box to convert.
-	 *  \param[in] buffer		Array to add the new representation into.
-	 */
-	void        addBoxQuads				(const AABB &box, Array<Vec4f> &buffer);
 
 private:
 	// Global and path data

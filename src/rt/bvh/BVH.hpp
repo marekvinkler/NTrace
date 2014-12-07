@@ -34,7 +34,6 @@
 #include "bvh/BVHNode.hpp"
 #include "ray/RayBuffer.hpp"
 #include "acceleration\Acceleration.hpp"
-#include "Environment.h"
 
 namespace FW
 {
@@ -100,10 +99,14 @@ public:
 
         F32     SAHCost;				//!< Total sah cost of the BVH.
         S32     branchingFactor;		//!< Number of children nodes per one parent node.
+        S32     maxDepth;				//!< Maximum depth of the tree.
         S32     numInnerNodes;			//!< Total number of inner nodes.
         S32     numLeafNodes;			//!< Total number of leaf nodes.
         S32     numChildNodes;			//!< Total number of children nodes.
         S32     numTris;				//!< Total number of triangles.
+        S32     numOSAHTested;			//!< Number of splits tested for OSAH.
+        S32     numOSAHChosen;			//!< Number of splits where OSAH was chosen.
+        F32     buildTime;				//!< Time to build the hierarchy.
     };
 
 	/**
@@ -115,12 +118,7 @@ public:
         bool					enablePrints;	//!< Flag whether to enable prints about build progress.
         F32						splitAlpha;     //!< Spatial split area threshold.
 		F32                     osahWeight;     //!< Weighting factor for OSAH construction.
-		String	                accelerator;    //!< The name of the acceleration data structure method for ray tracing.
-		Array<AABB>				empty_boxes;	//!< Information about boxes with no triangles inside.
 		Buffer*                 visibility;		//!< Visibility buffer for the CPU renderer.
-		String					logDirectory;	//!< Directory where the log file will be saved.
-		String					buildName;		//!< Build name.
-		int						cameraIdx;		//!< Camera index.
 		bool                    twoTrees;       //!< Flag whether to build BVH from two separate trees.
 
 		/**
@@ -132,8 +130,6 @@ public:
             enablePrints    = true;
             splitAlpha      = 1.0e-5f;
 			osahWeight      = 0.9f;
-			//camera			= NULL;
-			cameraIdx       = 0;
 			twoTrees        = false;
 			visibility		= NULL;
         }
@@ -156,7 +152,7 @@ public:
 	 *  \param[in] platform		Platform settings.
 	 *  \param[in] params		Build parameters.
 	 */
-                        BVH                     (Scene* scene, const Platform& platform, const BuildParams& params, Environment* env, const string& builder = "");
+                        BVH                     (Scene* scene, const Platform& platform, const BuildParams& params);
 
 	/**
 	 *  \brief Destructor.
@@ -202,7 +198,6 @@ private:
 	
     BVHNode*            m_root;				//!< Root node.
     Array<S32>          m_triIndices;		//!< Array of indices pointing to the scene triangle array.
-	Environment*		m_env;				//!< Environment settings.
 };
 
 }

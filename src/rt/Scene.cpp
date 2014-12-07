@@ -83,16 +83,13 @@ Scene::Scene(const MeshBase& mesh)
     for (int submesh = 0; submesh < meshP.numSubmeshes(); submesh++)
     {
         const MeshBase::Material& material = meshP.material(submesh);
-		if(material.textures[MeshBase::TextureType::TextureType_Diffuse].getImage() != NULL)
+		if(material.textures[MeshBase::TextureType_Diffuse].getImage() != NULL)
 		{
-			m_texture->addTexture(material.textures[MeshBase::TextureType::TextureType_Diffuse], 0);
-
-			int val = 1;
+			m_texture->addTexture(material.textures[MeshBase::TextureType_Diffuse], 0);
 			matInfo[submesh].w = 1.0f;
 		}
 		else
 		{
-			int val = 0;
 			matInfo[submesh].w = 0.0f;
 		}
 
@@ -121,10 +118,10 @@ Scene::Scene(const MeshBase& mesh)
 
 			*matId++			= submesh;
 			
-			if(material.textures[MeshBase::TextureType::TextureType_Diffuse] != NULL)
+			if(material.textures[MeshBase::TextureType_Diffuse] != NULL)
 			{
-				*texInfo++			= Vec4f(m_texture->getTexturePosF(material.textures[MeshBase::TextureType::TextureType_Diffuse]), 
-											m_texture->getTextureSizeF(material.textures[MeshBase::TextureType::TextureType_Diffuse]));
+				*texInfo++			= Vec4f(m_texture->getTexturePosF(material.textures[MeshBase::TextureType_Diffuse]), 
+											m_texture->getTextureSizeF(material.textures[MeshBase::TextureType_Diffuse]));
 			}
 			else
 			{

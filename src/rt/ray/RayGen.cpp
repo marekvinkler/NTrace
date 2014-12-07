@@ -65,7 +65,7 @@ void RayGen::primary(RayBuffer& orays, const Vec3f& origin, const Mat4f& nscreen
     in.idToSlot             = orays.getIDToSlotBuffer().getMutableCudaPtr();
     in.slotToID             = orays.getSlotToIDBuffer().getMutableCudaPtr();
     in.indexToPixel         = m_pixelTable.getIndexToPixel().getCudaPtr();
-    in.randomSeed			= Random(randomSeed).getU32();
+    in.randomSeed			= (randomSeed != 0) ? Random(randomSeed).getU32() : 0;
 
     // Launch.
 

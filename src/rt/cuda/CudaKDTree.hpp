@@ -47,7 +47,7 @@ namespace FW
 class CudaKDTree : public CudaAS
 {
 public:
-	BVHLayout   getLayout           (void) const            { return BVHLayout::BVHLayout_Compact; }
+	BVHLayout   getLayout           (void) const            { return BVHLayout_Compact; }
 
 	/**
 	*  \brief				Constructor.

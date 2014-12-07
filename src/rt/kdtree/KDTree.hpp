@@ -91,12 +91,10 @@ public:
 		{
 			stats			= nullptr;
 			enablePrints	= true;
-			builder			= SpatialMedian;
 		}
 
 		Stats*				stats;			//!< Statistics collected during build phase. Set to NULL if no stats should be collected.
 		bool				enablePrints;	//!< Flag whether to print information during build phase.
-		BuilderType			builder;		//!< Defines which builder type will be used to build the k-d tree.
 	};
 
 	/**

@@ -35,7 +35,7 @@
 */
 
 #include "CudaTracerKernels.hpp"
-#include "helper_math.h"
+#include "../../helper_math.h"
 
 //------------------------------------------------------------------------
 

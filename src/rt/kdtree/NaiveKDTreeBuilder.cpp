@@ -109,23 +109,10 @@ NaiveKDTreeBuilder::Split NaiveKDTreeBuilder::findSplit (const NodeSpec& spec, S
 	F32 splitPos = -1;
 	S32 dim = level % 3;
 
-	if(m_params.builder == FW::KDTree::SpatialMedian)
-	{
-		F32 boundsMin = spec.bounds.min()[dim];
-		F32 boundsMax = spec.bounds.max()[dim];
+	F32 boundsMin = spec.bounds.min()[dim];
+	F32 boundsMax = spec.bounds.max()[dim];
 
-		splitPos = (boundsMin + boundsMax) / 2;
-	}
-	else if(m_params.builder == FW::KDTree::ObjectMedian) // ??
-	{
-		m_sortDim = dim;
-		sort(this, refs.getSize() - spec.numRef, refs.getSize(), sortCompare, sortSwap);
-
-		S32 medIdx = refs.getSize() - (int)(spec.numRef / 2);
-		splitPos = refs.get(medIdx).bounds.min()[dim];
-	}
-	else
-		FW_ASSERT(0); // Should not occur.
+	splitPos = (boundsMin + boundsMax) / 2;
 
 	Split foundSplit;
 	foundSplit.dim = dim;

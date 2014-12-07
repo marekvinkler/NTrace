@@ -128,7 +128,6 @@ F32 CudaBVHTracer::traceBatch(RayBuffer& rays)
 			(rays.getNeedClosestHit()) ? 0 : 1,         // anyHit
 			rays.getRayBuffer().getCudaPtr(),           // rays
 			rays.getResultBuffer().getMutableCudaPtr(), // results
-			m_triangleVisibility.getMutableCudaPtr(),	// visibility
 			nodePtr + nodeOfsA.x,                       // nodesA
 			nodePtr + nodeOfsB.x,                       // nodesB
 			nodePtr + nodeOfsC.x,                       // nodesC
@@ -256,20 +255,6 @@ CudaModule* CudaBVHTracer::compileKernel(void)
     m_compiler.clearDefines();
     CudaModule* module = m_compiler.compile();
     return module;
-}
-
-//------------------------------------------------------------------------
-
-void CudaBVHTracer::setVisibility()
-{
-	if(m_kernelName.getLength() == 0)
-		return;
-
-	// Compile kernel.
-    CudaModule* module = compileKernel();
-
-	//CUdeviceptr visib = m_triangleVisibility.getMutableCudaPtr();
-	//*(CUdeviceptr*)module->getGlobal("g_Visib").getMutablePtr() = visib;      // triVisibility
 }
 
 //------------------------------------------------------------------------

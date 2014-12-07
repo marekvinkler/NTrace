@@ -20,8 +20,8 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-CPURenderer::CPURenderer(Environment* env)
-:   Renderer(Renderer::tBVH, env),
+CPURenderer::CPURenderer()
+:   Renderer(),
 m_layout(BVHLayout_CPU)
 {
     m_platform = Platform("CPU");
@@ -102,27 +102,27 @@ F32 CPURenderer::traceBatch(RayStats* stats)
 	if(stats == NULL)
 	{
 		RayStats stats;
-		if(m_buildParams.empty_boxes.getSize())
+		/*if(m_buildParams.empty_boxes.getSize())
 		{
 			//m_bvh->trace(*m_batchRays, *m_emptybvh, &stats);
 			((CudaBVH*)m_accelStruct)->trace(*m_batchRays, m_visibility, m_buildParams.empty_boxes, &stats);
 		}
 		else
-		{
+		{*/
 			((CudaBVH*)m_accelStruct)->trace(*m_batchRays, m_visibility, m_buildParams.twoTrees, &stats);
-		}
+		//}
 	}
 	else
 	{
-		if(m_buildParams.empty_boxes.getSize())
+		/*if(m_buildParams.empty_boxes.getSize())
 		{
 			//m_bvh->trace(*m_batchRays, *m_emptybvh, stats);
 			((CudaBVH*)m_accelStruct)->trace(*m_batchRays, m_visibility, m_buildParams.empty_boxes, ((CudaBVH*)m_accelStruct)->m_stats);
 		}
 		else
-		{
+		{*/
 			((CudaBVH*)m_accelStruct)->trace(*m_batchRays, m_visibility, m_buildParams.twoTrees, ((CudaBVH*)m_accelStruct)->m_stats);
-		}
+		//}
 	}
 	return timer.getElapsed(); // Trace time in seconds
 }

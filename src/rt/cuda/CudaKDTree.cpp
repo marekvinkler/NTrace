@@ -30,6 +30,10 @@ CudaKDTree::~CudaKDTree(void)
 
 void CudaKDTree::serialize(OutputStream& out)
 {
+	// Transfer data to CPU before serialization
+	m_nodes.setOwner(Buffer::CPU, false);
+	m_triWoop.setOwner(Buffer::CPU, false);
+	m_triIndex.setOwner(Buffer::CPU, false);
 	out << m_bbox.min() << m_bbox.max() << m_nodes << m_triWoop << m_triIndex;
 }
 

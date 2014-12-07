@@ -50,7 +50,7 @@ namespace FW
 class Visualization : public Window::Listener
 {
 public:
-	                   Visualization   (Scene* scene);
+	                   Visualization   (Scene* scene, const RayBuffer* rays, Buffer* visibility);
 	virtual           ~Visualization   ();
 
 	/*!
@@ -72,6 +72,14 @@ public:
 	 */
 	void               setVisible      (bool visible)            { m_visible = visible; }
 
+protected:
+	/*!
+	 *  \brief Converts a min,max representation of a box to a series of faces(quads) representation and adds it to the buffer.
+	 *  \param[in] box			The box to convert.
+	 *  \param[in] buffer		Array to add the new representation into.
+	 */
+	void               addBoxQuads     (const AABB &box, Array<Vec4f> &buffer);
+
 protected:	
 	Array<String>       m_splitPath;	//!< Text representation of the VisualizationBVH::m_nodeStack path.
 	S32					m_osahSplits[3];//!< Counters of the number of OSAH splits in the subtree under the set node in the x, y and z dimensions.
@@ -92,9 +100,6 @@ protected:
 	Buffer              m_rays;         //!< Buffer holding some rays as line segments.
 	U32                 m_rayColor;		//!< Color of the ray line indices.
 	Buffer              m_boxes;        //!< Buffer holding selected boxes as quad primitives.
-	Buffer              m_emptyBoxes;   //!< Buffer holding empty boxes as quad primitives.
-	Buffer              m_emptyColors;  //!< Buffer holding colors of empty boxes as quad primitives.
-	Buffer              m_emptyLineColors;  //!< Buffer holding line colors of empty boxes as quad primitives.
 	Buffer              m_invisTris;    //!< Buffer holding visible selected triangles.
 	Buffer              m_visTris;      //!< Buffer holding invisible selected triangles.
 	// Visualization setting
@@ -103,7 +108,6 @@ protected:
 	bool                m_splitColors;  //!< Flag whether to map left/right children colors based on the split type.
 	bool                m_showChildren; //!< Flag whether to show children of the current node.
 	bool                m_showAllOSAH;  //!< Flag whether to show all OSAH split nodes.
-	bool                m_showEmpty;    //!< Flag whether to show empty nodes.
 	bool                m_showCurrTris; //!< Flag whether to show triangles of the current node.};
 	Scene*				m_scene;
 };

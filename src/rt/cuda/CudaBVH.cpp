@@ -86,6 +86,10 @@ CudaBVH::~CudaBVH(void)
 
 void CudaBVH::serialize(OutputStream& out)
 {
+	// Transfer data to CPU before serialization
+	m_nodes.setOwner(Buffer::CPU, false);
+	m_triWoop.setOwner(Buffer::CPU, false);
+	m_triIndex.setOwner(Buffer::CPU, false);
     out << (S32)m_layout << m_nodes << m_triWoop << m_triIndex;
 }
 
@@ -438,6 +442,7 @@ void CudaBVH::createNodeBasic(const BVH& bvh)
         const AABB* b1;
         int c0;
         int c1;
+        SplitInfo splitInfo;
 
         // Leaf?
 
@@ -460,6 +465,8 @@ void CudaBVH::createNodeBasic(const BVH& bvh)
             b1 = &e1.node->m_bounds;
             c0 = e0.encodeIdx();
             c1 = e1.encodeIdx();
+            const InnerNode *eN = reinterpret_cast<const InnerNode*>(e.node);
+            splitInfo = eN->getSplitInfo();
         }
 
         // Write entry.
@@ -469,14 +476,15 @@ void CudaBVH::createNodeBasic(const BVH& bvh)
             Vec4i(floatToBits(b0->min().x), floatToBits(b0->max().x), floatToBits(b0->min().y), floatToBits(b0->max().y)),
             Vec4i(floatToBits(b1->min().x), floatToBits(b1->max().x), floatToBits(b1->min().y), floatToBits(b1->max().y)),
             Vec4i(floatToBits(b0->min().z), floatToBits(b0->max().z), floatToBits(b1->min().z), floatToBits(b1->max().z)),
-            Vec4i(c0, c1, 0, 0)
+            //Vec4i(c0, c1, 0, 0)
+            Vec4i(c0, c1, splitInfo.getBitCode(), 0)
         };
 
         switch (m_layout)
         {
         case BVHLayout_AOS_AOS:
         case BVHLayout_AOS_SOA:
-		case BVHLayout_CPU:
+        case BVHLayout_CPU:
             memcpy(m_nodes.getMutablePtr(e.idx * 64), data, 64);
             break;
 
@@ -598,13 +606,17 @@ void CudaBVH::createCompact(const BVH& bvh, int nodeOffsetSizeDiv)
             triIndexData.add(0);
         }
 
+        const InnerNode *eN = reinterpret_cast<const InnerNode*>(e.node);
+        const SplitInfo &splitInfo = eN->getSplitInfo();
+
         // Write entry.
 
         Vec4i* dst = nodeData.getPtr(e.idx);
         dst[0] = Vec4i(floatToBits(cbox[0]->min().x), floatToBits(cbox[0]->max().x), floatToBits(cbox[0]->min().y), floatToBits(cbox[0]->max().y));
         dst[1] = Vec4i(floatToBits(cbox[1]->min().x), floatToBits(cbox[1]->max().x), floatToBits(cbox[1]->min().y), floatToBits(cbox[1]->max().y));
         dst[2] = Vec4i(floatToBits(cbox[0]->min().z), floatToBits(cbox[0]->max().z), floatToBits(cbox[1]->min().z), floatToBits(cbox[1]->max().z));
-        dst[3] = Vec4i(cidx[0], cidx[1], 0, 0);
+        //dst[3] = Vec4i(cidx[0], cidx[1], 0, 0);
+        dst[3] = Vec4i(cidx[0], cidx[1], splitInfo.getBitCode(), 0);
     }
 
     // Write to buffers.

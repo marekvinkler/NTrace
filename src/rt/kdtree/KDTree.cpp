@@ -28,6 +28,7 @@
 #include "KDTree.hpp"
 #include "NaiveKDTreeBuilder.hpp"
 #include "FastKDTreeBuilder.hpp"
+#include "Environment.h"
 
 namespace FW
 {
@@ -36,20 +37,28 @@ KDTree::KDTree(Scene* scene, const Platform& platform, const BuildParams& params
 {
 	S32 numDuplicates = 0;
 
-	if (params.builder == SpatialMedian || params.builder == ObjectMedian)
+	string builder;
+	Environment::GetSingleton()->GetStringValue("Renderer.builder", builder);
+
+    if (params.enablePrints)
+        printf("KDTree builder: %d tris, %d vertices\n", scene->getNumTriangles(), scene->getNumVertices());
+
+	if (builder == "SpatialMedianKDTree")
 	{
 		NaiveKDTreeBuilder builder(*this, params);
 		m_root = builder.run();
 		numDuplicates = builder.getNumDuplicates();
 	}
-	else if (params.builder == SAH)
+	else if (builder == "SAHKDTree")
 	{
 		FastKDTreeBuilder builder(*this, params);
 		m_root = builder.run();
 		numDuplicates = builder.getNumDuplicates();
 	}
 	else
+	{
 		FW_ASSERT(0);
+	}
 
 	if(params.stats)
     {

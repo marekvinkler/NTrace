@@ -45,11 +45,14 @@ namespace FW
  */
 enum BVH_STAT
 {
+	BVH_STAT_MAX_DEPTH,
     BVH_STAT_NODE_COUNT,
     BVH_STAT_INNER_COUNT,
     BVH_STAT_LEAF_COUNT,
     BVH_STAT_TRIANGLE_COUNT,
     BVH_STAT_CHILDNODE_COUNT,
+	BVH_STAT_OSAH_TESTED,
+	BVH_STAT_OSAH_CHOSEN
 };
 
 /**
@@ -141,6 +144,7 @@ public:
 	 * \brief Constructor.
 	 */
     BVHNode() : m_probability(1.f),m_parentProbability(1.f),m_treelet(-1),m_index(-1) {}
+	virtual ~BVHNode() {}
 
 	/**
 	 * \return Whether the node is a leaf node.
@@ -247,6 +251,7 @@ public:
 	 * \param[in] osahTested Flag whether the split was tested for OSAH.
 	 */
 	InnerNode(const AABB& bounds, BVHNode* child0, BVHNode* child1, S32 axis, SplitInfo::SplitType splitType, bool osahTested): m_splitInfo(axis, splitType, osahTested) { m_bounds=bounds; m_children[0] = child0; m_children[1] = child1; };
+	virtual ~InnerNode() {}
 
 	/**
 	 * \return Whether the node is a leaf node (always false).
@@ -265,8 +270,14 @@ public:
 	 */
     BVHNode*    getChildNode(S32 i) const       { FW_ASSERT(i>=0 && i<2); return m_children[i]; }
 
+	/**
+	 * \brief Returns the split info.
+	 * \return Information about the node's split.
+	 */
+	const SplitInfo& getSplitInfo() const       { return m_splitInfo; }
+
     BVHNode*    m_children[2];					//!< Child nodes.
-	SplitInfo   m_splitInfo;					//!< Split info.
+    SplitInfo   m_splitInfo;					//!< Split info.
 };
 
 /**
@@ -289,6 +300,7 @@ public:
 	 * \param[in] s Leaf node to copy.
 	 */
     LeafNode(const LeafNode& s)                 { *this = s; }
+	virtual ~LeafNode() {}
 
 	/**
 	 * \return Whether the node is a leaf node (always true).

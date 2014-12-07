@@ -30,8 +30,6 @@
  */
 
 #include "tools/VisualizationKDTree.hpp"
-#include "ray/PixelTable.hpp"
-#include "cuda\Renderer.hpp"
 
 using namespace FW;
 
@@ -55,109 +53,21 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-VisualizationKDTree::VisualizationKDTree(CudaKDTree* kdtree, Scene* scene, const Array<AABB> &emptyBoxes, const RayBuffer* rays, Buffer* visibility)
-:	Visualization(scene),
+VisualizationKDTree::VisualizationKDTree(CudaKDTree* kdtree, Scene* scene, const RayBuffer* rays, Buffer* visibility)
+:	Visualization(scene, rays, visibility),
 	m_kdtree(kdtree)
 {
 	m_node.box = kdtree->getBBox(); // scene bounding box
 	m_node.addr = 0;
 
-	splitNode(m_node, m_left.addr, m_right.addr, m_left.box, m_right.box, m_nodeSplit);
-
 	// Initialize m_node, m_sibling, m_left and m_right
-	//m_bvh->getNode(m_node.addr, &m_nodeSplit, m_left.box, m_right.box, m_left.addr, m_right.addr);
-	//m_node.box = m_left.box + m_right.box; // Compute the root box
-	//growParentBox();
+	splitNode(m_node, m_left.addr, m_right.addr, m_left.box, m_right.box, m_nodeSplit);
+	growParentBox();
 	m_sibling.addr = NO_NODE;
 
 	// Inititalize stacks
 	m_nodeStack.add(m_node);
 	m_splitPath.add(m_nodeSplit.getPos() + " " + m_nodeSplit.getAxisName() + ":");
-
-	// Clear the osah split counts in current node
-	memset(m_osahSplits, 0, sizeof(m_osahSplits));
-
-	// Initialize rays
-	if(rays != NULL)
-	{
-		Array<Vec4f> lines;
-		const int stride = 4096;
-
-		//PixelTable pixelTable;
-		//pixelTable.setSize(Vec2i(1024, 768));
-
-		//for(S32 i = 0; i < 1024*32; i++)
-		//{
-		//	int index = pixelTable.getPixelToIndex().getMutablePtr()[i];
-		//	Ray ray = rays->getRayForSlot(index);
-		//	float t;
-		//	if(rays->getResultForSlot(index).hit())
-		//		//t = rays->getResultForSlot(i*stride).t;
-		//		t = rays->getResultForSlot(index).padA;
-		//	else
-		//		t = ray.tmax;
-		//	lines.add(Vec4f(ray.origin, 1.0f));
-		//	lines.add(Vec4f(ray.origin + t*ray.direction, 1.0f));
-		//}
-
-		for(S32 i = 0; i < rays->getSize()/stride; i++)
-		{
-			Ray ray = rays->getRayForSlot(i*stride);
-			float t;
-			if(rays->getResultForSlot(i*stride).hit())
-				//t = rays->getResultForSlot(i*stride).t;
-				t = rays->getResultForSlot(i*stride).padA;
-			else
-				t = ray.tmax;
-			lines.add(Vec4f(ray.origin, 1.0f));
-			lines.add(Vec4f(ray.origin + t*ray.direction, 1.0f));
-		}
-
-		m_rays.resizeDiscard(lines.getNumBytes());
-		m_rays.set(lines.getPtr(), lines.getNumBytes());
-	}
-	else
-	{
-		m_showRays = false;
-	}
-
-	// Initialize empty boxes
-	Array<Vec4f> boxes, colors, lineColors, colorPalette;
-	for(int i = 0; i < emptyBoxes.getSize(); i++)
-		addBoxQuads(emptyBoxes[i], boxes);
-	m_emptyBoxes.resizeDiscard(boxes.getNumBytes());
-	m_emptyBoxes.set(boxes.getPtr(), boxes.getNumBytes());
-	// Initialize colors for empty boxes
-	/*for(int r = 1; r > -1; r--)
-		for(int g = 1; g > -1; g--)
-			for(int b = 1; b > -1; b--)*/
-	for(int r = 0; r < 2; r++)
-		for(int g = 0; g < 2; g++)
-			for(int b = 0; b < 2; b++)
-				if(r+g+b < 3)
-					colorPalette.add(Vec4f((float)r, (float)g, (float)b, 0.33f));
-	for(int i = 0; i < emptyBoxes.getSize(); i++)
-		for(int j = 0; j < 6*4; j++) // Repeate for each vertex of the box 6 faces * 4 vertices per face
-		{
-			colors.add(colorPalette[i % colorPalette.getSize()]);
-			lineColors.add(colorPalette[i % colorPalette.getSize()]);
-			lineColors.getLast().w = 1.0f;
-		}
-	m_emptyColors.resizeDiscard(colors.getNumBytes());
-	m_emptyColors.set(colors.getPtr(), colors.getNumBytes());
-	m_emptyLineColors.resizeDiscard(lineColors.getNumBytes());
-	m_emptyLineColors.set(lineColors.getPtr(), lineColors.getNumBytes());
-
-	// Initialize visibility
-	if(visibility != NULL)
-	{
-		m_visibility.set((S32*)visibility->getPtr(), scene->getNumTriangles());
-	}
-	else
-	{
-		m_visibility.reset(scene->getNumTriangles());
-		memset(m_visibility.getPtr(), 0, m_visibility.getNumBytes());
-	}
 
 	m_nodeColor = COLOR_NODE;
 	m_siblingColor = COLOR_SIBLING;
@@ -200,7 +110,6 @@ bool VisualizationKDTree::handleEvent(const Window::Event& ev)
 			if (ev.key == FW_KEY_B)									{ m_splitColors = !m_splitColors; setColorMapping(); }
 			if (ev.key == FW_KEY_J)									{ m_showChildren = !m_showChildren; }
 			if (ev.key == FW_KEY_U && m_rays.getSize() > 0)			{ m_showRays = !m_showRays; }
-			if (ev.key == FW_KEY_P && m_emptyBoxes.getSize() > 0)   { m_showEmpty = !m_showEmpty; }
 			if (ev.key == FW_KEY_O)									{ m_showCurrTris = !m_showCurrTris; prepareTreeData(m_node); }
 			if (ev.key == FW_KEY_L)									{ m_showAllOSAH = !m_showAllOSAH; prepareTreeData(m_node); }
 			if (ev.key == FW_KEY_T)									{ moveToParent(); if(m_showCurrTris || m_showAllOSAH) prepareTreeData(m_node); }
@@ -229,7 +138,6 @@ void VisualizationKDTree::moveToParent()
 	m_nodeStack[m_currentDepth] = m_node;
 	if(!m_splitPath[m_currentDepth].endsWith(":"))
 		m_splitPath[m_currentDepth] = m_splitPath[m_currentDepth].substring(0, m_splitPath[m_currentDepth].getLength()-1);
-	//(m_splitPath.get(m_currentDepth).[m_splitPath[m_currentDepth].indexOf(':')+1]) = ' ';
 	m_nodeStack.resize(m_currentDepth+1);
 	m_splitPath.resize(m_currentDepth+1);
 }
@@ -256,7 +164,7 @@ void VisualizationKDTree::moveToSibling()
 
 	// Update path
 	m_nodeStack[m_currentDepth] = m_node;
-	m_splitPath[m_currentDepth] = m_nodeSplit.getPos() + " " + m_nodeSplit.getAxisName() + ": ";
+	m_splitPath[m_currentDepth] = m_nodeSplit.getPos() + " " + m_nodeSplit.getAxisName() + ":";
 	m_nodeStack.resize(m_currentDepth+1);
 	m_splitPath.resize(m_currentDepth+1);
 	// Flip child identifier from the previous split
@@ -265,10 +173,8 @@ void VisualizationKDTree::moveToSibling()
 		m_splitPath[m_currentDepth-1] = m_splitPath[m_currentDepth-1].substring(0, m_splitPath[m_currentDepth-1].getLength()-1);
 		m_splitPath[m_currentDepth-1] = m_splitPath[m_currentDepth-1].append('R');
 	}
-	//	m_splitPath[m_currentDepth-1][m_splitPath[m_currentDepth].indexOf(':')+1] = 'R';
 	else
 	{
-	//	m_splitPath[m_currentDepth-1][m_splitPath[m_currentDepth].indexOf(':')+1] = 'L';
 		m_splitPath[m_currentDepth-1] = m_splitPath[m_currentDepth-1].substring(0, m_splitPath[m_currentDepth-1].getLength()-1);
 		m_splitPath[m_currentDepth-1] = m_splitPath[m_currentDepth-1].append('L');
 	}
@@ -294,7 +200,7 @@ void VisualizationKDTree::moveToLeft()
 		m_right.addr = NO_NODE;
 	}
 
-	//growParentBox();
+	growParentBox();
 	// Set color mapping for visible nodes
 	setColorMapping();
 
@@ -304,7 +210,7 @@ void VisualizationKDTree::moveToLeft()
 	m_splitPath.resize(m_currentDepth+1);
 	// Add to the path
 	m_nodeStack.add(m_node);
-	m_splitPath.add(m_nodeSplit.getPos() + " " + m_nodeSplit.getAxisName() + ": ");
+	m_splitPath.add(m_nodeSplit.getPos() + " " + m_nodeSplit.getAxisName() + ":");
 	m_currentDepth++;
 }
 
@@ -328,7 +234,7 @@ void VisualizationKDTree::moveToRight()
 		m_right.addr = NO_NODE;
 	}
 
-	//growParentBox();
+	growParentBox();
 	// Set color mapping for visible nodes
 	setColorMapping();
 
@@ -338,7 +244,7 @@ void VisualizationKDTree::moveToRight()
 	m_splitPath.resize(m_currentDepth+1);
 	// Add to the path
 	m_nodeStack.add(m_node);
-	m_splitPath.add(m_nodeSplit.getPos() + " " + m_nodeSplit.getAxisName() + ": ");
+	m_splitPath.add(m_nodeSplit.getPos() + " " + m_nodeSplit.getAxisName() + ":");
 	m_currentDepth++;
 }
 
@@ -375,10 +281,10 @@ void VisualizationKDTree::draw(GLContext* gl, CameraControls& camera)
 
 	Mat4f oldXform = gl->setVGXform(gl->xformFitToView(-1.0f, 2.0f) * camera.getWorldToClip());
     glPushAttrib(GL_ENABLE_BIT);
-    glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
-	glEnable(GL_CULL_FACE);
-	glFrontFace(GL_CW);
+    //glEnable(GL_DEPTH_TEST);
+	//glDepthFunc(GL_LESS);
+	//glEnable(GL_CULL_FACE);
+	//glFrontFace(GL_CW);
 
 	// Draw primary rays
 	drawRays(gl, m_rayColor);
@@ -398,8 +304,8 @@ void VisualizationKDTree::draw(GLContext* gl, CameraControls& camera)
 
 	// New Visualization, all rays are visible
 	// Render boxes and primitives without culling so everything is visible
-	glDisable(GL_DEPTH_TEST);
-	glDisable(GL_CULL_FACE);
+	//glDisable(GL_DEPTH_TEST);
+	//glDisable(GL_CULL_FACE);
 
 	// Draw boxes
 	drawNodes(gl, false);
@@ -457,7 +363,7 @@ void VisualizationKDTree::getFromIndex(S32 idx)
 		m_sibling.addr = NO_NODE;
 	}
 
-	//growParentBox();
+	growParentBox();
 	// Set color mapping for visible nodes
 	setColorMapping();
 }
@@ -497,21 +403,16 @@ void VisualizationKDTree::drawNodes(GLContext* gl, bool onlyChildren)
 	}
 
 	// Draw visible child of the OSAH split
-	if(m_showAllOSAH || m_showEmpty)
+	if(m_showAllOSAH)
 	{
 		if(!onlyChildren)
 		{
-			// Draw filled faces
-			if(m_showEmpty)
-				gl->drawColorBuffer(m_emptyBoxes, m_emptyColors, GL_QUADS, 0);
 			//glDepthFunc(GL_ALWAYS);
 
 			// Draw edges, use opaque ray color
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 			if(m_showAllOSAH)
 				gl->drawBuffer(m_boxes, GL_QUADS, 0, COLOR_RAY);
-			if(m_showEmpty)
-				gl->drawColorBuffer(m_emptyBoxes, m_emptyLineColors, GL_QUADS, 0);
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			//glDepthFunc(GL_LEQUAL);
 		}
@@ -569,28 +470,33 @@ void VisualizationKDTree::drawPathInfo(GLContext* gl)
 	Mat4f oldXform = gl->setVGXform(gl->xformMatchPixels());
 	gl->setFont("Arial", fontSize, GLContext::FontStyle_Bold);
 	
-	char leftBox[100], rightBox[100];
-	memset(leftBox, '\0', 100);
-	memset(rightBox, '\0', 100);
-	//m_left.box.min().sprint(leftBox, 100);
+	const size_t strLength = 200; // For unknown reason, for sprintf lower number is required
+	char leftBox[strLength], rightBox[strLength];
+	m_left.box.min().sprint(leftBox, strLength/2);
 	strcat_s(leftBox, ", ");
-	//m_left.box.max().sprint(leftBox + strlen(leftBox), 100-strlen(leftBox));
-	//m_right.box.min().sprint(rightBox, 100);
+	m_left.box.max().sprint(leftBox + strlen(leftBox), strLength/2-strlen(leftBox));
+	m_right.box.min().sprint(rightBox, strLength/2);
 	strcat_s(rightBox, ", ");
-	//m_right.box.max().sprint(rightBox + strlen(rightBox), 100-strlen(rightBox));
+	m_right.box.max().sprint(rightBox + strlen(rightBox), strLength/2-strlen(rightBox));
 
 	if(m_showCurrTris)
 	{
 		gl->drawLabel(sprintf("Left count: %u     Right count: %u",
 		m_leftPrims, m_rightPrims), pos, Vec2f(0.0f, 1.0f), 0xFFFFFFFF);
 		pos.y -= (F32)fontSize;
-		gl->drawLabel(sprintf("Left area: %.2f (%s)     Right area: %.2f (%s)",
-		m_left.box.area(), leftBox, m_right.box.area(), rightBox), pos, Vec2f(0.0f, 1.0f), 0xFFFFFFFF);
+		gl->drawLabel(sprintf("Left area: %.2f (%s)",
+		m_left.box.area(), leftBox), pos, Vec2f(0.0f, 1.0f), 0xFFFFFFFF);
+		pos.y -= (F32)fontSize;
+		gl->drawLabel(sprintf("Right area: %.2f (%s)",
+		m_right.box.area(), rightBox), pos, Vec2f(0.0f, 1.0f), 0xFFFFFFFF);
 	}
 	else
 	{
-		gl->drawLabel(sprintf("Left area: %.2f (%s)     Right area: %.2f (%s)",
-			m_left.box.area(), leftBox, m_right.box.area(), rightBox), pos, Vec2f(0.0f, 1.0f), 0xFFFFFFFF);
+		gl->drawLabel(sprintf("Left area: %.2f (%s)",
+		m_left.box.area(), leftBox), pos, Vec2f(0.0f, 1.0f), 0xFFFFFFFF);
+		pos.y -= (F32)fontSize;
+		gl->drawLabel(sprintf("Right area: %.2f (%s)",
+		m_right.box.area(), rightBox), pos, Vec2f(0.0f, 1.0f), 0xFFFFFFFF);
 	}
 	pos.y -= (F32)fontSize;
 	gl->drawLabel(sprintf("Current depth: %d     Path depth: %d",
@@ -653,22 +559,6 @@ void VisualizationKDTree::setColorMapping()
 		m_rightColor = COLOR_RIGHT;
 		return;
 	}
-	
-	//if(m_nodeSplit.getType() == SplitInfo::SAH)
-	//{
-	//	m_leftColor = COLOR_LEFT_SAH;
-	//	m_rightColor = COLOR_RIGHT_SAH;
-	//}
-	//else if(m_nodeSplit.getType() == SplitInfo::SBVH)
-	//{
-	//	m_leftColor = COLOR_LEFT_SVBH;
-	//	m_rightColor = COLOR_RIGHT_SVBH;
-	//}
-	//else
-	//{
-	//	m_leftColor = COLOR_LEFT_OSAH;
-	//	m_rightColor = COLOR_RIGHT_OSAH;
-	//}
 }
 
 //-----------------------------------------------------------------------
@@ -722,7 +612,6 @@ void VisualizationKDTree::prepareTreeData(NodeData node)
 						for(int j = 0; j < 3; j++)
 						{
 							const Vec3f& v = ((const Vec3f*)m_scene->getVtxPosBuffer().getPtr())[ind[j]];
-
 							ptr->add(Vec4f(v, 1.0f));
 						}
 					}
@@ -739,17 +628,6 @@ void VisualizationKDTree::prepareTreeData(NodeData node)
 				splitNode(node, child0Addr, child1Addr, child0, child1, m_nodeSplit);
 				if(m_showCurrTris && rightChild == 0)
 					rightChild = child1Addr;
-
-				if(true)/*m_showAllOSAH && splitInfo.getOSAHChosen()) */// Process split
-				{
-					//m_osahSplits[splitInfo.getAxis()]++;
-					// Compute the box
-					//AABB bbox = child0 + child1;
-					//AABB bbox = child0; // child with more visible triangles in case of OSAH split
-					//addBoxQuads(bbox, boxes);
-					addBoxQuads(child0, boxes);
-					addBoxQuads(child1, boxes);
-				}
 
 				node.addr = child0Addr;
 				stack[stackIndex++].addr = child1Addr;
@@ -778,45 +656,6 @@ void VisualizationKDTree::prepareTreeData(NodeData node)
 		m_visTris.resizeDiscard(verticesVis.getNumBytes());
 		m_visTris.set(verticesVis.getPtr(), verticesVis.getNumBytes());
 	}
-}
-
-//-----------------------------------------------------------------------
-
-void VisualizationKDTree::addBoxQuads(const AABB &box, Array<Vec4f> &buffer)
-{
-	Vec3f min = box.min();
-	Vec3f max = box.max();
-	// Add buffer as 4 quads
-	// Min x
-	buffer.add(Vec4f(min.x, min.y, min.z, 1.0f));
-	buffer.add(Vec4f(min.x, max.y, min.z, 1.0f));
-	buffer.add(Vec4f(min.x, max.y, max.z, 1.0f));
-	buffer.add(Vec4f(min.x, min.y, max.z, 1.0f));
-	// Max 
-	buffer.add(Vec4f(max.x, max.y, max.z, 1.0f));
-	buffer.add(Vec4f(max.x, max.y, min.z, 1.0f));
-	buffer.add(Vec4f(max.x, min.y, min.z, 1.0f));
-	buffer.add(Vec4f(max.x, min.y, max.z, 1.0f));
-	// Min y
-	buffer.add(Vec4f(min.x, min.y, min.z, 1.0f));
-	buffer.add(Vec4f(min.x, min.y, max.z, 1.0f));
-	buffer.add(Vec4f(max.x, min.y, max.z, 1.0f));
-	buffer.add(Vec4f(max.x, min.y, min.z, 1.0f));
-	// Max y
-	buffer.add(Vec4f(max.x, max.y, max.z, 1.0f));
-	buffer.add(Vec4f(min.x, max.y, max.z, 1.0f));
-	buffer.add(Vec4f(min.x, max.y, min.z, 1.0f));
-	buffer.add(Vec4f(max.x, max.y, min.z, 1.0f));
-	// Min z
-	buffer.add(Vec4f(min.x, min.y, min.z, 1.0f));
-	buffer.add(Vec4f(max.x, min.y, min.z, 1.0f));
-	buffer.add(Vec4f(max.x, max.y, min.z, 1.0f));
-	buffer.add(Vec4f(min.x, max.y, min.z, 1.0f));
-	// Max z
-	buffer.add(Vec4f(max.x, max.y, max.z, 1.0f));
-	buffer.add(Vec4f(max.x, min.y, max.z, 1.0f));
-	buffer.add(Vec4f(min.x, min.y, max.z, 1.0f));
-	buffer.add(Vec4f(min.x, max.y, max.z, 1.0f));
 }
 
 //------------------------------------------------------------------------

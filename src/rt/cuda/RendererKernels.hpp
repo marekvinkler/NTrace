@@ -39,6 +39,12 @@ enum
     CountHits_BlockHeight   = 8,
 };
 
+enum
+{
+    Visibility_BlockWidth    = 32,
+    Visibility_BlockHeight   = 8,
+};
+
 //------------------------------------------------------------------------
 
 struct ReconstructInput
@@ -90,6 +96,8 @@ __global__ void reconstructKernel(void);
 __constant__ CountHitsInput c_CountHitsInput;
 __device__ S32 g_CountHitsOutput;
 __global__ void countHitsKernel(void);
+
+__global__ void getVisibility(const float4* rayResults, int numRays, int* visibility);
 
 texture<float4, 2> t_textures;
 

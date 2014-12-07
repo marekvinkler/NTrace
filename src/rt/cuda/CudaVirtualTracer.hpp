@@ -21,6 +21,7 @@ public:
 
     virtual	F32			traceBatch              (RayBuffer& rays) = 0; // returns launch time in seconds
 
+protected:
 	Scene* m_scene;
 };
 

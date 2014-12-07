@@ -44,13 +44,6 @@ namespace FW
 class Renderer
 {
 public:
-	enum AccelStructType
-	{
-		tBVH = 0,
-		tPersistentBVH,
-		tKDTree
-	};
-
     enum RayType
     {
         RayType_Primary = 0,
@@ -80,11 +73,8 @@ public:
         }
     };
 
-private:
-	Environment* m_env;
-
 public:
-						Renderer			(AccelStructType as, Environment* env);
+						Renderer			();
                         ~Renderer           (void);
 
     void                setMesh             (MeshBase* mesh);
@@ -120,7 +110,7 @@ public:
 	void                toggleBVHVis        (void)					{ m_showVis = !m_showVis; m_showVis ? startBVHVis() : endBVHVis(); }
 
 	void				resetSampling		(void)					{ m_sampleCount = 0.0f; }
-	virtual Buffer&     getVisibleTriangles (S32 triangleCount, bool setValue, S32 initValue = 0); // gets the bit array of triangle visibility. If sizes do not match it is initialized
+	void                getVisibleTriangles (RayBuffer* rayBuffer);
 
 protected:
                         Renderer            (const Renderer&); // forbidden
@@ -128,7 +118,7 @@ protected:
 
 protected:
     CudaCompiler        m_compiler;
-    String              m_bvhCachePath;
+    String              m_cachePath;
     Platform            m_platform;
     BVH::BuildParams    m_buildParams;
     RayGen              m_raygen;
@@ -147,6 +137,7 @@ protected:
     F32                 m_cameraFar;
     RayBuffer           m_primaryRays;
     RayBuffer           m_secondaryRays;
+	Buffer              m_triangleVisibility;	//!< Visibility buffer
 
     bool                m_newBatch;
     RayBuffer*          m_batchRays;
@@ -155,7 +146,6 @@ protected:
 	CudaAS*				m_accelStruct;
 	CudaVirtualTracer*	m_cudaTracer;
 
-	AccelStructType		m_asType;
 	Visualization*		m_vis;
 	bool				m_showVis;
 };

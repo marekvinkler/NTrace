@@ -1,17 +1,28 @@
 /*
- *  Copyright 2009-2010 NVIDIA Corporation
+ *  Copyright (c) 2009-2011, NVIDIA Corporation
+ *  All rights reserved.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions are met:
+ *      * Redistributions of source code must retain the above copyright
+ *        notice, this list of conditions and the following disclaimer.
+ *      * Redistributions in binary form must reproduce the above copyright
+ *        notice, this list of conditions and the following disclaimer in the
+ *        documentation and/or other materials provided with the distribution.
+ *      * Neither the name of NVIDIA Corporation nor the
+ *        names of its contributors may be used to endorse or promote products
+ *        derived from this software without specific prior written permission.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ *  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ *  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ *  DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ *  DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ *  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ *  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "bvh/OcclusionBVHBuilder.hpp"
@@ -20,9 +31,6 @@
 
 using namespace FW;
 
-// Turns on split cost output to file. Testing only.
-//#define ENABLE_GRAPHS
-
 // Selects how spatial splits should be used. Intended for testing only, not as independent build methods.
 //#define BUILD_NSAH
 //#define BUILD_SSAH
@@ -30,27 +38,11 @@ using namespace FW;
 //#define BUILD_ASBVH
 //#define BUILD_VSAH
 
-#define BVH_EPSILON 0.01f
-
 //------------------------------------------------------------------------
 
-OcclusionBVHBuilder::OcclusionBVHBuilder(BVH& bvh, const BVH::BuildParams& params, const Vec3f& cameraPosition)
+OcclusionBVHBuilder::OcclusionBVHBuilder(BVH& bvh, const BVH::BuildParams& params)
 :   SplitBVHBuilder (bvh, params), m_MaxVisibleDepth(48)
 {
-	m_cameraPos = cameraPosition;
-
-	if(m_params.visibility != NULL)
-	{
-		const U8* ptr = m_params.visibility->getPtr();
-		for(S32 i = 0; i < m_params.visibility->getSize(); i++) // For each byte
-		{
-			for(S32 j = 0; j < 8; j++) // For each bit
-			{
-				m_visibility.add((*ptr) & (1<<j));
-			}
-		}
-	}
-
 	// Other options
 	// - Extend Array class so that it can operate on not owned arrays
 	// - New Buffer class that will prevent reallocation from dirtying other device memories
@@ -111,8 +103,8 @@ BVHNode* OcclusionBVHBuilder::run(void)
 			for (int j = 0; j < 3; j++)
 				m_refStack[last].bounds.grow(verts[tris[i][j]]);
 			// Inflate the basic boxes so that box intersections are correct
-			m_refStack[last].bounds.min() -= BVH_EPSILON;
-			m_refStack[last].bounds.max() += BVH_EPSILON;
+			//m_refStack[last].bounds.min() -= BVH_EPSILON;
+			//m_refStack[last].bounds.max() += BVH_EPSILON;
 			rootSpec.bounds.grow(m_refStack[last].bounds);
 
 			//if(m_refStack[i].numVisible)
@@ -146,9 +138,7 @@ BVHNode* OcclusionBVHBuilder::run(void)
 
 		// Build recursively.
 
-		BVHNode* root;
-		root = buildNode(rootSpec, 0, rootSpec.numRef-1, 0, 0.0f, 1.0f);
-
+		BVHNode* root = buildNode(rootSpec, 0, rootSpec.numRef-1, 0, 0.0f, 1.0f);
 		m_bvh.getTriIndices().compact();
 
 		// Done.
@@ -191,8 +181,8 @@ BVHNode* OcclusionBVHBuilder::run(void)
 			for (int j = 0; j < 3; j++)
 				m_refStack[i].bounds.grow(verts[tris[m_refStack[i].triIdx][j]]);
 			// Inflate the basic boxes so that box intersections are correct
-			m_refStack[i].bounds.grow(m_refStack[i].bounds.min()-BVH_EPSILON);
-			m_refStack[i].bounds.grow(m_refStack[i].bounds.max()+BVH_EPSILON);
+			//m_refStack[i].bounds.grow(m_refStack[i].bounds.min()-BVH_EPSILON);
+			//m_refStack[i].bounds.grow(m_refStack[i].bounds.max()+BVH_EPSILON);
 
 			if(m_visibility[i])
 				visibleSpec.bounds.grow(m_refStack[i].bounds);
@@ -216,8 +206,6 @@ BVHNode* OcclusionBVHBuilder::run(void)
 		// Build recursively.
 
 		BVHNode* visible;
-		// TODO: Works the same?!
-		//visible = SplitBVHBuilder::buildNode(visibleSpec, invisibleSpec.numRef, rootSpec.numRef-1, 0, 0.0f, 1.0f);
 		visible = SplitBVHBuilder::buildNode(visibleSpec, rootSpec.numRef - 1, 0.0f, 1.0f);
 
 		// Done.
@@ -242,8 +230,6 @@ BVHNode* OcclusionBVHBuilder::run(void)
 		// Build recursively.
 
 		BVHNode* invisible;
-		// TODO: Works the same?
-		//invisible = SplitBVHBuilder::buildNode(invisibleSpec, 0, invisibleSpec.numRef-1, 0, 0.0f, 1.0f);
 		invisible = SplitBVHBuilder::buildNode(invisibleSpec, invisibleSpec.numRef-1, 0.0f, 1.0f);
 
 		// Done.
@@ -255,28 +241,6 @@ BVHNode* OcclusionBVHBuilder::run(void)
 		m_bvh.getTriIndices().compact();
 		return new InnerNode(visibleSpec.bounds + invisibleSpec.bounds, visible, invisible, 0, SplitInfo::SAH, false);
 	}
-}
-
-//------------------------------------------------------------------------
-
-bool OcclusionBVHBuilder::sortCompare(void* data, int idxA, int idxB)
-{
-    const OcclusionBVHBuilder* ptr = (const OcclusionBVHBuilder*)data;
-    int dim = ptr->m_sortDim;
-    const Reference& ra = ptr->m_refStack[idxA];
-    const Reference& rb = ptr->m_refStack[idxB];
-    F32 ca = ra.bounds.min()[dim] + ra.bounds.max()[dim];
-    F32 cb = rb.bounds.min()[dim] + rb.bounds.max()[dim];
-    return (ca < cb || (ca == cb && ra.triIdx < rb.triIdx));
-}
-
-//------------------------------------------------------------------------
-
-void OcclusionBVHBuilder::sortSwap(void* data, int idxA, int idxB)
-{
-    OcclusionBVHBuilder* ptr = (OcclusionBVHBuilder*)data;
-    swap(ptr->m_refStack[idxA], ptr->m_refStack[idxB]);
-	swap(ptr->m_visibility[idxA], ptr->m_visibility[idxB]);
 }
 
 //------------------------------------------------------------------------
@@ -294,10 +258,7 @@ BVHNode* OcclusionBVHBuilder::buildNode(const NodeSpecOcl& spec, int start, int 
 
     // Small enough or too deep => create leaf.
 	
-	// TODO: Works the same?
-	/*if (level != 0 && spec.numRef <= m_platform.getMinLeafSize() || level >= MaxDepth) // Make sure we do not make the root a leaf -> GPU traversal will fail
-		return createLeaf(spec, start, end);*/
-	if (level != 0 && spec.numRef <= m_platform.getMinLeafSize() || level >= MaxDepth)
+	if (level != 0 && spec.numRef <= m_platform.getMinLeafSize() || level >= MaxDepth) // Make sure we do not make the root a leaf -> GPU traversal will fail
 		return createLeaf(spec);
 
     // Find split candidates.
@@ -354,9 +315,6 @@ BVHNode* OcclusionBVHBuilder::buildNode(const NodeSpecOcl& spec, int start, int 
     // Leaf SAH is the lowest => create leaf.
 
     F32 minSAH = min(leafSAH, object.sah, spatial.sah);
-	// TODO: Works the same?
-    /*if (level != 0 && minSAH == leafSAH && spec.numRef <= m_platform.getMaxLeafSize()) // Make sure we do not make the root a leaf -> GPU traversal will fail
-		return createLeaf(spec, start, end);*/
     if (level != 0 && minSAH == leafSAH && spec.numRef <= m_platform.getMaxLeafSize()) // Make sure we do not make the root a leaf -> GPU traversal will fail
 		return createLeaf(spec);
 

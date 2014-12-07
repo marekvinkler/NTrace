@@ -29,35 +29,36 @@
 #include "bvh/SplitBVHBuilder.hpp"
 #include "bvh/SAHBVHBuilder.hpp"
 #include "bvh/OcclusionBVHBuilder.hpp"
-#include "bvh/HLBVH/HLBVHBuilder.hpp"
+#include "Environment.h"
 
 using namespace FW;
 
-BVH::BVH(Scene* scene, const Platform& platform, const BuildParams& params, Environment* env, const string& builder) : AccelerationStructure(scene, platform)
+BVH::BVH(Scene* scene, const Platform& platform, const BuildParams& params) : AccelerationStructure(scene, platform)
 {
-	m_env = env;
-	
-	string bvhBuilder = builder;
-	if (builder == "")
-	{
-		m_env->GetStringValue("BVHBuilder", bvhBuilder);
-	}
+	string builder;
+	Environment::GetSingleton()->GetStringValue("Renderer.builder", builder);
 
     if (params.enablePrints)
         printf("BVH builder: %d tris, %d vertices\n", scene->getNumTriangles(), scene->getNumVertices());
 
-	if (bvhBuilder == "SplitBVH")
+	Timer timer(true);
+	if (builder == "SplitBVH")
 	{
 		m_root = SplitBVHBuilder(*this, params).run();
 	}
-	else if (bvhBuilder == "SAHBVH")
+	else if (builder == "SAHBVH")
 	{
 		m_root = SAHBVHBuilder(*this, params).run();
 	}
-	else if (bvhBuilder == "OcclusionBVH")
+	else if (builder == "OcclusionBVH")
 	{
-		m_root = OcclusionBVHBuilder(*this, params, FW::Vec3f(0.0f, 0.0f, 0.0f)).run();
+		m_root = OcclusionBVHBuilder(*this, params).run();
 	}
+	else
+	{
+		fail("Unsupported BVH builder %s\n", builder.c_str());
+	}
+	F32 time = timer.getElapsed();
 
     if (params.enablePrints)
         printf("BVH: Scene bounds: (%.1f,%.1f,%.1f) - (%.1f,%.1f,%.1f)\n", m_root->m_bounds.min().x, m_root->m_bounds.min().y, m_root->m_bounds.min().z,
@@ -72,10 +73,14 @@ BVH::BVH(Scene* scene, const Platform& platform, const BuildParams& params, Envi
     {
         params.stats->SAHCost           = sah;
         params.stats->branchingFactor   = 2;
+		params.stats->maxDepth          = m_root->getSubtreeSize(BVH_STAT_MAX_DEPTH);
         params.stats->numLeafNodes      = m_root->getSubtreeSize(BVH_STAT_LEAF_COUNT);
         params.stats->numInnerNodes     = m_root->getSubtreeSize(BVH_STAT_INNER_COUNT);
         params.stats->numTris           = m_root->getSubtreeSize(BVH_STAT_TRIANGLE_COUNT);
         params.stats->numChildNodes     = m_root->getSubtreeSize(BVH_STAT_CHILDNODE_COUNT);
+		params.stats->numOSAHTested     = m_root->getSubtreeSize(BVH_STAT_OSAH_TESTED);
+		params.stats->numOSAHChosen     = m_root->getSubtreeSize(BVH_STAT_OSAH_CHOSEN);
+		params.stats->buildTime         = time;
     }
 }
 

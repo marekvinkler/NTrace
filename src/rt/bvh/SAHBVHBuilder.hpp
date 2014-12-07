@@ -1,17 +1,28 @@
 /*
- *  Copyright 2009-2010 NVIDIA Corporation
+ *  Copyright (c) 2009-2011, NVIDIA Corporation
+ *  All rights reserved.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions are met:
+ *      * Redistributions of source code must retain the above copyright
+ *        notice, this list of conditions and the following disclaimer.
+ *      * Redistributions in binary form must reproduce the above copyright
+ *        notice, this list of conditions and the following disclaimer in the
+ *        documentation and/or other materials provided with the distribution.
+ *      * Neither the name of NVIDIA Corporation nor the
+ *        names of its contributors may be used to endorse or promote products
+ *        derived from this software without specific prior written permission.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ *  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ *  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ *  DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ *  DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ *  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ *  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 /**
@@ -21,12 +32,7 @@
 
 #pragma once
 #include "bvh/BVH.hpp"
-#include "cuda/CudaBVH.hpp"
 #include "base/Timer.hpp"
-
-//#define BVH_EPSILON 0.00001f
-#define BVH_EPSILON 0.001f // PowerPlant
-//#define BVH_EPSILON 0.01f
 
 namespace FW
 {
@@ -44,7 +50,7 @@ protected:
 	 */
     enum
     {
-        MaxDepth        = 64,
+        MaxDepth        = 64					//!< Maximum depth of the BVH tree.
     };
 
 	/**
@@ -112,8 +118,6 @@ public:
     virtual BVHNode*        run							(void);
 
 protected:
-    //static int              sortCompare					(void* data, int idxA, int idxB);
-
 	/**
 	 * \brief Sort comparator. Sorts references according to their position in descending order. For details see framework/base.Sort.hpp.
 	 * \return True if idxB should go before idxA.
@@ -133,19 +137,7 @@ protected:
 	 * \param[in] progressEnd Percentage of already built subtree including node's subtree.
 	 * \return Built node.
 	 */
-    BVHNode*                buildNode					(const NodeSpec& spec, int level, F32 progressStart, F32 progressEnd);
-
-	/**
-	 * \brief Builds a node. The built node may be an inner node as well as leaf node. Processes specific part of the reference stack.
-	 * \param[in] spec Specifications of the node.
-	 * \param[in] start Processes reference stack section starting from this position.
-	 * \param[in] end Processes reference stack section ending in this position.
-	 * \param[in] level Level of the node in the tree.
-	 * \param[in] proggressStart Percentage of already built subtree.
-	 * \param[in] progressEnd Percentage of already built subtree including node's subtree.
-	 * \return Built node.
-	 */
-	BVHNode*                buildNode					(const NodeSpec& spec, int start, int end, int level, F32 progressStart, F32 progressEnd);
+    BVHNode*                buildNode					(NodeSpec& spec, int level, F32 progressStart, F32 progressEnd);
 
 	/**
 	 * \brief Builds a leaf node.
@@ -153,15 +145,6 @@ protected:
 	 * \return Built leaf node.
 	 */
     BVHNode*                createLeaf					(const NodeSpec& spec);
-
-	/**
-	 * \brief Builds a leaf node. Processes specific part of the reference stack.
-	 * \param[in] spec Specifications of the node.
-	 * \param[in] start Processes reference stack section starting from this position.
-	 * \param[in] end Processes reference stack section ending in this position.
-	 * \return Built leaf node.
-	 */
-	BVHNode*                createLeaf					(const NodeSpec& spec, int start, int end);
 
 	/** 
 	 * \brief Finds the best object split of the node.
@@ -172,15 +155,6 @@ protected:
     ObjectSplit             findObjectSplit				(const NodeSpec& spec, F32 nodeSAH);
 
 	/** 
-	 * \brief Finds the best object split of the node.
-	 * \param[in] start Processes reference stack section starting from this position.
-	 * \param[in] end Processes reference stack section ending in this position.
-	 * \param[in] nodeSAH Cost of the split without the cost of the triangles.
-	 * \return Found split.
-	 */
-	ObjectSplit				findObjectSplit				(int start, int end, F32 nodeSAH);
-
-	/** 
 	 * \brief Performs the split operation.
 	 * \param[out] left Left child node specification.
 	 * \param[out] right Right child node specification.
@@ -189,21 +163,11 @@ protected:
 	 */
     void                    performObjectSplit			(NodeSpec& left, NodeSpec& right, const NodeSpec& spec, const ObjectSplit& split);
 
-	/**
-	 * \brief Performs the split operation.
-	 * \param[out] left Left child node specification.
-	 * \param[out] right Right child node specification.
-	 * \param[in] start Processes reference stack section starting from this position.
-	 * \param[in] end Processes reference stack section ending in this position.
-	 * \param[in] split Split information.
-	 */
-	void                    performObjectSplit			(NodeSpec& left, NodeSpec& right, const NodeSpec& spec, int start, int end, const ObjectSplit& split);
-
 private:
                             SAHBVHBuilder				(const SAHBVHBuilder&); // forbidden
     SAHBVHBuilder&          operator=					(const SAHBVHBuilder&); // forbidden
 
-protected:	
+protected:
     BVH&                    m_bvh;						//!< BVH being built.
     const Platform&         m_platform;					//!< Platform settings.
     const BVH::BuildParams& m_params;					//!< Build parameters.

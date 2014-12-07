@@ -1,5 +1,5 @@
 /* 
- *  Copyright (c) 2013, FI MUNI CZ
+ *  Copyright (c) 2013, Faculty of Informatics, Masaryk University
  *  All rights reserved.
  *  
  *  Redistribution and use in source and binary forms, with or without
@@ -25,6 +25,7 @@
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *  Authors:
+ *  Tomas Kopal, 1996
  *  Vilem Otte <vilem.otte@post.cz>
  *
  */

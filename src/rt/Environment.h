@@ -1,5 +1,5 @@
 /* 
- *  Copyright (c) 2013, FI MUNI CZ
+ *  Copyright (c) 2013, Faculty of Informatics, Masaryk University
  *  All rights reserved.
  *  
  *  Redistribution and use in source and binary forms, with or without
@@ -25,6 +25,7 @@
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *  Authors:
+ *  Tomas Kopal, 1996
  *  Vilem Otte <vilem.otte@post.cz>
  *
  */
@@ -41,6 +42,8 @@
 #include <string.h>
 
 using namespace std;
+
+char *GetPath(const char *s);
 
 /** 
   * Enumeration type used to distinguish the type of env-var
@@ -254,6 +257,16 @@ public:
       * @return None
       **/
     virtual void SetStaticOptions();
+
+	bool Parse(const int argc, char **argv, bool useExePath, char* overridePath = NULL, const char* overrideDefault = "default.env");
+
+	void CodeString(char *buff, int max);
+
+	void DecodeString(char *buff, int max);
+
+	void SaveCodedFile(char *filenameText, char *filenameCoded);
+
+	virtual void RegisterOptions() = 0;
 
     /** Method for registering new option.
       * Using this method is possible to register new option with it's name, type,
