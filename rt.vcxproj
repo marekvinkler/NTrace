@@ -258,7 +258,7 @@
     <ClCompile Include="src\rt\cuda\CudaKDTree.cpp" />
     <ClCompile Include="src\rt\cuda\CudaKDTreeTracer.cpp" />
     <ClCompile Include="src\rt\cuda\CudaPersistentBVHTracer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\rt\cuda\CudaRenderer.cpp" />

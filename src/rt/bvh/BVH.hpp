@@ -64,7 +64,10 @@ struct RayStats
     S32         numNodeTests;			//!< Total number of ray-node tests.
     S32         numTreelets;			//!< Total number of traversal steps.
     Platform    platform;				//!< Platform settings of the BVH. Set by whoever sets the stats.
-
+	U32			numLeavesVisited;
+	U32			numEmptyLeavesVisited;
+	U32			numFailedTriangleTests;
+	U32			numSuccessTriangleTestsOutside;
 };
 
 /**

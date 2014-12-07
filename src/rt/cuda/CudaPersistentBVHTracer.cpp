@@ -3,6 +3,7 @@
 #include "base/Random.hpp"
 #include "CudaPersistentBVHTracer.hpp"
 #include "kernels/CudaTracerKernels.hpp"
+#include "persistentbvh/CudaBuilderKernels.hpp"
 #include "../AppEnvironment.h"
 
 #define TASK_SIZE 150000
@@ -22,8 +23,10 @@ using namespace FW;
 #include "kernels/thrustTest.hpp"
 #endif
 
+ofstream Debug;
+
 // Alignment to multiply of S
-template<typename T, int  S6
+template<typename T, int S>
 T align(T a)
 {
 	 return (a+S-1) & -S;
@@ -31,7 +34,7 @@ T align(T a)
 
 //------------------------------------------------------------------------
 
-CudaPersistentBVHTracer::CudaPersistentBVHTracer(Scene& scene, F32 epsilon) : m_epsilon(epsilon)
+CudaPersistentBVHTracer::CudaPersistentBVHTracer(Scene& scene, F32 epsilon) : CudaBVH(BVHLayout_Compact), m_epsilon(epsilon)
 {
 	// init
 	CudaModule::staticInit();
@@ -46,96 +49,44 @@ CudaPersistentBVHTracer::CudaPersistentBVHTracer(Scene& scene, F32 epsilon) : m_
 
 	m_numTris = scene.getTriVtxIndexBuffer().getSize() / sizeof(Vec3i);
 	m_numVerts          = m_numTris * 3;
-	m_numMaterials      = 1;
-	m_numShadingNormals = m_numVerts;
-	m_numTextureCoords  = m_numVerts;
-	m_bbox = scene.box;
 	
-	m_tris.resizeDiscard(m_numTris * sizeof(SceneTriangle));
-	m_triNormals.resizeDiscard(m_numTris * sizeof(Vec3f));
-	//m_verts.resizeDiscard(m_numVerts * sizeof(Vec3f));
-	m_materials.resizeDiscard(m_numMaterials * sizeof(Material));
-	m_shadingNormals.resizeDiscard(m_numVerts * sizeof(Vec3f));
-	m_shadedColor.resizeDiscard(m_numTris * sizeof(Vec3f));
-	m_materialColor.resizeDiscard(m_numTris * sizeof(Vec3f));
-	//m_textureCoords.resizeDiscard(m_numTextureCoords * sizeof(Vec2f));
-	//m_trisBox.resizeDiscard(m_numTris * sizeof(CudaAABB));
+	m_tris.resizeDiscard(m_numTris * sizeof(Vec3i));
 
 	m_trisCompact.resizeDiscard(m_numTris * 3 * sizeof(Vec4f));
 	m_trisIndex.resizeDiscard(m_numTris * sizeof(S32));
 
-	SceneTriangle* tout  = (SceneTriangle*)m_tris.getMutablePtr();
-	Vec3f*         nout = (Vec3f*)m_triNormals.getMutablePtr();
-	//Vec3f*         vout  = (Vec3f*)m_verts.getMutablePtr();
-	Material*      mout  = (Material*)m_materials.getMutablePtr();
-	Vec3f*         snout = (Vec3f*)m_shadingNormals.getMutablePtr();
-	U32*           scout = (U32*)m_shadedColor.getMutablePtr();
-	U32*           mcout = (U32*)m_materialColor.getMutablePtr();
-	//Vec2f*         uvout = (Vec2f*)m_textureCoords.getMutablePtr();
-	//CudaAABB*      bout  = (CudaAABB*)m_trisBox.getMutablePtr();
+	Vec3i*			tout  = (Vec3i*)m_tris.getMutablePtr();
 
 	Vec4f* tcout  = (Vec4f*)m_trisCompact.getMutablePtr();
 	S32*   tiout  = (S32*)m_trisIndex.getMutablePtr();
 
-	// load vertices
+	m_bboxMin = Vec3f(2e30f);
+	m_bboxMax = Vec3f(-2e30f);
+
+	// Load vertices
 	for (int i = 0; i < m_numTris; i++)
 	{
-		Triangle& tris = *scene.triangles[i];
-		for(int j = 0; j < 3; j++)
-		{			
-			//vout[i*3+j]  = Vec3f(tris.vertices[j].x,tris.vertices[j].y,tris.vertices[j].z);
-			snout[i*3+j] = Vec3f(tris.normals[j].x,tris.normals[j].y,tris.normals[j].z);
-			//uvout[i*3+j] = Vec2f(tris.uvs[j].xx,tris.uvs[j].yy);
-
-			*tcout = Vec4f(tris.vertices[j].x,tris.vertices[j].y,tris.vertices[j].z,0);
-			tcout++;
-		}
-
-		/*Vec3f minV = min(vout[i*3+0], vout[i*3+1], vout[i*3+2]);
-		bout[i].m_mn = make_float3(minV.x, minV.y, minV.z);
-		Vec3f maxV = max(vout[i*3+0], vout[i*3+1], vout[i*3+2]);
-		bout[i].m_mx = make_float3(maxV.x, maxV.y, maxV.z);*/
+		Vec3i& tri = ((Vec3i*)scene.getTriVtxIndexBuffer().getPtr())[i];
+		Vec3f& a = ((Vec3f*)scene.getVtxPosBuffer().getPtr())[tri.x];
+		Vec3f& b = ((Vec3f*)scene.getVtxPosBuffer().getPtr())[tri.y];
+		Vec3f& c = ((Vec3f*)scene.getVtxPosBuffer().getPtr())[tri.z];
+		*tcout = Vec4f(a.x, a.y, a.z, 0.0f); tcout++;
+		*tcout = Vec4f(b.x, b.y, b.z, 0.0f); tcout++;
+		*tcout = Vec4f(c.x, c.y, c.z, 0.0f); tcout++;
+		
+		m_bboxMin = FW::min(m_bboxMin, a);
+		m_bboxMin = FW::min(m_bboxMin, b);
+		m_bboxMin = FW::min(m_bboxMin, c);
+		m_bboxMax = FW::max(m_bboxMax, a);
+		m_bboxMax = FW::max(m_bboxMax, b);
+		m_bboxMax = FW::max(m_bboxMax, c);
 	}
 
-	// default material
-	Material m;
-	m.diffuse      = Vec3f(1.0f,1.0f,1.0f);
-	m.specular     = Vec3f(0.0f,0.0f,0.0f);
-	m.type         = MeshBase::Material::MaterialType_Phong;
-	m.texID        = -1; // no texture
-	m.gloss_alpha  = Vec2f(0.0f, 0.f);
-	mout[0] = m;
-
-	unsigned int matid = 1;
-
 	// load triangles
-	Vec4f defaultColor(1.0f,1.0f,1.0f,1.0f);
 	for(int i=0,j=0;i<m_numTris;i++,j+=3)
 	{
 		// triangle data
-		tout->vertices = Vec3i(j,j+1,j+2);
-		Triangle& tris = *scene.triangles[i];
-		Vector3 normalVec = tris.GetNormal();
-		tout->normal = Vec3f(normalVec.x,normalVec.y,normalVec.z);
-		*nout = tout->normal;
-
-		// material
-		Material* mat;
-		mat = &mout[0];
-		matid = 0;
-		
-		Vec4f diffuseColor(mat->diffuse,1.0f);
-		tout->materialColor = diffuseColor.toABGR();
-		tout->shadedColor = Vec4f( diffuseColor.getXYZ() * (dot(tout->normal, light) * 0.5f + 0.5f), 1.0f).toABGR();
-		tout->materialId = matid;
-
-		*scout = tout->shadedColor;
-		*mcout = tout->materialColor;
-		scout++;
-		mcout++;
-
-		tout++;
-		nout++;
+		tout[i] = Vec3i(j,j+1,j+2);
 	}
 
 	m_sizeTask = 0.f;
@@ -146,7 +97,7 @@ CudaPersistentBVHTracer::CudaPersistentBVHTracer(Scene& scene, F32 epsilon) : m_
 	m_heap = 0.f;
 }
 
-F32 CudaNoStructTracer::buildBVH(bool sbvh)
+F32 CudaPersistentBVHTracer::buildBVH(bool sbvh)
 {
 #ifdef MALLOC_SCRATCHPAD
 	// Set the memory limit according to triangle count
@@ -238,7 +189,7 @@ F32 CudaNoStructTracer::buildBVH(bool sbvh)
 	return m_gpuTime;
 }
 
-F32 CudaNoStructTracer::traceBatchBVH(RayBuffer& rays, RayStats* stats)
+F32 CudaPersistentBVHTracer::traceBatchBVH(RayBuffer& rays, RayStats* stats)
 {
 #ifdef TRACE_L1
 	// Set compiler options
@@ -271,8 +222,8 @@ F32 CudaNoStructTracer::traceBatchBVH(RayBuffer& rays, RayStats* stats)
 	m_module = m_compiler.compile();
 	failIfError();
 
-	CUfunction queryKernel = m_module->getKernel("queryConfig");
-    if (!queryKernel)
+	CudaKernel queryKernel = m_module->getKernel("queryConfig");
+	if (!queryKernel.getHandle())
         fail("Config query kernel not found!");
 
     // Initialize config with default values.
@@ -284,15 +235,15 @@ F32 CudaNoStructTracer::traceBatchBVH(RayBuffer& rays, RayStats* stats)
 
     // Query config.
 
-    m_module->launchKernel(queryKernel, 1, 1);
+	queryKernel.launch(1, 1);
     kernelConfig = *(const KernelConfig*)m_module->getGlobal("g_config").getPtr();
 
-	CUfunction kernel;
+	CudaKernel kernel;
 	if(stats != NULL)
 		kernel = m_module->getKernel("trace_stats");
 	else
 		kernel = m_module->getKernel("trace");
-	if (!kernel)
+	if (!kernel.getHandle())
 		fail("Trace kernel not found!");
 
 	KernelInput& in = *(KernelInput*)m_module->getGlobal("c_in").getMutablePtr();
@@ -352,7 +303,7 @@ F32 CudaNoStructTracer::traceBatchBVH(RayBuffer& rays, RayStats* stats)
 	}
 
 	// Launch.
-	F32 launchTime = m_module->launchKernelTimed(kernel, blockSize, gridSize);
+	F32 launchTime = kernel.launchTimed(blockSize, gridSize);
 
 	if(stats != NULL)
 	{
@@ -377,7 +328,7 @@ F32 CudaNoStructTracer::traceBatchBVH(RayBuffer& rays, RayStats* stats)
 	return launchTime;
 }
 
-void CudaNoStructTracer::updateConstants()
+void CudaPersistentBVHTracer::updateConstants()
 {
 	RtEnvironment& cudaEnv = *(RtEnvironment*)m_module->getGlobal("c_env").getMutablePtr();
 
@@ -423,15 +374,17 @@ void CudaNoStructTracer::updateConstants()
 
 	Environment::GetSingleton()->GetIntValue("SubdivisionRayCaster.subtreeLimit", cudaEnv.subtreeLimit);
 
-	cudaEnv.subdivThreshold = (m_bbox.SurfaceArea() / (float)m_numRays) * ((float)cudaEnv.optCt/10.0f);
-
+	Vec3f d = m_bboxMax - m_bboxMin;
+	Vec3f d_s = Vec3f(d.x, d.x, d.y) * Vec3f(d.y, d.z, d.z);
+	cudaEnv.subdivThreshold = ((d_s.x + d_s.y + d_s.z) / (float)m_numRays) * ((float)cudaEnv.optCt/10.0f);
+	
 	cudaEnv.epsilon = m_epsilon;
 	//cudaEnv.epsilon = 0.f;
 }
 
 //------------------------------------------------------------------------
 
-int CudaNoStructTracer::warpSubtasks(int threads)
+int CudaPersistentBVHTracer::warpSubtasks(int threads)
 {
 	//return (threads + WARP_SIZE - 1) / WARP_SIZE;
 	return max((threads + WARP_SIZE - 1) / WARP_SIZE, 1); // Do not create empty tasks - at least on warp gets to clean this task
@@ -439,7 +392,7 @@ int CudaNoStructTracer::warpSubtasks(int threads)
 
 //------------------------------------------------------------------------
 
-int CudaNoStructTracer::floatToOrderedInt(float floatVal)
+int CudaPersistentBVHTracer::floatToOrderedInt(float floatVal)
 {
 	int intVal = *((int*)&floatVal);
 	return (intVal >= 0) ? intVal : intVal ^ 0x7FFFFFFF;
@@ -447,7 +400,7 @@ int CudaNoStructTracer::floatToOrderedInt(float floatVal)
 
 //------------------------------------------------------------------------
 
-void CudaNoStructTracer::initPool(int numRays, Buffer* rayBuffer, Buffer* nodeBuffer)
+void CudaPersistentBVHTracer::initPool(int numRays, Buffer* rayBuffer, Buffer* nodeBuffer)
 {
 	// Prepare the task data
 	updateConstants();
@@ -480,7 +433,7 @@ void CudaNoStructTracer::initPool(int numRays, Buffer* rayBuffer, Buffer* nodeBu
 #ifdef TEST_TASKS
 	m_taskData.setOwner(Buffer::Cuda, true); // Make CUDA the owner so that CPU memory is never allocated
 #ifdef BENCHMARK
-	m_taskData.clearRange32(0, TaskHeader_Empty, TASK_SIZE * sizeof(int)); // Mark all tasks as empty
+	m_taskData.clearRange(0, TaskHeader_Empty, TASK_SIZE * sizeof(int)); // Mark all tasks as empty
 #else
 	m_taskData.clearRange32(0, TaskHeader_Empty, TASK_SIZE * (sizeof(int)+sizeof(Task))); // Mark all tasks as empty (important for debug)
 #endif
@@ -519,7 +472,7 @@ void CudaNoStructTracer::initPool(int numRays, Buffer* rayBuffer, Buffer* nodeBu
 
 //------------------------------------------------------------------------
 
-void CudaNoStructTracer::deinitPool(int numRays)
+void CudaPersistentBVHTracer::deinitPool(int numRays)
 {
 	m_ppsTris.reset();
 	m_ppsTrisIndex.reset();
@@ -535,7 +488,7 @@ void CudaNoStructTracer::deinitPool(int numRays)
 
 //------------------------------------------------------------------------
 
-void CudaNoStructTracer::printPoolHeader(TaskStackBase* tasks, int* header, int numWarps, FW::String state)
+/*void CudaPersistentBVHTracer::printPoolHeader(TaskStackBase* tasks, int* header, int numWarps, FW::String state)
 {
 #if PARALLELISM_TEST >= 0
 	numActive = *(int*)m_module->getGlobal("g_numActive").getPtr();
@@ -606,8 +559,6 @@ void CudaNoStructTracer::printPoolHeader(TaskStackBase* tasks, int* header, int 
 		Debug << tasks->empty[i];
 	}
 
-	/*for(int i = 0; i < EMPTY_MAX+1; i++)
-		Debug << tasks->empty[i] << " ";*/
 	Debug << "\n" << "\n";
 
 	int emptyItems = 0;
@@ -636,11 +587,11 @@ void CudaNoStructTracer::printPoolHeader(TaskStackBase* tasks, int* header, int 
 
 	Debug << "\n\nEmptyItems = " << emptyItems << "\n";
 	Debug << "BellowEmpty = " << bellowEmpty << "\n";
-}
+}*/
 
 //------------------------------------------------------------------------
 
-void CudaNoStructTracer::printPool(TaskStackBVH &tasks, int numWarps)
+/*void CudaPersistentBVHTracer::printPool(TaskStackBVH &tasks, int numWarps)
 {
 #ifdef LEAF_HISTOGRAM
 	printf("Leaf histogram\n");
@@ -795,7 +746,7 @@ void CudaNoStructTracer::printPool(TaskStackBVH &tasks, int numWarps)
 
 //------------------------------------------------------------------------
 
-void CudaNoStructTracer::printPool(TaskStack &tasks, int numWarps)
+void CudaPersistentBVHTracer::printPool(TaskStack &tasks, int numWarps)
 {
 	tasks = *(TaskStack*)m_module->getGlobal("g_taskStack").getPtr();
 	int* header = (int*)m_taskData.getPtr();
@@ -1027,15 +978,15 @@ void CudaNoStructTracer::printPool(TaskStack &tasks, int numWarps)
 #endif
 
 	Debug << "max_queue_length = " << stackMax << "\n\n" << "\n";
-}
+}*/
 
 //------------------------------------------------------------------------
 
-F32 CudaNoStructTracer::buildCudaBVH()
+F32 CudaPersistentBVHTracer::buildCudaBVH()
 {
-	CUfunction kernel;
+	CudaKernel kernel;
 	kernel = m_module->getKernel("build");
-	if (!kernel)
+	if (!kernel.getHandle())
 		fail("Build kernel not found!");
 
 #ifdef MALLOC_SCRATCHPAD
@@ -1134,8 +1085,8 @@ F32 CudaNoStructTracer::buildCudaBVH()
 #endif
 
 	CudaAABB bbox;
-	memcpy(&bbox.m_mn, &m_bbox.min, sizeof(float3));
-	memcpy(&bbox.m_mx, &m_bbox.max, sizeof(float3));
+	memcpy(&bbox.m_mn, &m_bboxMin, sizeof(float3));
+	memcpy(&bbox.m_mx, &m_bboxMax, sizeof(float3));
 
 	// Set parent task containing all the work
 	TaskBVH all;
@@ -1159,8 +1110,8 @@ F32 CudaNoStructTracer::buildCudaBVH()
 	all.parentIdx    = -1;
 	all.nodeIdx      = 0;
 	all.taskID       = 0;
-	Vector3 size     = m_bbox.Diagonal();
-	all.axis         = size.MajorAxis();
+	Vec3f size     = m_bboxMax - m_bboxMin;
+	all.axis         = size.x > size.y ? (size.x > size.z ? 0 : 2) : (size.y > size.z ? 1 : 2);
 	all.terminatedBy = TerminatedBy_None;
 #ifdef DEBUG_INFO
 	all.sync         = 0;
@@ -1265,7 +1216,7 @@ F32 CudaNoStructTracer::buildCudaBVH()
 	in.debug = m_debug.getMutableCudaPtr();
 
 	// Launch.
-	float tKernel = m_module->launchKernelTimed(kernel, blockSize, gridSize);
+	float tKernel = kernel.launchTimed(blockSize, gridSize);
 
 /*#ifdef MALLOC_SCRATCHPAD
 	CUfunction kernelDealloc = m_module->getKernel("deallocFreeableMemory", 0);
@@ -1345,7 +1296,7 @@ F32 CudaNoStructTracer::buildCudaBVH()
 	return tKernel;
 }
 
-void CudaNoStructTracer::saveBufferSizes(bool ads, bool aux)
+/*void CudaPersistentBVHTracer::saveBufferSizes(bool ads, bool aux)
 {
 	float MB = (float)(1024*1024);
 
@@ -1377,9 +1328,9 @@ void CudaNoStructTracer::saveBufferSizes(bool ads, bool aux)
 		m_heap       = 0.f;
 #endif
 	}
-}
+}*/
 
-void CudaNoStructTracer::resetBuffers(bool resetADSBuffers)
+void CudaPersistentBVHTracer::resetBuffers(bool resetADSBuffers)
 {
 	// Reset buffers so that reuse of space does not cause timing disturbs
 	if(resetADSBuffers)
@@ -1389,12 +1340,12 @@ void CudaNoStructTracer::resetBuffers(bool resetADSBuffers)
 		m_trisIndexOut.reset();
 	}
 
-	m_mallocData.reset();
-	m_mallocData2.reset();
+	//m_mallocData.reset();
+	//m_mallocData2.reset();
 	m_taskData.reset();
 	m_splitData.reset();
 
-	m_raysIndex.reset();
+	//m_raysIndex.reset();
 
 	m_ppsTris.reset();
 	m_ppsTrisIndex.reset();
@@ -1404,10 +1355,10 @@ void CudaNoStructTracer::resetBuffers(bool resetADSBuffers)
 	m_sortRays.reset();
 }
 
-void CudaNoStructTracer::trimBVHBuffers()
+void CudaPersistentBVHTracer::trimBVHBuffers()
 {
 	// Save sizes of auxiliary buffers so that they can be printed
-	saveBufferSizes(false, true);
+	//saveBufferSizes(false, true);
 	// Free auxiliary buffers
 	resetBuffers(false);
 
@@ -1423,10 +1374,10 @@ void CudaNoStructTracer::trimBVHBuffers()
 #endif
 
 	// Save sizes of ads buffers so that they can be printed
-	saveBufferSizes(true, false);
+	//saveBufferSizes(true, false);
 }
 
-void CudaNoStructTracer::getStats(U32& nodes, U32& leaves, U32& emptyLeaves, U32& stackTop, U32& nodeTop, U32& tris, U32& sortedTris, bool sub)
+void CudaPersistentBVHTracer::getStats(U32& nodes, U32& leaves, U32& emptyLeaves, U32& stackTop, U32& nodeTop, U32& tris, U32& sortedTris, bool sub)
 {
 	TaskStackBVH tasks = *(TaskStackBVH*)m_module->getGlobal("g_taskStackBVH").getPtr();
 
@@ -1484,7 +1435,7 @@ void CudaNoStructTracer::getStats(U32& nodes, U32& leaves, U32& emptyLeaves, U32
 	stackTop = tasks.top;
 }
 
-void CudaNoStructTracer::getSizes(F32& task, F32& split, F32& ads, F32& tri, F32& triIdx, F32& heap)
+void CudaPersistentBVHTracer::getSizes(F32& task, F32& split, F32& ads, F32& tri, F32& triIdx, F32& heap)
 {
 	task = m_sizeTask;
 	split = m_sizeSplit;
