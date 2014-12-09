@@ -97,6 +97,7 @@ public:
     template <class T> void set         (const Array<T>& data, int start, int end) { set(data.getPtr(start), (end - start) * sizeof(T)); }
 
     void            clearRange          (S64 dstOfs, int value, S64 size, bool async = false, CUstream cudaStream = NULL);
+    void            clearRange32        (S64 dstOfs, int value, S64 size, bool async = false, CUstream cudaStream = NULL);
     void            clear               (int value = 0)                         { clearRange(0, value, m_size); }
 
     void            setOwner            (Module module, bool modify, bool async = false, CUstream cudaStream = NULL, S64 validSize = -1);

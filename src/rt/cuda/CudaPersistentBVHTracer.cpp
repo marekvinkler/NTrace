@@ -433,7 +433,7 @@ void CudaPersistentBVHTracer::initPool(int numRays, Buffer* rayBuffer, Buffer* n
 #ifdef TEST_TASKS
 	m_taskData.setOwner(Buffer::Cuda, true); // Make CUDA the owner so that CPU memory is never allocated
 #ifdef BENCHMARK
-	m_taskData.clearRange(0, TaskHeader_Empty, TASK_SIZE * sizeof(int)); // Mark all tasks as empty
+	m_taskData.clearRange32(0, TaskHeader_Empty, TASK_SIZE * sizeof(int)); // Mark all tasks as empty
 #else
 	m_taskData.clearRange32(0, TaskHeader_Empty, TASK_SIZE * (sizeof(int)+sizeof(Task))); // Mark all tasks as empty (important for debug)
 #endif

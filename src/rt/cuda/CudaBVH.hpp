@@ -190,7 +190,7 @@ public:
 
 	Scene*		getScene			()						{return m_scene;}
 
-private:
+protected:
     void        createNodeBasic     (const BVH& bvh);
     void        createTriWoopBasic  (const BVH& bvh);
     void        createTriIndexBasic (const BVH& bvh);

@@ -49,5 +49,49 @@ void AppEnvironment::RegisterOptions()
 	/*    Raygen                                                             */
 	/*************************************************************************/
 	RegisterOption("Raygen.random", optBool, "raygen_random=", "false");
+
+	/*************************************************************************/
+	/*    Persistent BVH                                                     */
+	/*************************************************************************/
+	RegisterOption("SubdivisionRayCaster.numWarpsPerBlock", optInt, "persistent_numWarpsPerBlock=", "24");
+	RegisterOption("SubdivisionRayCaster.numBlockPerSM", optInt, "persistent_numBlockPerSM=", "2");
+
+	RegisterOption("SubdivisionRayCaster.triangleBasedWeight", optInt, "persistent_triangleBasedWeight=", "0");
+	RegisterOption("SubdivisionRayCaster.rayBasedWeight", optInt, "persistent_rayBasedWeight=", "0");
+	RegisterOption("SubdivisionRayCaster.axisAlignedWeight", optInt, "persistent_axisAlignedWeight=", "1");
+	RegisterOption("SubdivisionRayCaster.planeSelectionOverhead", optFloat, "persistent_planeSelectionOverhead=", "0.5");
+	
+	RegisterOption("SubdivisionRayCaster.rayLimit", optInt, "persistent_rayLimit=", "32");
+	RegisterOption("SubdivisionRayCaster.triLimit", optInt, "persistent_triLimit=", "2");
+	RegisterOption("SubdivisionRayCaster.triMaxLimit", optInt, "persistent_triMaxLimit=", "16");
+	RegisterOption("SubdivisionRayCaster.maxDepth", optInt, "persistent_maxDepth=", "50");
+	RegisterOption("SubdivisionRayCaster.depthK1", optFloat, "persistent_depthK1=", "1.2");
+	RegisterOption("SubdivisionRayCaster.depthK2", optFloat, "persistent_depthK2=", "2.0");
+	RegisterOption("SubdivisionRayCaster.failRq", optFloat, "persistent_failRq=", "0.9");
+	RegisterOption("SubdivisionRayCaster.failK1", optFloat, "persistent_failK1=", "0.26");
+	RegisterOption("SubdivisionRayCaster.failK2", optFloat, "persistent_failK2=", "1.0");
+	
+	RegisterOption("SubdivisionRayCaster.failureCount", optInt, "persistent_failureCount=", "0");
+	
+	RegisterOption("SubdivisionRayCaster.ci", optInt, "persistent_ci=", "1");
+	RegisterOption("SubdivisionRayCaster.ct", optInt, "persistent_ct=", "1");
+	RegisterOption("SubdivisionRayCaster.ctr", optInt, "persistent_ctr=", "1");
+	RegisterOption("SubdivisionRayCaster.ctt", optInt, "persistent_ctt=", "1");
+	
+	RegisterOption("SubdivisionRayCaster.siblingLimit", optInt, "persistent_siblingLimit=", "0");
+	RegisterOption("SubdivisionRayCaster.childLimit", optInt, "persistent_childLimit=", "0");
+	RegisterOption("SubdivisionRayCaster.subtreeLimit", optInt, "persistent_subtreeLimit=", "0");
+
+	RegisterOption("SubdivisionRayCaster.popCount", optInt, "persistent_popCount=", "14");
+	RegisterOption("SubdivisionRayCaster.granularity", optFloat, "persistent_granularity=", "50.0");
+	
+	RegisterOption("SubdivisionRayCaster.nodeRatio", optInt, "persistent_nodeRatio=", "5");
+	RegisterOption("SubdivisionRayCaster.triRatio", optInt, "persistent_triRatio=", "3");
+	RegisterOption("SubdivisionRayCaster.idxRatio", optInt, "persistent_idxRatio=", "12");
+	
+	RegisterOption("SubdivisionRayCaster.log", optString, "persistent_log=", "ntrace.log");
+	RegisterOption("SubdivisionRayCaster.sumTimes", optBool, "persistent_sumTimes=", "true");
+	RegisterOption("SubdivisionRayCaster.cutOffDepth", optInt, "persistent_cutOffDepth=", "30");
+	RegisterOption("SubdivisionRayCaster.numRepeats", optInt, "persistent_numRepeats=", "1");
 }
 

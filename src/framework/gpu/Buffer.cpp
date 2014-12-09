@@ -217,6 +217,24 @@ void Buffer::clearRange(S64 dstOfs, int value, S64 size, bool async, CUstream cu
 
 //------------------------------------------------------------------------
 
+void Buffer::clearRange32(S64 dstOfs, int value, S64 size, bool async, CUstream cudaStream)
+{
+    FW_ASSERT(size >= 0);
+    FW_ASSERT(dstOfs >= 0 && dstOfs <= m_size - size);
+    FW_UNREF(async); // unsupported
+    FW_UNREF(cudaStream); // unsupported
+
+    if (!size)
+        return;
+
+    if (m_owner == Cuda)
+        CudaModule::checkError("cuMemsetD32", cuMemsetD32(getMutableCudaPtr(dstOfs), (U32)value, (U32)size/sizeof(U32)));
+    else
+        memset(getMutablePtr(dstOfs), value, (size_t)size);
+}
+
+//------------------------------------------------------------------------
+
 void Buffer::setOwner(Module module, bool modify, bool async, CUstream cudaStream, S64 validSize)
 {
     FW_ASSERT((module & ~Module_All) == 0);
