@@ -57,7 +57,7 @@ KDTree::KDTree(Scene* scene, const Platform& platform, const BuildParams& params
 	}
 	else
 	{
-		FW_ASSERT(0);
+		fail("Unsupported KDTree builder %s\n", builder.c_str());
 	}
 
 	if(params.stats)

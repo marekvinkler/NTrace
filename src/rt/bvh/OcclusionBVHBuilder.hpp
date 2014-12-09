@@ -87,6 +87,7 @@ public:
 
 protected:
 	BVHNode*				buildNode					(const NodeSpecOcl& spec, int start, int end, int level, F32 progressStart, F32 progressEnd);
+	BVHNode*                createLeaf					(const NodeSpec& spec, int start, int end);
 
 	ObjectSplitOcl			findObjectSplit				(const NodeSpecOcl& spec, int start, int end, F32 nodeSAH);
 	ObjectSplitOcl			findObjectOccludeSplit		(const NodeSpecOcl& spec, int start, int end, F32 nodeSAH);
