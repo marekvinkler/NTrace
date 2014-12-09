@@ -339,26 +339,30 @@ void Scene::setFrame(S32 frameNumber)
 
 //-----------------------------------------------------------------------
 
-void Scene::nextFrame(bool reset)
+bool Scene::nextFrame(bool reset)
 {
 	if(m_numRenderFrames == 0)
-		return;
-
-	if(m_nextFrame == m_numRenderFrames)
-	{
-		m_numRenderFrames = 0;
-		m_nextFrame = 0;
-		return;
-	}
+		return true;
 
 	if(reset)
 	{
 		m_nextFrame = 0;
+		return false;
+	}
+
+	if(m_nextFrame >= m_numRenderFrames)
+	{
+		return true;
 	}
 
 	F32 timePerFrame = getAnimationLength() / m_numRenderFrames;
 	setTime(timePerFrame * m_nextFrame);
 	m_nextFrame++;
+
+	if(m_nextFrame == m_numRenderFrames)
+		return true;
+
+	return false;
 }
 
 //-----------------------------------------------------------------------
@@ -372,6 +376,7 @@ void Scene::setFrameRate(F32 newFramerate)
 	{
 		m_numRenderFrames = -newFramerate;
 		m_nextFrame = 0;
+		return;
 	}
 
 	const F32 conversionRate = m_framerate / newFramerate;

@@ -1215,18 +1215,18 @@ MeshBase* FW::importMesh(const Array<String>& fileNames)
 	if(fileNames.getSize() != 0 && lower.endsWith(".obj"))
 	{
 		MeshBase* importedMesh = importWavefrontMesh(fileNames);
+		return importedMesh;
 	}
 	else
 	{
-
 		String lower = fileNames.get(0).toLower();
 
-#define STREAM(CALL) { File file(fileName, File::Read); BufferedInputStream stream(file); return CALL; }
+#define STREAM(CALL) { File file(fileNames.get(0), File::Read); BufferedInputStream stream(file); return CALL; }
 		if (lower.endsWith(".bin")) STREAM(importBinaryMesh(stream))
-		if (lower.endsWith(".obj")) STREAM(importWavefrontMesh(stream, fileName))
+		if (lower.endsWith(".obj")) STREAM(importWavefrontMesh(stream, fileNames.get(0)))
 #undef STREAM
 
-		setError("importMesh(): Unsupported file extension '%s'!", fileName.getPtr());
+		setError("importMesh(): Unsupported file extension '%s'!", fileNames.get(0).getPtr());
 		return NULL;
 	}
 #endif

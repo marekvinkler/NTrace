@@ -104,13 +104,13 @@ void fillVerticesRecursive(ImportState& s, aiNode* node, aiMatrix4x4 transformat
 
 		for (int i = 0; i < aiscene->mMeshes[node->mMeshes[m]]->mNumVertices; i++)
 		{
-			Vec3f pos;
 			Mat4f trans = convertMatrix(transformation);
 			VertexPNT& v = s.mesh->addVertex();
 
 			v.p.x = aiscene->mMeshes[node->mMeshes[m]]->mVertices[i].x;
 			v.p.y = aiscene->mMeshes[node->mMeshes[m]]->mVertices[i].y;
 			v.p.z = aiscene->mMeshes[node->mMeshes[m]]->mVertices[i].z;
+
 			v.p = trans * v.p;
 
 			if(aiscene->mMeshes[node->mMeshes[m]]->HasNormals())

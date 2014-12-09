@@ -65,6 +65,9 @@ public:
 	 */
     int             getNumVertices              (void) const    { return m_numVertices; }
 
+	/**
+	 * \return Number of emissive triangles in the scene.
+	 */
     int             getNumEmissive              (void) const    { return m_numEmissive; }
 
 	/**
@@ -174,8 +177,12 @@ public:
 	 */
 	void			setFrame(S32 frameNum);
 
-	
-	void			nextFrame(bool reset = false);
+	/**
+	 * \brief Steps to the next animation frame. Number of steps is set via negative argument in setFrameRate method.
+	 * \param[in] reset True resets animation to the first frame.
+	 * \return True if the last frame has been reached.
+	 */
+	bool			nextFrame(bool reset = false);
 
 	/**
 	 * \brief Gets animation length (in seconds).
@@ -190,8 +197,8 @@ public:
 	F32				getFrameRate() const { return m_framerate; }
 
 	/**
-	 * \brief Recalculates frame rate.
-	 * \param[in] Desired frame rate.
+	 * \brief Recalculates frame rate. Negative frame rate sets number of frames to be rendered via nextFrame method.
+	 * \param[in] Desired frame rate. Negative frame rate sets number of frames to be rendered.
 	 */
 	void			setFrameRate(F32 framerate);
 
@@ -226,8 +233,8 @@ private:
 	Vec3f			m_AABBMin, m_AABBMax;	//!< BBox of the scene
 	TextureAtlas*	m_texture;				//!< Texture atlas holding scene's textures
 
-	S32				m_numRenderFrames;
-	S32				m_nextFrame;
+	S32				m_numRenderFrames;		//!< Number of frames that cover the whole animation. Used in nextFrame method.
+	S32				m_nextFrame;			//!< Number of frame that will be rendered after calling the nextFrame method.
 
 	F32				m_framerate;			//!< Framerate of the animation.
 	bool			m_recalculateBBox;		//!< Flag whether the scene's AABB should be recalculated when getBBox() is called.
