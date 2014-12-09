@@ -194,28 +194,9 @@ BVHNode* OcclusionBVHBuilder::run(void)
 		invisibleSpec.numRef = lastInvisible+1; // We want number of visible, not last index
 		visibleSpec.numRef = rootSpec.numRef - invisibleSpec.numRef;
 
-		// Build tree for visible nodes
-		// Initialize rest of the members.
-
-		m_minOverlap = visibleSpec.bounds.area() * m_params.splitAlpha;
-		m_rightBounds.reset(max(visibleSpec.numRef, (int)NumSpatialBins) - 1);
-		//m_rightVisibleBounds.reset(maxvisibleSpec.numRef, (int)NumSpatialBins) - 1);
-		m_numDuplicates = 0;
-		m_progressTimer.start();
-
-		// Build recursively.
-
-		BVHNode* visible;
-		visible = SplitBVHBuilder::buildNode(visibleSpec, rootSpec.numRef - 1, 0.0f, 1.0f);
-
-		// Done.
-
-		if (m_params.enablePrints)
-			printf("OcclusionBVHBuilder: progress %.0f%%, duplicates %.0f%%\n",
-			100.0f, (F32)m_numDuplicates / (F32)visibleSpec.numRef * 100.0f);
-
-
-		m_refStack.resize(invisibleSpec.numRef); // Forget the visible references, we have already build the tree for them
+		// Save the visible to a separate array
+		Array<Reference> m_visible(m_refStack.getPtr() + invisibleSpec.numRef, visibleSpec.numRef);
+		m_refStack.resize(invisibleSpec.numRef); // Forget the visible references
 
 
 		// Build tree for invisible nodes
@@ -229,14 +210,34 @@ BVHNode* OcclusionBVHBuilder::run(void)
 
 		// Build recursively.
 
-		BVHNode* invisible;
-		invisible = SplitBVHBuilder::buildNode(invisibleSpec, invisibleSpec.numRef-1, 0.0f, 1.0f);
+		BVHNode* invisible = SplitBVHBuilder::buildNode(invisibleSpec, 0, 0.0f, 1.0f);
 
 		// Done.
 
 		if (m_params.enablePrints)
 			printf("OcclusionBVHBuilder: progress %.0f%%, duplicates %.0f%%\n",
 				100.0f, (F32)m_numDuplicates / (F32)invisibleSpec.numRef * 100.0f);
+
+		// Build tree for visible nodes
+		// Initialize rest of the members.
+
+		m_refStack = m_visible; // Forget the invisible references, we have already build the tree for them
+
+		m_minOverlap = visibleSpec.bounds.area() * m_params.splitAlpha;
+		m_rightBounds.reset(max(visibleSpec.numRef, (int)NumSpatialBins) - 1);
+		//m_rightVisibleBounds.reset(maxvisibleSpec.numRef, (int)NumSpatialBins) - 1);
+		m_numDuplicates = 0;
+		m_progressTimer.start();
+
+		// Build recursively.
+
+		BVHNode* visible = SplitBVHBuilder::buildNode(visibleSpec, 0, 0.0f, 1.0f);
+
+		// Done.
+
+		if (m_params.enablePrints)
+			printf("OcclusionBVHBuilder: progress %.0f%%, duplicates %.0f%%\n",
+			100.0f, (F32)m_numDuplicates / (F32)visibleSpec.numRef * 100.0f);
 
 		m_bvh.getTriIndices().compact();
 		return new InnerNode(visibleSpec.bounds + invisibleSpec.bounds, visible, invisible, 0, SplitInfo::SAH, false);
@@ -259,7 +260,7 @@ BVHNode* OcclusionBVHBuilder::buildNode(const NodeSpecOcl& spec, int start, int 
     // Small enough or too deep => create leaf.
 	
 	if (level != 0 && spec.numRef <= m_platform.getMinLeafSize() || level >= MaxDepth) // Make sure we do not make the root a leaf -> GPU traversal will fail
-		return createLeaf(spec);
+		return createLeaf(spec, start, end);
 
     // Find split candidates.
 
@@ -280,7 +281,6 @@ BVHNode* OcclusionBVHBuilder::buildNode(const NodeSpecOcl& spec, int start, int 
 
 #ifndef BUILD_ASBVH
 	if(spec.numVisible != 0 && spec.numVisible != spec.numRef && level < m_MaxVisibleDepth)
-	//if(spec.numVisible != 0 && spec.numVisible != spec.numRef && level < MaxVisibleDepth)
 	{
 		spatial = findSpatialOccludeSplit(spec, start, end, nodeSAH);
 		osahTested = true;
@@ -316,7 +316,7 @@ BVHNode* OcclusionBVHBuilder::buildNode(const NodeSpecOcl& spec, int start, int 
 
     F32 minSAH = min(leafSAH, object.sah, spatial.sah);
     if (level != 0 && minSAH == leafSAH && spec.numRef <= m_platform.getMaxLeafSize()) // Make sure we do not make the root a leaf -> GPU traversal will fail
-		return createLeaf(spec);
+		return createLeaf(spec, start, end);
 
     // Perform split.
 
@@ -354,6 +354,17 @@ BVHNode* OcclusionBVHBuilder::buildNode(const NodeSpecOcl& spec, int start, int 
 
 //------------------------------------------------------------------------
 
+BVHNode* OcclusionBVHBuilder::createLeaf(const NodeSpec& spec, int start, int end)
+{
+    Array<S32>& tris = m_bvh.getTriIndices();
+	for(int i = end; i >= start; i--)
+		tris.add(m_refStack[i].triIdx);
+
+	return new LeafNode(spec.bounds, tris.getSize() - spec.numRef, tris.getSize());
+}
+
+//------------------------------------------------------------------------
+
 OcclusionBVHBuilder::ObjectSplitOcl OcclusionBVHBuilder::findObjectSplit(const NodeSpecOcl& spec, int start, int end, F32 nodeSAH)
 {
     ObjectSplitOcl split;
@@ -362,28 +373,11 @@ OcclusionBVHBuilder::ObjectSplitOcl OcclusionBVHBuilder::findObjectSplit(const N
 	
 	S32 visibleLeft, visibleRight;
 
-#ifdef ENABLE_GRAPHS
-	BufferedOutputStream *buffer = NULL;
-	File *file = NULL;
-	char dimStr[] = {'x', 'y', 'z'};
-#endif
-
     // Sort along each dimension.
 
     for (m_sortDim = 0; m_sortDim < 3; m_sortDim++)
     {
 		sort(this, start, end+1, sortCompare, sortSwap);
-
-#ifdef ENABLE_GRAPHS
-		if(level == 0)
-		{
-			// Open file buffer
-			CreateDirectory(m_params.logDirectory.getPtr(), NULL);
-			String name = sprintf("%s\\cost_sah_%s%d_%c.log", m_params.logDirectory.getPtr(), m_params.buildName.getPtr(), m_params.cameraIdx, dimStr[m_sortDim]);
-			file = new File(name, File::Create);
-			buffer = new BufferedOutputStream(*file, 1024, true, true);
-		}
-#endif
 
 		// Starting visibilities
 		visibleLeft = 0;
@@ -433,25 +427,7 @@ OcclusionBVHBuilder::ObjectSplitOcl OcclusionBVHBuilder::findObjectSplit(const N
 				split.rightVisible = visibleRight;
 				//split.rightVisibleBounds = m_rightVisibleBounds[j - 1];
 			}
-
-#ifdef ENABLE_GRAPHS
-			// Print split data
-			if(level == 0)
-			{
-				buffer->writef("%d\t%f\n", i, sah);
-			}
-#endif
         }
-
-#ifdef ENABLE_GRAPHS
-		// Free file buffer
-		if(level == 0)
-		{
-			buffer->flush();
-			delete file;
-			delete buffer;
-		}
-#endif
 	}
 	
 	return split;
@@ -467,28 +443,11 @@ OcclusionBVHBuilder::ObjectSplitOcl OcclusionBVHBuilder::findObjectOccludeSplit(
 	
 	S32 visibleLeft, visibleRight;
 
-#ifdef ENABLE_GRAPHS
-	BufferedOutputStream *buffer = NULL;
-	File *file = NULL;
-	char dimStr[] = {'x', 'y', 'z'};
-#endif
-
     // Sort along each dimension.
 
     for (m_sortDim = 0; m_sortDim < 3; m_sortDim++)
     {
 		sort(this, start, end+1, sortCompare, sortSwap);
-
-#ifdef ENABLE_GRAPHS
-		if(level == 0)
-		{
-			// Open file buffer
-			CreateDirectory(m_params.logDirectory.getPtr(), NULL);
-			String name = sprintf("%s\\cost_%s%d_%c.log", m_params.logDirectory.getPtr(), m_params.buildName.getPtr(), m_params.cameraIdx, dimStr[m_sortDim]);
-			file = new File(name, File::Create);
-			buffer = new BufferedOutputStream(*file, 1024, true, true);
-		}
-#endif
 
 		// Starting visibilities
 		visibleLeft = 0;
@@ -565,29 +524,7 @@ OcclusionBVHBuilder::ObjectSplitOcl OcclusionBVHBuilder::findObjectOccludeSplit(
 				split.rightVisible = visibleRight;
 				//split.rightVisibleBounds = m_rightVisibleBounds[i - 1];
 			}
-
-#ifdef ENABLE_GRAPHS
-			// Print split data
-			if(level == 0)
-			{
-				if(osah < FW_F32_MAX)
-					buffer->writef("%d\t%f\t%f\n", i, sah, osah);
-				else
-					buffer->writef("%d\t%f\t%f\n", i, sah, (float)2.0f*spec.numRef); // Should be always larger than any computed cost but small enough not to distort the graph
-				//buffer->writef("%d\t%f\t?\n", i, sah);
-			}
-#endif
 		}
-
-#ifdef ENABLE_GRAPHS
-		// Free file buffer
-		if(level == 0)
-		{
-			buffer->flush();
-			delete file;
-			delete buffer;
-		}
-#endif
 	}
 
 	// Chose better of the two heuristics	
@@ -662,12 +599,10 @@ OcclusionBVHBuilder::SpatialSplitOcl OcclusionBVHBuilder::findSpatialSplit(const
             {
                 Reference leftRef, rightRef;
                 splitReference(leftRef, rightRef, currRef, dim, origin[dim] + binSize[dim] * (F32)(i + 1));
-				if(leftRef.bounds.valid()) // May be invalid because the boxes are inflated by BVH_EPSILON
-					m_bins[dim][i].bounds.grow(leftRef.bounds);
+				m_bins[dim][i].bounds.grow(leftRef.bounds);
                 currRef = rightRef;
             }
-			if(currRef.bounds.valid()) // May be invalid because the boxes are inflated by BVH_EPSILON
-				m_bins[dim][lastBin[dim]].bounds.grow(currRef.bounds);
+			m_bins[dim][lastBin[dim]].bounds.grow(currRef.bounds);
             m_bins[dim][firstBin[dim]].enter++;
             m_bins[dim][lastBin[dim]].exit++;
 			//if(ref.numVisible)
@@ -688,8 +623,7 @@ OcclusionBVHBuilder::SpatialSplitOcl OcclusionBVHBuilder::findSpatialSplit(const
         AABB rightBounds;
         for (int i = NumSpatialBins - 1; i > 0; i--)
         {
-			if(m_bins[dim][i].bounds.valid())
-				rightBounds.grow(m_bins[dim][i].bounds);
+			rightBounds.grow(m_bins[dim][i].bounds);
             m_rightBounds[i - 1] = rightBounds;
         }
 
@@ -705,9 +639,6 @@ OcclusionBVHBuilder::SpatialSplitOcl OcclusionBVHBuilder::findSpatialSplit(const
 
         for (int i = 1; i < NumSpatialBins; i++)
         {
-			if(!m_bins[dim][i-1].bounds.valid())
-				continue;
-
 			leftBounds.grow(m_bins[dim][i - 1].bounds);
             leftNum += m_bins[dim][i - 1].enter;
             rightNum -= m_bins[dim][i - 1].exit;
@@ -743,12 +674,6 @@ OcclusionBVHBuilder::SpatialSplitOcl OcclusionBVHBuilder::findSpatialOccludeSpli
 
 	S32 visibleLeft, visibleRight;
 
-#ifdef ENABLE_GRAPHS
-	BufferedOutputStream *buffer = NULL;
-	File *file = NULL;
-	char dimStr[] = {'x', 'y', 'z'};
-#endif
-
     for (int dim = 0; dim < 3; dim++)
     {
         for (int i = 0; i < NumSpatialBins; i++)
@@ -777,12 +702,10 @@ OcclusionBVHBuilder::SpatialSplitOcl OcclusionBVHBuilder::findSpatialOccludeSpli
             {
                 Reference leftRef, rightRef;
                 splitReference(leftRef, rightRef, currRef, dim, origin[dim] + binSize[dim] * (F32)(i + 1));
-				if(leftRef.bounds.valid()) // May be invalid because the boxes are inflated by BVH_EPSILON
-					m_bins[dim][i].bounds.grow(leftRef.bounds);
+				m_bins[dim][i].bounds.grow(leftRef.bounds);
                 currRef = rightRef;
             }
-			if(currRef.bounds.valid()) // May be invalid because the boxes are inflated by BVH_EPSILON
-				m_bins[dim][lastBin[dim]].bounds.grow(currRef.bounds);
+			m_bins[dim][lastBin[dim]].bounds.grow(currRef.bounds);
             m_bins[dim][firstBin[dim]].enter++;
             m_bins[dim][lastBin[dim]].exit++;
 			if(m_visibility[refIdx])
@@ -803,8 +726,7 @@ OcclusionBVHBuilder::SpatialSplitOcl OcclusionBVHBuilder::findSpatialOccludeSpli
         AABB rightBounds;
         for (int i = NumSpatialBins - 1; i > 0; i--)
         {
-			if(m_bins[dim][i].bounds.valid())
-				rightBounds.grow(m_bins[dim][i].bounds);
+			rightBounds.grow(m_bins[dim][i].bounds);
             m_rightBounds[i - 1] = rightBounds;
         }
 
@@ -818,22 +740,8 @@ OcclusionBVHBuilder::SpatialSplitOcl OcclusionBVHBuilder::findSpatialOccludeSpli
 		visibleLeft = 0;
 		visibleRight = spec.numVisible;
 
-#ifdef ENABLE_GRAPHS
-		if(level == 0)
-		{
-			// Open file buffer
-			CreateDirectory(m_params.logDirectory.getPtr(), NULL);
-			String name = sprintf("%s\\cost_osah,ssah_%s%d_%c.log", m_params.logDirectory.getPtr(), m_params.buildName.getPtr(), m_params.cameraIdx, dimStr[dim]);
-			file = new File(name, File::Create);
-			buffer = new BufferedOutputStream(*file, 1024, true, true);
-		}
-#endif
-
         for (int i = 1; i < NumSpatialBins; i++)
         {
-			if(!m_bins[dim][i-1].bounds.valid())
-				continue;
-
 			leftBounds.grow(m_bins[dim][i - 1].bounds);
             leftNum += m_bins[dim][i - 1].enter;
             rightNum -= m_bins[dim][i - 1].exit;
@@ -871,29 +779,7 @@ OcclusionBVHBuilder::SpatialSplitOcl OcclusionBVHBuilder::findSpatialOccludeSpli
 				split.leftVisible = visibleLeft;
 				split.rightVisible = visibleRight;
             }
-
-#ifdef ENABLE_GRAPHS
-			// Print split data
-			if(level == 0)
-			{
-				if(osah < FW_F32_MAX)
-					buffer->writef("%d\t%f\t%f\n", i, sah, osah);
-				else
-					buffer->writef("%d\t%f\t%f\n", i, sah, (float)2.0f*spec.numRef); // Should be always larger than any computed cost but small enough not to distort the graph
-				//buffer->writef("%d\t%f\t?\n", i, sah);
-			}
-#endif
 		}
-
-#ifdef ENABLE_GRAPHS
-		// Free file buffer
-		if(level == 0)
-		{
-			buffer->flush();
-			delete file;
-			delete buffer;
-		}
-#endif
     }
 
 	S32 hidTris = osplit.leftVisible < osplit.rightVisible ? osplit.leftNum : osplit.rightNum;
@@ -924,12 +810,6 @@ OcclusionBVHBuilder::SpatialSplitOcl OcclusionBVHBuilder::findSpatialOccludeSpli
 	F32 splitPos[3][numBins];
 
 	size_t visibleLeft, visibleRight;
-
-#ifdef ENABLE_GRAPHS
-	BufferedOutputStream *buffer = NULL;
-	File *file = NULL;
-	char dimStr[] = {'x', 'y', 'z'};
-#endif
 
     for (int dim = 0; dim < 3; dim++)
     {
@@ -1007,17 +887,6 @@ OcclusionBVHBuilder::SpatialSplitOcl OcclusionBVHBuilder::findSpatialOccludeSpli
 		visibleLeft = 0;
 		visibleRight = spec.numVisible;
 
-#ifdef ENABLE_GRAPHS
-		if(level == 0)
-		{
-			// Open file buffer
-			CreateDirectory(m_params.logDirectory.getPtr(), NULL);
-			String name = sprintf("%s\\cost_%s%d_%c.log", m_params.logDirectory.getPtr(), m_params.buildName.getPtr(), m_params.cameraIdx, dimStr[dim]);
-			file = new File(name, File::Create);
-			buffer = new BufferedOutputStream(*file, 1024, true, true);
-		}
-#endif
-
         for (int i = 1; i < numBins; i++)
         {
 			if(!m_bins[dim][i-1].bounds.valid())
@@ -1050,29 +919,7 @@ OcclusionBVHBuilder::SpatialSplitOcl OcclusionBVHBuilder::findSpatialOccludeSpli
 				split.leftVisible = visibleLeft;
 				split.rightVisible = visibleRight;
             }
-
-#ifdef ENABLE_GRAPHS
-			// Print split data
-			if(level == 0)
-			{
-				if(osah < FW_F32_MAX)
-					buffer->writef("%d\t?\t%f\n", i, osah);
-				else
-					buffer->writef("%d\t?\t%f\n", i, (float)2.0f*spec.numRef); // Should be always larger than any computed cost but small enough not to distort the graph
-				//buffer->writef("%d\t%f\t?\n", i, sah);
-			}
-#endif
         }
-		
-#ifdef ENABLE_GRAPHS
-		// Free file buffer
-		if(level == 0)
-		{
-			buffer->flush();
-			delete file;
-			delete buffer;
-		}
-endif
     }
 
 	//S32 invisChild = split.leftVisible < split.rightVisible ? split.leftNum : split.rightNum;
@@ -1168,27 +1015,6 @@ void OcclusionBVHBuilder::performSpatialOccludeSplit(NodeSpecOcl& left, NodeSpec
         rub.grow(refs[leftEnd].bounds);
         ldb.grow(lref.bounds);
         rdb.grow(rref.bounds);
-
-		if(!lref.bounds.valid()) // Unsplit to right
-		{
-			right.bounds = rub;
-			//if(refs[leftEnd].numVisible)
-			//	right.boundsVisible.grow(refs[leftEnd].bounds);
-			right.numVisible += m_visibility[leftEnd];
-			rightStart--;
-            swap(refs[leftEnd], refs[rightStart]);
-			swap(m_visibility[leftEnd], m_visibility[rightStart]);
-			continue;
-		}
-		if(!rref.bounds.valid()) // Unsplit to left
-		{
-			left.bounds = lub;
-			//if(refs[leftEnd].numVisible)
-			//	left.boundsVisible.grow(refs[leftEnd].bounds);
-			left.numVisible += m_visibility[leftEnd];
-            leftEnd++;
-			continue;
-		}
 
         F32 lac = m_platform.getTriangleCost(leftEnd - leftStart);
         F32 rac = m_platform.getTriangleCost(end+1 - rightStart);
