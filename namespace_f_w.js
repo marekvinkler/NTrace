@@ -93,6 +93,8 @@ var namespace_f_w =
     [ "CudaBVHTracer", "class_f_w_1_1_cuda_b_v_h_tracer.html", "class_f_w_1_1_cuda_b_v_h_tracer" ],
     [ "CudaKDTree", "class_f_w_1_1_cuda_k_d_tree.html", "class_f_w_1_1_cuda_k_d_tree" ],
     [ "CudaKDTreeTracer", "class_f_w_1_1_cuda_k_d_tree_tracer.html", "class_f_w_1_1_cuda_k_d_tree_tracer" ],
+    [ "CudaPersistentBVHTracer", "class_f_w_1_1_cuda_persistent_b_v_h_tracer.html", "class_f_w_1_1_cuda_persistent_b_v_h_tracer" ],
+    [ "CudaNoStructTracer", "class_f_w_1_1_cuda_no_struct_tracer.html", "class_f_w_1_1_cuda_no_struct_tracer" ],
     [ "CudaRenderer", "class_f_w_1_1_cuda_renderer.html", "class_f_w_1_1_cuda_renderer" ],
     [ "CudaVirtualTracer", "class_f_w_1_1_cuda_virtual_tracer.html", "class_f_w_1_1_cuda_virtual_tracer" ],
     [ "Renderer", "class_f_w_1_1_renderer.html", "class_f_w_1_1_renderer" ],

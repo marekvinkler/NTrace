@@ -7,7 +7,7 @@ var searchData=
   ['calcmortonandsort',['calcMortonAndSort',['../class_f_w_1_1_h_l_b_v_h_builder.html#abe644dae5d823d2ec398e6d70bebbe2a',1,'FW::HLBVHBuilder']]],
   ['calcnodesahcostkdtree',['calcNodeSAHCostKdtree',['../class_f_w_1_1_renderer.html#ab2512c75a939ada7222932fe0d2175bf',1,'FW::Renderer']]],
   ['calcsahcpu',['calcSAHCPU',['../class_f_w_1_1_h_l_b_v_h_builder.html#ab5ef0977723df749e256941259043e55',1,'FW::HLBVHBuilder']]],
-  ['calcsahgpu',['calcSAHGPU',['../class_f_w_1_1_h_l_b_v_h_builder.html#a7798d43c228df90a671f547ee590d952',1,'FW::HLBVHBuilder']]],
+  ['calcsahgpu',['calcSAHGPU',['../class_f_w_1_1_h_l_b_v_h_builder.html#a2ae08c8e08140ad687866c8807dd1971',1,'FW::HLBVHBuilder']]],
   ['cameracontrols',['CameraControls',['../class_f_w_1_1_camera_controls.html#adcfc61c1a503e0cb82501d7bb44b66ee',1,'FW::CameraControls']]],
   ['cancelasync',['cancelAsync',['../class_f_w_1_1_cuda_kernel.html#a641619a598a5df5707d98460d06b7ffb',1,'FW::CudaKernel']]],
   ['ceil',['ceil',['../namespace_f_w.html#ab84030121cf31ee31222411c4b9ce157',1,'FW::ceil(F32 a)'],['../namespace_f_w.html#a506a69f1ac72f4e8bd9563c6cc2df08d',1,'FW::ceil(F64 a)']]],
@@ -50,6 +50,7 @@ var searchData=
   ['config',['Config',['../struct_f_w_1_1_g_l_context_1_1_config.html#a45af24ab55e14e09e5c13b03dd9d00ef',1,'FW::GLContext::Config']]],
   ['consumebuffer',['consumeBuffer',['../class_f_w_1_1_buffered_input_stream.html#a73a72ebb05fe205f8bde9415a3f4413a',1,'FW::BufferedInputStream']]],
   ['contains',['contains',['../class_f_w_1_1_array_base.html#a24fc003558898df1f2d443775fb6ce9e',1,'FW::ArrayBase::contains()'],['../class_f_w_1_1_binary_heap.html#aba8f1b100e6720d66c0a2b9874ca8393',1,'FW::BinaryHeap::contains()'],['../class_f_w_1_1_set.html#a87914009ccb3c885289e2b40d4229b4f',1,'FW::Set::contains()'],['../class_f_w_1_1_hash.html#aa95c748e90bdc9d03e8f0f1437053d14',1,'FW::Hash::contains()'],['../class_f_w_1_1_image.html#ad8027e927144ff92a52464f68a9dfb14',1,'FW::Image::contains()']]],
+  ['convertwoop',['convertWoop',['../class_f_w_1_1_cuda_persistent_b_v_h_tracer.html#a0c471eaa0a79a04d8043132129fe3137',1,'FW::CudaPersistentBVHTracer::convertWoop()'],['../class_f_w_1_1_cuda_no_struct_tracer.html#a00e1b486803ea564889ba0b5dcba1a72',1,'FW::CudaNoStructTracer::convertWoop()']]],
   ['convexpolyhedron',['ConvexPolyhedron',['../class_f_w_1_1_convex_polyhedron.html#afb9c16087f40d5aadfac98e07ec5f626',1,'FW::ConvexPolyhedron::ConvexPolyhedron(void)'],['../class_f_w_1_1_convex_polyhedron.html#a33c703fd94cc3fc6b53e1a7b050d70c3',1,'FW::ConvexPolyhedron::ConvexPolyhedron(const Vec3f &amp;lo, const Vec3f &amp;hi)'],['../class_f_w_1_1_convex_polyhedron.html#a4fe904f435c6d04bea540069a54ebcd1',1,'FW::ConvexPolyhedron::ConvexPolyhedron(const ConvexPolyhedron &amp;other)']]],
   ['copy',['copy',['../class_f_w_1_1_array_base.html#a52abd9da4c75846573b2facdc129b7ee',1,'FW::ArrayBase']]],
   ['copyoverlap',['copyOverlap',['../class_f_w_1_1_array_base.html#aa618a8442a9a310dd509d07633c002cd',1,'FW::ArrayBase']]],
@@ -71,5 +72,7 @@ var searchData=
   ['cudakdtreetracer',['CudaKDTreeTracer',['../class_f_w_1_1_cuda_k_d_tree_tracer.html#ac0c3b6db4eba4b0274bccedc7fae2a00',1,'FW::CudaKDTreeTracer']]],
   ['cudakernel',['CudaKernel',['../class_f_w_1_1_cuda_kernel.html#ace2bbdc484c5d88d87ad43aef1c46bd1',1,'FW::CudaKernel::CudaKernel(CudaModule *module=NULL, CUfunction function=NULL)'],['../class_f_w_1_1_cuda_kernel.html#a32eabde47059412874dfb7762b98e21a',1,'FW::CudaKernel::CudaKernel(const CudaKernel &amp;other)']]],
   ['cudamodule',['CudaModule',['../class_f_w_1_1_cuda_module.html#a4c773078ba7d187c3771f25e672782df',1,'FW::CudaModule::CudaModule(const void *cubin)'],['../class_f_w_1_1_cuda_module.html#aa3dbc3ef08234c4be564b13a0bf7151c',1,'FW::CudaModule::CudaModule(const String &amp;cubinFile)']]],
+  ['cudanostructtracer',['CudaNoStructTracer',['../class_f_w_1_1_cuda_no_struct_tracer.html#afe4ab342821bc74b291cd7d5bd976cda',1,'FW::CudaNoStructTracer']]],
+  ['cudapersistentbvhtracer',['CudaPersistentBVHTracer',['../class_f_w_1_1_cuda_persistent_b_v_h_tracer.html#a06058bd6bb468e8631f85da441002dae',1,'FW::CudaPersistentBVHTracer']]],
   ['cudarenderer',['CudaRenderer',['../class_f_w_1_1_cuda_renderer.html#ad7b68baac49fcab5db1a1d810a7c3bf7',1,'FW::CudaRenderer']]]
 ];

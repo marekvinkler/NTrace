@@ -16,6 +16,8 @@ var searchData=
   ['cudakdtreetracer',['CudaKDTreeTracer',['../class_f_w_1_1_cuda_k_d_tree_tracer.html',1,'FW']]],
   ['cudakernel',['CudaKernel',['../class_f_w_1_1_cuda_kernel.html',1,'FW']]],
   ['cudamodule',['CudaModule',['../class_f_w_1_1_cuda_module.html',1,'FW']]],
+  ['cudanostructtracer',['CudaNoStructTracer',['../class_f_w_1_1_cuda_no_struct_tracer.html',1,'FW']]],
+  ['cudapersistentbvhtracer',['CudaPersistentBVHTracer',['../class_f_w_1_1_cuda_persistent_b_v_h_tracer.html',1,'FW']]],
   ['cudarenderer',['CudaRenderer',['../class_f_w_1_1_cuda_renderer.html',1,'FW']]],
   ['cudavirtualtracer',['CudaVirtualTracer',['../class_f_w_1_1_cuda_virtual_tracer.html',1,'FW']]]
 ];

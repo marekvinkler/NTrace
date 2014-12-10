@@ -135,6 +135,8 @@ var hierarchy =
     [ "FW::CudaCompiler", "class_f_w_1_1_cuda_compiler.html", null ],
     [ "FW::CudaKernel", "class_f_w_1_1_cuda_kernel.html", null ],
     [ "FW::CudaModule", "class_f_w_1_1_cuda_module.html", null ],
+    [ "FW::CudaNoStructTracer", "class_f_w_1_1_cuda_no_struct_tracer.html", null ],
+    [ "FW::CudaPersistentBVHTracer", "class_f_w_1_1_cuda_persistent_b_v_h_tracer.html", null ],
     [ "FW::CudaVirtualTracer", "class_f_w_1_1_cuda_virtual_tracer.html", [
       [ "FW::CudaBVHTracer", "class_f_w_1_1_cuda_b_v_h_tracer.html", null ],
       [ "FW::CudaKDTreeTracer", "class_f_w_1_1_cuda_k_d_tree_tracer.html", null ]
@@ -327,10 +329,10 @@ var hierarchy =
     [ "SpatialBin", null, [
       [ "FW::OcclusionBVHBuilder::SpatialBinOcl", "struct_f_w_1_1_occlusion_b_v_h_builder_1_1_spatial_bin_ocl.html", null ]
     ] ],
-    [ "FW::SplitBVHBuilder::SpatialSplit", "struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_split.html", null ],
     [ "SpatialSplit", null, [
       [ "FW::OcclusionBVHBuilder::SpatialSplitOcl", "struct_f_w_1_1_occlusion_b_v_h_builder_1_1_spatial_split_ocl.html", null ]
     ] ],
+    [ "FW::SplitBVHBuilder::SpatialSplit", "struct_f_w_1_1_split_b_v_h_builder_1_1_spatial_split.html", null ],
     [ "FW::Spinlock", "class_f_w_1_1_spinlock.html", [
       [ "SafeSpinlock", "class_safe_spinlock.html", null ]
     ] ],
@@ -344,8 +346,8 @@ var hierarchy =
       [ "FW::CameraControls", "class_f_w_1_1_camera_controls.html", null ]
     ] ],
     [ "FW::ImageFormat::StaticFormat", "struct_f_w_1_1_image_format_1_1_static_format.html", null ],
-    [ "FW::KDTree::Stats", "struct_f_w_1_1_k_d_tree_1_1_stats.html", null ],
     [ "FW::BVH::Stats", "struct_f_w_1_1_b_v_h_1_1_stats.html", null ],
+    [ "FW::KDTree::Stats", "struct_f_w_1_1_k_d_tree_1_1_stats.html", null ],
     [ "FW::String", "class_f_w_1_1_string.html", null ],
     [ "FW::MulticoreLauncher::Task", "struct_f_w_1_1_multicore_launcher_1_1_task.html", null ],
     [ "FW::TaskSpec", "struct_f_w_1_1_task_spec.html", null ],

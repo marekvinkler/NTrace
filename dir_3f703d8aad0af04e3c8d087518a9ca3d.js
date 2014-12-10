@@ -24,6 +24,14 @@ var dir_3f703d8aad0af04e3c8d087518a9ca3d =
     [ "CudaKDTreeTracer.hpp", "_cuda_k_d_tree_tracer_8hpp.html", [
       [ "CudaKDTreeTracer", "class_f_w_1_1_cuda_k_d_tree_tracer.html", "class_f_w_1_1_cuda_k_d_tree_tracer" ]
     ] ],
+    [ "CudaPersistentBVHTracer.cpp", "_cuda_persistent_b_v_h_tracer_8cpp.html", "_cuda_persistent_b_v_h_tracer_8cpp" ],
+    [ "CudaPersistentBVHTracer.hpp", "_cuda_persistent_b_v_h_tracer_8hpp.html", [
+      [ "CudaPersistentBVHTracer", "class_f_w_1_1_cuda_persistent_b_v_h_tracer.html", "class_f_w_1_1_cuda_persistent_b_v_h_tracer" ]
+    ] ],
+    [ "CudaPersistentTracer.cpp", "_cuda_persistent_tracer_8cpp.html", "_cuda_persistent_tracer_8cpp" ],
+    [ "CudaPersistentTracer.hpp", "_cuda_persistent_tracer_8hpp.html", [
+      [ "CudaNoStructTracer", "class_f_w_1_1_cuda_no_struct_tracer.html", "class_f_w_1_1_cuda_no_struct_tracer" ]
+    ] ],
     [ "CudaRenderer.cpp", "_cuda_renderer_8cpp.html", null ],
     [ "CudaRenderer.hpp", "_cuda_renderer_8hpp.html", [
       [ "CudaRenderer", "class_f_w_1_1_cuda_renderer.html", "class_f_w_1_1_cuda_renderer" ]

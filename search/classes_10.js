@@ -19,7 +19,7 @@ var searchData=
   ['statedump',['StateDump',['../class_f_w_1_1_state_dump.html',1,'FW']]],
   ['stateobject',['StateObject',['../class_f_w_1_1_common_controls_1_1_state_object.html',1,'FW::CommonControls']]],
   ['staticformat',['StaticFormat',['../struct_f_w_1_1_image_format_1_1_static_format.html',1,'FW::ImageFormat']]],
-  ['stats',['Stats',['../struct_f_w_1_1_b_v_h_1_1_stats.html',1,'FW::BVH']]],
   ['stats',['Stats',['../struct_f_w_1_1_k_d_tree_1_1_stats.html',1,'FW::KDTree']]],
+  ['stats',['Stats',['../struct_f_w_1_1_b_v_h_1_1_stats.html',1,'FW::BVH']]],
   ['string',['String',['../class_f_w_1_1_string.html',1,'FW']]]
 ];

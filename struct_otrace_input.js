@@ -2,6 +2,8 @@ var struct_otrace_input =
 [
     [ "anyHit", "struct_otrace_input.html#aa1434b23ffa9b5701c443a541c887883", null ],
     [ "atlasInfo", "struct_otrace_input.html#a6f610fb1a052cbc60c23183b31a7c565", null ],
+    [ "emissive", "struct_otrace_input.html#a3de23b378046e7a2831842a3405e52b0", null ],
+    [ "emissiveNum", "struct_otrace_input.html#a04ec9418460a05d4756cdfa98a1f4be8", null ],
     [ "matId", "struct_otrace_input.html#abfa59f0c99dceb933ad2bff7f8f2de0d", null ],
     [ "matInfo", "struct_otrace_input.html#a1d8d4e922f8a299f4c5b0bc7ed595d14", null ],
     [ "nodesA", "struct_otrace_input.html#a1019c29d50ce0f80dea92ba4ac295378", null ],
@@ -10,12 +12,17 @@ var struct_otrace_input =
     [ "nodesD", "struct_otrace_input.html#aeadc26a3f69cdf9f5f5f00f626f43f0a", null ],
     [ "normals", "struct_otrace_input.html#a39096f43f2c7c4d0971b84ce534fdbbc", null ],
     [ "numRays", "struct_otrace_input.html#aebe74d71dce6935268bdbc8cafbbcb17", null ],
+    [ "randomSeed", "struct_otrace_input.html#a085550a2732abbb360d8eb8e41a7fef8", null ],
     [ "rays", "struct_otrace_input.html#a1298cc3d5e36e840c415169c1221159b", null ],
     [ "results", "struct_otrace_input.html#acf9a0c500b56b7f1f438e485ffc6d3bd", null ],
     [ "texCoords", "struct_otrace_input.html#aaf528bff37e8783ae3a4efdfdaa1a6ff", null ],
     [ "triIndices", "struct_otrace_input.html#ab713dde91ca82a22a51aaf0c285a3b32", null ],
+    [ "tris", "struct_otrace_input.html#a6b38a318779f6d49ed9c78a421d95898", null ],
     [ "trisA", "struct_otrace_input.html#a439026f46ddce1123216b3d3acac3771", null ],
     [ "trisB", "struct_otrace_input.html#aa5b2db172c955a5baf0a4dba233f1444", null ],
     [ "trisC", "struct_otrace_input.html#aa1b245a2e95a2d71d2029ac20cc5b372", null ],
-    [ "triVertIndex", "struct_otrace_input.html#a7c731d7f324cf7745f47c64d910cce8b", null ]
+    [ "trisCount", "struct_otrace_input.html#ae336df2576e5083630a7057a88a0e976", null ],
+    [ "triVertIndex", "struct_otrace_input.html#a7c731d7f324cf7745f47c64d910cce8b", null ],
+    [ "verts", "struct_otrace_input.html#a9eba81abd77396bd2f32361da4f185b1", null ],
+    [ "vertsCount", "struct_otrace_input.html#aed13be88e11c27e57ce4b23768a0f83c", null ]
 ];

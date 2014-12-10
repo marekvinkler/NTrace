@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['p',['p',['../struct_f_w_1_1_vertex_p.html#ab78e055a489e5a24fb23bf5e8673ec5e',1,'FW::VertexP::p()'],['../struct_f_w_1_1_vertex_p_n.html#aaeebd0d0ad38e343ff1c5aab1c709fcc',1,'FW::VertexPN::p()'],['../struct_f_w_1_1_vertex_p_n_c.html#ad2c7088ca7612ba0bcba13703830c03f',1,'FW::VertexPNC::p()'],['../struct_f_w_1_1_vertex_p_n_t.html#a4a32367231fe012a9f76438c18b12579',1,'FW::VertexPNT::p()'],['../class_f_w_1_1_cuda_kernel.html#a089355bed753112c0e720d4f70d8c6a0',1,'FW::CudaKernel::P()'],['../_d_l_l_imports_8inl.html#a5a11afa44e3df9fa01e461dc15484392',1,'p():&#160;DLLImports.inl']]],
+  ['p',['P',['../class_f_w_1_1_cuda_kernel.html#a089355bed753112c0e720d4f70d8c6a0',1,'FW::CudaKernel::P()'],['../struct_f_w_1_1_vertex_p.html#ab78e055a489e5a24fb23bf5e8673ec5e',1,'FW::VertexP::p()'],['../struct_f_w_1_1_vertex_p_n.html#aaeebd0d0ad38e343ff1c5aab1c709fcc',1,'FW::VertexPN::p()'],['../struct_f_w_1_1_vertex_p_n_c.html#ad2c7088ca7612ba0bcba13703830c03f',1,'FW::VertexPNC::p()'],['../struct_f_w_1_1_vertex_p_n_t.html#a4a32367231fe012a9f76438c18b12579',1,'FW::VertexPNT::p()'],['../_d_l_l_imports_8inl.html#a5a11afa44e3df9fa01e461dc15484392',1,'p():&#160;DLLImports.inl']]],
   ['pada',['padA',['../struct_f_w_1_1_ray_result.html#a16c498f2fb2d847b399634684ad03910',1,'FW::RayResult']]],
   ['padb',['padB',['../struct_f_w_1_1_ray_result.html#afceeafe1fa2a2b59535ad371833b0e25',1,'FW::RayResult']]],
   ['palette',['palette',['../struct_lode_p_n_g___info_color.html#ac6de7ff58cb1f39a73567abb826f72f5',1,'LodePNG_InfoColor']]],
@@ -54,7 +54,7 @@ var searchData=
   ['pixeltable_2ehpp',['PixelTable.hpp',['../_pixel_table_8hpp.html',1,'']]],
   ['planeeq',['planeEq',['../struct_f_w_1_1_convex_polyhedron_1_1_face.html#a574d4e121362d4b1e2c340f7dd74843d',1,'FW::ConvexPolyhedron::Face']]],
   ['planeid',['planeID',['../struct_f_w_1_1_convex_polyhedron_1_1_face.html#a065384c10bb8213f140878626816f18b',1,'FW::ConvexPolyhedron::Face']]],
-  ['platform',['platform',['../struct_f_w_1_1_ray_stats.html#a7569c8973fd9b95e2002c732f0cf4bcc',1,'FW::RayStats::platform()'],['../class_f_w_1_1_platform.html#a678d14b902ad6e293e8f449de635d380',1,'FW::Platform::Platform()'],['../class_f_w_1_1_platform.html#a5db896fdbe3ea757cb6b143077393bc8',1,'FW::Platform::Platform(const String &amp;name, float nodeCost=1.f, float triCost=1.f, S32 nodeBatchSize=1, S32 triBatchSize=1)']]],
+  ['platform',['Platform',['../class_f_w_1_1_platform.html#a678d14b902ad6e293e8f449de635d380',1,'FW::Platform::Platform()'],['../class_f_w_1_1_platform.html#a5db896fdbe3ea757cb6b143077393bc8',1,'FW::Platform::Platform(const String &amp;name, float nodeCost=1.f, float triCost=1.f, S32 nodeBatchSize=1, S32 triBatchSize=1)'],['../struct_f_w_1_1_ray_stats.html#a7569c8973fd9b95e2002c732f0cf4bcc',1,'FW::RayStats::platform()']]],
   ['platform',['Platform',['../class_f_w_1_1_platform.html',1,'FW']]],
   ['platform_2ecpp',['Platform.cpp',['../_platform_8cpp.html',1,'']]],
   ['platform_2ehpp',['Platform.hpp',['../_platform_8hpp.html',1,'']]],

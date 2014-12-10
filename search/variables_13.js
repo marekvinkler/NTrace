@@ -7,7 +7,8 @@ var searchData=
   ['value',['value',['../struct_f_w_1_1_hash_entry.html#af639f29824946976da700b127ba181aa',1,'FW::HashEntry::value()'],['../struct_f_w_1_1_cuda_kernel_1_1_param.html#a86ccff04d147e3a7540431349f2798c0',1,'FW::CudaKernel::Param::value()'],['../class_option.html#a4457ff0702aacd0dda6df15ec8c04544',1,'Option::value()'],['../_d_l_l_imports_8inl.html#a3f2d6cd655118d09cc005e6760706570',1,'value():&#160;DLLImports.inl']]],
   ['vertexhash',['vertexHash',['../struct_f_w_1_1_import_state.html#a56fb4774a4fd6f160cdefd2a321fb1cf',1,'FW::ImportState']]],
   ['vertextmp',['vertexTmp',['../struct_f_w_1_1_import_state.html#a883e0d9f71785570810893c7b1b7bb40',1,'FW::ImportState']]],
-  ['verts',['verts',['../struct_f_w_1_1_convex_polyhedron_1_1_edge.html#a4e7e6a64e6a31c9788772819ed364e20',1,'FW::ConvexPolyhedron::Edge']]],
+  ['verts',['verts',['../struct_f_w_1_1_convex_polyhedron_1_1_edge.html#a4e7e6a64e6a31c9788772819ed364e20',1,'FW::ConvexPolyhedron::Edge::verts()'],['../struct_otrace_input.html#a9eba81abd77396bd2f32361da4f185b1',1,'OtraceInput::verts()']]],
+  ['vertscount',['vertsCount',['../struct_otrace_input.html#aed13be88e11c27e57ce4b23768a0f83c',1,'OtraceInput']]],
   ['visibility',['visibility',['../struct_f_w_1_1_b_v_h_1_1_build_params.html#a5cbdc001156227091c2942bfef85ba6b',1,'FW::BVH::BuildParams']]],
   ['void',['void',['../_d_l_l_imports_8inl.html#a7ae6d11d1ef2337ebac9b2a0945eb2d9',1,'DLLImports.inl']]]
 ];

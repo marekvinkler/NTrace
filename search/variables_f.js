@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['randomseed',['randomSeed',['../struct_f_w_1_1_ray_gen_a_o_input.html#a0ea88b656f660c2b8f1c4f4078c1f85e',1,'FW::RayGenAOInput::randomSeed()'],['../struct_f_w_1_1_ray_gen_shadow_input.html#aad8c869815a023582ce66ea4dd7269b3',1,'FW::RayGenShadowInput::randomSeed()']]],
+  ['randomseed',['randomSeed',['../struct_otrace_input.html#a085550a2732abbb360d8eb8e41a7fef8',1,'OtraceInput::randomSeed()'],['../struct_f_w_1_1_ray_gen_a_o_input.html#a0ea88b656f660c2b8f1c4f4078c1f85e',1,'FW::RayGenAOInput::randomSeed()'],['../struct_f_w_1_1_ray_gen_shadow_input.html#aad8c869815a023582ce66ea4dd7269b3',1,'FW::RayGenShadowInput::randomSeed()']]],
   ['range',['range',['../_d_l_l_imports_8inl.html#a6a74b2c052db711f9fac5e017cd75cec',1,'DLLImports.inl']]],
   ['rayresults',['rayResults',['../struct_f_w_1_1_count_hits_input.html#a3e235d145ec0d61be02c580e9adba364',1,'FW::CountHitsInput']]],
   ['rays',['rays',['../struct_otrace_input.html#a1298cc3d5e36e840c415169c1221159b',1,'OtraceInput::rays()'],['../struct_f_w_1_1_ray_gen_primary_input.html#abf4c164a03ee1f5c2e74ef289c75cb52',1,'FW::RayGenPrimaryInput::rays()']]],
