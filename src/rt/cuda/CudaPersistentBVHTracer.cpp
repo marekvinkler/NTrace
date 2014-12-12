@@ -10,18 +10,7 @@
 
 using namespace FW;
 
-#define CIRCULAR_MALLOC_PREALLOC 3
-#define CPU 0
-#define GPU 1
-#define CIRCULAR_MALLOC_INIT GPU
-#define CIRCULAR_MALLOC_PREALLOC_SPECIAL
-
 #define BENCHMARK
-#define TEST_TASKS
-
-#ifndef TEST_TASKS
-#include "kernels/thrustTest.hpp"
-#endif
 
 ofstream Debug;
 
@@ -40,22 +29,15 @@ CudaPersistentBVHTracer::CudaPersistentBVHTracer(Scene& scene, F32 epsilon) : Cu
 	CudaModule::staticInit();
 	//m_compiler.addOptions("-use_fast_math");
 	m_compiler.addOptions("-use_fast_math -Xptxas -dlcm=cg");
-	m_compiler.clearDefines();
-	if (CudaModule::getComputeCapability() == 20 || CudaModule::getComputeCapability() == 21)
-		m_compiler.define("FERMI");
 
 	// convert from scene
 	Vec3f light = Vec3f(1.0f, 2.0f, 3.0f).normalized();
 
 	m_numTris = scene.getTriVtxIndexBuffer().getSize() / sizeof(Vec3i);
 	m_numVerts          = m_numTris * 3;
-	
-	m_tris.resizeDiscard(m_numTris * sizeof(Vec3i));
 
 	m_trisCompact.resizeDiscard(m_numTris * 3 * sizeof(Vec4f));
 	m_trisIndex.resizeDiscard(m_numTris * sizeof(S32));
-
-	Vec3i*			tout  = (Vec3i*)m_tris.getMutablePtr();
 
 	Vec4f* tcout  = (Vec4f*)m_trisCompact.getMutablePtr();
 	S32*   tiout  = (S32*)m_trisIndex.getMutablePtr();
@@ -82,13 +64,6 @@ CudaPersistentBVHTracer::CudaPersistentBVHTracer(Scene& scene, F32 epsilon) : Cu
 		m_bboxMax = FW::max(m_bboxMax, c);
 	}
 
-	// load triangles
-	for(int i=0,j=0;i<m_numTris;i++,j+=3)
-	{
-		// triangle data
-		tout[i] = Vec3i(j,j+1,j+2);
-	}
-
 	m_sizeTask = 0.f;
 	m_sizeSplit = 0.f;
 	m_sizeADS = 0.f;
@@ -97,23 +72,13 @@ CudaPersistentBVHTracer::CudaPersistentBVHTracer(Scene& scene, F32 epsilon) : Cu
 	m_heap = 0.f;
 }
 
-F32 CudaPersistentBVHTracer::buildBVH(bool sbvh)
+F32 CudaPersistentBVHTracer::buildBVH()
 {
-#ifdef MALLOC_SCRATCHPAD
-	// Set the memory limit according to triangle count
-#ifndef BENCHMARK
-	printf("Setting dynamic memory limit to %fMB\n", (float)(m_trisIndex.getSize()*5*3)/(float)(1024*1024));
-#endif
-	 cuCtxSetLimit(CU_LIMIT_MALLOC_HEAP_SIZE, m_trisIndex.getSize()*5*3);
-#endif
-
 	// Compile the kernel
-	if(!sbvh)
-		m_kernelFile = "src/rt/kernels/persistent_bvh.cu";
-	else
-		m_kernelFile = "src/rt/kernels/persistent_sbvh.cu";
+	m_kernelFile = "src/rt/kernels/persistent_bvh.cu";
 
 	m_compiler.setSourceFile(m_kernelFile);
+	m_compiler.clearDefines();
 	m_module = m_compiler.compile();
 	failIfError();
 
@@ -159,16 +124,8 @@ F32 CudaPersistentBVHTracer::buildBVH(bool sbvh)
 	m_bvhData.setOwner(Buffer::Cuda, true); // Make CUDA the owner so that CPU memory is never allocated
 	//m_bvhData.clearRange32(0, 0, bvhSize); // Mark all tasks as 0 (important for debug)
 #ifdef COMPACT_LAYOUT
-	if(!sbvh)
-	{
-		m_trisCompactOut.resizeDiscard(m_numTris * (3+1) * sizeof(Vec4f));
-		m_trisIndexOut.resizeDiscard(m_numTris * (3+1) * sizeof(S32));
-	}
-	else
-	{
-		m_trisCompactOut.resizeDiscard(m_numTris*2 * (3+1) * sizeof(Vec4f));
-		m_trisIndexOut.resizeDiscard(m_numTris*2 * (3+1) * sizeof(S32));
-	}
+	m_trisCompactOut.resizeDiscard(m_numTris * (3+1) * sizeof(Vec4f));
+	m_trisIndexOut.resizeDiscard(m_numTris * (3+1) * sizeof(S32));
 #endif
 
 #if SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
@@ -409,19 +366,10 @@ void CudaPersistentBVHTracer::initPool(int numRays, Buffer* rayBuffer, Buffer* n
 	numActive = 1;
 #endif
 
-#ifndef MALLOC_SCRATCHPAD
 	// Set PPS buffers
 	m_ppsTris.resizeDiscard(sizeof(int)*m_numTris);
 	m_ppsTrisIndex.resizeDiscard(sizeof(int)*m_numTris);
 	m_sortTris.resizeDiscard(sizeof(int)*m_numTris);
-
-	if(numRays > 0)
-	{
-		m_ppsRays.resizeDiscard(sizeof(int)*numRays);
-		m_ppsRaysIndex.resizeDiscard(sizeof(int)*numRays);
-		m_sortRays.resizeDiscard(sizeof(int)*numRays);
-	}
-#endif
 
 #if defined(SNAPSHOT_POOL) || defined(SNAPSHOT_WARP)
 	// Prepare snapshot memory
@@ -430,30 +378,14 @@ void CudaPersistentBVHTracer::initPool(int numRays, Buffer* rayBuffer, Buffer* n
 #endif
 
 	// Set all headers empty
-#ifdef TEST_TASKS
 	m_taskData.setOwner(Buffer::Cuda, true); // Make CUDA the owner so that CPU memory is never allocated
 #ifdef BENCHMARK
 	m_taskData.clearRange32(0, TaskHeader_Empty, TASK_SIZE * sizeof(int)); // Mark all tasks as empty
 #else
 	m_taskData.clearRange32(0, TaskHeader_Empty, TASK_SIZE * (sizeof(int)+sizeof(Task))); // Mark all tasks as empty (important for debug)
 #endif
-#endif
-
-	// Increase printf output size so that more can fit
-	//cuCtxSetLimit(CU_LIMIT_PRINTF_FIFO_SIZE, 536870912);
-
-	/*cuCtxSetCacheConfig(CU_FUNC_CACHE_PREFER_SHARED); // Driver does not seem to care and preffers L1
-	cuFuncSetCacheConfig(kernel, CU_FUNC_CACHE_PREFER_SHARED);
-	CUfunc_cache test;
-	cuCtxGetCacheConfig(&test);
-	if(test != CU_FUNC_CACHE_PREFER_SHARED)
-		printf("Error\n");*/
 
 	// Set texture references.
-	if(rayBuffer != NULL)
-	{
-		m_module->setTexRef("t_rays", *rayBuffer, CU_AD_FORMAT_FLOAT, 4);
-	}
 	if(nodeBuffer != NULL)
 	{
 		m_module->setTexRef("t_nodesA", *nodeBuffer, CU_AD_FORMAT_FLOAT, 4);
@@ -462,11 +394,8 @@ void CudaPersistentBVHTracer::initPool(int numRays, Buffer* rayBuffer, Buffer* n
 	m_module->setTexRef("t_triIndices", m_trisIndex, CU_AD_FORMAT_SIGNED_INT32, 1);
 
 /*#ifdef COMPACT_LAYOUT
-	if(numRays == 0)
-	{
 		m_module->setTexRef("t_trisAOut", m_trisCompactOut, CU_AD_FORMAT_FLOAT, 4);
 		m_module->setTexRef("t_triIndicesOut", m_trisIndexOut, CU_AD_FORMAT_SIGNED_INT32, 1);
-	}
 #endif*/
 }
 
@@ -986,24 +915,10 @@ F32 CudaPersistentBVHTracer::buildCudaBVH()
 {
 	CudaKernel kernel;
 	kernel = m_module->getKernel("build");
-	if (!kernel.getHandle())
-		fail("Build kernel not found!");
-
-#ifdef MALLOC_SCRATCHPAD
-	KernelInputBVH& in = *(KernelInputBVH*)m_module->getGlobal("c_bvh_in").getMutablePtr();
-	in.numTris	    = m_numTris;
-	in.tris         = m_trisCompact.getCudaPtr();
-	in.trisIndex    = m_trisIndex.getMutableCudaPtr();
-#ifdef COMPACT_LAYOUT
-	in.trisOut      = m_trisCompactOut.getMutableCudaPtr();
-	in.trisIndexOut = m_trisIndexOut.getMutableCudaPtr();
-#endif
-#endif
 
 	// Prepare the task data
 	initPool();
 
-#ifndef MALLOC_SCRATCHPAD
 	// Set input.
 	KernelInputBVH& in = *(KernelInputBVH*)m_module->getGlobal("c_bvh_in").getMutablePtr();
 	in.numTris		= m_numTris;
@@ -1016,35 +931,6 @@ F32 CudaPersistentBVHTracer::buildCudaBVH()
 #ifdef COMPACT_LAYOUT
 	in.trisOut      = m_trisCompactOut.getMutableCudaPtr();
 	in.trisIndexOut = m_trisIndexOut.getMutableCudaPtr();
-#endif
-#else
-	CUfunction kernelAlloc = m_module->getKernel("allocFreeableMemory", 2*sizeof(int));
-	if (!kernelAlloc)
-		fail("Memory allocation kernel not found!");
-
-	int offset = 0;
-	offset += m_module->setParami(kernelAlloc, offset, m_numTris);
-	offset += m_module->setParami(kernelAlloc, offset, 0);
-	F32 allocTime = m_module->launchKernelTimed(kernelAlloc, Vec2i(1,1), Vec2i(1, 1));
-
-#ifndef BENCHMARK
-	printf("Memory allocated in %f\n", allocTime);
-#endif
-
-	CUfunction kernelMemCpyIndex = m_module->getKernel("MemCpyIndex", sizeof(CUdeviceptr)+sizeof(int));
-	if (!kernelMemCpyIndex)
-		fail("Memory copy kernel not found!");
-
-	int memSize = m_trisIndex.getSize()/sizeof(int);
-	offset = 0;
-	offset += m_module->setParamPtr(kernelMemCpyIndex, offset, m_trisIndex.getCudaPtr());
-	offset += m_module->setParami(kernelMemCpyIndex, offset, memSize);
-	F32 memcpyTime = m_module->launchKernelTimed(kernelMemCpyIndex, Vec2i(256,1), Vec2i((memSize-1+256)/256, 1));
-
-#ifndef BENCHMARK
-	printf("Triangle indices copied in %f\n", memcpyTime);
-#endif
-	in = *(KernelInputBVH*)m_module->getGlobal("c_bvh_in").getMutablePtr();
 #endif
 
 #if SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
@@ -1092,11 +978,7 @@ F32 CudaPersistentBVHTracer::buildCudaBVH()
 	TaskBVH all;
 	all.triStart     = 0;
 	all.triLeft      = 0;
-#ifndef MALLOC_SCRATCHPAD
 	all.triRight     = m_numTris;
-#else
-	all.triRight     = 0;
-#endif
 	all.triEnd       = m_numTris;
 	all.bbox         = bbox;
 	all.step         = 0;
@@ -1104,9 +986,7 @@ F32 CudaPersistentBVHTracer::buildCudaBVH()
 	all.bestCost     = 1e38f;
 	all.depth        = 0;
 	all.dynamicMemory= 0;
-#ifndef MALLOC_SCRATCHPAD
 	all.triIdxCtr    = 0;
-#endif
 	all.parentIdx    = -1;
 	all.nodeIdx      = 0;
 	all.taskID       = 0;
@@ -1218,16 +1098,6 @@ F32 CudaPersistentBVHTracer::buildCudaBVH()
 	// Launch.
 	float tKernel = kernel.launchTimed(blockSize, gridSize);
 
-/*#ifdef MALLOC_SCRATCHPAD
-	CUfunction kernelDealloc = m_module->getKernel("deallocFreeableMemory", 0);
-	if (!kernelDealloc)
-		fail("Memory allocation kernel not found!");
-
-	F32 deallocTime = m_module->launchKernelTimed(kernelDealloc, Vec2i(1,1), Vec2i(1, 1));
-
-	printf("Memory freed in %f\n", deallocTime);
-#endif*/
-
 #ifndef BENCHMARK
 	cuCtxSynchronize(); // Flushes printfs
 #endif
@@ -1316,17 +1186,7 @@ F32 CudaPersistentBVHTracer::buildCudaBVH()
 	{
 		m_sizeTask   = m_taskData.getSize()/MB;
 		m_sizeSplit  = m_splitData.getSize()/MB;
-#ifdef MALLOC_SCRATCHPAD
-#if (MALLOC_TYPE == CUDA_MALLOC) || (MALLOC_TYPE == FDG_MALLOC)
-		size_t heapSize;
-		cuCtxGetLimit(&heapSize, CU_LIMIT_MALLOC_HEAP_SIZE);
-		m_heap       = heapSize/MB; 
-#else
-		m_heap       = (m_mallocData.getSize()+m_mallocData2.getSize())/MB;
-#endif
-#else
 		m_heap       = 0.f;
-#endif
 	}
 }*/
 
@@ -1340,12 +1200,8 @@ void CudaPersistentBVHTracer::resetBuffers(bool resetADSBuffers)
 		m_trisIndexOut.reset();
 	}
 
-	//m_mallocData.reset();
-	//m_mallocData2.reset();
 	m_taskData.reset();
 	m_splitData.reset();
-
-	//m_raysIndex.reset();
 
 	m_ppsTris.reset();
 	m_ppsTrisIndex.reset();

@@ -8,11 +8,6 @@
 #include "gpu/CudaCompiler.hpp"
 #include "base/Timer.hpp"
 #include "CudaBVH.hpp"
-/*#include "materials/MaterialCommon.h"
-#include "textures/TexArray.h"
-#include "kernels/CudaPool.hpp"
-#include "kernels/CudaNoStructKernels.hpp"
-#include "kernels/CudaBuilderKernels.hpp"*/
 
 #include "Scene.hpp"
 
@@ -28,9 +23,6 @@ class CudaPersistentBVHTracer : public CudaBVH
 	Vec3f m_bboxMin, m_bboxMax;
 	S32 m_buildNodes;
 	S32 m_buildLeafs;
-
-	Buffer m_verts;
-	Buffer m_tris;
 
 	// INPUT (in the scene)
 	Buffer m_trisIndex;					
@@ -88,7 +80,7 @@ class CudaPersistentBVHTracer : public CudaBVH
 public:
 	CudaPersistentBVHTracer(Scene& scene, F32 epsilon);
 
-	F32 buildBVH(bool sbvh);
+	F32 buildBVH();
 	F32 traceBatchBVH(RayBuffer& rays, RayStats* stats = NULL);
 
 	void resetBuffers(bool resetADSBuffers); // Resets all buffers for timing purposes

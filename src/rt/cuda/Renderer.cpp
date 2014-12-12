@@ -63,7 +63,7 @@ Renderer::Renderer()
 	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
 
     // Setup data structure.
-	if(ds == "BVH" || ds == "PersistentBVH")
+	if(ds == "BVH")
 		m_cudaTracer = new CudaBVHTracer();
 	else if(ds == "KDTree")
 		m_cudaTracer = new CudaKDTreeTracer();
@@ -171,10 +171,7 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
         File file(cacheFileName, File::Read);
         if (!hasError())
         {
-			string ds;
-			Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
-
-			if (ds != "PersistentBVH")
+			if (builder != "PersistentBVH")
 			{	
 				m_accelStruct = new CudaBVH(file);
 				return m_accelStruct;
@@ -252,10 +249,7 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
     // Build BVH.
 	if(m_accelStruct == NULL)
 	{
-		string ds;
-		Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
-
-		if (ds != "PersistentBVH")
+		if (builder != "PersistentBVH")
 		{	
 			BVH bvh(m_scene, m_platform, m_buildParams);
 			stats.print();
@@ -266,7 +260,7 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 		{
 			m_accelStruct = new CudaPersistentBVHTracer(*m_scene, FLT_EPSILON);
 			((CudaPersistentBVHTracer*)m_accelStruct)->resetBuffers(true);
-			((CudaPersistentBVHTracer*)m_accelStruct)->buildBVH(false);
+			((CudaPersistentBVHTracer*)m_accelStruct)->buildBVH();
 			((CudaPersistentBVHTracer*)m_accelStruct)->resetBuffers(false);
 		}
 	}
@@ -383,7 +377,7 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
 	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
 
     // Setup BVH.
-	if(ds == "BVH" || ds == "PersistentBVH")
+	if(ds == "BVH")
 		m_cudaTracer->setBVH(getCudaBVH(gl, camera));
 	else if(ds == "KDTree")
 		m_cudaTracer->setBVH(getCudaKDTree());
