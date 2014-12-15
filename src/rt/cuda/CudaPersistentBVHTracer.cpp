@@ -1096,7 +1096,8 @@ F32 CudaPersistentBVHTracer::buildCudaBVH()
 	in.debug = m_debug.getMutableCudaPtr();
 
 	// Launch.
-	float tKernel = kernel.launchTimed(blockSize, gridSize);
+	kernel.setGridExact(blockSize, gridSize);
+	float tKernel = kernel.launchTimed();
 
 #ifndef BENCHMARK
 	cuCtxSynchronize(); // Flushes printfs

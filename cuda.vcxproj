@@ -84,6 +84,7 @@
     <CudaCompile Include="src\rt\persistentbvh\persistent_bvh.cu">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">-Xptxas -dlcm=cg %(AdditionalOptions)</AdditionalOptions>
     </CudaCompile>
     <CudaCompile Include="src\rt\persistentbvh\pool_common.cu">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
