@@ -46,6 +46,13 @@ void AppEnvironment::RegisterOptions()
 	RegisterOption("Renderer.builder", optString, "renderer.builder=");
 
 	/*************************************************************************/
+	/*    VPL                                                                */
+	/*************************************************************************/
+	RegisterOption("VPL.primaryLights", optInt, "primary_lights=", "20");
+	RegisterOption("VPL.maxLightBounces", optInt, "max_light_bounces=", "10");
+
+
+	/*************************************************************************/
 	/*    Raygen                                                             */
 	/*************************************************************************/
 	RegisterOption("Raygen.random", optBool, "raygen_random=", "false");

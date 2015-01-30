@@ -89,12 +89,12 @@ public:
     Scene*              getScene            (void) const            { return m_scene; }
 	CudaAS*             getCudaBVH          (GLContext* gl = NULL, const CameraControls& camera = CameraControls());
 
-    F32                 renderFrame         (GLContext* gl, const CameraControls& camera); // returns total launch time
+    virtual F32         renderFrame         (GLContext* gl, const CameraControls& camera); // returns total launch time
 
-    void                beginFrame          (GLContext* gl, const CameraControls& camera);
-    bool                nextBatch           (void);
+    virtual void        beginFrame          (GLContext* gl, const CameraControls& camera);
+    virtual bool        nextBatch           (void);
     F32                 traceBatch          (void); // returns launch time
-    void                updateResult        (void); // for current batch
+    virtual void        updateResult        (void); // for current batch
     void                displayResult       (GLContext* gl);
 
     int                 getTotalNumRays     (void); // for selected ray type, excluding degenerates

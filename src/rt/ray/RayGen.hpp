@@ -168,6 +168,14 @@ public:
 	 */
     bool    randomReflection (RayBuffer& orays, RayBuffer& irays, Scene& scene, int numSamples, float maxDist, bool& newBatch, U32 randomSeed=0);
 
+
+	/**
+	 * \brief Generates rays on the surface of light - the area is defined by base, two vectors and a normal.
+	 * \param[in,out] orays Generated rays.
+	 * \param[in] emitPlaneBase The base point of the emitting plane
+	 */
+	bool    primaryVPL(RayBuffer& orays, Vec3f& emitPlaneBase, Vec3f& emitPlaneV1, Vec3f& emitPlaneV2, Vec3f& emitPlaneNormal, int numLights, float maxDist, U32 randomSeed=0);
+
 private:
 	/**
 	 * \brief Creates batches of rays to limit memory load.
