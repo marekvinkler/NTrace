@@ -247,3 +247,59 @@ extern "C" __global__ void getVisibility(const float4* rayResults, int numRays, 
 }
 
 //------------------------------------------------------------------------
+
+// For VPLs
+
+extern "C" __global__ void vplReconstructKernel() 
+{
+
+	const VPLReconstructInput& in = c_VPLReconstructInput;
+    int taskIdx = threadIdx.x + blockDim.x * (threadIdx.y + blockDim.y * (blockIdx.x + gridDim.x * blockIdx.y));
+    if (taskIdx >= in.numPrimary)
+        return;
+
+	int                     primarySlot     = taskIdx;
+    int                     primaryID       = ((const S32*)in.primarySlotToID)[primarySlot];
+    const RayResult&        primaryResult   = ((const RayResult*)in.primaryResults)[primarySlot];
+
+	U32&                    pixel           = ((U32*)in.pixels)[primaryID];
+	Vec4f                   bgColor         = Vec4f(0.2f, 0.4f, 0.8f, 1.0f);
+	const Vec3i*			vertIdx			= (const Vec3i*)in.triVertIndex;
+	const Vec3f*			normals			= (const Vec3f*)in.normals;
+	const Vec3f*			vertices		= (const Vec3f*)in.vertices;
+	const U32*				triShadedColor      = (const U32*)in.triShadedColor;
+
+	const Vec3f				lightPos		= Vec3f(0,0,0);
+	
+
+	float u = __int_as_float(primaryResult.padA);
+	float v = __int_as_float(primaryResult.padB);
+	float w = 1.0f - u - v;
+	
+	int tri = primaryResult.id;
+	if(tri == -1) {
+		pixel = toABGR(bgColor);
+		return;
+	}
+
+	Vec4f color = Vec4f(0,0,0,1);
+
+	Vec3f normal = (normals[vertIdx[tri].x] * u + normals[vertIdx[tri].y] * v + normals[vertIdx[tri].z] * w).normalized();
+	Vec3f position = vertices[vertIdx[tri].x] * u + vertices[vertIdx[tri].y] * v + vertices[vertIdx[tri].z] * w;
+
+	Vec3f	lightDir = (lightPos - position);
+	float invDist = 1.0f / lightDir.length();
+	lightDir = lightDir.normalized();
+
+
+	float nDotDir = dot(normal, lightDir);
+
+	if(nDotDir > 0) {
+		color += nDotDir * Vec4f(1,1,1,0) * (invDist * 3);
+	}
+	
+
+	//color = fromABGR(triShadedColor[tri]);
+
+	pixel = toABGR(color);
+}

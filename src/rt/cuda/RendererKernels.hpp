@@ -75,6 +75,23 @@ struct ReconstructInput
 	float		samplesCount;	
 };
 
+
+//------------------------------------------------------------------------
+
+struct VPLReconstructInput {
+    S32         numPrimary;
+    CUdeviceptr primarySlotToID;    // const S32*
+    CUdeviceptr primaryResults;     // const RayResult*
+    CUdeviceptr pixels;             // U32* ABGR
+
+	CUdeviceptr texCoords;			// const Vec2f*
+	CUdeviceptr normals;			// const Vec3f*
+	CUdeviceptr triVertIndex;		// const Vec3i*
+	CUdeviceptr vertices;	     	// const Vec3i*
+	CUdeviceptr triShadedColor;	   
+};
+
+
 //------------------------------------------------------------------------
 
 struct CountHitsInput
@@ -92,6 +109,8 @@ extern "C"
 
 __constant__ ReconstructInput c_ReconstructInput;
 __global__ void reconstructKernel(void);
+__constant__ VPLReconstructInput c_VPLReconstructInput;
+__global__ void vplReconstructKernel(void);
 
 __constant__ CountHitsInput c_CountHitsInput;
 __device__ S32 g_CountHitsOutput;
