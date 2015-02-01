@@ -5,12 +5,12 @@
 namespace FW
 {
 
-class VPLrenderer : public Renderer 
+class VPLRenderer : public Renderer 
 {
 
 public:
 
-						VPLrenderer();
+						VPLRenderer();
 
 	virtual F32         renderFrame         (GLContext* gl, const CameraControls& camera); // returns total launch time
 

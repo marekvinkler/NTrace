@@ -4,7 +4,7 @@
 
 using namespace FW;
 
-VPLrenderer::VPLrenderer()
+VPLRenderer::VPLRenderer()
 	:	Renderer(),
 		firstFrame(true)
 {
@@ -12,7 +12,7 @@ VPLrenderer::VPLrenderer()
 }
 
 
-F32 VPLrenderer::renderFrame(GLContext* gl, const CameraControls& camera) 
+F32 VPLRenderer::renderFrame(GLContext* gl, const CameraControls& camera) 
 {
 	F32 launchTime = 0.0f;
     beginFrame(gl, camera);
@@ -29,7 +29,7 @@ F32 VPLrenderer::renderFrame(GLContext* gl, const CameraControls& camera)
     return launchTime;
 }
 
-void VPLrenderer::beginFrame(GLContext* gl, const CameraControls& camera) 
+void VPLRenderer::beginFrame(GLContext* gl, const CameraControls& camera) 
 {
 	FW_ASSERT(gl && m_mesh);
 
@@ -84,7 +84,7 @@ void VPLrenderer::beginFrame(GLContext* gl, const CameraControls& camera)
     m_batchStart    = 0;
 }
 
-bool VPLrenderer::nextBatch(void) 
+bool VPLRenderer::nextBatch(void) 
 {
 	if (!m_newBatch)
         return false;
@@ -93,7 +93,7 @@ bool VPLrenderer::nextBatch(void)
 	return true;
 }
 
-void VPLrenderer::updateResult(void) 
+void VPLRenderer::updateResult(void) 
 {
 	FW_ASSERT(m_scene && m_image && m_batchRays);
 	

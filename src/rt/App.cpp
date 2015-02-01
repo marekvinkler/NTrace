@@ -645,7 +645,7 @@ void FW::runBenchmark(
     BVH::BuildParams buildParams;
     buildParams.splitAlpha = sbvhAlpha;
 
-	Renderer* renderer = new Renderer();
+	VPLRenderer* renderer = new VPLRenderer();
     renderer->setBuildParams(buildParams);
 	renderer->setMesh(importMesh(meshFile));
 
