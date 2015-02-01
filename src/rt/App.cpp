@@ -169,7 +169,7 @@ App::App(void)
     if (!m_kernelNames.getSize())
         fail("No CUDA kernel sources found!");
 
-	m_renderer = new Renderer();
+	m_renderer = new VPLRenderer();
 
     m_commonCtrl.showFPS(true);
     m_commonCtrl.addStateObject(this);
@@ -645,7 +645,7 @@ void FW::runBenchmark(
     BVH::BuildParams buildParams;
     buildParams.splitAlpha = sbvhAlpha;
 
-	VPLRenderer* renderer = new VPLRenderer();
+	Renderer* renderer = new Renderer();
     renderer->setBuildParams(buildParams);
 	renderer->setMesh(importMesh(meshFile));
 
