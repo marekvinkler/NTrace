@@ -2,13 +2,23 @@
 
 #include "cuda/RendererKernels.hpp"
 
+#include "3d/Light.hpp"
+
 using namespace FW;
 
 VPLRenderer::VPLRenderer()
 	:	Renderer(),
-		firstFrame(true)
+		m_firstFrame(true)
 {
+	Environment::GetSingleton()->GetIntValue("VPL.primaryLights", m_lightCount);
+	Environment::GetSingleton()->GetIntValue("VPL.maxLightBounces", m_lightBounces);
+	
+	printf("%d lights\n", m_lightCount);
+	m_lights.resize(m_lightCount * sizeof(Vec3f));
+}
 
+VPLRenderer::~VPLRenderer() {
+	
 }
 
 
@@ -59,6 +69,24 @@ void VPLRenderer::beginFrame(GLContext* gl, const CameraControls& camera)
         m_image->clear();
     }
 
+	m_image->clear();
+
+	// Generate VPLs for the first time
+	if(m_firstFrame && m_params.rayType == RayType_VPL) {
+		m_firstFrame = false;
+		m_raygen.primaryVPL(m_lights, m_vplBuffer, Vec3f(-2, 23,-2), Vec3f(4,0,0), Vec3f(0, 0, 4), Vec3f(0,-1,0), m_lightCount, m_lightBounces, 10000.0f);
+
+		m_cudaTracer->traceBatch(m_vplBuffer);
+
+		for(int i = 0; i < m_lightBounces; i++) {
+			m_raygen.reflectedVPL(m_lights, m_vplBuffer, m_lightCount, i, m_scene, 10000.0f);
+			if(i < m_lightBounces) {
+				m_cudaTracer->traceBatch(m_vplBuffer);
+			}
+		}
+
+	}
+
     // Generate primary rays.
 	
     U32 randomSeed = (m_enableRandom) ? m_random.getU32() : 0;
@@ -82,14 +110,45 @@ void VPLRenderer::beginFrame(GLContext* gl, const CameraControls& camera)
     m_newBatch      = true;
     m_batchRays     = NULL;
     m_batchStart    = 0;
+	m_currentLight = 0;
 }
 
 bool VPLRenderer::nextBatch(void) 
 {
-	if (!m_newBatch)
-        return false;
-    m_newBatch = false;
-    m_batchRays = &m_primaryRays;
+
+	if (m_batchRays)
+		m_batchStart += m_batchRays->getSize();
+	m_batchRays = NULL;
+
+	//printf("Current light: %d, Batch start: %d\n", m_currentLight, m_batchStart);
+
+	if(m_params.rayType == RayType_VPL) {
+		Light* lights = (Light*) m_lights.getPtr();
+		if(!m_raygen.shadow(m_shadowRays, m_primaryRays, 1,lights[m_currentLight].position , 0, m_newBatch)) {
+			if(m_currentLight == (m_lightCount * (m_lightBounces + 2)) - 1){
+				return false;
+			} else {
+				m_newBatch = true;
+				m_batchStart = 0;
+				m_currentLight++;
+				return nextBatch();
+			}
+		} else {
+			m_batchRays = &m_shadowRays;
+		}
+	} else {
+		if (!m_newBatch)
+	        return false;
+
+		if (m_batchRays)
+			m_batchStart += m_batchRays->getSize();
+		m_batchRays = NULL;
+
+		m_newBatch = false;
+		m_batchRays = &m_primaryRays;
+	}
+
+
 	return true;
 }
 
@@ -105,11 +164,35 @@ void VPLRenderer::updateResult(void)
 
     // Setup input struct.
 
+	//printf("Primary: %d, Shadow: %d\n", m_primaryRays.getSize(), m_shadowRays.getSize());
+
+	//Ray* primRay = ((Ray*)m_primaryRays.getRayBuffer().getPtr()) + 6561;
+	//RayResult* primRes = ((RayResult*)m_primaryRays.getResultBuffer().getPtr()) + 6561;
+	//Ray* shadowRay = ((Ray*)m_shadowRays.getRayBuffer().getPtr()) + 6561;
+
+	//if(primRes->id >= 0) {
+	//	Vec3f point = primRay->origin + primRay->direction * primRes->t;
+	//	printf("Prim. ray origin: %f, %f, %f\n", primRay->origin.x, primRay->origin.y, primRay->origin.z);
+	//	printf("Prim. ray hit: %f, %f, %f\n", point.x, point.y, point.z);
+	//	printf("Prim. ray dir: %f, %f, %f\n", primRay->direction.x, primRay->direction.y, primRay->direction.z);
+	//	printf("Shadow ray origin: %f, %f, %f\n", shadowRay->origin.x, shadowRay->origin.y, shadowRay->origin.z);
+	//	printf("Shadow ray dir: %f, %f, %f\n", shadowRay->direction.x, shadowRay->direction.y, shadowRay->direction.z);
+	//}
+
+	Light* lights = (Light*) m_lights.getPtr();
+
     VPLReconstructInput& in    = *(VPLReconstructInput*)module->getGlobal("c_VPLReconstructInput").getMutablePtr();
+	in.currentLight			= m_currentLight;
+	in.lights				= m_lights.getCudaPtr();
+	in.lightCount			= m_lightCount;
+	in.firstPrimary			= m_batchStart;
 	in.numPrimary           = m_primaryRays.getSize();
     in.primarySlotToID      = m_primaryRays.getSlotToIDBuffer().getCudaPtr();
     in.primaryResults       = m_primaryRays.getResultBuffer().getCudaPtr();
+	in.primaryRays			= m_primaryRays.getRayBuffer().getCudaPtr();
     in.pixels               = m_image->getBuffer().getMutableCudaPtr();
+	in.shadowResults		= m_shadowRays.getResultBuffer().getCudaPtr();
+	in.shadowIdToSlot		= m_shadowRays.getIDToSlotBuffer().getCudaPtr();
 
 	in.texCoords			= m_scene->getVtxTexCoordBuffer().getCudaPtr();
 	in.normals				= m_scene->getVtxNormalBuffer().getCudaPtr();
@@ -121,5 +204,11 @@ void VPLRenderer::updateResult(void)
 
     // Launch.
 
-    module->getKernel("vplReconstructKernel").launch(in.numPrimary);
+	if(m_params.rayType == RayType_VPL) {
+		in.shadow = true;
+		module->getKernel("vplReconstructKernel").launch(m_shadowRays.getSize());
+	} else {
+		in.shadow = false;
+		module->getKernel("vplReconstructKernel").launch(in.numPrimary);
+	}
 }

@@ -65,7 +65,7 @@ public:
 
     void                setWindowSize   (const Vec2i& size)         { m_window.setSize(size); }
     bool                loadState       (const String& fileName)    { return m_commonCtrl.loadState(fileName); }
-    void                loadDefaultState(void)                      { if (!m_commonCtrl.loadState(m_commonCtrl.getStateFileName(1))) firstTimeInit(); }
+	void                loadDefaultState(void)                      { if (!m_commonCtrl.loadState(m_commonCtrl.getStateFileName(1))) firstTimeInit(); m_kernelNameIdx = 1;}
     void                flashButtonTitles(void)                     { m_commonCtrl.flashButtonTitles(); }
 
 private:

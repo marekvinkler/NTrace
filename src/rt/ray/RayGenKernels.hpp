@@ -84,6 +84,15 @@ struct RayGenShadowInput
     CUdeviceptr outSlotToID;    // S32*
 };
 
+struct RayGenVPLReflectInput {
+
+	CUdeviceptr	lights;
+	CUdeviceptr	rays;
+	CUdeviceptr	rayResults;			// Rays going out of lastly generated lights
+	CUdeviceptr	normals;
+
+};
+
 //------------------------------------------------------------------------
 
 #if FW_CUDA

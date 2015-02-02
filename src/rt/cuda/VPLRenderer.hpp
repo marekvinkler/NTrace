@@ -11,6 +11,7 @@ class VPLRenderer : public Renderer
 public:
 
 						VPLRenderer();
+	virtual				~VPLRenderer();
 
 	virtual F32         renderFrame         (GLContext* gl, const CameraControls& camera); // returns total launch time
 
@@ -19,7 +20,15 @@ public:
     virtual void        updateResult        (void); // for current batch
 
 protected:
-	bool                firstFrame;
+	bool                m_firstFrame;
+
+
+private:
+	Buffer				m_lights;
+	RayBuffer			m_vplBuffer;
+	int					m_lightCount;
+	int					m_lightBounces;
+	int					m_currentLight;
 
 };
 

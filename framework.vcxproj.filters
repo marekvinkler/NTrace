@@ -278,6 +278,9 @@
     <ClInclude Include="src\framework\gpu\CudaKernel.hpp">
       <Filter>gpu</Filter>
     </ClInclude>
+    <ClInclude Include="src\framework\3d\Light.hpp">
+      <Filter>3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\framework\base\DLLImports.inl">

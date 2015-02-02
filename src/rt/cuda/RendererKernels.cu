@@ -28,6 +28,8 @@
 #include "cuda/RendererKernels.hpp"
 #include "base/Math.hpp"
 
+#include "3d/Light.hpp"
+
 using namespace FW;
 
 //------------------------------------------------------------------------
@@ -250,37 +252,64 @@ extern "C" __global__ void getVisibility(const float4* rayResults, int numRays, 
 
 // For VPLs
 
+extern "C" __device__ bool isCloserThan(const Ray& ray, Vec3f point, float value) {
+
+	// Direction is normalized so
+	float t = dot(ray.direction, point - ray.origin);
+	if(t <= 0.0) {
+		return false;
+	}
+	Vec3f closest = ray.origin + t * ray.direction;
+
+	return (closest - point).length() <= value;
+
+}
+
 extern "C" __global__ void vplReconstructKernel() 
 {
 
 	const VPLReconstructInput& in = c_VPLReconstructInput;
     int taskIdx = threadIdx.x + blockDim.x * (threadIdx.y + blockDim.y * (blockIdx.x + gridDim.x * blockIdx.y));
-    if (taskIdx >= in.numPrimary)
-        return;
 
-	int                     primarySlot     = taskIdx;
+	int                     primarySlot     = in.firstPrimary + taskIdx;
+
+	if(primarySlot >= in.numPrimary) {
+		return;
+	}
+
     int                     primaryID       = ((const S32*)in.primarySlotToID)[primarySlot];
+
     const RayResult&        primaryResult   = ((const RayResult*)in.primaryResults)[primarySlot];
+	const Ray&				primaryRay		= ((const Ray*)in.primaryRays)[primarySlot];
+
+	int						shadowSlot		= taskIdx;
+	const RayResult&        shadowResult	= ((const RayResult*)in.shadowResults)[taskIdx];
 
 	U32&                    pixel           = ((U32*)in.pixels)[primaryID];
 	Vec4f                   bgColor         = Vec4f(0.2f, 0.4f, 0.8f, 1.0f);
 	const Vec3i*			vertIdx			= (const Vec3i*)in.triVertIndex;
 	const Vec3f*			normals			= (const Vec3f*)in.normals;
 	const Vec3f*			vertices		= (const Vec3f*)in.vertices;
-	const U32*				triShadedColor      = (const U32*)in.triShadedColor;
 
-	const Vec3f				lightPos		= Vec3f(0,0,0);
+	const Light&			light			= ((const Light*)in.lights)[in.currentLight];
+	const Vec3f				lightPos		= light.position;
+	int						lightCount		= in.lightCount;
 	
+	if(isCloserThan(primaryRay, lightPos, 0.1)) {
+		pixel = toABGR(Vec4f(1,0,0,1));
+		return;
+	}
 
-	float u = __int_as_float(primaryResult.padA);
-	float v = __int_as_float(primaryResult.padB);
-	float w = 1.0f - u - v;
-	
 	int tri = primaryResult.id;
 	if(tri == -1) {
 		pixel = toABGR(bgColor);
 		return;
 	}
+
+
+	float u = __int_as_float(primaryResult.padA);
+	float v = __int_as_float(primaryResult.padB);
+	float w = 1.0f - u - v;
 
 	Vec4f color = Vec4f(0,0,0,1);
 
@@ -294,12 +323,12 @@ extern "C" __global__ void vplReconstructKernel()
 
 	float nDotDir = dot(normal, lightDir);
 
-	if(nDotDir > 0) {
-		color += nDotDir * Vec4f(1,1,1,0) * (invDist * 3);
+	if(nDotDir > 0 && (!in.shadow || shadowResult.id == -1)) {
+		color += nDotDir * Vec4f(light.intensity,0);
 	}
 	
 
-	//color = fromABGR(triShadedColor[tri]);
+	Vec4f prevPixel = fromABGR(pixel);
 
-	pixel = toABGR(color);
+	pixel = toABGR(prevPixel + color / (in.shadow ? lightCount : 10));
 }

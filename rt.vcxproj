@@ -263,6 +263,7 @@
     </ClCompile>
     <ClCompile Include="src\rt\cuda\CudaRenderer.cpp" />
     <ClCompile Include="src\rt\cuda\Renderer.cpp" />
+    <ClCompile Include="src\rt\cuda\VPLRenderer.cpp" />
     <ClCompile Include="src\rt\Environment.cpp" />
     <ClCompile Include="src\rt\kdtree\FastKDTreeBuilder.cpp" />
     <ClCompile Include="src\rt\kdtree\KDTree.cpp" />
@@ -302,6 +303,7 @@
     <ClInclude Include="src\rt\cuda\CudaRenderer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaVirtualTracer.hpp" />
     <ClInclude Include="src\rt\cuda\Renderer.hpp" />
+    <ClInclude Include="src\rt\cuda\VPLRenderer.hpp" />
     <ClInclude Include="src\rt\Environment.h" />
     <ClInclude Include="src\rt\kdtree\FastKDTreeBuilder.hpp" />
     <ClInclude Include="src\rt\kdtree\KDTree.hpp" />

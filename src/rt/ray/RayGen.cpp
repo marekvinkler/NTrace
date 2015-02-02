@@ -28,6 +28,7 @@
 #include "ray/RayGen.hpp"
 #include "ray/RayGenKernels.hpp"
 #include "base/Random.hpp"
+#include "3d/Light.hpp"
 
 namespace FW
 {
@@ -429,26 +430,73 @@ bool RayGen::randomReflection (RayBuffer& orays, RayBuffer& irays, Scene& scene,
     return true;
 }
 
-bool RayGen::primaryVPL(RayBuffer& orays, Vec3f& emitPlaneBase, Vec3f& emitPlaneV1, Vec3f& emitPlaneV2, Vec3f& emitPlaneNormal, int numLights, float maxDist, U32 randomSeed) {
+bool RayGen::primaryVPL(Buffer& lights, RayBuffer& orays, Vec3f& emitPlaneBase, Vec3f& emitPlaneV1, Vec3f& emitPlaneV2, Vec3f& emitPlaneNormal, int numLights, int maxBounces, float maxDist, U32 randomSeed) {
 
 	// Lets generate this on CPU, won't be that many of the primary lights
 	orays.resize(numLights);
     orays.setNeedClosestHit(true);
 
+	lights.resize((numLights * (maxBounces + 2)) * sizeof(Light));
+
 	Ray* outRayBuffer = (Ray *)orays.getRayBuffer().getMutablePtr();
+	Light* outLightBuffer = (Light*)lights.getMutablePtr();
 
 	Random rnd(randomSeed);
 
 	for(int i = 0; i < numLights; i++) {
-		outRayBuffer[i].origin = emitPlaneBase + rnd.getF32(0.0f, 1.0f) * emitPlaneV1 + rnd.getF32(0.0f, 1.0f) * emitPlaneV2;
+		Vec3f origin = emitPlaneBase + rnd.getF32(0.0f, 1.0f) * emitPlaneV1 + rnd.getF32(0.0f, 1.0f) * emitPlaneV2;
+		outRayBuffer[i].origin = origin;
+		outLightBuffer[i].position = origin;
+		outLightBuffer[i].intensity = Vec3f(1,1,1);
 		float spread = 0.1;
 		outRayBuffer[i].direction = emitPlaneNormal.normalized() + emitPlaneV1.normalized() * rnd.getF32(-spread, spread) + emitPlaneV2.normalized() * rnd.getF32(-spread, spread);
+		outRayBuffer[i].direction.normalize();
 		outRayBuffer[i].tmin = 0.0f;
 		outRayBuffer[i].tmax = maxDist;
 	}
 
 	return true;
    
+}
+
+Vec3f reflect(Vec3f incident, Vec3f normal) {
+	return incident - 2 * dot(incident, normal) * normal;
+}
+
+bool RayGen::reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights, int iteration, Scene* scene, float maxDist) {
+
+	const float epsilon = 1e-3f;
+
+	Ray* rayBuffer = (Ray *)rays.getRayBuffer().getMutablePtr();
+	RayResult* rayResults = (RayResult *)rays.getResultBuffer().getPtr();
+	const Vec3i* indices = (Vec3i*) scene->getTriVtxIndexBuffer().getPtr();
+	const Vec3f* normals = (Vec3f*) scene->getVtxNormalBuffer().getPtr();
+
+	Light* lightBuffer = ((Light*)lights.getMutablePtr()) + (iteration + 1) * numPrimaryLights;
+
+	FW::printf("Wrinting lights %d-%d\n", (iteration + 1) * numPrimaryLights, (iteration + 1) * numPrimaryLights + numPrimaryLights - 1);
+
+	for(int i = 0; i < numPrimaryLights; i++) {
+		lightBuffer[i].position = rayBuffer[i].origin + rayBuffer[i].direction * max(0.0f, rayResults[i].t - epsilon);
+
+		rayBuffer[i].origin = lightBuffer[i].position;
+
+		float u = *((float*)&(rayResults[i].padA));
+		float v = *((float*)&(rayResults[i].padB));
+		float w = 1.0f - u - v;
+		int tri = rayResults[i].id;
+		Vec3f normal = (normals[indices[tri].x] * u + normals[indices[tri].y] * v + normals[indices[tri].z] * w).normalized();
+		lightBuffer[i].intensity = lightBuffer[i - numPrimaryLights].intensity * dot(normal, -rayBuffer[i].direction);
+		printf("Light iteration #%d intensity %f\n", iteration, lightBuffer[i].intensity.x);
+		printf("Normal %f,%f,%f, light direction %f,%f,%f\n", normal.x, normal.y, normal.z, -rayBuffer[i].direction.x, -rayBuffer[i].direction.y, -rayBuffer[i].direction.z);
+		rayBuffer[i].direction = reflect(rayBuffer[i].direction, normal);
+		rayBuffer[i].tmin = 0.0f;
+		rayBuffer[i].tmax = maxDist;
+	}
+
+	rays.setNeedClosestHit(true);
+
+	return true;
 }
 
 

@@ -80,15 +80,26 @@ struct ReconstructInput
 
 struct VPLReconstructInput {
     S32         numPrimary;
+	S32         firstPrimary;
+	S32			lightCount;
+	S32			currentLight;
+	CUdeviceptr lights;				// const Light*
+
     CUdeviceptr primarySlotToID;    // const S32*
     CUdeviceptr primaryResults;     // const RayResult*
+	CUdeviceptr primaryRays;		// const Ray*
     CUdeviceptr pixels;             // U32* ABGR
+
+	CUdeviceptr shadowResults;		// const RayResult*
+	CUdeviceptr shadowIdToSlot;     // const S32*
+
 
 	CUdeviceptr texCoords;			// const Vec2f*
 	CUdeviceptr normals;			// const Vec3f*
 	CUdeviceptr triVertIndex;		// const Vec3i*
 	CUdeviceptr vertices;	     	// const Vec3i*
 	CUdeviceptr triShadedColor;	   
+	bool		shadow;
 };
 
 

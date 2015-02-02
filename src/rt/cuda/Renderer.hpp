@@ -51,6 +51,7 @@ public:
         RayType_Diffuse,
 		RayType_Textured,
 		RayType_PathTracing,
+		RayType_VPL,
 
         RayType_Max
     };
@@ -75,7 +76,7 @@ public:
 
 public:
 						Renderer			();
-                        ~Renderer           (void);
+    virtual             ~Renderer           (void);
 
     void                setMesh             (MeshBase* mesh);
     void                setBuildParams      (const BVH::BuildParams& params) { invalidateBVH(); m_buildParams = params; }
@@ -136,6 +137,7 @@ protected:
 	float				m_sampleCount;
     F32                 m_cameraFar;
     RayBuffer           m_primaryRays;
+	RayBuffer           m_shadowRays;
     RayBuffer           m_secondaryRays;
 	Buffer              m_triangleVisibility;	//!< Visibility buffer
 

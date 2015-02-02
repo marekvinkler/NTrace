@@ -116,6 +116,9 @@
     <ClCompile Include="src\rt\cuda\CudaPersistentBVHTracer.cpp">
       <Filter>cuda</Filter>
     </ClCompile>
+    <ClCompile Include="src\rt\cuda\VPLRenderer.cpp">
+      <Filter>cuda</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\rt\bvh\BVH.hpp">
@@ -215,6 +218,9 @@
     </ClInclude>
     <ClInclude Include="src\rt\persistentbvh\CudaBuilderKernels.hpp">
       <Filter>persistentbvh</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\cuda\VPLRenderer.hpp">
+      <Filter>cuda</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

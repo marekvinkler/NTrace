@@ -241,6 +241,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\framework\3d\Light.hpp" />
     <ClInclude Include="src\framework\base\Array.hpp" />
     <ClInclude Include="src\framework\base\BinaryHeap.hpp" />
     <ClInclude Include="src\framework\base\Defs.hpp" />
