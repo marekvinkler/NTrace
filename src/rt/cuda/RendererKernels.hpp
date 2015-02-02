@@ -98,8 +98,9 @@ struct VPLReconstructInput {
 	CUdeviceptr normals;			// const Vec3f*
 	CUdeviceptr triVertIndex;		// const Vec3i*
 	CUdeviceptr vertices;	     	// const Vec3i*
-	CUdeviceptr triShadedColor;	   
-	bool		shadow;
+
+	//CUdeviceptr material
+	bool		preview;
 };
 
 

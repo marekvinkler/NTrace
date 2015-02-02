@@ -8,7 +8,8 @@ using namespace FW;
 
 VPLRenderer::VPLRenderer()
 	:	Renderer(),
-		m_firstFrame(true)
+		m_firstFrame(true),
+		m_material(Vec3f(0.7f, 0.7f, 0.7f))
 {
 	Environment::GetSingleton()->GetIntValue("VPL.primaryLights", m_lightCount);
 	Environment::GetSingleton()->GetIntValue("VPL.maxLightBounces", m_lightBounces);
@@ -72,13 +73,13 @@ void VPLRenderer::beginFrame(GLContext* gl, const CameraControls& camera)
 	m_image->clear();
 
 	// Generate VPLs for the first time
-	if(m_firstFrame && m_params.rayType == RayType_VPL) {
+	if(m_firstFrame) {
 		m_firstFrame = false;
 		m_raygen.primaryVPL(m_lights, m_vplBuffer, Vec3f(-2, 23,-2), Vec3f(4,0,0), Vec3f(0, 0, 4), Vec3f(0,-1,0), m_lightCount, m_lightBounces, 10000.0f);
 
 		m_cudaTracer->traceBatch(m_vplBuffer);
 
-		for(int i = 0; i < m_lightBounces; i++) {
+		for(int i = 0; i <= m_lightBounces; i++) {
 			m_raygen.reflectedVPL(m_lights, m_vplBuffer, m_lightCount, i, m_scene, 10000.0f);
 			if(i < m_lightBounces) {
 				m_cudaTracer->traceBatch(m_vplBuffer);
@@ -110,7 +111,7 @@ void VPLRenderer::beginFrame(GLContext* gl, const CameraControls& camera)
     m_newBatch      = true;
     m_batchRays     = NULL;
     m_batchStart    = 0;
-	m_currentLight = 0;
+	m_currentLight	= 0;
 }
 
 bool VPLRenderer::nextBatch(void) 
@@ -179,7 +180,6 @@ void VPLRenderer::updateResult(void)
 	//	printf("Shadow ray dir: %f, %f, %f\n", shadowRay->direction.x, shadowRay->direction.y, shadowRay->direction.z);
 	//}
 
-	Light* lights = (Light*) m_lights.getPtr();
 
     VPLReconstructInput& in    = *(VPLReconstructInput*)module->getGlobal("c_VPLReconstructInput").getMutablePtr();
 	in.currentLight			= m_currentLight;
@@ -198,17 +198,16 @@ void VPLRenderer::updateResult(void)
 	in.normals				= m_scene->getVtxNormalBuffer().getCudaPtr();
 	in.triVertIndex			= m_scene->getTriVtxIndexBuffer().getCudaPtr();
 	in.vertices				= m_scene->getVtxPosBuffer().getCudaPtr();
-	in.triShadedColor       = m_scene->getTriShadedColorBuffer().getCudaPtr();
 
 	//module->setTexRef("t_textures", *m_scene->getTextureAtlas()->getAtlasTexture().getImage(), true, true, true, false);
 
     // Launch.
 
 	if(m_params.rayType == RayType_VPL) {
-		in.shadow = true;
+		in.preview = false;
 		module->getKernel("vplReconstructKernel").launch(m_shadowRays.getSize());
 	} else {
-		in.shadow = false;
+		in.preview = true;
 		module->getKernel("vplReconstructKernel").launch(in.numPrimary);
 	}
 }

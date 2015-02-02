@@ -294,7 +294,7 @@ extern "C" __global__ void vplReconstructKernel()
 	const Light&			light			= ((const Light*)in.lights)[in.currentLight];
 	const Vec3f				lightPos		= light.position;
 	int						lightCount		= in.lightCount;
-	
+
 	if(isCloserThan(primaryRay, lightPos, 0.1)) {
 		pixel = toABGR(Vec4f(1,0,0,1));
 		return;
@@ -323,12 +323,12 @@ extern "C" __global__ void vplReconstructKernel()
 
 	float nDotDir = dot(normal, lightDir);
 
-	if(nDotDir > 0 && (!in.shadow || shadowResult.id == -1)) {
-		color += nDotDir * Vec4f(light.intensity,0);
+	if(nDotDir > 0 && (in.preview || shadowResult.id == -1)) {
+		color += nDotDir * Vec4f(light.intensity,0) * Vec4f(0.7, 0.7, 0.7,0);
 	}
 	
 
 	Vec4f prevPixel = fromABGR(pixel);
 
-	pixel = toABGR(prevPixel + color / (in.shadow ? lightCount : 10));
+	pixel = toABGR(prevPixel + color / (in.preview ? 1 : lightCount));
 }

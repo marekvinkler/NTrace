@@ -463,7 +463,24 @@ Vec3f reflect(Vec3f incident, Vec3f normal) {
 	return incident - 2 * dot(incident, normal) * normal;
 }
 
-bool RayGen::reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights, int iteration, Scene* scene, float maxDist) {
+Vec3f randomInHalfSphere(Vec3f normal, Random& random) {
+	Vec3f result = -normal;
+
+	while(dot(normal, result) <= 0) {
+		float x, y, z, d2;
+		do {
+			x = random.getF32(-1.0f, 1.0f);
+			y = random.getF32(-1.0f, 1.0f);
+			z = random.getF32(-1.0f, 1.0f);
+			d2 = x*x + y*y + z*z;
+		} while(d2 <=0.001 || d2 > 1);
+		result = Vec3f(x,y,z);
+	}
+	result.normalize();
+	return result;
+}
+
+bool RayGen::reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights, int iteration, Scene* scene, float maxDist, U32 randomSeed) {
 
 	const float epsilon = 1e-3f;
 
@@ -474,7 +491,9 @@ bool RayGen::reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights,
 
 	Light* lightBuffer = ((Light*)lights.getMutablePtr()) + (iteration + 1) * numPrimaryLights;
 
-	FW::printf("Wrinting lights %d-%d\n", (iteration + 1) * numPrimaryLights, (iteration + 1) * numPrimaryLights + numPrimaryLights - 1);
+	//FW::printf("Wrinting lights %d-%d\n", (iteration + 1) * numPrimaryLights, (iteration + 1) * numPrimaryLights + numPrimaryLights - 1);
+
+	Random rand(randomSeed);
 
 	for(int i = 0; i < numPrimaryLights; i++) {
 		lightBuffer[i].position = rayBuffer[i].origin + rayBuffer[i].direction * max(0.0f, rayResults[i].t - epsilon);
@@ -485,13 +504,19 @@ bool RayGen::reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights,
 		float v = *((float*)&(rayResults[i].padB));
 		float w = 1.0f - u - v;
 		int tri = rayResults[i].id;
-		Vec3f normal = (normals[indices[tri].x] * u + normals[indices[tri].y] * v + normals[indices[tri].z] * w).normalized();
-		lightBuffer[i].intensity = lightBuffer[i - numPrimaryLights].intensity * dot(normal, -rayBuffer[i].direction);
-		printf("Light iteration #%d intensity %f\n", iteration, lightBuffer[i].intensity.x);
-		printf("Normal %f,%f,%f, light direction %f,%f,%f\n", normal.x, normal.y, normal.z, -rayBuffer[i].direction.x, -rayBuffer[i].direction.y, -rayBuffer[i].direction.z);
-		rayBuffer[i].direction = reflect(rayBuffer[i].direction, normal);
-		rayBuffer[i].tmin = 0.0f;
-		rayBuffer[i].tmax = maxDist;
+		if(tri == -1) {
+			lightBuffer[i].intensity = Vec3f(0,0,0);
+			lightBuffer[i].position = Vec3f(0,0,0);
+		} else {
+			Vec3f normal = (normals[indices[tri].x] * u + normals[indices[tri].y] * v + normals[indices[tri].z] * w).normalized();
+			lightBuffer[i].intensity = lightBuffer[i - numPrimaryLights].intensity * max(0.0f, dot(normal, -rayBuffer[i].direction)) * Vec3f(0.7,0.7,0.7);
+			printf("Light #%d intensity %f, %f, %f\n", numPrimaryLights + (iteration * numPrimaryLights) + i, lightBuffer[i].intensity.x, lightBuffer[i].intensity.y, lightBuffer[i].intensity.z);
+			//printf("Normal %f,%f,%f, light direction %f,%f,%f\n", normal.x, normal.y, normal.z, -rayBuffer[i].direction.x, -rayBuffer[i].direction.y, -rayBuffer[i].direction.z);
+			//rayBuffer[i].direction = reflect(rayBuffer[i].direction, normal);
+			rayBuffer[i].direction = randomInHalfSphere(normal, rand);
+			rayBuffer[i].tmin = 0.0f;
+			rayBuffer[i].tmax = maxDist;
+		}
 	}
 
 	rays.setNeedClosestHit(true);

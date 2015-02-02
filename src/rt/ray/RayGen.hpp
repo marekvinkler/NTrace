@@ -176,7 +176,7 @@ public:
 	 */
 	bool    primaryVPL(Buffer& lights, RayBuffer& orays, Vec3f& emitPlaneBase, Vec3f& emitPlaneV1, Vec3f& emitPlaneV2, Vec3f& emitPlaneNormal, int numLights, int maxBounces, float maxDist, U32 randomSeed=0);
 
-	bool	reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights, int iteration, Scene* scene, float maxDist);
+	bool	reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights, int iteration, Scene* scene, float maxDist, U32 randomSeed = 0);
 
 private:
 	/**

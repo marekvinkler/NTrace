@@ -29,6 +29,7 @@ private:
 	int					m_lightCount;
 	int					m_lightBounces;
 	int					m_currentLight;
+	Vec3f				m_material;
 
 };
 

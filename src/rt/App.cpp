@@ -171,6 +171,7 @@ App::App(void)
         fail("No CUDA kernel sources found!");
 
 	m_renderer = new VPLRenderer();
+	//m_renderer = new Renderer();
 
     m_commonCtrl.showFPS(true);
     m_commonCtrl.addStateObject(this);
