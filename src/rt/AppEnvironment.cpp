@@ -38,6 +38,14 @@
 
 void AppEnvironment::RegisterOptions()
 {
+
+	/*************************************************************************/
+	/*    Benchmark						                                     */
+	/*************************************************************************/
+	RegisterOption("Benchmark.scene", optString, "scene=");
+	RegisterOption("Benchmark.camera", optString, "camera=");
+	RegisterOption("Benchmark.kernel", optString, "kernel=");
+	RegisterOption("SubdivisionRayCaster.benchmark", optBool, "benchmark=", "true");
 	/*************************************************************************/
 	/*    Renderer                                                           */
 	/*************************************************************************/

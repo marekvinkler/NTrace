@@ -278,7 +278,7 @@ bool Environment::Parse(const int argc, char **argv, bool useExePath, char* over
   char filename[64];
 
   // Get the environment file name
-  if (!GetParam(' ', 0, filename)) {
+  if (true) {
     // user didn't specify environment file explicitly, so
     strcpy(filename, overrideDefault);
   }

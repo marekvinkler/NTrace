@@ -129,6 +129,11 @@ void Renderer::setParams(const Params& params)
 	m_cudaTracer->setKernel(params.kernelName);
 }
 
+float volume(float x1, float x2, float y1, float y2, float z1, float z2)
+{
+	return FW::abs(x1-x2) * FW::abs(y1-y2) * FW::abs(z1-z2);
+}
+
 //------------------------------------------------------------------------
 
 CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
@@ -166,6 +171,7 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 
     // Cache file exists => import.
 
+	/*
     if (!hasError())
     {
         File file(cacheFileName, File::Read);
@@ -179,6 +185,7 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
         }
         clearError();
     }
+	*/
 
     // Display status.
 
@@ -254,6 +261,19 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			BVH bvh(m_scene, m_platform, m_buildParams);
 			stats.print();
 			m_accelStruct = new CudaBVH(bvh, layout);
+			int* ptr = (int*)m_accelStruct->getNodeBuffer().getPtr();
+
+			/*printf("\n\n");
+			for (int i = 0; i < m_accelStruct->getNodeBuffer().getSize()/64; i++)
+			{
+				printf("v1=%f v2=%f \n",i, *((int*)m_accelStruct->getNodeBuffer().getPtr(i*64+48))/64, *((int*)m_accelStruct->getNodeBuffer().getPtr(i*64+52))/64,
+					volume(*((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+0)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+4)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+8)),
+					*((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+12)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+32)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+36))), 
+					volume(*((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+16)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+20)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+24)),
+					*((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+28)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+40)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+44))));
+			}
+		*/
+
 			failIfError();
 		}
 		else

@@ -101,7 +101,7 @@ private:
     bool                m_showKernelSelector;
     bool                m_guiDirty;
 
-	Environment*		m_env;
+	//Environment*		m_env;
 };
 
 //------------------------------------------------------------------------

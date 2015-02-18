@@ -41,7 +41,7 @@ using namespace FW;
 
 static const char* const s_kernelDir        = "src/rt/kernels";
 static const char* const s_initialMeshDir   = "data/models";
-static const char* const s_defaultMeshFile  = "data/models/sponza.obj";
+static const char* const s_defaultMeshFile  = "data/models/sphere.obj";
 
 //------------------------------------------------------------------------
 
@@ -645,6 +645,7 @@ void FW::runBenchmark(
     BVH::BuildParams buildParams;
     buildParams.splitAlpha = sbvhAlpha;
 
+
 	Renderer* renderer = new Renderer();
     renderer->setBuildParams(buildParams);
 	renderer->setMesh(importMesh(meshFile));
@@ -784,18 +785,11 @@ void FW::init(void)
     bool modeBenchmark      = false;
     bool showHelp           = false;
 
-    if (argc < 2)
-    {
-        printf("Specify \"--help\" for a list of command-line options.\n\n");
-        modeInteractive = true;
-    }
-    else
-    {
-        String mode = argv[1];
-        if (mode == "interactive")      modeInteractive = true;
-        else if (mode == "benchmark")   modeBenchmark = true;
+	bool mode = Environment::GetSingleton()->GetBool("SubdivisionRayCaster.benchmark");
+
+        if (!mode)      modeInteractive = true;
+        else if (mode)   modeBenchmark = true;
         else                            showHelp = true;
-    }
 
     // Parse options.
 
@@ -894,6 +888,18 @@ void FW::init(void)
     }
 
     // Show help.
+
+	std::string cam;
+	std::string mesh;
+	std::string kernel;
+
+	Environment::GetSingleton()->GetStringValue("Benchmark.camera", cam);
+	Environment::GetSingleton()->GetStringValue("Benchmark.scene", mesh);
+	Environment::GetSingleton()->GetStringValue("Benchmark.kernel", kernel);
+	meshFile = mesh.c_str();
+	cameras.add(cam.c_str());
+	kernels.clear();
+	kernels.add(kernel.c_str());
 
     if (showHelp)
     {
