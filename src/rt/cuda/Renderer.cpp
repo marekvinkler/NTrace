@@ -32,6 +32,8 @@
 #include "bvh/HLBVH/HLBVHBuilder.hpp"
 #include "cuda/CudaPersistentBVHTracer.hpp"
 
+//#define CPU
+
 using namespace FW;
 
 //------------------------------------------------------------------------
@@ -420,7 +422,7 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
     }
 
     // Generate primary rays.
-	
+
     U32 randomSeed = (m_enableRandom) ? m_random.getU32() : 0;
     m_raygen.primary(m_primaryRays,
         camera.getPosition(),
@@ -432,7 +434,11 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
 
 	if (m_params.rayType != RayType_Primary && m_params.rayType != RayType_Textured && m_params.rayType != RayType_PathTracing)
 	{
+#ifndef CPU
 		m_cudaTracer->traceBatch(m_primaryRays);
+#else
+		((CudaBVH*)m_accelStruct)->trace(m_primaryRays, m_triangleVisibility, false);
+#endif
 	}
 
     // Initialize state.
@@ -499,8 +505,15 @@ bool Renderer::nextBatch(void)
 F32 Renderer::traceBatch(void)
 {
     FW_ASSERT(m_batchRays);
-
+#ifndef CPU
 	return m_cudaTracer->traceBatch(*m_batchRays);
+#else
+	//Timer timer;
+	//timer.start();
+	((CudaBVH*)m_accelStruct)->trace(*m_batchRays, m_triangleVisibility, false);
+	//return timer.getElapsed();
+	return 0.f;
+#endif
 }
 
 //------------------------------------------------------------------------

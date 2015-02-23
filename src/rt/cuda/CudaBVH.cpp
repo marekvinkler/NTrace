@@ -31,7 +31,7 @@
 
 
 
-#define METHOD BFS
+#define METHOD DFS
 
 #include "base/Random.hpp"
 #include <queue>

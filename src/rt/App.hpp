@@ -25,6 +25,8 @@
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#define CPU
+
 #pragma once
 #include "gui/Window.hpp"
 #include "gui/CommonControls.hpp"

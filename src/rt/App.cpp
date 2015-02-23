@@ -25,6 +25,9 @@
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+//#define CPU
+
+#pragma once
 #include "App.hpp"
 #include "base/Main.hpp"
 #include "base/Random.hpp"
@@ -41,7 +44,7 @@ using namespace FW;
 
 static const char* const s_kernelDir        = "src/rt/kernels";
 static const char* const s_initialMeshDir   = "data/models";
-static const char* const s_defaultMeshFile  = "data/models/sphere.obj";
+static const char* const s_defaultMeshFile  = "data/models/misc/teapot.obj";
 
 //------------------------------------------------------------------------
 
@@ -169,7 +172,11 @@ App::App(void)
     if (!m_kernelNames.getSize())
         fail("No CUDA kernel sources found!");
 
+#ifndef CPU
 	m_renderer = new Renderer();
+#else
+	m_renderer = new CPURenderer());
+#endif
 
     m_commonCtrl.showFPS(true);
     m_commonCtrl.addStateObject(this);
