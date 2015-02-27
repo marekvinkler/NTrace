@@ -27,7 +27,6 @@
 
 //#define CPU
 
-#pragma once
 #include "App.hpp"
 #include "base/Main.hpp"
 #include "base/Random.hpp"

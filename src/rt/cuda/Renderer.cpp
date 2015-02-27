@@ -32,7 +32,7 @@
 #include "bvh/HLBVH/HLBVHBuilder.hpp"
 #include "cuda/CudaPersistentBVHTracer.hpp"
 
-//#define CPU
+#define CPU
 
 using namespace FW;
 
@@ -278,13 +278,13 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 
 			failIfError();
 		}
-		else
+		/*else
 		{
 			m_accelStruct = new CudaPersistentBVHTracer(*m_scene, FLT_EPSILON);
 			((CudaPersistentBVHTracer*)m_accelStruct)->resetBuffers(true);
 			((CudaPersistentBVHTracer*)m_accelStruct)->buildBVH();
 			((CudaPersistentBVHTracer*)m_accelStruct)->resetBuffers(false);
-		}
+		}*/
 	}
 
     // Write to cache.
@@ -508,11 +508,10 @@ F32 Renderer::traceBatch(void)
 #ifndef CPU
 	return m_cudaTracer->traceBatch(*m_batchRays);
 #else
-	//Timer timer;
-	//timer.start();
+	Timer timer;
+	timer.start();
 	((CudaBVH*)m_accelStruct)->trace(*m_batchRays, m_triangleVisibility, false);
-	//return timer.getElapsed();
-	return 0.f;
+	return timer.getElapsed();
 #endif
 }
 

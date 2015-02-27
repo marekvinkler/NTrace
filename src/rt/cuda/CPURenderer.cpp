@@ -14,7 +14,6 @@
  *  limitations under the License.
  */
 
-#pragma once
 #include "cuda/CPURenderer.hpp"
 
 using namespace FW;
