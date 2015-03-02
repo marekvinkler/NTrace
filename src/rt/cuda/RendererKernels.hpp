@@ -82,6 +82,7 @@ struct VPLReconstructInput {
     S32         numPrimary;
 	S32         firstPrimary;
 	S32			lightCount;
+	F32			lightContributionCoefficient;
 	S32			currentLight;
 	CUdeviceptr lights;				// const Light*
 
@@ -90,6 +91,7 @@ struct VPLReconstructInput {
 	CUdeviceptr primaryRays;		// const Ray*
     CUdeviceptr pixels;             // U32* ABGR
 
+	S32			shadowSamples;
 	CUdeviceptr shadowResults;		// const RayResult*
 	CUdeviceptr shadowIdToSlot;     // const S32*
 
@@ -98,6 +100,11 @@ struct VPLReconstructInput {
 	CUdeviceptr normals;			// const Vec3f*
 	CUdeviceptr triVertIndex;		// const Vec3i*
 	CUdeviceptr vertices;	     	// const Vec3i*
+
+	CUdeviceptr atlasInfo;			// const Vec4f*
+	CUdeviceptr matId;				// const U32*
+	CUdeviceptr matInfo;			// const Vec4f*
+	CUdeviceptr triMaterialColor;   // const U32* ABGR
 
 	//CUdeviceptr material
 	bool		preview;
@@ -123,6 +130,7 @@ __constant__ ReconstructInput c_ReconstructInput;
 __global__ void reconstructKernel(void);
 __constant__ VPLReconstructInput c_VPLReconstructInput;
 __global__ void vplReconstructKernel(void);
+__global__ void vplNormalizeKernel(CUdeviceptr pixels, CUdeviceptr image, S32 numLights);
 
 __constant__ CountHitsInput c_CountHitsInput;
 __device__ S32 g_CountHitsOutput;

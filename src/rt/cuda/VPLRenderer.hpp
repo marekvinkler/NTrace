@@ -18,6 +18,7 @@ public:
     virtual void        beginFrame          (GLContext* gl, const CameraControls& camera);
     virtual bool        nextBatch           (void);
     virtual void        updateResult        (void); // for current batch
+	virtual void		setMesh(MeshBase* mesh);
 
 protected:
 	bool                m_firstFrame;
@@ -30,7 +31,9 @@ private:
 	int					m_lightBounces;
 	int					m_currentLight;
 	Vec3f				m_material;
-
+	bool				m_meshChanged;
+	int					m_shadowSamples;
+	Buffer				m_pixels;
 };
 
 }

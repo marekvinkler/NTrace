@@ -448,9 +448,8 @@ bool RayGen::primaryVPL(Buffer& lights, RayBuffer& orays, Vec3f& emitPlaneBase, 
 		outRayBuffer[i].origin = origin;
 		outLightBuffer[i].position = origin;
 		outLightBuffer[i].intensity = Vec3f(1,1,1);
-		float spread = 0.1;
-		outRayBuffer[i].direction = emitPlaneNormal.normalized() + emitPlaneV1.normalized() * rnd.getF32(-spread, spread) + emitPlaneV2.normalized() * rnd.getF32(-spread, spread);
-		outRayBuffer[i].direction.normalize();
+		float spread = 1.0f;
+		outRayBuffer[i].direction = (emitPlaneNormal.normalized() + emitPlaneV1.normalized() * rnd.getF32(-spread, spread) + emitPlaneV2.normalized() * rnd.getF32(-spread, spread)).normalized();
 		outRayBuffer[i].tmin = 0.0f;
 		outRayBuffer[i].tmax = maxDist;
 	}
@@ -459,6 +458,8 @@ bool RayGen::primaryVPL(Buffer& lights, RayBuffer& orays, Vec3f& emitPlaneBase, 
    
 }
 
+
+
 Vec3f reflect(Vec3f incident, Vec3f normal) {
 	return incident - 2 * dot(incident, normal) * normal;
 }
@@ -466,7 +467,7 @@ Vec3f reflect(Vec3f incident, Vec3f normal) {
 Vec3f randomInHalfSphere(Vec3f normal, Random& random) {
 	Vec3f result = -normal;
 
-	while(dot(normal, result) <= 0) {
+	while(dot(normal, result) < 0) {
 		float x, y, z, d2;
 		do {
 			x = random.getF32(-1.0f, 1.0f);
@@ -482,7 +483,7 @@ Vec3f randomInHalfSphere(Vec3f normal, Random& random) {
 
 bool RayGen::reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights, int iteration, Scene* scene, float maxDist, U32 randomSeed) {
 
-	const float epsilon = 1e-3f;
+	const float epsilon = 1e-1f;
 
 	Ray* rayBuffer = (Ray *)rays.getRayBuffer().getMutablePtr();
 	RayResult* rayResults = (RayResult *)rays.getResultBuffer().getPtr();
@@ -496,7 +497,7 @@ bool RayGen::reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights,
 	Random rand(randomSeed);
 
 	for(int i = 0; i < numPrimaryLights; i++) {
-		lightBuffer[i].position = rayBuffer[i].origin + rayBuffer[i].direction * max(0.0f, rayResults[i].t - epsilon);
+		lightBuffer[i].position = rayBuffer[i].origin + rayBuffer[i].direction * (rayResults[i].t - epsilon);
 
 		rayBuffer[i].origin = lightBuffer[i].position;
 
@@ -509,11 +510,12 @@ bool RayGen::reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights,
 			lightBuffer[i].position = Vec3f(0,0,0);
 		} else {
 			Vec3f normal = (normals[indices[tri].x] * u + normals[indices[tri].y] * v + normals[indices[tri].z] * w).normalized();
-			lightBuffer[i].intensity = lightBuffer[i - numPrimaryLights].intensity * max(0.0f, dot(normal, -rayBuffer[i].direction)) * Vec3f(0.7,0.7,0.7);
-			printf("Light #%d intensity %f, %f, %f\n", numPrimaryLights + (iteration * numPrimaryLights) + i, lightBuffer[i].intensity.x, lightBuffer[i].intensity.y, lightBuffer[i].intensity.z);
+			lightBuffer[i].intensity = lightBuffer[i - numPrimaryLights].intensity * max(0.0f, dot(normal, -rayBuffer[i].direction)) * Vec3f(0.7f, 0.7f, 0.7f);
+			printf("Light #%d intensity %s position %s, incident direction %s, hit after %.2f\n", numPrimaryLights + (iteration * numPrimaryLights) + i, vecToStr(lightBuffer[i].intensity).getPtr(), vecToStr(lightBuffer[i].position).getPtr(), vecToStr(-rayBuffer[i].direction).getPtr(), rayResults[i].t);
 			//printf("Normal %f,%f,%f, light direction %f,%f,%f\n", normal.x, normal.y, normal.z, -rayBuffer[i].direction.x, -rayBuffer[i].direction.y, -rayBuffer[i].direction.z);
 			//rayBuffer[i].direction = reflect(rayBuffer[i].direction, normal);
 			rayBuffer[i].direction = randomInHalfSphere(normal, rand);
+			//printf("Going to %s, normal is %s\n\n", vecToStr(rayBuffer[i].direction).getPtr(), vecToStr(normal).getPtr());
 			rayBuffer[i].tmin = 0.0f;
 			rayBuffer[i].tmax = maxDist;
 		}
@@ -523,6 +525,7 @@ bool RayGen::reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights,
 
 	return true;
 }
+
 
 
 bool RayGen::batching(S32 numInputRays,S32 numSamples,S32& startIdx,bool& newBatch, S32& lo,S32& hi)

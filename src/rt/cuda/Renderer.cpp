@@ -256,13 +256,13 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			m_accelStruct = new CudaBVH(bvh, layout);
 			failIfError();
 		}
-		else
+		/*else
 		{
 			m_accelStruct = new CudaPersistentBVHTracer(*m_scene, FLT_EPSILON);
 			((CudaPersistentBVHTracer*)m_accelStruct)->resetBuffers(true);
 			((CudaPersistentBVHTracer*)m_accelStruct)->buildBVH();
 			((CudaPersistentBVHTracer*)m_accelStruct)->resetBuffers(false);
-		}
+		}*/
 	}
 
     // Write to cache.

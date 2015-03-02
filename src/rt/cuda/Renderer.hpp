@@ -41,6 +41,7 @@ namespace FW
 {
 //------------------------------------------------------------------------
 
+
 class Renderer
 {
 public:
@@ -78,7 +79,7 @@ public:
 						Renderer			();
     virtual             ~Renderer           (void);
 
-    void                setMesh             (MeshBase* mesh);
+    virtual void        setMesh             (MeshBase* mesh);
     void                setBuildParams      (const BVH::BuildParams& params) { invalidateBVH(); m_buildParams = params; }
     void                invalidateBVH       (void)                  { delete m_accelStruct; m_accelStruct = NULL; }
 

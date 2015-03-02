@@ -282,10 +282,11 @@ extern "C" __global__ void vplReconstructKernel()
     const RayResult&        primaryResult   = ((const RayResult*)in.primaryResults)[primarySlot];
 	const Ray&				primaryRay		= ((const Ray*)in.primaryRays)[primarySlot];
 
-	int						shadowSlot		= taskIdx;
-	const RayResult&        shadowResult	= ((const RayResult*)in.shadowResults)[taskIdx];
+	const S32*				shadowSlots		= (const S32*)in.shadowIdToSlot + taskIdx * in.shadowSamples;
+	const RayResult*        shadowResults	= ((const RayResult*)in.shadowResults);
+	
 
-	U32&                    pixel           = ((U32*)in.pixels)[primaryID];
+	Vec4f&                    pixel           = ((Vec4f*)in.pixels)[primaryID];
 	Vec4f                   bgColor         = Vec4f(0.2f, 0.4f, 0.8f, 1.0f);
 	const Vec3i*			vertIdx			= (const Vec3i*)in.triVertIndex;
 	const Vec3f*			normals			= (const Vec3f*)in.normals;
@@ -293,16 +294,24 @@ extern "C" __global__ void vplReconstructKernel()
 
 	const Light&			light			= ((const Light*)in.lights)[in.currentLight];
 	const Vec3f				lightPos		= light.position;
-	int						lightCount		= in.lightCount;
+	const int				lightCount		= in.lightCount;
+	//const int				lightCount		= 60;
+	const float				lightContributionCoefficient = in.lightContributionCoefficient;
 
-	if(isCloserThan(primaryRay, lightPos, 0.1)) {
-		pixel = toABGR(Vec4f(1,0,0,1));
+	const Vec2f*			texCoords		= (const Vec2f*)in.texCoords;
+	const Vec4f*			atlasInfo		= (const Vec4f*)in.atlasInfo;
+	const U32*				matId			= (const U32*)in.matId;
+	const Vec4f*			matInfo			= (const Vec4f*)in.matInfo;
+	const U32*				triMaterialColor    = (const U32*)in.triMaterialColor;
+
+	if(isCloserThan(primaryRay, lightPos, 3)) {
+		pixel = Vec4f(lightCount,0,0,1);
 		return;
 	}
 
 	int tri = primaryResult.id;
 	if(tri == -1) {
-		pixel = toABGR(bgColor);
+		pixel = bgColor;
 		return;
 	}
 
@@ -317,18 +326,59 @@ extern "C" __global__ void vplReconstructKernel()
 	Vec3f position = vertices[vertIdx[tri].x] * u + vertices[vertIdx[tri].y] * v + vertices[vertIdx[tri].z] * w;
 
 	Vec3f	lightDir = (lightPos - position);
-	float invDist = 1.0f / lightDir.length();
+	//float invDist = 1.0f / lightDir.length();
 	lightDir = lightDir.normalized();
 
 
 	float nDotDir = dot(normal, lightDir);
 
-	if(nDotDir > 0 && (in.preview || shadowResult.id == -1)) {
-		color += nDotDir * Vec4f(light.intensity,0) * Vec4f(0.7, 0.7, 0.7,0);
-	}
+
+	//if(nDotDir > 0) {
+		float shadow = 1.0f;
+
+		for(int i = 0; i < in.shadowSamples; i++) {
+			if(shadowResults[shadowSlots[i]].id != -1) {
+				shadow -= 1.0f / in.shadowSamples;
+			}
+		}
+		
+		float tU = texCoords[vertIdx[tri].x].x * u + texCoords[vertIdx[tri].y].x * v + texCoords[vertIdx[tri].z].x * w;
+		float tV = texCoords[vertIdx[tri].x].y * u + texCoords[vertIdx[tri].y].y * v + texCoords[vertIdx[tri].z].y * w;
+		
+		
+		tU = tU - floorf(tU);
+		tV = tV - floorf(tV);
+		
+		tU = tU * atlasInfo[tri].z + atlasInfo[tri].x;
+		tV = tV * atlasInfo[tri].w + atlasInfo[tri].y;
+				
+		float4 diffuseColor;
+		Vec4f texColor;
+
+		/*if(matInfo[matId[tri]].w == 0.0f) {
+			diffuseColor = fromABGR(triMaterialColor[tri]);
+			texColor = Vec4f(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);
+		} else {*/
+			diffuseColor = tex2D(t_textures, tU, tV);
+			texColor = Vec4f(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);
+		//}
+
+		color += nDotDir * (Vec4f(light.intensity,0)) * Vec4f(0.7, 0.7, 0.7, 1.0) * shadow;
+		//color += nDotDir * (Vec4f(light.intensity,0) * lightContributionCoefficient) * texColor * shadow;
+		//color = texColor;
+	//}
 	
+	pixel += color;
+}
 
-	Vec4f prevPixel = fromABGR(pixel);
+extern "C" __global__ void vplNormalizeKernel(CUdeviceptr pixels, CUdeviceptr image, S32 numLights) {
 
-	pixel = toABGR(prevPixel + color / (in.preview ? 1 : lightCount));
+	const VPLReconstructInput& in = c_VPLReconstructInput;
+    int taskIdx = threadIdx.x + blockDim.x * (threadIdx.y + blockDim.y * (blockIdx.x + gridDim.x * blockIdx.y));
+	S32 primaryID = taskIdx;
+
+	Vec4f& pixel = ((Vec4f*)pixels)[primaryID];
+	U32& imagePixel = ((U32*)image)[primaryID];
+	imagePixel = toABGR(pixel / (float) numLights);
+
 }
