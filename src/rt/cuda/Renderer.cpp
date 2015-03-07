@@ -511,6 +511,7 @@ F32 Renderer::traceBatch(void)
 #else
 	Timer timer(true);
 	m_accelStruct->trace(*m_batchRays, m_triangleVisibility);
+	((CudaBVH*)m_accelStruct)->trace(*m_batchRays, m_triangleVisibility, false);
 	return timer.getElapsed();
 #endif
 }

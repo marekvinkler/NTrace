@@ -37,6 +37,7 @@
 #include "cuda/CudaBVH.hpp"
 #include "base/Sort.hpp"
 
+#define MASK_TRACE_EMPTY
 
 using namespace FW;
 
@@ -261,7 +262,7 @@ void CudaBVH::trace(RayBuffer& rays, Buffer& visibility, bool twoTrees, RayStats
 			}
 
 			// Set visibility
-			if(result.hit())
+			if(visibility.getSize() > 0 && result.hit())
 				visib[result.id] = 1;
 		}
 	}
