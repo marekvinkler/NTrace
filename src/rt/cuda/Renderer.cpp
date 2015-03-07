@@ -32,7 +32,7 @@
 #include "bvh/HLBVH/HLBVHBuilder.hpp"
 #include "cuda/CudaPersistentBVHTracer.hpp"
 
-//#define CPU
+#define CPU
 
 using namespace FW;
 
@@ -277,14 +277,14 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 		*/
 
 			failIfError();
-		}
+		}/*
 		else
 		{
 			m_accelStruct = new CudaPersistentBVHTracer(*m_scene, FLT_EPSILON);
 			((CudaPersistentBVHTracer*)m_accelStruct)->resetBuffers(true);
 			((CudaPersistentBVHTracer*)m_accelStruct)->buildBVH();
 			((CudaPersistentBVHTracer*)m_accelStruct)->resetBuffers(false);
-		}
+		}*/
 	}
 
     // Write to cache.
@@ -327,6 +327,7 @@ CudaAS*	Renderer::getCudaKDTree(void)
 		layout,
 		hash<String>(String(ds.c_str()))), builder.c_str());
 
+	/*
 	if(!hasError())
 	{
 		File file(cacheFileName, File::Read);
@@ -337,7 +338,7 @@ CudaAS*	Renderer::getCudaKDTree(void)
 		}
 		clearError();
 	}
-
+	*/
 	printf("\nBuilding k-d tree...\nThis will take a while.\n");
     if (m_window)
         m_window->showModalMessage("Building k-d tree...");
@@ -437,7 +438,7 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
 #ifndef CPU
 		m_cudaTracer->traceBatch(m_primaryRays);
 #else
-		((CudaBVH*)m_accelStruct)->trace(m_primaryRays, m_triangleVisibility, false);
+		m_accelStruct->trace(m_primaryRays, m_triangleVisibility);
 #endif
 	}
 
@@ -508,11 +509,9 @@ F32 Renderer::traceBatch(void)
 #ifndef CPU
 	return m_cudaTracer->traceBatch(*m_batchRays);
 #else
-	//Timer timer;
-	//timer.start();
-	((CudaBVH*)m_accelStruct)->trace(*m_batchRays, m_triangleVisibility, false);
-	//return timer.getElapsed();
-	return 0.f;
+	Timer timer(true);
+	m_accelStruct->trace(*m_batchRays, m_triangleVisibility);
+	return timer.getElapsed();
 #endif
 }
 

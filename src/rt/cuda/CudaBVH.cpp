@@ -29,9 +29,7 @@
 #define BFS 1
 #define RND 2
 
-
-
-#define METHOD DFS
+#define METHOD RND
 
 #include "base/Random.hpp"
 #include <queue>
@@ -299,7 +297,7 @@ void CudaBVH::trace(RayBuffer& rays, Buffer& visibility, bool twoTrees, RayStats
 			}
 
 			// Set visibility
-			if(result.hit())
+			if(visibility.getSize() > 0 && result.hit())
 				visib[result.id] = 1;
 		}
 	}
@@ -1336,47 +1334,57 @@ void CudaBVH::Shuffle(S32 numOfSwaps)
 			numOfSwaps = numOfNodes;
 			for (int i = 0; i < numOfSwaps; i++)
 			{
-				U32 idx1 = rnd.getU32(1, numOfNodes-1);
-				U32 idx2 = rnd.getU32(1, numOfNodes-1);
+				S32 idx1 = rnd.getU32(1, numOfNodes-1);
+				S32 idx2 = rnd.getU32(1, numOfNodes-1);
 				if(idx1 == idx2)
 					continue;
+
+				S32 chIdx1l = ptr[idx1 * 16 + 12] / 64;
+				S32 chIdx1r = ptr[idx1 * 16 + 13] / 64;
+				S32 chIdx2l = ptr[idx2 * 16 + 12] / 64;
+				S32 chIdx2r = ptr[idx2 * 16 + 13] / 64;
 			
 				//printf("idx1: %u, idx2: %u | ", idx1, idx2);
 				
-				Vec4i tempData[4];
-				tempData[0] = vecPtr[idx1*4+0];
-				tempData[1] = vecPtr[idx1*4+1];
-				tempData[2] = vecPtr[idx1*4+2];
-				tempData[3] = vecPtr[idx1*4+3];
+				//swap nodes
+				swap(vecPtr[idx1*4+0], vecPtr[idx2*4+0]);
+				swap(vecPtr[idx1*4+1], vecPtr[idx2*4+1]);
+				swap(vecPtr[idx1*4+2], vecPtr[idx2*4+2]);
+				swap(vecPtr[idx1*4+3], vecPtr[idx2*4+3]);
 
-				vecPtr[idx1*4+0] = vecPtr[idx2*4+0];
-				vecPtr[idx1*4+1] = vecPtr[idx2*4+1];
-				vecPtr[idx1*4+2] = vecPtr[idx2*4+2];
-				vecPtr[idx1*4+3] = vecPtr[idx2*4+3];
+				//swap parent info
+				swap(parents[idx1], parents[idx2]);
 
-				vecPtr[idx2*4+0] = tempData[0];
-				vecPtr[idx2*4+1] = tempData[1];
-				vecPtr[idx2*4+2] = tempData[2];
-				vecPtr[idx2*4+3] = tempData[3];
-
-				int offset;
-				ParentInfo tmp = parents[idx1];
-				parents[idx1] = parents[idx2];
-				parents[idx2] = tmp;
-
+				
+				//fix parent info for children
+				/*
 				for (int i = 0; i < parents.getSize(); i++)
 				{
 					if(parents[i].parentIdx == idx1)
-						parents[i].parentIdx = idx2;
+						int x = 1 + i;//parents[i].parentIdx = idx2;
 					else if(parents[i].parentIdx == idx2)
-						parents[i].parentIdx = idx1;
+						int x = i + i;//parents[i].parentIdx = idx1;
 				}
+				*/
 
+				//fix parent info for children
+				if(chIdx1l > 0 && parents[chIdx1l].parentIdx == idx1)
+					parents[chIdx1l].parentIdx = idx2;
+				if(chIdx1r > 0 && parents[chIdx1r].parentIdx == idx1)
+					parents[chIdx1r].parentIdx = idx2;
+				if(chIdx2l > 0 && parents[chIdx2l].parentIdx == idx2)
+					parents[chIdx2l].parentIdx = idx1;
+				if(chIdx2r > 0 && parents[chIdx2r].parentIdx == idx2)
+					parents[chIdx2r].parentIdx = idx1;
+					
+				//??
 				if(parents[idx1].parentIdx == idx1)
 					parents[idx1].parentIdx = idx2;
 				if(parents[idx2].parentIdx == idx2)
 					parents[idx2].parentIdx = idx1;
 				
+				//fix child info for swapped nodes
+				int offset;
 				offset = (parents[idx1].leftChild ? 0 : 1);	
 				ptr[parents[idx1].parentIdx*16+12+offset] = idx1*64;
 

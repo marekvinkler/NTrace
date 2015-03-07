@@ -675,7 +675,8 @@ void FW::runBenchmark(
     Array<F32> results;
     for (int kernelIdx = 0; kernelIdx < kernels.getSize(); kernelIdx++)
     {
-        for (int rayType = 0; rayType < numRayTypes; rayType++)
+        //for (int rayType = 0; rayType < numRayTypes; rayType++)
+		for (int rayType = 0; rayType < 3; rayType++)
         {
             S64 totalRays = 0;
             F32 totalLaunchTime = 0.0f;
@@ -731,9 +732,10 @@ void FW::runBenchmark(
 
             // Calculate Mrays/s.
 
-            F32 mraysPerSec = (F32)totalRays / totalLaunchTime * 1.0e-6f;
+            F32 mraysPerSec = (F32)totalRays / totalLaunchTime * 1.0e-3f;
             results.add(mraysPerSec);
-            printf("Mrays/s = %.2f\n", mraysPerSec);
+			printf("Time (s) = %.4f\n", totalLaunchTime);
+            printf("Krays/s = %.2f\n", mraysPerSec);
             printf("\n");
         }
     }
