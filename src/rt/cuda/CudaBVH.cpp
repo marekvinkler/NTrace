@@ -65,16 +65,13 @@ CudaBVH::CudaBVH(const BVH& bvh, BVHLayout layout)
     if (layout == BVHLayout_Compact)
     {
 #if METHOD == DFS
-		printf("DFS~~~~~~~\n");
         createCompact(bvh,1);
 		return;
 #elif METHOD == RND
-		printf("RND~~~~~~~~\n");
 		createCompact(bvh, 1);
-		Shuffle();
+		shuffle();
 		return;
 #else
-		printf("BFS~~~~~~~~~\n");
 		createCompactBFS(bvh);
 		return;
 #endif
@@ -88,7 +85,7 @@ CudaBVH::CudaBVH(const BVH& bvh, BVHLayout layout)
     {
         createCompact(bvh,16);
 #ifdef SHUFFLE
-		Shuffle();
+		shuffle();
 #endif
         return;
     }
@@ -99,7 +96,7 @@ CudaBVH::CudaBVH(const BVH& bvh, BVHLayout layout)
     createTriIndexBasic(bvh);
 
 #ifdef SHUFFLE
-	Shuffle();
+	shuffle();
 #endif
 }
 
@@ -1287,7 +1284,7 @@ void CudaBVH::getNodeTemplate<BVHLayout_CPU>(S32 node, SplitInfo *splitInfo, AAB
 
 //------------------------------------------------------------------------
 
-void CudaBVH::Shuffle(S32 numOfSwaps)
+void CudaBVH::shuffle(S32 numOfSwaps)
 {
 	struct ParentInfo
 	{

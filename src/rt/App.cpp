@@ -43,7 +43,7 @@ using namespace FW;
 
 static const char* const s_kernelDir        = "src/rt/kernels";
 static const char* const s_initialMeshDir   = "data/models";
-static const char* const s_defaultMeshFile  = "data/models/misc/teapot.obj";
+static const char* const s_defaultMeshFile  = "data/models/sponza.obj";
 
 //------------------------------------------------------------------------
 

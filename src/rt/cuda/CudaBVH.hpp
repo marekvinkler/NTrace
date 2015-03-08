@@ -191,7 +191,7 @@ public:
 
 	Scene*		getScene			()						{return m_scene;}
 
-	void		Shuffle				(S32 numOfSwaps = 0);
+	void		shuffle				(S32 numOfSwaps = 0);
 
 protected:
 	void		createCompactBFS	(const BVH& bvh);

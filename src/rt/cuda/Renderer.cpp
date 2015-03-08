@@ -131,11 +131,6 @@ void Renderer::setParams(const Params& params)
 	m_cudaTracer->setKernel(params.kernelName);
 }
 
-float volume(float x1, float x2, float y1, float y2, float z1, float z2)
-{
-	return FW::abs(x1-x2) * FW::abs(y1-y2) * FW::abs(z1-z2);
-}
-
 //------------------------------------------------------------------------
 
 CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
