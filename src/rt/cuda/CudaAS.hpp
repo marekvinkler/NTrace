@@ -6,6 +6,7 @@
 
 #pragma once
 #include "gpu/Buffer.hpp"
+#include "ray/RayBuffer.hpp"
 #include "io/Stream.hpp"
 #include "kernels/CudaTracerKernels.hpp"
 
@@ -58,6 +59,8 @@ public:
 	* \param[in] out	Output stream to write to.
 	*/
     virtual void						serialize           (OutputStream& out) = 0;
+
+	virtual void						trace				(RayBuffer& rays, Buffer& visibility) = 0;
 };
 
 }

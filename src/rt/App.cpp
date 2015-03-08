@@ -25,6 +25,8 @@
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+//#define CPU
+
 #include "App.hpp"
 #include "base/Main.hpp"
 #include "base/Random.hpp"
@@ -169,7 +171,11 @@ App::App(void)
     if (!m_kernelNames.getSize())
         fail("No CUDA kernel sources found!");
 
+#ifndef CPU
 	m_renderer = new Renderer();
+#else
+	m_renderer = new CPURenderer());
+#endif
 
     m_commonCtrl.showFPS(true);
     m_commonCtrl.addStateObject(this);
@@ -645,6 +651,7 @@ void FW::runBenchmark(
     BVH::BuildParams buildParams;
     buildParams.splitAlpha = sbvhAlpha;
 
+
 	Renderer* renderer = new Renderer();
     renderer->setBuildParams(buildParams);
 	renderer->setMesh(importMesh(meshFile));
@@ -667,7 +674,8 @@ void FW::runBenchmark(
     Array<F32> results;
     for (int kernelIdx = 0; kernelIdx < kernels.getSize(); kernelIdx++)
     {
-        for (int rayType = 0; rayType < numRayTypes; rayType++)
+        //for (int rayType = 0; rayType < numRayTypes; rayType++)
+		for (int rayType = 0; rayType < 3; rayType++)
         {
             S64 totalRays = 0;
             F32 totalLaunchTime = 0.0f;
@@ -723,9 +731,10 @@ void FW::runBenchmark(
 
             // Calculate Mrays/s.
 
-            F32 mraysPerSec = (F32)totalRays / totalLaunchTime * 1.0e-6f;
+            F32 mraysPerSec = (F32)totalRays / totalLaunchTime * 1.0e-3f;
             results.add(mraysPerSec);
-            printf("Mrays/s = %.2f\n", mraysPerSec);
+			printf("Time (s) = %.4f\n", totalLaunchTime);
+            printf("Krays/s = %.2f\n", mraysPerSec);
             printf("\n");
         }
     }
@@ -784,18 +793,11 @@ void FW::init(void)
     bool modeBenchmark      = false;
     bool showHelp           = false;
 
-    if (argc < 2)
-    {
-        printf("Specify \"--help\" for a list of command-line options.\n\n");
-        modeInteractive = true;
-    }
-    else
-    {
-        String mode = argv[1];
-        if (mode == "interactive")      modeInteractive = true;
-        else if (mode == "benchmark")   modeBenchmark = true;
+	bool mode = Environment::GetSingleton()->GetBool("SubdivisionRayCaster.benchmark");
+
+        if (!mode)      modeInteractive = true;
+        else if (mode)   modeBenchmark = true;
         else                            showHelp = true;
-    }
 
     // Parse options.
 
@@ -894,6 +896,18 @@ void FW::init(void)
     }
 
     // Show help.
+
+	std::string cam;
+	std::string mesh;
+	std::string kernel;
+
+	Environment::GetSingleton()->GetStringValue("Benchmark.camera", cam);
+	Environment::GetSingleton()->GetStringValue("Benchmark.scene", mesh);
+	Environment::GetSingleton()->GetStringValue("Benchmark.kernel", kernel);
+	meshFile = mesh.c_str();
+	cameras.add(cam.c_str());
+	kernels.clear();
+	kernels.add(kernel.c_str());
 
     if (showHelp)
     {

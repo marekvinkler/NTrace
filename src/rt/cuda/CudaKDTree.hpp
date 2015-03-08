@@ -47,6 +47,8 @@ namespace FW
 class CudaKDTree : public CudaAS
 {
 public:
+	struct RayStats {}; //dummy
+
 	BVHLayout   getLayout           (void) const            { return BVHLayout_Compact; }
 
 	/**
@@ -103,6 +105,16 @@ public:
 	*/
 	const AABB& getBBox				(void) const					{ return m_bbox; }
 
+	void					shuffle();
+
+	void					trace	(RayBuffer& rays, Buffer& visibility);
+
+	void					trace	(S32 node, Ray& ray, RayResult& result);
+
+	bool					intersectTriangles(S32 node, Ray& ray, RayResult& result);
+
+	bool					updateHit(Ray& ray, RayResult& result, float t, S32 index);
+
 private:
 	/**
 	*  \brief				Internal structure used in conversion.
@@ -134,6 +146,8 @@ private:
 	*/
 	void				createNodeTriIdx	(const KDTree& kdtree);
 
+	void				createNodeTriIdxBFS	(const KDTree& kdtree);
+
 	/**
 	*  \brief				Converts KDTree's source scene triangles to their woopified version.
 	*  \param[in] kdtree	KDTree whose source scene triangles should be converted.
@@ -145,6 +159,9 @@ private:
 	Buffer				m_triWoop;		//!< Buffer holding whoopified version of scene's triangles.
 
 	AABB				m_bbox;			//!< Bounding box of the tree.
+
+	Scene*				m_scene;
+	bool				m_needClosestHit;
 };
 
 }

@@ -32,8 +32,8 @@
 #include "ray/RayGen.hpp"
 #include "cuda/CudaPersistentBVHTracer.hpp"
 #include "cuda/CudaKDTreeTracer.hpp"
-#include "tools/visualizationKDTree.hpp"
-#include "tools/visualizationBVH.hpp"
+#include "tools/VisualizationKDTree.hpp"
+#include "tools/VisualizationBVH.hpp"
 #include "Environment.h"
 
 
