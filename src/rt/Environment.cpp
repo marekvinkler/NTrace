@@ -32,8 +32,11 @@
 
 #include "Environment.h"
 
+#ifdef _MSC_VER
 #define strcasecmp _stricmp
 #define strncasecmp _strnicmp
+#define strdup _strdup
+#endif
 #define MAX_STRING_LEN 65536
 
 Environment* Environment::mEnvironment = NULL;
@@ -278,7 +281,7 @@ bool Environment::Parse(const int argc, char **argv, bool useExePath, char* over
   char filename[64];
 
   // Get the environment file name
-  if (true) {
+  if (!GetParam(' ', 0, filename)) {
     // user didn't specify environment file explicitly, so
     strcpy(filename, overrideDefault);
   }
@@ -1147,37 +1150,37 @@ void Environment::ParseCmdline(const int argc, char **argv, const int index)
             }
             else
             {
-                // it's an abbreviation
-                bool found = false;
-                int j;
-	
-                for (j = 0; j < numOptions; j++)
-                {
-                    if (options[j].abbrev != NULL && !strncmp(options[j].abbrev, argv[i] + 1, strlen(options[j].abbrev))) 
-                    {
-                        found = true;
-                        break;
-                    }
-                
-                    if (!found) 
-                    {
-                        //Debug << "Warning: Unregistered option " << argv[i] << ".\n" << flush;
-                        //          exit(1);
-                    }
-                    if (found) 
-                    {
-                        if (!CheckVariableType(argv[i] + 1 + strlen(options[j].abbrev), options[j].type)) 
-                        {
-                            //Debug << "Error: invalid type of value " << argv[i] + 1 + strlen(options[j].abbrev) << "in option " << options[j].name << ".\n";
-                            exit(1);
-                        }
+				// it's an abbreviation
+				bool found = false;
+				int j;
 
-                        if (options[j].value != NULL)
-                            delete [] options[j].value;
-    
-                        options[j].value = strdup(argv[i] + 1 + strlen(options[j].abbrev));
-                    }
-                }
+				for (j = 0; j < numOptions; j++)
+				{
+					if (options[j].abbrev != NULL && !strncmp(options[j].abbrev, argv[i] + 1, strlen(options[j].abbrev))) 
+					{
+						found = true;
+						break;
+					}
+				}
+
+				if (!found) 
+				{
+					//Debug << "Warning: Unregistered option " << argv[i] << ".\n" << flush;
+					//          exit(1);
+				}
+				if (found) 
+				{
+					if (!CheckVariableType(argv[i] + 1 + strlen(options[j].abbrev), options[j].type)) 
+					{
+						//Debug << "Error: invalid type of value " << argv[i] + 1 + strlen(options[j].abbrev) << "in option " << options[j].name << ".\n";
+						exit(1);
+					}
+
+					if (options[j].value != NULL)
+						delete [] options[j].value;
+
+					options[j].value = strdup(argv[i] + 1 + strlen(options[j].abbrev));
+				}
             }
         }
     }

@@ -101,8 +101,6 @@ private:
     bool                m_showCameraControls;
     bool                m_showKernelSelector;
     bool                m_guiDirty;
-
-	//Environment*		m_env;
 };
 
 //------------------------------------------------------------------------

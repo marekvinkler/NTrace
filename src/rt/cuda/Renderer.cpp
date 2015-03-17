@@ -32,7 +32,7 @@
 #include "bvh/HLBVH/HLBVHBuilder.hpp"
 #include "cuda/CudaPersistentBVHTracer.hpp"
 
-#define CPU
+//#define CPU
 
 using namespace FW;
 
@@ -168,8 +168,7 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 
     // Cache file exists => import.
 
-	/*
-    if (!hasError())
+    if (!hasError() && Environment::GetSingleton()->GetBool("Renderer.cacheDataStructure"))
     {
         File file(cacheFileName, File::Read);
         if (!hasError())
@@ -182,7 +181,6 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
         }
         clearError();
     }
-	*/
 
     // Display status.
 
@@ -322,8 +320,7 @@ CudaAS*	Renderer::getCudaKDTree(void)
 		layout,
 		hash<String>(String(ds.c_str()))), builder.c_str());
 
-	/*
-	if(!hasError())
+	if(!hasError() && Environment::GetSingleton()->GetBool("Renderer.cacheDataStructure"))
 	{
 		File file(cacheFileName, File::Read);
 		if (!hasError())
@@ -333,7 +330,7 @@ CudaAS*	Renderer::getCudaKDTree(void)
 		}
 		clearError();
 	}
-	*/
+
 	printf("\nBuilding k-d tree...\nThis will take a while.\n");
     if (m_window)
         m_window->showModalMessage("Building k-d tree...");
