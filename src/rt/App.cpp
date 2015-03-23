@@ -745,6 +745,17 @@ void FW::runBenchmark(
                         gl->swapBuffers();
                     }
 
+					// Export the image.
+					if(Environment::GetSingleton()->GetBool("Benchmark.screenshot"))
+					{
+						Image* image = renderer->getImage();
+						image->flipY();
+						string scrName;
+						Environment::GetSingleton()->GetStringValue("Benchmark.screenshotName", scrName);
+						String name = sprintf(scrName.c_str(), kernelIdx, rayTypesString[rt].getPtr(), cameraIdx);
+						exportImage(name, image);
+					}
+
                     // Warm up and measure.
 
                     for (int i = 0; i < warmupRepeats; i++)

@@ -22,8 +22,8 @@ ALLLOGS=""
 run()
 {
 #rm -f $PROJECTDIR/ntrace.log
-FILE=$TESTDIR/$LOGDIR/$S-$TEST.log
-EXECUTE="$* -DApp.stats=$PROJECTDIR/$FILE"
+FILE=$TESTDIR/$LOGDIR/$S-$TEST
+EXECUTE="$* -DApp.stats=$PROJECTDIR/$FILE.log -DBenchmark.screenshotName=${FILE}_kernel=%d_rt=%s_cam=%d.png"
 $EXECUTE
 ALLLOGS="$ALLLOGS $FILE"
 }
@@ -32,7 +32,7 @@ ALLLOGS="$ALLLOGS $FILE"
 for S in $SCENES; do
 mkdir -p $TESTDIR/$LOGDIR/${S%/*}
 echo Running test for $S
-run $COMMAND -DBenchmark.scene="$PROJECTDIR/data/$S" -DBenchmark.camera=$CAMERAS -DRenderer.dataStructure=$DATASTRUCTURE -DRenderer.builder=$BUILDER -DRenderer.rayType=$RAYTYPE
+run $COMMAND -DApp.benchmark="true" -DBenchmark.scene="$PROJECTDIR/data/$S" -DBenchmark.camera=$CAMERAS -DBenchmark.screenshot="true" -DRenderer.dataStructure=$DATASTRUCTURE -DRenderer.builder=$BUILDER -DRenderer.rayType=$RAYTYPE
 done
 
 #OUTDIR=$TESTDIR/results/`date +%Y-%m-%d`-$TEST

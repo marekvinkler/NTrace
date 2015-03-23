@@ -55,6 +55,8 @@ void AppEnvironment::RegisterOptions()
 	RegisterOption("Benchmark.kernel", optString, "benchmark_kernel=");
 	RegisterOption("Benchmark.warmupRepeats", optInt, "benchmark_warmup=", "1");
 	RegisterOption("Benchmark.measureRepeats", optInt, "benchmark_measure=", "5");
+	RegisterOption("Benchmark.screenshot", optBool, "benchmark_scr=", "false");
+	RegisterOption("Benchmark.screenshotName", optString, "benchmark_scrname=", "screenshot_kernel=%d_rt=%s_cam=%d.png");
 	
 	/*************************************************************************/
 	/*    Renderer                                                           */
