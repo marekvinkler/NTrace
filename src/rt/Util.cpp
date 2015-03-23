@@ -103,9 +103,9 @@ Vec3f Intersect::RayTriangleWoop(const Vec4f& zpleq, const Vec4f& upleq, const V
     Vec4f orig(ray.origin,1.f);
     Vec4f dir (ray.direction,0.f);
 
-    float Oz   = dot(zpleq,orig);           // NOTE: differs from HPG kernels!
-    float ooDz = 1.f / dot(dir,zpleq);
-    float t = -Oz * ooDz;
+    float Oz = zpleq.w - orig.x*zpleq.x - orig.y*zpleq.y - orig.z*zpleq.z;
+	float ooDz = 1.f / dot(dir,zpleq);
+	float t = Oz * ooDz;
     if (t>ray.tmin && t<ray.tmax)
     {
         float Ou = dot(upleq,orig);
