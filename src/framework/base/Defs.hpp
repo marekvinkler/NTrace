@@ -29,7 +29,8 @@
 
 #pragma warning(disable:4530) // C++ exception handler used, but unwind semantics are not enabled.
 #include <new>
-#include <string.h>
+#include <string>
+#include <fstream>
 
 namespace FW
 {
@@ -160,6 +161,15 @@ bool            getDiscardEvents(void);
 void            pushLogFile     (const String& name, bool append = true);
 void            popLogFile      (void);
 bool            hasLogFile      (void);
+
+// Loging statistics.
+extern std::ofstream Stats;
+template <typename T>
+void            pushStat        (const std::string& name, const T& stat)
+{
+	Stats << '#' << name << '\n';
+	Stats << stat << '\n';
+}
 
 // Memory profiling.
 

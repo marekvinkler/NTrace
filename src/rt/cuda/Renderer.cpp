@@ -32,6 +32,8 @@
 #include "bvh/HLBVH/HLBVHBuilder.hpp"
 #include "cuda/CudaPersistentBVHTracer.hpp"
 
+//#define CPU
+
 using namespace FW;
 
 //------------------------------------------------------------------------
@@ -63,7 +65,7 @@ Renderer::Renderer()
 	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
 
     // Setup data structure.
-	if(ds == "BVH" || ds == "PersistentBVH")
+	if(ds == "BVH")
 		m_cudaTracer = new CudaBVHTracer();
 	else if(ds == "KDTree")
 		m_cudaTracer = new CudaKDTreeTracer();
@@ -166,15 +168,12 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 
     // Cache file exists => import.
 
-    if (!hasError())
+    if (!hasError() && Environment::GetSingleton()->GetBool("Renderer.cacheDataStructure"))
     {
         File file(cacheFileName, File::Read);
         if (!hasError())
         {
-			string ds;
-			Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
-
-			if (ds != "PersistentBVH")
+			if (builder != "PersistentBVH")
 			{	
 				m_accelStruct = new CudaBVH(file);
 				return m_accelStruct;
@@ -252,23 +251,33 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
     // Build BVH.
 	if(m_accelStruct == NULL)
 	{
-		string ds;
-		Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
-
-		if (ds != "PersistentBVH")
+		if (builder != "PersistentBVH")
 		{	
 			BVH bvh(m_scene, m_platform, m_buildParams);
 			stats.print();
 			m_accelStruct = new CudaBVH(bvh, layout);
+			int* ptr = (int*)m_accelStruct->getNodeBuffer().getPtr();
+
+			/*printf("\n\n");
+			for (int i = 0; i < m_accelStruct->getNodeBuffer().getSize()/64; i++)
+			{
+				printf("v1=%f v2=%f \n",i, *((int*)m_accelStruct->getNodeBuffer().getPtr(i*64+48))/64, *((int*)m_accelStruct->getNodeBuffer().getPtr(i*64+52))/64,
+					volume(*((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+0)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+4)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+8)),
+					*((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+12)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+32)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+36))), 
+					volume(*((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+16)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+20)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+24)),
+					*((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+28)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+40)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+44))));
+			}
+		*/
+
 			failIfError();
-		}
+		}/*
 		else
 		{
 			m_accelStruct = new CudaPersistentBVHTracer(*m_scene, FLT_EPSILON);
 			((CudaPersistentBVHTracer*)m_accelStruct)->resetBuffers(true);
-			((CudaPersistentBVHTracer*)m_accelStruct)->buildBVH(false);
+			((CudaPersistentBVHTracer*)m_accelStruct)->buildBVH();
 			((CudaPersistentBVHTracer*)m_accelStruct)->resetBuffers(false);
-		}
+		}*/
 	}
 
     // Write to cache.
@@ -311,7 +320,7 @@ CudaAS*	Renderer::getCudaKDTree(void)
 		layout,
 		hash<String>(String(ds.c_str()))), builder.c_str());
 
-	if(!hasError())
+	if(!hasError() && Environment::GetSingleton()->GetBool("Renderer.cacheDataStructure"))
 	{
 		File file(cacheFileName, File::Read);
 		if (!hasError())
@@ -383,7 +392,7 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
 	Environment::GetSingleton()->GetStringValue("Renderer.dataStructure", ds);
 
     // Setup BVH.
-	if(ds == "BVH" || ds == "PersistentBVH")
+	if(ds == "BVH")
 		m_cudaTracer->setBVH(getCudaBVH(gl, camera));
 	else if(ds == "KDTree")
 		m_cudaTracer->setBVH(getCudaKDTree());
@@ -406,7 +415,7 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
     }
 
     // Generate primary rays.
-	
+
     U32 randomSeed = (m_enableRandom) ? m_random.getU32() : 0;
     m_raygen.primary(m_primaryRays,
         camera.getPosition(),
@@ -418,7 +427,11 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
 
 	if (m_params.rayType != RayType_Primary && m_params.rayType != RayType_Textured && m_params.rayType != RayType_PathTracing)
 	{
+#ifndef CPU
 		m_cudaTracer->traceBatch(m_primaryRays);
+#else
+		m_accelStruct->trace(m_primaryRays, m_triangleVisibility);
+#endif
 	}
 
     // Initialize state.
@@ -485,8 +498,14 @@ bool Renderer::nextBatch(void)
 F32 Renderer::traceBatch(void)
 {
     FW_ASSERT(m_batchRays);
-
+#ifndef CPU
 	return m_cudaTracer->traceBatch(*m_batchRays);
+#else
+	Timer timer(true);
+	m_accelStruct->trace(*m_batchRays, m_triangleVisibility);
+	((CudaBVH*)m_accelStruct)->trace(*m_batchRays, m_triangleVisibility, false);
+	return timer.getElapsed();
+#endif
 }
 
 //------------------------------------------------------------------------

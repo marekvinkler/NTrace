@@ -25,8 +25,19 @@
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#define DFS 0
+#define BFS 1
+#define RND 2
+
+#define METHOD RND
+
+#include "base/Random.hpp"
+#include <queue>
+
 #include "cuda/CudaBVH.hpp"
 #include "base/Sort.hpp"
+
+#define MASK_TRACE_EMPTY
 
 using namespace FW;
 
@@ -53,13 +64,29 @@ CudaBVH::CudaBVH(const BVH& bvh, BVHLayout layout)
 
     if (layout == BVHLayout_Compact)
     {
+#if METHOD == DFS
         createCompact(bvh,1);
-        return;
+		return;
+#elif METHOD == RND
+		createCompact(bvh, 1);
+		shuffle();
+		return;
+#else
+		createCompactBFS(bvh);
+		return;
+#endif
     }
+	else
+	{
+		FW_ASSERT(false);
+	}
 
     if (layout == BVHLayout_Compact2)
     {
         createCompact(bvh,16);
+#ifdef SHUFFLE
+		shuffle();
+#endif
         return;
     }
 
@@ -67,6 +94,10 @@ CudaBVH::CudaBVH(const BVH& bvh, BVHLayout layout)
 	if (layout != BVHLayout_CPU)
 		createTriWoopBasic(bvh);
     createTriIndexBasic(bvh);
+
+#ifdef SHUFFLE
+	shuffle();
+#endif
 }
 
 //------------------------------------------------------------------------
@@ -228,7 +259,7 @@ void CudaBVH::trace(RayBuffer& rays, Buffer& visibility, bool twoTrees, RayStats
 			}
 
 			// Set visibility
-			if(result.hit())
+			if(visibility.getSize() > 0 && result.hit())
 				visib[result.id] = 1;
 		}
 	}
@@ -264,7 +295,7 @@ void CudaBVH::trace(RayBuffer& rays, Buffer& visibility, bool twoTrees, RayStats
 			}
 
 			// Set visibility
-			if(result.hit())
+			if(visibility.getSize() > 0 && result.hit())
 				visib[result.id] = 1;
 		}
 	}
@@ -565,6 +596,7 @@ void CudaBVH::createCompact(const BVH& bvh, int nodeOffsetSizeDiv)
     while (stack.getSize())
     {
         StackEntry e = stack.removeLast();
+		//printf("%i %f | ", e.idx/4, e.node->getArea());
         FW_ASSERT(e.node->getNumChildNodes() == 2);
         const AABB* cbox[2];
         int cidx[2];
@@ -1251,3 +1283,213 @@ void CudaBVH::getNodeTemplate<BVHLayout_CPU>(S32 node, SplitInfo *splitInfo, AAB
 }*/
 
 //------------------------------------------------------------------------
+
+void CudaBVH::shuffle(S32 numOfSwaps)
+{
+	struct ParentInfo
+	{
+		S32 parentIdx;
+		bool leftChild;
+
+		ParentInfo(S32 idx, bool left) : parentIdx(idx), leftChild(left) {}
+		ParentInfo() : parentIdx(-1) {}
+	};
+
+
+	const int numOfNodes = m_nodes.getSize() / 64;
+
+	Array<ParentInfo> parents;
+	parents.reset(numOfNodes);
+
+	int nodeOffsetSizeDiv = (m_layout == BVHLayout_Compact ? 1 : 16);
+	numOfSwaps = (numOfSwaps < 0 ? numOfNodes : numOfSwaps);
+
+	switch (m_layout)
+	{
+	case BVHLayout_AOS_AOS:
+	case BVHLayout_AOS_SOA:
+	case BVHLayout_CPU:
+	case BVHLayout_SOA_AOS:
+	case BVHLayout_SOA_SOA:
+		FW_ASSERT(false);
+		break;
+	case BVHLayout_Compact:
+		{
+			S32* ptr = (S32*)m_nodes.getPtr();
+			for (int i = 0; i < m_nodes.getSize() / 64; i++)
+			{
+				S32 ptr1 = ptr[i*16+12] / 64;
+				S32 ptr2 = ptr[i*16+13] / 64;
+
+				if(ptr1 > 0)
+					parents[ptr1] = ParentInfo(i, true);
+				if(ptr2 > 0)
+					parents[ptr2] = ParentInfo(i, false);
+			}
+
+			Random rnd;
+			Vec4i* vecPtr = (Vec4i*)m_nodes.getPtr();
+			numOfSwaps = numOfNodes;
+			for (int i = 0; i < numOfSwaps; i++)
+			{
+				S32 idx1 = rnd.getU32(1, numOfNodes-1);
+				S32 idx2 = rnd.getU32(1, numOfNodes-1);
+				if(idx1 == idx2)
+					continue;
+
+				S32 chIdx1l = ptr[idx1 * 16 + 12] / 64;
+				S32 chIdx1r = ptr[idx1 * 16 + 13] / 64;
+				S32 chIdx2l = ptr[idx2 * 16 + 12] / 64;
+				S32 chIdx2r = ptr[idx2 * 16 + 13] / 64;
+			
+				//printf("idx1: %u, idx2: %u | ", idx1, idx2);
+				
+				//swap nodes
+				swap(vecPtr[idx1*4+0], vecPtr[idx2*4+0]);
+				swap(vecPtr[idx1*4+1], vecPtr[idx2*4+1]);
+				swap(vecPtr[idx1*4+2], vecPtr[idx2*4+2]);
+				swap(vecPtr[idx1*4+3], vecPtr[idx2*4+3]);
+
+				//swap parent info
+				swap(parents[idx1], parents[idx2]);
+
+				
+				//fix parent info for children
+				/*
+				for (int i = 0; i < parents.getSize(); i++)
+				{
+					if(parents[i].parentIdx == idx1)
+						int x = 1 + i;//parents[i].parentIdx = idx2;
+					else if(parents[i].parentIdx == idx2)
+						int x = i + i;//parents[i].parentIdx = idx1;
+				}
+				*/
+
+				//fix parent info for children
+				if(chIdx1l > 0 && parents[chIdx1l].parentIdx == idx1)
+					parents[chIdx1l].parentIdx = idx2;
+				if(chIdx1r > 0 && parents[chIdx1r].parentIdx == idx1)
+					parents[chIdx1r].parentIdx = idx2;
+				if(chIdx2l > 0 && parents[chIdx2l].parentIdx == idx2)
+					parents[chIdx2l].parentIdx = idx1;
+				if(chIdx2r > 0 && parents[chIdx2r].parentIdx == idx2)
+					parents[chIdx2r].parentIdx = idx1;
+					
+				//??
+				if(parents[idx1].parentIdx == idx1)
+					parents[idx1].parentIdx = idx2;
+				if(parents[idx2].parentIdx == idx2)
+					parents[idx2].parentIdx = idx1;
+				
+				//fix child info for swapped nodes
+				int offset;
+				offset = (parents[idx1].leftChild ? 0 : 1);	
+				ptr[parents[idx1].parentIdx*16+12+offset] = idx1*64;
+
+				offset = (parents[idx2].leftChild ? 0 : 1);	
+				ptr[parents[idx2].parentIdx*16+12+offset] = idx2*64;
+			}
+
+			break;
+		}
+	case BVHLayout_Compact2:
+		FW_ASSERT(false);
+		break;
+	default:
+		break;
+	}
+}
+
+//------------------------------------------------------------------------
+
+void CudaBVH::createCompactBFS (const BVH& bvh)
+{
+	    struct StackEntry
+    {
+        const BVHNode*  node;
+        S32             idx;
+
+        StackEntry(const BVHNode* n = NULL, int i = 0) : node(n), idx(i) {}
+    };
+
+    // Construct data.
+
+    Array<Vec4i> nodeData(NULL, 4);
+    Array<Vec4i> triWoopData;
+    Array<S32> triIndexData;
+	std::queue<StackEntry> queue;
+	queue.push(StackEntry(bvh.getRoot(), 0));
+    //Array<StackEntry> stack(StackEntry(bvh.getRoot(), 0));
+
+	while (!queue.empty())
+    {
+		StackEntry e = queue.front();
+		queue.pop();
+		//printf("%i %f | ", e.idx/4, e.node->getArea());
+        FW_ASSERT(e.node->getNumChildNodes() == 2);
+        const AABB* cbox[2];
+        int cidx[2];
+
+        // Process children.
+
+        for (int i = 0; i < 2; i++)
+        {
+            // Inner node => push to stack.
+
+            const BVHNode* child = e.node->getChildNode(i);
+            cbox[i] = &child->m_bounds;
+            if (!child->isLeaf())
+            {
+                cidx[i] = nodeData.getNumBytes() / 1;
+				queue.push(StackEntry(child, nodeData.getSize()));
+                nodeData.add(NULL, 4);
+                continue;
+            }
+
+            // Leaf => append triangles.
+
+            const LeafNode* leaf = reinterpret_cast<const LeafNode*>(child);
+            cidx[i] = ~triWoopData.getSize();
+            for (int j = leaf->m_lo; j < leaf->m_hi; j++)
+            {
+                woopifyTri(bvh, j);
+                if (m_woop[0].x == 0.0f)
+                    m_woop[0].x = 0.0f;
+                triWoopData.add((Vec4i*)m_woop, 3);
+                triIndexData.add(bvh.getTriIndices()[j]);
+                triIndexData.add(0);
+                triIndexData.add(0);
+            }
+
+            // Terminator.
+
+            triWoopData.add(0x80000000);
+            triIndexData.add(0);
+        }
+
+        const InnerNode *eN = reinterpret_cast<const InnerNode*>(e.node);
+        const SplitInfo &splitInfo = eN->getSplitInfo();
+
+        // Write entry.
+
+        Vec4i* dst = nodeData.getPtr(e.idx);
+        dst[0] = Vec4i(floatToBits(cbox[0]->min().x), floatToBits(cbox[0]->max().x), floatToBits(cbox[0]->min().y), floatToBits(cbox[0]->max().y));
+        dst[1] = Vec4i(floatToBits(cbox[1]->min().x), floatToBits(cbox[1]->max().x), floatToBits(cbox[1]->min().y), floatToBits(cbox[1]->max().y));
+        dst[2] = Vec4i(floatToBits(cbox[0]->min().z), floatToBits(cbox[0]->max().z), floatToBits(cbox[1]->min().z), floatToBits(cbox[1]->max().z));
+        //dst[3] = Vec4i(cidx[0], cidx[1], 0, 0);
+        dst[3] = Vec4i(cidx[0], cidx[1], splitInfo.getBitCode(), 0);
+    }
+
+    // Write to buffers.
+
+    m_nodes.resizeDiscard(nodeData.getNumBytes());
+    m_nodes.set(nodeData.getPtr(), nodeData.getNumBytes());
+
+    m_triWoop.resizeDiscard(triWoopData.getNumBytes());
+    m_triWoop.set(triWoopData.getPtr(), triWoopData.getNumBytes());
+
+    m_triIndex.resizeDiscard(triIndexData.getNumBytes());
+    m_triIndex.set(triIndexData.getPtr(), triIndexData.getNumBytes());
+
+}
+

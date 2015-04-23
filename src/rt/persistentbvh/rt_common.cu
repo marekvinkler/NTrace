@@ -733,7 +733,7 @@ __device__ __forceinline__ int getTriChildOverlap(const float4& plane, const flo
 
 	if(leftIsect == 0 && rightIsect == 0) // Should not happen, but happens due to numerical imprecision
 	{
-		printf("Cannot happen!\n");
+		//printf("Cannot happen!\n");
 		return -1;
 	}
 

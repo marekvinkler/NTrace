@@ -32,8 +32,8 @@
 #include "ray/RayGen.hpp"
 #include "cuda/CudaPersistentBVHTracer.hpp"
 #include "cuda/CudaKDTreeTracer.hpp"
-#include "tools/visualizationKDTree.hpp"
-#include "tools/visualizationBVH.hpp"
+#include "tools/VisualizationKDTree.hpp"
+#include "tools/VisualizationBVH.hpp"
 #include "Environment.h"
 
 
@@ -97,6 +97,7 @@ public:
     void                updateResult        (void); // for current batch
     void                displayResult       (GLContext* gl);
 
+	Image*              getImage            (void)                  { return m_image; }
     int                 getTotalNumRays     (void); // for selected ray type, excluding degenerates
 
 	F32					calcNodeSAHCostKdtree(const Platform& platform, Buffer* nodes, Buffer* tri,  S32 n, AABB bbox, S32 depth, S32& maxDepth, S32& sumDepth, S32& numNodes, S32& numLeaves, F32& nodeArea, F32 &weightedLeafArea, F32& test);

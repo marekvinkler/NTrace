@@ -736,12 +736,18 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 		{
 			taskEnqueueLeft(tid, g_taskStackBVH.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackBVH.unfinished, g_taskStackBVH.sizePool); // Go left of beg and fill empty tasks
 			if(beg == -1)
+			{
+				atomicMax(&g_taskStackBVH.top, g_taskStackBVH.sizePool);
 				return;
+			}
 		}
 #else
 		taskEnqueueLeft(tid, g_taskStackBVH.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackBVH.unfinished, g_taskStackBVH.sizePool); // Go left of beg and fill empty tasks
 		if(beg == -1)
+		{
+			atomicMax(&g_taskStackBVH.top, g_taskStackBVH.sizePool);
 			return;
+		}
 #endif
 
 		// All threads
@@ -950,7 +956,10 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 #endif
 			taskEnqueueLeft(tid, g_taskStackBVH.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackBVH.unfinished, g_taskStackBVH.sizePool); // Go left of beg and fill empty tasks
 			if(beg == -1)
+			{
+				atomicMax(&g_taskStackBVH.top, g_taskStackBVH.sizePool);
 				return;
+			}
 		}
 
 		// All threads

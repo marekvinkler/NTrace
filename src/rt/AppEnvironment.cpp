@@ -39,16 +39,45 @@
 void AppEnvironment::RegisterOptions()
 {
 	/*************************************************************************/
+	/*    App							                                     */
+	/*************************************************************************/
+	RegisterOption("App.benchmark", optBool, "app_benchmark=", "true");
+	RegisterOption("App.log", optString, "app_log=", "ntrace.log");
+	RegisterOption("App.stats", optString, "app_stats=", "stats.log");
+	RegisterOption("App.frameWidth", optInt, "app_frame_width=", "1024");
+	RegisterOption("App.frameHeight", optInt, "app_frame_height=", "768");
+
+	/*************************************************************************/
+	/*    Benchmark						                                     */
+	/*************************************************************************/
+	RegisterOption("Benchmark.scene", optString, "benchmark_scene=");
+	RegisterOption("Benchmark.camera", optString, "benchmark_camera=");
+	RegisterOption("Benchmark.kernel", optString, "benchmark_kernel=");
+	RegisterOption("Benchmark.warmupRepeats", optInt, "benchmark_warmup=", "1");
+	RegisterOption("Benchmark.measureRepeats", optInt, "benchmark_measure=", "5");
+	RegisterOption("Benchmark.screenshot", optBool, "benchmark_scr=", "false");
+	RegisterOption("Benchmark.screenshotName", optString, "benchmark_scrname=", "screenshot_kernel=%d_rt=%s_cam=%d.png");
+	
+	/*************************************************************************/
 	/*    Renderer                                                           */
 	/*************************************************************************/
-
 	RegisterOption("Renderer.dataStructure", optString, "renderer_ds=");
-	RegisterOption("Renderer.builder", optString, "renderer.builder=");
+	RegisterOption("Renderer.builder", optString, "renderer_builder=");
+	RegisterOption("Renderer.rayType", optString, "renderer_raytype=");
+	RegisterOption("Renderer.samples", optInt, "renderer_samples=", "8");
+	RegisterOption("Renderer.sortRays", optBool, "renderer_sortrays=", "true");
+	RegisterOption("Renderer.cacheDataStructure", optBool, "renderer_cache_ds=", "true");
 
 	/*************************************************************************/
 	/*    Raygen                                                             */
 	/*************************************************************************/
 	RegisterOption("Raygen.random", optBool, "raygen_random=", "false");
+	RegisterOption("Raygen.aoRadius", optFloat, "raygen_aoradius=", "5.0");
+
+	/*************************************************************************/
+	/*    SBVH	                                                             */
+	/*************************************************************************/
+	RegisterOption("SBVH.alpha", optFloat, "sbvh_alpha=", "1.0e-5");
 
 	/*************************************************************************/
 	/*    Persistent BVH                                                     */
