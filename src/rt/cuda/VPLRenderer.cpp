@@ -195,7 +195,7 @@ void VPLRenderer::updateResult(void)
     CudaModule* module = m_compiler.compile();
 
     // Setup input struct.
-	printf("Light #%d\n", m_currentLight);
+	//printf("Light #%d\n", m_currentLight);
 
 	//printf("Primary: %d, Shadow: %d\n", m_primaryRays.getSize(), m_shadowRays.getSize());
 

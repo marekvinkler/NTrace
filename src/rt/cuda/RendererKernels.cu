@@ -355,15 +355,15 @@ extern "C" __global__ void vplReconstructKernel()
 		float4 diffuseColor;
 		Vec4f texColor;
 
-		/*if(matInfo[matId[tri]].w == 0.0f) {
+		if(matInfo[matId[tri]].w == 0.0f) {
 			diffuseColor = fromABGR(triMaterialColor[tri]);
 			texColor = Vec4f(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);
-		} else {*/
+		} else {
 			diffuseColor = tex2D(t_textures, tU, tV);
 			texColor = Vec4f(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);
-		//}
+		}
 
-		color += nDotDir * (Vec4f(light.intensity,0)) * Vec4f(0.7, 0.7, 0.7, 1.0) * shadow;
+		color += nDotDir * (Vec4f(light.intensity,0)) * texColor * shadow;
 		//color += nDotDir * (Vec4f(light.intensity,0) * lightContributionCoefficient) * texColor * shadow;
 		//color = texColor;
 	//}
