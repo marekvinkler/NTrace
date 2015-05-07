@@ -30,7 +30,6 @@
 #include "base/Random.hpp"
 #include "cuda/CudaBVHTracer.hpp"
 #include "ray/RayGen.hpp"
-#include "cuda/CudaPersistentBVHTracer.hpp"
 #include "cuda/CudaKDTreeTracer.hpp"
 #include "tools/VisualizationKDTree.hpp"
 #include "tools/VisualizationBVH.hpp"

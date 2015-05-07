@@ -55,12 +55,21 @@ struct AllocInfo
 #define CIRCULAR_MALLOC_PREV_OFS sizeof(unsigned int)
 #define CIRCULAR_MALLOC_NEXT_OFS (2*sizeof(unsigned int))
 #endif
+//#define CIRCULAR_MALLOC_CHECK_INTERNAL_FRAGMENTATION
+//#define CIRCULAR_MALLOC_CHECK_EXTERNAL_FRAGMENTATION
 
+//------------------------------------------------------------------------
+// Halloc
+//------------------------------------------------------------------------
+#if defined(__CUDA_ARCH__) && (__CUDA_ARCH__ >= 300)
+#include "halloc/src/halloc.cu"
+#endif
+
+#ifdef __CUDACC__
 //------------------------------------------------------------------------
 // ScatterAlloc
 //------------------------------------------------------------------------
 
-#ifdef __CUDACC__
 //set the template arguments using HEAPARGS
 // pagesize ... byter per page
 // accessblocks ... number of superblocks
@@ -78,6 +87,8 @@ template __global__ void GPUTools::initHeap<HEAPARGS>(DeviceHeap<HEAPARGS>* heap
 //------------------------------------------------------------------------
 // FDGMalloc
 //------------------------------------------------------------------------
+#include "fdg/FDGMalloc.cuh"
+#include "fdg/FDGMalloc.cu"
 
 //------------------------------------------------------------------------
 
@@ -89,6 +100,10 @@ __device__ uint g_numSM; // Number of SMs on the device
 __device__ uint g_heapLock; // Lock for updating the heap
 
 __constant__ AllocInfo c_alloc;
+
+#ifdef CIRCULAR_MALLOC_CHECK_INTERNAL_FRAGMENTATION
+__device__ float* g_interFragSum; // A float for every thread
+#endif
 
 __device__ __forceinline__ void* mallocCudaMalloc(uint allocSize);
 __device__ __forceinline__ void freeCudaMalloc(void* ptr);
@@ -102,9 +117,20 @@ __device__ __forceinline__ void freeCircularMalloc(void* ptr);
 
 __device__ __forceinline__ void* mallocCircularMallocFused(uint allocSize);
 __device__ __forceinline__ void freeCircularMallocFused(void* ptr);
+__device__ __forceinline__ void* mallocCircularMultiMalloc(uint allocSize);
+__device__ __forceinline__ void freeCircularMultiMalloc(void* ptr);
+
+__device__ __forceinline__ void* mallocCircularMultiMallocFused(uint allocSize);
+__device__ __forceinline__ void freeCircularMultiMallocFused(void* ptr);
 
 __device__ __forceinline__ void* mallocScatterAlloc(uint allocSize);
 __device__ __forceinline__ void freeScatterAlloc(void* ptr);
+
+__device__ __forceinline__ void* mallocFDGMalloc(FDG::Warp* warp, uint allocSize);
+__device__ __forceinline__ void freeFDGMalloc(FDG::Warp* warp);
+
+__device__ __forceinline__ void* mallocHalloc(uint allocSize);
+__device__ __forceinline__ void freeHalloc(void* ptr);
 
 extern "C" __global__ void CircularMallocPrepare1(uint numChunks);
 extern "C" __global__ void CircularMallocPrepare2(uint numChunks);

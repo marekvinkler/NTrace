@@ -43,6 +43,20 @@ __global__ void allocFreeableMemory(int numTris, int numRays)
 	mallocCircularMallocFused(numTris*sizeof(int));
 #elif (MALLOC_TYPE == SCATTER_ALLOC)
 	g_heapBase = (char*)mallocScatterAlloc(numTris*sizeof(int));
+#elif (MALLOC_TYPE == HALLOC)
+	g_heapBase2 = 0;
+	void *heap[32];
+	for(int i = 0; i < 32; i++)
+	{
+		heap[i] = malloc(1<<i);
+		g_heapBase2 = (char*)max((unsigned long long)g_heapBase2, (unsigned long long)heap[i]);
+		//printf("%d : %p\n", i, g_heapBase2);
+	}
+	for(int i = 0; i < 32; i++)
+	{
+		free(heap[i]);
+	}
+	g_heapBase = (char*)mallocHalloc(numTris*sizeof(int));
 #elif (MALLOC_TYPE == FDG_MALLOC)
 	g_heapBase = (char*)mallocFDGMalloc(warp, numTris*sizeof(int));
 #endif

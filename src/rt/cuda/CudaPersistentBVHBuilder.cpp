@@ -1,7 +1,8 @@
 #include <sstream>
 #include <iomanip>
+
 #include "base/Random.hpp"
-#include "CudaPersistentBVHTracer.hpp"
+#include "CudaPersistentBVHBuilder.hpp"
 #include "kernels/CudaTracerKernels.hpp"
 #include "persistentbvh/CudaBuilderKernels.hpp"
 #include "../AppEnvironment.h"
@@ -23,46 +24,15 @@ T align(T a)
 
 //------------------------------------------------------------------------
 
-CudaPersistentBVHTracer::CudaPersistentBVHTracer(Scene& scene, F32 epsilon) : CudaBVH(BVHLayout_Compact), m_epsilon(epsilon)
+CudaPersistentBVHTracer::CudaPersistentBVHTracer(Scene& scene, F32 epsilon) : CudaBVH(BVHLayout_Compact), m_epsilon(epsilon), m_numTris(scene.getNumTriangles()), m_trisCompact(scene.getTriCompactBuffer())
 {
 	// init
 	CudaModule::staticInit();
 	//m_compiler.addOptions("-use_fast_math");
 	m_compiler.addOptions("-use_fast_math -Xptxas -dlcm=cg");
 
-	// convert from scene
-	Vec3f light = Vec3f(1.0f, 2.0f, 3.0f).normalized();
-
-	m_numTris = scene.getTriVtxIndexBuffer().getSize() / sizeof(Vec3i);
-	m_numVerts          = m_numTris * 3;
-
-	m_trisCompact.resizeDiscard(m_numTris * 3 * sizeof(Vec4f));
-	m_trisIndex.resizeDiscard(m_numTris * sizeof(S32));
-
-	Vec4f* tcout  = (Vec4f*)m_trisCompact.getMutablePtr();
-	S32*   tiout  = (S32*)m_trisIndex.getMutablePtr();
-
-	m_bboxMin = Vec3f(2e30f);
-	m_bboxMax = Vec3f(-2e30f);
-
-	// Load vertices
-	for (int i = 0; i < m_numTris; i++)
-	{
-		Vec3i& tri = ((Vec3i*)scene.getTriVtxIndexBuffer().getPtr())[i];
-		Vec3f& a = ((Vec3f*)scene.getVtxPosBuffer().getPtr())[tri.x];
-		Vec3f& b = ((Vec3f*)scene.getVtxPosBuffer().getPtr())[tri.y];
-		Vec3f& c = ((Vec3f*)scene.getVtxPosBuffer().getPtr())[tri.z];
-		*tcout = Vec4f(a.x, a.y, a.z, 0.0f); tcout++;
-		*tcout = Vec4f(b.x, b.y, b.z, 0.0f); tcout++;
-		*tcout = Vec4f(c.x, c.y, c.z, 0.0f); tcout++;
-		
-		m_bboxMin = FW::min(m_bboxMin, a);
-		m_bboxMin = FW::min(m_bboxMin, b);
-		m_bboxMin = FW::min(m_bboxMin, c);
-		m_bboxMax = FW::max(m_bboxMax, a);
-		m_bboxMax = FW::max(m_bboxMax, b);
-		m_bboxMax = FW::max(m_bboxMax, c);
-	}
+	m_trisCompactIndex.resizeDiscard(m_numTris * sizeof(S32));
+	scene.getBBox(m_bboxMin, m_bboxMax);
 
 	m_sizeTask = 0.f;
 	m_sizeSplit = 0.f;
@@ -88,7 +58,7 @@ F32 CudaPersistentBVHTracer::buildBVH()
 #endif
 
 	// Set triangle index buffer
-	S32* tiout = (S32*)m_trisIndex.getMutablePtr();
+	S32* tiout = (S32*)m_trisCompactIndex.getMutablePtr();
 #ifdef DEBUG_PPS
 	S32* pout = (S32*)m_ppsTris.getMutablePtr();
 	S32* clout = (S32*)m_ppsTrisIndex.getMutablePtr();
@@ -119,13 +89,12 @@ F32 CudaPersistentBVHTracer::buildBVH()
 	m_taskData.resizeDiscard(TASK_SIZE * (sizeof(TaskBVH) + sizeof(int)));
 	m_taskData.setOwner(Buffer::Cuda, true); // Make CUDA the owner so that CPU memory is never allocated
 	S64 bvhSize = ((m_numTris * sizeof(CudaBVHNode)) + 4096 - 1) & -4096;
-	//S64 bvhSize = ((m_numTris/2 * sizeof(CudaBVHNode)) + 4096 - 1) & -4096;
-	m_bvhData.resizeDiscard(bvhSize);
-	m_bvhData.setOwner(Buffer::Cuda, true); // Make CUDA the owner so that CPU memory is never allocated
-	//m_bvhData.clearRange32(0, 0, bvhSize); // Mark all tasks as 0 (important for debug)
+	m_nodes.resizeDiscard(bvhSize);
+	m_nodes.setOwner(Buffer::Cuda, true); // Make CUDA the owner so that CPU memory is never allocated
+	//m_nodes.clearRange32(0, 0, bvhSize); // Mark all tasks as 0 (important for debug)
 #ifdef COMPACT_LAYOUT
-	m_trisCompactOut.resizeDiscard(m_numTris * (3+1) * sizeof(Vec4f));
-	m_trisIndexOut.resizeDiscard(m_numTris * (3+1) * sizeof(S32));
+	m_triWoop.resizeDiscard(m_numTris * (3+1) * sizeof(Vec4f));
+	m_triIndex.resizeDiscard(m_numTris * (3+1) * sizeof(S32));
 #endif
 
 #if SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
@@ -208,17 +177,17 @@ F32 CudaPersistentBVHTracer::traceBatchBVH(RayBuffer& rays, RayStats* stats)
 	m_timer.unstart();
 	m_timer.start();
 
-	CUdeviceptr nodePtr     = m_bvhData.getCudaPtr();
-	Vec2i       nodeOfsA    = Vec2i(0, (S32)m_bvhData.getSize());
+	CUdeviceptr nodePtr     = m_nodes.getCudaPtr();
+	Vec2i       nodeOfsA    = Vec2i(0, (S32)m_nodes.getSize());
 
 #ifdef COMPACT_LAYOUT
-	CUdeviceptr triPtr      = m_trisCompactOut.getCudaPtr();
-	Vec2i       triOfsA     = Vec2i(0, (S32)m_trisCompactOut.getSize());
-	Buffer&     indexBuf    = m_trisIndexOut;
+	CUdeviceptr triPtr      = m_triWoop.getCudaPtr();
+	Vec2i       triOfsA     = Vec2i(0, (S32)m_triWoop.getSize());
+	Buffer&     indexBuf    = m_triIndex;
 #else
 	CUdeviceptr triPtr      = m_trisCompact.getCudaPtr();
 	Vec2i       triOfsA     = Vec2i(0, (S32)m_trisCompact.getSize());
-	Buffer&     indexBuf    = m_trisIndex;
+	Buffer&     indexBuf    = m_trisCompactIndex;
 #endif	
 
 	// Set input.
@@ -391,11 +360,11 @@ void CudaPersistentBVHTracer::initPool(int numRays, Buffer* rayBuffer, Buffer* n
 		m_module->setTexRef("t_nodesA", *nodeBuffer, CU_AD_FORMAT_FLOAT, 4);
 	}
 	m_module->setTexRef("t_trisA", m_trisCompact, CU_AD_FORMAT_FLOAT, 4);
-	m_module->setTexRef("t_triIndices", m_trisIndex, CU_AD_FORMAT_SIGNED_INT32, 1);
+	m_module->setTexRef("t_triIndices", m_trisCompactIndex, CU_AD_FORMAT_SIGNED_INT32, 1);
 
 /*#ifdef COMPACT_LAYOUT
-		m_module->setTexRef("t_trisAOut", m_trisCompactOut, CU_AD_FORMAT_FLOAT, 4);
-		m_module->setTexRef("t_triIndicesOut", m_trisIndexOut, CU_AD_FORMAT_SIGNED_INT32, 1);
+		m_module->setTexRef("t_trisAOut", m_triWoop, CU_AD_FORMAT_FLOAT, 4);
+		m_module->setTexRef("t_triIndicesOut", m_triIndex, CU_AD_FORMAT_SIGNED_INT32, 1);
 #endif*/
 }
 
@@ -923,14 +892,14 @@ F32 CudaPersistentBVHTracer::buildCudaBVH()
 	KernelInputBVH& in = *(KernelInputBVH*)m_module->getGlobal("c_bvh_in").getMutablePtr();
 	in.numTris		= m_numTris;
 	in.tris         = m_trisCompact.getCudaPtr();
-	in.trisIndex    = m_trisIndex.getMutableCudaPtr();
+	in.trisIndex    = m_trisCompactIndex.getMutableCudaPtr();
 	//in.trisBox      = m_trisBox.getCudaPtr();
 	in.ppsTrisBuf   = m_ppsTris.getMutableCudaPtr();
 	in.ppsTrisIndex = m_ppsTrisIndex.getMutableCudaPtr();
 	in.sortTris     = m_sortTris.getMutableCudaPtr();
 #ifdef COMPACT_LAYOUT
-	in.trisOut      = m_trisCompactOut.getMutableCudaPtr();
-	in.trisIndexOut = m_trisIndexOut.getMutableCudaPtr();
+	in.trisOut      = m_triWoop.getMutableCudaPtr();
+	in.trisIndexOut = m_triIndex.getMutableCudaPtr();
 #endif
 
 #if SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
@@ -1061,8 +1030,8 @@ F32 CudaPersistentBVHTracer::buildCudaBVH()
 	tasks.numLeaves = 0;
 	tasks.numEmptyLeaves = 0;
 	tasks.sizePool = TASK_SIZE;
-	tasks.sizeNodes = m_bvhData.getSize()/sizeof(CudaKdtreeNode);
-	tasks.sizeTris = m_trisIndexOut.getSize()/sizeof(S32);
+	tasks.sizeNodes = m_nodes.getSize()/sizeof(CudaBVHNode);
+	tasks.sizeTris = m_triIndex.getSize()/sizeof(S32);
 	memset(tasks.leafHist, 0, sizeof(tasks.leafHist));
 
 #if SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
@@ -1072,7 +1041,7 @@ F32 CudaPersistentBVHTracer::buildCudaBVH()
 #endif
 
 	CudaBVHNode* &bvh = *(CudaBVHNode**)m_module->getGlobal("g_bvh").getMutablePtr();
-	bvh = (CudaBVHNode*)m_bvhData.getMutableCudaPtr();
+	bvh = (CudaBVHNode*)m_nodes.getMutableCudaPtr();
 
 	// Determine block and grid sizes.
 #ifdef ONE_WARP_RUN
@@ -1136,10 +1105,10 @@ F32 CudaPersistentBVHTracer::buildCudaBVH()
 #endif
 
 	tasks = *(TaskStackBVH*)m_module->getGlobal("g_taskStackBVH").getPtr();
-	if(tasks.unfinished != 0 || tasks.top >= tasks.sizePool || tasks.nodeTop >= m_bvhData.getSize() / sizeof(CudaBVHNode) || tasks.triTop >= m_trisIndexOut.getSize() / sizeof(S32)) // Something went fishy
+	if(tasks.unfinished != 0 || tasks.top >= tasks.sizePool || tasks.nodeTop >= m_nodes.getSize() / sizeof(CudaBVHNode) || tasks.triTop >= m_triIndex.getSize() / sizeof(S32)) // Something went fishy
 	{
 		tKernel = 1e38f;
-		fail("%d (%d x %d) (%d x %d) (%d x %d)\n", tasks.unfinished != 0, tasks.top, tasks.sizePool, tasks.nodeTop, m_bvhData.getSize() / sizeof(CudaBVHNode), tasks.triTop, m_trisIndexOut.getSize() / sizeof(S32));
+		fail("%d (%d x %d) (%d x %d) (%d x %d)\n", tasks.unfinished != 0, tasks.top, tasks.sizePool, tasks.nodeTop, m_nodes.getSize() / sizeof(CudaBVHNode), tasks.triTop, m_triIndex.getSize() / sizeof(S32));
 	}
 
 	//Debug << "\nBuild in " << tKernel << "\n\n";
@@ -1148,7 +1117,7 @@ F32 CudaPersistentBVHTracer::buildCudaBVH()
 	printPool(tasks, numWarps);
 
 	/*Debug << "\n\nBVH" << "\n";
-	CudaBVHNode* nodes = (CudaBVHNode*)m_bvhData.getPtr();
+	CudaBVHNode* nodes = (CudaBVHNode*)m_nodes.getPtr();
 
 	for(int i = 0; i < tasks.nodeTop; i++)
 	{
@@ -1173,13 +1142,13 @@ F32 CudaPersistentBVHTracer::buildCudaBVH()
 
 	if(ads)
 	{
-		m_sizeADS    = m_bvhData.getSize()/MB;
+		m_sizeADS    = m_nodes.getSize()/MB;
 #ifndef COMPACT_LAYOUT
 		m_sizeTri    = m_trisCompact.getSize()/MB;
-		m_sizeTriIdx = m_trisIndex.getSize()/MB;
+		m_sizeTriIdx = m_trisCompactIndex.getSize()/MB;
 #else
-		m_sizeTri    = m_trisCompactOut.getSize()/MB;
-		m_sizeTriIdx = m_trisIndexOut.getSize()/MB;
+		m_sizeTri    = m_triWoop.getSize()/MB;
+		m_sizeTriIdx = m_triIndex.getSize()/MB;
 #endif
 	}
 
@@ -1196,9 +1165,9 @@ void CudaPersistentBVHTracer::resetBuffers(bool resetADSBuffers)
 	// Reset buffers so that reuse of space does not cause timing disturbs
 	if(resetADSBuffers)
 	{
-		m_bvhData.reset();
-		m_trisCompactOut.reset();
-		m_trisIndexOut.reset();
+		m_nodes.reset();
+		m_triWoop.reset();
+		m_triIndex.reset();
 	}
 
 	m_taskData.reset();
@@ -1223,11 +1192,11 @@ void CudaPersistentBVHTracer::trimBVHBuffers()
 	U32 nN, nL, eL, sT, bT, tT, sTr; 
 	getStats(nN, nL, eL, sT, bT, tT, sTr);
 #ifdef COMPACT_LAYOUT
-	m_bvhData.resize(nN * sizeof(CudaBVHNode));
-	m_trisCompactOut.resize(tT*3*sizeof(float4) + nL*sizeof(float4));
-	m_trisIndexOut.resize(tT*3*sizeof(int) + nL*sizeof(int));
+	m_nodes.resize(nN * sizeof(CudaBVHNode));
+	m_triWoop.resize(tT*3*sizeof(float4) + nL*sizeof(float4));
+	m_triIndex.resize(tT*3*sizeof(int) + nL*sizeof(int));
 #else
-	m_bvhData.resize((nN + nL) * sizeof(CudaBVHNode));
+	m_nodes.resize((nN + nL) * sizeof(CudaBVHNode));
 #endif
 
 	// Save sizes of ads buffers so that they can be printed

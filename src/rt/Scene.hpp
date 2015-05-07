@@ -68,6 +68,13 @@ public:
     int             getNumEmissive              (void) const    { return m_numEmissive; }
 
 	/**
+	 * \brief Returns buffer of triangle's vertices.
+	 * \details For each triangle, spatial data for three vertices are saved in this buffer.
+	 * \return Buffer of triangle's vertices.
+	 */
+	Buffer&         getTriCompactBuffer        (void)          { if(m_triCompact.getSize() == 0) recomputeCompact(); return m_triCompact; }
+
+	/**
 	 * \brief Returns buffer of triangle's vertex indieces.
 	 * \details For each triangle, three vertex indices are saved in this buffer.
 	 * \return Buffer of triangle's vertex indices.
@@ -164,11 +171,13 @@ public:
 private:
                     Scene               (const Scene&); // forbidden
     Scene&          operator=           (const Scene&); // forbidden
+	void            recomputeCompact    ();
 
 private:
     S32             m_numTriangles;			//!< Number of triangles.
     S32             m_numVertices;			//!< Number of vertices.
 	S32				m_numEmissive;			//!< Number of emissive triangles.
+	Buffer          m_triCompact;			//!< Vertex positions of triangle's vertices. Vec4f[3*numTriangles]
     Buffer          m_triVtxIndex;			//!< Indices of triangle's vertices. Vec3i[numTriangles]
     Buffer          m_triNormal;			//!< Normal vector of each triangle. Vec3f[numTriangles]
     Buffer          m_triMaterialColor;		//!< Material color of each triangle. U32[numTriangles], ABGR

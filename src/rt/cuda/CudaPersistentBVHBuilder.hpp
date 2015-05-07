@@ -16,34 +16,28 @@ namespace FW
 
 class CudaPersistentBVHTracer : public CudaBVH
 {
-	// scene data
+	// Scene data
 	F32 m_epsilon;
-	S32 m_numVerts;
 	S32 m_numTris;
 	Vec3f m_bboxMin, m_bboxMax;
 	S32 m_buildNodes;
 	S32 m_buildLeafs;
 
-	// INPUT (in the scene)
-	Buffer m_trisIndex;					
-	Buffer m_trisCompact;
+	// Input buffers (from the scene)
+	Buffer m_trisCompactIndex;					
+	Buffer& m_trisCompact;
 	Buffer m_trisBox;
-
-	// OUTPUT (remove, re-use those in CudaBVH)
-	Buffer m_trisCompactOut;	// Used for COMPACT_LAYOUT
-	Buffer m_trisIndexOut;		// Used for COMPACT_LAYOUT
 
 	// GPU task data
 	Buffer   m_taskData;
 	Buffer   m_splitData;
-	Buffer   m_bvhData;				// Do not need, derives CudaBVH
 	int      m_cutOffDepth;
 	int      m_numRays;
 
 	CudaCompiler m_compiler;
 	CudaModule*  m_module;
 
-	// buffers
+	// Auxiliary buffers
 	Buffer m_ppsRays;
 	Buffer m_ppsTris;
 	Buffer m_ppsRaysIndex;

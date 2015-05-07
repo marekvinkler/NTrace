@@ -214,7 +214,7 @@ protected:
 	void        getNodeTemplate     (S32 node, SplitInfo *splitInfo, AABB &child0, AABB &child1, S32 &child0Addr, S32 &child1Addr);
 	bool        updateHit           (Ray& ray, RayResult& result, float t, S32 index);
 
-private:
+protected:
     BVHLayout   m_layout;
     Buffer      m_nodes;
     Buffer      m_triWoop;

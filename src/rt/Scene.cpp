@@ -179,3 +179,23 @@ U32 Scene::hash(void)
 }
 
 //------------------------------------------------------------------------
+
+void Scene::recomputeCompact()
+{
+	m_triCompact.resizeDiscard(m_numTriangles * 3 * sizeof(Vec4f));
+	Vec4f* tcout  = (Vec4f*)m_triCompact.getMutablePtr();
+
+	// Load vertices and make triangles of them
+	for (int i = 0; i < m_numTriangles; i++)
+	{
+		Vec3i& tri = ((Vec3i*)m_triVtxIndex.getPtr())[i];
+		Vec3f& a = ((Vec3f*)m_vtxPos.getPtr())[tri.x];
+		Vec3f& b = ((Vec3f*)m_vtxPos.getPtr())[tri.y];
+		Vec3f& c = ((Vec3f*)m_vtxPos.getPtr())[tri.z];
+		*tcout = Vec4f(a.x, a.y, a.z, 0.0f); tcout++;
+		*tcout = Vec4f(b.x, b.y, b.z, 0.0f); tcout++;
+		*tcout = Vec4f(c.x, c.y, c.z, 0.0f); tcout++;
+	}
+}
+
+//------------------------------------------------------------------------

@@ -1011,7 +1011,7 @@ __device__ void findPlaneAABB(int planePos, const volatile CudaAABB& bbox, float
 #if 1 // Equal number of planes in each dimension
 	int planesPerAxis = ((numAxisAlignedPlanes+2) / 3);
 	int axis = planePos / planesPerAxis;
-	float rpos = (float)( 1 + (planePos % planesPerAxis))/(float)(planesPerAxis+1);
+	float rpos = (float)(1 + (planePos % planesPerAxis))/(float)(planesPerAxis+1);
 
 	if(axis == 0)
 	{

@@ -20,49 +20,230 @@
 
 #include "Allocators.hpp"
 #include "warp_common.cu"
+typedef unsigned long long int uint64_t;
+typedef signed long int int32_t;
+typedef unsigned long int uint32_t;
+
+//------------------------------------------------------------------------
+// Utility
+//------------------------------------------------------------------------
+
+#ifdef COALESCE_WARP
+#define COALESCE_PREFIX 0
+#define COALESCE_ATOMIC 0
+#define COALESCE_SHUFFLE 1
+
+#if COALESCE_PREFIX
+// Exclusive prefix scan
+__device__ int shfl_prefix_sum(int value, int width=32)
+{
+	int lane_id = GPUTools::laneid();
+	int sum = value;
+
+#pragma unroll
+	for(int i=1; i<width; i*=2)
+	{
+		int n = __shfl_up(sum, i);
+		if(lane_id >= i) sum += n;
+	}
+
+	return sum - value;
+}
+#elif COALESCE_ATOMIC
+__shared__ uint warpAtomicCounter[32];
+#endif
+
+__device__ uint getWorker()
+{
+	return __ffs(__ballot(1)) - 1;
+}
+
+__device__ uint getWorker(uint& mask)
+{
+	mask = __ballot(1);
+	return __ffs(mask) - 1;
+}
+
+__device__ uint coalesce(uint value, uint& total, uint& workerIdx)
+{
+	// Coalescing through prefix scan, all threads must participate
+#if COALESCE_PREFIX
+	workerIdx = 0;
+	// Calculate prefix sum to serialize the memory
+	int prefix = shfl_prefix_sum(value);
+	// The total memory is inclusive prefix sum of the last thread
+	total = prefix + value;
+	total = __shfl((int)total, 31);
+	return prefix;
+#elif COALESCE_ATOMIC
+	uint warpIdx = GPUTools::warpid();
+	warpAtomicCounter[warpIdx] = 0;
+
+	// Update the counter with the value
+	uint prefix = atomicAdd(&warpAtomicCounter[warpIdx], value);
+		
+	// Find the worker
+	workerIdx = getWorker();
+
+	// Read the total from the atomicCounter
+	total = warpAtomicCounter[warpIdx];
+
+	return prefix;
+#elif COALESCE_SHUFFLE
+	uint laneIdx = GPUTools::laneid();
+
+	uint activeMask;
+	//uint laneMask = lanemask_lt();
+	uint prefix = 0;
+	
+	// Find the worker and active threads mask
+	workerIdx = getWorker(activeMask);
+	uint maxThread = 31 - __clz(activeMask);
+
+	// May be optimized to skip the inactive threads
+	for(int i = 0; i < maxThread; i++)
+	{
+		// Active thread
+		if(activeMask & (1 << i))
+		{
+			uint n = __shfl((int)value, i);
+			if(i < laneIdx)
+				prefix += n;
+			//if(laneIdx == 31)
+			//	printf("Active %d value %d prefix %u\n", i, value, prefix);
+		}
+	}
+
+	total = prefix + value;
+	total = __shfl((int)total, maxThread);
+
+	return prefix;
+#endif
+}
+
+__device__ uint exchange(uint value, uint workerIdx)
+{
+	value = __shfl((int32_t)value, (uint32_t)workerIdx);
+	return value;
+}
+
+__device__ void* exchangePtr(void* ptr, uint workerIdx)
+{
+#if defined(_M_X64) || defined(__amd64__)
+	uint64_t ptr64 = (uint64_t)ptr;
+	ptr64 = ((uint64_t)__shfl((int32_t)(ptr64 >> 32),	(uint32_t)workerIdx)) << 32;
+	ptr64 |= ((uint64_t)__shfl((int32_t)ptr,				(uint32_t)workerIdx) & 0x00000000FFFFFFFF);
+
+	ptr = (void*)ptr64;
+#else
+	ptr = (void*)__shfl((int32_t)ptr, (uint32_t)workerIdx);
+#endif
+
+	return ptr;
+}
+#endif
 
 //------------------------------------------------------------------------
 // CudaMalloc
 //------------------------------------------------------------------------
 
-__device__ __forceinline__ void* mallocCudaMalloc(uint allocSize)
+__device__ __forceinline__ void* mallocCudaMallocInternal(uint allocMem)
 {
-	uint allocMem = align<uint, ALIGN>(allocSize);
 	void* alloc = malloc(allocMem);
 	return alloc;
 }
 
 //------------------------------------------------------------------------
 
-__device__ __forceinline__ void freeCudaMalloc(void* ptr)
+__device__ __forceinline__ void* mallocCudaMalloc(uint allocSize)
+{
+	uint allocMem = align<uint, ALIGN>(allocSize);
+
+#ifdef COALESCE_WARP
+	uint laneIdx = GPUTools::laneid();
+	uint workerIdx = 0;
+	uint totalMem = 0;
+	uint offset = coalesce(allocMem, totalMem, workerIdx);
+
+	void* basePtr;
+	void* ptr;
+	if(laneIdx == workerIdx)
+		basePtr = mallocCudaMallocInternal(totalMem);
+	ptr = basePtr;
+	basePtr = exchangePtr(basePtr, workerIdx);
+
+	return (char*)basePtr + offset;
+#else
+	return mallocCudaMallocInternal(allocMem);
+#endif
+}
+
+//------------------------------------------------------------------------
+
+__device__ __forceinline__ void freeCudaMallocInternal(void* ptr)
 {
 	free(ptr);
+}
+
+//------------------------------------------------------------------------
+
+__device__ __forceinline__ void freeCudaMalloc(void* ptr)
+{
+#ifdef COALESCE_WARP
+	// BUG: Does not work if single free is called on allocations from different branches.
+	uint laneIdx = GPUTools::laneid();
+	if(laneIdx == getWorker())
+		freeCudaMallocInternal(ptr);
+#else
+	freeCudaMallocInternal(ptr);
+#endif
 }
 
 //------------------------------------------------------------------------
 // AtomicMalloc
 //------------------------------------------------------------------------
 
-__device__ __forceinline__ void* mallocAtomicMalloc(uint allocSize)
+__device__ __forceinline__ uint mallocAtomicMallocInternal(uint allocMem)
 {
-	uint allocMem = align<uint, ALIGN>(allocSize);
 	uint offset = atomicAdd(&g_heapOffset, allocMem);
 #ifdef CHECK_OUT_OF_MEMORY
 	if(offset + allocMem > c_alloc.heapSize)
 		return NULL;
 #endif
-	return g_heapBase + offset;
+	return offset;
+}
+
+//------------------------------------------------------------------------
+
+__device__ __forceinline__ void* mallocAtomicMalloc(uint allocSize)
+{
+	uint allocMem = align<uint, ALIGN>(allocSize);
+
+#ifdef COALESCE_WARP
+	uint laneIdx = GPUTools::laneid();
+	uint workerIdx = 0;
+	uint totalMem = 0;
+	uint offset = coalesce(allocMem, totalMem, workerIdx);
+
+	uint baseOffset;
+	if(laneIdx == workerIdx)
+		baseOffset = mallocAtomicMallocInternal(totalMem);
+	baseOffset = exchange(baseOffset, workerIdx);
+
+	return g_heapBase + baseOffset + offset;
+#else
+	return g_heapBase + mallocAtomicMallocInternal(allocMem);
+#endif
 }
 
 //------------------------------------------------------------------------
 // AtomicMallocCircular
 //------------------------------------------------------------------------
 
-__device__ __forceinline__ void* mallocAtomicMallocCircular(uint allocSize)
+__device__ __forceinline__ uint mallocAtomicMallocCircularInternal(uint allocMem)
 {
 	// Cyclic allocator, needs to know heap size
 	//int warpIdx = blockDim.y*blockIdx.x + threadIdx.y; // Warp ID
-	uint allocMem = align<uint, ALIGN>(allocSize);
 	uint offset = atomicAdd(&g_heapOffset, allocMem);
 	uint newOffset = offset + allocMem;
 	while(newOffset > c_alloc.heapSize) // Try allocating from beginning
@@ -72,7 +253,7 @@ __device__ __forceinline__ void* mallocAtomicMallocCircular(uint allocSize)
 		if(newOffset == offset + allocMem) // This thread succeeded in wrapping the allocator
 		{
 			//printf("Wrap allocation %d!\n", warpIdx);
-			return g_heapBase; // The allocation is from the beginning to allocSize
+			return 0; // The allocation is from the beginning to allocSize
 		}
 		else if(newOffset + allocMem <= c_alloc.heapSize) // Retry add allocation
 		{
@@ -86,14 +267,37 @@ __device__ __forceinline__ void* mallocAtomicMallocCircular(uint allocSize)
 			offset = newOffset - allocMem; // Retry wrap allocation
 		}
 	}
-	return g_heapBase + offset;
+	return offset;
+}
+
+//------------------------------------------------------------------------
+
+__device__ __forceinline__ void* mallocAtomicMallocCircular(uint allocSize)
+{
+	uint allocMem = align<uint, ALIGN>(allocSize);
+
+#ifdef COALESCE_WARP
+	uint laneIdx = GPUTools::laneid();
+	uint workerIdx = 0;
+	uint totalMem = 0;
+	uint offset = coalesce(allocMem, totalMem, workerIdx);
+
+	uint baseOffset;
+	if(laneIdx == workerIdx)
+		baseOffset = mallocAtomicMallocCircularInternal(totalMem);
+	baseOffset = exchange(baseOffset, workerIdx);
+
+	return g_heapBase + baseOffset + offset;
+#else
+	return g_heapBase + mallocAtomicMallocCircularInternal(allocMem);
+#endif
 }
 
 //------------------------------------------------------------------------
 // CircularMalloc
 //------------------------------------------------------------------------
 
-__device__ __forceinline__ void* mallocCircularMalloc(uint allocSize)
+__device__ __forceinline__ uint mallocCircularMallocInternal(uint allocSize, uint allocMem)
 {
 #ifdef CIRCULAR_MALLOC_GLOBAL_HEAP_LOCK
 	// Lock the heap
@@ -102,7 +306,6 @@ __device__ __forceinline__ void* mallocCircularMalloc(uint allocSize)
 #endif
 
 	uint offset = getMemory(&g_heapOffset);
-	uint allocMem = align<uint, ALIGN>(allocSize+CIRCULAR_MALLOC_HEADER_SIZE);
 
 	// Find an empty chunk that is large enough
 	uint lock, next, size;
@@ -235,12 +438,54 @@ __device__ __forceinline__ void* mallocCircularMalloc(uint allocSize)
 	setMemory(&g_heapLock, AllocatorLockType_Free);
 #endif
 
-	return g_heapBase + offset + CIRCULAR_MALLOC_HEADER_SIZE; // The allocated memory after the header
+#ifdef CIRCULAR_MALLOC_CHECK_INTERNAL_FRAGMENTATION
+	//float csize = newNext - offset - CIRCULAR_MALLOC_HEADER_SIZE;
+	float csize = newNext - offset;
+	float overhead = (csize - allocSize) / csize; // Internal fragmentation
+	// threadId = blockIdx.x * blockDim.x * blockDim.y + threadIdx.y * blockDim.x + threadIdx.x;
+	int blockId = blockIdx.x 
+		+ blockIdx.y * gridDim.x 
+		+ gridDim.x * gridDim.y * blockIdx.z; 
+	int threadId = blockId * (blockDim.x * blockDim.y * blockDim.z)
+		+ (threadIdx.z * (blockDim.x * blockDim.y))
+		+ (threadIdx.y * blockDim.x)
+		+ threadIdx.x;
+	g_interFragSum[threadId] += overhead;
+#endif
+
+	return offset + CIRCULAR_MALLOC_HEADER_SIZE; // The allocated memory after the header
 }
 
 //------------------------------------------------------------------------
 
-__device__ __forceinline__ void freeCircularMalloc(void* ptr)
+__device__ __forceinline__ void* mallocCircularMalloc(uint allocSize)
+{
+	uint allocMem = align<uint, ALIGN>(allocSize+CIRCULAR_MALLOC_HEADER_SIZE);
+
+#ifdef COALESCE_WARP
+	uint laneIdx = GPUTools::laneid();
+	uint workerIdx = 0;
+	uint totalMem = 0;
+	uint offset = coalesce(allocMem, totalMem, workerIdx);
+	uint totalSize = 0;
+
+#ifdef CIRCULAR_MALLOC_CHECK_INTERNAL_FRAGMENTATION
+	coalesce(allocMem, totalSize, workerIdx);
+#endif
+	uint baseOffset;
+	if(laneIdx == workerIdx)
+		baseOffset = mallocCircularMallocInternal(totalSize, totalMem);
+	baseOffset = exchange(baseOffset, workerIdx);
+
+	return g_heapBase + baseOffset + offset;
+#else
+	return g_heapBase + mallocCircularMallocInternal(allocSize, allocMem);
+#endif
+}
+
+//------------------------------------------------------------------------
+
+__device__ __forceinline__ void freeCircularMallocInternal(void* ptr, uint& next)
 {
 #ifdef CIRCULAR_MALLOC_GLOBAL_HEAP_LOCK
 	// Lock the heap
@@ -251,7 +496,7 @@ __device__ __forceinline__ void freeCircularMalloc(void* ptr)
 #ifndef CIRCULAR_MALLOC_DOUBLY_LINKED
 #ifdef CIRCULAR_MALLOC_CONNECT_CHUNKS
 	// Find out whether the next chunk is free
-	uint next = getMemory((uint*)((char*)ptr-CIRCULAR_MALLOC_HEADER_SIZE+CIRCULAR_MALLOC_NEXT_OFS));
+	next = getMemory((uint*)((char*)ptr-CIRCULAR_MALLOC_HEADER_SIZE+CIRCULAR_MALLOC_NEXT_OFS));
 
 	// Connect the two chunks
 #ifdef CIRCULAR_MALLOC_GLOBAL_HEAP_LOCK
@@ -342,16 +587,53 @@ __device__ __forceinline__ void freeCircularMalloc(void* ptr)
 }
 
 //------------------------------------------------------------------------
+
+__device__ __forceinline__ void freeCircularMalloc(void* ptr)
+{
+#ifdef COALESCE_WARP
+	uint laneIdx = GPUTools::laneid();
+#if 0
+	uint next;
+	if(laneIdx == getWorker())
+		freeCircularMallocInternal(ptr, next);
+#else
+	uint offset = ((char*)ptr-g_heapBase);
+	uint next;
+	bool unFreed = true;
+
+	do
+	{
+		// Find a worker thread
+		uint workerIdx = getWorker();
+		uint workerOffset = exchange(offset, workerIdx);
+
+		// Free the coalesced memory
+		if(laneIdx == workerIdx)
+			freeCircularMallocInternal(ptr, next);
+
+		// Check whether my memory was also freed
+		next = exchange(next, workerIdx);
+		if(workerOffset <= offset && offset < next)
+			unFreed = false;
+	}
+	while(unFreed);
+#endif
+#else
+	uint dummy;
+	freeCircularMallocInternal(ptr, dummy);
+#endif
+}
+
+//------------------------------------------------------------------------
 // CircularMallocFused
 //------------------------------------------------------------------------
 
 const uint flagMask = 0x80000000u;
 
-__device__ __forceinline__ void* mallocCircularMallocFused(uint allocSize)
+__device__ __forceinline__ uint mallocCircularMallocFusedInternal(uint allocSize, uint allocMem)
 {
 	uint offset = getMemory(&g_heapOffset);
 	uint headerSize = sizeof(uint);
-	uint allocMem = align<uint, ALIGN>(allocSize+headerSize);
 
 	// Find an empty chunk that is large enough
 	uint header, next, size;
@@ -403,17 +685,59 @@ __device__ __forceinline__ void* mallocCircularMallocFused(uint allocSize)
 
 	setMemory(&g_heapOffset, newNext);
 
-	return g_heapBase + offset + headerSize; // The allocated memory after the header
+#ifdef CIRCULAR_MALLOC_CHECK_INTERNAL_FRAGMENTATION
+	//float csize = newNext - offset - headerSize;
+	float csize = newNext - offset;
+	float overhead = (csize - allocSize) / csize; // Internal fragmentation
+	// threadId = blockIdx.x * blockDim.x * blockDim.y + threadIdx.y * blockDim.x + threadIdx.x;
+	int blockId = blockIdx.x 
+		+ blockIdx.y * gridDim.x 
+		+ gridDim.x * gridDim.y * blockIdx.z; 
+	int threadId = blockId * (blockDim.x * blockDim.y * blockDim.z)
+		+ (threadIdx.z * (blockDim.x * blockDim.y))
+		+ (threadIdx.y * blockDim.x)
+		+ threadIdx.x;
+	g_interFragSum[threadId] += overhead;
+#endif
+
+	return offset + headerSize; // The allocated memory after the header
 }
 
 //------------------------------------------------------------------------
 
-__device__ __forceinline__ void freeCircularMallocFused(void* ptr)
+__device__ __forceinline__ void* mallocCircularMallocFused(uint allocSize)
+{
+	uint allocMem = align<uint, ALIGN>(allocSize+sizeof(uint));
+
+#ifdef COALESCE_WARP
+	uint laneIdx = GPUTools::laneid();
+	uint workerIdx = 0;
+	uint totalMem = 0;
+	uint offset = coalesce(allocMem, totalMem, workerIdx);
+	uint totalSize = 0;
+
+#ifdef CIRCULAR_MALLOC_CHECK_INTERNAL_FRAGMENTATION
+	coalesce(allocMem, totalSize, workerIdx);
+#endif
+	uint baseOffset;
+	if(laneIdx == workerIdx)
+		baseOffset = mallocCircularMallocFusedInternal(totalSize, totalMem);
+	baseOffset = exchange(baseOffset, workerIdx);
+
+	return g_heapBase + baseOffset + offset;
+#else
+	return g_heapBase + mallocCircularMallocFusedInternal(allocSize, allocMem);
+#endif
+}
+
+//------------------------------------------------------------------------
+
+__device__ __forceinline__ void freeCircularMallocFusedInternal(void* ptr, uint& next)
 {
 	// This chunk header
 	uint* offset = (uint*)((char*)ptr-sizeof(uint));
 	// Find out whether the next chunk is free
-	uint next = getMemory(offset) & (~flagMask);
+	next = getMemory(offset) & (~flagMask);
 	uint newNext = next;
 
 #ifdef CIRCULAR_MALLOC_CONNECT_CHUNKS
@@ -431,10 +755,48 @@ __device__ __forceinline__ void freeCircularMallocFused(void* ptr)
 }
 
 //------------------------------------------------------------------------
+
+__device__ __forceinline__ void freeCircularMallocFused(void* ptr)
+{
+#ifdef COALESCE_WARP
+	uint laneIdx = GPUTools::laneid();
+#if 0
+	uint next;
+	if(laneIdx == getWorker())
+		freeCircularMallocFusedInternal(ptr, next);
+#else
+	uint offset = ((char*)ptr-g_heapBase);
+	uint next;
+	bool unFreed = true;
+
+	do
+	{
+		// Find a worker thread
+		uint workerIdx = getWorker();
+		uint workerOffset = exchange(offset, workerIdx);
+
+		// Free the coalesced memory
+		if(laneIdx == workerIdx)
+			freeCircularMallocFusedInternal(ptr, next);
+
+		// Check whether my memory was also freed
+		next = exchange(next, workerIdx);
+		if(workerOffset <= offset && offset < next)
+			unFreed = false;
+	}
+	while(unFreed);
+#endif
+#else
+	uint dummy;
+	freeCircularMallocFusedInternal(ptr, dummy);
+#endif
+}
+
+//------------------------------------------------------------------------
 // CircularMultiMalloc
 //------------------------------------------------------------------------
 
-__device__ __forceinline__ void* mallocCircularMultiMalloc(uint allocSize)
+__device__ __forceinline__ uint mallocCircularMultiMallocInternal(uint allocSize, uint allocMem)
 {
 #ifdef CIRCULAR_MALLOC_GLOBAL_HEAP_LOCK
 	// Lock the heap
@@ -444,7 +806,6 @@ __device__ __forceinline__ void* mallocCircularMultiMalloc(uint allocSize)
 
 	uint smid = GPUTools::smid();
 	uint offset = getMemory(&g_heapMultiOffset[smid]);
-	uint allocMem = align<uint, ALIGN>(allocSize+CIRCULAR_MALLOC_HEADER_SIZE);
 
 	// Find an empty chunk that is large enough
 	uint lock, next, size;
@@ -577,12 +938,54 @@ __device__ __forceinline__ void* mallocCircularMultiMalloc(uint allocSize)
 	setMemory(&g_heapLock, AllocatorLockType_Free);
 #endif
 
-	return g_heapBase + offset + CIRCULAR_MALLOC_HEADER_SIZE; // The allocated memory after the header
+#ifdef CIRCULAR_MALLOC_CHECK_INTERNAL_FRAGMENTATION
+	//float csize = newNext - offset - CIRCULAR_MALLOC_HEADER_SIZE;
+	float csize = newNext - offset;
+	float overhead = (csize - allocSize) / csize; // Internal fragmentation
+	// threadId = blockIdx.x * blockDim.x * blockDim.y + threadIdx.y * blockDim.x + threadIdx.x;
+	int blockId = blockIdx.x 
+		+ blockIdx.y * gridDim.x 
+		+ gridDim.x * gridDim.y * blockIdx.z; 
+	int threadId = blockId * (blockDim.x * blockDim.y * blockDim.z)
+		+ (threadIdx.z * (blockDim.x * blockDim.y))
+		+ (threadIdx.y * blockDim.x)
+		+ threadIdx.x;
+	g_interFragSum[threadId] += overhead;
+#endif
+
+	return offset + CIRCULAR_MALLOC_HEADER_SIZE; // The allocated memory after the header
 }
 
 //------------------------------------------------------------------------
 
-__device__ __forceinline__ void freeCircularMultiMalloc(void* ptr)
+__device__ __forceinline__ void* mallocCircularMultiMalloc(uint allocSize)
+{
+	uint allocMem = align<uint, ALIGN>(allocSize+CIRCULAR_MALLOC_HEADER_SIZE);
+
+#ifdef COALESCE_WARP
+	uint laneIdx = GPUTools::laneid();
+	uint workerIdx = 0;
+	uint totalMem = 0;
+	uint offset = coalesce(allocMem, totalMem, workerIdx);
+	uint totalSize = 0;
+
+#ifdef CIRCULAR_MALLOC_CHECK_INTERNAL_FRAGMENTATION
+	coalesce(allocMem, totalSize, workerIdx);
+#endif
+	uint baseOffset;
+	if(laneIdx == workerIdx)
+		baseOffset = mallocCircularMultiMallocInternal(totalSize, totalMem);
+	baseOffset = exchange(baseOffset, workerIdx);
+
+	return g_heapBase + baseOffset + offset;
+#else
+	return g_heapBase + mallocCircularMultiMallocInternal(allocSize, allocMem);
+#endif
+}
+
+//------------------------------------------------------------------------
+
+__device__ __forceinline__ void freeCircularMultiMallocInternal(void* ptr, uint& next)
 {
 #ifdef CIRCULAR_MALLOC_GLOBAL_HEAP_LOCK
 	// Lock the heap
@@ -593,7 +996,7 @@ __device__ __forceinline__ void freeCircularMultiMalloc(void* ptr)
 #ifndef CIRCULAR_MALLOC_DOUBLY_LINKED
 #ifdef CIRCULAR_MALLOC_CONNECT_CHUNKS
 	// Find out whether the next chunk is free
-	uint next = getMemory((uint*)((char*)ptr-CIRCULAR_MALLOC_HEADER_SIZE+CIRCULAR_MALLOC_NEXT_OFS));
+	next = getMemory((uint*)((char*)ptr-CIRCULAR_MALLOC_HEADER_SIZE+CIRCULAR_MALLOC_NEXT_OFS));
 
 	// Connect the two chunks
 #ifdef CIRCULAR_MALLOC_GLOBAL_HEAP_LOCK
@@ -698,15 +1101,52 @@ __device__ __forceinline__ void freeCircularMultiMalloc(void* ptr)
 }
 
 //------------------------------------------------------------------------
+
+__device__ __forceinline__ void freeCircularMultiMalloc(void* ptr)
+{
+#ifdef COALESCE_WARP
+	uint laneIdx = GPUTools::laneid();
+#if 0
+	uint next;
+	if(laneIdx == getWorker())
+		freeCircularMultiMallocInternal(ptr, next);
+#else
+	uint offset = ((char*)ptr-g_heapBase);
+	uint next;
+	bool unFreed = true;
+
+	do
+	{
+		// Find a worker thread
+		uint workerIdx = getWorker();
+		uint workerOffset = exchange(offset, workerIdx);
+
+		// Free the coalesced memory
+		if(laneIdx == workerIdx)
+			freeCircularMultiMallocInternal(ptr, next);
+
+		// Check whether my memory was also freed
+		next = exchange(next, workerIdx);
+		if(workerOffset <= offset && offset < next)
+			unFreed = false;
+	}
+	while(unFreed);
+#endif
+#else
+	uint dummy;
+	freeCircularMultiMallocInternal(ptr, dummy);
+#endif
+}
+
+//------------------------------------------------------------------------
 // CircularMultiMallocFused
 //------------------------------------------------------------------------
 
-__device__ __forceinline__ void* mallocCircularMultiMallocFused(uint allocSize)
+__device__ __forceinline__ uint mallocCircularMultiMallocFusedInternal(uint allocSize, uint allocMem)
 {
 	uint smid = GPUTools::smid();
 	uint offset = getMemory(&g_heapMultiOffset[smid]);
 	uint headerSize = sizeof(uint);
-	uint allocMem = align<uint, ALIGN>(allocSize+headerSize);
 
 	// Find an empty chunk that is large enough
 	uint header, next, size;
@@ -758,17 +1198,59 @@ __device__ __forceinline__ void* mallocCircularMultiMallocFused(uint allocSize)
 
 	setMemory(&g_heapMultiOffset[smid], newNext);
 
-	return g_heapBase + offset + headerSize; // The allocated memory after the header
+#ifdef CIRCULAR_MALLOC_CHECK_INTERNAL_FRAGMENTATION
+	//float csize = newNext - offset - headerSize;
+	float csize = newNext - offset;
+	float overhead = (csize - allocSize) / csize; // Internal fragmentation
+	// threadId = blockIdx.x * blockDim.x * blockDim.y + threadIdx.y * blockDim.x + threadIdx.x;
+	int blockId = blockIdx.x 
+		+ blockIdx.y * gridDim.x 
+		+ gridDim.x * gridDim.y * blockIdx.z; 
+	int threadId = blockId * (blockDim.x * blockDim.y * blockDim.z)
+		+ (threadIdx.z * (blockDim.x * blockDim.y))
+		+ (threadIdx.y * blockDim.x)
+		+ threadIdx.x;
+	g_interFragSum[threadId] += overhead;
+#endif
+
+	return offset + headerSize; // The allocated memory after the header
 }
 
 //------------------------------------------------------------------------
 
-__device__ __forceinline__ void freeCircularMultiMallocFused(void* ptr)
+__device__ __forceinline__ void* mallocCircularMultiMallocFused(uint allocSize)
+{
+	uint allocMem = align<uint, ALIGN>(allocSize+sizeof(uint));
+
+#ifdef COALESCE_WARP
+	uint laneIdx = GPUTools::laneid();
+	uint workerIdx = 0;
+	uint totalMem = 0;
+	uint offset = coalesce(allocMem, totalMem, workerIdx);
+	uint totalSize = 0;
+
+#ifdef CIRCULAR_MALLOC_CHECK_INTERNAL_FRAGMENTATION
+	coalesce(allocMem, totalSize, workerIdx);
+#endif
+	uint baseOffset;
+	if(laneIdx == workerIdx)
+		baseOffset = mallocCircularMultiMallocFusedInternal(totalSize, totalMem);
+	baseOffset = exchange(baseOffset, workerIdx);
+
+	return g_heapBase + baseOffset + offset;
+#else
+	return g_heapBase + mallocCircularMultiMallocFusedInternal(allocSize, allocMem);
+#endif
+}
+
+//------------------------------------------------------------------------
+
+__device__ __forceinline__ void freeCircularMultiMallocFusedInternal(void* ptr, uint& next)
 {
 	// This chunk header
 	uint* offset = (uint*)((char*)ptr-sizeof(uint));
 	// Find out whether the next chunk is free
-	uint next = getMemory(offset) & (~flagMask);
+	next = getMemory(offset) & (~flagMask);
 	uint newNext = next;
 
 #ifdef CIRCULAR_MALLOC_CONNECT_CHUNKS
@@ -792,6 +1274,44 @@ __device__ __forceinline__ void freeCircularMultiMallocFused(void* ptr)
 }
 
 //------------------------------------------------------------------------
+
+__device__ __forceinline__ void freeCircularMultiMallocFused(void* ptr)
+{
+#ifdef COALESCE_WARP
+	uint laneIdx = GPUTools::laneid();
+#if 0
+	uint next;
+	if(laneIdx == getWorker())
+		freeCircularMultiMallocFusedInternal(ptr, next);
+#else
+	uint offset = ((char*)ptr-g_heapBase);
+	uint next;
+	bool unFreed = true;
+
+	do
+	{
+		// Find a worker thread
+		uint workerIdx = getWorker();
+		uint workerOffset = exchange(offset, workerIdx);
+
+		// Free the coalesced memory
+		if(laneIdx == workerIdx)
+			freeCircularMultiMallocFusedInternal(ptr, next);
+
+		// Check whether my memory was also freed
+		next = exchange(next, workerIdx);
+		if(workerOffset <= offset && offset < next)
+			unFreed = false;
+	}
+	while(unFreed);
+#endif
+#else
+	uint dummy;
+	freeCircularMultiMallocFusedInternal(ptr, dummy);
+#endif
+}
+
+//------------------------------------------------------------------------
 // ScatterAlloc
 //------------------------------------------------------------------------
 
@@ -806,6 +1326,39 @@ __device__ __forceinline__ void freeScatterAlloc(void* ptr)
 {
 	theHeap.dealloc(ptr);
 }
+
+//------------------------------------------------------------------------
+// FDGMalloc
+//------------------------------------------------------------------------
+
+__device__ __forceinline__ void* mallocFDGMalloc(FDG::Warp* warp, uint allocSize)
+{
+	return warp->alloc(allocSize);
+}
+
+//------------------------------------------------------------------------
+
+__device__ __forceinline__ void freeFDGMalloc(FDG::Warp* warp)
+{
+	warp->end();
+}
+
+//------------------------------------------------------------------------
+// Halloc
+//------------------------------------------------------------------------
+#if defined(__CUDA_ARCH__) && (__CUDA_ARCH__ >= 300)
+__device__ __forceinline__ void* mallocHalloc(uint allocSize)
+{
+	return hamalloc(allocSize);
+}
+
+//------------------------------------------------------------------------
+
+__device__ __forceinline__ void freeHalloc(void* ptr)
+{
+	hafree(ptr);
+}
+#endif
 
 //------------------------------------------------------------------------
 // CircularMalloc - Allocator using a circular linked list of chunks
@@ -939,8 +1492,7 @@ extern "C" __global__ void CircularMallocPrepare3(uint numChunks, uint rootChunk
 	uint lastMark = c_alloc.heapSize-CIRCULAR_MALLOC_HEADER_SIZE;
 
 	uint minChunkSize = align<uint, ALIGN>((CIRCULAR_MALLOC_HEADER_SIZE + c_alloc.payload)*c_alloc.chunkRatio);
-	// POSSIBLE BUG: Rounding errors may cause misaligned memory accesses - solved by double at the cost of significant slowdown
-	uint depth = log2f((float)(tid+1)); // Depth of the thread's node.
+	uint depth = 31 - __clz(tid+1); // Depth of the thread's node (equals log2(tid+1)).
 	uint chunkSize = rootChunk >> depth; // Chunks size corresponding to the level
 	uint lvlTid = tid - ((1 << depth) - 1);
 	uint ofs     = depth*rootChunk + lvlTid*chunkSize; // Current at geometric sequence previous minus the first term
@@ -1038,7 +1590,7 @@ extern "C" __global__ void CircularMallocFusedPrepare3(uint numChunks, uint root
 	uint lastMark   = c_alloc.heapSize-headerSize;
 
 	uint minChunkSize = align<uint, ALIGN>((headerSize + c_alloc.payload)*c_alloc.chunkRatio);
-	uint depth        = log2((float)(tid+1)); // Depth of the thread's node
+	uint depth        = 31 - __clz(tid+1); // Depth of the thread's node (equals log2(tid+1)).
 	uint chunkSize    = rootChunk >> depth; // Chunks size corresponding to the level
 	uint lvlTid       = tid - ((1 << depth) - 1);
 	uint ofs          = depth*rootChunk + lvlTid*chunkSize; // Current at geometric sequence previous minus the first term
@@ -1131,13 +1683,12 @@ extern "C" __global__ void CircularMultiMallocPrepare3(uint numChunks, uint root
 	uint chunksPerSM = numChunks / g_numSM;
 	uint sid = tid % chunksPerSM;
 	uint scnt = tid / chunksPerSM;
-	uint subdepth = log2f(chunksPerSM+1); // Depth of the thread's node.
+	uint subdepth = 31 - __clz(chunksPerSM+1); // Depth of the thread's node (equals log2(chunksPerSM+1)).
 
 	uint lastMark = c_alloc.heapSize-CIRCULAR_MALLOC_HEADER_SIZE;
 
 	uint minChunkSize = align<uint, ALIGN>((CIRCULAR_MALLOC_HEADER_SIZE + c_alloc.payload)*c_alloc.chunkRatio);
-	// POSSIBLE BUG: Rounding errors may cause misaligned memory accesses - solved by double at the cost of significant slowdown
-	uint depth = log2f((float)(sid+1)); // Depth of the thread's node.
+	uint depth = 31 - __clz(sid+1); // Depth of the thread's node (equals log2(sid+1)).
 	uint chunkSize = rootChunk >> depth; // Chunks size corresponding to the level
 	uint lvlTid = sid - ((1 << depth) - 1);
 	uint ofs    = scnt*rootChunk*subdepth + depth*rootChunk + lvlTid*chunkSize; // Previous subtrees plus current at geometric sequence previous minus the first term
@@ -1229,13 +1780,13 @@ extern "C" __global__ void CircularMultiMallocFusedPrepare3(uint numChunks, uint
 	uint chunksPerSM = numChunks / g_numSM;
 	uint sid = tid % chunksPerSM;
 	uint scnt = tid / chunksPerSM;
-	uint subdepth = log2f(chunksPerSM+1); // Depth of the thread's node.
+	uint subdepth = 31 - __clz(chunksPerSM+1); // Depth of the thread's node (equals log2(chunksPerSM+1)).
 
 	uint headerSize = sizeof(uint);
 	uint lastMark   = c_alloc.heapSize-headerSize;
 
 	uint minChunkSize = align<uint, ALIGN>((headerSize + c_alloc.payload)*c_alloc.chunkRatio);
-	uint depth        = log2f((float)(sid+1)); // Depth of the thread's node.
+	uint depth        = 31 - __clz(sid+1); // Depth of the thread's node (equals log2(sid+1)).
 	uint chunkSize    = rootChunk >> depth; // Chunks size corresponding to the level
 	uint lvlTid       = sid - ((1 << depth) - 1);
 	uint ofs          = scnt*rootChunk*subdepth + depth*rootChunk + lvlTid*chunkSize; // Previous subtrees plus current at geometric sequence previous minus the first term

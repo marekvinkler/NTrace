@@ -76,8 +76,8 @@
 							// 5 Means exact triangleBox overlap test during binning
 							// 6 Means exact triangleBox overlap test during both
 
-#define NUM_SM 2 // Number of SMs on the device
-#define NUM_WARPS_PER_BLOCK 24
-#define NUM_BLOCKS_PER_SM 2
+#define NUM_SM 15 // Number of SMs on the device
+#define NUM_WARPS_PER_BLOCK 4
+#define NUM_BLOCKS_PER_SM 4
 #define NUM_WARPS (NUM_SM*NUM_BLOCKS_PER_SM*NUM_WARPS_PER_BLOCK) // Number of warps on the device when 4 blocks with 128 threads are launched per SM
 #define NUM_THREADS (NUM_WARPS_PER_BLOCK*WARP_SIZE)

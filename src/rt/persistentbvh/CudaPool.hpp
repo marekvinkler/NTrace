@@ -88,6 +88,7 @@
 //#define MALLOC_SCRATCHPAD // Allocate and dealocate memory for auxilliary arrays with malloc
 #ifdef MALLOC_SCRATCHPAD
 #define ALIGN 16
+//#define COALESCE_WARP
 //#define NO_FREE // Do not free dynamic memory, for testing purposes only
 
 #define CUDA_MALLOC 0 // Default CUDA allocator
@@ -99,7 +100,9 @@
 #define CIRCULAR_MULTI_MALLOC_FUSED 6 // Allocator that used a linked list in global heap, multiple heap offsets and fuses the lock and next pointer
 #define SCATTER_ALLOC 7 // Use ScatterAlloc for allocations
 #define FDG_MALLOC 8 // Use FDG for allocations
+#define HALLOC 9 // Use Halloc for allocations
 
+// NOTICE: Due to the unknown base of CudaMalloc CUDA_MALLOC, FDG_MALLOC and HALLOC allocators may be unstable
 #define MALLOC_TYPE CIRCULAR_MALLOC
 
 #else
@@ -127,7 +130,7 @@
 // 0 - direct memory access
 // 1 - through inline PTX caching qualifier
 // 2 - through atomic operation
-#define CIRCULAR_MALLOC_MEM_ACCESS_TYPE 2
+#define CIRCULAR_MALLOC_MEM_ACCESS_TYPE 0
 #define MEM_ACCESS_TYPE CIRCULAR_MALLOC_MEM_ACCESS_TYPE // Macro in warp_common.cu
 #define ALIGN 16
 #define CIRCULAR_MALLOC_WAIT_COUNT 1000000
@@ -150,8 +153,6 @@
 
 #define ACTIVE_MAX (32*WARP_SIZE-1)
 #define EMPTY_MAX (32*WARP_SIZE-1)
-
-#define MAX_SBVH_DEPTH 1
 
 //------------------------------------------------------------------------
 // Safety conditions
