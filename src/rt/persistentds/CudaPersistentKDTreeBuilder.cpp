@@ -1,5 +1,8 @@
+//#include <sstream>
+//#include <iomanip>
+
 #include "base/Random.hpp"
-#include "persistentds/CudaPersistentBVHBuilder.hpp"
+#include "persistentds/CudaPersistentKdtreeBuilder.hpp"
 #include "persistentds/PersistentHelper.hpp"
 #include "AppEnvironment.h"
 
@@ -10,7 +13,7 @@ using namespace FW;
 
 //------------------------------------------------------------------------
 
-CudaPersistentBVHBuilder::CudaPersistentBVHBuilder(Scene& scene, F32 epsilon) : CudaBVH(BVHLayout_Compact), m_epsilon(epsilon), m_numTris(scene.getNumTriangles()), m_trisCompact(scene.getTriCompactBuffer())
+CudaPersistentKDTreeBuilder::CudaPersistentKDTreeBuilder(Scene& scene, F32 epsilon) : CudaKDTree(), m_epsilon(epsilon), m_numTris(scene.getNumTriangles()), m_trisCompact(scene.getTriCompactBuffer())
 {
 	// init
 	CudaModule::staticInit();
@@ -28,21 +31,21 @@ CudaPersistentBVHBuilder::CudaPersistentBVHBuilder(Scene& scene, F32 epsilon) : 
 	m_heap = 0.f;
 
 #ifndef BENCHMARK
-	Debug.open("persistent_bvh_debug.log");
+	Debug.open("persistent_kdtree_debug.log");
 #endif
 }
 
-CudaPersistentBVHBuilder::~CudaPersistentBVHBuilder()
+CudaPersistentKDTreeBuilder::~CudaPersistentKDTreeBuilder()
 {
 #ifndef BENCHMARK
 	Debug.close();
 #endif
 }
 
-F32 CudaPersistentBVHBuilder::build()
+F32 CudaPersistentKDTreeBuilder::build()
 {
 	// Compile the kernel
-	m_kernelFile = "src/rt/kernels/persistent_bvh.cu";
+	m_kernelFile = "src/rt/kernels/persistent_kdtree.cu";
 
 	m_compiler.setSourceFile(m_kernelFile);
 	m_compiler.clearDefines();
@@ -112,7 +115,7 @@ F32 CudaPersistentBVHBuilder::build()
 	return m_gpuTime;
 }
 
-void CudaPersistentBVHBuilder::updateConstants()
+void CudaPersistentKDTreeBuilder::updateConstants()
 {
 	RtEnvironment& cudaEnv = *(RtEnvironment*)m_module->getGlobal("c_env").getMutablePtr();
 
@@ -136,7 +139,7 @@ void CudaPersistentBVHBuilder::updateConstants()
 
 //------------------------------------------------------------------------
 
-void CudaPersistentBVHBuilder::initPool(Buffer* nodeBuffer)
+void CudaPersistentKDTreeBuilder::initPool(Buffer* nodeBuffer)
 {
 	// Prepare the task data
 	updateConstants();
@@ -175,7 +178,7 @@ void CudaPersistentBVHBuilder::initPool(Buffer* nodeBuffer)
 
 //------------------------------------------------------------------------
 
-void CudaPersistentBVHBuilder::deinitPool()
+void CudaPersistentKDTreeBuilder::deinitPool()
 {
 	m_ppsTris.reset();
 	m_ppsTrisIndex.reset();
@@ -184,7 +187,7 @@ void CudaPersistentBVHBuilder::deinitPool()
 
 //------------------------------------------------------------------------
 
-void CudaPersistentBVHBuilder::printPoolHeader(TaskStackBase* tasks, int* header, int numWarps, FW::String state)
+void CudaPersistentKDTreeBuilder::printPoolHeader(TaskStackBase* tasks, int* header, int numWarps, FW::String state)
 {
 #if PARALLELISM_TEST >= 0
 	numActive = *(int*)m_module->getGlobal("g_numActive").getPtr();
@@ -287,7 +290,7 @@ void CudaPersistentBVHBuilder::printPoolHeader(TaskStackBase* tasks, int* header
 
 //------------------------------------------------------------------------
 
-void CudaPersistentBVHBuilder::printPool(TaskStackBVH &tasks, int numWarps)
+void CudaPersistentKDTreeBuilder::printPool(TaskStackBVH &tasks, int numWarps)
 {
 #ifdef LEAF_HISTOGRAM
 	printf("Leaf histogram\n");
@@ -442,7 +445,7 @@ void CudaPersistentBVHBuilder::printPool(TaskStackBVH &tasks, int numWarps)
 
 //------------------------------------------------------------------------
 
-F32 CudaPersistentBVHBuilder::buildCuda()
+F32 CudaPersistentKDTreeBuilder::buildCuda()
 {
 	CudaKernel kernel;
 	kernel = m_module->getKernel("build");
@@ -697,7 +700,7 @@ F32 CudaPersistentBVHBuilder::buildCuda()
 	return tKernel;
 }
 
-void CudaPersistentBVHBuilder::saveBufferSizes(bool ads, bool aux)
+void CudaPersistentKDTreeBuilder::saveBufferSizes(bool ads, bool aux)
 {
 	float MB = (float)(1024*1024);
 
@@ -721,7 +724,7 @@ void CudaPersistentBVHBuilder::saveBufferSizes(bool ads, bool aux)
 	}
 }
 
-void CudaPersistentBVHBuilder::resetBuffers(bool resetADSBuffers)
+void CudaPersistentKDTreeBuilder::resetBuffers(bool resetADSBuffers)
 {
 	// Reset buffers so that reuse of space does not cause timing disturbs
 	if(resetADSBuffers)
@@ -742,7 +745,7 @@ void CudaPersistentBVHBuilder::resetBuffers(bool resetADSBuffers)
 	m_sortRays.reset();
 }
 
-void CudaPersistentBVHBuilder::trimBuffers()
+void CudaPersistentKDTreeBuilder::trimBuffers()
 {
 	// Save sizes of auxiliary buffers so that they can be printed
 	saveBufferSizes(false, true);
@@ -764,7 +767,7 @@ void CudaPersistentBVHBuilder::trimBuffers()
 	saveBufferSizes(true, false);
 }
 
-void CudaPersistentBVHBuilder::getStats(U32& nodes, U32& leaves, U32& stackTop, U32& nodeTop, U32& tris, U32& sortedTris, bool sub)
+void CudaPersistentKDTreeBuilder::getStats(U32& nodes, U32& leaves, U32& stackTop, U32& nodeTop, U32& tris, U32& sortedTris, bool sub)
 {
 	TaskStackBVH tasks = *(TaskStackBVH*)m_module->getGlobal("g_taskStackBVH").getPtr();
 
@@ -805,7 +808,7 @@ void CudaPersistentBVHBuilder::getStats(U32& nodes, U32& leaves, U32& stackTop, 
 	stackTop = tasks.top;
 }
 
-void CudaPersistentBVHBuilder::getSizes(F32& task, F32& split, F32& ads, F32& tri, F32& triIdx, F32& heap)
+void CudaPersistentKDTreeBuilder::getSizes(F32& task, F32& split, F32& ads, F32& tri, F32& triIdx, F32& heap)
 {
 	task = m_sizeTask;
 	split = m_sizeSplit;

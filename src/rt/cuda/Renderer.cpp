@@ -31,6 +31,7 @@
 #include "io/File.hpp"
 #include "bvh/HLBVH/HLBVHBuilder.hpp"
 #include "persistentds/CudaPersistentBVHBuilder.hpp"
+#include "persistentds/CudaPersistentKdtreeBuilder.hpp"
 
 //#define CPU
 
@@ -250,13 +251,13 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 	{
 		if (builder == "PersistentBVH")
 		{
-			m_accelStruct = new CudaPersistentBVHTracer(*m_scene, FLT_EPSILON);
-			((CudaPersistentBVHTracer*)m_accelStruct)->resetBuffers(true);
-			((CudaPersistentBVHTracer*)m_accelStruct)->buildBVH();
-			((CudaPersistentBVHTracer*)m_accelStruct)->resetBuffers(false);
+			m_accelStruct = new CudaPersistentBVHBuilder(*m_scene, FLT_EPSILON);
+			((CudaPersistentBVHBuilder*)m_accelStruct)->resetBuffers(true);
+			((CudaPersistentBVHBuilder*)m_accelStruct)->build();
+			((CudaPersistentBVHBuilder*)m_accelStruct)->resetBuffers(false);
 		}
 		else
-		{	
+		{
 			BVH bvh(m_scene, m_platform, m_buildParams);
 			stats.print();
 			m_accelStruct = new CudaBVH(bvh, layout);
@@ -275,7 +276,6 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 
 			failIfError();
 		}
-		
 	}
 
     // Write to cache.
@@ -335,15 +335,25 @@ CudaAS*	Renderer::getCudaKDTree(void)
 
 	// Setup build parameters.
 
-	KDTree::BuildParams params;
-	params.enablePrints = m_buildParams.enablePrints;
-	KDTree::Stats stats;
-    params.stats = &stats;
+	if (builder == "PersistentKdtree")
+	{
+		m_accelStruct = new CudaPersistentKDTreeBuilder(*m_scene, FLT_EPSILON);
+		((CudaPersistentKDTreeBuilder*)m_accelStruct)->resetBuffers(true);
+		((CudaPersistentKDTreeBuilder*)m_accelStruct)->build();
+		((CudaPersistentKDTreeBuilder*)m_accelStruct)->resetBuffers(false);
+	}
+	else
+	{
+		KDTree::BuildParams params;
+		params.enablePrints = m_buildParams.enablePrints;
+		KDTree::Stats stats;
+		params.stats = &stats;
 
-	KDTree kdtree(m_scene, m_platform, params);
-	stats.print();
-	m_accelStruct = new CudaKDTree(kdtree);
-	failIfError();
+		KDTree kdtree(m_scene, m_platform, params);
+		stats.print();
+		m_accelStruct = new CudaKDTree(kdtree);
+		failIfError();
+	}
 
     // Write to cache.
 

@@ -3,7 +3,7 @@
 #include "gpu/Buffer.hpp"
 #include "gpu/CudaCompiler.hpp"
 #include "base/Timer.hpp"
-#include "cuda/CudaBVH.hpp"
+#include "cuda/CudaKDTree.hpp"
 #include "persistentds/CudaBuilderKernels.hpp"
 #include "Scene.hpp"
 
@@ -12,7 +12,7 @@
 namespace FW
 {
 
-class CudaPersistentBVHBuilder : public CudaBVH
+class CudaPersistentKDTreeBuilder : public CudaKDTree
 {
 	// Scene data
 	F32 m_epsilon;
@@ -70,8 +70,8 @@ class CudaPersistentBVHBuilder : public CudaBVH
 
 	F32 buildCuda();
 public:
-	CudaPersistentBVHBuilder(Scene& scene, F32 epsilon);
-	~CudaPersistentBVHBuilder();
+	CudaPersistentKDTreeBuilder(Scene& scene, F32 epsilon);
+	~CudaPersistentKDTreeBuilder();
 
 	F32 build();
 

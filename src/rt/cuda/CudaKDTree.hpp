@@ -58,6 +58,11 @@ public:
 	explicit	CudaKDTree			(const KDTree& kdtree);
 
 	/**
+	 * \brief				Default Constructor
+	 */
+	explicit    CudaKDTree          () {}
+
+	/**
 	*  \brief				Copy constructor.
 	*  \pram[in] kdtree		KDTree to copy.
 	*/
@@ -153,6 +158,8 @@ private:
 	*  \param[in] kdtree	KDTree whose source scene triangles should be converted.
 	*/
 	void				createWoopTri		(const KDTree& kdtree);
+
+protected:
 
 	Buffer				m_nodes;		//!< Buffer holding nodes.
 	Buffer				m_triIndex;		//!< Buffer holding triangle indexes pointing to the scene's triangle buffer.

@@ -18,6 +18,10 @@
 #include "CudaPool.hpp"
 #include "rt_common.cuh"
 
+//------------------------------------------------------------------------
+// BVH
+//------------------------------------------------------------------------
+
 struct KernelInputBVH
 {
 	int             numTris;        // Total number of tris.
@@ -35,15 +39,10 @@ struct KernelInputBVH
 	CUdeviceptr		debug;
 };
 
-//------------------------------------------------------------------------
-// Task stack types
-//------------------------------------------------------------------------
-
 // BEWARE THAT STRUCT ALIGNMENT MAY INCREASE THE DATA SIZE AND BREAK 1 INSTRUCTION LOAD/STORE
 // CURRENT ORDER ENSURES THAT splitPlane AND bbox ARE ALIGNED TO 16B
 struct __align__(128) TaskBVH
 {
-#ifndef MALLOC_SCRATCHPAD
     int       unfinished;        // Counts the number of unfinished sub tasks
     int       type;              // Type of work to be done
 	int       depend1;           // Index to the first task dependent on this one, -1 is pointer to TaskStack::unfinished, -2 is empty link
@@ -75,7 +74,84 @@ struct __align__(128) TaskBVH
 	int       triIdxCtr;         // Indicator which item to use for reading the triangle indices, odd value means trisIndex even value means sortTris
 	int       origSize;			 // Size the task was created with
 	int       terminatedBy;
+
+	// 128B boundary
+
+	// Data order is to maintain structure alignment
+	CudaAABB  bboxLeft;          // Left childs bounding box
+	long long int clockStart;
+	
+	CudaAABB  bboxMiddle;        // Middle childs bounding box
+	long long int clockEnd;
+
+	CudaAABB  bboxRight;         // Right childs bounding box
+
+	int       parent;            // Index of the parent task
+	int       cached;            // Flag stating whether the item has been cached and thus has to be uncached
+
+	int       sync;              // Number of global memory synchronizations
+	int       rayPackets;        // Index into the LUT for child generation
+
+	int       nextRay;           // Current ray index in global buffer.
+	int       rayCount;          // Number of rays in the local pool.
+	int       popCount;          // Number of subtasks poped from gmem
+	int       popStart;          // Starting subtask poped from gmem
+	int       popSubtask;        // Current subtask
+	int       popTaskIdx;        // Index of the current subtask
+};
+#define TASK_GLOBAL_BVH 25 // Marks end position of task data loaded from global memory
+
+// A work queue divided into two arrays with same indexing and other auxiliary global data
+struct TaskStackBVH : public TaskStackBase
+{
+	TaskBVH      *tasks;               // Holds task data
+	int          nodeTop;              // Top of the node array
+	int          triTop;               // Top of the triangle array
+	unsigned int numSortedTris;        // Number of inner nodes emited
+	unsigned int numNodes;             // Number of inner nodes emited
+	unsigned int numLeaves;            // Number of leaves emited
+	int          warpCounter;          // Work counter for persistent threads.
+};
+
+// Structure for holding information needed for one child
+struct ChildData
+{
+#if BINNING_TYPE == 0 || BINNING_TYPE == 1
+	CudaAABB bbox;   // Bounding box of triangles falling inside this bin
 #else
+	CudaAABBInt bbox;// Bounding box of triangles falling inside this bin
+#endif
+	int cnt;         // Number of triangles falling inside this bin
+	int padding;
+};
+
+// A structure for holding a single reducable split plane info
+struct SplitRed
+{
+	ChildData children[2];
+};
+
+// Array of SplitRed structures for each warp
+#if BINNING_TYPE == 0 || BINNING_TYPE == 1
+struct SplitArray
+{
+	SplitRed splits[NUM_WARPS][PLANE_COUNT]; // Number of warps time number of planes
+};
+#else
+struct SplitArray
+{
+	SplitRed splits[PLANE_COUNT]; // Number of planes is enough when using atomics
+};
+#endif
+
+//------------------------------------------------------------------------
+// Kd-tree
+//------------------------------------------------------------------------
+
+// BEWARE THAT STRUCT ALIGNMENT MAY INCREASE THE DATA SIZE AND BREAK 1 INSTRUCTION LOAD/STORE
+// CURRENT ORDER ENSURES THAT splitPlane AND bbox ARE ALIGNED TO 16B
+struct __align__(128) TaskKdtree
+{
 	int       unfinished;        // Counts the number of unfinished sub tasks
     int       type;              // Type of work to be done
 	int       dynamicMemoryLeft; // Chunk of dynamic memory given to the left child as offset from g_heapBase
@@ -107,7 +183,6 @@ struct __align__(128) TaskBVH
 	int       subFailureCounter; // Increments each time task fails to subdivide properly
 	int       origSize;			 // Size the task was created with
 	int       terminatedBy;
-#endif
 
 	// 128B boundary
 
@@ -133,10 +208,10 @@ struct __align__(128) TaskBVH
 	int       popSubtask;        // Current subtask
 	int       popTaskIdx;        // Index of the current subtask
 };
-#define TASK_GLOBAL 25 // Marks end position of task data loaded from global memory
+#define TASK_GLOBAL_KDTREE 25 // Marks end position of task data loaded from global memory
 
 // A work queue divided into two arrays with same indexing and other auxiliary global data
-struct TaskStackBVH : public TaskStackBase
+struct TaskStackKdtree : public TaskStackBase
 {
 	TaskBVH      *tasks;               // Holds task data
 	int          nodeTop;              // Top of the node array
@@ -164,51 +239,6 @@ struct SplitInfoTri
 	SplitDataTri splits[PLANE_COUNT]; // Split info for each tested plane (WARP_SIZE planes)
 };
 
-// Structure for holding information needed for one child
-struct ChildData
-{
-#if BINNING_TYPE == 0 || BINNING_TYPE == 1
-	CudaAABB bbox;   // Bounding box of triangles falling inside this bin
-#else
-	CudaAABBInt bbox;// Bounding box of triangles falling inside this bin
-#endif
-	int cnt;         // Number of triangles falling inside this bin
-	int padding;
-};
-
-// A structure for holding a single reducable split plane info
-struct SplitRed
-{
-	ChildData children[2];
-};
-
-/*// A structure for holding a single summable bin
-struct BinSum
-{
-	CudaAABB bboxCur;   // Bounding box of triangles falling inside this bin
-	int cntCur;         // Number of triangles falling inside this bin
-	int cntLeft;        // Number of triangles to the left, inclusive.
-
-	CudaAABB bboxLeft;  // Bounding box of triangles to the left, inclusive.
-	int cntRight;       // Number of triangles to the right, inclusive.
-	int padding0;
-
-	CudaAABB bboxRight; // Bounding box of triangles to the right, inclusive.
-};*/
-
-// Array of SplitRed structures for each warp
-#if BINNING_TYPE == 0 || BINNING_TYPE == 1
-struct SplitArray
-{
-	SplitRed splits[NUM_WARPS][PLANE_COUNT]; // Number of warps time number of planes
-};
-#else
-struct SplitArray
-{
-	SplitRed splits[PLANE_COUNT]; // Number of warps time number of planes
-};
-#endif
-
 //------------------------------------------------------------------------
 // Globals.
 //------------------------------------------------------------------------
@@ -216,9 +246,8 @@ struct SplitArray
 #ifdef __CUDACC__
 extern "C"
 {
-texture<float4, 1> t_trisAOut;
-texture<int,  1>   t_triIndicesOut;
-__constant__ KernelInputBVH c_bvh_in;   // Input of trace() for BVH builder.
+__constant__ KernelInputBVH c_bvh_in;   // Input of build() for BVH builder.
+__constant__ KernelInputBVH c_kdtree_in;   // Input of build() for Kd-tree builder.
 
 __global__ void build(void);        // Launched for each batch of rays.
 
@@ -227,6 +256,7 @@ __global__ void build(void);        // Launched for each batch of rays.
 //------------------------------------------------------------------------
 
 __device__ TaskStackBVH g_taskStackBVH;   // Task queue variable
+__device__ TaskStackKdtree g_taskStackKdtree;   // Task queue variable
 
 //#if SPLIT_TYPE == 3
 __device__ SplitInfoTri *g_splitStack;   // Split stack head

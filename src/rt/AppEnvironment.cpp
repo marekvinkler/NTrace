@@ -80,7 +80,7 @@ void AppEnvironment::RegisterOptions()
 	RegisterOption("SBVH.alpha", optFloat, "sbvh_alpha=", "1.0e-5");
 
 	/*************************************************************************/
-	/*    Persistent BVH                                                     */
+	/*    Persistent Data Structure                                          */
 	/*************************************************************************/
 	RegisterOption("SubdivisionRayCaster.numWarpsPerBlock", optInt, "persistent_numWarpsPerBlock=", "24");
 	RegisterOption("SubdivisionRayCaster.numBlockPerSM", optInt, "persistent_numBlockPerSM=", "2");
@@ -122,5 +122,42 @@ void AppEnvironment::RegisterOptions()
 	RegisterOption("SubdivisionRayCaster.sumTimes", optBool, "persistent_sumTimes=", "true");
 	RegisterOption("SubdivisionRayCaster.cutOffDepth", optInt, "persistent_cutOffDepth=", "30");
 	RegisterOption("SubdivisionRayCaster.numRepeats", optInt, "persistent_numRepeats=", "1");
+
+	/*************************************************************************/
+	/*    Persistent BVH                                                     */
+	/*************************************************************************/
+	RegisterOption("PersistentBVH.triLimit", optInt, "persistent_bvh_triLimit=", "2");
+	RegisterOption("PersistentBVH.triMaxLimit", optInt, "persistent_bvh_triMaxLimit=", "16");
+	RegisterOption("PersistentBVH.maxDepth", optInt, "persistent_bvh_maxDepth=", "50");
+	
+	RegisterOption("PersistentBVH.ci", optInt, "persistent_bvh_ci=", "1");
+	RegisterOption("PersistentBVH.ct", optInt, "persistent_bvh_ct=", "1");
+
+	RegisterOption("PersistentBVH.childLimit", optInt, "persistent_bvh_childLimit=", "0");
+	
+	RegisterOption("PersistentBVH.popCount", optInt, "persistent_bvh_popCount=", "14");
+	RegisterOption("PersistentBVH.granularity", optFloat, "persistent_bvh_granularity=", "50.0");
+
+	/*************************************************************************/
+	/*    Persistent Kdtree                                                  */
+	/*************************************************************************/
+	RegisterOption("PersistentKdtree.triLimit", optInt, "persistent_kdtree_triLimit=", "2");
+	RegisterOption("PersistentKdtree.triMaxLimit", optInt, "persistent_kdtree_triMaxLimit=", "16");
+	RegisterOption("PersistentKdtree.maxDepth", optInt, "persistent_kdtree_maxDepth=", "50");
+	RegisterOption("PersistentKdtree.depthK1", optFloat, "persistent_kdtree_depthK1=", "1.2");
+	RegisterOption("PersistentKdtree.depthK2", optFloat, "persistent_kdtree_depthK2=", "2.0");
+	RegisterOption("PersistentKdtree.failRq", optFloat, "persistent_kdtree_failRq=", "0.9");
+	RegisterOption("PersistentKdtree.failK1", optFloat, "persistent_kdtree_failK1=", "0.26");
+	RegisterOption("PersistentKdtree.failK2", optFloat, "persistent_kdtree_failK2=", "1.0");
+	
+	RegisterOption("PersistentKdtree.failureCount", optInt, "persistent_kdtree_failureCount=", "0");
+	
+	RegisterOption("PersistentKdtree.ci", optInt, "persistent_kdtree_ci=", "1");
+	RegisterOption("PersistentKdtree.ct", optInt, "persistent_kdtree_ct=", "1");
+
+	RegisterOption("PersistentKdtree.childLimit", optInt, "persistent_kdtree_childLimit=", "0");
+	
+	RegisterOption("PersistentKdtree.popCount", optInt, "persistent_kdtree_popCount=", "14");
+	RegisterOption("PersistentKdtree.granularity", optFloat, "persistent_kdtree_granularity=", "50.0");
 }
 
