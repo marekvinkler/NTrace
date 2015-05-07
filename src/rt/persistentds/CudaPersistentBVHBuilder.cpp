@@ -4,8 +4,8 @@
 #include "base/Random.hpp"
 #include "CudaPersistentBVHBuilder.hpp"
 #include "kernels/CudaTracerKernels.hpp"
-#include "persistentbvh/CudaBuilderKernels.hpp"
-#include "../AppEnvironment.h"
+#include "persistentds/CudaBuilderKernels.hpp"
+#include "AppEnvironment.h"
 
 #define TASK_SIZE 150000
 

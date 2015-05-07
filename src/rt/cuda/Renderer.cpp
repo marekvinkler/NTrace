@@ -30,7 +30,7 @@
 #include "gui/Window.hpp"
 #include "io/File.hpp"
 #include "bvh/HLBVH/HLBVHBuilder.hpp"
-#include "cuda/CudaPersistentBVHBuilder.hpp"
+#include "persistentds/CudaPersistentBVHBuilder.hpp"
 
 //#define CPU
 

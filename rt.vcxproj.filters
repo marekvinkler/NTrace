@@ -25,7 +25,7 @@
     <Filter Include="bvh\HLBVH">
       <UniqueIdentifier>{5324f46a-b961-4591-aed2-6fd1ddf4e2a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="persistentbvh">
+    <Filter Include="persistentds">
       <UniqueIdentifier>{45ba06a5-982d-45a6-b5d2-96f4080a8257}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -113,8 +113,8 @@
     <ClCompile Include="src\rt\bvh\OcclusionBVHBuilder.cpp">
       <Filter>bvh</Filter>
     </ClCompile>
-    <ClCompile Include="src\rt\cuda\CudaPersistentBVHTracer.cpp">
-      <Filter>cuda</Filter>
+    <ClCompile Include="src\rt\persistentds\CudaPersistentBVHBuilder.cpp">
+      <Filter>persistentds</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -210,11 +210,11 @@
     <ClInclude Include="src\rt\bvh\OcclusionBVHBuilder.hpp">
       <Filter>bvh</Filter>
     </ClInclude>
-    <ClInclude Include="src\rt\cuda\CudaPersistentBVHTracer.hpp">
-      <Filter>cuda</Filter>
+    <ClInclude Include="src\rt\persistentds\CudaBuilderKernels.hpp">
+      <Filter>persistentds</Filter>
     </ClInclude>
-    <ClInclude Include="src\rt\persistentbvh\CudaBuilderKernels.hpp">
-      <Filter>persistentbvh</Filter>
+    <ClInclude Include="src\rt\persistentds\CudaPersistentBVHBuilder.hpp">
+      <Filter>persistentds</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

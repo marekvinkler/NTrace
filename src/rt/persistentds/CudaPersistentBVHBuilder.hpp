@@ -7,7 +7,7 @@
 #include "3d/Mesh.hpp"
 #include "gpu/CudaCompiler.hpp"
 #include "base/Timer.hpp"
-#include "CudaBVH.hpp"
+#include "cuda/CudaBVH.hpp"
 
 #include "Scene.hpp"
 
