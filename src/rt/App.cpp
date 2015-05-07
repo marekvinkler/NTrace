@@ -25,7 +25,10 @@
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+//#define CPU
+
 #include "App.hpp"
+#include "base/Defs.hpp"
 #include "base/Main.hpp"
 #include "base/Random.hpp"
 #include "gpu/GLContext.hpp"
@@ -62,7 +65,8 @@ static const char* const s_rayTypeNames[] =
     "AO",
     "diffuse",
     "textured",
-	"otracer"
+	"otracer",
+	NULL
 };
 
 //------------------------------------------------------------------------
@@ -169,7 +173,11 @@ App::App(void)
     if (!m_kernelNames.getSize())
         fail("No CUDA kernel sources found!");
 
+#ifndef CPU
 	m_renderer = new Renderer();
+#else
+	m_renderer = new CPURenderer());
+#endif
 
     m_commonCtrl.showFPS(true);
     m_commonCtrl.addStateObject(this);
@@ -615,6 +623,28 @@ void FW::runInteractive(const Vec2i& frameSize, const String& stateFile)
 
 //------------------------------------------------------------------------
 
+void matchRayTypes(const Array<String>& rayTypes, Array<int>& intTypes)
+{
+	for(int i = 0; i < rayTypes.getSize(); i++)
+	{
+		int rt = -1;
+		int j = 0;
+		while(s_rayTypeNames[j] != NULL)
+		{
+			if(rayTypes[i] == s_rayTypeNames[j]) // Match found
+			{
+				rt = j;
+				break;
+			}
+			j++;
+		}
+
+		intTypes.add(rt);
+	}
+}
+
+//------------------------------------------------------------------------
+
 void FW::runBenchmark(
     const Vec2i&            frameSize,
     const String&           meshFile,
@@ -627,7 +657,13 @@ void FW::runBenchmark(
     int                     warmupRepeats,
     int                     measureRepeats)
 {
-    int numRayTypes = Renderer::RayType_Max;
+	// Parse ray types.
+	Array<String> rayTypesString;
+	Array<int> rayTypes;
+	string types;
+	Environment::GetSingleton()->GetStringValue("Renderer.rayType", types);
+	String(types.c_str()).split(';', rayTypesString);
+	matchRayTypes(rayTypesString, rayTypes);
 
     // Print header.
 
@@ -644,6 +680,7 @@ void FW::runBenchmark(
 
     BVH::BuildParams buildParams;
     buildParams.splitAlpha = sbvhAlpha;
+
 
 	Renderer* renderer = new Renderer();
     renderer->setBuildParams(buildParams);
@@ -667,7 +704,7 @@ void FW::runBenchmark(
     Array<F32> results;
     for (int kernelIdx = 0; kernelIdx < kernels.getSize(); kernelIdx++)
     {
-        for (int rayType = 0; rayType < numRayTypes; rayType++)
+		for (int rt = 0; rt < rayTypes.getSize(); rt++)
         {
             S64 totalRays = 0;
             F32 totalLaunchTime = 0.0f;
@@ -676,19 +713,20 @@ void FW::runBenchmark(
             {
                 // Print status.
 
-                String title = sprintf("%s, %s, camera %d", kernels[kernelIdx].getPtr(), s_rayTypeNames[rayType], cameraIdx);
+				String title = sprintf("%s, %s, camera %d", kernels[kernelIdx].getPtr(), rayTypesString[rt].getPtr(), cameraIdx);
                 printf("%s...\n", title.getPtr());
                 window.setTitle(title);
 
                 // Setup rendering.
 
                 params.kernelName = kernels[kernelIdx];
-                params.rayType = (Renderer::RayType)rayType;
+                params.rayType = (Renderer::RayType)rayTypes[rt];
 				renderer->setParams(params);
 
                 CameraControls camera;
                 camera.decodeSignature(cameras[cameraIdx]);
 				renderer->beginFrame(gl, camera);
+
 				totalRays += (S64)renderer->getTotalNumRays() * measureRepeats;
 
                 // Process each batch.
@@ -707,6 +745,17 @@ void FW::runBenchmark(
                         gl->swapBuffers();
                     }
 
+					// Export the image.
+					if(Environment::GetSingleton()->GetBool("Benchmark.screenshot"))
+					{
+						Image* image = renderer->getImage();
+						image->flipY();
+						string scrName;
+						Environment::GetSingleton()->GetStringValue("Benchmark.screenshotName", scrName);
+						String name = sprintf(scrName.c_str(), kernelIdx, rayTypesString[rt].getPtr(), cameraIdx);
+						exportImage(name, image);
+					}
+
                     // Warm up and measure.
 
                     for (int i = 0; i < warmupRepeats; i++)
@@ -723,10 +772,13 @@ void FW::runBenchmark(
 
             // Calculate Mrays/s.
 
-            F32 mraysPerSec = (F32)totalRays / totalLaunchTime * 1.0e-6f;
+            F32 mraysPerSec = (F32)totalRays / totalLaunchTime * 1.0e-3f;
             results.add(mraysPerSec);
-            printf("Mrays/s = %.2f\n", mraysPerSec);
-            printf("\n");
+			//printf("Time (s) = %.4f\n", totalLaunchTime);
+            //printf("Krays/s = %.2f\n", mraysPerSec);
+            //printf("\n");
+			pushStat("SUM_RENDER_TIME", totalLaunchTime);
+			pushStat("SUM_RENDER_KRAYS", mraysPerSec);
         }
     }
 
@@ -736,25 +788,25 @@ void FW::runBenchmark(
     printf("\n");
 
     printf("%-42s", "Kernel");
-    for (int i = 0; i < numRayTypes; i++)
+	for (int i = 0; i < rayTypes.getSize(); i++)
         printf("%-10s", s_rayTypeNames[i]);
     printf("\n");
 
     printf("%-42s", "---");
-    for (int i = 0; i < numRayTypes; i++)
+    for (int i = 0; i < rayTypes.getSize(); i++)
         printf("%-10s", "---");
     printf("\n");
 
     for (int i = 0; i < kernels.getSize(); i++)
     {
         printf("%-42s", kernels[i].getPtr());
-        for (int j = 0; j < numRayTypes; j++)
-            printf("%-10.2f", results[i * numRayTypes + j]);
+        for (int j = 0; j < rayTypes.getSize(); j++)
+            printf("%-10.2f", results[i * rayTypes.getSize() + j]);
         printf("\n");
     }
 
     printf("%-42s", "---");
-    for (int i = 0; i < numRayTypes; i++)
+    for (int i = 0; i < rayTypes.getSize(); i++)
         printf("%-10s", "---");
     printf("\n");
     printf("\n");
@@ -784,112 +836,67 @@ void FW::init(void)
     bool modeBenchmark      = false;
     bool showHelp           = false;
 
-    if (argc < 2)
-    {
-        printf("Specify \"--help\" for a list of command-line options.\n\n");
-        modeInteractive = true;
-    }
-    else
-    {
-        String mode = argv[1];
-        if (mode == "interactive")      modeInteractive = true;
-        else if (mode == "benchmark")   modeBenchmark = true;
-        else                            showHelp = true;
-    }
+	bool mode = Environment::GetSingleton()->GetBool("App.benchmark");
+
+	if (!mode)       modeInteractive = true;
+	else if (mode)   modeBenchmark = true;
+	else             showHelp = true;
 
     // Parse options.
 
-    String          logFile;
-    Vec2i           frameSize       = Vec2i(640, 480);
+    string          logFile;
+    Vec2i           frameSize;
     String          stateFile;
-    String          meshFile;
+    string          meshFile;
     Array<String>   cameras;
     Array<String>   kernels;
-    F32             sbvhAlpha       = 1.0e-5f;
-    F32             aoRadius        = 5.0f;
-    int             numSamples      = 32;
-    bool            sortRays        = true;
-    int             warmupRepeats   = 2;
-    int             measureRepeats  = 10;
+    F32             sbvhAlpha;
+    F32             aoRadius;
+    int             numSamples;
+    bool            sortRays;
+    int             warmupRepeats;
+    int             measureRepeats;
+
+	// Application settings.
+	Environment::GetSingleton()->GetStringValue("App.log", logFile);
+	string statFile;
+	Environment::GetSingleton()->GetStringValue("App.stats", statFile);
+	Stats.open(statFile);
+	
+	Environment::GetSingleton()->GetIntValue("App.frameWidth", frameSize.x);
+	Environment::GetSingleton()->GetIntValue("App.frameHeight", frameSize.y);
+
+	// Parse scene.
+	Environment::GetSingleton()->GetStringValue("Benchmark.scene", meshFile);
+
+	// Parse cameras.
+	string cam;
+	Environment::GetSingleton()->GetStringValue("Benchmark.camera", cam);
+	String(cam.c_str()).split(';', cameras);
+
+	// Parse kernels.
+	string kernel;
+	Environment::GetSingleton()->GetStringValue("Benchmark.kernel", kernel);
+	kernels.clear();
+	String(kernel.c_str()).split(';', kernels);
+
+	// Parse other.
+	Environment::GetSingleton()->GetFloatValue("SBVH.alpha", sbvhAlpha);
+	Environment::GetSingleton()->GetFloatValue("Raygen.aoRadius", aoRadius);
+	Environment::GetSingleton()->GetIntValue("Renderer.samples", numSamples);
+	Environment::GetSingleton()->GetBoolValue("Renderer.sortRays", sortRays);
+	Environment::GetSingleton()->GetIntValue("Benchmark.warmupRepeats", warmupRepeats);
+	Environment::GetSingleton()->GetIntValue("Benchmark.measureRepeats", measureRepeats);
 
     for (int i = 2; i < argc; i++)
     {
         const char* ptr = argv[i];
 
-        if ((parseLiteral(ptr, "--help") || parseLiteral(ptr, "-h")) && !*ptr)
-        {
-            showHelp = true;
-        }
-        else if (parseLiteral(ptr, "--log="))
-        {
-            if (!*ptr)
-                setError("Invalid log file '%s'!", argv[i]);
-            logFile = ptr;
-        }
-        else if (parseLiteral(ptr, "--size="))
-        {
-            if (!parseInt(ptr, frameSize.x) || !parseLiteral(ptr, "x") || !parseInt(ptr, frameSize.y) || *ptr || min(frameSize) <= 0)
-                setError("Invalid frame size '%s'!", argv[i]);
-        }
-        else if (modeInteractive && parseLiteral(ptr, "--state="))
+        if (modeInteractive && parseLiteral(ptr, "--state="))
         {
             if (!*ptr)
                 setError("Invalid state file '%s'!", argv[i]);
             stateFile = ptr;
-        }
-        else if (modeBenchmark && parseLiteral(ptr, "--mesh="))
-        {
-            if (!*ptr)
-                setError("Invalid mesh file '%s'!", argv[i]);
-            meshFile = ptr;
-        }
-        else if (modeBenchmark && parseLiteral(ptr, "--camera="))
-        {
-            if (!*ptr)
-                setError("Invalid camera signature '%s'!", argv[i]);
-            cameras.add(ptr);
-        }
-        else if (modeBenchmark && parseLiteral(ptr, "--kernel="))
-        {
-            if (!*ptr)
-                setError("Invalid kernel name '%s'!", argv[i]);
-            kernels.add(ptr);
-        }
-        else if (modeBenchmark && parseLiteral(ptr, "--sbvh-alpha="))
-        {
-            if (!parseFloat(ptr, sbvhAlpha) || *ptr || sbvhAlpha < 0.0f || sbvhAlpha > 1.0f)
-                setError("Invalid SBVH alpha '%s'!", argv[i]);
-        }
-        else if (modeBenchmark && parseLiteral(ptr, "--ao-radius="))
-        {
-            if (!parseFloat(ptr, aoRadius) || *ptr || aoRadius < 0.0f)
-                setError("Invalid AO radius '%s'!", argv[i]);
-        }
-        else if (modeBenchmark && parseLiteral(ptr, "--samples="))
-        {
-            if (!parseInt(ptr, numSamples) || *ptr || numSamples < 1)
-                setError("Invalid number of samples '%s'!", argv[i]);
-        }
-        else if (modeBenchmark && parseLiteral(ptr, "--sort="))
-        {
-            int value = 0;
-            if (!parseInt(ptr, value) || *ptr || value < 0 || value > 1)
-                setError("Invalid ray sorting enable/disable '%s'!", argv[i]);
-            sortRays = (value != 0);
-        }
-        else if (modeBenchmark && parseLiteral(ptr, "--warmup-repeats="))
-        {
-            if (!parseInt(ptr, warmupRepeats) || *ptr || warmupRepeats < 0)
-                setError("Invalid number of warmup repeats '%s'!", argv[i]);
-        }
-        else if (modeBenchmark && parseLiteral(ptr, "--measure-repeats="))
-        {
-            if (!parseInt(ptr, measureRepeats) || *ptr || measureRepeats < 1)
-                setError("Invalid number of measurement repeats '%s'!", argv[i]);
-        }
-        else
-        {
-            setError("Invalid option '%s'!", argv[i]);
         }
     }
 
@@ -900,19 +907,20 @@ void FW::init(void)
         printf("%s", s_commandHelpText);
         exitCode = 1;
         clearError();
+		Stats.close();
         return;
     }
 
     // Log file specified => start logging.
 
-    if (logFile.getLength())
-        pushLogFile(logFile);
+    if (logFile.size())
+		pushLogFile(logFile.c_str());
 
     // Validate options.
 
     if (modeBenchmark)
     {
-        if (!meshFile.getLength())
+        if (!meshFile.size())
             setError("Mesh file (--mesh) not specified!");
         if (!cameras.getSize())
             setError("No camera signatures (--camera) specified!");
@@ -926,7 +934,9 @@ void FW::init(void)
         runInteractive(frameSize, stateFile);
 
     if (modeBenchmark)
-        runBenchmark(frameSize, meshFile, cameras, kernels, sbvhAlpha, aoRadius, numSamples, sortRays, warmupRepeats, measureRepeats);
+		runBenchmark(frameSize, meshFile.c_str(), cameras, kernels, sbvhAlpha, aoRadius, numSamples, sortRays, warmupRepeats, measureRepeats);
+
+	Stats.close();
 
     // Handle errors.
 

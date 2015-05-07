@@ -39,11 +39,34 @@
 void AppEnvironment::RegisterOptions()
 {
 	/*************************************************************************/
+	/*    App							                                     */
+	/*************************************************************************/
+	RegisterOption("App.benchmark", optBool, "app_benchmark=", "true");
+	RegisterOption("App.log", optString, "app_log=", "ntrace.log");
+	RegisterOption("App.stats", optString, "app_stats=", "stats.log");
+	RegisterOption("App.frameWidth", optInt, "app_frame_width=", "1024");
+	RegisterOption("App.frameHeight", optInt, "app_frame_height=", "768");
+
+	/*************************************************************************/
+	/*    Benchmark						                                     */
+	/*************************************************************************/
+	RegisterOption("Benchmark.scene", optString, "benchmark_scene=");
+	RegisterOption("Benchmark.camera", optString, "benchmark_camera=");
+	RegisterOption("Benchmark.kernel", optString, "benchmark_kernel=");
+	RegisterOption("Benchmark.warmupRepeats", optInt, "benchmark_warmup=", "1");
+	RegisterOption("Benchmark.measureRepeats", optInt, "benchmark_measure=", "5");
+	RegisterOption("Benchmark.screenshot", optBool, "benchmark_scr=", "false");
+	RegisterOption("Benchmark.screenshotName", optString, "benchmark_scrname=", "screenshot_kernel=%d_rt=%s_cam=%d.png");
+	
+	/*************************************************************************/
 	/*    Renderer                                                           */
 	/*************************************************************************/
-
 	RegisterOption("Renderer.dataStructure", optString, "renderer_ds=");
-	RegisterOption("Renderer.builder", optString, "renderer.builder=");
+	RegisterOption("Renderer.builder", optString, "renderer_builder=");
+	RegisterOption("Renderer.rayType", optString, "renderer_raytype=");
+	RegisterOption("Renderer.samples", optInt, "renderer_samples=", "8");
+	RegisterOption("Renderer.sortRays", optBool, "renderer_sortrays=", "true");
+	RegisterOption("Renderer.cacheDataStructure", optBool, "renderer_cache_ds=", "true");
 
 	/*************************************************************************/
 	/*    VPL                                                                */
@@ -56,9 +79,15 @@ void AppEnvironment::RegisterOptions()
 	/*    Raygen                                                             */
 	/*************************************************************************/
 	RegisterOption("Raygen.random", optBool, "raygen_random=", "false");
+	RegisterOption("Raygen.aoRadius", optFloat, "raygen_aoradius=", "5.0");
 
 	/*************************************************************************/
-	/*    Persistent BVH                                                     */
+	/*    SBVH	                                                             */
+	/*************************************************************************/
+	RegisterOption("SBVH.alpha", optFloat, "sbvh_alpha=", "1.0e-5");
+
+	/*************************************************************************/
+	/*    Persistent Data Structure                                          */
 	/*************************************************************************/
 	RegisterOption("SubdivisionRayCaster.numWarpsPerBlock", optInt, "persistent_numWarpsPerBlock=", "24");
 	RegisterOption("SubdivisionRayCaster.numBlockPerSM", optInt, "persistent_numBlockPerSM=", "2");
@@ -100,5 +129,42 @@ void AppEnvironment::RegisterOptions()
 	RegisterOption("SubdivisionRayCaster.sumTimes", optBool, "persistent_sumTimes=", "true");
 	RegisterOption("SubdivisionRayCaster.cutOffDepth", optInt, "persistent_cutOffDepth=", "30");
 	RegisterOption("SubdivisionRayCaster.numRepeats", optInt, "persistent_numRepeats=", "1");
+
+	/*************************************************************************/
+	/*    Persistent BVH                                                     */
+	/*************************************************************************/
+	RegisterOption("PersistentBVH.triLimit", optInt, "persistent_bvh_triLimit=", "2");
+	RegisterOption("PersistentBVH.triMaxLimit", optInt, "persistent_bvh_triMaxLimit=", "16");
+	RegisterOption("PersistentBVH.maxDepth", optInt, "persistent_bvh_maxDepth=", "50");
+	
+	RegisterOption("PersistentBVH.ci", optInt, "persistent_bvh_ci=", "1");
+	RegisterOption("PersistentBVH.ct", optInt, "persistent_bvh_ct=", "1");
+
+	RegisterOption("PersistentBVH.childLimit", optInt, "persistent_bvh_childLimit=", "0");
+	
+	RegisterOption("PersistentBVH.popCount", optInt, "persistent_bvh_popCount=", "14");
+	RegisterOption("PersistentBVH.granularity", optFloat, "persistent_bvh_granularity=", "50.0");
+
+	/*************************************************************************/
+	/*    Persistent Kdtree                                                  */
+	/*************************************************************************/
+	RegisterOption("PersistentKdtree.triLimit", optInt, "persistent_kdtree_triLimit=", "2");
+	RegisterOption("PersistentKdtree.triMaxLimit", optInt, "persistent_kdtree_triMaxLimit=", "16");
+	RegisterOption("PersistentKdtree.maxDepth", optInt, "persistent_kdtree_maxDepth=", "50");
+	RegisterOption("PersistentKdtree.depthK1", optFloat, "persistent_kdtree_depthK1=", "1.2");
+	RegisterOption("PersistentKdtree.depthK2", optFloat, "persistent_kdtree_depthK2=", "2.0");
+	RegisterOption("PersistentKdtree.failRq", optFloat, "persistent_kdtree_failRq=", "0.9");
+	RegisterOption("PersistentKdtree.failK1", optFloat, "persistent_kdtree_failK1=", "0.26");
+	RegisterOption("PersistentKdtree.failK2", optFloat, "persistent_kdtree_failK2=", "1.0");
+	
+	RegisterOption("PersistentKdtree.failureCount", optInt, "persistent_kdtree_failureCount=", "0");
+	
+	RegisterOption("PersistentKdtree.ci", optInt, "persistent_kdtree_ci=", "1");
+	RegisterOption("PersistentKdtree.ct", optInt, "persistent_kdtree_ct=", "1");
+
+	RegisterOption("PersistentKdtree.childLimit", optInt, "persistent_kdtree_childLimit=", "0");
+	
+	RegisterOption("PersistentKdtree.popCount", optInt, "persistent_kdtree_popCount=", "14");
+	RegisterOption("PersistentKdtree.granularity", optFloat, "persistent_kdtree_granularity=", "50.0");
 }
 

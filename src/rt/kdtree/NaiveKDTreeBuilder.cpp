@@ -104,8 +104,6 @@ KDTreeNode*	NaiveKDTreeBuilder::createLeaf(const NodeSpec& spec)
 
 NaiveKDTreeBuilder::Split NaiveKDTreeBuilder::findSplit (const NodeSpec& spec, S32 level)
 {
-	Array<Reference>& refs = m_refStack;
-	
 	F32 splitPos = -1;
 	S32 dim = level % 3;
 

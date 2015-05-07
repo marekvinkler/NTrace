@@ -181,6 +181,7 @@ public:
 	void        setTraceParams      (Platform* platform, Scene* scene) { FW_ASSERT(platform && scene); m_platform = platform; m_scene = scene; }
 	void        findVisibleTriangles(RayBuffer& rays, S32* references, S32 offset);
 	void        trace               (RayBuffer& rays, Buffer& visibility, bool twoTrees, RayStats* stats = NULL);
+	void        trace               (RayBuffer& rays, Buffer& visibility) { trace(rays, visibility, false, NULL);}
 	//void        trace               (RayBuffer& rays, CudaBVH& emptyBVH, RayStats* stats = NULL);
 	void        trace               (RayBuffer& rays, Buffer& visibility, Array<AABB>& emptyBVH, RayStats* stats = NULL);
 
@@ -190,7 +191,11 @@ public:
 
 	Scene*		getScene			()						{return m_scene;}
 
+	void		shuffle				(S32 numOfSwaps = 0);
+
 protected:
+	void		createCompactBFS	(const BVH& bvh);
+
     void        createNodeBasic     (const BVH& bvh);
     void        createTriWoopBasic  (const BVH& bvh);
     void        createTriIndexBasic (const BVH& bvh);
@@ -209,7 +214,7 @@ protected:
 	void        getNodeTemplate     (S32 node, SplitInfo *splitInfo, AABB &child0, AABB &child1, S32 &child0Addr, S32 &child1Addr);
 	bool        updateHit           (Ray& ray, RayResult& result, float t, S32 index);
 
-private:
+protected:
     BVHLayout   m_layout;
     Buffer      m_nodes;
     Buffer      m_triWoop;

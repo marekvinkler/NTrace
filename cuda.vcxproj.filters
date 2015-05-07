@@ -13,17 +13,17 @@
     <ClInclude Include="src\rt\ray\RayGenKernels.hpp">
       <Filter>ray</Filter>
     </ClInclude>
-    <ClInclude Include="src\rt\persistentbvh\CudaPool.hpp">
-      <Filter>persistentbvh</Filter>
+    <ClInclude Include="src\rt\persistentds\CudaPool.hpp">
+      <Filter>persistentds</Filter>
     </ClInclude>
-    <ClInclude Include="src\rt\persistentbvh\CudaTracerDefines.h">
-      <Filter>persistentbvh</Filter>
+    <ClInclude Include="src\rt\persistentds\CudaTracerDefines.h">
+      <Filter>persistentds</Filter>
     </ClInclude>
-    <ClInclude Include="src\rt\persistentbvh\Allocators.hpp">
-      <Filter>persistentbvh</Filter>
+    <ClInclude Include="src\rt\persistentds\Allocators.hpp">
+      <Filter>persistentds</Filter>
     </ClInclude>
-    <ClInclude Include="src\rt\persistentbvh\ScatterAlloc\utils.h">
-      <Filter>persistentbvh\ScatterAlloc</Filter>
+    <ClInclude Include="src\rt\persistentds\ScatterAlloc\utils.h">
+      <Filter>persistentds\ScatterAlloc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -69,26 +69,29 @@
     <CudaCompile Include="src\rt\kernels\otracer_bidir.cu">
       <Filter>traversal</Filter>
     </CudaCompile>
-    <CudaCompile Include="src\rt\persistentbvh\persistent_bvh.cu">
-      <Filter>persistentbvh</Filter>
+    <CudaCompile Include="src\rt\persistentds\persistent_bvh.cu">
+      <Filter>persistentds</Filter>
     </CudaCompile>
-    <CudaCompile Include="src\rt\persistentbvh\rt_common.cu">
-      <Filter>persistentbvh</Filter>
+    <CudaCompile Include="src\rt\persistentds\rt_common.cu">
+      <Filter>persistentds</Filter>
     </CudaCompile>
-    <CudaCompile Include="src\rt\persistentbvh\pool_common.cu">
-      <Filter>persistentbvh</Filter>
+    <CudaCompile Include="src\rt\persistentds\pool_common.cu">
+      <Filter>persistentds</Filter>
     </CudaCompile>
-    <CudaCompile Include="src\rt\persistentbvh\warp_common.cu">
-      <Filter>persistentbvh</Filter>
+    <CudaCompile Include="src\rt\persistentds\warp_common.cu">
+      <Filter>persistentds</Filter>
     </CudaCompile>
-    <CudaCompile Include="src\rt\persistentbvh\allocators.cu">
-      <Filter>persistentbvh</Filter>
+    <CudaCompile Include="src\rt\persistentds\allocators.cu">
+      <Filter>persistentds</Filter>
     </CudaCompile>
     <CudaCompile Include="src\rt\kernels\otracer_color.cu">
       <Filter>traversal</Filter>
     </CudaCompile>
     <CudaCompile Include="src\rt\kernels\otracer_transparency.cu">
       <Filter>traversal</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\persistentds\persistent_kdtree.cu">
+      <Filter>persistentds</Filter>
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,10 +107,10 @@
     <Filter Include="shading">
       <UniqueIdentifier>{8b5af90d-086c-47b8-91f5-bf8520b94b9c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="persistentbvh">
+    <Filter Include="persistentds">
       <UniqueIdentifier>{66f12106-32b5-4c56-ae8c-644d15a21f6b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="persistentbvh\ScatterAlloc">
+    <Filter Include="persistentds\ScatterAlloc">
       <UniqueIdentifier>{23223281-0bed-4946-bb7b-519c45b0c867}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -115,20 +118,20 @@
     <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cuh">
       <Filter>hybrid</Filter>
     </None>
-    <None Include="src\rt\persistentbvh\rt_common.cuh">
-      <Filter>persistentbvh</Filter>
+    <None Include="src\rt\persistentds\rt_common.cuh">
+      <Filter>persistentds</Filter>
     </None>
-    <None Include="src\rt\persistentbvh\warp_common.cuh">
-      <Filter>persistentbvh</Filter>
+    <None Include="src\rt\persistentds\warp_common.cuh">
+      <Filter>persistentds</Filter>
     </None>
-    <None Include="src\rt\persistentbvh\tri_box_overlap.cuh">
-      <Filter>persistentbvh</Filter>
+    <None Include="src\rt\persistentds\tri_box_overlap.cuh">
+      <Filter>persistentds</Filter>
     </None>
-    <None Include="src\rt\persistentbvh\ScatterAlloc\heap.cuh">
-      <Filter>persistentbvh\ScatterAlloc</Filter>
+    <None Include="src\rt\persistentds\ScatterAlloc\heap.cuh">
+      <Filter>persistentds\ScatterAlloc</Filter>
     </None>
-    <None Include="src\rt\persistentbvh\ScatterAlloc\heap_impl.cuh">
-      <Filter>persistentbvh\ScatterAlloc</Filter>
+    <None Include="src\rt\persistentds\ScatterAlloc\heap_impl.cuh">
+      <Filter>persistentds\ScatterAlloc</Filter>
     </None>
     <None Include="src\rt\kernels\otracer_func.cuh">
       <Filter>traversal</Filter>

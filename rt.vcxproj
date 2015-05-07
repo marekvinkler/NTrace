@@ -29,13 +29,13 @@
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -257,10 +257,7 @@
     <ClCompile Include="src\rt\cuda\CudaBVHTracer.cpp" />
     <ClCompile Include="src\rt\cuda\CudaKDTree.cpp" />
     <ClCompile Include="src\rt\cuda\CudaKDTreeTracer.cpp" />
-    <ClCompile Include="src\rt\cuda\CudaPersistentBVHTracer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="src\rt\persistentds\CudaPersistentBVHBuilder.cpp" />
     <ClCompile Include="src\rt\cuda\CudaRenderer.cpp" />
     <ClCompile Include="src\rt\cuda\Renderer.cpp" />
     <ClCompile Include="src\rt\Environment.cpp" />
@@ -268,6 +265,7 @@
     <ClCompile Include="src\rt\kdtree\KDTree.cpp" />
     <ClCompile Include="src\rt\kdtree\KDTreeNode.cpp" />
     <ClCompile Include="src\rt\kdtree\NaiveKDTreeBuilder.cpp" />
+    <ClCompile Include="src\rt\persistentds\CudaPersistentKDTreeBuilder.cpp" />
     <ClCompile Include="src\rt\ray\PixelTable.cpp" />
     <ClCompile Include="src\rt\ray\RayBuffer.cpp" />
     <ClCompile Include="src\rt\ray\RayGen.cpp" />
@@ -295,10 +293,7 @@
     <ClInclude Include="src\rt\cuda\CudaBVHTracer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaKDTree.hpp" />
     <ClInclude Include="src\rt\cuda\CudaKDTreeTracer.hpp" />
-    <ClInclude Include="src\rt\cuda\CudaPersistentBVHTracer.hpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\CudaPersistentBVHBuilder.hpp" />
     <ClInclude Include="src\rt\cuda\CudaRenderer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaVirtualTracer.hpp" />
     <ClInclude Include="src\rt\cuda\Renderer.hpp" />
@@ -308,7 +303,9 @@
     <ClInclude Include="src\rt\kdtree\KDTreeNode.hpp" />
     <ClInclude Include="src\rt\kdtree\NaiveKDTreeBuilder.hpp" />
     <ClInclude Include="src\rt\kernels\CudaTracerKernels.hpp" />
-    <ClInclude Include="src\rt\persistentbvh\CudaBuilderKernels.hpp" />
+    <ClInclude Include="src\rt\persistentds\CudaBuilderKernels.hpp" />
+    <ClInclude Include="src\rt\persistentds\CudaPersistentKDTreeBuilder.hpp" />
+    <ClInclude Include="src\rt\persistentds\PersistentHelper.hpp" />
     <ClInclude Include="src\rt\ray\PixelTable.hpp" />
     <ClInclude Include="src\rt\ray\RayBuffer.hpp" />
     <ClInclude Include="src\rt\ray\RayGen.hpp" />

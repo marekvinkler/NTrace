@@ -25,6 +25,7 @@
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
 #pragma once
 #include "gui/Window.hpp"
 #include "gui/CommonControls.hpp"
@@ -101,8 +102,6 @@ private:
     bool                m_showCameraControls;
     bool                m_showKernelSelector;
     bool                m_guiDirty;
-
-	Environment*		m_env;
 };
 
 //------------------------------------------------------------------------
