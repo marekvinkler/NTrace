@@ -395,7 +395,7 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 
 		if(tid == 0)
 		{
-#ifdef BVH_COUNT_NODES
+#ifdef COUNT_NODES
 			// Beware this node has a preallocated space and is thus also counted as an inner node
 			atomicAdd(&g_taskStackBVH.numNodes, 1);
 			atomicAdd(&g_taskStackBVH.numLeaves, 1);
@@ -491,7 +491,7 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 
 			if(tid == 0)
 			{
-#ifdef BVH_COUNT_NODES
+#ifdef COUNT_NODES
 				atomicAdd(&g_taskStackBVH.numLeaves, 1);
 			//	printf("Force Leaf left (%d, %d)\n", triStart, triEnd);
 #endif
@@ -534,7 +534,7 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 
 			if(tid == 0)
 			{
-#ifdef BVH_COUNT_NODES
+#ifdef COUNT_NODES
 				atomicAdd(&g_taskStackBVH.numLeaves, 1);
 			//	printf("Force Leaf right (%d, %d)\n", triStart, triEnd);
 #endif
@@ -566,7 +566,7 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 
 #endif
 
-#ifdef BVH_COUNT_NODES
+#ifdef COUNT_NODES
 		if(tid == 0)
 		{
 			atomicAdd(&g_taskStackBVH.numNodes, 1);
@@ -781,14 +781,7 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 #endif
 		}
 
-#ifdef DIVERGENCE_TEST
-		if(beg >= 0 && beg < g_taskStackBVH.sizePool) // TESTING ONLY - WRITE WILL CAUSE "UNKNOWN ERROR" IF WARP DIVERGES
-			taskSaveFirstToGMEM(tid, beg, s_newTask[threadIdx.y]);
-		else
-			printf("task adding on invalid index: %d, Tid %d\n", beg, tid);
-#else
 		taskSaveFirstToGMEM(tid, beg, s_newTask[threadIdx.y]);
-#endif
 
 #if SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
 #if BINNING_TYPE != 0 && BINNING_TYPE != 1
@@ -810,33 +803,6 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 
 		ASSERT_DIVERGENCE("taskEnqueueSubtasks forcycle2", tid);
 
-		
-#if PARALLELISM_TEST >= 0
-		if(tid == 0)
-		{
-#ifdef CUTOFF_DEPTH
-			int active;
-			if(s_newTask[threadIdx.y].depth > c_env.optCutOffDepth)
-				active = atomicAdd(&g_numActive, 0);
-			else
-				active = atomicAdd(&g_numActive, 1)+1;
-#else
-			int active = atomicAdd(&g_numActive, 1);
-#endif
-			int warpIdx = blockDim.y*blockIdx.x + threadIdx.y; // Warp ID
-			//if(active > ACTIVE_MAX)
-			//	printf("Warp %d too much [%d] subtasks\n", warpIdx, active);
-#ifdef CUTOFF_DEPTH
-			if(/*beg == 124 || */(active == 0 && i == 1))
-#else
-			if(active == 0)
-#endif
-			{
-				//printf("Warp %d no active tasks before adding task with %d subtasks\n", warpIdx, newStatus);
-				g_taskStackBVH.unfinished = 1;
-			}
-		}
-#endif
 		__threadfence(); // Make sure task is copied to the global memory before we unlock it
 
 #if DEQUEUE_TYPE == 3 || DEQUEUE_TYPE == 5 || DEQUEUE_TYPE == 6
@@ -847,15 +813,8 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 #endif
 
 		// Unlock the task - set the task status
-#ifdef CUTOFF_DEPTH
-		if(s_newTask[threadIdx.y].depth > c_env.optCutOffDepth)
-			g_taskStackBVH.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
-		else
-			g_taskStackBVH.header[beg] = newStatus; // This operation is atomic anyway
-#else
 		g_taskStackBVH.header[beg] = newStatus; // This operation is atomic anyway
 		//g_taskStackBVH.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
-#endif
 
 #if ENQUEUE_TYPE == 0
 		if(goRight)
@@ -976,14 +935,7 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 			atomicMax(&g_taskStackBVH.top, beg); // Update the stack top to be a larger position than all nonempty tasks
 		}
 
-#ifdef DIVERGENCE_TEST
-		if(beg >= 0 && beg < g_taskStackBVH.sizePool) // TESTING ONLY - WRITE WILL CAUSE "UNKNOWN ERROR" IF WARP DIVERGES
-			taskSaveFirstToGMEM(tid, beg, s_newTask[threadIdx.y]);
-		else
-			printf("task adding on invalid index: %d, Tid %d\n", beg, tid);
-#else
 		taskSaveFirstToGMEM(tid, beg, s_newTask[threadIdx.y]);
-#endif
 
 #if SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
 #if BINNING_TYPE != 0 && BINNING_TYPE != 1
@@ -1005,32 +957,6 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 
 		ASSERT_DIVERGENCE("taskEnqueueSubtasks forcycle2", tid);
 
-#if PARALLELISM_TEST >= 0
-		if(tid == 0)
-		{
-#ifdef CUTOFF_DEPTH
-			int active;
-			if(s_newTask[threadIdx.y].depth > c_env.optCutOffDepth)
-				active = atomicAdd(&g_numActive, 0);
-			else
-				active = atomicAdd(&g_numActive, 1)+1;
-#else
-			int active = atomicAdd(&g_numActive, 1);
-#endif
-			int warpIdx = blockDim.y*blockIdx.x + threadIdx.y; // Warp ID
-			//if(active > ACTIVE_MAX)
-			//	printf("Warp %d too much [%d] subtasks\n", warpIdx, active);
-#ifdef CUTOFF_DEPTH
-			if(/*beg == 124 || */(active == 0 && i == 1))
-#else
-			if(active == 0)
-#endif
-			{
-				//printf("Warp %d no active tasks before adding task with %d subtasks\n", warpIdx, newStatus);
-				g_taskStackBVH.unfinished = 1;
-			}
-		}
-#endif
 		__threadfence(); // Make sure task is copied to the global memory before we unlock it
 
 #if DEQUEUE_TYPE == 3 || DEQUEUE_TYPE == 5 || DEQUEUE_TYPE == 6
@@ -1041,15 +967,8 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 #endif
 
 		// Unlock the task - set the task status
-#ifdef CUTOFF_DEPTH
-		if(s_newTask[threadIdx.y].depth > c_env.optCutOffDepth)
-			g_taskStackBVH.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
-		else
-			g_taskStackBVH.header[beg] = newStatus; // This operation is atomic anyway
-#else
 		g_taskStackBVH.header[beg] = newStatus; // This operation is atomic anyway
 		//g_taskStackBVH.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
-#endif
 
 		beg++; // Move for next item
 
@@ -1072,25 +991,8 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 {
 	ASSERT_DIVERGENCE("taskDequeue", tid);
 
-#if PARALLELISM_TEST >= 0
-	int* active = &g_numActive;
-#endif
-
 	if(tid == 13) // Only thread 0 acquires the work
 	{
-/*#if PARALLELISM_TEST >= 0
-		int *active = &g_numActive;
-		unsigned int waitCounter = 0;
-		clock_t clockStart = clock();
-		while(*active == 0)
-			waitCounter++;
-		clock_t clockEnd = clock();
-		if(waitCounter != 0)
-		{
-			int warpIdx = blockDim.y*blockIdx.x + threadIdx.y; // Warp ID
-			printf("Warp %d waited %u iterations taking %u\n", warpIdx, waitCounter, clockEnd-clockStart);
-		}
-#endif*/
 
 		// Initiate variables
 		int* header = g_taskStackBVH.header;
@@ -1672,17 +1574,9 @@ __device__ void taskFinishSort(int tid, int taskIdx)
 	atomicCAS(&g_taskStackBVH.top, taskIdx, max(taskIdx-1, 0)); // Try decreasing the stack top
 #endif
 
-#if PARALLELISM_TEST == 0
-	atomicSub(&g_numActive, 1);
-#endif
-
 	int fullLeft = s_sharedData[threadIdx.y][0] >= 0;
 	int fullRight = s_sharedData[threadIdx.y][1] >= 0;
 	int numSubtasks = fullLeft+fullRight;
-#ifdef CUTOFF_DEPTH
-	if(s_task[threadIdx.y].depth == c_env.optCutOffDepth)
-		numSubtasks = 0;
-#endif
 
 	// Update taskStackBVH.unfinished
 	atomicSub(&g_taskStackBVH.unfinished, numSubtasks-1);
@@ -1741,11 +1635,6 @@ __device__ void taskFinishTask(int tid, int taskIdx)
 
 #ifdef DEBUG_INFO
 		taskSaveFirstToGMEM(tid, taskIdx, s_task[threadIdx.y]); // Make sure results are visible in global memory
-#endif
-
-#if PARALLELISM_TEST == 1
-		if(tid == 0)
-			atomicSub(&g_numActive, 1);
 #endif
 }
 
@@ -2718,11 +2607,6 @@ __device__ void taskFinishObjectSplitTree(int tid, int taskIdx)
 
 #ifdef DEBUG_INFO
 	taskSaveFirstToGMEM(tid, taskIdx, s_task[threadIdx.y]); // Make sure results are visible in global memory
-#endif
-
-#if PARALLELISM_TEST == 1
-	if(tid == 0)
-		atomicSub(&g_numActive, 1);
 #endif
 }
 
@@ -4812,7 +4696,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 		if(tid == 0)
 		{
 			taskUpdateParentPtr(g_bvh, parentIdx, taskID, ~nodeIdx); // Mark this node as leaf in the hierarchy	
-#ifdef BVH_COUNT_NODES
+#ifdef COUNT_NODES
 			// Beware this node has a preallocated space and is thus also counted as an inner node
 			atomicAdd(&g_taskStackBVH.numNodes, 1);
 			atomicAdd(&g_taskStackBVH.numLeaves, 1);
@@ -4974,7 +4858,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 
 				isLeaf = true;
 				nodeIdx = -(segmentStart+1);
-#ifdef BVH_COUNT_NODES
+#ifdef COUNT_NODES
 				// Beware the node count must still be updated
 				if(tid == segmentStart)
 					atomicAdd(&g_taskStackBVH.numNodes, 1);
@@ -5135,7 +5019,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 		outIdx[triStart + tid] = sortedTriIdx;
 	}
 
-#ifdef BVH_COUNT_NODES
+#ifdef COUNT_NODES
 	int leafCount = 0;
 	if(tid < end)
 		leafCount = (tid == segmentEnd-1) ? 1 : 0; // Count the number of vertices + the number of segments
@@ -5165,7 +5049,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 		// Leaf -> create new triangles in the final array
 		triOffset = atomicAdd(&g_taskStackBVH.triTop, bufferSize);
 
-#ifdef BVH_COUNT_NODES
+#ifdef COUNT_NODES
 		int cntSegments = bufferSize-3*end; // Subtract size of triangle data to get the number of segments (leaves)
 		atomicAdd(&g_taskStackBVH.numNodes, cntSegments-1);
 		atomicAdd(&g_taskStackBVH.numSortedTris, __log2f(cntSegments)*(s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart));
@@ -5395,12 +5279,6 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 	}
 #endif
 
-/*#if PARALLELISM_TEST >= 0
-	int warpIdx = blockDim.y*blockIdx.x + threadIdx.y; // Warp ID
-	if(warpIdx == 0 && tid == 0)
-		printf("Output start!\n");
-#endif*/
-
 	s_task[threadIdx.y].lock = LockType_Free; // Prepare task
 
 #if defined(COUNT_STEPS_LEFT) || defined(COUNT_STEPS_RIGHT) || defined(COUNT_STEPS_DEQUEUE)
@@ -5422,29 +5300,7 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 #endif
 		if(s_task[threadIdx.y].lock == LockType_Free)
 		{
-		// Copy first cache line of task to shared memory
-#ifdef DIVERGENCE_TEST
-			if(s_task[threadIdx.y].popTaskIdx >= 0 && s_task[threadIdx.y].popTaskIdx < g_taskStackBVH.sizePool)
-			{
-				//taskLoadFirstFromGMEM(tid, s_task[threadIdx.y].popTaskIdx, &s_task[threadIdx.y]);
-				TaskBVH* g_task = &g_taskStackBVH.tasks[s_task[threadIdx.y].popTaskIdx];
-				taskAddr[tid] = ((int*)g_task)[tid]; // Every thread copies one word of task data
-#ifdef DEBUG_INFO
-				int offset = 128/sizeof(int); // 128B offset
-				taskAddr[tid+offset] = ((int*)g_task)[tid+offset]; // Every thread copies one word of task data
-#endif
-				
-				s_task[threadIdx.y].popStart = s_task[threadIdx.y].popSubtask;
-				// If we have poped all of the task's work we do not have to update unfinished atomicaly
-				if(s_task[threadIdx.y].popSubtask == s_task[threadIdx.y].origSize-1 && s_task[threadIdx.y].popCount >= s_task[threadIdx.y].origSize)
-					s_task[threadIdx.y].lock = LockType_None;
-			}
-			else
-			{
-				printf("Fetched task %d out of range!\n", s_task[threadIdx.y].popTaskIdx);
-				g_taskStackBVH.unfinished = 1;
-			}
-#else
+			// Copy first cache line of task to shared memory
 			//taskLoadFirstFromGMEM(tid, s_task[threadIdx.y].popTaskIdx, &s_task[threadIdx.y]);
 			TaskBVH* g_task = &g_taskStackBVH.tasks[s_task[threadIdx.y].popTaskIdx];
 			taskAddr[tid] = ((int*)g_task)[tid]; // Every thread copies one word of task data
@@ -5457,7 +5313,6 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 			// If we have poped all of the task's work we do not have to update unfinished atomicaly
 			if(s_task[threadIdx.y].popSubtask == s_task[threadIdx.y].origSize-1 && s_task[threadIdx.y].popCount >= s_task[threadIdx.y].origSize)
 				s_task[threadIdx.y].lock = LockType_None;
-#endif
 
 #ifdef SNAPSHOT_WARP
 			// Write out information about this dequeue

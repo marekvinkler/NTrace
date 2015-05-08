@@ -25,10 +25,9 @@
 #pragma once
 #include "CudaPool.hpp"
 #include "warp_common.cu"
+#include "allocators.cu"
 
 //------------------------------------------------------------------------
-
-#ifdef MALLOC_SCRATCHPAD
 
 // Allocate memory for the root node
 __global__ void allocFreeableMemory(int numTris, int numRays)
@@ -84,7 +83,6 @@ __global__ void MemCpyIndex(CUdeviceptr src, int ofs, int size)
 	if(tid < size)
 		((int*)(g_heapBase+ofs))[tid] = ((int*)src)[tid];
 }
-#endif
 
 //------------------------------------------------------------------------
 

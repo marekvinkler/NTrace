@@ -29,18 +29,13 @@ class CudaPersistentBVHBuilder : public CudaBVH
 	// GPU task data
 	Buffer   m_taskData;
 	Buffer   m_splitData;
-	int      m_cutOffDepth;
-	int      m_numRays;
 
 	CudaCompiler m_compiler;
 	CudaModule*  m_module;
 
 	// Auxiliary buffers
-	Buffer m_ppsRays;
 	Buffer m_ppsTris;
-	Buffer m_ppsRaysIndex;
 	Buffer m_ppsTrisIndex;
-	Buffer m_sortRays;
 	Buffer m_sortTris;
 
 	// Debug buffers
@@ -58,7 +53,6 @@ class CudaPersistentBVHBuilder : public CudaBVH
 	F32    m_sizeTri;
 	F32    m_sizeTriIdx;
 	F32    m_heap;
-	String m_kernelFile;
 
 	void updateConstants();
 	void initPool(Buffer* nodeBuffer = NULL);

@@ -15,7 +15,7 @@
  */
 
 /*
-    BVH building specialization of the framework.
+    Kdtree building specialization of the framework.
 
     "Massively Parallel Hierarchical Scene Sorting with Applications in Rendering",
     Marek Vinkler, Michal Hapala, Jiri Bittner and Vlastimil Havran,
@@ -30,8 +30,8 @@
 // Shared variables.
 //------------------------------------------------------------------------
 
-__shared__ volatile TaskBVH s_task[NUM_WARPS_PER_BLOCK]; // Memory holding information about the currently processed task
-__shared__ volatile TaskBVH s_newTask[NUM_WARPS_PER_BLOCK]; // Memory for the new task to be created in
+__shared__ volatile TaskKdtree s_task[NUM_WARPS_PER_BLOCK]; // Memory holding information about the currently processed task
+__shared__ volatile TaskKdtree s_newTask[NUM_WARPS_PER_BLOCK]; // Memory for the new task to be created in
 __shared__ volatile int s_sharedData[NUM_WARPS_PER_BLOCK][WARP_SIZE]; // Shared memory for inside warp use
 __shared__ volatile int s_owner[NUM_WARPS_PER_BLOCK][WARP_SIZE]; // Another shared pool, not necessary for Kdtree
 
@@ -41,19 +41,19 @@ __shared__ volatile int s_owner[NUM_WARPS_PER_BLOCK][WARP_SIZE]; // Another shar
 //------------------------------------------------------------------------
 
 // Loading and saving functions
-__device__ __forceinline__ void taskLoadFirstFromGMEM(int tid, int taskIdx, volatile TaskBVH& task);
-__device__ __forceinline__ void taskLoadSecondFromGMEM(int tid, int taskIdx, volatile TaskBVH& task);
-__device__ __forceinline__ void taskSaveFirstToGMEM(int tid, int taskIdx, const volatile TaskBVH& task);
-__device__ __forceinline__ void taskSaveSecondToGMEM(int tid, int taskIdx, const volatile TaskBVH& task);
+__device__ __forceinline__ void taskLoadFirstFromGMEM(int tid, int taskIdx, volatile TaskKdtree& task);
+__device__ __forceinline__ void taskLoadSecondFromGMEM(int tid, int taskIdx, volatile TaskKdtree& task);
+__device__ __forceinline__ void taskSaveFirstToGMEM(int tid, int taskIdx, const volatile TaskKdtree& task);
+__device__ __forceinline__ void taskSaveSecondToGMEM(int tid, int taskIdx, const volatile TaskKdtree& task);
 
 //------------------------------------------------------------------------
 
 // Copies first cache line of the Task taskIdx to task
-__device__ __forceinline__ void taskLoadFirstFromGMEM(int tid, int taskIdx, volatile TaskBVH& task)
+__device__ __forceinline__ void taskLoadFirstFromGMEM(int tid, int taskIdx, volatile TaskKdtree& task)
 {
 	ASSERT_DIVERGENCE("taskLoadFirstFromGMEM top", tid);
 	volatile int* taskAddr = (volatile int*)(&task);
-	TaskBVH* g_task = &g_taskStackBVH.tasks[taskIdx];
+	TaskKdtree* g_task = &g_taskStackKdtree.tasks[taskIdx];
 	taskAddr[tid] = ((int*)g_task)[tid]; // Every thread copies one word of task data
 	ASSERT_DIVERGENCE("taskLoadFirstFromGMEM bottom", tid);
 
@@ -63,11 +63,11 @@ __device__ __forceinline__ void taskLoadFirstFromGMEM(int tid, int taskIdx, vola
 }
 
 // Copies second cache line of the Task taskIdx to task
-__device__ __forceinline__ void taskLoadSecondFromGMEM(int tid, int taskIdx, volatile TaskBVH& task)
+__device__ __forceinline__ void taskLoadSecondFromGMEM(int tid, int taskIdx, volatile TaskKdtree& task)
 {
 	ASSERT_DIVERGENCE("taskLoadSecondFromGMEM top", tid);
 	volatile int* taskAddr = (volatile int*)(&task);
-	TaskBVH* g_task = &g_taskStackBVH.tasks[taskIdx];
+	TaskKdtree* g_task = &g_taskStackKdtree.tasks[taskIdx];
 	int offset = 128/sizeof(int); // 128B offset
 	if(tid < TASK_GLOBAL_KDTREE) // Prevent overwriting local data saved in task
 		taskAddr[tid+offset] = ((int*)g_task)[tid+offset]; // Every thread copies one word of task data
@@ -77,11 +77,11 @@ __device__ __forceinline__ void taskLoadSecondFromGMEM(int tid, int taskIdx, vol
 //------------------------------------------------------------------------
 
 // Copies first cache line of the task to Task taskIdx
-__device__ __forceinline__ void taskSaveFirstToGMEM(int tid, int taskIdx, const volatile TaskBVH& task)
+__device__ __forceinline__ void taskSaveFirstToGMEM(int tid, int taskIdx, const volatile TaskKdtree& task)
 {
 	ASSERT_DIVERGENCE("taskSaveFirstToGMEM top", tid);
 	// Copy the data to global memory
-	int* taskAddr = (int*)(&g_taskStackBVH.tasks[taskIdx]);
+	int* taskAddr = (int*)(&g_taskStackKdtree.tasks[taskIdx]);
 	taskAddr[tid] = ((const volatile int*)&task)[tid]; // Every thread copies one word of data of its task
 	ASSERT_DIVERGENCE("taskSaveFirstToGMEM bottom", tid);
 
@@ -91,11 +91,11 @@ __device__ __forceinline__ void taskSaveFirstToGMEM(int tid, int taskIdx, const 
 }
 
 // Copies second cache line of the task to Task taskIdx
-__device__ __forceinline__ void taskSaveSecondToGMEM(int tid, int taskIdx, const volatile TaskBVH& task)
+__device__ __forceinline__ void taskSaveSecondToGMEM(int tid, int taskIdx, const volatile TaskKdtree& task)
 {
 	ASSERT_DIVERGENCE("taskSaveSecondToGMEM top", tid);
 	// Copy the data to global memory
-	int* taskAddr = (int*)(&g_taskStackBVH.tasks[taskIdx]);
+	int* taskAddr = (int*)(&g_taskStackKdtree.tasks[taskIdx]);
 	int offset = 128/sizeof(int); // 128B offset
 	taskAddr[tid+offset] = ((const volatile int*)&task)[tid+offset]; // Every thread copies one word of data of its task
 	ASSERT_DIVERGENCE("taskSaveSecondToGMEM bottom", tid);
@@ -105,7 +105,7 @@ __device__ __forceinline__ void taskSaveSecondToGMEM(int tid, int taskIdx, const
 
 __device__ __forceinline__ int taskPopCount(int status)
 {
-	//float nTris = c_bvh_in.numTris;
+	//float nTris = c_kdtree_in.numTris;
 
 	//return 1;
 	//return (int)((float)nTris/((float)WARP_SIZE*NUM_WARPS*c_env.granularity))+1;
@@ -116,52 +116,30 @@ __device__ __forceinline__ int taskPopCount(int status)
 
 __device__ __forceinline__ int* getPPSTrisPtr(int dynamicMemory, int tris)
 {
-#ifndef MALLOC_SCRATCHPAD
-	return (int*)c_bvh_in.ppsTrisBuf;
-#else
 	return ((int*)(g_heapBase + dynamicMemory))+tris;
-	//return ((int*)(g_heapBase + dynamicMemory))+c_bvh_in.numTris;
-#endif
+	//return ((int*)(g_heapBase + dynamicMemory))+c_kdtree_in.numTris;
 }
 
 //------------------------------------------------------------------------
 
 __device__ __forceinline__ int* getPPSTrisIdxPtr(int dynamicMemory, int tris)
 {
-#ifndef MALLOC_SCRATCHPAD
-	return (int*)c_bvh_in.ppsTrisIndex;
-#else
 	return ((int*)(g_heapBase + dynamicMemory))+2*tris;
-	//return ((int*)(g_heapBase + dynamicMemory))+2*c_bvh_in.numTris;
-#endif
+	//return ((int*)(g_heapBase + dynamicMemory))+2*c_kdtree_in.numTris;
 }
 
 //------------------------------------------------------------------------
 
 __device__ __forceinline__ int* getSortTrisPtr(int dynamicMemory, int tris)
 {
-#ifndef MALLOC_SCRATCHPAD
-	return (int*)c_bvh_in.sortTris;
-#else
 	return ((int*)(g_heapBase + dynamicMemory))+3*tris;
-	//return ((int*)(g_heapBase + dynamicMemory))+3*c_bvh_in.numTris;
-#endif
+	//return ((int*)(g_heapBase + dynamicMemory))+3*c_kdtree_in.numTris;
 }
 
 //------------------------------------------------------------------------
 
 __device__ __forceinline__ int* getTriIdxPtr(int dynamicMemory, int tris)
 {
-#ifndef MALLOC_SCRATCHPAD
-#if SCAN_TYPE < 2
-	return (int*)c_bvh_in.trisIndex;
-#else
-	if((triIdxCtr % 2) == 0)
-		return (int*)c_bvh_in.trisIndex;
-	else
-		return (int*)c_bvh_in.sortTris;
-#endif
-#else
 #if SCAN_TYPE < 2
 	return (int*)(g_heapBase + dynamicMemory);
 #else
@@ -169,7 +147,7 @@ __device__ __forceinline__ int* getTriIdxPtr(int dynamicMemory, int tris)
 		return (int*)(g_heapBase + dynamicMemory);
 	else
 		return ((int*)(g_heapBase + dynamicMemory))+3*tris;
-		//return ((int*)(g_heapBase + dynamicMemory))+3*c_bvh_in.numTris;*/
+		//return ((int*)(g_heapBase + dynamicMemory))+3*c_kdtree_in.numTris;*/
 
 #if ((MALLOC_TYPE == CMALLOC) || (MALLOC_TYPE == CIRCULAR_MALLOC_FUSED) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC_FUSED)) && defined(CIRCULAR_MALLOC_WITH_SCATTER_ALLOC)
 	if(dynamicMemory <= 0)
@@ -186,7 +164,6 @@ __device__ __forceinline__ int* getTriIdxPtr(int dynamicMemory, int tris)
 #else
 	return (int*)(g_heapBase + dynamicMemory);
 #endif // MALLOC_TYPE
-#endif
 #endif
 }
 
@@ -225,16 +202,16 @@ __device__ __forceinline__ int allocBuffers(int tris)
 	if(alloc == NULL)
 	{
 		printf("Out of memory!\n");
-		g_taskStackBVH.unfinished = 1;
+		g_taskStackKdtree.unfinished = 1;
 	}
 	//if((CUdeviceptr)alloc < g_heapBase)
 	//	printf("Incorrect base ptr!\n");
 #endif
 
-#ifdef BVH_COUNT_NODES
-		atomicAdd(&g_taskStackBVH.numAllocations, 1);
-		atomicAdd(&g_taskStackBVH.allocSum, allocSize);
-		atomicAdd(&g_taskStackBVH.allocSumSquare, allocSize*allocSize);
+#ifdef COUNT_NODES
+		atomicAdd(&g_taskStackKdtree.numAllocations, 1);
+		atomicAdd(&g_taskStackKdtree.allocSum, allocSize);
+		atomicAdd(&g_taskStackKdtree.allocSumSquare, allocSize*allocSize);
 #endif
 
 #if (MALLOC_TYPE == HALLOC)
@@ -312,7 +289,7 @@ __device__ __forceinline__ void allocChildren(volatile int& leftMem, volatile in
 			if(alloc == NULL)
 			{
 				printf("Out of memory!\n");
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackKdtree.unfinished = 1;
 			}
 #endif
 			leftMem = -(((char*)alloc) - g_heapBase2);
@@ -335,7 +312,7 @@ __device__ __forceinline__ void allocChildren(volatile int& leftMem, volatile in
 			if(alloc == NULL)
 			{
 				printf("Out of memory!\n");
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackKdtree.unfinished = 1;
 			}
 #endif
 			rightMem = -(((char*)alloc) - g_heapBase2);
@@ -369,20 +346,14 @@ __device__ __forceinline__ void allocChildren(volatile int& leftMem, volatile in
 __device__ __forceinline__ void backcopy(int tid, int triIdxCtr, int triStart, int triEnd)
 {
 	int* curMem = getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart);
-#ifndef MALLOC_SCRATCHPAD
-	if(curMem != (int*)c_bvh_in.trisIndex)
-#else
-#endif
-	{
-		int* inIdx = curMem + triStart + tid;
-		int* outIdx = (int*)c_bvh_in.trisIndex + triStart + tid;
+	int* inIdx = curMem + triStart + tid;
+	int* outIdx = (int*)c_kdtree_in.trisIndex + triStart + tid;
 
-		for(int i = triStart + tid; i < triEnd; i += WARP_SIZE)
-		{
-			*outIdx = *inIdx;
-			inIdx += WARP_SIZE;
-			outIdx += WARP_SIZE;
-		}
+	for(int i = triStart + tid; i < triEnd; i += WARP_SIZE)
+	{
+		*outIdx = *inIdx;
+		inIdx += WARP_SIZE;
+		outIdx += WARP_SIZE;
 	}
 }
 
@@ -408,7 +379,7 @@ __device__ __forceinline__ void taskPrepareNext(int tid, int taskIdx, int phase)
 #ifdef KEEP_ALL_TASKS
 		taskSaveFirstToGMEM(tid, taskIdx, s_task[threadIdx.y]);
 #endif
-		g_taskStackBVH.unfinished = 1;
+		g_taskStackKdtree.unfinished = 1;
 	}
 #endif
 
@@ -445,7 +416,7 @@ __device__ __forceinline__ void taskPrepareNext(int tid, int taskIdx, int phase)
 #ifdef PHASE_TEST
 		if(phase == endAfter && s_task[threadIdx.y].type != phase)
 		{
-			g_taskStackBVH.header[taskIdx] = TaskHeader_Locked;
+			g_taskStackKdtree.header[taskIdx] = TaskHeader_Locked;
 		}
 		else
 #endif
@@ -455,7 +426,7 @@ __device__ __forceinline__ void taskPrepareNext(int tid, int taskIdx, int phase)
 			s_task[threadIdx.y].popCount = popCount;
 			s_task[threadIdx.y].unfinished -= popCount;
 
-			g_taskStackBVH.header[taskIdx] = s_task[threadIdx.y].unfinished; // Restart this task
+			g_taskStackKdtree.header[taskIdx] = s_task[threadIdx.y].unfinished; // Restart this task
 		}
 	}
 }
@@ -470,7 +441,7 @@ __device__ __forceinline__ bool taskCheckFinished(int tid, int taskIdx, int coun
 		if(s_task[threadIdx.y].lock == LockType_None)
 			s_sharedData[threadIdx.y][0] = countDown;
 		else
-			s_sharedData[threadIdx.y][0] = atomicSub(&g_taskStackBVH.tasks[taskIdx].unfinished, countDown); // Lower the number of unfinished tasks
+			s_sharedData[threadIdx.y][0] = atomicSub(&g_taskStackKdtree.tasks[taskIdx].unfinished, countDown); // Lower the number of unfinished tasks
 	}
 
 	ASSERT_DIVERGENCE("taskCheckFinished top", tid);
@@ -540,7 +511,6 @@ __device__ bool taskTerminationCriteria(int tris, int trisLeft, int trisRight, v
 	return false; // Continue subdivision
 }
 
-#ifndef INTERLEAVED_LAYOUT
 //------------------------------------------------------------------------
 
 #ifndef COMPACT_LAYOUT
@@ -550,11 +520,11 @@ __device__ __forceinline__ void taskSaveNodeParent(int tid, int triStart, int tr
 	if(tid == 0)
 	{
 		//printf("Left %d, right %d, depth %d\n", numLeft, numRight, newTask->depth);
-		s_sharedData[threadIdx.y][3] = atomicAdd(&g_taskStackBVH.triTop, (triEnd-triStart)*3); // Atomically acquire leaf space
+		s_sharedData[threadIdx.y][3] = atomicAdd(&g_taskStackKdtree.triTop, (triEnd-triStart)*3); // Atomically acquire leaf space
 	}
 
 	int triOfs = s_sharedData[threadIdx.y][3];
-	int triNum = createKdtreeLeafWoop(tid, triOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triStart, triEnd, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart));
+	int triNum = createKdtreeLeafWoop(tid, triOfs, (float4*)c_kdtree_in.trisOut, (int*)c_kdtree_in.trisIndexOut, triStart, triEnd, (float4*)c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart));
 
 	if(tid == 0)
 	{
@@ -599,9 +569,9 @@ __device__ __forceinline__ void taskSaveNodeParent(int tid, int triStart, int tr
 #ifndef COMPACT_LAYOUT
 
 // Create left child in NoCompactNoWoop layout
-__device__ __forceinline__ void taskSaveNodeLeft(int tid, int leftOfs, int childLeft, int numLeft, int nodeIdx, volatile TaskBVH* newTask)
+__device__ __forceinline__ void taskSaveNodeLeft(int tid, int leftOfs, int childLeft, int numLeft, int nodeIdx, volatile TaskKdtree* newTask)
 {
-	int triNum = createKdtreeLeafWoop(tid, leftOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, numLeft, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryLeft, numLeft));
+	int triNum = createKdtreeLeafWoop(tid, leftOfs, (float4*)c_kdtree_in.trisOut, (int*)c_kdtree_in.trisIndexOut, 0, numLeft, (float4*)c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryLeft, numLeft));
 	g_kdtree[childLeft] = make_int4(triNum, leftOfs, nodeIdx, 0); // Sets the leaf child pointers
 	s_sharedData[threadIdx.y][0] = triNum;
 }
@@ -609,7 +579,7 @@ __device__ __forceinline__ void taskSaveNodeLeft(int tid, int leftOfs, int child
 #else
 
 // Create left child in NoCompactNoWoop layout
-__device__ __forceinline__ void taskSaveNodeLeft(int tid, int leftOfs, int& childLeft, int numLeft, int nodeIdx, volatile TaskBVH* newTask)
+__device__ __forceinline__ void taskSaveNodeLeft(int tid, int leftOfs, int& childLeft, int numLeft, int nodeIdx, volatile TaskKdtree* newTask)
 {
 	if(numLeft == 0)
 	{
@@ -619,12 +589,12 @@ __device__ __forceinline__ void taskSaveNodeLeft(int tid, int leftOfs, int& chil
 	else
 	{
 #ifndef WOOP_TRIANGLES
-		int triIdx = createLeaf(tid, leftOfs, (float*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, numLeft, (float*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, numLeft));
+		int triIdx = createLeaf(tid, leftOfs, (float*)c_kdtree_in.trisOut, (int*)c_kdtree_in.trisIndexOut, 0, numLeft, (float*)c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, numLeft));
 #else
 #ifdef DUPLICATE_REFERENCES
-		int triIdx = createLeafWoop(tid, leftOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, numLeft, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryLeft, numLeft));
+		int triIdx = createLeafWoop(tid, leftOfs, (float4*)c_kdtree_in.trisOut, (int*)c_kdtree_in.trisIndexOut, 0, numLeft, (float4*)c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryLeft, numLeft));
 #else
-		int triIdx = createLeafReference(tid, leftOfs, (int*)c_bvh_in.trisIndexOut, 0, numLeft, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryLeft, numLeft));
+		int triIdx = createLeafReference(tid, leftOfs, (int*)c_kdtree_in.trisIndexOut, 0, numLeft, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryLeft, numLeft));
 #endif
 #endif
 
@@ -638,9 +608,9 @@ __device__ __forceinline__ void taskSaveNodeLeft(int tid, int leftOfs, int& chil
 #ifndef COMPACT_LAYOUT
 
 // Create right child in NoCompactNoWoop layout
-__device__ __forceinline__ void taskSaveNodeRight(int tid, int rightOfs, int childRight, int numRight, int nodeIdx, volatile TaskBVH* newTask)
+__device__ __forceinline__ void taskSaveNodeRight(int tid, int rightOfs, int childRight, int numRight, int nodeIdx, volatile TaskKdtree* newTask)
 {
-	int triNum = createKdtreeLeafWoop(tid, rightOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, numRight, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, numRight));
+	int triNum = createKdtreeLeafWoop(tid, rightOfs, (float4*)c_kdtree_in.trisOut, (int*)c_kdtree_in.trisIndexOut, 0, numRight, (float4*)c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, numRight));
 	g_kdtree[childRight] = make_int4(triNum, rightOfs, nodeIdx, 0); // Sets the leaf child pointers
 	s_sharedData[threadIdx.y][1] = triNum;
 }
@@ -648,7 +618,7 @@ __device__ __forceinline__ void taskSaveNodeRight(int tid, int rightOfs, int chi
 #else
 
 // Create right child in NoCompactNoWoop layout
-__device__ __forceinline__ void taskSaveNodeRight(int tid, int rightOfs, int& childRight, int numRight, int nodeIdx, volatile TaskBVH* newTask)
+__device__ __forceinline__ void taskSaveNodeRight(int tid, int rightOfs, int& childRight, int numRight, int nodeIdx, volatile TaskKdtree* newTask)
 {
 	if(numRight == 0)
 	{
@@ -659,12 +629,12 @@ __device__ __forceinline__ void taskSaveNodeRight(int tid, int rightOfs, int& ch
 	{
 		// OPTIMIZE: Write out both children in one call?
 #ifndef WOOP_TRIANGLES
-		int triIdx = childRight = createLeaf(tid, rightOfs, (float*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, numRight, (float*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, numRight));
+		int triIdx = childRight = createLeaf(tid, rightOfs, (float*)c_kdtree_in.trisOut, (int*)c_kdtree_in.trisIndexOut, 0, numRight, (float*)c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, numRight));
 #else
 #ifdef DUPLICATE_REFERENCES
-		int triIdx = createLeafWoop(tid, rightOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, numRight, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, numRight));
+		int triIdx = createLeafWoop(tid, rightOfs, (float4*)c_kdtree_in.trisOut, (int*)c_kdtree_in.trisIndexOut, 0, numRight, (float4*)c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, numRight));
 #else
-		int triIdx = createLeafReference(tid, rightOfs, (int*)c_bvh_in.trisIndexOut, 0, numRight, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, numRight));
+		int triIdx = createLeafReference(tid, rightOfs, (int*)c_kdtree_in.trisIndexOut, 0, numRight, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, numRight));
 #endif
 #endif
 
@@ -694,14 +664,14 @@ __device__ __forceinline__ void taskAllocNodeTris(int tid, bool leftLeaf, bool r
 	if(tid == 0)
 	{
 		if(innerNodes > 0)
-			s_sharedData[threadIdx.y][2] = atomicAdd(&g_taskStackBVH.nodeTop, innerNodes); // Inner node -> create new subtasks in the final array
+			s_sharedData[threadIdx.y][2] = atomicAdd(&g_taskStackKdtree.nodeTop, innerNodes); // Inner node -> create new subtasks in the final array
 		if(leafChunks > 0)
-			s_sharedData[threadIdx.y][3] = atomicAdd(&g_taskStackBVH.triTop, leafChunks); // Atomically acquire leaf space
+			s_sharedData[threadIdx.y][3] = atomicAdd(&g_taskStackKdtree.triTop, leafChunks); // Atomically acquire leaf space
 
 		// Check if there is enough memory to write the nodes and triangles
-		if((innerNodes > 0 && s_sharedData[threadIdx.y][2]+innerNodes >= g_taskStackBVH.sizeNodes) || (leafChunks > 0 && s_sharedData[threadIdx.y][3]+leafChunks >= g_taskStackBVH.sizeTris))
+		if((innerNodes > 0 && s_sharedData[threadIdx.y][2]+innerNodes >= g_taskStackKdtree.sizeNodes) || (leafChunks > 0 && s_sharedData[threadIdx.y][3]+leafChunks >= g_taskStackKdtree.sizeTris))
 		{
-			g_taskStackBVH.unfinished = 1;
+			g_taskStackKdtree.unfinished = 1;
 		}
 	}
 	int childrenIdx = s_sharedData[threadIdx.y][2];
@@ -724,12 +694,10 @@ __device__ __forceinline__ void taskAllocNodeTris(int tid, bool leftLeaf, bool r
 #endif
 }
 
-#endif
-
 //------------------------------------------------------------------------
 
 // Decides what type of task should be created
-__device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
+__device__ bool taskDecideType(int tid, volatile TaskKdtree* newTask)
 {
 	// Update this task in the final array
 	int termCrit;
@@ -748,19 +716,7 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 	
 	if(taskTerminationCriteria(triEnd-triStart, numLeft, numRight, newTask->bbox, newTask->splitPlane, termCrit, leftLeaf, rightLeaf))
 	{
-#ifndef INTERLEAVED_LAYOUT
 		taskSaveNodeParent(tid, triStart, triEnd, numLeft, numRight, parentIdx, nodeIdx, taskID);
-#else
-		if(tid == 0)
-		{
-			//printf("Left %d, right %d, depth %d\n", numLeft, numRight, newTask->depth);
-			int triMem = align<int, 16>((triEnd-triStart)*(3*sizeof(float4)+sizeof(int)));
-			s_sharedData[threadIdx.y][3] = atomicAdd(&g_taskStackBVH.nodeTop, triMem); // Atomically acquire leaf space in bytes for woop values and indices
-		}
-		int triOfs = s_sharedData[threadIdx.y][3];
-		int triNum = createKdtreeInterleavedLeafWoop(tid, triOfs, g_kdtree, triStart, triEnd, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart));
-		*(int4*)(&g_kdtree[nodeIdx]) = make_int4(triNum, triOfs/sizeof(float4), parentIdx, 0); // Sets the leaf child pointers
-#endif
 
 		// Mark children as leaves -> correct update of unfinished counter
 		s_sharedData[threadIdx.y][0] = KDTREE_LEAF;
@@ -770,15 +726,15 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 
 		if(tid == 0)
 		{
-#ifdef BVH_COUNT_NODES
+#ifdef COUNT_NODES
 			// Beware this node has a preallocated space and is thus also counted as an inner node
-			atomicAdd(&g_taskStackBVH.numNodes, 1);
-			atomicAdd(&g_taskStackBVH.numLeaves, 1);
-			atomicAdd(&g_taskStackBVH.numSortedTris, triEnd - triStart);
+			atomicAdd(&g_taskStackKdtree.numNodes, 1);
+			atomicAdd(&g_taskStackKdtree.numLeaves, 1);
+			atomicAdd(&g_taskStackKdtree.numSortedTris, triEnd - triStart);
 			//printf("Split Leaf (%d, %d)\n", triStart, triEnd);
 #endif
 #ifdef LEAF_HISTOGRAM
-			atomicAdd(&g_taskStackBVH.leafHist[numLeft+numRight], 1); // Update histogram
+			atomicAdd(&g_taskStackKdtree.leafHist[numLeft+numRight], 1); // Update histogram
 #endif
 		}
 
@@ -797,57 +753,28 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 		s_sharedData[threadIdx.y][4] = numLeft;
 		s_sharedData[threadIdx.y][5] = numRight;
 		
-#ifndef INTERLEAVED_LAYOUT
-		//volatile CudaBVHNode* node0 = ((CudaBVHNode*)&s_newTask[threadIdx.y])+0;
-		//volatile CudaBVHNode* node1 = ((CudaBVHNode*)&s_newTask[threadIdx.y])+1;
-		
 		int childLeft, childRight, leftOfs, rightOfs;
 		taskAllocNodeTris(tid, leftLeaf, rightLeaf, numLeft, numRight, childLeft, childRight, leftOfs, rightOfs);
-#else
-		const int tMem = 3*sizeof(float4)+sizeof(int);
-		const int nodeMem = 2*sizeof(CudaKdtreeNode);
-		int leftLeafMem = (leftLeaf) ? align<int, 16>(numLeft*tMem) : 0;
-		int rightLeafMem = (rightLeaf) ? align<int, 16>(numRight*tMem) : 0;
-		int leafMem = leftLeafMem + rightLeafMem; // Atomically acquire leaf space
-		if(tid == 0)
-		{
-			s_sharedData[threadIdx.y][2] = atomicAdd(&g_taskStackBVH.nodeTop, nodeMem+leafMem); // Inner node and triangles -> create new subtasks in the final array
-		}
-		int childrenIdx = s_sharedData[threadIdx.y][2];
-		int triOfs = childrenIdx + nodeMem;
-
-		int childLeft = childrenIdx+0*sizeof(CudaKdtreeNode);
-		int childRight = childrenIdx+1*sizeof(CudaKdtreeNode);
-
-		int leftOfs = triOfs;
-		int rightOfs = triOfs+leftLeafMem;
-#endif
 
 		ASSERT_DIVERGENCE("taskDecideType node2", tid);
 
 		// Check if children should be leaves
 		if(leftLeaf)
 		{
-#ifndef INTERLEAVED_LAYOUT
 			taskSaveNodeLeft(tid, leftOfs, childLeft, numLeft, nodeIdx, newTask);
-#else
-			int triNum = createKdtreeInterleavedLeafWoop(tid, leftOfs, g_kdtree, 0, triLeft, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryLeft, numLeft));
-			*(int4*)(&g_kdtree[childLeft]) = make_int4(triNum, leftOfs/sizeof(float4), nodeIdx, 0); // Sets the leaf child pointers
-			s_sharedData[threadIdx.y][0] = triNum;
-#endif
 
 			if(tid == 0)
 			{
 				if(numLeft != 0)
 					freeBuffers(s_task[threadIdx.y].dynamicMemoryLeft, numLeft*sizeof(int));
-#ifdef BVH_COUNT_NODES
-				atomicAdd(&g_taskStackBVH.numLeaves, 1);
+#ifdef COUNT_NODES
+				atomicAdd(&g_taskStackKdtree.numLeaves, 1);
 				if(numLeft == 0)
-					atomicAdd(&g_taskStackBVH.numEmptyLeaves, 1);
+					atomicAdd(&g_taskStackKdtree.numEmptyLeaves, 1);
 				//printf("Force Leaf left (%d, %d) (%d)(%d)\n", triStart, triEnd, numLeft, numRight);
 #endif
 #ifdef LEAF_HISTOGRAM
-				atomicAdd(&g_taskStackBVH.leafHist[numLeft], 1); // Update histogram
+				atomicAdd(&g_taskStackKdtree.leafHist[numLeft], 1); // Update histogram
 #endif
 			}
 		}
@@ -860,26 +787,20 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 
 		if(rightLeaf)
 		{
-#ifndef INTERLEAVED_LAYOUT
 			taskSaveNodeRight(tid, rightOfs, childRight, numRight, nodeIdx, newTask);
-#else
-			int triNum = createKdtreeInterleavedLeafWoop(tid, rightOfs, g_kdtree, 0, triRight, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, numRight));
-			*(int4*)(&g_kdtree[childRight]) = make_int4(triNum, rightOfs/sizeof(float4), nodeIdx, 0); // Sets the leaf child pointers
-			s_sharedData[threadIdx.y][1] = triNum;
-#endif
 
 			if(tid == 0)
 			{
 				if(numRight != 0)
 					freeBuffers(s_task[threadIdx.y].dynamicMemoryRight, numRight*sizeof(int));
-#ifdef BVH_COUNT_NODES
-				atomicAdd(&g_taskStackBVH.numLeaves, 1);
+#ifdef COUNT_NODES
+				atomicAdd(&g_taskStackKdtree.numLeaves, 1);
 				if(numRight == 0)
-					atomicAdd(&g_taskStackBVH.numEmptyLeaves, 1);
+					atomicAdd(&g_taskStackKdtree.numEmptyLeaves, 1);
 				//printf("Force Leaf right (%d, %d) (%d)(%d)\n", triStart, triEnd, numLeft, numRight);
 #endif
 #ifdef LEAF_HISTOGRAM
-				atomicAdd(&g_taskStackBVH.leafHist[numRight], 1); // Update histogram
+				atomicAdd(&g_taskStackKdtree.leafHist[numRight], 1); // Update histogram
 #endif
 			}
 		}
@@ -892,7 +813,6 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 
 		//if(tid == 0)
 		//	printf("Constructed node %d\n", nodeIdx);
-#ifndef INTERLEAVED_LAYOUT
 		int dim = getPlaneDimension(*(float4*)&newTask->splitPlane);
 #ifndef COMPACT_LAYOUT
 		int flag = childLeft | (dim << 30);
@@ -901,17 +821,12 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 		int flag = (dim << KDTREE_DIMPOS);
 		g_kdtree[nodeIdx] = make_int4(childLeft, childRight, __float_as_int(newTask->splitPlane.w), flag); // Sets the leaf child pointers
 #endif
-#else
-		int dim = getPlaneDimension(*(float4*)&newTask->splitPlane);
-		int flag = (childLeft/sizeof(CudaKdtreeNode)) | (dim << 30);
-		*(int4*)(&g_kdtree[nodeIdx]) = make_int4(flag, __float_as_int(newTask->splitPlane.w), parentIdx, 0); // Sets the leaf child pointers
-#endif
 
-#ifdef BVH_COUNT_NODES
+#ifdef COUNT_NODES
 		if(tid == 0)
 		{
-			atomicAdd(&g_taskStackBVH.numNodes, 1);
-			atomicAdd(&g_taskStackBVH.numSortedTris, triEnd - triStart);
+			atomicAdd(&g_taskStackKdtree.numNodes, 1);
+			atomicAdd(&g_taskStackKdtree.numSortedTris, triEnd - triStart);
 			//	printf("Node (%d, %d)\n", triStart, triEnd);
 		}
 #endif
@@ -925,7 +840,7 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 //------------------------------------------------------------------------
 
 // Creates child task
-__device__ void taskChildTask(volatile TaskBVH* newTask)
+__device__ void taskChildTask(volatile TaskKdtree* newTask)
 {
 	newTask->lock = LockType_Free;
 #if SPLIT_TYPE == 0 || SPLIT_TYPE == 4
@@ -1015,7 +930,7 @@ __device__ void taskChildTask(volatile TaskBVH* newTask)
 //------------------------------------------------------------------------
 
 // Prepares a new task based on its ID
-__device__ void taskCreateSubtask(int tid, volatile TaskBVH* newTask, int subIdx)
+__device__ void taskCreateSubtask(int tid, volatile TaskKdtree* newTask, int subIdx)
 {
 	ASSERT_DIVERGENCE("taskCreateSubtask", tid);
 
@@ -1079,12 +994,12 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 {
 	ASSERT_DIVERGENCE("taskEnqueueSubtasks top", tid);
 
-	int *stackTop = &g_taskStackBVH.top;
+	int *stackTop = &g_taskStackKdtree.top;
 #if ENQUEUE_TYPE == 0
 	int beg = *stackTop;
 	bool goRight = true;
 #elif ENQUEUE_TYPE == 1
-	int beg = g_taskStackBVH.bottom;
+	int beg = g_taskStackKdtree.bottom;
 #elif ENQUEUE_TYPE == 2
 	int beg = *stackTop;
 #endif
@@ -1113,7 +1028,7 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 #if ENQUEUE_TYPE == 0
 		if(goRight)
 		{
-			taskEnqueueRight(tid, g_taskStackBVH.header, s_sharedData[threadIdx.y], newStatus, beg, 0); // Go right of beg and fill empty tasks
+			taskEnqueueRight(tid, g_taskStackKdtree.header, s_sharedData[threadIdx.y], newStatus, beg, 0); // Go right of beg and fill empty tasks
 
 			if(beg < 0) // Not added when going right
 			{
@@ -1125,18 +1040,18 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 		// Cannot be else, both paths may need to be taken for same i
 		if(!goRight)
 		{
-			taskEnqueueLeft(tid, g_taskStackBVH.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackBVH.unfinished, g_taskStackBVH.sizePool); // Go left of beg and fill empty tasks
+			taskEnqueueLeft(tid, g_taskStackKdtree.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackKdtree.unfinished, g_taskStackKdtree.sizePool); // Go left of beg and fill empty tasks
 			if(beg == -1)
 			{
-				atomicMax(&g_taskStackBVH.top, g_taskStackBVH.sizePool);
+				atomicMax(&g_taskStackKdtree.top, g_taskStackKdtree.sizePool);
 				return;
 			}
 		}
 #else
-		taskEnqueueLeft(tid, g_taskStackBVH.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackBVH.unfinished, g_taskStackBVH.sizePool); // Go left of beg and fill empty tasks
+		taskEnqueueLeft(tid, g_taskStackKdtree.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackKdtree.unfinished, g_taskStackKdtree.sizePool); // Go left of beg and fill empty tasks
 		if(beg == -1)
 		{
-			atomicMax(&g_taskStackBVH.top, g_taskStackBVH.sizePool);
+			atomicMax(&g_taskStackKdtree.top, g_taskStackKdtree.sizePool);
 			return;
 		}
 #endif
@@ -1166,20 +1081,13 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 
 		if(tid == 24)
 		{
-			atomicMax(&g_taskStackBVH.top, beg); // Update the stack top to be a larger position than all nonempty tasks
+			atomicMax(&g_taskStackKdtree.top, beg); // Update the stack top to be a larger position than all nonempty tasks
 #if ENQUEUE_TYPE == 1
-			atomicMax(&g_taskStackBVH.bottom, beg);  // Update the stack bottom
+			atomicMax(&g_taskStackKdtree.bottom, beg);  // Update the stack bottom
 #endif
 		}
 
-#ifdef DIVERGENCE_TEST
-		if(beg >= 0 && beg < g_taskStackBVH.sizePool) // TESTING ONLY - WRITE WILL CAUSE "UNKNOWN ERROR" IF WARP DIVERGES
-			taskSaveFirstToGMEM(tid, beg, s_newTask[threadIdx.y]);
-		else
-			printf("task adding on invalid index: %d, Tid %d\n", beg, tid);
-#else
 		taskSaveFirstToGMEM(tid, beg, s_newTask[threadIdx.y]);
-#endif
 
 #if SPLIT_TYPE >= 3
 #if PLANE_COUT > WARP_SIZE // Clear cannot be processed by a single warp
@@ -1195,87 +1103,21 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 			split += WARP_SIZE; // Each thread move to the next clear task
 		}
 #endif
-/*#if SPLIT_TYPE == 3
-#if PLANE_COUT > WARP_SIZE // Clear cannot be processed by a single warp
-		assert(PLANE_COUT < WARP_SIZE);
-#endif
-		// Clear the SplitStack for the next use
-		if(s_newTask[threadIdx.y].type == TaskType_SplitParallel && tid < PLANE_COUNT)
-		{
-			int *split = (int*)&g_splitStackBVH[beg];
-#pragma unroll
-			for(int j = 0; j < sizeof(SplitDataBVH)/sizeof(int); j++) // Zero 1 SplitData = PLANE_COUNT*2 ints
-			{
-				split[tid] = 0; // Each thread clears 1 int-sized variable
-				split += PLANE_COUNT; // Each thread move to the next clear task
-			}
-		}
-#elif SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
-#if BINNING_TYPE != 0 && BINNING_TYPE != 1
-		// Copy empty task from the end of the array
-		if(s_newTask[threadIdx.y].type == TaskType_BinTriangles)
-		{
-			int *orig = (int*)&g_redSplits[g_taskStackBVH.sizePool];
-			int *split = (int*)&g_redSplits[beg];
-			int numElems = (sizeof(SplitArray)/sizeof(int));
-			for(int j = tid; j < numElems; j+=WARP_SIZE)
-			{
-				split[tid] = orig[tid]; // Each thread copies 1 int-sized variable
-				orig += WARP_SIZE; // Each thread move to the next clear task
-				split += WARP_SIZE; // Each thread move to the next clear task
-			}
-		}
-#endif
-#endif*/
 
 		ASSERT_DIVERGENCE("taskEnqueueSubtasks forcycle2", tid);
 
-		
-#if PARALLELISM_TEST >= 0
-		if(tid == 0)
-		{
-#ifdef CUTOFF_DEPTH
-			int active;
-			if(s_newTask[threadIdx.y].depth > c_env.optCutOffDepth)
-				active = atomicAdd(&g_numActive, 0);
-			else
-				active = atomicAdd(&g_numActive, 1)+1;
-#else
-			int active = atomicAdd(&g_numActive, 1);
-#endif
-			int warpIdx = blockDim.y*blockIdx.x + threadIdx.y; // Warp ID
-			//if(active > ACTIVE_MAX)
-			//	printf("Warp %d too much [%d] subtasks\n", warpIdx, active);
-#ifdef CUTOFF_DEPTH
-			if(/*beg == 124 || */(active == 0 && i == 1))
-#else
-			if(active == 0)
-#endif
-			{
-				//printf("Warp %d no active tasks before adding task with %d subtasks\n", warpIdx, newStatus);
-				g_taskStackBVH.unfinished = 1;
-			}
-		}
-#endif
 		__threadfence(); // Make sure task is copied to the global memory before we unlock it
 
 #if DEQUEUE_TYPE == 3 || DEQUEUE_TYPE == 5 || DEQUEUE_TYPE == 6
 		if(tid == 24)
 		{
-			taskCacheActive(beg, g_taskStackBVH.active, &g_taskStackBVH.activeTop);
+			taskCacheActive(beg, g_taskStackKdtree.active, &g_taskStackKdtree.activeTop);
 		}
 #endif
 
 		// Unlock the task - set the task status
-#ifdef CUTOFF_DEPTH
-		if(s_newTask[threadIdx.y].depth > c_env.optCutOffDepth)
-			g_taskStackBVH.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
-		else
-			g_taskStackBVH.header[beg] = newStatus; // This operation is atomic anyway
-#else
-		g_taskStackBVH.header[beg] = newStatus; // This operation is atomic anyway
-		//g_taskStackBVH.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
-#endif
+		g_taskStackKdtree.header[beg] = newStatus; // This operation is atomic anyway
+		//g_taskStackKdtree.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
 
 #if ENQUEUE_TYPE == 0
 		if(goRight)
@@ -1290,7 +1132,7 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 	}
 
 	//if(s_task[threadIdx.y].depth > c_env.optCutOffDepth)
-	//g_taskStackBVH.unfinished = 1; // Finish computation after first task
+	//g_taskStackKdtree.unfinished = 1; // Finish computation after first task
 
 	ASSERT_DIVERGENCE("taskEnqueueSubtasks aftercycle", tid);
 }
@@ -1303,9 +1145,9 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 {
 	ASSERT_DIVERGENCE("taskEnqueueSubtasksParallel top", tid);
 
-	int *stackTop = &g_taskStackBVH.top;
-	unsigned int *emptyTop = &g_taskStackBVH.emptyTop;
-	unsigned int *emptyBottom = &g_taskStackBVH.emptyBottom;
+	int *stackTop = &g_taskStackKdtree.top;
+	unsigned int *emptyTop = &g_taskStackKdtree.emptyTop;
+	unsigned int *emptyBottom = &g_taskStackKdtree.emptyBottom;
 	int pos = *emptyBottom;
 	int top = *emptyTop;
 	int beg = -1;
@@ -1339,7 +1181,7 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 #ifdef COUNT_STEPS_CACHE
 			numReads[threadIdx.y]++;
 #endif
-			taskEnqueueCache(tid, &g_taskStackBVH, s_sharedData[threadIdx.y], status, pos, beg, top);
+			taskEnqueueCache(tid, &g_taskStackKdtree, s_sharedData[threadIdx.y], status, pos, beg, top);
 			ASSERT_DIVERGENCE("taskEnqueueSubtasks cache", tid);
 
 			// Test that we have not read all cached items
@@ -1366,18 +1208,18 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 		{
 			if(mid == -1)
 			{
-				//beg = g_taskStackBVH.bottom;
-				//beg = g_taskStackBVH.top;
+				//beg = g_taskStackKdtree.bottom;
+				//beg = g_taskStackKdtree.top;
 				beg = max(*stackTop - WARP_SIZE, 0);
 				mid = 0;
 			}
 #ifdef COUNT_STEPS_LEFT
 				numReads[threadIdx.y]++;
 #endif
-			taskEnqueueLeft(tid, g_taskStackBVH.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackBVH.unfinished, g_taskStackBVH.sizePool); // Go left of beg and fill empty tasks
+			taskEnqueueLeft(tid, g_taskStackKdtree.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackKdtree.unfinished, g_taskStackKdtree.sizePool); // Go left of beg and fill empty tasks
 			if(beg == -1)
 			{
-				atomicMax(&g_taskStackBVH.top, g_taskStackBVH.sizePool);
+				atomicMax(&g_taskStackKdtree.top, g_taskStackKdtree.sizePool);
 				return;
 			}
 		}
@@ -1393,17 +1235,10 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 
 		if(tid == 24)
 		{
-			atomicMax(&g_taskStackBVH.top, beg); // Update the stack top to be a larger position than all nonempty tasks
+			atomicMax(&g_taskStackKdtree.top, beg); // Update the stack top to be a larger position than all nonempty tasks
 		}
 
-#ifdef DIVERGENCE_TEST
-		if(beg >= 0 && beg < g_taskStackBVH.sizePool) // TESTING ONLY - WRITE WILL CAUSE "UNKNOWN ERROR" IF WARP DIVERGES
-			taskSaveFirstToGMEM(tid, beg, s_newTask[threadIdx.y]);
-		else
-			printf("task adding on invalid index: %d, Tid %d\n", beg, tid);
-#else
 		taskSaveFirstToGMEM(tid, beg, s_newTask[threadIdx.y]);
-#endif
 
 #if SPLIT_TYPE >= 3
 #if PLANE_COUT > WARP_SIZE // Clear cannot be processed by a single warp
@@ -1419,86 +1254,21 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 			split += WARP_SIZE; // Each thread move to the next clear task
 		}
 #endif
-/*#if SPLIT_TYPE == 3
-#if PLANE_COUT > WARP_SIZE // Clear cannot be processed by a single warp
-		assert(PLANE_COUT < WARP_SIZE);
-#endif
-		// Clear the SplitStack for the next use
-		if(s_newTask[threadIdx.y].type == TaskType_SplitParallel && tid < PLANE_COUNT)
-		{
-			int *split = (int*)&g_splitStackBVH[beg];
-#pragma unroll
-			for(int j = 0; j < sizeof(SplitDataBVH)/sizeof(int); j++) // Zero 1 SplitData = PLANE_COUNT*2 ints
-			{
-				split[tid] = 0; // Each thread clears 1 int-sized variable
-				split += PLANE_COUNT; // Each thread move to the next clear task
-			}
-		}
-#elif SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
-#if BINNING_TYPE != 0 && BINNING_TYPE != 1
-		// Copy empty task from the end of the array
-		if(s_newTask[threadIdx.y].type == TaskType_BinTriangles)
-		{
-			int *orig = (int*)&g_redSplits[g_taskStackBVH.sizePool];
-			int *split = (int*)&g_redSplits[beg];
-			int numElems = (sizeof(SplitArray)/sizeof(int));
-			for(int j = tid; j < numElems; j+=WARP_SIZE)
-			{
-				split[tid] = orig[tid]; // Each thread copies 1 int-sized variable
-				orig += WARP_SIZE; // Each thread move to the next clear task
-				split += WARP_SIZE; // Each thread move to the next clear task
-			}
-		}
-#endif
-#endif*/
 
 		ASSERT_DIVERGENCE("taskEnqueueSubtasks forcycle2", tid);
 
-#if PARALLELISM_TEST >= 0
-		if(tid == 0)
-		{
-#ifdef CUTOFF_DEPTH
-			int active;
-			if(s_newTask[threadIdx.y].depth > c_env.optCutOffDepth)
-				active = atomicAdd(&g_numActive, 0);
-			else
-				active = atomicAdd(&g_numActive, 1)+1;
-#else
-			int active = atomicAdd(&g_numActive, 1);
-#endif
-			int warpIdx = blockDim.y*blockIdx.x + threadIdx.y; // Warp ID
-			//if(active > ACTIVE_MAX)
-			//	printf("Warp %d too much [%d] subtasks\n", warpIdx, active);
-#ifdef CUTOFF_DEPTH
-			if(/*beg == 124 || */(active == 0 && i == 1))
-#else
-			if(active == 0)
-#endif
-			{
-				//printf("Warp %d no active tasks before adding task with %d subtasks\n", warpIdx, newStatus);
-				g_taskStackBVH.unfinished = 1;
-			}
-		}
-#endif
 		__threadfence(); // Make sure task is copied to the global memory before we unlock it
 
 #if DEQUEUE_TYPE == 3 || DEQUEUE_TYPE == 5 || DEQUEUE_TYPE == 6
 		if(tid == 24)
 		{
-			taskCacheActive(beg, g_taskStackBVH.active, &g_taskStackBVH.activeTop);
+			taskCacheActive(beg, g_taskStackKdtree.active, &g_taskStackKdtree.activeTop);
 		}
 #endif
 
 		// Unlock the task - set the task status
-#ifdef CUTOFF_DEPTH
-		if(s_newTask[threadIdx.y].depth > c_env.optCutOffDepth)
-			g_taskStackBVH.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
-		else
-			g_taskStackBVH.header[beg] = newStatus; // This operation is atomic anyway
-#else
-		g_taskStackBVH.header[beg] = newStatus; // This operation is atomic anyway
-		//g_taskStackBVH.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
-#endif
+		g_taskStackKdtree.header[beg] = newStatus; // This operation is atomic anyway
+		//g_taskStackKdtree.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
 
 		beg++; // Move for next item
 
@@ -1521,30 +1291,12 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 {
 	ASSERT_DIVERGENCE("taskDequeue", tid);
 
-#if PARALLELISM_TEST >= 0
-	int* active = &g_numActive;
-#endif
-
 	if(tid == 13) // Only thread 0 acquires the work
 	{
-/*#if PARALLELISM_TEST >= 0
-		int *active = &g_numActive;
-		unsigned int waitCounter = 0;
-		clock_t clockStart = clock();
-		while(*active == 0)
-			waitCounter++;
-		clock_t clockEnd = clock();
-		if(waitCounter != 0)
-		{
-			int warpIdx = blockDim.y*blockIdx.x + threadIdx.y; // Warp ID
-			printf("Warp %d waited %u iterations taking %u\n", warpIdx, waitCounter, clockEnd-clockStart);
-		}
-#endif*/
-
 		// Initiate variables
-		int* header = g_taskStackBVH.header;
-		int *unfinished = &g_taskStackBVH.unfinished;
-		int *stackTop = &g_taskStackBVH.top;
+		int* header = g_taskStackKdtree.header;
+		int *unfinished = &g_taskStackKdtree.unfinished;
+		int *stackTop = &g_taskStackKdtree.top;
 
 		int status = TaskHeader_Active;
 		int counter = 0; // TESTING ONLY: Allows to undeadlock a failed run!
@@ -1574,8 +1326,8 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 		//int beg = top - (warpIdx % (top + 1));
 		//int beg = (int)((float)warpIdx*((float)(top + 1) / (float)NUM_WARPS));
 #elif DEQUEUE_TYPE == 3
-		unsigned int *activeTop = &g_taskStackBVH.activeTop;
-		int* act = g_taskStackBVH.active;
+		unsigned int *activeTop = &g_taskStackKdtree.activeTop;
+		int* act = g_taskStackKdtree.active;
 		int pos = (*activeTop)-1;
 		if(pos < 0)
 			pos = ACTIVE_MAX;
@@ -1596,9 +1348,9 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 			if(status > TaskHeader_Active)
 			{
 				//popCount = taskPopCount(status);
-				popCount = taskPopCount(*((int*)&g_taskStackBVH.tasks[beg].origSize));
+				popCount = taskPopCount(*((int*)&g_taskStackKdtree.tasks[beg].origSize));
 				// Try acquire the current task - decrease it
-				status = atomicSub(&g_taskStackBVH.header[beg], popCount); // Try to update and return the current value
+				status = atomicSub(&g_taskStackKdtree.header[beg], popCount); // Try to update and return the current value
 			}
 
 			/*if(status <= TaskHeader_Active) // Immediate exit
@@ -1618,7 +1370,7 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 		/*if(status <= TaskHeader_Active) // Immediate exit
 			counter = WAIT_COUNT;*/
 
-		while(counter < WAIT_COUNT && *unfinished < 0 && status <= TaskHeader_Active) // while g_taskStackBVH is not empty and we have not found ourselves a task
+		while(counter < WAIT_COUNT && *unfinished < 0 && status <= TaskHeader_Active) // while g_taskStackKdtree is not empty and we have not found ourselves a task
 		{
 			// Find first active task, end if we have reached start of the array
 #if DEQUEUE_TYPE == 0 || DEQUEUE_TYPE == 2 || DEQUEUE_TYPE == 3
@@ -1660,7 +1412,7 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 				clock_t end = start + 1000;
 				while(start < end)
 				{
-				//g_taskStackBVH.tasks[0].padding1 = 0; // DOES NOT SEEM TO BE BETTER
+				//g_taskStackKdtree.tasks[0].padding1 = 0; // DOES NOT SEEM TO BE BETTER
 				//__threadfence_system();
 				start = clock();
 				}*/
@@ -1704,9 +1456,9 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 #endif
 
 			//popCount = taskPopCount(status);
-			popCount = taskPopCount(*((int*)&g_taskStackBVH.tasks[beg].origSize));
+			popCount = taskPopCount(*((int*)&g_taskStackKdtree.tasks[beg].origSize));
 			// Try acquire the current task - decrease it
-			status = atomicSub(&g_taskStackBVH.header[beg], popCount); // Try to update and return the current value
+			status = atomicSub(&g_taskStackKdtree.header[beg], popCount); // Try to update and return the current value
 
 			//int warpIdx = (blockDim.y*blockIdx.x + threadIdx.y);
 			//if(status < TaskHeader_Active)
@@ -1731,12 +1483,12 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 				else
 					beg++;
 #endif
-				// OPTIMIZE: we shall move beg--; as the first statement in the outer while and start with g_taskStackBVH.top+1.
+				// OPTIMIZE: we shall move beg--; as the first statement in the outer while and start with g_taskStackKdtree.top+1.
 			}
 		}
 
 		// Distribute information to all threads through shared memory
-		if(counter >= WAIT_COUNT || status <= TaskHeader_Active || *unfinished == 0) // g_taskStackBVH is empty, no more work to do
+		if(counter >= WAIT_COUNT || status <= TaskHeader_Active || *unfinished == 0) // g_taskStackKdtree is empty, no more work to do
 		{
 			s_sharedData[threadIdx.y][0] = -1; // no task, end
 		}
@@ -1758,7 +1510,7 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 			numRestarts[threadIdx.y] += counter;
 		}
 
-		//atomicExch(&g_taskStackBVH.active, beg); // Update the last active position
+		//atomicExch(&g_taskStackKdtree.active, beg); // Update the last active position
 
 		if(counter >= WAIT_COUNT || status <= TaskHeader_Active || *unfinished == 0)
 			numSteps[threadIdx.y] -= 1;
@@ -1796,9 +1548,9 @@ __device__ __noinline__ bool taskDequeue(int tid)
 	ASSERT_DIVERGENCE("taskDequeue", tid);
 
 	// Initiate variables
-	int* header = g_taskStackBVH.header;
-	int* unfinished = &g_taskStackBVH.unfinished;
-	int* stackTop = &g_taskStackBVH.top;
+	int* header = g_taskStackKdtree.header;
+	int* unfinished = &g_taskStackKdtree.unfinished;
+	int* stackTop = &g_taskStackKdtree.top;
 	volatile int* red = (volatile int*)&s_newTask[threadIdx.y];
 
 	int status = TaskHeader_Active;
@@ -1820,8 +1572,8 @@ __device__ __noinline__ bool taskDequeue(int tid)
 	int beg = (warpIdx % topChunk) * WARP_SIZE - tid;
 
 #elif DEQUEUE_TYPE == 5
-	//unsigned int *activeTop = &g_taskStackBVH.activeTop;
-	int* cache = g_taskStackBVH.active;
+	//unsigned int *activeTop = &g_taskStackKdtree.activeTop;
+	int* cache = g_taskStackKdtree.active;
 	s_task[threadIdx.y].popSubtask = status;
 	//bool cached;
 
@@ -1899,7 +1651,7 @@ __device__ __noinline__ bool taskDequeue(int tid)
 		if(status > TaskHeader_Active)
 		{
 			red[tid] = status;
-			//red[tid] = *((int*)&g_taskStackBVH.tasks[beg].origSize);
+			//red[tid] = *((int*)&g_taskStackKdtree.tasks[beg].origSize);
 			//owner[tid] = beg;
 		}*/
 
@@ -1909,7 +1661,7 @@ __device__ __noinline__ bool taskDequeue(int tid)
 		//	reduceWarp<int>(tid, red, plus);
 
 		//int popCount = taskPopCount(status);
-		//int popCount = taskPopCount(*((int*)&g_taskStackBVH.tasks[beg].origSize));
+		//int popCount = taskPopCount(*((int*)&g_taskStackKdtree.tasks[beg].origSize));
 		//int popCount = max((red[0] / NUM_WARPS) + 1, taskPopCount(status));
 		int popCount = max((status / NUM_WARPS) + 1, taskPopCount(status));
 
@@ -1934,7 +1686,7 @@ __device__ __noinline__ bool taskDequeue(int tid)
 			//if(red[tid] == xPos)
 			{
 				// Try acquire the current task - decrease it
-				s_task[threadIdx.y].popSubtask = atomicSub(&g_taskStackBVH.header[beg], popCount); // Try to update and return the current value
+				s_task[threadIdx.y].popSubtask = atomicSub(&g_taskStackKdtree.header[beg], popCount); // Try to update and return the current value
 				s_task[threadIdx.y].popCount = popCount;
 				s_task[threadIdx.y].popTaskIdx = beg;
 				//s_sharedData[threadIdx.y][1] = beg;
@@ -1951,7 +1703,7 @@ __device__ __noinline__ bool taskDequeue(int tid)
 
 		/*if(tid == 0 && status < TaskHeader_Dependent)
 		{
-			atomicAdd(&g_taskStackBVH.header[beg], s_task[threadIdx.y].popCount); // Revert if we have accidentaly changed waiting task
+			atomicAdd(&g_taskStackKdtree.header[beg], s_task[threadIdx.y].popCount); // Revert if we have accidentaly changed waiting task
 		}*/
 
 		//if(pos < 0)
@@ -1998,7 +1750,7 @@ __device__ __noinline__ bool taskDequeue(int tid)
 		/*red[tid] = 0;
 		if(status > TaskHeader_Active)
 		{
-			red[tid] = *((int*)&g_taskStackBVH.tasks[beg].origSize);
+			red[tid] = *((int*)&g_taskStackKdtree.tasks[beg].origSize);
 			//red[tid] = status;
 		}
 
@@ -2048,7 +1800,7 @@ __device__ __noinline__ bool taskDequeue(int tid)
 				// Try acquire the current task - decrease it
 				// status now holds the information about what tasks this warp has to do but in a reversed order and offseted by 1
 				// (status starts at the number of subtasks and ends at 1)
-				s_task[threadIdx.y].popSubtask = atomicSub(&g_taskStackBVH.header[beg], popCount); // Try to update and return the current value
+				s_task[threadIdx.y].popSubtask = atomicSub(&g_taskStackKdtree.header[beg], popCount); // Try to update and return the current value
 				s_task[threadIdx.y].popCount = popCount;
 				s_task[threadIdx.y].popTaskIdx = beg;
 
@@ -2121,35 +1873,27 @@ __device__ void taskFinishSort(int tid, int taskIdx)
 	// We should update the dependencies before we start adding new tasks because these subtasks may be finished before this is done
 
 #ifndef KEEP_ALL_TASKS
-	atomicCAS(&g_taskStackBVH.top, taskIdx, max(taskIdx-1, 0)); // Try decreasing the stack top
-#endif
-
-#if PARALLELISM_TEST == 0
-	atomicSub(&g_numActive, 1);
+	atomicCAS(&g_taskStackKdtree.top, taskIdx, max(taskIdx-1, 0)); // Try decreasing the stack top
 #endif
 
 	int fullLeft = isKdLeaf(s_sharedData[threadIdx.y][0]) ? 0 : 1;
 	int fullRight = isKdLeaf(s_sharedData[threadIdx.y][1]) ? 0 : 1;
 	int numSubtasks = fullLeft+fullRight;
-#ifdef CUTOFF_DEPTH
-	if(s_task[threadIdx.y].depth == c_env.optCutOffDepth)
-		numSubtasks = 0;
-#endif
 
-	// Update taskStackBVH.unfinished
-	atomicSub(&g_taskStackBVH.unfinished, numSubtasks-1);
+	// Update taskStackKdtree.unfinished
+	atomicSub(&g_taskStackKdtree.unfinished, numSubtasks-1);
 
 	// Free the memory
 	if((s_sharedData[threadIdx.y][4] > 0 && s_sharedData[threadIdx.y][5] > 0)) // There is no empty leaf, free the no longer used parent memory
 		freeBuffers(s_task[threadIdx.y].dynamicMemory, (s_task[threadIdx.y].triEnd-s_task[threadIdx.y].triStart)*sizeof(int));
 
 #ifndef KEEP_ALL_TASKS
-	g_taskStackBVH.header[taskIdx] = TaskHeader_Empty; // Empty this task
+	g_taskStackKdtree.header[taskIdx] = TaskHeader_Empty; // Empty this task
 
 #if ENQUEUE_TYPE == 1
-	atomicMin(&g_taskStackBVH.bottom, taskIdx); // Update the stack bottom
+	atomicMin(&g_taskStackKdtree.bottom, taskIdx); // Update the stack bottom
 #elif ENQUEUE_TYPE == 3
-	taskCacheEmpty(taskIdx, g_taskStackBVH.empty, &g_taskStackBVH.emptyTop);
+	taskCacheEmpty(taskIdx, g_taskStackKdtree.empty, &g_taskStackKdtree.emptyTop);
 #endif
 #endif
 }
@@ -2165,13 +1909,13 @@ __device__ void taskFinishTask(int tid, int taskIdx)
 
 #ifndef KEEP_ALL_TASKS
 #if DEQUEUE_TYPE == 3 || DEQUEUE_TYPE == 5 || DEQUEUE_TYPE == 6
-		taskUncacheActive(tid, taskIdx, g_taskStackBVH.active, &g_taskStackBVH.activeTop);
+		taskUncacheActive(tid, taskIdx, g_taskStackKdtree.active, &g_taskStackKdtree.activeTop);
 #endif
 #endif
 
 		s_task[threadIdx.y].lock = LockType_Free;
 
-		//g_taskStackBVH.unfinished = 1;
+		//g_taskStackKdtree.unfinished = 1;
 		//return; // Measure time without enqueue
 
 		ASSERT_DIVERGENCE("taskFinishTask top", tid);
@@ -2198,11 +1942,6 @@ __device__ void taskFinishTask(int tid, int taskIdx)
 #ifdef DEBUG_INFO
 		taskSaveFirstToGMEM(tid, taskIdx, s_task[threadIdx.y]); // Make sure results are visible in global memory
 #endif
-
-#if PARALLELISM_TEST == 1
-		if(tid == 0)
-			atomicSub(&g_numActive, 1);
-#endif
 }
 
 //------------------------------------------------------------------------
@@ -2214,7 +1953,7 @@ __device__ void taskUpdateBestPlane(int tid, int taskIdx)
 	ASSERT_DIVERGENCE("taskUpdateBestPlane top", tid);
 
 	float bestCost = s_task[threadIdx.y].bestCost;
-	volatile float* g_bestCost = &g_taskStackBVH.tasks[taskIdx].bestCost;
+	volatile float* g_bestCost = &g_taskStackKdtree.tasks[taskIdx].bestCost;
 	
 	//if(tid == 11)
 	{
@@ -2231,7 +1970,7 @@ __device__ void taskUpdateBestPlane(int tid, int taskIdx)
 		while(s_sharedData[threadIdx.y][0] == 0 && bestCost < *g_bestCost)
 #endif
 		{
-			if(tid == 11 && atomicCAS(&g_taskStackBVH.tasks[taskIdx].lock, LockType_Free, LockType_Set) == LockType_Free)
+			if(tid == 11 && atomicCAS(&g_taskStackKdtree.tasks[taskIdx].lock, LockType_Free, LockType_Set) == LockType_Free)
 				s_sharedData[threadIdx.y][0] = 1;
 				//break;
 			ASSERT_DIVERGENCE("taskUpdateBestPlane while", tid);
@@ -2248,7 +1987,7 @@ __device__ void taskUpdateBestPlane(int tid, int taskIdx)
 		if(bestCost < *g_bestCost)
 			s_sharedData[threadIdx.y][0] = -1;
 		else if(s_sharedData[threadIdx.y][0] == 1)
-			g_taskStackBVH.tasks[taskIdx].lock = LockType_Free;
+			g_taskStackKdtree.tasks[taskIdx].lock = LockType_Free;
 	}
 
 	ASSERT_DIVERGENCE("taskUpdateBestPlane mid", tid);
@@ -2257,18 +1996,18 @@ __device__ void taskUpdateBestPlane(int tid, int taskIdx)
 	{
 		if(tid < (sizeof(float4) + sizeof(float) + sizeof(int)) / sizeof(float)) // Copy splitPlane
 		{
-			float* split = (float*)&g_taskStackBVH.tasks[taskIdx].splitPlane;
+			float* split = (float*)&g_taskStackKdtree.tasks[taskIdx].splitPlane;
 			float* shared = (float*)&s_task[threadIdx.y].splitPlane;
 			split[tid] = shared[tid];
 		}
 
-		g_taskStackBVH.tasks[taskIdx].triLeft = s_task[threadIdx.y].triLeft;
-		g_taskStackBVH.tasks[taskIdx].triRight = s_task[threadIdx.y].triRight;
+		g_taskStackKdtree.tasks[taskIdx].triLeft = s_task[threadIdx.y].triLeft;
+		g_taskStackKdtree.tasks[taskIdx].triRight = s_task[threadIdx.y].triRight;
 
 		__threadfence();
 
 		//if(tid == 5)
-			g_taskStackBVH.tasks[taskIdx].lock = LockType_Free;
+			g_taskStackKdtree.tasks[taskIdx].lock = LockType_Free;
 	}
 
 	ASSERT_DIVERGENCE("taskUpdateBestPlane bottom", tid);
@@ -2302,13 +2041,13 @@ __device__ void taskFinishSplit(int tid, int taskIdx, int countDown)
 			// OPTIMIZE: Save everything but the split to gmem
 			if(tid < (sizeof(float4)) / sizeof(float)) // Copy splitPlane
 			{
-				float* split = (float*)&g_taskStackBVH.tasks[taskIdx].splitPlane;
+				float* split = (float*)&g_taskStackKdtree.tasks[taskIdx].splitPlane;
 				float* shared = (float*)&s_task[threadIdx.y].splitPlane;
 				shared[tid] = split[tid];
 			}
 
-			triLeft = g_taskStackBVH.tasks[taskIdx].triLeft;
-			triRight = g_taskStackBVH.tasks[taskIdx].triRight;
+			triLeft = g_taskStackKdtree.tasks[taskIdx].triLeft;
+			triRight = g_taskStackKdtree.tasks[taskIdx].triRight;
 		}
 		else
 		{
@@ -2421,7 +2160,7 @@ __device__ void taskFinishSplitParallel(int tid, int taskIdx, int countDown)
 			volatile CudaAABB &bbox = s_task[threadIdx.y].bbox;
 			findPlane(planePos, triStart, triEnd, bbox, areaLeft, areaRight, numAxisAlignedPlanes, plane);
 			
-			volatile SplitDataBVH *split = &(g_splitStackBVH[taskIdx].splits[planePos]);
+			volatile SplitDataTri *split = &(g_splitStack[taskIdx].splits[planePos]);
 
 			// Compute the plane cost
 			float leftCost = areaLeft/areaAABB(bbox)*(float)split->tb;
@@ -2600,7 +2339,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 #endif
 #elif SPLIT_TYPE == 6
 			if(triEnd - triStart < c_env.childLimit)
-				findPlaneTriAA(tid, c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart, s_task[threadIdx.y].triIdxCtr), triStart, triEnd, plane);
+				findPlaneTriAA(tid, c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart, s_task[threadIdx.y].triIdxCtr), triStart, triEnd, plane);
 			else
 				findPlaneAABB(tid, bbox, plane);
 #endif
@@ -2793,7 +2532,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 				}
 
 				// Set child bounding boxes
-				/*CudaAABB& t_bboxLeft = g_taskStackBVH.tasks[taskIdx].bboxLeft;
+				/*CudaAABB& t_bboxLeft = g_taskStackKdtree.tasks[taskIdx].bboxLeft;
 				t_bboxLeft.m_mn.x = bboxLeft.m_mn.x;
 				t_bboxLeft.m_mn.y = bboxLeft.m_mn.y;
 				t_bboxLeft.m_mn.z = bboxLeft.m_mn.z;
@@ -2802,7 +2541,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 				t_bboxLeft.m_mx.y = bboxLeft.m_mx.y;
 				t_bboxLeft.m_mx.z = bboxLeft.m_mx.z;
 
-				CudaAABB& t_bboxRight = g_taskStackBVH.tasks[taskIdx].bboxRight;
+				CudaAABB& t_bboxRight = g_taskStackKdtree.tasks[taskIdx].bboxRight;
 				t_bboxRight.m_mn.x = bboxRight.m_mn.x;
 				t_bboxRight.m_mn.y = bboxRight.m_mn.y;
 				t_bboxRight.m_mn.z = bboxRight.m_mn.z;
@@ -2858,10 +2597,10 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			//}
 //#endif
 
-			float* t_bboxLeft = (float*)&(g_taskStackBVH.tasks[taskIdx].bboxLeft);
+			float* t_bboxLeft = (float*)&(g_taskStackKdtree.tasks[taskIdx].bboxLeft);
 			const float* g_bboxLeft = (const float*)&(left->bbox);
 
-			float* t_bboxRight = (float*)&(g_taskStackBVH.tasks[taskIdx].bboxRight);
+			float* t_bboxRight = (float*)&(g_taskStackKdtree.tasks[taskIdx].bboxRight);
 			const float* g_bboxRight = (const float*)&(right->bbox);
 			// Copy CudaAABB from corresponding task
 			if(tid < sizeof(CudaAABB)/sizeof(float))
@@ -2939,7 +2678,7 @@ __device__ void taskFinishReduce(int tid, int taskIdx, int countDown)
 			if(left->cnt+right->cnt != s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart)
 			{
 				printf("Failed reduction in task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackKdtree.unfinished = 1;
 			}
 #endif
 
@@ -2963,7 +2702,7 @@ __device__ void taskFinishReduce(int tid, int taskIdx, int countDown)
 			findPlaneAABB(tid, bbox, plane);
 #elif SPLIT_TYPE == 6
 			if(s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart < c_env.childLimit)
-				findPlaneTriAA(tid, c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, s_task[threadIdx.y].triEnd-s_task[threadIdx.y].triStart, s_task[threadIdx.y].triIdxCtr), s_task[threadIdx.y].triStart, s_task[threadIdx.y].triEnd, plane);
+				findPlaneTriAA(tid, c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, s_task[threadIdx.y].triEnd-s_task[threadIdx.y].triStart, s_task[threadIdx.y].triIdxCtr), s_task[threadIdx.y].triStart, s_task[threadIdx.y].triEnd, plane);
 			else
 				findPlaneAABB(tid, bbox, plane);
 #endif
@@ -2991,10 +2730,10 @@ __device__ void taskFinishReduce(int tid, int taskIdx, int countDown)
 			left = (ChildData*)&splitArray->splits[0][s_sharedData[threadIdx.y][0]].children[0];
 			right = (ChildData*)&splitArray->splits[0][s_sharedData[threadIdx.y][0]].children[1];
 
-			volatile float* bboxLeft = (volatile float*)&(g_taskStackBVH.tasks[taskIdx].bboxLeft);
+			volatile float* bboxLeft = (volatile float*)&(g_taskStackKdtree.tasks[taskIdx].bboxLeft);
 			const float* g_bboxLeft = (const float*)&(left->bbox);
 
-			volatile float* bboxRight = (volatile float*)&(g_taskStackBVH.tasks[taskIdx].bboxRight);
+			volatile float* bboxRight = (volatile float*)&(g_taskStackKdtree.tasks[taskIdx].bboxRight);
 			const float* g_bboxRight = (const float*)&(right->bbox);
 			// Copy CudaAABB from corresponding task
 			if(tid < sizeof(CudaAABB)/sizeof(float))
@@ -3302,8 +3041,8 @@ __device__ void taskFinishPartition(int tid, int taskIdx, unsigned countDown)
 	if(taskCheckFinished(tid, taskIdx, countDown)) // We have finished the task and are responsible for cleaning up
 	{
 		// Load correct split positions from global memory
-		int triLeft = g_taskStackBVH.tasks[taskIdx].triLeft;
-		int triRight = g_taskStackBVH.tasks[taskIdx].triRight;
+		int triLeft = g_taskStackKdtree.tasks[taskIdx].triLeft;
+		int triRight = g_taskStackKdtree.tasks[taskIdx].triRight;
 
 		s_task[threadIdx.y].triLeft = triLeft;
 		s_task[threadIdx.y].triRight = triRight;
@@ -3371,7 +3110,7 @@ __device__ void trianglesPlanePosition(int triStart, int triEnd, const float4& p
 
 		// Fetch triangle
 		float3 v0, v1, v2;
-		taskFetchTri(c_bvh_in.tris, triIdx, v0, v1, v2);
+		taskFetchTri(c_kdtree_in.tris, triIdx, v0, v1, v2);
 
 #if (TRIANGLE_CLIPPING != 5 && TRIANGLE_CLIPPING != 6)
 		int pos = getPlanePosition(plane, v0, v1, v2);
@@ -3433,7 +3172,7 @@ __device__ void splitCost(int tid, int subtask, int triStart, int triEnd, const 
 #if 0
 	findPlaneAABB(planePos, bbox, areaLeft, areaRight, plane, numPlanes);
 #else
-	findPlaneTriAABB(planePos, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart), triStart, bbox, areaLeft, areaRight, plane, numPlanes);
+	findPlaneTriAABB(planePos, (float4*)c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart), triStart, bbox, areaLeft, areaRight, plane, numPlanes);
 #endif
 #endif
 
@@ -3539,7 +3278,7 @@ __device__ void splitCostParallel(int tid, int subtask, int taskIdx, int triStar
 			tf++;
 
 		// Update the split info
-		SplitDataBVH *split = &(g_splitStackBVH[taskIdx].splits[planePos]);
+		SplitDataTri *split = &(g_splitStack[taskIdx].splits[planePos]);
 
 		// Reduce the numbers within the warp
 		red[tid] = tf;
@@ -3575,7 +3314,7 @@ __device__ void binTriangles(int tid, int subtask, int taskIdx, int triStart, in
 	findPlaneAABB(tid, bbox, plane);
 #elif SPLIT_TYPE == 6
 	if(triEnd - triStart < c_env.childLimit)
-		findPlaneTriAA(tid, c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart, s_task[threadIdx.y].triIdxCtr), triStart, triEnd, plane);
+		findPlaneTriAA(tid, c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart, s_task[threadIdx.y].triIdxCtr), triStart, triEnd, plane);
 	else
 		findPlaneAABB(tid, bbox, plane);
 #endif
@@ -3684,7 +3423,7 @@ __device__ void binTrianglesParallel(int tid, int subtask, int taskIdx, int triS
 		findPlaneAABB(planePos, bbox, plane);
 #elif SPLIT_TYPE == 6
 		if(triEnd - triStart < c_env.childLimit)
-			findPlaneTriAA(tid, c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart, s_task[threadIdx.y].triIdxCtr), triStart, triEnd, plane);
+			findPlaneTriAA(tid, c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart, s_task[threadIdx.y].triIdxCtr), triStart, triEnd, plane);
 		else
 			findPlaneAABB(tid, bbox, plane);
 #endif
@@ -3893,7 +3632,7 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 #endif
 #elif SPLIT_TYPE == 6
 		if(triEnd - triStart < c_env.childLimit)
-			findPlaneTriAA(tid, c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart, s_task[threadIdx.y].triIdxCtr), triStart, triEnd, plane);
+			findPlaneTriAA(tid, c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart, s_task[threadIdx.y].triIdxCtr), triStart, triEnd, plane);
 		else
 			findPlaneAABB(tid, bbox, plane);
 #endif
@@ -3923,7 +3662,7 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 
 			// Fetch triangle
 			float3 v0, v1, v2;
-			taskFetchTri(c_bvh_in.tris, triIdx, v0, v1, v2);
+			taskFetchTri(c_kdtree_in.tris, triIdx, v0, v1, v2);
 
 			//CudaAABB tbox;
 #if (TRIANGLE_CLIPPING != 5 && TRIANGLE_CLIPPING != 6)
@@ -4134,7 +3873,7 @@ __device__ int classifyTri(int tid, int subtask, int start, int end, volatile co
 
 		// Fetch triangle
 		float3 v0, v1, v2;
-		taskFetchTri(c_bvh_in.tris, triidx, v0, v1, v2);
+		taskFetchTri(c_kdtree_in.tris, triidx, v0, v1, v2);
 
 		// Test that all triangles are inside the bounding box
 #ifdef BBOX_TEST
@@ -4372,7 +4111,7 @@ __device__ __noinline__ void computeSort()
 
 	do
 	{
-		sort(threadIdx.x, popSubtask, step, getPPSTrisIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart), getPPSTrisPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart), getSortTrisPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart), (int*)c_bvh_in.trisIndex, triStart, triEnd, triRight, 1, false);
+		sort(threadIdx.x, popSubtask, step, getPPSTrisIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart), getPPSTrisPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart), getSortTrisPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart), (int*)c_kdtree_in.trisIndex, triStart, triEnd, triRight, 1, false);
 		subtasksDone = taskReduceSubtask(popSubtask, popStart, popCount);
 	} while(subtasksDone == -1);
 
@@ -4417,7 +4156,7 @@ __device__ __noinline__ void computePartition()
 
 			// Fetch triangle
 			float3 v0, v1, v2;
-			taskFetchTri(c_bvh_in.tris, triIdx*3, v0, v1, v2);
+			taskFetchTri(c_kdtree_in.tris, triIdx*3, v0, v1, v2);
 
 			// Test that all triangles are inside the bounding box
 #ifdef BBOX_TEST
@@ -4472,7 +4211,7 @@ __device__ __noinline__ void computePartition()
 		int exclusiveScan = threadPosWarp(tid, s_sharedData[threadIdx.y], pos > -2 && pos <= 0, triCnt);
 		
 		if(!singleWarp && tid == 0 && triCnt > 0)
-			s_owner[threadIdx.y][0] = atomicAdd(&g_taskStackBVH.tasks[popTaskIdx].triLeft, triCnt); // Add the number of triangles to the left of the plane to the global counter
+			s_owner[threadIdx.y][0] = atomicAdd(&g_taskStackKdtree.tasks[popTaskIdx].triLeft, triCnt); // Add the number of triangles to the left of the plane to the global counter
 
 		//if(pos > -2 && pos <= 0)
 		//	printf("Left %d\n", s_owner[threadIdx.y][0] + exclusiveScan);
@@ -4486,7 +4225,7 @@ __device__ __noinline__ void computePartition()
 		int inverseExclusiveScan = threadPosWarp(tid, s_sharedData[threadIdx.y], pos >= 0, triCnt);
 
 		if(!singleWarp && tid == 0 && triCnt > 0)
-			s_owner[threadIdx.y][1] = atomicAdd(&g_taskStackBVH.tasks[popTaskIdx].triRight, triCnt); // Add the number of triangles to the right of the plane to the global counter
+			s_owner[threadIdx.y][1] = atomicAdd(&g_taskStackKdtree.tasks[popTaskIdx].triRight, triCnt); // Add the number of triangles to the right of the plane to the global counter
 
 		//if(pos >= 0)
 		//	printf("Right %d\n", s_owner[threadIdx.y][1] + inverseExclusiveScan);
@@ -4503,14 +4242,13 @@ __device__ __noinline__ void computePartition()
 	// Write out the final positions
 	if(singleWarp)
 	{
-		g_taskStackBVH.tasks[popTaskIdx].triLeft = s_owner[threadIdx.y][0];
-		g_taskStackBVH.tasks[popTaskIdx].triRight = s_owner[threadIdx.y][1];
+		g_taskStackKdtree.tasks[popTaskIdx].triLeft = s_owner[threadIdx.y][0];
+		g_taskStackKdtree.tasks[popTaskIdx].triRight = s_owner[threadIdx.y][1];
 	}
 
 #elif SCAN_TYPE == 3
-#ifdef MALLOC_SCRATCHPAD
 #error Code not updated!
-#endif
+
 	int cntLeft = 0;
 	int cntRight = 0;
 	int* inPos = getPPSTrisIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart);
@@ -4535,7 +4273,7 @@ __device__ __noinline__ void computePartition()
 	int triCnt = s_sharedData[threadIdx.y][WARP_SIZE-1];
 
 	if(tid == 0 && triCnt > 0)
-		s_owner[threadIdx.y][0] = atomicAdd(&g_taskStackBVH.tasks[popTaskIdx].triLeft, triCnt); // Add the number of triangles to the left of the plane to the global counter
+		s_owner[threadIdx.y][0] = atomicAdd(&g_taskStackKdtree.tasks[popTaskIdx].triLeft, triCnt); // Add the number of triangles to the left of the plane to the global counter
 	int warpAtomicLeft = s_owner[threadIdx.y][0];
 
 	s_sharedData[threadIdx.y][tid] = cntRight;
@@ -4543,7 +4281,7 @@ __device__ __noinline__ void computePartition()
 	triCnt = s_sharedData[threadIdx.y][WARP_SIZE-1];
 
 	if(tid == 0 && triCnt > 0)
-		s_owner[threadIdx.y][0] = atomicSub(&g_taskStackBVH.tasks[popTaskIdx].triRight, triCnt); // Add the number of triangles to the right of the plane to the global counter
+		s_owner[threadIdx.y][0] = atomicSub(&g_taskStackKdtree.tasks[popTaskIdx].triRight, triCnt); // Add the number of triangles to the right of the plane to the global counter
 	int warpAtomicRight = s_owner[threadIdx.y][0];
 
 	popSubtask = popStart; // Sweep the interval once more
@@ -4637,7 +4375,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(red[tid] < s_task[threadIdx.y].bbox.m_mn.x)
 			{
 				printf("Min x step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackKdtree.unfinished = 1;
 			}
 #endif
 
@@ -4650,7 +4388,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(red[tid] < s_task[threadIdx.y].bbox.m_mn.y)
 			{
 				printf("Min y step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackKdtree.unfinished = 1;
 			}
 #endif
 
@@ -4663,7 +4401,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(red[tid] < s_task[threadIdx.y].bbox.m_mn.z)
 			{
 				printf("Min z step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackKdtree.unfinished = 1;
 			}
 #endif
 		}
@@ -4682,7 +4420,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(red[tid] > s_task[threadIdx.y].bbox.m_mx.x)
 			{
 				printf("Max x step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackKdtree.unfinished = 1;
 			}
 #endif
 
@@ -4695,7 +4433,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(red[tid] > s_task[threadIdx.y].bbox.m_mx.y)
 			{
 				printf("Max y step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackKdtree.unfinished = 1;
 			}
 #endif
 
@@ -4708,7 +4446,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(red[tid] > s_task[threadIdx.y].bbox.m_mx.z)
 			{
 				printf("Max z step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackKdtree.unfinished = 1;
 			}
 #endif
 		}
@@ -4727,7 +4465,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(redI[tid] > s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart)
 			{
 				printf("Count step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackKdtree.unfinished = 1;
 			}
 #endif
 		}
@@ -4806,7 +4544,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 	{
 		int* inIdx = getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart, s_task[threadIdx.y].triIdxCtr);
 		triIdx = inIdx[triStart + tid];
-		taskFetchTri(c_bvh_in.tris, triIdx*3, v0, v1, v2);
+		taskFetchTri(c_kdtree_in.tris, triIdx*3, v0, v1, v2);
 	}
 
 	CudaAABB tbox;
@@ -4997,10 +4735,10 @@ __device__ __noinline__ void computeObjectSplitTree()
 
 				isLeaf = true;
 				nodeIdx = -(segmentStart+1);
-#ifdef BVH_COUNT_NODES
+#ifdef COUNT_NODES
 				// Beware the node count must still be updated
 				if(tid == segmentStart)
-					atomicAdd(&g_taskStackBVH.numNodes, 1);
+					atomicAdd(&g_taskStackKdtree.numNodes, 1);
 #endif
 			}
 		}
@@ -5024,7 +4762,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 		if(tid == 0 && nodeCount != 0)
 		{
 			// Inner node -> create new subtasks in the final array
-			nodeOffset = atomicAdd(&g_taskStackBVH.nodeTop, nodeCount);
+			nodeOffset = atomicAdd(&g_taskStackKdtree.nodeTop, nodeCount);
 		}
 		// Compute the positions of new children
 		childrenCount = __shfl(childrenCount, segmentStart); // Broadcast children count from the segment start
@@ -5154,7 +4892,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 	if(tid < end)
 	{
 		int sortedTriIdx = __shfl(triIdx, triangleThread); // Load the index from the thread holding the data
-		int* outIdx = (int*)c_bvh_in.trisIndex;
+		int* outIdx = (int*)c_kdtree_in.trisIndex;
 		outIdx[triStart + tid] = sortedTriIdx;
 	}
 #else
@@ -5172,9 +4910,9 @@ __device__ __noinline__ void computeObjectSplitTree()
 	if(tid == 0)
 	{
 		// Leaf -> create new triangles in the final array
-		triOffset = atomicAdd(&g_taskStackBVH.triTop, bufferSize);
+		triOffset = atomicAdd(&g_taskStackKdtree.triTop, bufferSize);
 
-#ifdef BVH_COUNT_NODES
+#ifdef COUNT_NODES
 		int cntSegments = bufferSize-3*end; // Subtract size of triangle data to get the number of segments (leaves)
 		atomicAdd(&g_taskStackBVH.numNodes, cntSegments-1);
 		atomicAdd(&g_taskStackBVH.numSortedTris, __log2f(cntSegments)*(s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart));
@@ -5186,8 +4924,8 @@ __device__ __noinline__ void computeObjectSplitTree()
 	// Instead of shuffling triangle data find positions where to write the triangles
 	s_sharedData[threadIdx.y][triangleThread] = triPosition;
 	int writePos = s_sharedData[threadIdx.y][tid];
-	float4* outTri = ((float4*)c_bvh_in.trisOut) + writePos; // Memory for the first triangle data
-	int* outIdx = ((int*)c_bvh_in.trisIndexOut) + writePos; // Memory for the first triangle index
+	float4* outTri = ((float4*)c_kdtree_in.trisOut) + writePos; // Memory for the first triangle data
+	int* outIdx = ((int*)c_kdtree_in.trisIndexOut) + writePos; // Memory for the first triangle index
 
 	ASSERT_DIVERGENCE("computeObjectSplitTree triangleWrite", tid);
 
@@ -5218,8 +4956,8 @@ __device__ __noinline__ void computeObjectSplitTree()
 #endif // WOOP_TRIANGLES
 
 	// Write the sentinels
-	outTri = ((float4*)c_bvh_in.trisOut) + triPosition + 3; // Memory for the sentinel
-	outIdx = ((int*)c_bvh_in.trisIndexOut) + triPosition + 3; // Memory for the sentinel
+	outTri = ((float4*)c_kdtree_in.trisOut) + triPosition + 3; // Memory for the sentinel
+	outIdx = ((int*)c_kdtree_in.trisIndexOut) + triPosition + 3; // Memory for the sentinel
 
 	if(tid < end && tid == segmentEnd-1)
 	{
@@ -5237,7 +4975,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 		//printf("Segment %d: Parent %d <- node %d (%d)!\n", segmentStart, parentIdx, triPosition, taskID);
 		taskUpdateParentPtr(g_kdtree, parentIdx, taskID, ~triPosition); // Mark this node as leaf in the hierarchy
 #ifdef LEAF_HISTOGRAM
-		atomicAdd(&g_taskStackBVH.leafHist[segmentEnd-segmentStart], 1); // Update histogram
+		atomicAdd(&g_taskStackKdtree.leafHist[segmentEnd-segmentStart], 1); // Update histogram
 #endif
 	}
 #endif // COMPACT_LAYOUT
@@ -5254,7 +4992,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 
 #ifdef SNAPSHOT_POOL
 // Constantly take snapshots of the pool
-__device__ void snapshot(int tid, int* header, volatile TaskBVH* tasks, int *unfinished, int *stackTop, volatile int* img, volatile int* red)
+__device__ void snapshot(int tid, int* header, volatile TaskKdtree* tasks, int *unfinished, int *stackTop, volatile int* img, volatile int* red)
 {
 	int counter = 0; // TESTING ONLY: Allows to undeadlock a failed run!
 	int beg = 0;
@@ -5399,16 +5137,10 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 	int warpIdx = blockDim.y*blockIdx.x + threadIdx.y; // Warp ID
 	if(warpIdx == 0)
 	{
-		snapshot(tid, g_taskStackBVH.header, g_taskStackBVH.tasks, &g_taskStackBVH.unfinished, &g_taskStackBVH.top, (volatile int*)&s_task[threadIdx.y], (volatile int*)s_sharedData[threadIdx.y]);
+		snapshot(tid, g_taskStackKdtree.header, g_taskStackKdtree.tasks, &g_taskStackKdtree.unfinished, &g_taskStackKdtree.top, (volatile int*)&s_task[threadIdx.y], (volatile int*)s_sharedData[threadIdx.y]);
 		return;
 	}
 #endif
-
-/*#if PARALLELISM_TEST >= 0
-	int warpIdx = blockDim.y*blockIdx.x + threadIdx.y; // Warp ID
-	if(warpIdx == 0 && tid == 0)
-		printf("Output start!\n");
-#endif*/
 
 	s_task[threadIdx.y].lock = LockType_Free; // Prepare task
 
@@ -5431,31 +5163,9 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 #endif
 		if(s_task[threadIdx.y].lock == LockType_Free)
 		{
-		// Copy first cache line of task to shared memory
-#ifdef DIVERGENCE_TEST
-			if(s_task[threadIdx.y].popTaskIdx >= 0 && s_task[threadIdx.y].popTaskIdx < g_taskStackBVH.sizePool)
-			{
-				//taskLoadFirstFromGMEM(tid, s_task[threadIdx.y].popTaskIdx, &s_task[threadIdx.y]);
-				TaskBVH* g_task = &g_taskStackBVH.tasks[s_task[threadIdx.y].popTaskIdx];
-				taskAddr[tid] = ((int*)g_task)[tid]; // Every thread copies one word of task data
-#ifdef DEBUG_INFO
-				int offset = 128/sizeof(int); // 128B offset
-				taskAddr[tid+offset] = ((int*)g_task)[tid+offset]; // Every thread copies one word of task data
-#endif
-				
-				s_task[threadIdx.y].popStart = s_task[threadIdx.y].popSubtask;
-				// If we have poped all of the task's work we do not have to update unfinished atomicaly
-				if(s_task[threadIdx.y].popSubtask == s_task[threadIdx.y].origSize-1 && s_task[threadIdx.y].popCount >= s_task[threadIdx.y].origSize)
-					s_task[threadIdx.y].lock = LockType_None;
-			}
-			else
-			{
-				printf("Fetched task %d out of range!\n", s_task[threadIdx.y].popTaskIdx);
-				g_taskStackBVH.unfinished = 1;
-			}
-#else
+			// Copy first cache line of task to shared memory
 			//taskLoadFirstFromGMEM(tid, s_task[threadIdx.y].popTaskIdx, &s_task[threadIdx.y]);
-			TaskBVH* g_task = &g_taskStackBVH.tasks[s_task[threadIdx.y].popTaskIdx];
+			TaskKdtree* g_task = &g_taskStackKdtree.tasks[s_task[threadIdx.y].popTaskIdx];
 			taskAddr[tid] = ((int*)g_task)[tid]; // Every thread copies one word of task data
 #ifdef DEBUG_INFO
 			int offset = 128/sizeof(int); // 128B offset
@@ -5466,7 +5176,6 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 			// If we have poped all of the task's work we do not have to update unfinished atomicaly
 			if(s_task[threadIdx.y].popSubtask == s_task[threadIdx.y].origSize-1 && s_task[threadIdx.y].popCount >= s_task[threadIdx.y].origSize)
 				s_task[threadIdx.y].lock = LockType_None;
-#endif
 
 #ifdef SNAPSHOT_WARP
 			// Write out information about this dequeue
@@ -5477,7 +5186,7 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 			info.popCount = s_task[threadIdx.y].popCount;
 			info.depth = s_task[threadIdx.y].depth;
 			info.idx = s_task[threadIdx.y].nodeIdx;
-			info.stackTop = *((int*)&g_taskStackBVH.top);
+			info.stackTop = *((int*)&g_taskStackKdtree.top);
 			info.clockSearch = *(long long int*)&(s_sharedData[threadIdx.y][4]);
 			info.clockDequeue = clock64();
 #endif
@@ -5493,7 +5202,7 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 			{
 				printf("warpId %d\n", blockDim.y*blockIdx.x + threadIdx.y);
 				printf("task s_task[threadIdx.y].popTaskIdx: %d\n", s_task[threadIdx.y].popTaskIdx);
-				printf("Global unfinished: %d\n", g_taskStackBVH.warpCounter);
+				printf("Global unfinished: %d\n", g_taskStackKdtree.warpCounter);
 				//printf("Header: %d\n", s_task[threadIdx.y].popSubtask);
 				printf("Unfinished: %d\n", s_task[threadIdx.y].unfinished);
 				printf("Type: %d\n", s_task[threadIdx.y].type);
@@ -5529,7 +5238,7 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 		case TaskType_InitMemory:
 			do {
 				// Initialize the task by copying it from the end of the array
-				int *orig = ((int*)&g_redSplits[g_taskStackBVH.sizePool])+s_task[threadIdx.y].popSubtask*WARP_SIZE;
+				int *orig = ((int*)&g_redSplits[g_taskStackKdtree.sizePool])+s_task[threadIdx.y].popSubtask*WARP_SIZE;
 				int *split = ((int*)&g_redSplits[s_task[threadIdx.y].popTaskIdx])+s_task[threadIdx.y].popSubtask*WARP_SIZE;
 				split[tid] = orig[tid]; // Each thread copies 1 int-sized variable
 
@@ -5594,7 +5303,7 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 				int triidx = s_task[threadIdx.y].triStart + s_task[threadIdx.y].popSubtask*WARP_SIZE + tid;
 				int* ppsTrisIndex = getPPSTrisIdxPtr(s_task[threadIdx.y].dynamicMemory, s_task[threadIdx.y].triEnd-s_task[threadIdx.y].triStart);
 				
-				if(triidx < s_task[threadIdx.y].triRight && ((int*)c_bvh_in.ppsTrisIndex)[triidx] > 0)
+				if(triidx < s_task[threadIdx.y].triRight && ((int*)c_kdtree_in.ppsTrisIndex)[triidx] > 0)
 					printf("Tri error should be -1/0 is %d! Start %d, Left %d, Right %d, End %d\n", ppsTrisIndex[triidx], s_task[threadIdx.y].triStart, s_task[threadIdx.y].triLeft, s_task[threadIdx.y].triRight, s_task[threadIdx.y].triEnd);
 
 				if(triidx >= s_task[threadIdx.y].triRight && triidx < s_task[threadIdx.y].triEnd && ppsTrisIndex[triidx] < 1)
@@ -5650,7 +5359,7 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 	if(tid == 0)
 	{
 		int warpIdx = blockDim.y*blockIdx.x + threadIdx.y; // Warp ID
-		((float4*)c_bvh_in.debug)[warpIdx] = make_float4(numSteps[threadIdx.y]*1.0f, sumSteps[threadIdx.y]*1.0f/numSteps[threadIdx.y], maxSteps[threadIdx.y]*1.0f, numRestarts[threadIdx.y]*1.0f);
+		((float4*)c_kdtree_in.debug)[warpIdx] = make_float4(numSteps[threadIdx.y]*1.0f, sumSteps[threadIdx.y]*1.0f/numSteps[threadIdx.y], maxSteps[threadIdx.y]*1.0f, numRestarts[threadIdx.y]*1.0f);
 	}
 #endif
 }

@@ -32,6 +32,8 @@ CudaPersistentBVHBuilder::CudaPersistentBVHBuilder(Scene& scene, F32 epsilon) : 
 #endif
 }
 
+//------------------------------------------------------------------------
+
 CudaPersistentBVHBuilder::~CudaPersistentBVHBuilder()
 {
 #ifndef BENCHMARK
@@ -39,12 +41,12 @@ CudaPersistentBVHBuilder::~CudaPersistentBVHBuilder()
 #endif
 }
 
+//------------------------------------------------------------------------
+
 F32 CudaPersistentBVHBuilder::build()
 {
 	// Compile the kernel
-	m_kernelFile = "src/rt/kernels/persistent_bvh.cu";
-
-	m_compiler.setSourceFile(m_kernelFile);
+	m_compiler.setSourceFile("src/rt/kernels/persistent_bvh.cu");
 	m_compiler.clearDefines();
 	m_module = m_compiler.compile();
 	failIfError();
@@ -85,18 +87,19 @@ F32 CudaPersistentBVHBuilder::build()
 	// Create the taskData
 	m_taskData.resizeDiscard(TASK_SIZE * (sizeof(TaskBVH) + sizeof(int)));
 	m_taskData.setOwner(Buffer::Cuda, true); // Make CUDA the owner so that CPU memory is never allocated
-	S64 bvhSize = ((m_numTris * sizeof(CudaBVHNode)) + 4096 - 1) & -4096;
+#if SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
+	m_splitData.resizeDiscard((S64)(TASK_SIZE+1) * (S64)sizeof(SplitArray));
+	m_splitData.setOwner(Buffer::Cuda, true); // Make CUDA the owner so that CPU memory is never allocated
+#endif
+
+	// Node and triangle data
+	S64 bvhSize = align<S64, 4096>(m_numTris * sizeof(CudaBVHNode));
 	m_nodes.resizeDiscard(bvhSize);
 	m_nodes.setOwner(Buffer::Cuda, true); // Make CUDA the owner so that CPU memory is never allocated
 	//m_nodes.clearRange32(0, 0, bvhSize); // Mark all tasks as 0 (important for debug)
 #ifdef COMPACT_LAYOUT
 	m_triWoop.resizeDiscard(m_numTris * (3+1) * sizeof(Vec4f));
 	m_triIndex.resizeDiscard(m_numTris * (3+1) * sizeof(S32));
-#endif
-
-#if SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
-	m_splitData.resizeDiscard((S64)(TASK_SIZE+1) * (S64)sizeof(SplitArray));
-	m_splitData.setOwner(Buffer::Cuda, true); // Make CUDA the owner so that CPU memory is never allocated
 #endif
 
 	m_gpuTime = buildCuda();
@@ -111,6 +114,8 @@ F32 CudaPersistentBVHBuilder::build()
 
 	return m_gpuTime;
 }
+
+//------------------------------------------------------------------------
 
 void CudaPersistentBVHBuilder::updateConstants()
 {
@@ -140,10 +145,6 @@ void CudaPersistentBVHBuilder::initPool(Buffer* nodeBuffer)
 {
 	// Prepare the task data
 	updateConstants();
-#if PARALLELISM_TEST >= 0
-	int& numActive = *(int*)m_module->getGlobal("g_numActive").getMutablePtr();
-	numActive = 1;
-#endif
 
 	// Set PPS buffers
 	m_ppsTris.resizeDiscard(sizeof(int)*m_numTris);
@@ -186,12 +187,6 @@ void CudaPersistentBVHBuilder::deinitPool()
 
 void CudaPersistentBVHBuilder::printPoolHeader(TaskStackBase* tasks, int* header, int numWarps, FW::String state)
 {
-#if PARALLELISM_TEST >= 0
-	numActive = *(int*)m_module->getGlobal("g_numActive").getPtr();
-	printf("Active: %d\n", numActive);
-#endif
-
-
 #if defined(SNAPSHOT_POOL) || defined(SNAPSHOT_WARP)
 	printSnapshots(snapData);
 #endif
@@ -293,7 +288,7 @@ void CudaPersistentBVHBuilder::printPool(TaskStackBVH &tasks, int numWarps)
 	printf("Leaf histogram\n");
 	unsigned int leafSum = 0;
 	unsigned int triSum = 0;
-	for(S32 i = 0; i <= Environment::GetSingleton()->GetInt("SubdivisionRayCaster.triLimit"); i++)
+	for(S32 i = 0; i <= Environment::GetSingleton()->GetInt("PersistentBVH.triLimit"); i++)
 	{
 		printf("%d: %d\n", i, tasks.leafHist[i]);
 		leafSum += tasks.leafHist[i];
@@ -304,7 +299,7 @@ void CudaPersistentBVHBuilder::printPool(TaskStackBVH &tasks, int numWarps)
 
 	int* header = (int*)m_taskData.getPtr();
 	FW::String state = sprintf("BVH Top = %d; Tri Top = %d; Warp counter = %d; ", tasks.nodeTop, tasks.triTop, tasks.warpCounter);
-#ifdef BVH_COUNT_NODES
+#ifdef COUNT_NODES
 	state.appendf("Number of inner nodes = %d; Number of leaves = %d; Sorted tris = %d; ", tasks.numNodes, tasks.numLeaves, tasks.numSortedTris);
 #endif
 	printPoolHeader(&tasks, header, numWarps, state);
@@ -355,19 +350,16 @@ void CudaPersistentBVHBuilder::printPool(TaskStackBVH &tasks, int numWarps)
 			Debug << "Split: (" << task[i].splitPlane.x << ", " << task[i].splitPlane.y << ", " << task[i].splitPlane.z << ", " << task[i].splitPlane.w << ")\n";
 			Debug << "Box: (" << task[i].bbox.m_mn.x << ", " << task[i].bbox.m_mn.y << ", " << task[i].bbox.m_mn.z << ") - ("
 				<< task[i].bbox.m_mx.x << ", " << task[i].bbox.m_mx.y << ", " << task[i].bbox.m_mx.z << ")\n";
-			//Debug << "BoxLeft: (" << task[i].bboxLeft.m_mn.x << ", " << task[i].bboxLeft.m_mn.y << ", " << task[i].bboxLeft.m_mn.z << ") - ("
-			//	<< task[i].bboxLeft.m_mx.x << ", " << task[i].bboxLeft.m_mx.y << ", " << task[i].bboxLeft.m_mx.z << ")\n";
-			//Debug << "BoxRight: (" << task[i].bboxRight.m_mn.x << ", " << task[i].bboxRight.m_mn.y << ", " << task[i].bboxRight.m_mn.z << ") - ("
-			//	<< task[i].bboxRight.m_mx.x << ", " << task[i].bboxRight.m_mx.y << ", " << task[i].bboxRight.m_mx.z << ")\n";
+			Debug << "BoxLeft: (" << task[i].bboxLeft.m_mn.x << ", " << task[i].bboxLeft.m_mn.y << ", " << task[i].bboxLeft.m_mn.z << ") - ("
+				<< task[i].bboxLeft.m_mx.x << ", " << task[i].bboxLeft.m_mx.y << ", " << task[i].bboxLeft.m_mx.z << ")\n";
+			Debug << "BoxRight: (" << task[i].bboxRight.m_mn.x << ", " << task[i].bboxRight.m_mn.y << ", " << task[i].bboxRight.m_mn.z << ") - ("
+				<< task[i].bboxRight.m_mx.x << ", " << task[i].bboxRight.m_mx.y << ", " << task[i].bboxRight.m_mx.z << ")\n";
 			Debug << "Axis: " << task[i].axis << "\n";
 			Debug << "Depth: " << task[i].depth << "\n";
 			Debug << "Step: " << task[i].step << "\n";
 #ifdef DEBUG_INFO
 			//Debug << "Step: " << task[i].step << "\n";
 			//Debug << "Lock: " << task[i].lock << "\n";
-#ifdef MALLOC_SCRATCHPAD
-			Debug << "SubFailure: " << task[i].subFailureCounter << "\n";
-#endif
 			Debug << "GMEMSync: " << task[i].sync << "\n";
 			Debug << "Parent: " << task[i].parent << "\n";
 #endif
@@ -383,25 +375,18 @@ void CudaPersistentBVHBuilder::printPool(TaskStackBVH &tasks, int numWarps)
 
 			if(header[i] > (int)0xFF800000) // Not waiting
 			{
-#ifdef CUTOFF_DEPTH
-				if(task[i].depth == m_cutOffDepth)
+				long double tris = task[i].triEnd - task[i].triStart;
+				if(task[i].terminatedBy != TerminatedBy_None)
 				{
-#endif
-					long double tris = task[i].triEnd - task[i].triStart;
-					if(task[i].terminatedBy != TerminatedBy_None)
+					if(tris > maxTris)
 					{
-						if(tris > maxTris)
-						{
-							maxTris = tris;
-							maxTaskId = i;
-						}
-						sumTris += tris;
+						maxTris = tris;
+						maxTaskId = i;
 					}
-					sortTasks++;
-					cntSortTris += tris;
-#ifdef CUTOFF_DEPTH
+					sumTris += tris;
 				}
-#endif
+				sortTasks++;
+				cntSortTris += tris;
 
 #ifdef DEBUG_INFO
 				maxDepth = max(task[i].depth, maxDepth);
@@ -413,11 +398,7 @@ void CudaPersistentBVHBuilder::printPool(TaskStackBVH &tasks, int numWarps)
 
 	if(stackMax == TASK_SIZE-1)
 		printf("\aIncomplete result!\n");
-#ifdef CUTOFF_DEPTH
-	Debug << "\n\nStatistics for cutoff depth " << m_cutOffDepth << "\n\n";
-#else
 	Debug << "\n\n";
-#endif
 
 #ifdef DEBUG_INFO
 	Debug << "Avg naive task height (tris) = " << sumTris/(long double)sortTasks << "\n";
@@ -521,7 +502,7 @@ F32 CudaPersistentBVHBuilder::buildCuda()
 	all.parentIdx    = -1;
 	all.nodeIdx      = 0;
 	all.taskID       = 0;
-	Vec3f size     = m_bboxMax - m_bboxMin;
+	Vec3f size       = m_bboxMax - m_bboxMin;
 	all.axis         = size.x > size.y ? (size.x > size.z ? 0 : 2) : (size.y > size.z ? 1 : 2);
 	all.terminatedBy = TerminatedBy_None;
 #ifdef DEBUG_INFO
@@ -697,6 +678,8 @@ F32 CudaPersistentBVHBuilder::buildCuda()
 	return tKernel;
 }
 
+//------------------------------------------------------------------------
+
 void CudaPersistentBVHBuilder::saveBufferSizes(bool ads, bool aux)
 {
 	float MB = (float)(1024*1024);
@@ -721,6 +704,8 @@ void CudaPersistentBVHBuilder::saveBufferSizes(bool ads, bool aux)
 	}
 }
 
+//------------------------------------------------------------------------
+
 void CudaPersistentBVHBuilder::resetBuffers(bool resetADSBuffers)
 {
 	// Reset buffers so that reuse of space does not cause timing disturbs
@@ -737,10 +722,9 @@ void CudaPersistentBVHBuilder::resetBuffers(bool resetADSBuffers)
 	m_ppsTris.reset();
 	m_ppsTrisIndex.reset();
 	m_sortTris.reset();
-	m_ppsRays.reset();
-	m_ppsRaysIndex.reset();
-	m_sortRays.reset();
 }
+
+//------------------------------------------------------------------------
 
 void CudaPersistentBVHBuilder::trimBuffers()
 {
@@ -764,11 +748,13 @@ void CudaPersistentBVHBuilder::trimBuffers()
 	saveBufferSizes(true, false);
 }
 
+//------------------------------------------------------------------------
+
 void CudaPersistentBVHBuilder::getStats(U32& nodes, U32& leaves, U32& stackTop, U32& nodeTop, U32& tris, U32& sortedTris, bool sub)
 {
 	TaskStackBVH tasks = *(TaskStackBVH*)m_module->getGlobal("g_taskStackBVH").getPtr();
 
-#ifndef BVH_COUNT_NODES
+#ifndef COUNT_NODES
 #ifndef COMPACT_LAYOUT
 	nodes = tasks.nodeTop / 2;
 	leaves = tasks.nodeTop - nodes;
@@ -776,10 +762,10 @@ void CudaPersistentBVHBuilder::getStats(U32& nodes, U32& leaves, U32& stackTop, 
 	nodes = tasks.nodeTop;
 	leaves = tasks.triTop;
 #endif
-#else // BVH_COUNT_NODES
+#else // COUNT_NODES
 	nodes = tasks.numNodes;
 	leaves = tasks.numLeaves;
-#endif // BVH_COUNT_NODES
+#endif // COUNT_NODES
 
 #ifdef COMPACT_LAYOUT
 	tris = tasks.triTop;
@@ -805,6 +791,8 @@ void CudaPersistentBVHBuilder::getStats(U32& nodes, U32& leaves, U32& stackTop, 
 	stackTop = tasks.top;
 }
 
+//------------------------------------------------------------------------
+
 void CudaPersistentBVHBuilder::getSizes(F32& task, F32& split, F32& ads, F32& tri, F32& triIdx, F32& heap)
 {
 	task = m_sizeTask;
@@ -814,3 +802,5 @@ void CudaPersistentBVHBuilder::getSizes(F32& task, F32& split, F32& ads, F32& tr
 	triIdx = m_sizeTriIdx;
 	heap = m_heap;
 }
+
+//------------------------------------------------------------------------

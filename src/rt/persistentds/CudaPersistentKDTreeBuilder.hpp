@@ -27,25 +27,22 @@ class CudaPersistentKDTreeBuilder : public CudaKDTree
 	Buffer m_trisBox;
 
 	// GPU task data
-	Buffer   m_taskData;
-	Buffer   m_splitData;
-	int      m_cutOffDepth;
-	int      m_numRays;
+	Buffer m_taskData;
+	Buffer m_splitData;
 
 	CudaCompiler m_compiler;
 	CudaModule*  m_module;
 
-	// Auxiliary buffers
-	Buffer m_ppsRays;
-	Buffer m_ppsTris;
-	Buffer m_ppsRaysIndex;
-	Buffer m_ppsTrisIndex;
-	Buffer m_sortRays;
-	Buffer m_sortTris;
-
 	// Debug buffers
 	Buffer m_debug;
 	std::ofstream Debug;
+
+	// Allocator data
+	Buffer m_mallocData;
+	Buffer m_mallocData2;
+	Buffer m_multiOffset;
+	Buffer m_interFragSum;
+	char* halloc_base;
 
 	// Statistics
 	Timer  m_timer;
@@ -58,17 +55,24 @@ class CudaPersistentKDTreeBuilder : public CudaKDTree
 	F32    m_sizeTri;
 	F32    m_sizeTriIdx;
 	F32    m_heap;
-	String m_kernelFile;
+	F32    m_fragIntern;
+	F32    m_fragExtern;
 
 	void updateConstants();
 	void initPool(Buffer* nodeBuffer = NULL);
 	void deinitPool();
 	void printPoolHeader(TaskStackBase* tasks, int* header, int numWarps, FW::String state);
-	void printPool(TaskStackBVH& tasks, int numWarps);
+	void printPool(TaskStackKdtree& tasks, int numWarps);
 
 	void saveBufferSizes(bool ads = true, bool aux = true);
 
 	F32 buildCuda();
+	void prepareDynamicMemory();
+	void setCircularMallocHeader(bool set, U32 ofs, U32 prevOfs, U32 nextOfs);
+	int setDynamicMemory();
+	void computeFragmentation();
+	F32 convertWoop(); // Convert regular triangles to Woop triangles
+
 public:
 	CudaPersistentKDTreeBuilder(Scene& scene, F32 epsilon);
 	~CudaPersistentKDTreeBuilder();
@@ -80,8 +84,10 @@ public:
 
 	F32 getCPUTime() { return m_cpuTime; }
 	F32 getGPUTime() { return m_gpuTime; }
-	void getStats(U32& nodes, U32& leaves, U32& stackTop, U32& nodeTop, U32& tris, U32& sortedTris, bool sub = true);
+	void getStats(U32& nodes, U32& leaves, U32& emptyLeaves, U32& stackTop, U32& nodeTop, U32& tris, U32& sortedTris, bool sub = true);
 	void getSizes(F32& task, F32& split, F32& ads, F32& tri, F32& triIdx, F32& heap);
+	void getAllocStats(U32& numAllocs, F32& allocSum, F32& allocSumSquare);
+	void getFragmentationStats(F32& fInt, F32& fExt);
 };
 
 }

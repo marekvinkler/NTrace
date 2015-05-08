@@ -148,6 +148,18 @@ struct SplitArray
 // Kd-tree
 //------------------------------------------------------------------------
 
+struct KernelInputKdtree
+{
+	int             numTris;        // Total number of tris.
+	CUdeviceptr     tris;
+	CUdeviceptr     trisIndex;      // Triangle index remapping table.
+
+	CUdeviceptr		trisOut;
+	CUdeviceptr		trisIndexOut;
+	
+	CUdeviceptr		debug;
+};
+
 // BEWARE THAT STRUCT ALIGNMENT MAY INCREASE THE DATA SIZE AND BREAK 1 INSTRUCTION LOAD/STORE
 // CURRENT ORDER ENSURES THAT splitPlane AND bbox ARE ALIGNED TO 16B
 struct __align__(128) TaskKdtree
@@ -213,7 +225,7 @@ struct __align__(128) TaskKdtree
 // A work queue divided into two arrays with same indexing and other auxiliary global data
 struct TaskStackKdtree : public TaskStackBase
 {
-	TaskBVH      *tasks;               // Holds task data
+	TaskKdtree   *tasks;               // Holds task data
 	int          nodeTop;              // Top of the node array
 	int          triTop;               // Top of the triangle array
 	unsigned int numSortedTris;        // Number of inner nodes emited
@@ -247,7 +259,7 @@ struct SplitInfoTri
 extern "C"
 {
 __constant__ KernelInputBVH c_bvh_in;   // Input of build() for BVH builder.
-__constant__ KernelInputBVH c_kdtree_in;   // Input of build() for Kd-tree builder.
+__constant__ KernelInputKdtree c_kdtree_in;   // Input of build() for Kd-tree builder.
 
 __global__ void build(void);        // Launched for each batch of rays.
 
@@ -265,10 +277,6 @@ __device__ SplitArray *g_redSplits;   // Split stack head
 //#endif
 
 __device__ CudaBVHNode *g_bvh;   // Split stack head
-#ifndef INTERLEAVED_LAYOUT
 __device__ CudaKdtreeNode *g_kdtree;   // Split stack head
-#else
-__device__ char *g_kdtree;   // Split stack head
-#endif
 }
 #endif

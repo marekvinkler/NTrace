@@ -335,7 +335,7 @@ CudaAS*	Renderer::getCudaKDTree(void)
 
 	// Setup build parameters.
 
-	if (builder == "PersistentKdtree")
+	if (builder == "PersistentKDTree")
 	{
 		m_accelStruct = new CudaPersistentKDTreeBuilder(*m_scene, FLT_EPSILON);
 		((CudaPersistentKDTreeBuilder*)m_accelStruct)->resetBuffers(true);

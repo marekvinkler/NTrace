@@ -298,6 +298,68 @@ public:
 
 //------------------------------------------------------------------------
 
+class Vec2u : public VectorBase<U32, 2, Vec2u>, public uint2
+{
+public:
+    FW_CUDA_FUNC                    Vec2u       (void)                      { setZero(); }
+    FW_CUDA_FUNC                    Vec2u       (U32 a)                     { set(a); }
+    FW_CUDA_FUNC                    Vec2u       (U32 xx, U32 yy)            { x = xx; y = yy; }
+
+    FW_CUDA_FUNC    const U32*      getPtr      (void) const                { return &x; }
+    FW_CUDA_FUNC    U32*            getPtr      (void)                      { return &x; }
+    static FW_CUDA_FUNC Vec2u       fromPtr     (const U32* ptr)            { return Vec2u(ptr[0], ptr[1]); }
+
+    FW_CUDA_FUNC    Vec2u           perpendicular(void) const               { return Vec2u(-y, x); }
+
+    template <class V> FW_CUDA_FUNC Vec2u(const VectorBase<U32, 2, V>& v) { set(v); }
+    template <class V> FW_CUDA_FUNC Vec2u& operator=(const VectorBase<U32, 2, V>& v) { set(v); return *this; }
+};
+
+//------------------------------------------------------------------------
+
+class Vec3u : public VectorBase<U32, 3, Vec3u>, public uint3
+{
+public:
+    FW_CUDA_FUNC                    Vec3u       (void)                      { setZero(); }
+    FW_CUDA_FUNC                    Vec3u       (U32 a)                     { set(a); }
+    FW_CUDA_FUNC                    Vec3u       (U32 xx, U32 yy, U32 zz)    { x = xx; y = yy; z = zz; }
+    FW_CUDA_FUNC                    Vec3u       (const Vec2u& xy, U32 zz)   { x = xy.x; y = xy.y; z = zz; }
+
+    FW_CUDA_FUNC    const U32*      getPtr      (void) const                { return &x; }
+    FW_CUDA_FUNC    U32*            getPtr      (void)                      { return &x; }
+    static FW_CUDA_FUNC Vec3u       fromPtr     (const U32* ptr)            { return Vec3u(ptr[0], ptr[1], ptr[2]); }
+
+    FW_CUDA_FUNC    Vec2u           getXY       (void) const                { return Vec2u(x, y); }
+
+    template <class V> FW_CUDA_FUNC Vec3u(const VectorBase<U32, 3, V>& v) { set(v); }
+    template <class V> FW_CUDA_FUNC Vec3u& operator=(const VectorBase<U32, 3, V>& v) { set(v); return *this; }
+};
+
+//------------------------------------------------------------------------
+
+class Vec4u : public VectorBase<U32, 4, Vec4u>, public uint4
+{
+public:
+    FW_CUDA_FUNC                    Vec4u       (void)                      { setZero(); }
+    FW_CUDA_FUNC                    Vec4u       (U32 a)                     { set(a); }
+    FW_CUDA_FUNC                    Vec4u       (U32 xx, U32 yy, U32 zz, U32 ww) { x = xx; y = yy; z = zz; w = ww; }
+    FW_CUDA_FUNC                    Vec4u       (const Vec2u& xy, U32 zz, U32 ww) { x = xy.x; y = xy.y; z = zz; w = ww; }
+    FW_CUDA_FUNC                    Vec4u       (const Vec3u& xyz, U32 ww)  { x = xyz.x; y = xyz.y; z = xyz.z; w = ww; }
+    FW_CUDA_FUNC                    Vec4u       (const Vec2u& xy, const Vec2u& zw) { x = xy.x; y = xy.y; z = zw.x; w = zw.y; }
+
+    FW_CUDA_FUNC    const U32*      getPtr      (void) const                { return &x; }
+    FW_CUDA_FUNC    U32*            getPtr      (void)                      { return &x; }
+    static FW_CUDA_FUNC Vec4u       fromPtr     (const U32* ptr)            { return Vec4u(ptr[0], ptr[1], ptr[2], ptr[3]); }
+
+    FW_CUDA_FUNC    Vec2u           getXY       (void) const                { return Vec2u(x, y); }
+    FW_CUDA_FUNC    Vec3u           getXYZ      (void) const                { return Vec3u(x, y, z); }
+
+    template <class V> FW_CUDA_FUNC Vec4u(const VectorBase<U32, 4, V>& v) { set(v); }
+    template <class V> FW_CUDA_FUNC Vec4u& operator=(const VectorBase<U32, 4, V>& v) { set(v); return *this; }
+};
+
+//------------------------------------------------------------------------
+
 class Vec2f : public VectorBase<F32, 2, Vec2f>, public float2
 {
 public:

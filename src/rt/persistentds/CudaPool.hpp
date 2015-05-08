@@ -49,16 +49,12 @@
 
 //#define KEEP_ALL_TASKS // Each task is saved to a different location so that they are all visible afterwards
 //#define DEBUG_INFO // Enables gathering of statistics for each task
-#define BVH_COUNT_NODES // Enables gathering of emited number of nodes
+#define COUNT_NODES // Enables gathering of emited number of nodes
 //#define ONE_WARP_RUN
 //#define DEBUG_PPS
 #define TRAVERSAL_TEST
 //#define LEAF_HISTOGRAM
 //#define ONDEMAND_FULL_BUILD // Build entire data structure in the ondemand kernel - for overhead timing purpouses
-
-#define PARALLELISM_TEST -1 // -1 Means off
-							// 0 Means subtract before potentional add
-						    // 1 Means potentional add before subtract
 
 //#define DIVERGENCE_TEST // Test whether all threads in a warp run in a lockstep
 
@@ -71,8 +67,6 @@
 //#define COUNT_STEPS_DEQUEUE
 //#define COUNT_STEPS_ALLOC
 
-//#define CUTOFF_DEPTH // Ends computation at level CUTOFF_DEPTH
-
 #define WAIT_COUNT 100000 // How long should a warp wait before it assumes it is deadlocked
 
 //------------------------------------------------------------------------
@@ -82,11 +76,8 @@
 //#define CLIP_INTERSECT // Clip before intersections
 #define WOOP_TRIANGLES // Save triangles in woop representation
 #define COMPACT_LAYOUT // Save triangle pointers immediately in parent
-//#define INTERLEAVED_LAYOUT // Save nodes, triangles and references in a single array
-#define DUPLICATE_REFERENCES
+//#define DUPLICATE_REFERENCES
 
-//#define MALLOC_SCRATCHPAD // Allocate and dealocate memory for auxilliary arrays with malloc
-#ifdef MALLOC_SCRATCHPAD
 #define ALIGN 16
 //#define COALESCE_WARP
 //#define NO_FREE // Do not free dynamic memory, for testing purposes only
@@ -104,10 +95,6 @@
 
 // NOTICE: Due to the unknown base of CudaMalloc CUDA_MALLOC, FDG_MALLOC and HALLOC allocators may be unstable
 #define MALLOC_TYPE CIRCULAR_MALLOC
-
-#else
-#define MALLOC_TYPE -1
-#endif // MALLOC_SCRATCHPAD
 
 //------------------------------------------------------------------------
 // AtomicMalloc
@@ -286,10 +273,6 @@ __shared__ volatile int numRestarts[NUM_WARPS_PER_BLOCK];
 //------------------------------------------------------------------------
 
 
-#if PARALLELISM_TEST >= 0
-__device__ int g_numActive;
-#endif
-
 #ifdef SNAPSHOT_POOL
 __device__ PoolInfo *g_snapshots;
 #endif
@@ -299,7 +282,6 @@ __device__ WarpInfo *g_snapshots;
 #endif
 
 // Heap data
-#ifdef MALLOC_SCRATCHPAD
 __device__ char* g_heapBase2; // The base pointer to a second the heap (for combination of allocation strategies)
 
 //------------------------------------------------------------------------
@@ -315,7 +297,6 @@ extern "C" __global__ void deallocFreeableMemory();
 
 // Copy data for the root node from CPU allocated to GPU allocated device space.
 extern "C" __global__ void MemCpyIndex(CUdeviceptr src, int ofs, int size);
-#endif
 
 
 //------------------------------------------------------------------------

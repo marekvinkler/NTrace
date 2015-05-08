@@ -18,6 +18,7 @@
     Test of various dynamic allocation methods.
 */
 
+#pragma once
 #include "Allocators.hpp"
 #include "warp_common.cu"
 typedef unsigned long long int uint64_t;
