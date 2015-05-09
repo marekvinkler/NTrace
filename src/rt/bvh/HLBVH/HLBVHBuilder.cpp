@@ -576,9 +576,9 @@ void HLBVHBuilder::buildLBVH(void)
 	printf("! Build finished: %f\n", m_cpuTime);
 #endif
 	
-	F32* root = (F32*)getNodeBuffer().getPtr();
 	U32 leafs = *(U32*)(module->getGlobal("g_leafsPtr").getPtr(0));
-	/*printf("=== BVH stats: nodes %d, leafs %d\n", nodeWritten, leafs);
+	/*F32* root = (F32*)getNodeBuffer().getPtr();
+	printf("=== BVH stats: nodes %d, leafs %d\n", nodeWritten, leafs);
 	printf("=== AABB: (%.1f %.1f %.1f) - (%.1f %.1f %.1f)\n",   min(root[0],root[4]),
 																min(root[2],root[6]),
 																min(root[8],root[10]),

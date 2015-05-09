@@ -153,8 +153,7 @@ void CudaPersistentBVHBuilder::initPool(Buffer* nodeBuffer)
 
 #if defined(SNAPSHOT_POOL) || defined(SNAPSHOT_WARP)
 	// Prepare snapshot memory
-	Buffer snapData;
-	allocateSnapshots(snapData);
+	allocateSnapshots(m_module, m_snapData);
 #endif
 
 	// Set all headers empty
@@ -188,7 +187,7 @@ void CudaPersistentBVHBuilder::deinitPool()
 void CudaPersistentBVHBuilder::printPoolHeader(TaskStackBase* tasks, int* header, int numWarps, FW::String state)
 {
 #if defined(SNAPSHOT_POOL) || defined(SNAPSHOT_WARP)
-	printSnapshots(snapData);
+	printSnapshots(m_snapData);
 #endif
 
 #ifdef DEBUG_INFO
@@ -307,8 +306,6 @@ void CudaPersistentBVHBuilder::printPool(TaskStackBVH &tasks, int numWarps)
 	Debug << "\n\nTasks" << "\n";
 	TaskBVH* task = (TaskBVH*)m_taskData.getPtr(TASK_SIZE*sizeof(int));
 	int stackMax = 0;
-	int maxDepth = 0;
-	int syncCount = 0;
 	int maxTaskId = -1;
 	long double sumTris = 0;
 	long double maxTris = 0;
@@ -316,9 +313,12 @@ void CudaPersistentBVHBuilder::printPool(TaskStackBVH &tasks, int numWarps)
 	int sortTasks = 0;
 	long double cntSortTris = 0;
 
-	int subFailed = 0;
+	
 
 #ifdef DEBUG_INFO
+	int maxDepth = 0;
+	int syncCount = 0;
+	int subFailed = 0;
 	char terminatedNames[TerminatedBy_Max][255] = {
 		"None", "Depth","TotalLimit","OverheadLimit","Cost","FailureCounter"
 	};
@@ -572,8 +572,8 @@ F32 CudaPersistentBVHBuilder::buildCuda()
 	tasks.numNodes = 0;
 	tasks.numLeaves = 0;
 	tasks.sizePool = TASK_SIZE;
-	tasks.sizeNodes = m_nodes.getSize()/sizeof(CudaBVHNode);
-	tasks.sizeTris = m_triIndex.getSize()/sizeof(S32);
+	tasks.sizeNodes = int(m_nodes.getSize()/sizeof(CudaBVHNode));
+	tasks.sizeTris = int(m_triIndex.getSize()/sizeof(S32));
 	memset(tasks.leafHist, 0, sizeof(tasks.leafHist));
 
 #if SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
@@ -595,7 +595,6 @@ F32 CudaPersistentBVHBuilder::buildCuda()
 	int numBlocksPerSM = Environment::GetSingleton()->GetInt("SubdivisionRayCaster.numBlockPerSM");
 	Vec2i blockSize(WARP_SIZE, numWarpsPerBlock); // threadIdx.x must equal the thread lane in warp
 	int gridSizeX = NUM_SM*numBlocksPerSM;
-	int numWarps = numWarpsPerBlock*gridSizeX;
 	Vec2i gridSize(gridSizeX, 1); // Number of SMs * Number of blocks?
 
 	if(gridSizeX*numWarpsPerBlock != NUM_WARPS)
@@ -656,6 +655,7 @@ F32 CudaPersistentBVHBuilder::buildCuda()
 	//Debug << "\nBuild in " << tKernel << "\n\n";
 
 #ifndef BENCHMARK
+	int numWarps = numWarpsPerBlock*gridSizeX;
 	printPool(tasks, numWarps);
 
 	/*Debug << "\n\nBVH" << "\n";

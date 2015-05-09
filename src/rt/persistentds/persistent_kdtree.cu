@@ -23,8 +23,7 @@
 */
 
 #include "rt_common.cu"
-#include "CudaBuilderKernels.hpp"
-#include "allocators.cu"
+#include "CudaPoolKDTree.hpp"
 
 //------------------------------------------------------------------------
 // Shared variables.
@@ -541,20 +540,20 @@ __device__ __forceinline__ void taskSaveNodeParent(int tid, int triStart, int tr
 	{
 		//printf("Left %d, right %d, depth %d\n", numLeft, numRight, newTask->depth);
 #ifdef DUPLICATE_REFERENCES
-		s_sharedData[threadIdx.y][3] = atomicAdd(&g_taskStackBVH.triTop, (triEnd-triStart)*3+1); // Atomically acquire leaf space, +1 is for the triangle sentinel
+		s_sharedData[threadIdx.y][3] = atomicAdd(&g_taskStackKdtree.triTop, (triEnd-triStart)*3+1); // Atomically acquire leaf space, +1 is for the triangle sentinel
 #else
-		s_sharedData[threadIdx.y][3] = atomicAdd(&g_taskStackBVH.triTop, (triEnd-triStart)+1); // Atomically acquire leaf space, +1 is for the triangle sentinel
+		s_sharedData[threadIdx.y][3] = atomicAdd(&g_taskStackKdtree.triTop, (triEnd-triStart)+1); // Atomically acquire leaf space, +1 is for the triangle sentinel
 #endif
 	}
 
 	int triOfs = s_sharedData[threadIdx.y][3];
 #ifndef WOOP_TRIANGLES
-	int triIdx = createLeaf(tid, triOfs, (float*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triStart, triEnd, (float*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart)); 
+	int triIdx = createLeaf(tid, triOfs, (float*)c_kdtree_in.trisOut, (int*)c_kdtree_in.trisIndexOut, triStart, triEnd, (float*)c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart)); 
 #else
 #ifdef DUPLICATE_REFERENCES
-	int triIdx = createLeafWoop(tid, triOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triStart, triEnd, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart));
+	int triIdx = createLeafWoop(tid, triOfs, (float4*)c_kdtree_in.trisOut, (int*)c_kdtree_in.trisIndexOut, triStart, triEnd, (float4*)c_kdtree_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart));
 #else
-	int triIdx = createLeafReference(tid, triOfs, (int*)c_bvh_in.trisIndexOut, triStart, triEnd, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart));
+	int triIdx = createLeafReference(tid, triOfs, (int*)c_kdtree_in.trisIndexOut, triStart, triEnd, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart));
 #endif
 #endif
 
@@ -4566,7 +4565,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 #ifndef COMPACT_LAYOUT
 	if(end <= c_env.triLimit) // Write the single leaf
 	{
-		volatile CudaBVHNode* node = (CudaBVHNode*)&s_newTask[threadIdx.y];
+		volatile CudaKdtreeNode* node = (CudaKdtreeNode*)&s_newTask[threadIdx.y];
 
 		*((float4*)&node->c0xy) = make_float4(s_task[threadIdx.y].bbox.m_mn.x, s_task[threadIdx.y].bbox.m_mx.x, s_task[threadIdx.y].bbox.m_mn.y, s_task[threadIdx.y].bbox.m_mx.y);
 		*((float4*)&node->c1xy) = make_float4(s_task[threadIdx.y].bbox.m_mn.x, s_task[threadIdx.y].bbox.m_mx.x, s_task[threadIdx.y].bbox.m_mn.y, s_task[threadIdx.y].bbox.m_mx.y);
@@ -4914,9 +4913,9 @@ __device__ __noinline__ void computeObjectSplitTree()
 
 #ifdef COUNT_NODES
 		int cntSegments = bufferSize-3*end; // Subtract size of triangle data to get the number of segments (leaves)
-		atomicAdd(&g_taskStackBVH.numNodes, cntSegments-1);
-		atomicAdd(&g_taskStackBVH.numSortedTris, __log2f(cntSegments)*(s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart));
-		atomicAdd(&g_taskStackBVH.numLeaves, cntSegments);
+		atomicAdd(&g_taskStackKdtree.numNodes, cntSegments-1);
+		atomicAdd(&g_taskStackKdtree.numSortedTris, __log2f(cntSegments)*(s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart));
+		atomicAdd(&g_taskStackKdtree.numLeaves, cntSegments);
 #endif
 	}
 	triPosition = __shfl(triOffset, 0) + triPosition;

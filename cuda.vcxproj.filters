@@ -25,6 +25,15 @@
     <ClInclude Include="src\rt\persistentds\ScatterAlloc\utils.h">
       <Filter>persistentds\ScatterAlloc</Filter>
     </ClInclude>
+    <ClInclude Include="src\rt\persistentds\CudaBuilderKernels.hpp">
+      <Filter>persistentds</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\CudaPoolBVH.hpp">
+      <Filter>persistentds</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\CudaPoolKDTree.hpp">
+      <Filter>persistentds</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="src\rt\kernels\fermi_speculative_while_while.cu">
@@ -91,6 +100,9 @@
       <Filter>traversal</Filter>
     </CudaCompile>
     <CudaCompile Include="src\rt\persistentds\persistent_kdtree.cu">
+      <Filter>persistentds</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\persistentds\alloc_common.cu">
       <Filter>persistentds</Filter>
     </CudaCompile>
   </ItemGroup>

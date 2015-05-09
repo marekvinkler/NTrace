@@ -353,12 +353,12 @@ TRACE_FUNC_KDTREE
     }
 
 	// Traversal loop.
-    while(hitIndex == -1 && tmax > tmin)
+    while(hitIndex == -1 && tmax >= tmin)
     {
 #ifdef SPECULATIVE
 		bool searchingLeaf = true;
 #endif
-		while(nodeAddr >= 0 && tmax > tmin)
+		while(nodeAddr >= 0 && tmax >= tmin)
 		{
 			// Fetch Kdtree node.
 			int4 cell = FETCH_GLOBAL(nodesA, nodeAddr, int4);

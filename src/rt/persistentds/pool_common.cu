@@ -25,64 +25,6 @@
 #pragma once
 #include "CudaPool.hpp"
 #include "warp_common.cu"
-#include "allocators.cu"
-
-//------------------------------------------------------------------------
-
-// Allocate memory for the root node
-__global__ void allocFreeableMemory(int numTris, int numRays)
-{
-	// Save the base pointer (hopefully) to the heap
-
-#if (MALLOC_TYPE == CUDA_MALLOC)
-	g_heapBase = (char*)mallocCudaMalloc(numTris*sizeof(int));
-#elif (MALLOC_TYPE == CIRCULAR_MALLOC)
-	mallocCircularMalloc(numTris*sizeof(int));
-#elif (MALLOC_TYPE == CIRCULAR_MALLOC_FUSED)
-	mallocCircularMallocFused(numTris*sizeof(int));
-#elif (MALLOC_TYPE == SCATTER_ALLOC)
-	g_heapBase = (char*)mallocScatterAlloc(numTris*sizeof(int));
-#elif (MALLOC_TYPE == HALLOC)
-	g_heapBase2 = 0;
-	void *heap[32];
-	for(int i = 0; i < 32; i++)
-	{
-		heap[i] = malloc(1<<i);
-		g_heapBase2 = (char*)max((unsigned long long)g_heapBase2, (unsigned long long)heap[i]);
-		//printf("%d : %p\n", i, g_heapBase2);
-	}
-	for(int i = 0; i < 32; i++)
-	{
-		free(heap[i]);
-	}
-	g_heapBase = (char*)mallocHalloc(numTris*sizeof(int));
-#elif (MALLOC_TYPE == FDG_MALLOC)
-	g_heapBase = (char*)mallocFDGMalloc(warp, numTris*sizeof(int));
-#endif
-
-#ifdef CHECK_OUT_OF_MEMORY
-	if(g_heapBase == NULL)
-		printf("Out of memory!\n");
-#endif
-}
-
-//------------------------------------------------------------------------
-
-// Deallocate all memory
-__global__ void deallocFreeableMemory()
-{
-	free((void*)g_heapBase);
-}
-
-//------------------------------------------------------------------------
-
-// Copy data for the root node from CPU allocated to GPU allocated device space.
-__global__ void MemCpyIndex(CUdeviceptr src, int ofs, int size)
-{
-	int tid = threadIdx.x + blockIdx.x * blockDim.x;
-	if(tid < size)
-		((int*)(g_heapBase+ofs))[tid] = ((int*)src)[tid];
-}
 
 //------------------------------------------------------------------------
 

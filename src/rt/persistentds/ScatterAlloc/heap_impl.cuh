@@ -30,7 +30,7 @@
 #define HEAP_IMPL_CUH
 
 #include "heap.cuh"
-#include "../CudaPool.hpp"
+
 #ifndef HEAPARGS
 typedef GPUTools::DeviceHeap<> heap_t;
 #else

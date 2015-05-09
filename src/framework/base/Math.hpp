@@ -309,8 +309,6 @@ public:
     FW_CUDA_FUNC    U32*            getPtr      (void)                      { return &x; }
     static FW_CUDA_FUNC Vec2u       fromPtr     (const U32* ptr)            { return Vec2u(ptr[0], ptr[1]); }
 
-    FW_CUDA_FUNC    Vec2u           perpendicular(void) const               { return Vec2u(-y, x); }
-
     template <class V> FW_CUDA_FUNC Vec2u(const VectorBase<U32, 2, V>& v) { set(v); }
     template <class V> FW_CUDA_FUNC Vec2u& operator=(const VectorBase<U32, 2, V>& v) { set(v); return *this; }
 };

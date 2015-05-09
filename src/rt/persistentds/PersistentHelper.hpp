@@ -1,6 +1,8 @@
 #pragma once
 
 #include "persistentds/CudaTracerDefines.h"
+#include "gpu/Buffer.hpp"
+#include "gpu/CudaModule.hpp"
 
 namespace FW
 {
@@ -29,6 +31,11 @@ inline int floatToOrderedInt(float floatVal)
 	int intVal = *((int*)&floatVal);
 	return (intVal >= 0) ? intVal : intVal ^ 0x7FFFFFFF;
 }
+
+//------------------------------------------------------------------------
+
+void allocateSnapshots(CudaModule* module, Buffer &snapData);
+void printSnapshots(Buffer &snapData);
 
 //------------------------------------------------------------------------
 

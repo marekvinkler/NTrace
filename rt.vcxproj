@@ -266,6 +266,7 @@
     <ClCompile Include="src\rt\kdtree\KDTreeNode.cpp" />
     <ClCompile Include="src\rt\kdtree\NaiveKDTreeBuilder.cpp" />
     <ClCompile Include="src\rt\persistentds\CudaPersistentKDTreeBuilder.cpp" />
+    <ClCompile Include="src\rt\persistentds\PersistentHelper.cpp" />
     <ClCompile Include="src\rt\ray\PixelTable.cpp" />
     <ClCompile Include="src\rt\ray\RayBuffer.cpp" />
     <ClCompile Include="src\rt\ray\RayGen.cpp" />
@@ -303,7 +304,6 @@
     <ClInclude Include="src\rt\kdtree\KDTreeNode.hpp" />
     <ClInclude Include="src\rt\kdtree\NaiveKDTreeBuilder.hpp" />
     <ClInclude Include="src\rt\kernels\CudaTracerKernels.hpp" />
-    <ClInclude Include="src\rt\persistentds\CudaBuilderKernels.hpp" />
     <ClInclude Include="src\rt\persistentds\CudaPersistentKDTreeBuilder.hpp" />
     <ClInclude Include="src\rt\persistentds\PersistentHelper.hpp" />
     <ClInclude Include="src\rt\ray\PixelTable.hpp" />

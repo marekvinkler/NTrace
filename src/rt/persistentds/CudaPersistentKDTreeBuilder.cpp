@@ -11,6 +11,13 @@ using namespace FW;
 #define TASK_SIZE 150000
 #define BENCHMARK
 
+// Allocator settings
+#define CIRCULAR_MALLOC_PREALLOC 3
+#define CPU 0
+#define GPU 1
+#define CIRCULAR_MALLOC_INIT GPU
+#define CIRCULAR_MALLOC_PREALLOC_SPECIAL
+
 //------------------------------------------------------------------------
 
 CudaPersistentKDTreeBuilder::CudaPersistentKDTreeBuilder(Scene& scene, F32 epsilon) : CudaKDTree(), m_epsilon(epsilon), m_numTris(scene.getNumTriangles()), m_trisCompact(scene.getTriCompactBuffer())
@@ -157,8 +164,7 @@ void CudaPersistentKDTreeBuilder::initPool(Buffer* nodeBuffer)
 
 #if defined(SNAPSHOT_POOL) || defined(SNAPSHOT_WARP)
 	// Prepare snapshot memory
-	Buffer snapData;
-	allocateSnapshots(snapData);
+	allocateSnapshots(m_module, m_snapData);
 #endif
 
 	// Set all headers empty
@@ -189,7 +195,7 @@ void CudaPersistentKDTreeBuilder::deinitPool()
 void CudaPersistentKDTreeBuilder::printPoolHeader(TaskStackBase* tasks, int* header, int numWarps, FW::String state)
 {
 #if defined(SNAPSHOT_POOL) || defined(SNAPSHOT_WARP)
-	printSnapshots(snapData);
+	printSnapshots(m_snapData);
 #endif
 
 #ifdef DEBUG_INFO
@@ -702,6 +708,7 @@ F32 CudaPersistentKDTreeBuilder::buildCuda()
 	//Debug << "\nBuild in " << tKernel << "\n\n";
 
 #ifndef BENCHMARK
+	int numWarps = numWarpsPerBlock*gridSizeX;
 	printPool(tasks, numWarps);
 
 	/*Debug << "\n\nKdtree" << "\n";
@@ -1227,7 +1234,7 @@ int CudaPersistentKDTreeBuilder::setDynamicMemory()
 	}
 
 #elif (CIRCULAR_MALLOC_PREALLOC == 3)
-	for(U32 i = 0; i < m_numSM; i++)
+	for(int i = 0; i < m_numSM; i++)
 		heapMultiOffset[i] = heapOffset;
 
 #if (MALLOC_TYPE == CIRCULAR_MALLOC) || (MALLOC_TYPE == CIRCULAR_MALLOC_FUSED)
@@ -1242,7 +1249,7 @@ int CudaPersistentKDTreeBuilder::setDynamicMemory()
 		if(i == lvl) // New level in BFS order
 		{
 			//heapMultiOffset[(int)log2((float)lvl)] = ofs; // Not very clever solution, we do not know which SM will allocate memory
-			delta = align<U32, ALIGN>((delta * 0.8f)+headerSize);
+			delta = align<U32, ALIGN>(U32((delta * 0.8f)+headerSize));
 			i = 0;
 			lvl *= 2;
 		}
@@ -1318,7 +1325,7 @@ int CudaPersistentKDTreeBuilder::setDynamicMemory()
 
 	// Set the chunk size
 	U32 numChunks = 0;
-	U32 chunkSize = align<U32, ALIGN>((headerSize + allocInfo.payload)*allocInfo.chunkRatio);
+	U32 chunkSize = align<U32, ALIGN>(U32((headerSize + allocInfo.payload)*allocInfo.chunkRatio));
 
 #if (CIRCULAR_MALLOC_INIT == CPU)
 	// Prepare the buffer on the CPU

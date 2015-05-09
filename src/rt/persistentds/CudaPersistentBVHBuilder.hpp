@@ -4,7 +4,7 @@
 #include "gpu/CudaCompiler.hpp"
 #include "base/Timer.hpp"
 #include "cuda/CudaBVH.hpp"
-#include "persistentds/CudaBuilderKernels.hpp"
+#include "persistentds/CudaPoolBVH.hpp"
 #include "Scene.hpp"
 
 #include <fstream>
@@ -41,6 +41,7 @@ class CudaPersistentBVHBuilder : public CudaBVH
 	// Debug buffers
 	Buffer m_debug;
 	std::ofstream Debug;
+	Buffer m_snapData;
 
 	// Statistics
 	Timer  m_timer;

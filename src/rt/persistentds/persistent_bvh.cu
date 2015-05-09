@@ -23,7 +23,7 @@
 */
 
 #include "rt_common.cu"
-#include "CudaBuilderKernels.hpp"
+#include "CudaPoolBVH.hpp"
 
 // ERROR: JIT compilation does not pass this macro in preprocessing - compilation errors
 /*#if defined(__CUDA_ARCH__) && (__CUDA_ARCH__ < 300)

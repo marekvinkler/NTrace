@@ -261,9 +261,9 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			BVH bvh(m_scene, m_platform, m_buildParams);
 			stats.print();
 			m_accelStruct = new CudaBVH(bvh, layout);
-			int* ptr = (int*)m_accelStruct->getNodeBuffer().getPtr();
+			/*int* ptr = (int*)m_accelStruct->getNodeBuffer().getPtr();
 
-			/*printf("\n\n");
+			printf("\n\n");
 			for (int i = 0; i < m_accelStruct->getNodeBuffer().getSize()/64; i++)
 			{
 				printf("v1=%f v2=%f \n",i, *((int*)m_accelStruct->getNodeBuffer().getPtr(i*64+48))/64, *((int*)m_accelStruct->getNodeBuffer().getPtr(i*64+52))/64,

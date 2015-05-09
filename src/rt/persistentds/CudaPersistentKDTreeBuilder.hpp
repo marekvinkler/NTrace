@@ -4,7 +4,7 @@
 #include "gpu/CudaCompiler.hpp"
 #include "base/Timer.hpp"
 #include "cuda/CudaKDTree.hpp"
-#include "persistentds/CudaBuilderKernels.hpp"
+#include "persistentds/CudaPoolKDTree.hpp"
 #include "Scene.hpp"
 
 #include <fstream>
@@ -36,6 +36,7 @@ class CudaPersistentKDTreeBuilder : public CudaKDTree
 	// Debug buffers
 	Buffer m_debug;
 	std::ofstream Debug;
+	Buffer m_snapData;
 
 	// Allocator data
 	Buffer m_mallocData;
