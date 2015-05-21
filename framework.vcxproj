@@ -221,6 +221,16 @@
     <ClCompile Include="src\framework\gpu\CudaCompiler.cpp" />
     <ClCompile Include="src\framework\gpu\CudaModule.cpp" />
     <ClCompile Include="src\framework\gpu\GLContext.cpp" />
+    <ClCompile Include="src\framework\3rdparty\lodepng\lodepng.cpp">
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level2</WarningLevel>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4530;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Level2</WarningLevel>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4530;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level2</WarningLevel>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4530;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Level2</WarningLevel>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4530;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
     <ClCompile Include="src\framework\io\AviExporter.cpp" />
     <ClCompile Include="src\framework\io\File.cpp" />
     <ClCompile Include="src\framework\io\ImageBinaryIO.cpp" />
@@ -233,16 +243,6 @@
     <ClCompile Include="src\framework\io\MeshWavefrontIO.cpp" />
     <ClCompile Include="src\framework\io\StateDump.cpp" />
     <ClCompile Include="src\framework\io\Stream.cpp" />
-    <ClCompile Include="src\framework\3rdparty\lodepng\lodepng.cpp">
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level2</WarningLevel>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4530;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Level2</WarningLevel>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4530;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level2</WarningLevel>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4530;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Level2</WarningLevel>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4530;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\framework\3d\Light.hpp" />
@@ -275,6 +275,7 @@
     <ClInclude Include="src\framework\gpu\CudaCompiler.hpp" />
     <ClInclude Include="src\framework\gpu\CudaModule.hpp" />
     <ClInclude Include="src\framework\gpu\GLContext.hpp" />
+    <ClInclude Include="src\framework\3rdparty\lodepng\lodepng.h" />
     <ClInclude Include="src\framework\io\AviExporter.hpp" />
     <ClInclude Include="src\framework\io\File.hpp" />
     <ClInclude Include="src\framework\io\ImageBinaryIO.hpp" />
@@ -287,7 +288,6 @@
     <ClInclude Include="src\framework\io\MeshWavefrontIO.hpp" />
     <ClInclude Include="src\framework\io\StateDump.hpp" />
     <ClInclude Include="src\framework\io\Stream.hpp" />
-    <ClInclude Include="src\framework\3rdparty\lodepng\lodepng.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\framework\base\DLLImports.inl" />

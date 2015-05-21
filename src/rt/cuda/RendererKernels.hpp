@@ -82,7 +82,6 @@ struct VPLReconstructInput {
     S32         numPrimary;
 	S32         firstPrimary;
 	S32			lightCount;
-	F32			lightContributionCoefficient;
 	S32			currentLight;
 	CUdeviceptr lights;				// const Light*
 
@@ -95,7 +94,6 @@ struct VPLReconstructInput {
 	CUdeviceptr shadowResults;		// const RayResult*
 	CUdeviceptr shadowIdToSlot;     // const S32*
 
-
 	CUdeviceptr texCoords;			// const Vec2f*
 	CUdeviceptr normals;			// const Vec3f*
 	CUdeviceptr triVertIndex;		// const Vec3i*
@@ -106,8 +104,7 @@ struct VPLReconstructInput {
 	CUdeviceptr matInfo;			// const Vec4f*
 	CUdeviceptr triMaterialColor;   // const U32* ABGR
 
-	//CUdeviceptr material
-	bool		preview;
+	bool		shadow;
 };
 
 

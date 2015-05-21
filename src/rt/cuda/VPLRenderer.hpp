@@ -19,7 +19,7 @@ public:
     virtual bool        nextBatch           (void);
     virtual void        updateResult        (void); // for current batch
 	virtual void		setMesh(MeshBase* mesh);
-
+	virtual int         getTotalNumRays     (void);
 protected:
 	bool                m_firstFrame;
 

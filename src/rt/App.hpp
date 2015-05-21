@@ -109,6 +109,9 @@ private:
 void    listKernels     (Array<String>& kernelNames);
 void    runInteractive  (const Vec2i& frameSize, const String& stateFile);
 
+float calcRMSE(Image* one, Image* two);
+float calcMAD(Image* one, Image* two);
+
 void runBenchmark(
     const Vec2i&            frameSize,
     const String&           meshFile,

@@ -250,21 +250,6 @@ extern "C" __global__ void getVisibility(const float4* rayResults, int numRays, 
 
 //------------------------------------------------------------------------
 
-// For VPLs
-
-extern "C" __device__ bool isCloserThan(const Ray& ray, Vec3f point, float value) {
-
-	// Direction is normalized so
-	float t = dot(ray.direction, point - ray.origin);
-	if(t <= 0.0) {
-		return false;
-	}
-	Vec3f closest = ray.origin + t * ray.direction;
-
-	return (closest - point).length() <= value;
-
-}
-
 extern "C" __global__ void vplReconstructKernel() 
 {
 
@@ -273,7 +258,7 @@ extern "C" __global__ void vplReconstructKernel()
 
 	int                     primarySlot     = in.firstPrimary + taskIdx;
 
-	if(primarySlot >= in.numPrimary) {
+	if(primarySlot >= in.numPrimary) { 
 		return;
 	}
 
@@ -287,7 +272,7 @@ extern "C" __global__ void vplReconstructKernel()
 	
 
 	Vec4f&                    pixel           = ((Vec4f*)in.pixels)[primaryID];
-	Vec4f                   bgColor         = Vec4f(0.2f, 0.4f, 0.8f, 1.0f);
+	Vec4f                   bgColor         = Vec4f(0, 0, 0, 1.0f);
 	const Vec3i*			vertIdx			= (const Vec3i*)in.triVertIndex;
 	const Vec3f*			normals			= (const Vec3f*)in.normals;
 	const Vec3f*			vertices		= (const Vec3f*)in.vertices;
@@ -295,8 +280,6 @@ extern "C" __global__ void vplReconstructKernel()
 	const Light&			light			= ((const Light*)in.lights)[in.currentLight];
 	const Vec3f				lightPos		= light.position;
 	const int				lightCount		= in.lightCount;
-	//const int				lightCount		= 60;
-	const float				lightContributionCoefficient = in.lightContributionCoefficient;
 
 	const Vec2f*			texCoords		= (const Vec2f*)in.texCoords;
 	const Vec4f*			atlasInfo		= (const Vec4f*)in.atlasInfo;
@@ -304,14 +287,9 @@ extern "C" __global__ void vplReconstructKernel()
 	const Vec4f*			matInfo			= (const Vec4f*)in.matInfo;
 	const U32*				triMaterialColor    = (const U32*)in.triMaterialColor;
 
-	if(isCloserThan(primaryRay, lightPos, 3)) {
-		pixel = Vec4f(lightCount,0,0,1);
-		return;
-	}
-
 	int tri = primaryResult.id;
 	if(tri == -1) {
-		pixel = bgColor;
+		pixel += bgColor;
 		return;
 	}
 
@@ -325,20 +303,19 @@ extern "C" __global__ void vplReconstructKernel()
 	Vec3f normal = (normals[vertIdx[tri].x] * u + normals[vertIdx[tri].y] * v + normals[vertIdx[tri].z] * w).normalized();
 	Vec3f position = vertices[vertIdx[tri].x] * u + vertices[vertIdx[tri].y] * v + vertices[vertIdx[tri].z] * w;
 
-	Vec3f	lightDir = (lightPos - position);
-	//float invDist = 1.0f / lightDir.length();
-	lightDir = lightDir.normalized();
+	Vec3f lightDir = lightPos - position;
+
+	float nDotDir = dot(normal, lightDir.normalized());
 
 
-	float nDotDir = dot(normal, lightDir);
-
-
-	//if(nDotDir > 0) {
+	if(nDotDir > 0) {
 		float shadow = 1.0f;
 
-		for(int i = 0; i < in.shadowSamples; i++) {
-			if(shadowResults[shadowSlots[i]].id != -1) {
-				shadow -= 1.0f / in.shadowSamples;
+		if(in.shadow) {
+			for(int i = 0; i < in.shadowSamples; i++) {
+				if(shadowResults[shadowSlots[i]].id != -1) {
+					shadow -= 1.0f / in.shadowSamples;
+				}
 			}
 		}
 		
@@ -363,10 +340,8 @@ extern "C" __global__ void vplReconstructKernel()
 			texColor = Vec4f(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);
 		}
 
-		color += nDotDir * (Vec4f(light.intensity,0)) * texColor * shadow;
-		//color += nDotDir * (Vec4f(light.intensity,0) * lightContributionCoefficient) * texColor * shadow;
-		//color = texColor;
-	//}
+		color += nDotDir * Vec4f(light.intensity ,1) * texColor * shadow + Vec4f(matInfo[matId[tri]].x, matInfo[matId[tri]].x, matInfo[matId[tri]].x);
+	}
 	
 	pixel += color;
 }

@@ -180,6 +180,21 @@ F64 Random::getF64Normal(void)
     return a * c;
 }
 
+F32 Random::halton(int base, int i) {
+
+	float result = 0.0f;
+	float f = 1.0f / (float)base;
+
+	while(i > 0) {
+		result += f * (i % base);
+		i = i / base;
+		f = f / (float) base;
+	}
+
+	return result;
+
+}
+
 //------------------------------------------------------------------------
 // Implementation wrappers.
 //------------------------------------------------------------------------

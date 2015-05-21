@@ -16,7 +16,6 @@ VPLRenderer::VPLRenderer()
 	Environment::GetSingleton()->GetIntValue("VPL.primaryLights", m_lightCount);
 	Environment::GetSingleton()->GetIntValue("VPL.maxLightBounces", m_lightBounces);
 	
-	printf("%d lights\n", m_lightCount);
 	m_lights.resize(m_lightCount * sizeof(Vec3f));
 }
 
@@ -32,6 +31,11 @@ void VPLRenderer::setMesh(MeshBase* mesh) {
 
 }
 
+int VPLRenderer::getTotalNumRays(void)
+{
+	return m_primaryRays.getSize() * (m_lights.getSize() / sizeof(Light)) + m_primaryRays.getSize();
+}
+
 F32 VPLRenderer::renderFrame(GLContext* gl, const CameraControls& camera) 
 {
 	F32 launchTime = 0.0f;
@@ -42,6 +46,7 @@ F32 VPLRenderer::renderFrame(GLContext* gl, const CameraControls& camera)
         updateResult();
     }
     displayResult(gl);
+
 	CameraControls& c = const_cast<CameraControls&>(camera);
 	if(m_showVis && m_vis != NULL) // If visualization is enabled
 		m_vis->draw(gl, c);
@@ -92,24 +97,16 @@ void VPLRenderer::beginFrame(GLContext* gl, const CameraControls& camera)
 		Random rand(156);
 
 		m_firstFrame = false;
-		m_raygen.primaryVPL(m_lights, m_vplBuffer, Vec3f(0, 1000,0), Vec3f(100,0,0), Vec3f(0, 0, 100), Vec3f(1,0,0), m_lightCount, m_lightBounces, 10000.0f, rand.getU32());
-		//m_raygen.primaryVPL(m_lights, m_vplBuffer, Vec3f(0, 15, 0), Vec3f(2, 0, 0), Vec3f(0, 0, 2), Vec3f(1, 0, 0), m_lightCount, m_lightBounces, 10000.0f, rand.getU32());
-
-		//m_secondaryRays.resize(m_lightCount * (m_lightBounces + 2));
+		m_raygen.primaryVPL(m_lights, m_vplBuffer, m_scene, m_lightCount, m_lightBounces, 10000.0f, rand.getU32());
 
 		for (int i = 0; i < m_lightCount; i++) {
-			//m_secondaryRays.setRay(i, ((Ray* )m_vplBuffer.getRayBuffer().getPtr())[i]);
 			Light* lightBuffer = (Light*)m_lights.getPtr();
-			printf("Light #%d intensity %s position %s\n", i, vecToStr(lightBuffer[i].intensity).getPtr(), vecToStr(lightBuffer[i].position).getPtr());
 		}
 
 		m_cudaTracer->traceBatch(m_vplBuffer);
 
 		for(int i = 0; i <= m_lightBounces; i++) {
 			m_raygen.reflectedVPL(m_lights, m_vplBuffer, m_lightCount, i, m_scene, 10000.0f, rand.getU32());
-			//for (int i = 0; i < m_lightCount; i++) {
-			//	m_secondaryRays.setRay((i + 1) * m_lightCount, ((Ray*)m_vplBuffer.getRayBuffer().getPtr())[i]);
-			//}
 			if(i < m_lightBounces) {
 				m_cudaTracer->traceBatch(m_vplBuffer);
 			}
@@ -150,8 +147,6 @@ bool VPLRenderer::nextBatch(void)
 	if (m_batchRays)
 		m_batchStart += m_batchRays->getSize();
 	m_batchRays = NULL;
-
-	//printf("Current light: %d, Batch start: %d\n", m_currentLight, m_batchStart);
 
 	Light* lights = (Light*)m_lights.getPtr();
 
@@ -195,37 +190,15 @@ void VPLRenderer::updateResult(void)
     CudaModule* module = m_compiler.compile();
 
     // Setup input struct.
-	//printf("Light #%d\n", m_currentLight);
-
-	//printf("Primary: %d, Shadow: %d\n", m_primaryRays.getSize(), m_shadowRays.getSize());
-
-	//Ray* primRay = ((Ray*)m_primaryRays.getRayBuffer().getPtr()) + 6561;
-	//RayResult* primRes = ((RayResult*)m_primaryRays.getResultBuffer().getPtr()) + 6561;
-	//Ray* shadowRay = ((Ray*)m_shadowRays.getRayBuffer().getPtr()) + 6561;
-
-	//if(primRes->id >= 0) {
-	//	Vec3f point = primRay->origin + primRay->direction * primRes->t;
-	//	printf("Prim. ray origin: %f, %f, %f\n", primRay->origin.x, primRay->origin.y, primRay->origin.z);
-	//	printf("Prim. ray hit: %f, %f, %f\n", point.x, point.y, point.z);
-	//	printf("Prim. ray dir: %f, %f, %f\n", primRay->direction.x, primRay->direction.y, primRay->direction.z);
-	//	printf("Shadow ray origin: %f, %f, %f\n", shadowRay->origin.x, shadowRay->origin.y, shadowRay->origin.z);
-	//	printf("Shadow ray dir: %f, %f, %f\n", shadowRay->direction.x, shadowRay->direction.y, shadowRay->direction.z);
-	//}
-
-
-	float ro = 0.8;
-
     VPLReconstructInput& in    = *(VPLReconstructInput*)module->getGlobal("c_VPLReconstructInput").getMutablePtr();
 	in.currentLight			= m_currentLight;
 	in.lights				= m_lights.getCudaPtr();
-	in.lightCount			= m_lightCount;
-	in.lightContributionCoefficient = (float) m_lightCount / floorf(pow(ro, m_currentLight / m_lightCount) * m_lightCount);
+	in.lightCount			= m_lightCount * (m_lightBounces + 2);
 	in.firstPrimary			= m_batchStart;
 	in.numPrimary           = m_primaryRays.getSize();
     in.primarySlotToID      = m_primaryRays.getSlotToIDBuffer().getCudaPtr();
     in.primaryResults       = m_primaryRays.getResultBuffer().getCudaPtr();
 	in.primaryRays			= m_primaryRays.getRayBuffer().getCudaPtr();
-    //in.pixels               = m_image->getBuffer().getMutableCudaPtr();
 	in.pixels				= m_pixels.getMutableCudaPtr();
 	in.shadowSamples		= m_shadowSamples;
 	in.shadowResults		= m_shadowRays.getResultBuffer().getCudaPtr();
@@ -241,25 +214,19 @@ void VPLRenderer::updateResult(void)
 	in.triMaterialColor		= m_scene->getTriMaterialColorBuffer().getCudaPtr();
 
 	module->setTexRef("t_textures", *m_scene->getTextureAtlas()->getAtlasTexture().getImage(), true, true, true, false);
-	//printf("Atlas size %dx%d\n", m_scene->getTextureAtlas()->getAtlasTexture().getSize().x, m_scene->getTextureAtlas()->getAtlasTexture().getSize().y);
-	
 
     // Launch.
-
 	if(m_params.rayType == RayType_VPL) {
-		in.preview = false;
+		in.shadow = true;
 		module->getKernel("vplReconstructKernel").launch(m_shadowRays.getSize());
-
 		if(m_currentLight == (m_lightCount * (m_lightBounces + 2)) - 1) {
-			printf("Normalizing\n");
-			module->getKernel("vplNormalizeKernel").setParams(CudaKernel::Param(m_pixels.getCudaPtr()), CudaKernel::Param(m_image->getBuffer().getMutableCudaPtr()), CudaKernel::Param(m_lightCount)).launch(in.numPrimary);
+			module->getKernel("vplNormalizeKernel").setParams(CudaKernel::Param(m_pixels.getCudaPtr()), CudaKernel::Param(m_image->getBuffer().getMutableCudaPtr()), CudaKernel::Param(m_lightCount * (m_lightBounces + 2))).launch(in.numPrimary);
 		}
 
 	} else {
-		in.preview = true;
+		in.shadow = false;
 		module->getKernel("vplReconstructKernel").launch(in.numPrimary);
 		module->getKernel("vplNormalizeKernel").setParams(CudaKernel::Param(m_pixels.getCudaPtr()), CudaKernel::Param(m_image->getBuffer().getMutableCudaPtr()), 1).launch(in.numPrimary);
-
 	}
 
 }

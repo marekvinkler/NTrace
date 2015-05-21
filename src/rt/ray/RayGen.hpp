@@ -174,7 +174,7 @@ public:
 	 * \param[in,out] orays Generated rays.
 	 * \param[in] emitPlaneBase The base point of the emitting plane
 	 */
-	bool    primaryVPL(Buffer& lights, RayBuffer& orays, Vec3f& emitPlaneBase, Vec3f& emitPlaneV1, Vec3f& emitPlaneV2, Vec3f& emitPlaneNormal, int numLights, int maxBounces, float maxDist, U32 randomSeed=0);
+	bool    primaryVPL(Buffer& lights, RayBuffer& orays, Scene* scene, int numLights, int maxBounces, float maxDist, U32 randomSeed = 0);
 
 	bool	reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights, int iteration, Scene* scene, float maxDist, U32 randomSeed = 0);
 

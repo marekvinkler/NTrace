@@ -174,7 +174,7 @@ App::App(void)
         fail("No CUDA kernel sources found!");
 
 #ifndef CPU
-	m_renderer = new Renderer();
+	//m_renderer = new Renderer();
 	m_renderer = new VPLRenderer();
 #else
 	m_renderer = new CPURenderer());
@@ -647,6 +647,37 @@ void matchRayTypes(const Array<String>& rayTypes, Array<int>& intTypes)
 
 //------------------------------------------------------------------------
 
+float FW::calcRMSE(Image* one, Image* two) {
+
+	float sum = 0.0f;
+	Vec2i size = one->getSize();
+	for(int i = 0; i < size.x; i++) {
+		for(int j = 0; j < size.y; j++) {
+			sum += (one->getVec4f(Vec2i(i, j)) - two->getVec4f(Vec2i(i, j))).lenSqr();
+		}
+	}
+	return sqrt(sum / (size.x * size.y));
+
+}
+
+//------------------------------------------------------------------------
+
+float FW::calcMAD(Image* one, Image* two) {
+
+	float sum = 0.0f;
+	Vec2i size = one->getSize();
+	for(int i = 0; i < size.x; i++) {
+		for(int j = 0; j < size.y; j++) {
+			Vec4f diff = one->getVec4f(Vec2i(i, j)) - two->getVec4f(Vec2i(i, j));
+			sum += abs(diff.x) + abs(diff.y) + abs(diff.z);
+		}
+	}
+	return sum / (size.x * size.y);
+
+}
+
+//------------------------------------------------------------------------
+
 void FW::runBenchmark(
     const Vec2i&            frameSize,
     const String&           meshFile,
@@ -659,6 +690,7 @@ void FW::runBenchmark(
     int                     warmupRepeats,
     int                     measureRepeats)
 {
+
 	// Parse ray types.
 	Array<String> rayTypesString;
 	Array<int> rayTypes;
@@ -684,7 +716,8 @@ void FW::runBenchmark(
     buildParams.splitAlpha = sbvhAlpha;
 
 
-	Renderer* renderer = new Renderer();
+	//Renderer* renderer = new Renderer();
+	VPLRenderer* renderer = new VPLRenderer();
     renderer->setBuildParams(buildParams);
 	renderer->setMesh(importMesh(meshFile));
 
@@ -708,8 +741,6 @@ void FW::runBenchmark(
     {
 		for (int rt = 0; rt < rayTypes.getSize(); rt++)
         {
-            S64 totalRays = 0;
-            F32 totalLaunchTime = 0.0f;
 
             for (int cameraIdx = 0; cameraIdx < cameras.getSize(); cameraIdx++)
             {
@@ -727,91 +758,84 @@ void FW::runBenchmark(
 
                 CameraControls camera;
                 camera.decodeSignature(cameras[cameraIdx]);
-				renderer->beginFrame(gl, camera);
 
-				totalRays += (S64)renderer->getTotalNumRays() * measureRepeats;
+				for (int i = 0; i < warmupRepeats; i++) {
+					renderer->renderFrame(gl, camera);
+				}
 
-                // Process each batch.
+				float totalLaunchTime = 0.0f;
+				for (int i = 0; i < measureRepeats; i++) {
 
-				while (renderer->nextBatch())
-                {
-                    // Render and display result.
+					float rmse = FLT_MAX;
+					
+					float lastLaunchTime = 0.0f;
+					Image* previousImage = NULL;
 
-					renderer->traceBatch();
-					renderer->updateResult();
-                    window.setVisible(true);
-                    Window::pollMessages();
-                    for (int i = 0; i < 3; i++)
-                    {
-						renderer->displayResult(gl);
-                        gl->swapBuffers();
-                    }
+					renderer->resetSampling();
 
-					// Export the image.
-					if(Environment::GetSingleton()->GetBool("Benchmark.screenshot"))
-					{
-						Image* image = renderer->getImage();
-						image->flipY();
-						string scrName;
-						Environment::GetSingleton()->GetStringValue("Benchmark.screenshotName", scrName);
-						String name = sprintf(scrName.c_str(), kernelIdx, rayTypesString[rt].getPtr(), cameraIdx);
-						exportImage(name, image);
+					if(params.rayType == VPLRenderer::RayType_PathTracing) {
+						// If we are calculating path tracing, we have to wait until the result converges
+						while(rmse > 0.0025f) {
+							lastLaunchTime = renderer->renderFrame(gl, camera);
+							totalLaunchTime += lastLaunchTime;
+
+							window.setVisible(true);
+							Window::pollMessages();
+							for (int i = 0; i < 3; i++)
+							{
+								renderer->displayResult(gl);
+								gl->swapBuffers();
+							}
+
+							Image* currentImage = renderer->getImage();
+							if(previousImage != NULL) {
+								rmse = calcRMSE(currentImage, previousImage);
+								printf("RMSE: %f\n", rmse);
+								delete previousImage;
+							}
+							previousImage = new Image(*currentImage);
+
+						}
+						totalLaunchTime -= lastLaunchTime;
+					} else {
+						lastLaunchTime = renderer->renderFrame(gl, camera);
+						totalLaunchTime += lastLaunchTime;
+
+						window.setVisible(true);
+						Window::pollMessages();
+						for (int i = 0; i < 3; i++)
+						{
+							renderer->displayResult(gl);
+							gl->swapBuffers();
+						}
+
 					}
 
-                    // Warm up and measure.
+					printf("Measure launch #%d, time: %f, rays: %d\n", i, totalLaunchTime, renderer->getTotalNumRays());
+				}
 
-                    for (int i = 0; i < warmupRepeats; i++)
-						renderer->traceBatch();
-                    for (int i = 0; i < measureRepeats; i++)
-						totalLaunchTime += renderer->traceBatch();
-                }
+				printf("Avg launch time: %f, MRays/s %f\n", totalLaunchTime / measureRepeats, (renderer->getTotalNumRays() * measureRepeats * 1e-6) / totalLaunchTime);
+
+				pushStat("AVG_TIME", totalLaunchTime / measureRepeats);
+
+				// Export the image.
+				if(Environment::GetSingleton()->GetBool("Benchmark.screenshot"))
+				{
+					Image* image = renderer->getImage();
+					image->flipY();
+					string scrName;
+					Environment::GetSingleton()->GetStringValue("Benchmark.screenshotName", scrName);
+					String name = sprintf(scrName.c_str(), kernelIdx, rayTypesString[rt].getPtr(), cameraIdx);
+					exportImage(name, image);
+				}
 
                 // Error => skip.
 
                 if (hasError())
                     return;
             }
-
-            // Calculate Mrays/s.
-
-            F32 mraysPerSec = (F32)totalRays / totalLaunchTime * 1.0e-3f;
-            results.add(mraysPerSec);
-			//printf("Time (s) = %.4f\n", totalLaunchTime);
-            //printf("Krays/s = %.2f\n", mraysPerSec);
-            //printf("\n");
-			pushStat("SUM_RENDER_TIME", totalLaunchTime);
-			pushStat("SUM_RENDER_KRAYS", mraysPerSec);
         }
     }
-
-    // Print summary table.
-
-    printf("Done.\n");
-    printf("\n");
-
-    printf("%-42s", "Kernel");
-	for (int i = 0; i < rayTypes.getSize(); i++)
-        printf("%-10s", s_rayTypeNames[i]);
-    printf("\n");
-
-    printf("%-42s", "---");
-    for (int i = 0; i < rayTypes.getSize(); i++)
-        printf("%-10s", "---");
-    printf("\n");
-
-    for (int i = 0; i < kernels.getSize(); i++)
-    {
-        printf("%-42s", kernels[i].getPtr());
-        for (int j = 0; j < rayTypes.getSize(); j++)
-            printf("%-10.2f", results[i * rayTypes.getSize() + j]);
-        printf("\n");
-    }
-
-    printf("%-42s", "---");
-    for (int i = 0; i < rayTypes.getSize(); i++)
-        printf("%-10s", "---");
-    printf("\n");
-    printf("\n");
 }
 
 //------------------------------------------------------------------------

@@ -13,14 +13,14 @@
     <Filter Include="gpu">
       <UniqueIdentifier>{fce5415b-1c03-44b2-9122-09dd15ce0c41}</UniqueIdentifier>
     </Filter>
-    <Filter Include="io">
-      <UniqueIdentifier>{39a8d526-3d2d-466c-841d-a65535bc8a49}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3rdparty">
       <UniqueIdentifier>{70c40258-0255-45a7-941b-0d0931949100}</UniqueIdentifier>
     </Filter>
     <Filter Include="3rdparty\lodepng">
       <UniqueIdentifier>{4954c8eb-cf03-4a30-8494-ac296852e533}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="io">
+      <UniqueIdentifier>{ed67dbd3-cc4d-401d-b453-d15d4c64ac1d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +108,12 @@
     <ClCompile Include="src\framework\gpu\GLContext.cpp">
       <Filter>gpu</Filter>
     </ClCompile>
+    <ClCompile Include="src\framework\3rdparty\lodepng\lodepng.cpp">
+      <Filter>3rdparty\lodepng</Filter>
+    </ClCompile>
+    <ClCompile Include="src\framework\gpu\CudaKernel.cpp">
+      <Filter>gpu</Filter>
+    </ClCompile>
     <ClCompile Include="src\framework\io\AviExporter.cpp">
       <Filter>io</Filter>
     </ClCompile>
@@ -143,12 +149,6 @@
     </ClCompile>
     <ClCompile Include="src\framework\io\Stream.cpp">
       <Filter>io</Filter>
-    </ClCompile>
-    <ClCompile Include="src\framework\3rdparty\lodepng\lodepng.cpp">
-      <Filter>3rdparty\lodepng</Filter>
-    </ClCompile>
-    <ClCompile Include="src\framework\gpu\CudaKernel.cpp">
-      <Filter>gpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +236,15 @@
     <ClInclude Include="src\framework\gpu\GLContext.hpp">
       <Filter>gpu</Filter>
     </ClInclude>
+    <ClInclude Include="src\framework\3rdparty\lodepng\lodepng.h">
+      <Filter>3rdparty\lodepng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\framework\gpu\CudaKernel.hpp">
+      <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\framework\3d\Light.hpp">
+      <Filter>3d</Filter>
+    </ClInclude>
     <ClInclude Include="src\framework\io\AviExporter.hpp">
       <Filter>io</Filter>
     </ClInclude>
@@ -271,15 +280,6 @@
     </ClInclude>
     <ClInclude Include="src\framework\io\Stream.hpp">
       <Filter>io</Filter>
-    </ClInclude>
-    <ClInclude Include="src\framework\3rdparty\lodepng\lodepng.h">
-      <Filter>3rdparty\lodepng</Filter>
-    </ClInclude>
-    <ClInclude Include="src\framework\gpu\CudaKernel.hpp">
-      <Filter>gpu</Filter>
-    </ClInclude>
-    <ClInclude Include="src\framework\3d\Light.hpp">
-      <Filter>3d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
