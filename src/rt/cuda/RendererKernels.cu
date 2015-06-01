@@ -267,7 +267,7 @@ extern "C" __global__ void vplReconstructKernel()
     const RayResult&        primaryResult   = ((const RayResult*)in.primaryResults)[primarySlot];
 	const Ray&				primaryRay		= ((const Ray*)in.primaryRays)[primarySlot];
 
-	const S32*				shadowSlots		= (const S32*)in.shadowIdToSlot + taskIdx * in.shadowSamples;
+	const S32*				shadowSlots		= (const S32*)in.shadowIdToSlot + taskIdx;
 	const RayResult*        shadowResults	= ((const RayResult*)in.shadowResults);
 	
 
@@ -308,17 +308,7 @@ extern "C" __global__ void vplReconstructKernel()
 	float nDotDir = dot(normal, lightDir.normalized());
 
 
-	if(nDotDir > 0) {
-		float shadow = 1.0f;
-
-		if(in.shadow) {
-			for(int i = 0; i < in.shadowSamples; i++) {
-				if(shadowResults[shadowSlots[i]].id != -1) {
-					shadow -= 1.0f / in.shadowSamples;
-				}
-			}
-		}
-		
+	if(nDotDir > 0 && shadowResults[shadowSlots[0]].id == -1) {
 		float tU = texCoords[vertIdx[tri].x].x * u + texCoords[vertIdx[tri].y].x * v + texCoords[vertIdx[tri].z].x * w;
 		float tV = texCoords[vertIdx[tri].x].y * u + texCoords[vertIdx[tri].y].y * v + texCoords[vertIdx[tri].z].y * w;
 		
@@ -340,7 +330,7 @@ extern "C" __global__ void vplReconstructKernel()
 			texColor = Vec4f(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);
 		}
 
-		color += nDotDir * Vec4f(light.intensity ,1) * texColor * shadow + Vec4f(matInfo[matId[tri]].x, matInfo[matId[tri]].x, matInfo[matId[tri]].x);
+		color += nDotDir * Vec4f(light.intensity ,1) * texColor + Vec4f(matInfo[matId[tri]].x, matInfo[matId[tri]].x, matInfo[matId[tri]].x);
 	}
 	
 	pixel += color;

@@ -151,6 +151,17 @@ protected:
 
 	Visualization*		m_vis;
 	bool				m_showVis;
+
+	// Things needed for VPL
+	bool                m_vplsGenerated;
+	Buffer				m_lights;
+	RayBuffer			m_vplBuffer;
+	int					m_lightCount;
+	int					m_lightBounces;
+	int					m_currentLight;
+	bool				m_meshChanged;
+	Buffer				m_pixels;
+
 };
 
 //------------------------------------------------------------------------

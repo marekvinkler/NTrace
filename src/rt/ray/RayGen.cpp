@@ -505,7 +505,7 @@ bool RayGen::primaryVPL(Buffer& lights, RayBuffer& orays, Scene* scene, int numL
    
 }
 
-bool RayGen::reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights, int iteration, Scene* scene, float maxDist, U32 randomSeed) {
+bool RayGen::reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights, int iteration, Scene* scene, float maxDist) {
 
 	const float epsilon = 1e-1f;
 
@@ -522,8 +522,6 @@ bool RayGen::reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights,
 	const Image* atlasTexture = scene->getTextureAtlas()->getAtlasTexture().getImage();
 
 	Light* lightBuffer = ((Light*)lights.getMutablePtr()) + (iteration + 1) * numPrimaryLights;
-
-	Random rand(randomSeed);
 
 	for(int i = 0; i < numPrimaryLights; i++) {
 		int tri = rayResults[i].id;

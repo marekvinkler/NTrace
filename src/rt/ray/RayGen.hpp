@@ -172,11 +172,10 @@ public:
 	/**
 	 * \brief Generates rays on the surface of light - the area is defined by base, two vectors and a normal.
 	 * \param[in,out] orays Generated rays.
-	 * \param[in] emitPlaneBase The base point of the emitting plane
 	 */
 	bool    primaryVPL(Buffer& lights, RayBuffer& orays, Scene* scene, int numLights, int maxBounces, float maxDist, U32 randomSeed = 0);
 
-	bool	reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights, int iteration, Scene* scene, float maxDist, U32 randomSeed = 0);
+	bool	reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights, int iteration, Scene* scene, float maxDist);
 
 private:
 	/**

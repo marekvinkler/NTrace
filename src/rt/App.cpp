@@ -174,8 +174,7 @@ App::App(void)
         fail("No CUDA kernel sources found!");
 
 #ifndef CPU
-	//m_renderer = new Renderer();
-	m_renderer = new VPLRenderer();
+	m_renderer = new Renderer();
 #else
 	m_renderer = new CPURenderer());
 #endif
@@ -716,8 +715,7 @@ void FW::runBenchmark(
     buildParams.splitAlpha = sbvhAlpha;
 
 
-	//Renderer* renderer = new Renderer();
-	VPLRenderer* renderer = new VPLRenderer();
+	Renderer* renderer = new Renderer();
     renderer->setBuildParams(buildParams);
 	renderer->setMesh(importMesh(meshFile));
 
@@ -773,7 +771,7 @@ void FW::runBenchmark(
 
 					renderer->resetSampling();
 
-					if(params.rayType == VPLRenderer::RayType_PathTracing) {
+					if(params.rayType == Renderer::RayType_PathTracing) {
 						// If we are calculating path tracing, we have to wait until the result converges
 						while(rmse > 0.0025f) {
 							lastLaunchTime = renderer->renderFrame(gl, camera);

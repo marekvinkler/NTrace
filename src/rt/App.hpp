@@ -32,7 +32,6 @@
 #include "3d/CameraControls.hpp"
 #include "cuda/Renderer.hpp"
 //#include "cuda/CudaRenderer.hpp"
-#include "cuda/VPLRenderer.hpp"
 #include "cuda/CPURenderer.hpp"
 #include "Environment.h"
 #include "AppEnvironment.h"

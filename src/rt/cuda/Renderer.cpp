@@ -33,6 +33,8 @@
 #include "persistentds/CudaPersistentBVHBuilder.hpp"
 #include "persistentds/CudaPersistentKdtreeBuilder.hpp"
 
+#include "3d/Light.hpp"
+
 //#define CPU
 
 using namespace FW;
@@ -59,7 +61,9 @@ Renderer::Renderer()
     m_accelStruct		(NULL),
 
     m_vis				(NULL),
-    m_showVis			(false)
+    m_showVis			(false),
+	m_vplsGenerated		(false),
+	m_meshChanged		(false)
 {
 
 	string ds;
@@ -83,6 +87,10 @@ Renderer::Renderer()
 
     m_platform = Platform("GPU");
     m_platform.setLeafPreferences(1, 1);
+
+	Environment::GetSingleton()->GetIntValue("VPL.primaryLights", m_lightCount);
+	Environment::GetSingleton()->GetIntValue("VPL.maxLightBounces", m_lightBounces);
+	
 }
 
 //------------------------------------------------------------------------
@@ -105,6 +113,8 @@ void Renderer::setMesh(MeshBase* mesh)
 
     if (mesh == m_mesh)
         return;
+
+	m_meshChanged = true;
 
     // Deinit scene and BVH.
 
@@ -420,7 +430,42 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
         m_image = new Image(size, ImageFormat::ABGR_8888);
         m_image->getBuffer().setHints(Buffer::Hint_CudaGL);
         m_image->clear();
+
+		m_pixels.resize(size.x * size.y * sizeof(Vec4f));
+		
     }
+
+	if(m_params.rayType == RayType_VPL) {
+		m_image->clear();
+		m_pixels.clear();
+
+		// Generate VPLs if they are not or the mesh changed
+		if(!m_vplsGenerated || m_meshChanged) {
+
+			m_lights.clear();
+
+			Random rand(156);
+
+			m_vplsGenerated = true;
+			m_raygen.primaryVPL(m_lights, m_vplBuffer, m_scene, m_lightCount, m_lightBounces, 10000.0f, rand.getU32());
+
+			for (int i = 0; i < m_lightCount; i++) {
+				Light* lightBuffer = (Light*)m_lights.getPtr();
+			}
+
+			m_cudaTracer->traceBatch(m_vplBuffer);
+
+			for(int i = 0; i <= m_lightBounces; i++) {
+				m_raygen.reflectedVPL(m_lights, m_vplBuffer, m_lightCount, i, m_scene, 10000.0f);
+				if(i < m_lightBounces) {
+					m_cudaTracer->traceBatch(m_vplBuffer);
+				}
+			}
+
+
+		}
+	}
+
 
     // Generate primary rays.
 
@@ -448,6 +493,7 @@ void Renderer::beginFrame(GLContext* gl, const CameraControls& camera)
     m_newBatch      = true;
     m_batchRays     = NULL;
     m_batchStart    = 0;
+	m_currentLight	= 0;
 }
 
 //------------------------------------------------------------------------
@@ -461,6 +507,8 @@ bool Renderer::nextBatch(void)
     if (m_batchRays)
         m_batchStart += m_batchRays->getSize();
     m_batchRays = NULL;
+
+	Light* lights = (Light*)m_lights.getPtr();
 
     // Generate new batch.
 
@@ -489,6 +537,20 @@ bool Renderer::nextBatch(void)
         m_batchRays = &m_secondaryRays;
         break;
 
+	case RayType_VPL:
+		if(!m_raygen.shadow(m_shadowRays, m_primaryRays, 1, lights[m_currentLight].position , 0, m_newBatch)) {
+			if(m_currentLight == (m_lightCount * (m_lightBounces + 2)) - 1){
+				return false;
+			} else {
+				m_newBatch = true;
+				m_batchStart = 0;
+				m_currentLight++;
+				return nextBatch();
+			}
+		} else {
+			m_batchRays = &m_shadowRays;
+		}
+		break;
     default:
         FW_ASSERT(false);
         return false;
@@ -530,37 +592,70 @@ void Renderer::updateResult(void)
 
     // Setup input struct.
 
-    ReconstructInput& in    = *(ReconstructInput*)module->getGlobal("c_ReconstructInput").getMutablePtr();
-    in.numRaysPerPrimary    = (m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured || m_params.rayType == RayType_PathTracing) ? 1 : m_params.numSamples;
-    in.firstPrimary         = m_batchStart / in.numRaysPerPrimary;
-    in.numPrimary           = m_batchRays->getSize() / in.numRaysPerPrimary;
-    in.isPrimary            = (m_params.rayType == RayType_Primary);
-    in.isAO                 = (m_params.rayType == RayType_AO);
-    in.isDiffuse            = (m_params.rayType == RayType_Diffuse);
-	in.isTextured           = (m_params.rayType == RayType_Textured);
-	in.isPathTraced         = (m_params.rayType == RayType_PathTracing);
-    in.primarySlotToID      = m_primaryRays.getSlotToIDBuffer().getCudaPtr();
-    in.primaryResults       = m_primaryRays.getResultBuffer().getCudaPtr();
-    in.batchIDToSlot        = m_batchRays->getIDToSlotBuffer().getCudaPtr();
-    in.batchResults         = m_batchRays->getResultBuffer().getCudaPtr();
-    in.triMaterialColor     = m_scene->getTriMaterialColorBuffer().getCudaPtr();
-    in.triShadedColor       = m_scene->getTriShadedColorBuffer().getCudaPtr();
-    in.pixels               = m_image->getBuffer().getMutableCudaPtr();
-
-	in.texCoords			= m_scene->getVtxTexCoordBuffer().getCudaPtr();
-	in.normals				= m_scene->getVtxNormalBuffer().getCudaPtr();
-	in.triVertIndex			= m_scene->getTriVtxIndexBuffer().getCudaPtr();
-	in.atlasInfo			= m_scene->getTextureAtlasInfo().getCudaPtr();
-	in.matId				= m_scene->getMaterialIds().getCudaPtr();
-	in.matInfo				= m_scene->getMaterialInfo().getCudaPtr();
-	in.outputColor			= m_sampleImage->getBuffer().getMutableCudaPtr();
-	in.samplesCount			= m_sampleCount;
-
 	module->setTexRef("t_textures", *m_scene->getTextureAtlas()->getAtlasTexture().getImage(), true, true, true, false);
 
-    // Launch.
+	if(m_params.rayType == RayType_VPL) {
+		VPLReconstructInput& in    = *(VPLReconstructInput*)module->getGlobal("c_VPLReconstructInput").getMutablePtr();
+		in.currentLight			= m_currentLight;
+		in.lights				= m_lights.getCudaPtr();
+		in.lightCount			= m_lightCount * (m_lightBounces + 2);
+		in.firstPrimary			= m_batchStart;
+		in.numPrimary           = m_primaryRays.getSize();
+		in.primarySlotToID      = m_primaryRays.getSlotToIDBuffer().getCudaPtr();
+		in.primaryResults       = m_primaryRays.getResultBuffer().getCudaPtr();
+		in.primaryRays			= m_primaryRays.getRayBuffer().getCudaPtr();
+		in.pixels				= m_pixels.getMutableCudaPtr();
+		in.shadowResults		= m_shadowRays.getResultBuffer().getCudaPtr();
+		in.shadowIdToSlot		= m_shadowRays.getIDToSlotBuffer().getCudaPtr();
 
-    module->getKernel("reconstructKernel").launch(in.numPrimary);
+		in.texCoords			= m_scene->getVtxTexCoordBuffer().getCudaPtr();
+		in.normals				= m_scene->getVtxNormalBuffer().getCudaPtr();
+		in.triVertIndex			= m_scene->getTriVtxIndexBuffer().getCudaPtr();
+		in.vertices				= m_scene->getVtxPosBuffer().getCudaPtr();
+		in.atlasInfo			= m_scene->getTextureAtlasInfo().getCudaPtr();
+		in.matId				= m_scene->getMaterialIds().getCudaPtr();
+		in.matInfo				= m_scene->getMaterialInfo().getCudaPtr();
+		in.triMaterialColor		= m_scene->getTriMaterialColorBuffer().getCudaPtr();
+
+		module->getKernel("vplReconstructKernel").launch(m_shadowRays.getSize());
+		if(m_currentLight == (m_lightCount * (m_lightBounces + 2)) - 1) {
+			module->getKernel("vplNormalizeKernel").setParams(CudaKernel::Param(m_pixels.getCudaPtr()), CudaKernel::Param(m_image->getBuffer().getMutableCudaPtr()), CudaKernel::Param(m_lightCount * (m_lightBounces + 2))).launch(in.numPrimary);
+		}
+
+	} else {
+
+		ReconstructInput& in    = *(ReconstructInput*)module->getGlobal("c_ReconstructInput").getMutablePtr();
+		in.numRaysPerPrimary    = (m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured || m_params.rayType == RayType_PathTracing) ? 1 : m_params.numSamples;
+		in.firstPrimary         = m_batchStart / in.numRaysPerPrimary;
+		in.numPrimary           = m_batchRays->getSize() / in.numRaysPerPrimary;
+		in.isPrimary            = (m_params.rayType == RayType_Primary);
+		in.isAO                 = (m_params.rayType == RayType_AO);
+		in.isDiffuse            = (m_params.rayType == RayType_Diffuse);
+		in.isTextured           = (m_params.rayType == RayType_Textured);
+		in.isPathTraced         = (m_params.rayType == RayType_PathTracing);
+		in.primarySlotToID      = m_primaryRays.getSlotToIDBuffer().getCudaPtr();
+		in.primaryResults       = m_primaryRays.getResultBuffer().getCudaPtr();
+		in.batchIDToSlot        = m_batchRays->getIDToSlotBuffer().getCudaPtr();
+		in.batchResults         = m_batchRays->getResultBuffer().getCudaPtr();
+		in.triMaterialColor     = m_scene->getTriMaterialColorBuffer().getCudaPtr();
+		in.triShadedColor       = m_scene->getTriShadedColorBuffer().getCudaPtr();
+		in.pixels               = m_image->getBuffer().getMutableCudaPtr();
+
+		in.texCoords			= m_scene->getVtxTexCoordBuffer().getCudaPtr();
+		in.normals				= m_scene->getVtxNormalBuffer().getCudaPtr();
+		in.triVertIndex			= m_scene->getTriVtxIndexBuffer().getCudaPtr();
+		in.atlasInfo			= m_scene->getTextureAtlasInfo().getCudaPtr();
+		in.matId				= m_scene->getMaterialIds().getCudaPtr();
+		in.matInfo				= m_scene->getMaterialInfo().getCudaPtr();
+		in.outputColor			= m_sampleImage->getBuffer().getMutableCudaPtr();
+		in.samplesCount			= m_sampleCount;
+
+		
+
+		// Launch.
+
+		module->getKernel("reconstructKernel").launch(in.numPrimary);
+	}
 }
 
 //------------------------------------------------------------------------
@@ -582,8 +677,12 @@ int Renderer::getTotalNumRays(void)
 {
     // Casting primary rays => no degenerates.
 
-    if (m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured || m_params.rayType == RayType_PathTracing)
+    if (m_params.rayType == RayType_Primary || m_params.rayType == RayType_Textured || m_params.rayType == RayType_PathTracing) {
         return m_primaryRays.getSize();
+	} else if(m_params.rayType == RayType_VPL) {
+		return m_primaryRays.getSize() * (m_lights.getSize() / sizeof(Light)) + m_primaryRays.getSize();
+	}
+
 
     // Compile kernel.
 

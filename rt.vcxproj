@@ -260,7 +260,6 @@
     <ClCompile Include="src\rt\cuda\CudaBVHTracer.cpp" />
     <ClCompile Include="src\rt\cuda\CudaKDTree.cpp" />
     <ClCompile Include="src\rt\cuda\CudaKDTreeTracer.cpp" />
-    <ClCompile Include="src\rt\cuda\VPLRenderer.cpp" />
     <ClCompile Include="src\rt\persistentds\CudaPersistentBVHBuilder.cpp" />
     <ClCompile Include="src\rt\cuda\CudaRenderer.cpp" />
     <ClCompile Include="src\rt\cuda\Renderer.cpp" />
@@ -298,7 +297,6 @@
     <ClInclude Include="src\rt\cuda\CudaBVHTracer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaKDTree.hpp" />
     <ClInclude Include="src\rt\cuda\CudaKDTreeTracer.hpp" />
-    <ClInclude Include="src\rt\cuda\VPLRenderer.hpp" />
     <ClInclude Include="src\rt\persistentds\CudaPersistentBVHBuilder.hpp" />
     <ClInclude Include="src\rt\cuda\CudaRenderer.hpp" />
     <ClInclude Include="src\rt\cuda\CudaVirtualTracer.hpp" />
