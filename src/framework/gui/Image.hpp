@@ -164,6 +164,8 @@ public:
     Vec4f               getVec4f        (const Vec2i& pos) const;
     void                setVec4f        (const Vec2i& pos, const Vec4f& value);
 
+	Vec4f               getVec4fLinear  (const Vec2f& pos) const;
+
     void                getChannels     (F32* values, const Vec2i& pos, int first, int num) const   { getChannels(values, getPtr(pos), getFormat(), first, num); }
     void                getChannels     (F32* values, const Vec2i& pos) const                       { getChannels(values, getPtr(pos), getFormat(), 0, getFormat().getNumChannels()); }
     const Array<F32>&   getChannels     (const Vec2i& pos) const                                    { getChannels(m_channelTmp.getPtr(), getPtr(pos), getFormat(), 0, getFormat().getNumChannels()); return m_channelTmp; }

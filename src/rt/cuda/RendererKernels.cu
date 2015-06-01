@@ -28,6 +28,8 @@
 #include "cuda/RendererKernels.hpp"
 #include "base/Math.hpp"
 
+#include "3d/Light.hpp"
+
 using namespace FW;
 
 //------------------------------------------------------------------------
@@ -248,58 +250,110 @@ extern "C" __global__ void getVisibility(const float4* rayResults, int numRays, 
 
 //------------------------------------------------------------------------
 
-// For VPLs
-
 extern "C" __global__ void vplReconstructKernel() 
 {
 
 	const VPLReconstructInput& in = c_VPLReconstructInput;
     int taskIdx = threadIdx.x + blockDim.x * (threadIdx.y + blockDim.y * (blockIdx.x + gridDim.x * blockIdx.y));
-    if (taskIdx >= in.numPrimary)
-        return;
 
-	int                     primarySlot     = taskIdx;
+	int                     primarySlot     = in.firstPrimary + taskIdx;
+
+	if(primarySlot >= in.numPrimary) { 
+		return;
+	}
+
     int                     primaryID       = ((const S32*)in.primarySlotToID)[primarySlot];
-    const RayResult&        primaryResult   = ((const RayResult*)in.primaryResults)[primarySlot];
 
-	U32&                    pixel           = ((U32*)in.pixels)[primaryID];
-	Vec4f                   bgColor         = Vec4f(0.2f, 0.4f, 0.8f, 1.0f);
+    const RayResult&        primaryResult   = ((const RayResult*)in.primaryResults)[primarySlot];
+	const Ray&				primaryRay		= ((const Ray*)in.primaryRays)[primarySlot];
+
+	const S32*				shadowSlots		= (const S32*)in.shadowIdToSlot + taskIdx * in.shadowSamples;
+	const RayResult*        shadowResults	= ((const RayResult*)in.shadowResults);
+	
+
+	Vec4f&                    pixel           = ((Vec4f*)in.pixels)[primaryID];
+	Vec4f                   bgColor         = Vec4f(0, 0, 0, 1.0f);
 	const Vec3i*			vertIdx			= (const Vec3i*)in.triVertIndex;
 	const Vec3f*			normals			= (const Vec3f*)in.normals;
 	const Vec3f*			vertices		= (const Vec3f*)in.vertices;
-	const U32*				triShadedColor      = (const U32*)in.triShadedColor;
 
-	const Vec3f				lightPos		= Vec3f(0,0,0);
-	
+	const Light&			light			= ((const Light*)in.lights)[in.currentLight];
+	const Vec3f				lightPos		= light.position;
+	const int				lightCount		= in.lightCount;
+
+	const Vec2f*			texCoords		= (const Vec2f*)in.texCoords;
+	const Vec4f*			atlasInfo		= (const Vec4f*)in.atlasInfo;
+	const U32*				matId			= (const U32*)in.matId;
+	const Vec4f*			matInfo			= (const Vec4f*)in.matInfo;
+	const U32*				triMaterialColor    = (const U32*)in.triMaterialColor;
+
+	int tri = primaryResult.id;
+	if(tri == -1) {
+		pixel += bgColor;
+		return;
+	}
+
 
 	float u = __int_as_float(primaryResult.padA);
 	float v = __int_as_float(primaryResult.padB);
 	float w = 1.0f - u - v;
-	
-	int tri = primaryResult.id;
-	if(tri == -1) {
-		pixel = toABGR(bgColor);
-		return;
-	}
 
 	Vec4f color = Vec4f(0,0,0,1);
 
 	Vec3f normal = (normals[vertIdx[tri].x] * u + normals[vertIdx[tri].y] * v + normals[vertIdx[tri].z] * w).normalized();
 	Vec3f position = vertices[vertIdx[tri].x] * u + vertices[vertIdx[tri].y] * v + vertices[vertIdx[tri].z] * w;
 
-	Vec3f	lightDir = (lightPos - position);
-	float invDist = 1.0f / lightDir.length();
-	lightDir = lightDir.normalized();
+	Vec3f lightDir = lightPos - position;
 
+	float nDotDir = dot(normal, lightDir.normalized());
 
-	float nDotDir = dot(normal, lightDir);
 
 	if(nDotDir > 0) {
-		color += nDotDir * Vec4f(1,1,1,0) * (invDist * 3);
+		float shadow = 1.0f;
+
+		if(in.shadow) {
+			for(int i = 0; i < in.shadowSamples; i++) {
+				if(shadowResults[shadowSlots[i]].id != -1) {
+					shadow -= 1.0f / in.shadowSamples;
+				}
+			}
+		}
+		
+		float tU = texCoords[vertIdx[tri].x].x * u + texCoords[vertIdx[tri].y].x * v + texCoords[vertIdx[tri].z].x * w;
+		float tV = texCoords[vertIdx[tri].x].y * u + texCoords[vertIdx[tri].y].y * v + texCoords[vertIdx[tri].z].y * w;
+		
+		
+		tU = tU - floorf(tU);
+		tV = tV - floorf(tV);
+		
+		tU = tU * atlasInfo[tri].z + atlasInfo[tri].x;
+		tV = tV * atlasInfo[tri].w + atlasInfo[tri].y;
+				
+		float4 diffuseColor;
+		Vec4f texColor;
+
+		if(matInfo[matId[tri]].w == 0.0f) {
+			diffuseColor = fromABGR(triMaterialColor[tri]);
+			texColor = Vec4f(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);
+		} else {
+			diffuseColor = tex2D(t_textures, tU, tV);
+			texColor = Vec4f(diffuseColor.x, diffuseColor.y, diffuseColor.z, 1.0f);
+		}
+
+		color += nDotDir * Vec4f(light.intensity ,1) * texColor * shadow + Vec4f(matInfo[matId[tri]].x, matInfo[matId[tri]].x, matInfo[matId[tri]].x);
 	}
 	
+	pixel += color;
+}
 
-	//color = fromABGR(triShadedColor[tri]);
+extern "C" __global__ void vplNormalizeKernel(CUdeviceptr pixels, CUdeviceptr image, S32 numLights) {
 
-	pixel = toABGR(color);
+	const VPLReconstructInput& in = c_VPLReconstructInput;
+    int taskIdx = threadIdx.x + blockDim.x * (threadIdx.y + blockDim.y * (blockIdx.x + gridDim.x * blockIdx.y));
+	S32 primaryID = taskIdx;
+
+	Vec4f& pixel = ((Vec4f*)pixels)[primaryID];
+	U32& imagePixel = ((U32*)image)[primaryID];
+	imagePixel = toABGR(pixel / (float) numLights);
+
 }

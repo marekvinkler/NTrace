@@ -517,4 +517,20 @@ bool FW::parseVec3f(const char*& ptr, Vec3f& value)
 	return true;
 }
 
+String FW::vecToStr(const Vec3f& vec) {
+
+	String str;
+	str.setf("%.2f, %.2f, %.2f", vec.x, vec.y, vec.z);
+	return str;
+
+}
+
+String FW::vecToStr(const Vec4f& vec) {
+
+	String str;
+	str.setf("%.2f, %.2f, %.2f, %.2f", vec.x, vec.y, vec.z, vec.w);
+	return str;
+
+}
+
 //------------------------------------------------------------------------

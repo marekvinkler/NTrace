@@ -258,7 +258,7 @@ extern "C" __global__ void rayGenShadowKernel(void)
 
     // Compute origin, backtracking a little bit.
 
-    F32 epsilon = 1.0e-4f;
+    F32 epsilon = 1.0e-2f;
     Vec3f origin = inRay.origin + inRay.direction * fmaxf(inResult.t - epsilon, 0.0f);
 
     // Pick random offset.

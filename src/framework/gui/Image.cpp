@@ -403,6 +403,33 @@ Vec4f Image::getVec4f(const Vec2i& pos) const
 
 //------------------------------------------------------------------------
 
+Vec4f Image::getVec4fLinear(const Vec2f& pos) const
+{
+
+	Vec2i size = getSize();
+	Vec2f sizePos = Vec2f(pos.x * size.x, pos.y * size.y);
+
+	int left = floorf(sizePos.x);
+	int right = ceilf(sizePos.x);
+	int bottom = floorf(sizePos.y);
+	int top = ceilf(sizePos.y);
+
+	float fracX = sizePos.x - left;
+	float fracY = sizePos.y - bottom;
+
+	left = max(0, left);
+	bottom = max(0, bottom);
+	right = min(size.x - 1, right);
+	top = min(size.y - 1, top);
+
+	return getVec4f(Vec2i(left, bottom)) * (1 - fracX) * (1 - fracY) + 
+		getVec4f(Vec2i(right, bottom)) * fracX * (1 - fracY) + 
+		getVec4f(Vec2i(left, top)) * (1 - fracX) * fracY + 
+		getVec4f(Vec2i(right, top)) * fracX * fracY;
+}
+
+//------------------------------------------------------------------------
+
 void Image::setVec4f(const Vec2i& pos, const Vec4f& value)
 {
     FW_ASSERT(contains(pos, 1));

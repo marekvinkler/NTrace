@@ -28,6 +28,7 @@
 #include "ray/RayGen.hpp"
 #include "ray/RayGenKernels.hpp"
 #include "base/Random.hpp"
+#include "3d/Light.hpp"
 
 namespace FW
 {
@@ -429,27 +430,155 @@ bool RayGen::randomReflection (RayBuffer& orays, RayBuffer& irays, Scene& scene,
     return true;
 }
 
-bool RayGen::primaryVPL(RayBuffer& orays, Vec3f& emitPlaneBase, Vec3f& emitPlaneV1, Vec3f& emitPlaneV2, Vec3f& emitPlaneNormal, int numLights, float maxDist, U32 randomSeed) {
+Vec3f hemisphereDirection(float a, float b) {
+	float azimuth = 2 * FW_PI * a;
+	float elevation = FW_PI * 0.5 * b;
+	return Vec3f(sin(azimuth) * cos(elevation), sin(elevation), cos(azimuth) * cos(elevation));
+}
+
+bool RayGen::primaryVPL(Buffer& lights, RayBuffer& orays, Scene* scene, int numLights, int maxBounces, float maxDist, U32 randomSeed) {
 
 	// Lets generate this on CPU, won't be that many of the primary lights
 	orays.resize(numLights);
     orays.setNeedClosestHit(true);
 
+	lights.resize((numLights * (maxBounces + 2)) * sizeof(Light));
+
 	Ray* outRayBuffer = (Ray *)orays.getRayBuffer().getMutablePtr();
+	Light* outLightBuffer = (Light*)lights.getMutablePtr();
+
+	Vec3i* emissiveTris = (Vec3i*) scene->getEmissiveTris().getPtr();
+	const Vec3f* vertices = (Vec3f*) scene->getVtxPosBuffer().getPtr();
+	const Vec3f* normals = (Vec3f*) scene->getVtxNormalBuffer().getPtr();
+	const U32* matId = (U32*) scene->getMaterialIds().getPtr();
+	const Vec4f* matInfo = (Vec4f*) scene->getMaterialInfo().getPtr();
+
+	S64 emissiveTrisCount = scene->getEmissiveTris().getSize() / sizeof(Vec3i);
+
+	if(emissiveTrisCount == 0) {
+		printf("No emissive triangles found!\n");
+		return true;
+	}
+	
+	float emissiveTrisArea = 0;
+
+	for(int i = 0; i < emissiveTrisCount; i++) {
+		Vec3i triangle = emissiveTris[i];
+		Vec3f v1 = vertices[triangle.y] - vertices[triangle.x];
+		Vec3f v2 = vertices[triangle.z] - vertices[triangle.x];
+		emissiveTrisArea += v1.cross(v2).length() * 0.5;
+	}
 
 	Random rnd(randomSeed);
 
 	for(int i = 0; i < numLights; i++) {
-		outRayBuffer[i].origin = emitPlaneBase + rnd.getF32(0.0f, 1.0f) * emitPlaneV1 + rnd.getF32(0.0f, 1.0f) * emitPlaneV2;
-		float spread = 0.1;
-		outRayBuffer[i].direction = emitPlaneNormal.normalized() + emitPlaneV1.normalized() * rnd.getF32(-spread, spread) + emitPlaneV2.normalized() * rnd.getF32(-spread, spread);
+		Vec3i triangle = emissiveTris[rnd.getU32(0, emissiveTrisCount)];
+		
+		float sqrtr1 = sqrt(Random::halton(2, i + 1)); 
+		float r2 = Random::halton(3, i + 1);
+		float u = 1 - sqrtr1;
+		float v = sqrtr1 * (1 - r2);
+		float w = r2 * sqrtr1;
+
+		Vec3f v1 = vertices[triangle.y] - vertices[triangle.x];
+		Vec3f v2 = vertices[triangle.z] - vertices[triangle.x];
+		Vec3f normal = v1.cross(v2).normalized();
+		Vec3f dir2Vec = normal.cross(v1).normalized();
+		Vec3f hemiDirection = hemisphereDirection(Random::halton(3, i + 2), Random::halton(2, i + 2));
+		outRayBuffer[i].direction = (normal * hemiDirection.y + v1.normalized() * hemiDirection.x + dir2Vec * hemiDirection.z).normalized();
 		outRayBuffer[i].tmin = 0.0f;
 		outRayBuffer[i].tmax = maxDist;
+
+		Vec3f origin = vertices[triangle.x] * u + vertices[triangle.y] * v + vertices[triangle.z] * w + outRayBuffer[i].direction * 0.001;
+		outRayBuffer[i].origin = origin;
+		outLightBuffer[i].position = origin;
+		/*
+		* The following depnds on the intensity of the light. 
+		* However the getEmissiveTris() function returns directly triplets of indices into vertex
+		* array and not indices into triangle array so we cannot determine the triangle material.
+		*/
+		outLightBuffer[i].intensity = Vec3f(30,30,30);
+
 	}
 
 	return true;
    
 }
+
+bool RayGen::reflectedVPL(Buffer& lights, RayBuffer& rays, int numPrimaryLights, int iteration, Scene* scene, float maxDist, U32 randomSeed) {
+
+	const float epsilon = 1e-1f;
+
+	Ray* rayBuffer = (Ray *)rays.getRayBuffer().getMutablePtr();
+	RayResult* rayResults = (RayResult *)rays.getResultBuffer().getPtr();
+	const Vec3i* indices = (Vec3i*) scene->getTriVtxIndexBuffer().getPtr();
+	const Vec3f* normals = (Vec3f*) scene->getVtxNormalBuffer().getPtr();
+	const Vec3f* vertices = (Vec3f*) scene->getVtxPosBuffer().getPtr();
+	const Vec2f* texCoords = (Vec2f*) scene->getVtxTexCoordBuffer().getPtr();
+	const Vec4f* atlasInfo = (Vec4f*) scene->getTextureAtlasInfo().getPtr();
+	const U32* matId = (U32*) scene->getMaterialIds().getPtr();
+	const Vec4f* matInfo = (Vec4f*) scene->getMaterialInfo().getPtr();
+	const U32* triMaterialColor = (U32*) scene->getTriMaterialColorBuffer().getPtr();
+	const Image* atlasTexture = scene->getTextureAtlas()->getAtlasTexture().getImage();
+
+	Light* lightBuffer = ((Light*)lights.getMutablePtr()) + (iteration + 1) * numPrimaryLights;
+
+	Random rand(randomSeed);
+
+	for(int i = 0; i < numPrimaryLights; i++) {
+		int tri = rayResults[i].id;
+
+		if(tri == -1) {
+			lightBuffer[i].intensity = Vec3f(0,0,0);
+			lightBuffer[i].position = Vec3f(0,0,0);
+		} else {
+			lightBuffer[i].position = rayBuffer[i].origin + rayBuffer[i].direction * (rayResults[i].t - epsilon);
+
+			rayBuffer[i].origin = lightBuffer[i].position;
+
+			float u = *((float*)&(rayResults[i].padA));
+			float v = *((float*)&(rayResults[i].padB)); 
+			float w = 1.0f - u - v;
+			
+
+			float tU = texCoords[indices[tri].x].x * u + texCoords[indices[tri].y].x * v + texCoords[indices[tri].z].x * w;
+			float tV = texCoords[indices[tri].x].y * u + texCoords[indices[tri].y].y * v + texCoords[indices[tri].z].y * w;
+
+			tU = tU - floorf(tU);
+			tV = tV - floorf(tV);
+		
+			tU = tU * atlasInfo[tri].z + atlasInfo[tri].x;
+			tV = tV * atlasInfo[tri].w + atlasInfo[tri].y;
+
+			Vec3f texColor;
+
+			if(matInfo[matId[tri]].w == 0.0f) {
+				Vec4f diffuseColor = Vec4f::fromABGR(triMaterialColor[tri]);
+				texColor = Vec3f(diffuseColor.x, diffuseColor.y, diffuseColor.z);
+			} else {
+				Vec4f diffuseColor = atlasTexture->getVec4fLinear(Vec2f(tU, tV));
+				texColor = Vec3f(diffuseColor.x, diffuseColor.y, diffuseColor.z);
+			}
+
+			Vec3f normal = (normals[indices[tri].x] * u + normals[indices[tri].y] * v + normals[indices[tri].z] * w).normalized();
+			Vec3f v1 = vertices[indices[tri].y] - vertices[indices[tri].x];
+			Vec3f dir2Vec = normal.cross(v1).normalized();
+			Vec3f hemiDirection = hemisphereDirection(Random::halton(2, numPrimaryLights + 1 - i), Random::halton(3, numPrimaryLights + 1 - i));
+
+			lightBuffer[i].intensity = lightBuffer[i - numPrimaryLights].intensity * max(0.0f, dot(normal, -rayBuffer[i].direction)) * texColor;
+
+			rayBuffer[i].direction = (normal * hemiDirection.y + v1.normalized() * hemiDirection.x + dir2Vec * hemiDirection.z).normalized();
+			rayBuffer[i].tmin = 0.0f;
+			rayBuffer[i].tmax = maxDist;
+
+		}
+	}
+
+	rays.setNeedClosestHit(true);
+
+	return true;
+}
+
 
 
 bool RayGen::batching(S32 numInputRays,S32 numSamples,S32& startIdx,bool& newBatch, S32& lo,S32& hi)

@@ -128,5 +128,8 @@ bool    parseHex        (const char*& ptr, U32& value);
 bool    parseFloat      (const char*& ptr, F32& value);
 bool    parseVec3f      (const char*& ptr, Vec3f& value);
 
+String vecToStr(const Vec3f& vec);
+String vecToStr(const Vec4f& vec);
+
 //------------------------------------------------------------------------
 }

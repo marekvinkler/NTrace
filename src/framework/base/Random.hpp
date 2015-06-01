@@ -92,6 +92,8 @@ public:
     Vec4d           getVec4d        (void)                      { return Vec4d(getF64(), getF64(), getF64(), getF64()); }
     Vec4d           getVec4d        (F64 lo, F64 hi)            { return Vec4d(getF64(lo, hi), getF64(lo, hi), getF64(lo, hi), getF64(lo, hi)); }
 
+	static F32		halton			(int base, int i);
+
 private:
     void            initImpl        (void);
     void            deinitImpl      (void);

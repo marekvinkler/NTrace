@@ -66,7 +66,7 @@ public:
 
     void                setWindowSize   (const Vec2i& size)         { m_window.setSize(size); }
     bool                loadState       (const String& fileName)    { return m_commonCtrl.loadState(fileName); }
-    void                loadDefaultState(void)                      { if (!m_commonCtrl.loadState(m_commonCtrl.getStateFileName(1))) firstTimeInit(); }
+	void                loadDefaultState(void)                      { if (!m_commonCtrl.loadState(m_commonCtrl.getStateFileName(1))) firstTimeInit(); m_kernelNameIdx = 1;}
     void                flashButtonTitles(void)                     { m_commonCtrl.flashButtonTitles(); }
 
 private:
@@ -108,6 +108,9 @@ private:
 
 void    listKernels     (Array<String>& kernelNames);
 void    runInteractive  (const Vec2i& frameSize, const String& stateFile);
+
+float calcRMSE(Image* one, Image* two);
+float calcMAD(Image* one, Image* two);
 
 void runBenchmark(
     const Vec2i&            frameSize,

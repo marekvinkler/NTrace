@@ -40,6 +40,7 @@ namespace FW
 {
 //------------------------------------------------------------------------
 
+
 class Renderer
 {
 public:
@@ -50,6 +51,7 @@ public:
         RayType_Diffuse,
 		RayType_Textured,
 		RayType_PathTracing,
+		RayType_VPL,
 
         RayType_Max
     };
@@ -74,9 +76,9 @@ public:
 
 public:
 						Renderer			();
-                        ~Renderer           (void);
+    virtual             ~Renderer           (void);
 
-    void                setMesh             (MeshBase* mesh);
+    virtual void        setMesh             (MeshBase* mesh);
     void                setBuildParams      (const BVH::BuildParams& params) { invalidateBVH(); m_buildParams = params; }
     void                invalidateBVH       (void)                  { delete m_accelStruct; m_accelStruct = NULL; }
 
@@ -97,7 +99,7 @@ public:
     void                displayResult       (GLContext* gl);
 
 	Image*              getImage            (void)                  { return m_image; }
-    int                 getTotalNumRays     (void); // for selected ray type, excluding degenerates
+    virtual int         getTotalNumRays     (void); // for selected ray type, excluding degenerates
 
 	F32					calcNodeSAHCostKdtree(const Platform& platform, Buffer* nodes, Buffer* tri,  S32 n, AABB bbox, S32 depth, S32& maxDepth, S32& sumDepth, S32& numNodes, S32& numLeaves, F32& nodeArea, F32 &weightedLeafArea, F32& test);
 	F32					calcLeafSAHCostCompact(const Platform& platform, Buffer* triIdx, S32 n, S32& numLeaves);
@@ -136,6 +138,7 @@ protected:
 	float				m_sampleCount;
     F32                 m_cameraFar;
     RayBuffer           m_primaryRays;
+	RayBuffer           m_shadowRays;
     RayBuffer           m_secondaryRays;
 	Buffer              m_triangleVisibility;	//!< Visibility buffer
 

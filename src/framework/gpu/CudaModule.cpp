@@ -428,7 +428,6 @@ const char* CudaModule::decodeError(CUresult res)
     const char* error;
     switch (res)
     {
-    default:                                        error = "Unknown CUresult"; break;
     case CUDA_SUCCESS:                              error = "No error"; break;
 
 #if FW_USE_CUDA
@@ -478,6 +477,7 @@ const char* CudaModule::decodeError(CUresult res)
     case CUDA_ERROR_PRIMARY_CONTEXT_ACTIVE:         error = "Primary context active"; break;
     case CUDA_ERROR_CONTEXT_IS_DESTROYED:           error = "Context is destroyed"; break;
 #endif
+	default:                                        error = "Unknown CUresult"; break;
     }
     return error;
 }
