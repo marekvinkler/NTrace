@@ -1,2 +1,6 @@
 Ray tracing algorithm is at the base of most of the global illumination algorithms capable of photographic quality visualisation of synthetic data. Given the computational complexity of the ray tracing algorithm and its parallelism, the use of graphics processing units (GPUs) for its computation is a natural choice. The goal of this project is to develop novel methods for massively parallel construction of acceleration data structures using GPUs. While the actual traversal of rays in the ray tracing algorithm is mostly solved, efficient parallel construction is still an open problem. Its purpose is to enable developement and testing of highly parallel implementations of algorithms for data structure build and trace using the GPU hardware.
 Documentation for this project can be found at http://marekvinkler.github.io/NTrace/
+
+Executing Mega-kernels (otracer):
+First, select (F6) - Rendering kernels show ray results (e.g. the output of the rendering kernel will be directly moved to the viewport ~ progressive).
+Second, select otracer_* kernel, once selected you have to move once (as they are rendering in progressive manner and buffer needs to be reset).
