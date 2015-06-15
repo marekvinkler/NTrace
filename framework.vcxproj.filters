@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="base">
@@ -20,7 +20,7 @@
       <UniqueIdentifier>{4954c8eb-cf03-4a30-8494-ac296852e533}</UniqueIdentifier>
     </Filter>
     <Filter Include="io">
-      <UniqueIdentifier>{ed67dbd3-cc4d-401d-b453-d15d4c64ac1d}</UniqueIdentifier>
+      <UniqueIdentifier>{39a8d526-3d2d-466c-841d-a65535bc8a49}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

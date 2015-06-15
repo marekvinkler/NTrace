@@ -111,6 +111,18 @@ void    runInteractive  (const Vec2i& frameSize, const String& stateFile);
 float calcRMSE(Image* one, Image* two);
 float calcMAD(Image* one, Image* two);
 
+void runBenchmarkVPL(
+    const Vec2i&            frameSize,
+    const String&           meshFile,
+    const Array<String>&    cameras,
+    const Array<String>&    kernels,
+    F32                     sbvhAlpha,
+    F32                     aoRadius,
+    int                     numSamples,
+    bool                    sortSecondary,
+    int                     warmupRepeats,
+    int                     measureRepeats);
+
 void runBenchmark(
     const Vec2i&            frameSize,
     const String&           meshFile,

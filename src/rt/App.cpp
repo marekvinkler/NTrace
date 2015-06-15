@@ -66,7 +66,8 @@ static const char* const s_rayTypeNames[] =
     "diffuse",
     "textured",
 	"otracer",
-	"VPL"
+	"VPL",
+	NULL
 };
 
 //------------------------------------------------------------------------
@@ -677,7 +678,7 @@ float FW::calcMAD(Image* one, Image* two) {
 
 //------------------------------------------------------------------------
 
-void FW::runBenchmark(
+void FW::runBenchmarkVPL(
     const Vec2i&            frameSize,
     const String&           meshFile,
     const Array<String>&    cameras,
@@ -834,6 +835,175 @@ void FW::runBenchmark(
             }
         }
     }
+}
+
+//------------------------------------------------------------------------
+
+void FW::runBenchmark(
+    const Vec2i&            frameSize,
+    const String&           meshFile,
+    const Array<String>&    cameras,
+    const Array<String>&    kernels,
+    F32                     sbvhAlpha,
+    F32                     aoRadius,
+    int                     numSamples,
+    bool                    sortSecondary,
+    int                     warmupRepeats,
+    int                     measureRepeats)
+{
+	// Parse ray types.
+	Array<String> rayTypesString;
+	Array<int> rayTypes;
+	string types;
+	Environment::GetSingleton()->GetStringValue("Renderer.rayType", types);
+	String(types.c_str()).split(';', rayTypesString);
+	matchRayTypes(rayTypesString, rayTypes);
+
+    // Print header.
+
+    CudaModule::staticInit();
+    printf("Running benchmark for \"%s\".\n", meshFile.getPtr());
+    printf("\n");
+
+    // Setup renderer.
+
+    Renderer::Params params;
+    params.aoRadius = aoRadius;
+    params.numSamples = numSamples;
+    params.sortSecondary = sortSecondary;
+
+    BVH::BuildParams buildParams;
+    buildParams.splitAlpha = sbvhAlpha;
+
+
+	Renderer* renderer = new Renderer();
+    renderer->setBuildParams(buildParams);
+	renderer->setMesh(importMesh(meshFile));
+
+    // Create window.
+
+    Window window;
+    window.setSize(frameSize);
+    window.setVisible(false);
+    window.realize();
+    GLContext* gl = window.getGL();
+
+    // Error => skip.
+
+    if (hasError())
+        return;
+
+    // Benchmark each combination.
+
+    Array<F32> results;
+    for (int kernelIdx = 0; kernelIdx < kernels.getSize(); kernelIdx++)
+    {
+		for (int rt = 0; rt < rayTypes.getSize(); rt++)
+        {
+            S64 totalRays = 0;
+            F32 totalLaunchTime = 0.0f;
+
+            for (int cameraIdx = 0; cameraIdx < cameras.getSize(); cameraIdx++)
+            {
+                // Print status.
+
+				String title = sprintf("%s, %s, camera %d", kernels[kernelIdx].getPtr(), rayTypesString[rt].getPtr(), cameraIdx);
+                printf("%s...\n", title.getPtr());
+                window.setTitle(title);
+
+                // Setup rendering.
+
+                params.kernelName = kernels[kernelIdx];
+                params.rayType = (Renderer::RayType)rayTypes[rt];
+				renderer->setParams(params);
+
+                CameraControls camera;
+                camera.decodeSignature(cameras[cameraIdx]);
+				renderer->beginFrame(gl, camera);
+
+				totalRays += (S64)renderer->getTotalNumRays() * measureRepeats;
+
+                // Process each batch.
+
+				while (renderer->nextBatch())
+                {
+                    // Render and display result.
+
+					renderer->traceBatch();
+					renderer->updateResult();
+                    window.setVisible(true);
+                    Window::pollMessages();
+                    for (int i = 0; i < 3; i++)
+                    {
+						renderer->displayResult(gl);
+                        gl->swapBuffers();
+                    }
+
+					// Export the image.
+					if(Environment::GetSingleton()->GetBool("Benchmark.screenshot"))
+					{
+						Image* image = renderer->getImage();
+						image->flipY();
+						string scrName;
+						Environment::GetSingleton()->GetStringValue("Benchmark.screenshotName", scrName);
+						String name = sprintf(scrName.c_str(), kernelIdx, rayTypesString[rt].getPtr(), cameraIdx);
+						exportImage(name, image);
+					}
+
+                    // Warm up and measure.
+
+                    for (int i = 0; i < warmupRepeats; i++)
+						renderer->traceBatch();
+                    for (int i = 0; i < measureRepeats; i++)
+						totalLaunchTime += renderer->traceBatch();
+                }
+
+                // Error => skip.
+
+                if (hasError())
+                    return;
+            }
+
+            // Calculate Mrays/s.
+
+            F32 mraysPerSec = (F32)totalRays / totalLaunchTime * 1.0e-3f;
+            results.add(mraysPerSec);
+			//printf("Time (s) = %.4f\n", totalLaunchTime);
+            //printf("Krays/s = %.2f\n", mraysPerSec);
+            //printf("\n");
+			pushStat("SUM_RENDER_TIME", totalLaunchTime);
+			pushStat("SUM_RENDER_KRAYS", mraysPerSec);
+        }
+    }
+
+    // Print summary table.
+
+    printf("Done.\n");
+    printf("\n");
+
+    printf("%-42s", "Kernel");
+	for (int i = 0; i < rayTypes.getSize(); i++)
+        printf("%-10s", s_rayTypeNames[i]);
+    printf("\n");
+
+    printf("%-42s", "---");
+    for (int i = 0; i < rayTypes.getSize(); i++)
+        printf("%-10s", "---");
+    printf("\n");
+
+    for (int i = 0; i < kernels.getSize(); i++)
+    {
+        printf("%-42s", kernels[i].getPtr());
+        for (int j = 0; j < rayTypes.getSize(); j++)
+            printf("%-10.2f", results[i * rayTypes.getSize() + j]);
+        printf("\n");
+    }
+
+    printf("%-42s", "---");
+    for (int i = 0; i < rayTypes.getSize(); i++)
+        printf("%-10s", "---");
+    printf("\n");
+    printf("\n");
 }
 
 //------------------------------------------------------------------------
