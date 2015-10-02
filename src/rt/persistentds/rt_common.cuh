@@ -76,15 +76,6 @@ struct CudaAABBInt
 
 //------------------------------------------------------------------------
 
-struct __align__(32) Reference
-{
-	CudaAABB	bbox;
-	int			idx;
-	int			pdd;
-};
-
-//------------------------------------------------------------------------
-
 struct CudaBVHNode
 {
 	float4 c0xy;
@@ -384,10 +375,7 @@ __device__ void calcWoop(float3& v0, float3& v1, float3& v2, float4& o0, float4&
 __device__ int createLeaf(int tid, int outOfs, float* outTriMem, int* outIdxMem, int start, int end, float* inTriMem, int* inIdxMem);
 
 // Creates a leaf in the compact layout, with Woop triangles
-__device__ int createLeafWoop(int tid, int outOfs, float4* outTriMem, int* outIdxMem, int start, int end, float4* inTriMem, Reference* inIdxMem);
-
-// Creates a leaf in the compact layout, with Woop triangles
-//_device__ int createLeafWoop(int tid, int outOfs, float4* outTriMem, int* outIdxMem, int start, int end, float4* inTriMem, int* inIdxMem);
+__device__ int createLeafWoop(int tid, int outOfs, float4* outTriMem, int* outIdxMem, int start, int end, float4* inTriMem, int* inIdxMem);
 
 // Creates a leaf in the compact layout, with references to triangles
 __device__ int createLeafReference(int tid, int outOfs, int* outIdxMem, int start, int end, int* inIdxMem);
