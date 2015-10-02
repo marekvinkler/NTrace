@@ -30,7 +30,8 @@
 #include "gui/Window.hpp"
 #include "io/File.hpp"
 #include "bvh/HLBVH/HLBVHBuilder.hpp"
-#include "persistentds/CudaPersistentBVHBuilder.hpp"
+//#include "persistentds/CudaPersistentBVHBuilder.hpp"
+#include "persistentds/CudaPersistentSBVHBuilder.hpp"
 #include "persistentds/CudaPersistentKdtreeBuilder.hpp"
 
 #include "3d/Light.hpp"
@@ -261,10 +262,17 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 	{
 		if (builder == "PersistentBVH")
 		{
-			m_accelStruct = new CudaPersistentBVHBuilder(*m_scene, FLT_EPSILON);
-			((CudaPersistentBVHBuilder*)m_accelStruct)->resetBuffers(true);
-			((CudaPersistentBVHBuilder*)m_accelStruct)->build();
-			((CudaPersistentBVHBuilder*)m_accelStruct)->resetBuffers(false);
+			//m_accelStruct = new CudaPersistentBVHBuilder(*m_scene, FLT_EPSILON);
+			//((CudaPersistentBVHBuilder*)m_accelStruct)->resetBuffers(true);
+			//((CudaPersistentBVHBuilder*)m_accelStruct)->build();
+			//((CudaPersistentBVHBuilder*)m_accelStruct)->resetBuffers(false);
+		}
+		else if(builder == "PersistentSBVH")
+		{
+			m_accelStruct = new CudaPersistentSBVHBuilder(*m_scene, FLT_EPSILON);
+			((CudaPersistentSBVHBuilder*)m_accelStruct)->resetBuffers(true);
+			((CudaPersistentSBVHBuilder*)m_accelStruct)->build();
+			((CudaPersistentSBVHBuilder*)m_accelStruct)->resetBuffers(false);
 		}
 		else
 		{
@@ -292,10 +300,12 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 
     if (!hasError())
     {
+		/*
         CreateDirectory(m_cachePath.getPtr(), NULL);
         File file(cacheFileName, File::Create);
         m_accelStruct->serialize(file);
         clearError();
+		*/
     }
 
     // Display status.

@@ -138,6 +138,25 @@ __device__ __forceinline__ void taskFetchTri(CUdeviceptr tris, int triIdx, float
 
 //------------------------------------------------------------------------
 
+// Fetches reference from global memory
+__device__ __forceinline__ void taskFetchReference(CUdeviceptr refs, int refIdx, CudaAABB& bbox, int &idx)
+{
+#if 0
+	v0 = make_float3(tex1Dfetch(t_trisA, triIdx + 0));
+	v1 = make_float3(tex1Dfetch(t_trisA, triIdx + 1));
+	v2 = make_float3(tex1Dfetch(t_trisA, triIdx + 2));
+#elif 1
+	bbox = (((Reference*)refs)[refIdx]).bbox;
+	idx = (((Reference*)refs)[refIdx]).idx;
+#else
+	v0 = make_float3(*(float4*)&(((volatile float4*)tris)[triIdx + 0]));
+	v1 = make_float3(*(float4*)&(((volatile float4*)tris)[triIdx + 1]));
+	v2 = make_float3(*(float4*)&(((volatile float4*)tris)[triIdx + 2]));
+#endif
+}
+
+//------------------------------------------------------------------------
+
 // Fetches node from global memory
 __device__ __forceinline__ void taskFetchNodeAddr(CUdeviceptr nodes, int nodeIdx, CudaBVHNode &node)
 {
@@ -443,6 +462,12 @@ __device__ __forceinline__ float3 getCentroid(const float3& v0, const float3& v1
 	return (tbox.m_mn + tbox.m_mx)*0.5f;
 }
 
+// Computes the box and the centroid of a bounding box
+__device__ __forceinline__ float3 getCentroid(const CudaAABB& tbox)
+{
+	return (tbox.m_mn + tbox.m_mx)*0.5f;
+}
+
 //------------------------------------------------------------------------
 
 // Computes which side of the plane is the point on based on its centroid
@@ -458,6 +483,29 @@ __device__ __forceinline__ int getPlaneCentroidPosition(const float4& plane, con
 	int pos;
 
 	float3 centroid = getCentroid(v0, v1, v2, tbox);
+
+	float ctd = planeDistance(normal, d, centroid);
+	if(ctd < EPS)
+		pos = -1;
+	else
+		pos = 1;
+
+	return pos;
+}
+
+// Computes which side of the plane is the point on based on its centroid
+__device__ __forceinline__ int getPlaneCentroidPosition(const float4& plane, const CudaAABB& tbox)
+{
+	// Fetch plane
+	float3 normal;
+	normal.x = plane.x;
+	normal.y = plane.y;
+	normal.z = plane.z;
+	float d = plane.w;
+
+	int pos;
+
+	float3 centroid = getCentroid(tbox);
 
 	float ctd = planeDistance(normal, d, centroid);
 	if(ctd < EPS)
@@ -1434,13 +1482,13 @@ __device__ int createLeaf(int tid, int outOfs, float* outTriMem, int* outIdxMem,
 //------------------------------------------------------------------------
 
 // Creates a leaf in the compact layout, with Woop triangles
-__device__ int createLeafWoop(int tid, int outOfs, float4* outTriMem, int* outIdxMem, int start, int end, float4* inTriMem, int* inIdxMem)
+__device__ int createLeafWoop(int tid, int outOfs, float4* outTriMem, int* outIdxMem, int start, int end, float4* inTriMem, Reference* inRefMem)// int* inIdxMem)
 {
 	// Compute output data pointers
 	int numTris = end-start;
 	int idxData;
 
-	int* inIdx = inIdxMem + start; // Memory for the first triangle index
+	Reference* inIdx = inRefMem + start; // Memory for the first triangle index
 
 	float4* outTri = outTriMem + outOfs; // Memory for the first triangle data
 	int* outIdx = outIdxMem + outOfs; // Memory for the first triangle index
@@ -1455,10 +1503,13 @@ __device__ int createLeafWoop(int tid, int outOfs, float4* outTriMem, int* outId
 
 		if(tri < numTris) // Regular triangle
 		{
-			idxData = inIdx[tri];
+			//idxData = inIdx[tri];
+			idxData = inIdx[tri].idx;
+			//printf("cwl: tri %i -> idxData %i (start offset = %i)\n", tri, idxData, start);
 			float3 v0, v1, v2;
 			float4 o0, o1, o2;
 			taskFetchTri((CUdeviceptr)inTriMem, idxData*3, v0, v1, v2);
+			//printf("cwl: fetchTri %i %f %f %f %f %f %f %f %f %f\n", idxData, v0.x, v0.y, v0.z, v1.x, v1.y, v1.z, v2.x, v2.y, v2.z);
 
 			calcWoop(v0, v1, v2, o0, o1, o2);
 
