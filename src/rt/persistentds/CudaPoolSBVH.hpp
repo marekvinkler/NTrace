@@ -162,6 +162,7 @@ struct SplitArray
 struct SplitArray
 {
 	SplitRed splits[PLANE_COUNT]; // Number of planes is enough when using atomics
+	SplitRed spatialSplits[PLANE_COUNT]; // Same here :)
 };
 #endif
 

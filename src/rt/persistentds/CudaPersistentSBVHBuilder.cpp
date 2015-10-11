@@ -72,7 +72,7 @@ F32 CudaPersistentSBVHBuilder::build()
 	for(int i=0;i<m_numTris;i++)
 	{
 		Reference ref;
-		ref.idx = i;
+		ref.idx = 3;
 		for(int j=0;j<3;j++)
 			ref.bbox.grow(verts[3*i+j].getXYZ());
 		refs.add(ref);

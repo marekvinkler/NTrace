@@ -175,6 +175,7 @@ enum TaskType
 	TaskType_ClipSORT,        // Compacts the array of rays
 	TaskType_InitMemory,      // Prepares the memory for the task
 	TaskType_BinTriangles,    // Bins triangles to gmem accorting to WARP_split planes
+	TaskType_BinSpatial,
 	TaskType_ReduceBins,      // Reduces the counters in all bins
 	TaskType_BuildObjectSAH,  // Builds the subtree with object SAH
 	TaskType_RayTriTestPPS1,  // Test the output of PPS1 phase

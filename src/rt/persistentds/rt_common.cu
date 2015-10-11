@@ -462,13 +462,24 @@ __device__ __forceinline__ float3 getCentroid(const float3& v0, const float3& v1
 	return (tbox.m_mn + tbox.m_mx)*0.5f;
 }
 
-// Computes the box and the centroid of a bounding box
+// Computes the centroid of a bounding box
 __device__ __forceinline__ float3 getCentroid(const CudaAABB& tbox)
 {
 	return (tbox.m_mn + tbox.m_mx)*0.5f;
 }
 
 //------------------------------------------------------------------------
+
+__device__ __forceinline__ float getBoxSize(const CudaAABB& tbox, const float3& axis)
+{
+	if(axis.x < 0.f)
+		return tbox.m_mx.x - tbox.m_mn.x;
+	else if(axis.y < 0.f)
+		return tbox.m_mx.y - tbox.m_mn.y;
+	else
+		return tbox.m_mx.z - tbox.m_mn.z;
+}
+
 
 // Computes which side of the plane is the point on based on its centroid
 __device__ __forceinline__ int getPlaneCentroidPosition(const float4& plane, const float3& v0, const float3& v1, const float3& v2, CudaAABB& tbox)
@@ -516,7 +527,232 @@ __device__ __forceinline__ int getPlaneCentroidPosition(const float4& plane, con
 	return pos;
 }
 
+// Computes which side of the plane is the point on based on its centroid. Returns -2 or 2 if plane intersects bbox.
+__device__ __forceinline__ int getPlaneCentroidPositionHitMiss(const float4& plane, const CudaAABB& tbox)
+{
+	// Fetch plane
+	float3 normal;
+	normal.x = plane.x;
+	normal.y = plane.y;
+	normal.z = plane.z;
+	float d = plane.w;
+
+	int pos;
+
+	float size = getBoxSize(tbox, normal);
+
+	float3 centroid = getCentroid(tbox);
+
+	float ctd = planeDistance(normal, d, centroid);
+	if(ctd < EPS)
+		pos = -1;
+	else
+		pos = 1;
+
+	if(abs(ctd) < size/2)
+		pos *= 2;
+
+	//printf("hitmiss: pos %i ctd %f size %f | plane %.3f %.3f %.3f %.3f {} box %.3f %.3f %.3f %.3f %.3f %.3f\n",
+	//	pos, ctd, size, plane.x, plane.y, plane.z, plane.w, tbox.m_mn.x, tbox.m_mn.y, tbox.m_mn.z, tbox.m_mx.x, tbox.m_mx.y, tbox.m_mx.z);
+
+	return pos;
+}
+
 //------------------------------------------------------------------------
+
+// Split triangle bounding box based on spatial split location
+__device__ __forceinline__ void computeClippedBoxes(const float4& plane, const float3& v0, const float3& v1, const float3& v2, const volatile CudaAABB& nodeBox, CudaAABB& leftBox, CudaAABB& rightBox)
+{
+	int dim = getPlaneDimension(plane);
+	float split = plane.w;
+	CudaAABB triBox, triBoxL, triBoxR;
+
+	getAABB(v0, v1, v2, triBox);
+
+	// Because GPUs do not support register indexing we have to switch execution based on dimension
+	switch(dim)
+	{
+	case 0:
+		//initializing tight AABBs only  for splitting dimension 
+		triBoxL.m_mn.x = triBox.m_mn.x;
+		triBoxR.m_mx.x = triBox.m_mx.x;
+		triBoxL.m_mx.x = triBoxR.m_mn.x = split;
+
+		//two remaining dimensions are recomputed 
+		{
+			//reordering vertices’ indices 
+			const float3* _min  = (v1.x <= v0.x) ? &v1 : &v0;
+			const float3* _max  = (v1.x <= v0.x) ? &v0 : &v1;
+			const float3* vertMin = (v2.x <  _min->x) ? &v2 : _min;
+			const float3* vertMax = (v2.x >= _max->x) ? &v2 : _max;
+			const float3* vertMid = (&v0 != vertMin && &v0 != vertMax) ? &v0 : ((&v1 != vertMin && &v1 != vertMax) ? &v1 : &v2);
+			const bool conda = split <= vertMid->x;
+			const float3* iA = conda ? vertMin : vertMax;
+			const float3* iB = vertMid;
+			const float3* iC = conda ? vertMax : vertMin;
+
+			const float ratio_ab = (split-iA->x)/(iB->x-iA->x);
+			const float ratio_cd = (split-iA->x)/(iC->x-iA->x);
+
+			const float x0 = iA->y + ratio_ab*(iB->y-iA->y);
+			const float x1 = iA->y + ratio_cd*(iC->y-iA->y);
+			const float xmin = fminf(x0, x1);
+			const float xmax = fmaxf(x0, x1);
+
+			if(conda){
+			triBoxL.m_mn.y = fminf(xmin, iA->y);
+			triBoxL.m_mx.y = fmaxf(xmax, iA->y);
+			triBoxR.m_mn.y = fminf(xmin, fminf(iB->y, iC->y));
+			triBoxR.m_mx.y = fmaxf(xmax, fmaxf(iB->y, iC->y));
+			}else{
+			triBoxR.m_mn.y = fminf(xmin, iA->y);
+			triBoxR.m_mx.y = fmaxf(xmax, iA->y);
+			triBoxL.m_mn.y = fminf(xmin, fminf(iB->y, iC->y));
+			triBoxL.m_mx.y = fmaxf(xmax, fmaxf(iB->y, iC->y));
+			}
+
+			const float y0 = iA->z + ratio_ab*(iB->z-iA->z);
+			const float y1 = iA->z + ratio_cd*(iC->z-iA->z);
+			const float ymin = fminf(y0, y1);
+			const float ymax = fmaxf(y0, y1);
+
+			if(conda){
+			triBoxL.m_mn.z = fminf(ymin, iA->z);
+			triBoxL.m_mx.z = fmaxf(ymax, iA->z);
+			triBoxR.m_mn.z = fminf(ymin, fminf(iB->z, iC->z));
+			triBoxR.m_mx.z = fmaxf(ymax, fmaxf(iB->z, iC->z));
+			}else{
+			triBoxR.m_mn.z = fminf(ymin, iA->z);
+			triBoxR.m_mx.z = fmaxf(ymax, iA->z);
+			triBoxL.m_mn.z = fminf(ymin, fminf(iB->z, iC->z));
+			triBoxL.m_mx.z = fmaxf(ymax, fmaxf(iB->z, iC->z));
+			}
+		}
+
+		break;
+
+	case 1:
+		//initializing tight AABBs only  for splitting dimension 
+		triBoxL.m_mn.y = triBox.m_mn.y;
+		triBoxR.m_mx.y = triBox.m_mx.y;
+		triBoxL.m_mx.y = triBoxR.m_mn.y = split;
+		
+		//two remaining dimensions are recomputed 
+		{
+			//reordering vertices’ indices 
+			const float3* _min  = (v1.y <= v0.y) ? &v1 : &v0;
+			const float3* _max  = (v1.y <= v0.y) ? &v0 : &v1;
+			const float3* vertMin = (v2.y <  _min->y) ? &v2 : _min;
+			const float3* vertMax = (v2.y >= _max->y) ? &v2 : _max;
+			const float3* vertMid = (&v0 != vertMin && &v0 != vertMax) ? &v0 : ((&v1 != vertMin && &v1 != vertMax) ? &v1 : &v2);
+			const bool conda = split <= vertMid->y;
+			const float3* iA = conda ? vertMin : vertMax;
+			const float3* iB = vertMid;
+			const float3* iC = conda ? vertMax : vertMin;
+
+			const float ratio_ab = (split-iA->y)/(iB->y-iA->y);
+			const float ratio_cd = (split-iA->y)/(iC->y-iA->y);
+
+			const float x0 = iA->x + ratio_ab*(iB->x-iA->x);
+			const float x1 = iA->x + ratio_cd*(iC->x-iA->x);
+			const float xmin = fminf(x0, x1);
+			const float xmax = fmaxf(x0, x1);
+
+			if(conda){
+			triBoxL.m_mn.x = fminf(xmin, iA->x);
+			triBoxL.m_mx.x = fmaxf(xmax, iA->x);
+			triBoxR.m_mn.x = fminf(xmin, fminf(iB->x, iC->x));
+			triBoxR.m_mx.x = fmaxf(xmax, fmaxf(iB->x, iC->x));
+			}else{
+			triBoxR.m_mn.x = fminf(xmin, iA->x);
+			triBoxR.m_mx.x = fmaxf(xmax, iA->x);
+			triBoxL.m_mn.x = fminf(xmin, fminf(iB->x, iC->x));
+			triBoxL.m_mx.x = fmaxf(xmax, fmaxf(iB->x, iC->x));
+			}
+
+			const float y0 = iA->z + ratio_ab*(iB->z-iA->z);
+			const float y1 = iA->z + ratio_cd*(iC->z-iA->z);
+			const float ymin = fminf(y0, y1);
+			const float ymax = fmaxf(y0, y1);
+
+			if(conda){
+			triBoxL.m_mn.z = fminf(ymin, iA->z);
+			triBoxL.m_mx.z = fmaxf(ymax, iA->z);
+			triBoxR.m_mn.z = fminf(ymin, fminf(iB->z, iC->z));
+			triBoxR.m_mx.z = fmaxf(ymax, fmaxf(iB->z, iC->z));
+			}else{
+			triBoxR.m_mn.z = fminf(ymin, iA->z);
+			triBoxR.m_mx.z = fmaxf(ymax, iA->z);
+			triBoxL.m_mn.z = fminf(ymin, fminf(iB->z, iC->z));
+			triBoxL.m_mx.z = fmaxf(ymax, fmaxf(iB->z, iC->z));
+			}
+		}
+
+		break;
+
+	case 2:
+		//initializing tight AABBs only  for splitting dimension 
+		triBoxL.m_mn.z = triBox.m_mn.z;
+		triBoxR.m_mx.z = triBox.m_mx.z;
+		triBoxL.m_mx.z = triBoxR.m_mn.z = split;
+		
+		//two remaining dimensions are recomputed
+		{
+			//reordering vertices’ indices 
+			const float3* _min  = (v1.z <= v0.z) ? &v1 : &v0;
+			const float3* _max  = (v1.z <= v0.z) ? &v0 : &v1;
+			const float3* vertMin = (v2.z <  _min->z) ? &v2 : _min;
+			const float3* vertMax = (v2.z >= _max->z) ? &v2 : _max;
+			const float3* vertMid = (&v0 != vertMin && &v0 != vertMax) ? &v0 : ((&v1 != vertMin && &v1 != vertMax) ? &v1 : &v2);
+			const bool conda = split <= vertMid->z;
+			const float3* iA = conda ? vertMin : vertMax;
+			const float3* iB = vertMid;
+			const float3* iC = conda ? vertMax : vertMin;
+
+			const float ratio_ab = (split-iA->z)/(iB->z-iA->z);
+			const float ratio_cd = (split-iA->z)/(iC->z-iA->z);
+
+			const float x0 = iA->y + ratio_ab*(iB->y-iA->y);
+			const float x1 = iA->y + ratio_cd*(iC->y-iA->y);
+			const float xmin = fminf(x0, x1);
+			const float xmax = fmaxf(x0, x1);
+
+			if(conda){
+			triBoxL.m_mn.y = fminf(xmin, iA->y);
+			triBoxL.m_mx.y = fmaxf(xmax, iA->y);
+			triBoxR.m_mn.y = fminf(xmin, fminf(iB->y, iC->y));
+			triBoxR.m_mx.y = fmaxf(xmax, fmaxf(iB->y, iC->y));
+			}else{
+			triBoxR.m_mn.y = fminf(xmin, iA->y);
+			triBoxR.m_mx.y = fmaxf(xmax, iA->y);
+			triBoxL.m_mn.y = fminf(xmin, fminf(iB->y, iC->y));
+			triBoxL.m_mx.y = fmaxf(xmax, fmaxf(iB->y, iC->y));
+			}
+
+			const float y0 = iA->x + ratio_ab*(iB->x-iA->x);
+			const float y1 = iA->x + ratio_cd*(iC->x-iA->x);
+			const float ymin = fminf(y0, y1);
+			const float ymax = fmaxf(y0, y1);
+
+			if(conda){
+			triBoxL.m_mn.x = fminf(ymin, iA->x);
+			triBoxL.m_mx.x = fmaxf(ymax, iA->x);
+			triBoxR.m_mn.x = fminf(ymin, fminf(iB->x, iC->x));
+			triBoxR.m_mx.x = fmaxf(ymax, fmaxf(iB->x, iC->x));
+			}else{
+			triBoxR.m_mn.x = fminf(ymin, iA->x);
+			triBoxR.m_mx.x = fmaxf(ymax, iA->x);
+			triBoxL.m_mn.x = fminf(ymin, fminf(iB->x, iC->x));
+			triBoxL.m_mx.x = fmaxf(ymax, fmaxf(iB->x, iC->x));
+			}
+		}
+
+		break;
+	}
+
+	leftBox = triBoxL;
+	rightBox = triBoxR;
+}
 
 // Split triangle bounding box based on spatial split location
 __device__ __forceinline__ int getPlanePositionClipped(const float4& plane, const float3& v0, const float3& v1, const float3& v2, const CudaAABB& nodeBox)

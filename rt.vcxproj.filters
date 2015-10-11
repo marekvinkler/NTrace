@@ -122,6 +122,9 @@
     <ClCompile Include="src\rt\persistentds\PersistentHelper.cpp">
       <Filter>persistentds</Filter>
     </ClCompile>
+    <ClCompile Include="src\rt\persistentds\CudaPersistentSBVHBuilder.cpp">
+      <Filter>persistentds</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\rt\bvh\BVH.hpp">
@@ -223,6 +226,9 @@
       <Filter>persistentds</Filter>
     </ClInclude>
     <ClInclude Include="src\rt\persistentds\CudaPersistentKDTreeBuilder.hpp">
+      <Filter>persistentds</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\CudaPersistentSBVHBuilder.hpp">
       <Filter>persistentds</Filter>
     </ClInclude>
   </ItemGroup>

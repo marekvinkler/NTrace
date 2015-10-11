@@ -29,25 +29,25 @@
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -88,7 +88,10 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(CUDA_PATH)/include/;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>$(CUDA_PATH)/lib/Win32/;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <BuildLog>
@@ -263,6 +266,7 @@
     <ClCompile Include="src\rt\kdtree\KDTreeNode.cpp" />
     <ClCompile Include="src\rt\kdtree\NaiveKDTreeBuilder.cpp" />
     <ClCompile Include="src\rt\persistentds\CudaPersistentKDTreeBuilder.cpp" />
+    <ClCompile Include="src\rt\persistentds\CudaPersistentSBVHBuilder.cpp" />
     <ClCompile Include="src\rt\persistentds\PersistentHelper.cpp" />
     <ClCompile Include="src\rt\ray\PixelTable.cpp" />
     <ClCompile Include="src\rt\ray\RayBuffer.cpp" />
@@ -302,6 +306,7 @@
     <ClInclude Include="src\rt\kdtree\NaiveKDTreeBuilder.hpp" />
     <ClInclude Include="src\rt\kernels\CudaTracerKernels.hpp" />
     <ClInclude Include="src\rt\persistentds\CudaPersistentKDTreeBuilder.hpp" />
+    <ClInclude Include="src\rt\persistentds\CudaPersistentSBVHBuilder.hpp" />
     <ClInclude Include="src\rt\persistentds\PersistentHelper.hpp" />
     <ClInclude Include="src\rt\ray\PixelTable.hpp" />
     <ClInclude Include="src\rt\ray\RayBuffer.hpp" />
