@@ -62,9 +62,11 @@ struct __align__(128) TaskBVH
 {
     int       unfinished;        // Counts the number of unfinished sub tasks
     int       type;              // Type of work to be done
-	int       depend1;           // Index to the first task dependent on this one, -1 is pointer to TaskStack::unfinished, -2 is empty link
-	int       depend2;           // Index to the second task dependent on this one, -1 is pointer to TaskStack::unfinished, -2 is empty link
-	
+	//int       depend1;           // Index to the first task dependent on this one, -1 is pointer to TaskStack::unfinished, -2 is empty link
+	//int       depend2;           // Index to the second task dependent on this one, -1 is pointer to TaskStack::unfinished, -2 is empty link
+	int       dynamicMemoryLeft; // Chunk of dynamic memory given to the left child as offset from g_heapBase
+	int       dynamicMemoryRight;// Chunk of dynamic memory given to the right child as offset from g_heapBase
+
 	int       nodeIdx;           // Address of this node
     int       parentIdx;         // Where to write node data
 	int       taskID;            // Index among the subtasks of the parent

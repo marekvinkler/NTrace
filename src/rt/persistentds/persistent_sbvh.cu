@@ -1896,7 +1896,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			spatialBboxLeft.m_mx.y = orderedIntToFloat(spatialLeft->bbox.m_mx.y);
 			spatialBboxLeft.m_mx.z = orderedIntToFloat(spatialLeft->bbox.m_mx.z);
 
-			printf("%f %f %f %f %f %f\n", bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z, spatialBboxLeft.m_mn.x, spatialBboxLeft.m_mn.y, spatialBboxLeft.m_mn.z);
+			//printf("%f %f %f %f %f %f\n", bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z, spatialBboxLeft.m_mn.x, spatialBboxLeft.m_mn.y, spatialBboxLeft.m_mn.z);
 
 #ifdef BBOX_TEST
 			if(bboxLeft.m_mn.x < s_task[threadIdx.y].bbox.m_mn.x)
@@ -1960,7 +1960,15 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 			float cost = leftCost + rightCost;
 			float spatialCost = spatialLeftCost + spatialRightCost;
-			printf("cost=%f spatialCost=%f\n", cost, spatialCost);
+
+			float4 plane;
+			volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
+
+			findPlaneAABB(tid, bbox, plane);
+			//printf("%.1f %.1f %.1f %f | cnt %f %f area %f %f cost=%f cnt %f %f area %f %f Cost=%f\n", 
+			//	plane.x, plane.y, plane.z, plane.w,
+			//	leftCnt, rightCnt, areaAABB(bboxLeft), areaAABB(bboxRight),
+			//	cost, spatialLeftCnt, spatialRightCnt, areaAABB(spatialBboxLeft), areaAABB(spatialBboxRight), spatialCost);
 
 #ifdef MYDEBUG
 			printf("taskFinishBinning l = %i %f %f %f %f %f %f r = %i %f %f %f %f %f %f cost = %i\n", leftCnt, bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z,
@@ -1975,14 +1983,14 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			spatialRed[tid] = spatialCost;
 			reduceWarp(tid, spatialRed, min);
 
-			float4 plane;
-			volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
+			//float4 plane;
+			//volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
 #if SPLIT_TYPE == 4
 			int axis = s_task[threadIdx.y].axis;
 			//int axis = taskAxis(s_task[threadIdx.y].splitPlane, s_task[threadIdx.y].bbox, s_sharedData[threadIdx.y][0], s_task[threadIdx.y].axis);
 			findPlaneRobin(tid, bbox, axis, plane);
 #elif SPLIT_TYPE == 5
-			findPlaneAABB(tid, bbox, plane);
+			//findPlaneAABB(tid, bbox, plane);
 #elif SPLIT_TYPE == 6
 			if(triEnd - triStart < c_env.childLimit)
 				findPlaneTriAA(tid, c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].triIdxCtr), triStart, triEnd, plane);
@@ -1995,27 +2003,45 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 			int bestTid = __ffs(__ballot(red[tid] == cost));
 			int bestSpatialTid = __ffs(__ballot(spatialRed[tid] == spatialCost));
-			printf("%i %i %f %f\n", tid, bestTid, red[tid], cost);
 
-			if(__ffs(__ballot(red[tid] == cost)) == tid+1) // First thread with such condition, OPTIMIZE: Can be also computed by overwrite and test: better?
+			if(spatialCost < cost)
 			{
-				s_task[threadIdx.y].splitPlane.x = plane.x;
-				s_task[threadIdx.y].splitPlane.y = plane.y;
-				s_task[threadIdx.y].splitPlane.z = plane.z;
-				s_task[threadIdx.y].splitPlane.w = plane.w;
-				s_task[threadIdx.y].bestCost = cost;
-				s_owner[threadIdx.y][0] = tid;
+				if(__ffs(__ballot(spatialRed[tid] == spatialCost)) == tid+1)
+				{
+					s_task[threadIdx.y].splitPlane.x = plane.x;
+					s_task[threadIdx.y].splitPlane.y = plane.y;
+					s_task[threadIdx.y].splitPlane.z = plane.z;
+					s_task[threadIdx.y].splitPlane.w = plane.w;
+					s_task[threadIdx.y].bestCost = spatialCost;
+					s_owner[threadIdx.y][0] = tid;
+					s_task[threadIdx.y].depend1 = 1; //useful??
+					printf("best split: spatial, %0.1f %0.1f %0.1f %f | %f\n", plane.x, plane.y, plane.z, plane.w, spatialCost);
+				}
+			}
+			else
+			{
+				if(__ffs(__ballot(red[tid] == cost)) == tid+1) // First thread with such condition, OPTIMIZE: Can be also computed by overwrite and test: better?
+				{
+					s_task[threadIdx.y].splitPlane.x = plane.x;
+					s_task[threadIdx.y].splitPlane.y = plane.y;
+					s_task[threadIdx.y].splitPlane.z = plane.z;
+					s_task[threadIdx.y].splitPlane.w = plane.w;
+					s_task[threadIdx.y].bestCost = cost;
+					s_owner[threadIdx.y][0] = tid;
+					s_task[threadIdx.y].depend1 = 0; //useful??
+					printf("best split: object, %0.1f %0.1f %0.1f %f | %f\n", plane.x, plane.y, plane.z, plane.w, cost);
 
-/*#ifdef SPLIT_TEST
-				printf("Chosen split for task %d: (%f, %f, %f, %f)\n", taskIdx, 
-					s_task[threadIdx.y].splitPlane.x, s_task[threadIdx.y].splitPlane.y, s_task[threadIdx.y].splitPlane.z, s_task[threadIdx.y].splitPlane.w);
-#endif*/
+	/*#ifdef SPLIT_TEST
+					printf("Chosen split for task %d: (%f, %f, %f, %f)\n", taskIdx, 
+						s_task[threadIdx.y].splitPlane.x, s_task[threadIdx.y].splitPlane.y, s_task[threadIdx.y].splitPlane.z, s_task[threadIdx.y].splitPlane.w);
+	#endif*/
+				}
 			}
 		}
 
 		if(s_owner[threadIdx.y][0] == -1) // No split found, do object median
 		{
-			printf("median\n");
+			printf("median\n\n\n\n");
 			s_task[threadIdx.y].triRight = triStart + (triEnd - triStart) / 2; // Force split on unsubdivided task
 			s_task[threadIdx.y].unfinished = taskWarpSubtasksZero(triEnd - triStart);
 #ifdef COMPUTE_MEDIAN_BOUNDS
@@ -3310,11 +3336,11 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 				spatCntLeft++;
 				spatCntRight++;
 
-				printf("bbox clipping: plane %.3f %.3f %.3f %.3f | tri [%.3f %.3f %.3f] [%.3f %.3f %.3f] [%.3f %.3f %.3f] tribox %.3f %.3f %.3f %.3f %.3f %.3f | left %.3f %.3f %.3f %.3f %.3f %.3f | right %.3f %.3f %.3f %.3f %.3f %.3f |\n", 
-					plane.x, plane.y, plane.z, plane.w, v0.x, v0.y, v0.z, v1.x, v1.y, v1.z, v2.x, v2.y, v2.z, 
-					tbox.m_mn.x, tbox.m_mn.y, tbox.m_mn.z, tbox.m_mx.x, tbox.m_mx.y, tbox.m_mx.z,
-					leftBox.m_mn.x, leftBox.m_mn.y, leftBox.m_mn.z, leftBox.m_mx.x, leftBox.m_mx.y, leftBox.m_mx.z,
-					rightBox.m_mn.x, rightBox.m_mn.y, rightBox.m_mn.z, rightBox.m_mx.x, rightBox.m_mx.y, rightBox.m_mx.z);
+				//printf("bbox clipping: plane %.3f %.3f %.3f %.3f | tri %i [%.3f %.3f %.3f] [%.3f %.3f %.3f] [%.3f %.3f %.3f] tribox %.3f %.3f %.3f %.3f %.3f %.3f | left %.3f %.3f %.3f %.3f %.3f %.3f | right %.3f %.3f %.3f %.3f %.3f %.3f |\n", 
+				//	plane.x, plane.y, plane.z, plane.w, tIdx, v0.x, v0.y, v0.z, v1.x, v1.y, v1.z, v2.x, v2.y, v2.z, 
+				//	tbox.m_mn.x, tbox.m_mn.y, tbox.m_mn.z, tbox.m_mx.x, tbox.m_mx.y, tbox.m_mx.z,
+				//	leftBox.m_mn.x, leftBox.m_mn.y, leftBox.m_mn.z, leftBox.m_mx.x, leftBox.m_mx.y, leftBox.m_mx.z,
+				//	rightBox.m_mn.x, rightBox.m_mn.y, rightBox.m_mn.z, rightBox.m_mx.x, rightBox.m_mx.y, rightBox.m_mx.z);
 
 				spatBboxLeft.m_mn = fminf(spatBboxLeft.m_mn, leftBox.m_mn/*-c_env.epsilon*/);
 				spatBboxLeft.m_mx = fmaxf(spatBboxLeft.m_mx, leftBox.m_mx/*+c_env.epsilon*/);
@@ -3799,15 +3825,16 @@ __device__ __noinline__ void computePartition()
 			}
 #endif
 			CudaAABB tbox;
-			int dummyIdx;
+			int triIdx;
 #ifdef MYDEBUG
 			printf("preFetch, Plane=%f %f %f %f\n", s_task[threadIdx.y].splitPlane.x, s_task[threadIdx.y].splitPlane.y, s_task[threadIdx.y].splitPlane.z, s_task[threadIdx.y].splitPlane.w);
 #endif
-			taskFetchReference((CUdeviceptr)inIdx, triIdx, tbox, dummyIdx);
+			taskFetchReference((CUdeviceptr)inIdx, triIdx, tbox, triIdx);
 #ifdef MYDEBUG
 			printf("postFetch | %i | %i | %f %f %f %f %f %f\n", triIdx, dummyIdx, tbox.m_mn.x, tbox.m_mn.y, tbox.m_mn.z, tbox.m_mx.x, tbox.m_mx.y, tbox.m_mx.z);
 #endif
-			pos = getPlaneCentroidPosition(*((float4*)&s_task[threadIdx.y].splitPlane), tbox);
+			pos = getPlaneCentroidPositionHitMiss(*((float4*)&s_task[threadIdx.y].splitPlane), tbox);
+			//pos = getPlaneCentroidPosition(*((float4*)&s_task[threadIdx.y].splitPlane), tbox);
 		}
 
 #ifdef MYDEBUG
