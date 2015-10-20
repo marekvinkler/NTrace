@@ -146,6 +146,11 @@ void AppEnvironment::RegisterOptions()
 	RegisterOption("PersistentBVH.granularity", optFloat, "persistent_bvh_granularity=", "50.0");
 
 	/*************************************************************************/
+	/*    Persistent BVH                                                     */
+	/*************************************************************************/
+	RegisterOption("PersistentSBVH.heapMultiplicator", optFloat, "persistent_kdtree_heap_mult=", "20.0");
+
+	/*************************************************************************/
 	/*    Persistent KDTree                                                  */
 	/*************************************************************************/
 	RegisterOption("PersistentKDTree.triLimit", optInt, "persistent_kdtree_triLimit=", "2");

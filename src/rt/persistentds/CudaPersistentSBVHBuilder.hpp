@@ -48,6 +48,10 @@ class CudaPersistentSBVHBuilder : public CudaBVH
 	Buffer m_ppsTrisIndex;
 	Buffer m_sortTris;
 
+	// Dyanmic memory
+	Buffer m_mallocData;
+	Buffer m_multiOffset;
+
 	// Debug buffers
 	Buffer m_debug;
 	std::ofstream Debug;
@@ -65,6 +69,8 @@ class CudaPersistentSBVHBuilder : public CudaBVH
 	F32    m_sizeTriIdx;
 	F32    m_heap;
 
+
+
 	void updateConstants();
 	void initPool(Buffer* nodeBuffer = NULL);
 	void deinitPool();
@@ -74,6 +80,9 @@ class CudaPersistentSBVHBuilder : public CudaBVH
 	void saveBufferSizes(bool ads = true, bool aux = true);
 
 	F32 buildCuda();
+	void prepareDynamicMemory();
+	void setCircularMallocHeader(bool set, U32 ofs, U32 prevOfs, U32 nextOfs);
+	int setDynamicMemory();
 public:
 	CudaPersistentSBVHBuilder(Scene& scene, F32 epsilon);
 	~CudaPersistentSBVHBuilder();

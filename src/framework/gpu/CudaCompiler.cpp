@@ -321,6 +321,7 @@ void CudaCompiler::staticInit(void)
         {
             String prog = sprintf("%c:\\%s", drive, (progX86 == 0) ? "Program Files" : "Program Files (x86)");
 		    potentialCudaPaths.add(prog + sprintf("\\NVIDIA GPU Computing Toolkit\\CUDA\\v%.1f", driverVersion));
+			potentialVSPaths.add(prog + "\\Microsoft Visual Studio 11.0");
             potentialVSPaths.add(prog + "\\Microsoft Visual Studio 10.0");
             potentialVSPaths.add(prog + "\\Microsoft Visual Studio 9.0");
             potentialVSPaths.add(prog + "\\Microsoft Visual Studio 8");
@@ -386,7 +387,7 @@ void CudaCompiler::staticInit(void)
         fail("Unable to detect CUDA Toolkit binary path!\nPlease set CUDA_BIN_PATH environment variable.");
 
     // Find Visual Studio binary path.
-
+	//__debugbreak();
     Array<String> vsBinList;
     splitPathList(vsBinList, pathEnv);
     for (int i = 0; i < potentialVSPaths.getSize(); i++)
@@ -401,6 +402,8 @@ void CudaCompiler::staticInit(void)
             break;
         }
     }
+
+
 
     if (!vsBinPath.getLength())
         fail("Unable to detect Visual Studio binary path!\nPlease run VCVARS32.BAT.");

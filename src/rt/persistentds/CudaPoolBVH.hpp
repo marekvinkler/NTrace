@@ -131,6 +131,10 @@ struct TaskStackBVH : public TaskStackBase
 	unsigned int numNodes;             // Number of inner nodes emited
 	unsigned int numLeaves;            // Number of leaves emited
 	int          warpCounter;          // Work counter for persistent threads.
+
+	unsigned int numAllocations;
+	float		 allocSum;
+	float		 allocSumSquare;
 };
 
 //------------------------------------------------------------------------

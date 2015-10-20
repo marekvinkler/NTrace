@@ -1724,7 +1724,7 @@ __device__ int createLeafWoop(int tid, int outOfs, float4* outTriMem, int* outId
 	int numTris = end-start;
 	int idxData;
 
-	Reference* inIdx = inRefMem + start; // Memory for the first triangle index
+	Reference* inIdx = inRefMem;// + start; // Memory for the first triangle index
 
 	float4* outTri = outTriMem + outOfs; // Memory for the first triangle data
 	int* outIdx = outIdxMem + outOfs; // Memory for the first triangle index
@@ -1745,7 +1745,7 @@ __device__ int createLeafWoop(int tid, int outOfs, float4* outTriMem, int* outId
 			float3 v0, v1, v2;
 			float4 o0, o1, o2;
 			taskFetchTri((CUdeviceptr)inTriMem, idxData*3, v0, v1, v2);
-			//printf("cwl: fetchTri %i %f %f %f %f %f %f %f %f %f\n", idxData, v0.x, v0.y, v0.z, v1.x, v1.y, v1.z, v2.x, v2.y, v2.z);
+			printf("cwl: fetchTri %i %f %f %f %f %f %f %f %f %f\n", idxData, v0.x, v0.y, v0.z, v1.x, v1.y, v1.z, v2.x, v2.y, v2.z);
 
 			calcWoop(v0, v1, v2, o0, o1, o2);
 

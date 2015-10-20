@@ -8,6 +8,13 @@ using namespace FW;
 #define TASK_SIZE 150000
 #define BENCHMARK
 
+// Allocator settings
+#define CIRCULAR_MALLOC_PREALLOC 3
+#define CPU 0
+#define GPU 1
+#define CIRCULAR_MALLOC_INIT GPU
+#define CIRCULAR_MALLOC_PREALLOC_SPECIAL
+
 //------------------------------------------------------------------------
 
 CudaPersistentSBVHBuilder::CudaPersistentSBVHBuilder(Scene& scene, F32 epsilon) : CudaBVH(BVHLayout_Compact), m_epsilon(epsilon), m_numTris(scene.getNumTriangles()), m_trisCompact(scene.getTriCompactBuffer())
@@ -43,6 +50,460 @@ CudaPersistentSBVHBuilder::~CudaPersistentSBVHBuilder()
 
 //------------------------------------------------------------------------
 
+void CudaPersistentSBVHBuilder::prepareDynamicMemory()
+{
+	U64 allocSize = (U64)((m_trisCompact.getSize() / 12 / sizeof(int) * sizeof(Reference))*Environment::GetSingleton()->GetFloat("PersistentSBVH.heapMultiplicator"));
+	m_mallocData.resizeDiscard(allocSize);
+}
+
+//------------------------------------------------------------------------
+
+int CudaPersistentSBVHBuilder::setDynamicMemory()
+{
+	int baseOffset = 0;
+	int heapSize = int(m_mallocData.getSize());
+	
+	AllocInfo& allocInfo = *(AllocInfo*)m_module->getGlobal("c_alloc").getMutablePtr();
+	allocInfo.heapSize = heapSize;
+
+	// Prepare allocations for the methods supporting direct allocation
+#if (MALLOC_TYPE == ATOMIC_MALLOC) || (MALLOC_TYPE == ATOMIC_MALLOC_CIRCULAR)
+	// Set the heapBase, heapOffset and heapSize
+	char*& heapBase = *(char**)m_module->getGlobal("g_heapBase").getMutablePtr();
+	heapBase = (char*)m_mallocData.getMutableCudaPtr();
+	int& heapOffset = *(int*)m_module->getGlobal("g_heapOffset").getMutablePtr();
+
+#if SCAN_TYPE < 2
+	heapOffset = align<U32, ALIGN>(4*m_numTris*sizeof(int));
+#else
+	heapOffset = align<U32, ALIGN>(m_numTris*sizeof(int));
+#endif
+
+#elif (MALLOC_TYPE == CIRCULAR_MALLOC) || (MALLOC_TYPE == CIRCULAR_MALLOC_FUSED) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC_FUSED)
+	// Set the heapBase, heapOffset and heapSize
+	char*& heapBase = *(char**)m_module->getGlobal("g_heapBase").getMutablePtr();
+	heapBase = (char*)m_mallocData.getMutableCudaPtr();
+	U32& heapOffset = *(U32*)m_module->getGlobal("g_heapOffset").getMutablePtr();
+	heapOffset = 0;
+
+	// Init the heapMultiOffset
+	CUdevice device;
+	int m_numSM;
+	CudaModule::checkError("cuCtxGetDevice", cuCtxGetDevice(&device));
+	CudaModule::checkError("cuDeviceGetAttribute", cuDeviceGetAttribute(&m_numSM, CU_DEVICE_ATTRIBUTE_MULTIPROCESSOR_COUNT, device));
+	U32& numSM = *(U32*)m_module->getGlobal("g_numSM").getMutablePtr();
+	numSM = m_numSM;
+
+	m_multiOffset.resizeDiscard(m_numSM * sizeof(unsigned int*));
+	unsigned int*& heapMultiOffset = *(unsigned int**)m_module->getGlobal("g_heapMultiOffset").getMutablePtr();
+
+	U32 rootSize = 0;
+#if SCAN_TYPE < 2
+	rootSize = 4*m_numTris*sizeof(int);
+#else
+	rootSize = m_numTris*sizeof(Reference);
+#endif
+
+	U32& heapLock = *(U32*)m_module->getGlobal("g_heapLock").getMutablePtr();
+	heapLock = 0;
+
+	allocInfo.payload = rootSize;
+	allocInfo.maxFrag = 2;
+	allocInfo.chunkRatio = 1;
+
+#ifdef CIRCULAR_MALLOC_PREALLOC_SPECIAL
+	heapMultiOffset = (unsigned int*)m_multiOffset.getMutablePtr();
+
+#if (MALLOC_TYPE == CIRCULAR_MALLOC) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC)
+	U32 headerSize = CIRCULAR_MALLOC_HEADER_SIZE;
+#elif (MALLOC_TYPE == CIRCULAR_MALLOC_FUSED) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC_FUSED)
+	U32 headerSize = sizeof(U32);
+#endif
+
+	heapOffset = align<U32, ALIGN>(rootSize + headerSize);
+	U32 prevOfs = 0;
+
+	setCircularMallocHeader(true, 0, heapSize-headerSize, heapOffset); // Locked, allocated memory for parent
+
+#ifdef CIRCULAR_MALLOC_GLOBAL_HEAP_LOCK
+	setCircularMallocHeader(false, heapOffset, 0, heapSize-headerSize); // Unlocked, next at the end of allocated memory
+#else
+#if (CIRCULAR_MALLOC_PREALLOC == 1)
+	// Create regular chunks
+	U32 numChunks = m_mallocData.getSize()/heapOffset;
+	U32 chunksPerSM = ceil((F32)numChunks/(F32)m_numSM);
+	U32 ofs = heapOffset;
+	for(U32 i = 1; i < numChunks; i++)
+	{
+		setCircularMallocHeader(false, ofs, (i-1)*heapOffset, (i+1)*heapOffset); // Unlocked, next at the multiple of heapOffset
+
+		// Set the heap offsets
+		if((i-1) % chunksPerSM == 0)
+			heapMultiOffset[(i-1) / chunksPerSM] = ofs;
+
+		ofs = (i+1)*heapOffset;
+	}
+
+#elif (CIRCULAR_MALLOC_PREALLOC == 3)
+	for(int i = 0; i < m_numSM; i++)
+		heapMultiOffset[i] = heapOffset;
+
+#if (MALLOC_TYPE == CIRCULAR_MALLOC) || (MALLOC_TYPE == CIRCULAR_MALLOC_FUSED)
+	// Create hierarchical chunks
+	//int delta = align<U32, ALIGN>(heapOffset+headerSize);
+	U32 delta = heapOffset;
+	U32 ofs;
+	U32 i = 0;
+	U32 lvl = 2;
+	for(ofs = heapOffset; true; ofs += delta, i++)
+	{
+		if(i == lvl) // New level in BFS order
+		{
+			//heapMultiOffset[(int)log2((float)lvl)] = ofs; // Not very clever solution, we do not know which SM will allocate memory
+			delta = align<U32, ALIGN>(U32((delta * 0.8f)+headerSize));
+			i = 0;
+			lvl *= 2;
+		}
+
+		if(ofs+delta >= heapSize-2*headerSize) // We cannot make another chunk
+			break;
+
+		setCircularMallocHeader(false, ofs, prevOfs, ofs+delta); // Unlocked, next at ofs+delta
+
+		prevOfs = ofs;
+	}
+
+#elif (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC_FUSED)
+	// Create hierarchical chunks
+	F32 heapTotalMem = heapSize-2*headerSize;
+	F32 heapMem = heapTotalMem/(F32)m_numSM;
+
+	U32 ofs = heapOffset;
+
+	for(int r = 0; r < m_numSM; r++)
+	{
+		// Set the heap offsets
+		heapMultiOffset[r] = ofs;
+		U32 localOfs = 0;
+
+		//int delta = align<U32, ALIGN>(heapOffset+headerSize);
+		U32 delta = heapOffset;
+		U32 i = 0;
+		U32 lvl = 2;
+		for(; true; ofs += delta, localOfs += delta, i++)
+		{
+			if(i == lvl) // New level in BFS order
+			{
+				delta = align<U32, ALIGN>((delta * 0.8f)+headerSize);
+				i = 0;
+				lvl *= 2;
+			}
+
+			if(localOfs+delta >= heapMem) // We cannot make another chunk
+				break;
+
+			setCircularMallocHeader(false, ofs, prevOfs, ofs+delta); // Unlocked, next at ofs+delta
+
+			prevOfs = ofs;
+		}
+
+		if(ofs+delta >= heapTotalMem) // We cannot make another chunk
+			break;
+	}
+#endif
+
+#else
+#error Unsupported special CPU initialization method!
+#endif
+
+	setCircularMallocHeader(false, ofs, prevOfs, heapSize-headerSize); // Unlocked, next at the end of allocated memory
+#endif
+
+	setCircularMallocHeader(true, heapSize-headerSize, ofs, 0); // Locked, next at the start of heap
+
+	heapMultiOffset = (unsigned int*)m_multiOffset.getMutableCudaPtr();
+
+#else
+	F32 initTime = 0.f;
+
+#if (MALLOC_TYPE == CIRCULAR_MALLOC) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC)
+	U32 headerSize = CIRCULAR_MALLOC_HEADER_SIZE;
+	String method("CircularMalloc");
+#elif (MALLOC_TYPE == CIRCULAR_MALLOC_FUSED) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC_FUSED)
+	U32 headerSize = sizeof(U32);
+	String method("CircularMallocFused");
+#endif
+
+	// Set the chunk size
+	U32 numChunks = 0;
+	U32 chunkSize = align<U32, ALIGN>(U32((headerSize + allocInfo.payload)*allocInfo.chunkRatio));
+
+#if (CIRCULAR_MALLOC_INIT == CPU)
+	// Prepare the buffer on the CPU
+	//m_mallocData.getMutablePtr();
+	// Offset of the division
+	U32 ofs = 0;
+	U32 prevOfs = 0;
+
+#if (CIRCULAR_MALLOC_PREALLOC == 0)
+	ofs = 0;
+	prevOfs = heapSize-headerSize;
+
+#elif (CIRCULAR_MALLOC_PREALLOC == 1)
+	// Create regular chunks
+	prevOfs = heapSize-headerSize;
+	ofs = 0;
+
+	numChunks = (m_mallocData.getSize()-(chunkSize+headerSize))/chunkSize;
+	for(int i = 0; i < numChunks; i++)
+	{
+#ifndef CIRCULAR_MALLOC_DOUBLY_LINKED
+		Vec2u next(AllocatorLockType_Free, (i+1)*chunkSize); // Unlocked, next at the multiple of chunkSize
+		m_mallocData.setRange(i*chunkSize, &next, sizeof(Vec2u)); // Set the next header
+#else
+		Vec4u next(AllocatorLockType_Free, prevOfs, (i+1)*chunkSize, 0); // Unlocked, next at the multiple of chunkSize
+		m_mallocData.setRange(i*chunkSize, &next, sizeof(Vec4u)); // Set the next header
+#endif
+
+		prevOfs = ofs;
+		ofs += chunkSize;
+	}
+
+#elif (CIRCULAR_MALLOC_PREALLOC == 2)
+	// Create exponential chunks
+	prevOfs = heapSize-headerSize;
+#if 1
+	for(ofs = 0; ofs+chunkSize < heapSize-2*headerSize && ofs+chunkSize > ofs;)
+#else
+	U32 minChunkSize = chunkSize;
+	U32 expChunks = log2((float)(heapSize-2*headerSize)/(float)chunkSize) - 0.5f; // Temporary
+	chunkSize = (1 << expChunks) * minChunkSize;
+	for(ofs = 0; ofs+chunkSize < heapSize-2*headerSize && ofs+chunkSize > ofs && chunkSize >= minChunkSize;)
+#endif
+	{
+#ifndef CIRCULAR_MALLOC_DOUBLY_LINKED
+		Vec2u next(AllocatorLockType_Free, ofs+chunkSize); // Unlocked, next at the multiple of chunkSize
+		m_mallocData.setRange(ofs, &next, sizeof(Vec2u)); // Set the next header
+#else
+		Vec4u next(AllocatorLockType_Free, prevOfs, ofs+chunkSize, 0); // Unlocked, next at the multiple of chunkSize
+		m_mallocData.setRange(ofs, &next, sizeof(Vec4u)); // Set the next header
+#endif
+		//printf("Ofs %u Chunk size %u\n", ofs, chunkSize);
+		//printf("Ofs %u Chunk size %u. Ofs + Chunk size %u, Heap %u\n", ofs, chunkSize, ofs + chunkSize, heapSize-2*headerSize);
+		prevOfs = ofs;
+		ofs += chunkSize;
+#if 1
+		chunkSize = align<U32, ALIGN>(chunkSize*2);
+#else
+		chunkSize = align<U32, ALIGN>(chunkSize/2);
+#endif
+		numChunks++;
+	}
+
+#elif (CIRCULAR_MALLOC_PREALLOC == 3)
+	// Create hierarchical chunks
+	U32 minChunkSize = chunkSize;
+	F32 treeMem = minChunkSize;
+	U32 i = 1;
+	for(; treeMem < heapSize-2*headerSize; i++)
+	{
+		treeMem = ((float)(i+1))*((float)(1 << i))*((float)minChunkSize);
+	}
+
+	chunkSize = (1 << (i-2))*minChunkSize;
+
+#ifndef CIRCULAR_MALLOC_DOUBLY_LINKED
+	Vec2u first(AllocatorLockType_Free, chunkSize); // Locked, allocated memory for parent
+	m_mallocData.setRange(0, &first, sizeof(Vec2u)); // Set the first header
+#else
+	Vec4u first(AllocatorLockType_Free, heapSize-headerSize, chunkSize, 0); // Locked, allocated memory for parent
+	m_mallocData.setRange(0, &first, sizeof(Vec4u)); // Set the first header
+#endif
+	numChunks++;
+
+	//printf("Ofs %u Chunk size %u\n", ofs, chunkSize);
+
+	i = 0;
+	U32 lvl = 1;
+	for(ofs = chunkSize; true; ofs += chunkSize, i++)
+	{
+		if(i == 0 || i == lvl) // New level in BFS order
+		{
+			chunkSize = align<U32, ALIGN>(chunkSize/2);
+			i = 0;
+			lvl *= 2;
+		}
+
+		if(ofs+chunkSize >= heapSize-2*headerSize || chunkSize < minChunkSize) // We cannot make another chunk
+			break;
+
+		//printf("Ofs %u Chunk size %u\n", ofs, chunkSize);
+
+#ifndef CIRCULAR_MALLOC_DOUBLY_LINKED
+		Vec2u next(AllocatorLockType_Free, ofs+chunkSize); // Unlocked, next at the multiple of chunkSize
+		m_mallocData.setRange(ofs, &next, sizeof(Vec2u)); // Set the next header
+#else
+		Vec4u next(AllocatorLockType_Free, prevOfs, ofs+chunkSize, 0); // Unlocked, next at the multiple of chunkSize
+		m_mallocData.setRange(ofs, &next, sizeof(Vec4u)); // Set the next header
+#endif
+
+		prevOfs = ofs;
+		numChunks++;
+	}
+
+#else
+#error Unsupported CPU initialization method!
+#endif
+
+	//printf("Ofs %u Chunk size %u\n", ofs, (heapSize-headerSize)-ofs);
+	numChunks++;
+
+#ifndef CIRCULAR_MALLOC_DOUBLY_LINKED
+	Vec2u last(AllocatorLockType_Free, heapSize-headerSize); // Unlocked, next at the end of allocated memory
+	m_mallocData.setRange(ofs, &last, sizeof(Vec2u)); // Set the last header
+#else
+	Vec4u last(AllocatorLockType_Free, prevOfs, heapSize-headerSize, 0); // Unlocked, next at the end of allocated memory
+	m_mallocData.setRange(ofs, &last, sizeof(Vec4u)); // Set the last header
+#endif
+
+#ifndef CIRCULAR_MALLOC_DOUBLY_LINKED
+	Vec2u tail(AllocatorLockType_Set, 0); // Locked, next at the start of heap
+	m_mallocData.setRange(heapSize-headerSize, &tail, sizeof(Vec2u)); // Set the last header
+#else
+	Vec4u tail(AllocatorLockType_Set, ofs, 0, 0); // Locked, next at the start of heap
+	m_mallocData.setRange(heapSize-headerSize, &tail, sizeof(Vec4u)); // Set the last header
+#endif
+
+	// Transfer the buffer to the GPU
+	//m_mallocData.getMutableCudaPtr();
+
+#elif (CIRCULAR_MALLOC_INIT == GPU)
+#if (CIRCULAR_MALLOC_PREALLOC == 1)
+	// Create regular chunks
+	CudaKernel initHeap = m_module->getKernel(method+"Prepare1");
+
+	numChunks = (m_mallocData.getSize()-headerSize)/chunkSize;
+	kernel.setParams(numChunks);
+	initTime = initHeap.launchTimed(numChunks, Vec2i(256, 1));
+
+#ifndef BENCHMARK
+	if(m_firstRun)
+		printf("Grid dimensions tpb %d, gridDim.x %d\n", tpb, gridSize.x);
+#endif
+
+#elif (CIRCULAR_MALLOC_PREALLOC == 2)
+	// Create exponential chunks
+	CudaKernel initHeap = m_module->getKernel(method+"Prepare2");
+
+	numChunks = ceil(log2((float)(heapSize-2*headerSize)/(float)chunkSize));
+	kernel.setParams(numChunks);
+	initTime = initHeap.launchTimed(numChunks, Vec2i(256, 1));
+
+#elif (CIRCULAR_MALLOC_PREALLOC == 3)
+	// Create hierarchical chunks
+	U32 minChunkSize = chunkSize;
+	F32 treeMem = minChunkSize;
+	U32 i = 1;
+	for(; treeMem < heapSize-2*headerSize; i++)
+	{
+		treeMem = ((float)(i+1))*((float)(1 << i))*((float)minChunkSize);
+	}
+
+	chunkSize = (1 << (i-2))*minChunkSize;
+
+	CudaKernel initHeap = m_module->getKernel(method+"Prepare3");
+
+	numChunks = (1 << (i-1)); // Number of nodes of the tree + 1 for the rest
+	kernel.setParams(numChunks, chunkSize);
+	initTime = initHeap.launchTimed(numChunks, Vec2i(256, 1));
+#else
+#error Unsupported GPU initialization method!
+#endif
+
+#ifndef BENCHMARK
+	printf("Init heap executed for heap size %lld, headerSize %d, chunkSize %u, numChunks %u\n", m_mallocData.getSize(), headerSize, chunkSize, numChunks);
+#endif
+#endif
+#endif
+
+	// Offset of the memory allocation
+	baseOffset = headerSize;
+
+#ifdef CIRCULAR_MALLOC_WITH_SCATTER_ALLOC
+	// With scatter alloc
+	char*& heapBase2 = *(char**)m_module->getGlobal("g_heapBase2").getMutablePtr();
+	heapBase2 = (char*)m_mallocData2.getMutableCudaPtr();
+#endif
+
+#endif // ATOMIC_MALLOC || ATOMIC_MALLOC_CIRCULAR || CIRCULAR_MALLOC || CIRCULAR_MALLOC_FUSED
+
+// Allocate first chunk of memory for the methods than do not support direct allocation
+#if (MALLOC_TYPE == CUDA_MALLOC) || (MALLOC_TYPE == SCATTER_ALLOC) || (MALLOC_TYPE == FDG_MALLOC) || (MALLOC_TYPE == HALLOC) || (!defined(CIRCULAR_MALLOC_PREALLOC_SPECIAL) && ((MALLOC_TYPE == CIRCULAR_MALLOC) || (MALLOC_TYPE == CIRCULAR_MALLOC_FUSED)))
+	CudaKernel kernelAlloc = m_module->getKernel("allocFreeableMemory");
+
+	kernelAlloc.setParams(
+		m_numTris,
+		0);
+
+	F32 allocTime = kernelAlloc.launchTimed(1, 1);
+
+#ifndef BENCHMARK
+	printf("Memory allocated in %f\n", allocTime);
+#endif
+#endif
+
+	// Copy the triangle index data into the first allocation
+	CudaKernel kernelCopy = m_module->getKernel("MemCpyIndex");
+
+	int memSize = int(m_refs.getSize()/sizeof(Reference) * (sizeof(Reference)/sizeof(int)));
+	kernelCopy.setParams(
+		m_refs.getCudaPtr(),
+		baseOffset,
+		memSize);
+
+	
+#ifndef BENCHMARK
+	F32 memcpyTime = kernelCopy.launchTimed(memSize, Vec2i(256, 1));
+	printf("Triangle indices copied in %f\n", memcpyTime);
+#else
+	kernelCopy.launchTimed(memSize, Vec2i(256, 1));
+#endif
+
+#if (MALLOC_TYPE == SCATTER_ALLOC)
+	// Compute the base offset as the difference between the first allocation and the heap start
+	char*& heapBase = *(char**)m_module->getGlobal("g_heapBase").getMutablePtr();
+	char* base = (char*)m_mallocData.getMutableCudaPtr();
+	baseOffset = heapBase - base;
+	heapBase = base;
+
+#elif (MALLOC_TYPE == HALLOC)
+	// Set the heapBase
+	char*& heapBase = *(char**)m_module->getGlobal("g_heapBase").getMutablePtr();
+	char*& heapBase2 = *(char**)m_module->getGlobal("g_heapBase2").getMutablePtr();
+	baseOffset = heapBase - heapBase2;
+	heapBase = heapBase2;
+	heapBase2 = halloc_base;
+#endif
+
+	return baseOffset;
+}
+
+//------------------------------------------------------------------------
+
+void CudaPersistentSBVHBuilder::setCircularMallocHeader(bool set, U32 ofs, U32 prevOfs, U32 nextOfs)
+{
+	AllocatorLockType type;
+	if(set)
+		type = AllocatorLockType_Set;
+	else
+		type = AllocatorLockType_Free;
+
+	Vec2u header(type, nextOfs);
+	m_mallocData.setRange(ofs, &header, sizeof(Vec2u));
+}
+
+//------------------------------------------------------------------------
+
 F32 CudaPersistentSBVHBuilder::build()
 {
 	Vec4f * verts = (Vec4f*)m_trisCompact.getPtr();
@@ -52,6 +513,8 @@ F32 CudaPersistentSBVHBuilder::build()
 	m_compiler.clearDefines();
 	m_module = m_compiler.compile();
 	failIfError();
+
+	prepareDynamicMemory();
 
 #ifdef DEBUG_PPS
 	Random rand;
@@ -459,6 +922,7 @@ F32 CudaPersistentSBVHBuilder::buildCuda()
 	in.trisOut      = m_triWoop.getMutableCudaPtr();
 	in.trisIndexOut = m_triIndex.getMutableCudaPtr();
 #endif
+	int baseOffset = setDynamicMemory();
 
 #if SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
 #if BINNING_TYPE == 0 || BINNING_TYPE == 1
@@ -512,7 +976,7 @@ F32 CudaPersistentSBVHBuilder::buildCuda()
 	all.lock         = LockType_Free;
 	all.bestCost     = 1e38f;
 	all.depth        = 0;
-	all.dynamicMemory= 0;
+	all.dynamicMemory= baseOffset;
 	all.triIdxCtr    = 0;
 	all.parentIdx    = -1;
 	all.nodeIdx      = 0;

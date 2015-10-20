@@ -161,6 +161,7 @@ __device__ __forceinline__ int* getTriIdxPtr(int dynamicMemory, int tris)
 		return (int*)(g_heapBase2 + dynamicMemory);
 
 #else
+	printf("%p+%i\n", g_heapBase, dynamicMemory);
 	return (int*)(g_heapBase + dynamicMemory);
 #endif // MALLOC_TYPE
 #endif

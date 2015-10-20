@@ -31,8 +31,72 @@
 // Optimizations macros
 //------------------------------------------------------------------------
 
+#//------------------------------------------------------------------------
+// Optimizations macros
+//------------------------------------------------------------------------
+
 #define WOOP_TRIANGLES // Save triangles in woop representation
 #define COMPACT_LAYOUT // Save triangle pointers immediately in parent
+//#define DUPLICATE_REFERENCES
+
+#define ALIGN 16
+//#define COALESCE_WARP
+//#define NO_FREE // Do not free dynamic memory, for testing purposes only
+
+#define CUDA_MALLOC 0 // Default CUDA allocator
+#define ATOMIC_MALLOC 1 // Allocate memory by just atomically adding an offset
+#define ATOMIC_MALLOC_CIRCULAR 2 // Circular variant of atomic malloc
+#define CIRCULAR_MALLOC 3 // Allocator that used a linked list in global heap
+#define CIRCULAR_MALLOC_FUSED 4 // Allocator that used a linked list in global heap and fuses the lock and next pointer
+#define CIRCULAR_MULTI_MALLOC 5 // Allocator that used a linked list in global heap and multiple heap offsets
+#define CIRCULAR_MULTI_MALLOC_FUSED 6 // Allocator that used a linked list in global heap, multiple heap offsets and fuses the lock and next pointer
+#define SCATTER_ALLOC 7 // Use ScatterAlloc for allocations
+#define FDG_MALLOC 8 // Use FDG for allocations
+#define HALLOC 9 // Use Halloc for allocations
+
+// NOTICE: Due to the unknown base of CudaMalloc CUDA_MALLOC, FDG_MALLOC and HALLOC allocators may be unstable
+#define MALLOC_TYPE CIRCULAR_MALLOC
+
+//------------------------------------------------------------------------
+// AtomicMalloc
+//------------------------------------------------------------------------
+
+#if (MALLOC_TYPE == ATOMIC_MALLOC) || (MALLOC_TYPE == ATOMIC_MALLOC_CIRCULAR)
+#define NO_FREE // Memory cannot be dealocated in this simple strategy
+#endif
+
+//------------------------------------------------------------------------
+// CircularMalloc
+//------------------------------------------------------------------------
+
+#define CIRCULAR_MALLOC_CHECK_DEADLOCK
+//#define CIRCULAR_MALLOC_GLOBAL_HEAP_LOCK // Use a single global lock for the heap
+//#define CIRCULAR_MALLOC_DOUBLY_LINKED
+#define CIRCULAR_MALLOC_PRELOCK
+#define CIRCULAR_MALLOC_CONNECT_CHUNKS
+// How to write data into global memory
+// 0 - direct memory access
+// 1 - through inline PTX caching qualifier
+// 2 - through atomic operation
+#define CIRCULAR_MALLOC_MEM_ACCESS_TYPE 0
+#define MEM_ACCESS_TYPE CIRCULAR_MALLOC_MEM_ACCESS_TYPE // Macro in warp_common.cu
+#define ALIGN 16
+#define CIRCULAR_MALLOC_WAIT_COUNT 1000000
+//#define CIRCULAR_MALLOC_WITH_SCATTER_ALLOC // Use ScatterAlloc for small nodes
+//#define CIRCULAR_MALLOC_SWITCH_SIZE 1024
+
+//------------------------------------------------------------------------
+// ScatterAlloc
+//------------------------------------------------------------------------
+
+#define SCATTER_ALLOC_PAGESIZE 16384
+#define SCATTER_ALLOC_ACCESSBLOCKS 8
+#define SCATTER_ALLOC_REGIONSIZE 16
+#define SCATTER_ALLOC_WASTEFACTOR 2
+#define SCATTER_ALLOC_COALESCING 0
+#define SCATTER_ALLOC_RESETPAGES 1
+
+#include "Allocators.hpp"
 
 //------------------------------------------------------------------------
 // BVH data structures
@@ -132,6 +196,10 @@ struct TaskStackBVH : public TaskStackBase
 	unsigned int numNodes;             // Number of inner nodes emited
 	unsigned int numLeaves;            // Number of leaves emited
 	int          warpCounter;          // Work counter for persistent threads.
+
+	unsigned int numAllocations;
+	float		 allocSum;
+	float		 allocSumSquare;
 };
 
 //------------------------------------------------------------------------
@@ -169,6 +237,28 @@ struct SplitArray
 #endif
 
 #ifdef __CUDACC__
+//------------------------------------------------------------------------
+// Common data items.
+//------------------------------------------------------------------------
+
+// Heap data
+__device__ char* g_heapBase2; // The base pointer to a second the heap (for combination of allocation strategies)
+
+//------------------------------------------------------------------------
+// Root memory allocations.
+//------------------------------------------------------------------------
+
+
+// Allocate memory for the root node
+extern "C" __global__ void allocFreeableMemory(int numTris, int numRays);
+
+// Deallocate memory for the root node
+extern "C" __global__ void deallocFreeableMemory();
+
+// Copy data for the root node from CPU allocated to GPU allocated device space.
+extern "C" __global__ void MemCpyIndex(CUdeviceptr src, int ofs, int size);
+
+#include "alloc_common.cu"
 //------------------------------------------------------------------------
 // Globals.
 //------------------------------------------------------------------------
