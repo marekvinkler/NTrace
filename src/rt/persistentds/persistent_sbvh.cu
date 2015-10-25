@@ -412,8 +412,8 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 	int triLeft = newTask->triLeft;
 	int triRight = newTask->triRight;
 	int triEnd = newTask->triEnd;
-	int numLeft = triRight - triStart;
-	int numRight = triEnd - triRight;
+	int numLeft = triLeft;
+	int numRight = triRight;
 	bool leftLeaf, rightLeaf;
 	int triIdxCtr = newTask->triIdxCtr;
 	int parentIdx = newTask->parentIdx;
@@ -559,8 +559,8 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 #ifndef WOOP_TRIANGLES
 			childLeft = createLeaf(tid, leftOfs, (float*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triStart, triRight, (float*)c_bvh_in.tris, getTriIdxPtr(triIdxCtr));
 #else
-			printf("leaf left %i - %i\n",triStart, triRight);
-			childLeft = createLeafWoop(tid, leftOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triStart, triRight, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryLeft, triEnd-triStart));
+			printf("leaf left %i - %i\n",0, triLeft);
+			childLeft = createLeafWoop(tid, leftOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, triLeft, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryLeft, triEnd-triStart));
 #ifdef MYDEBUG
 			printf("childLeftLeaf = %i | %i - %i \n",childLeft, triStart, triRight);
 #endif
@@ -606,8 +606,8 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 #ifndef WOOP_TRIANGLES
 			childRight = createLeaf(tid, rightOfs, (float*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triRight, triEnd, (float*)c_bvh_in.tris, getTriIdxPtr(triIdxCtr));
 #else
-			printf("leaf right %i - %i\n",triRight, triEnd);
-			childRight = createLeafWoop(tid, rightOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triRight, triEnd, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, triEnd-triStart));
+			printf("leaf right %i - %i\n",0, triRight);
+			childRight = createLeafWoop(tid, rightOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, triRight, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, triEnd-triStart));
 #ifdef MYDEBUG
 			printf("childRightLeaf = %i | %i - %i |\n",childLeft, triRight, triEnd);
 #endif
@@ -635,7 +635,7 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 		//	printf("Constructed node %d\n", nodeIdx);
 #if 1
 		*((float4*)&node->c0xy) = make_float4(newTask->bboxLeft.m_mn.x, newTask->bboxLeft.m_mx.x, newTask->bboxLeft.m_mn.y, newTask->bboxLeft.m_mx.y);
-		*((float4*)&node->c1xy) = make_float4(newTask->bboxRight.m_mn.x, newTask->bboxRight.m_mx.x, newTask->bboxRight.m_mn.y, newTask->bboxRight.m_mx.y);
+		*((float4*)&node->c1xy) = make_float4(newTask->bboxRight.m_mn.x, newTask->bboxRight. m_mx.x, newTask->bboxRight.m_mn.y, newTask->bboxRight.m_mx.y);
 		*((float4*)&node->c01z) = make_float4(newTask->bboxLeft.m_mn.z, newTask->bboxLeft.m_mx.z, newTask->bboxRight.m_mn.z, newTask->bboxRight.m_mx.z);
 #ifndef COMPACT_LAYOUT
 		*((int4*)&node->children) = make_int4(childLeft, childRight, parentIdx, 0); // Sets the leaf child pointers or the waiting status
@@ -734,14 +734,22 @@ __device__ void taskCreateSubtask(int tid, volatile TaskBVH* newTask, int subIdx
 		switch(subIdx) // Choose which subtask we are creating
 		{
 		case 1:
-			newTask->triStart   = s_task[threadIdx.y].triRight;
-			newTask->triEnd     = s_task[threadIdx.y].triEnd;
+			//newTask->triStart   = s_task[threadIdx.y].triRight;
+			//newTask->triEnd     = s_task[threadIdx.y].triEnd;
+			newTask->triStart = 0;
+			newTask->triEnd     = s_task[threadIdx.y].triRight;
+			newTask->dynamicMemory = s_task[threadIdx.y].dynamicMemoryRight;
+
 			srcBox = (volatile const float*)&(s_task[threadIdx.y].bboxRight);
 			break;
 
 		case 0:
-			newTask->triStart   = s_task[threadIdx.y].triStart;
-			newTask->triEnd     = s_task[threadIdx.y].triRight;
+			//newTask->triStart   = s_task[threadIdx.y].triStart;
+			//newTask->triEnd     = s_task[threadIdx.y].triRight;
+			newTask->triStart   = 0;
+			newTask->triEnd     = s_task[threadIdx.y].triLeft;
+			newTask->dynamicMemory = s_task[threadIdx.y].dynamicMemoryLeft;
+
 			srcBox = (volatile const float*)&(s_task[threadIdx.y].bboxLeft);
 			break;
 		}
@@ -1760,121 +1768,6 @@ __device__ void taskFinishInit(int tid, int taskIdx, int countDown)
 }
 
 //------------------------------------------------------------------------
-
-__device__ void taskFinishBinningSpatial(int tid, int taskIdx, int countDown)
-{
-	ASSERT_DIVERGENCE("taskFinishBinningSpatial top", tid);
-
-	int triStart = s_task[threadIdx.y].triStart;
-	int triEnd = s_task[threadIdx.y].triEnd;
-
-	if(taskCheckFinished(tid, taskIdx, countDown))
-	{
-		s_task[threadIdx.y].unfinished = taskWarpSubtasksZero(triEnd - triStart);
-
-		s_task[threadIdx.y].type = taskChooseScanType(s_task[threadIdx.y].unfinished);
-		s_task[threadIdx.y].step = 0;
-
-		s_sharedData[threadIdx.y][0] = -1;
-	}
-
-	ASSERT_DIVERGENCE("taskFinishBinningSpatial mid", tid);
-
-	if(s_sharedData[threadIdx.y][0] == -1)
-	{
-		SplitArray* splitArray = &(g_redSplits[taskIdx]);
-
-		// Reduced left and right data
-		ChildData* left = (ChildData*)&splitArray->spatialSplits[tid].children[0];
-		ChildData* right = (ChildData*)&splitArray->spatialSplits[tid].children[1];
-		volatile float* red = (volatile float*)&s_sharedData[threadIdx.y][0];
-		red[tid] = CUDART_INF_F;
-
-		if(tid < PLANE_COUNT)
-		{
-			// Compute cost
-			CudaAABB bboxLeft;
-			bboxLeft.m_mn.x = orderedIntToFloat(left->bbox.m_mn.x);
-			bboxLeft.m_mn.y = orderedIntToFloat(left->bbox.m_mn.y);
-			bboxLeft.m_mn.z = orderedIntToFloat(left->bbox.m_mn.z);
-
-			bboxLeft.m_mx.x = orderedIntToFloat(left->bbox.m_mx.x);
-			bboxLeft.m_mx.y = orderedIntToFloat(left->bbox.m_mx.y);
-			bboxLeft.m_mx.z = orderedIntToFloat(left->bbox.m_mx.z);
-			float leftCnt = (float)left->cnt;
-			float leftCost = areaAABB(bboxLeft)*leftCnt;
-
-			CudaAABB bboxRight;
-			bboxRight.m_mn.x = orderedIntToFloat(right->bbox.m_mn.x);
-			bboxRight.m_mn.y = orderedIntToFloat(right->bbox.m_mn.y);
-			bboxRight.m_mn.z = orderedIntToFloat(right->bbox.m_mn.z);
-
-			bboxRight.m_mx.x = orderedIntToFloat(right->bbox.m_mx.x);
-			bboxRight.m_mx.y = orderedIntToFloat(right->bbox.m_mx.y);
-			bboxRight.m_mx.z = orderedIntToFloat(right->bbox.m_mx.z);
-			float rightCnt = (float)right->cnt;
-			float rightCost = areaAABB(bboxRight)*rightCnt;
-			
-			float cost = leftCost + rightCost;
-
-			red[tid] = cost;
-			reduceWarp(tid, red, min);
-
-			float4 plane;
-			volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
-
-			findPlaneAABB(tid, bbox, plane);
-			s_owner[threadIdx.y][0] = -1; // Mark as no split
-			// Return the best plane for this warp
-			if(__ffs(__ballot(red[tid] == cost)) == tid+1)
-			{
-				s_task[threadIdx.y].splitPlane.x = plane.x;
-				s_task[threadIdx.y].splitPlane.y = plane.y;
-				s_task[threadIdx.y].splitPlane.z = plane.z;
-				s_task[threadIdx.y].splitPlane.w = plane.w;
-				s_task[threadIdx.y].bestCost = cost;
-				s_owner[threadIdx.y][0] = tid;
-			}
-		}
-
-		if(s_owner[threadIdx.y][0] == -1) // No split found, do object median
-		{
-			s_task[threadIdx.y].triRight = triStart + (triEnd - triStart) / 2; // Force split on unsubdivided task
-			s_task[threadIdx.y].unfinished = taskWarpSubtasksZero(triEnd - triStart);
-			s_task[threadIdx.y].type = taskChooseAABBType();
-		}
-		else
-		{
-			left = (ChildData*)&splitArray->splits[s_owner[threadIdx.y][0]].children[0];
-			right = (ChildData*)&splitArray->splits[s_owner[threadIdx.y][0]].children[1];
-
-			float* t_bboxLeft = (float*)&(g_taskStackBVH.tasks[taskIdx].bboxLeft);
-			const float* g_bboxLeft = (const float*)&(left->bbox);
-
-			float* t_bboxRight = (float*)&(g_taskStackBVH.tasks[taskIdx].bboxRight);
-			const float* g_bboxRight = (const float*)&(right->bbox);
-
-			if(tid < sizeof(CudaAABB)/sizeof(float))
-			{
-				float cor;
-				if(tid < sizeof(float3)/sizeof(float))
-					cor = -c_env.epsilon;
-				else
-					cor = c_env.epsilon;
-
-				t_bboxLeft[tid] = orderedIntToFloat(*(int*)&g_bboxLeft[tid])+cor;
-				t_bboxRight[tid] = orderedIntToFloat(*(int*)&g_bboxRight[tid])+cor;
-			}
-		}
-		taskPrepareNext(tid, taskIdx, TaskType_BinTriangles);	
-	}
-	else
-	{
-		s_task[threadIdx.y].lock = LockType_Free;
-	}
-
-	ASSERT_DIVERGENCE("taskFinishBinningSpatial bottom", tid);
-}
 
 // Finishes a split task
 __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
@@ -3231,120 +3124,7 @@ __device__ void binTrianglesParallel(int tid, int subtask, int taskIdx, int triS
 
 #elif BINNING_TYPE == 2
 
-__device__ void binTrianglesAtomicSpatial(int tid, int subtaskFirst, int subtaskLast, int taskIdx, int triStart, int triEnd, const volatile CudaAABB& bbox, int axis)
-{
-	if(tid < PLANE_COUNT)
-	{
-		float4 plane;
-		findPlaneAABB(tid, bbox, plane);
 
-		CudaAABB bboxLeft, bboxRight;
-		int cntLeft, cntRight;
-
-		// Initialize boxes
-		bboxLeft.m_mn.x = bboxLeft.m_mn.y = bboxLeft.m_mn.z = CUDART_INF_F;
-		bboxRight.m_mn.x = bboxRight.m_mn.y = bboxRight.m_mn.z = CUDART_INF_F;
-		bboxLeft.m_mx.x = bboxLeft.m_mx.y = bboxLeft.m_mx.z = -CUDART_INF_F;
-		bboxRight.m_mx.x = bboxRight.m_mx.y = bboxRight.m_mx.z = -CUDART_INF_F;
-		cntLeft = cntRight = 0;
-
-		Reference* inIdx = getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart);
-		int triPos = triStart + subtaskFirst*WARP_SIZE*BIN_MULTIPLIER;
-		int triLast = min(triStart + subtaskLast*WARP_SIZE*BIN_MULTIPLIER, triEnd);
-		for(;triPos < triLast; triPos++)
-		{
-			CudaAABB tbox;
-			int tIdx;
-
-			taskFetchReference((CUdeviceptr)inIdx, triPos, tbox, tIdx);
-
-			int pos = getPlaneCentroidPositionHitMiss(plane, tbox);
-
-			if(pos == 0) //plane intersects triangle's bbox
-			{
-				CudaAABB leftBox, rigthBox;
-				float3 v0, v1, v2;
-				taskFetchTri((CUdeviceptr)c_bvh_in.tris, tIdx, v0, v1, v2);
-				computeClippedBoxes(plane, v0, v1, v2, tbox, leftBox, rigthBox);
-
-				cntLeft++;
-				cntRight++;				
-			}
-			else if(pos == -2)
-			{
-				bboxLeft.m_mn = fminf(bboxLeft.m_mn, tbox.m_mn/*-c_env.epsilon*/);
-				bboxLeft.m_mx = fmaxf(bboxLeft.m_mx, tbox.m_mx/*+c_env.epsilon*/);
-
-				cntLeft++;
-			}
-			else
-			{
-				bboxRight.m_mn = fminf(bboxRight.m_mn, tbox.m_mn/*-c_env.epsilon*/);
-				bboxRight.m_mx = fmaxf(bboxRight.m_mx, tbox.m_mx/*+c_env.epsilon*/);
-
-				cntRight++;
-			}
-
-			SplitRed *split = &(g_redSplits[taskIdx].spatialSplits[tid]);
-
-			if(cntLeft != 0)
-			{
-				if(s_task[threadIdx.y].lock != LockType_None) // Multiple threads cooperate on this task
-				{
-					atomicMinFloat(&split->children[0].bbox.m_mn.x, bboxLeft.m_mn.x);
-					atomicMinFloat(&split->children[0].bbox.m_mn.y, bboxLeft.m_mn.y);
-					atomicMinFloat(&split->children[0].bbox.m_mn.z, bboxLeft.m_mn.z);
-
-					atomicMaxFloat(&split->children[0].bbox.m_mx.x, bboxLeft.m_mx.x);
-					atomicMaxFloat(&split->children[0].bbox.m_mx.y, bboxLeft.m_mx.y);
-					atomicMaxFloat(&split->children[0].bbox.m_mx.z, bboxLeft.m_mx.z);
-
-					atomicAdd(&split->children[0].cnt, cntLeft);
-				}
-				else
-				{
-					split->children[0].bbox.m_mn.x = floatToOrderedInt(bboxLeft.m_mn.x);
-					split->children[0].bbox.m_mn.y = floatToOrderedInt(bboxLeft.m_mn.y);
-					split->children[0].bbox.m_mn.z = floatToOrderedInt(bboxLeft.m_mn.z);
-
-					split->children[0].bbox.m_mx.x = floatToOrderedInt(bboxLeft.m_mx.x);
-					split->children[0].bbox.m_mx.y = floatToOrderedInt(bboxLeft.m_mx.y);
-					split->children[0].bbox.m_mx.z = floatToOrderedInt(bboxLeft.m_mx.z);
-
-					split->children[0].cnt = cntLeft;
-				}
-			}
-
-			if(cntRight != 0)
-			{
-				if(s_task[threadIdx.y].lock != LockType_None) // Multiple threads cooperate on this task
-				{
-					atomicMinFloat(&split->children[1].bbox.m_mn.x, bboxRight.m_mn.x);
-					atomicMinFloat(&split->children[1].bbox.m_mn.y, bboxRight.m_mn.y);
-					atomicMinFloat(&split->children[1].bbox.m_mn.z, bboxRight.m_mn.z);
-
-					atomicMaxFloat(&split->children[1].bbox.m_mx.x, bboxRight.m_mx.x);
-					atomicMaxFloat(&split->children[1].bbox.m_mx.y, bboxRight.m_mx.y);
-					atomicMaxFloat(&split->children[1].bbox.m_mx.z, bboxRight.m_mx.z);
-
-					atomicAdd(&split->children[1].cnt, cntRight);
-				}
-				else
-				{
-					split->children[1].bbox.m_mn.x = floatToOrderedInt(bboxRight.m_mn.x);
-					split->children[1].bbox.m_mn.y = floatToOrderedInt(bboxRight.m_mn.y);
-					split->children[1].bbox.m_mn.z = floatToOrderedInt(bboxRight.m_mn.z);
-
-					split->children[1].bbox.m_mx.x = floatToOrderedInt(bboxRight.m_mx.x);
-					split->children[1].bbox.m_mx.y = floatToOrderedInt(bboxRight.m_mx.y);
-					split->children[1].bbox.m_mx.z = floatToOrderedInt(bboxRight.m_mx.z);
-
-					split->children[1].cnt = cntRight;
-				}
-			}
-		} // for tri
-	} // if tid < PLANE_COUNT
-}
 
 
 // Compute all data needed for each bin in parallel planes and sequentially over trianlges
@@ -3407,7 +3187,7 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 			int tIdx;
 
 			taskFetchReference((CUdeviceptr)inIdx, triPos, tbox, tIdx);
-			printf("%p fetch: %i %i | %f %f %f %f %f %f\n", (CUdeviceptr)inIdx, triPos, tIdx, tbox.m_mn.x, tbox.m_mn.y, tbox.m_mn.z, tbox.m_mx.x, tbox.m_mx.y, tbox.m_mx.z);
+			//printf("fetch: %i %i | %f %f %f %f %f %f\n", triPos, tIdx, tbox.m_mn.x, tbox.m_mn.y, tbox.m_mn.z, tbox.m_mx.x, tbox.m_mx.y, tbox.m_mx.z);
 
 			int pos = getPlaneCentroidPositionHitMiss(plane, tbox);
 			//int pos = getPlaneCentroidPosition(plane, *((float3*)&s_task[threadIdx.y].v0), *((float3*)&s_task[threadIdx.y].v1), *((float3*)&s_task[threadIdx.y].v2), tbox);
@@ -3422,11 +3202,11 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 				spatCntLeft++;
 				spatCntRight++;
 
-				//printf("bbox clipping: plane %.3f %.3f %.3f %.3f | tri %i [%.3f %.3f %.3f] [%.3f %.3f %.3f] [%.3f %.3f %.3f] tribox %.3f %.3f %.3f %.3f %.3f %.3f | left %.3f %.3f %.3f %.3f %.3f %.3f | right %.3f %.3f %.3f %.3f %.3f %.3f |\n", 
-				//	plane.x, plane.y, plane.z, plane.w, tIdx, v0.x, v0.y, v0.z, v1.x, v1.y, v1.z, v2.x, v2.y, v2.z, 
-				//	tbox.m_mn.x, tbox.m_mn.y, tbox.m_mn.z, tbox.m_mx.x, tbox.m_mx.y, tbox.m_mx.z,
-				//	leftBox.m_mn.x, leftBox.m_mn.y, leftBox.m_mn.z, leftBox.m_mx.x, leftBox.m_mx.y, leftBox.m_mx.z,
-				//	rightBox.m_mn.x, rightBox.m_mn.y, rightBox.m_mn.z, rightBox.m_mx.x, rightBox.m_mx.y, rightBox.m_mx.z);
+				printf("pos==2 | bbox clipping: plane %.3f %.3f %.3f %.3f | tri %i [%.3f %.3f %.3f] [%.3f %.3f %.3f] [%.3f %.3f %.3f] tribox %.3f %.3f %.3f %.3f %.3f %.3f | left %.3f %.3f %.3f %.3f %.3f %.3f | right %.3f %.3f %.3f %.3f %.3f %.3f |\n", 
+					plane.x, plane.y, plane.z, plane.w, tIdx, v0.x, v0.y, v0.z, v1.x, v1.y, v1.z, v2.x, v2.y, v2.z, 
+					tbox.m_mn.x, tbox.m_mn.y, tbox.m_mn.z, tbox.m_mx.x, tbox.m_mx.y, tbox.m_mx.z,
+					leftBox.m_mn.x, leftBox.m_mn.y, leftBox.m_mn.z, leftBox.m_mx.x, leftBox.m_mx.y, leftBox.m_mx.z,
+					rightBox.m_mn.x, rightBox.m_mn.y, rightBox.m_mn.z, rightBox.m_mx.x, rightBox.m_mx.y, rightBox.m_mx.z);
 
 				spatBboxLeft.m_mn = fminf(spatBboxLeft.m_mn, leftBox.m_mn/*-c_env.epsilon*/);
 				spatBboxLeft.m_mx = fmaxf(spatBboxLeft.m_mx, leftBox.m_mx/*+c_env.epsilon*/);
@@ -3441,11 +3221,14 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 				bboxLeft.m_mx = fmaxf(bboxLeft.m_mx, tbox.m_mx/*+c_env.epsilon*/);
 				cntLeft++;
 
+				//printf("pos<0 %f %f %f %f %f %f\n", bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z, bboxLeft.m_mx.x, bboxLeft.m_mx.y, bboxLeft.m_mx.z);
+
 				if(pos == -1)
 				{
-					spatBboxLeft.m_mn = fminf(bboxLeft.m_mn, tbox.m_mn/*-c_env.epsilon*/);
-					spatBboxLeft.m_mx = fmaxf(bboxLeft.m_mx, tbox.m_mx/*+c_env.epsilon*/);
+					spatBboxLeft.m_mn = fminf(spatBboxLeft.m_mn, tbox.m_mn/*-c_env.epsilon*/);
+					spatBboxLeft.m_mx = fmaxf(spatBboxLeft.m_mx, tbox.m_mx/*+c_env.epsilon*/);
 					spatCntLeft++;
+					//printf("--- %f %f %f %f %f %f\n", spatBboxLeft.m_mn.x, spatBboxLeft.m_mn.y, spatBboxLeft.m_mn.z, spatBboxLeft.m_mx.x, spatBboxLeft.m_mx.y, spatBboxLeft.m_mx.z);
 				}
 			}
 			else
@@ -3454,11 +3237,14 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 				bboxRight.m_mx = fmaxf(bboxRight.m_mx, tbox.m_mx/*+c_env.epsilon*/);
 				cntRight++;
 
+				//printf("pos>0 %f %f %f %f %f %f\n", bboxRight.m_mn.x, bboxRight.m_mn.y, bboxRight.m_mn.z, bboxRight.m_mx.x, bboxRight.m_mx.y, bboxRight.m_mx.z);
+
 				if(pos == 1)
 				{
-					spatBboxRight.m_mn = fminf(bboxRight.m_mn, tbox.m_mn/*-c_env.epsilon*/);
-					spatBboxRight.m_mx = fmaxf(bboxRight.m_mx, tbox.m_mx/*+c_env.epsilon*/);
+					spatBboxRight.m_mn = fminf(spatBboxRight.m_mn, tbox.m_mn/*-c_env.epsilon*/);
+					spatBboxRight.m_mx = fmaxf(spatBboxRight.m_mx, tbox.m_mx/*+c_env.epsilon*/);
 					spatCntRight++;
+					//printf("--- %f %f %f %f %f %f\n", spatBboxRight.m_mn.x, spatBboxRight.m_mn.y, spatBboxRight.m_mn.z, spatBboxRight.m_mx.x, spatBboxRight.m_mx.y, spatBboxRight.m_mx.z);
 				}
 			}
 		}
@@ -3693,27 +3479,6 @@ __device__ int classifyTri(int tid, int subtask, int start, int end, volatile co
 
 //------------------------------------------------------------------------
 
-__device__ __noinline__ void computeSpatialBins()
-{
-	int subtasksDone;
-	int axis = s_task[threadIdx.y].axis;
-	int triStart = s_task[threadIdx.y].triStart;
-	int triEnd = s_task[threadIdx.y].triEnd;
-
-	int popStart = s_task[threadIdx.y].popStart;
-	int popSubtask = s_task[threadIdx.y].popSubtask;
-	int popCount = s_task[threadIdx.y].popCount;
-	int popTaskIdx = s_task[threadIdx.y].popTaskIdx;
-
-	subtasksDone = min(popStart+1, popCount);
-	binTrianglesAtomicSpatial(threadIdx.x, popStart-(subtasksDone-1), popStart+1, popTaskIdx, triStart, triEnd, s_task[threadIdx.y].bbox, axis);
-
-	__threadfence();
-
-	taskFinishBinningSpatial(threadIdx.x, popTaskIdx, subtasksDone);
-}
-
-
 #if SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
 __device__ __noinline__ void computeBins()
 {
@@ -3935,31 +3700,30 @@ __device__ __noinline__ void computePartition()
 
 		// Scan the number of triangles to the left of the splitting plane
 		int triCnt;
-		int exclusiveScan = threadPosWarp(tid, s_sharedData[threadIdx.y], pos > 0, triCnt);
+		int exclusiveScan = threadPosWarp(tid, s_sharedData[threadIdx.y], pos < 0, triCnt);
 
 		if(!singleWarp && tid == 0 && triCnt > 0)
 			s_owner[threadIdx.y][0] = atomicAdd(&g_taskStackBVH.tasks[popTaskIdx].triLeft, triCnt); // Add the number of triangles to the left of the plane to the global counter
 
 		// Find the output position for each thread as the sum of the output position and the exclusive scanned value
-		// Left, not straddling
-		if(pos > 0)
+		if(pos < 0)
 		{
-			outIdxRight[s_owner[threadIdx.y][0] + exclusiveScan] = inIdx[triPos];
+			outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan] = inIdx[triPos];
 			printf("%i Left %i (triIdx=%i)\n", tid, s_owner[threadIdx.y][0] + exclusiveScan, inIdx[triPos].idx);
 		}
 		s_owner[threadIdx.y][0] += triCnt; // Move the position by the number of written nodes
 
 
 		// Compute the number of triangles to the right of the splitting plane
-		int inverseExclusiveScan = threadPosWarp(tid, s_sharedData[threadIdx.y], pos < 0, triCnt); // The scan of the number of triangles to the right of the splitting plane
+		int inverseExclusiveScan = threadPosWarp(tid, s_sharedData[threadIdx.y], pos > 0, triCnt); // The scan of the number of triangles to the right of the splitting plane
 		
 		if(!singleWarp && tid == 0 && triCnt > 0)
 			s_owner[threadIdx.y][1] = atomicAdd(&g_taskStackBVH.tasks[popTaskIdx].triRight, triCnt); // Add the number of triangles to the right of the plane to the global counter
 
 		// Find the output position for each thread as the output position minus the triangle count plus the scanned value
-		if(pos < 0)
+		if(pos > 0)
 		{
-			outIdxLeft[s_owner[threadIdx.y][1] + inverseExclusiveScan] = inIdx[triPos];
+			outIdxRight[s_owner[threadIdx.y][1] + inverseExclusiveScan] = inIdx[triPos];
 			printf("%i Right %i (triIdx=%i)\n", tid, s_owner[threadIdx.y][1] + inverseExclusiveScan, inIdx[triPos].idx);
 		}
 		s_owner[threadIdx.y][1] += triCnt; // Move the position by the number of written nodes
