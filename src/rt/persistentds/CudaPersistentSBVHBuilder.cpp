@@ -571,13 +571,13 @@ F32 CudaPersistentSBVHBuilder::build()
 #endif
 
 	// Node and triangle data
-	S64 bvhSize = align<S64, 4096>(m_numTris * sizeof(CudaBVHNode));
+	S64 bvhSize = align<S64, 4096>(m_numTris * Environment::GetSingleton()->GetFloat("PersistentSBVH.nodeRatio") * sizeof(CudaBVHNode));
 	m_nodes.resizeDiscard(bvhSize);
 	m_nodes.setOwner(Buffer::Cuda, true); // Make CUDA the owner so that CPU memory is never allocated
 	//m_nodes.clearRange32(0, 0, bvhSize); // Mark all tasks as 0 (important for debug)
 #ifdef COMPACT_LAYOUT
-	m_triWoop.resizeDiscard(m_numTris * (3+1) * sizeof(Vec4f));
-	m_triIndex.resizeDiscard(m_numTris * (3+1) * sizeof(S32));
+	m_triWoop.resizeDiscard(m_numTris *(S64)(Environment::GetSingleton()->GetFloat("PersistentSBVH.triRatio")) * (3+1) * sizeof(Vec4f));
+	m_triIndex.resizeDiscard(m_numTris *(S64)(Environment::GetSingleton()->GetFloat("PersistentSBVH.idxRatio")) *  (3+1) * sizeof(S32));
 #endif
 
 	m_gpuTime = buildCuda();

@@ -148,7 +148,10 @@ void AppEnvironment::RegisterOptions()
 	/*************************************************************************/
 	/*    Persistent BVH                                                     */
 	/*************************************************************************/
-	RegisterOption("PersistentSBVH.heapMultiplicator", optFloat, "persistent_kdtree_heap_mult=", "20.0");
+	RegisterOption("PersistentSBVH.heapMultiplicator", optFloat, "persistent_sbvh_heap_mult=", "20.0");
+	RegisterOption("PersistentSBVH.nodeRatio", optInt, "persistent_sbvh_nodeRatio=", "5");
+	RegisterOption("PersistentSBVH.triRatio", optInt, "persistent_sbvh_triRatio=", "3");
+	RegisterOption("PersistentSBVH.idxRatio", optInt, "persistent_sbvh_idxRatio=", "12");
 
 	/*************************************************************************/
 	/*    Persistent KDTree                                                  */
