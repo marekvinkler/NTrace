@@ -129,6 +129,15 @@ __device__ __forceinline__ int allocBuffers(int refs)
 	return ((char*)alloc) - g_heapBase;	
 }
 
+//------------------------------------------------------------------------
+
+__device__ __forceinline__ void freeBuffers(int dynamicMemory, int size)
+{
+	freeCircularMalloc((void*)(g_heapBase + dynamicMemory));
+}
+
+//------------------------------------------------------------------------
+
 __device__ __forceinline__ void allocChildren(volatile int& leftMem, volatile int& rightMem, int cntLeft, int cntRight)
 {
 	int leftSize = cntLeft * sizeof(Reference);
@@ -455,6 +464,9 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 #else
 		printf("leaf %i - %i\n", triStart, triEnd);
 		int triIdx = createLeafWoop(tid, triOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triStart, triEnd, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart));
+		if(tid == 0)
+			if(triEnd - triStart != 0)
+				freeBuffers(s_task[threadIdx.y].dynamicMemory, (triEnd - triStart) * sizeof(Reference));
 #ifdef MYDEBUG
 		printf("leaf %i\n", triIdx);
 #endif
@@ -561,6 +573,9 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 #else
 			printf("leaf left %i - %i\n",0, triLeft);
 			childLeft = createLeafWoop(tid, leftOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, triLeft, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryLeft, triEnd-triStart));
+			if(tid == 0)
+				if(numLeft != 0)
+					freeBuffers(s_task[threadIdx.y].dynamicMemoryLeft, numLeft * sizeof(Reference));
 #ifdef MYDEBUG
 			printf("childLeftLeaf = %i | %i - %i \n",childLeft, triStart, triRight);
 #endif
@@ -608,6 +623,9 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 #else
 			printf("leaf right %i - %i\n",0, triRight);
 			childRight = createLeafWoop(tid, rightOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, triRight, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, triEnd-triStart));
+			if(tid == 0)
+				if(numRight != 0)
+					freeBuffers(s_task[threadIdx.y].dynamicMemoryRight, numLeft * sizeof(Reference));
 #ifdef MYDEBUG
 			printf("childRightLeaf = %i | %i - %i |\n",childLeft, triRight, triEnd);
 #endif
@@ -3725,11 +3743,7 @@ __device__ __noinline__ void computePartition()
 #ifdef MYDEBUG
 		printf("pos = %i\n", pos);
 #endif
-
-		//if(s_task[threadIdx.y].bestOrder == 0)
-		//	if(abs(pos) == 2)
-		//		pos /=2;
-		//
+		
 		// Partition the triangles to the left and right children intervals
 
 		// Scan the number of triangles to the left of the splitting plane

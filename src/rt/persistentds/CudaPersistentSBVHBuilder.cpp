@@ -972,7 +972,8 @@ F32 CudaPersistentSBVHBuilder::buildCuda()
 	TaskBVH all;
 	all.triStart     = 0;
 	all.triLeft      = 0;
-	all.triRight     = m_numTris;
+	//all.triRight     = m_numTris;
+	all.triRight	 = 0;
 	all.triEnd       = m_numTris;
 	all.bbox         = bbox;
 	all.step         = 0;
