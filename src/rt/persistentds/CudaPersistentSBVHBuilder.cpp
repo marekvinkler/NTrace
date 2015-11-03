@@ -953,7 +953,10 @@ F32 CudaPersistentSBVHBuilder::buildCuda()
 
 	SplitArray sArray;
 	for(int j = 0; j < PLANE_COUNT; j++)
+	{
 		sArray.splits[j] = split;
+		sArray.spatialSplits[j] = split;
+	}
 
 	m_splitData.setRange(0, &sArray, sizeof(SplitArray)); // Set the first splits
 #endif
