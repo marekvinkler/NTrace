@@ -51,7 +51,7 @@
 #define HALLOC 9 // Use Halloc for allocations
 
 // NOTICE: Due to the unknown base of CudaMalloc CUDA_MALLOC, FDG_MALLOC and HALLOC allocators may be unstable
-#define MALLOC_TYPE CIRCULAR_MALLOC
+#define MALLOC_TYPE CUDA_MALLOC
 
 //------------------------------------------------------------------------
 // AtomicMalloc

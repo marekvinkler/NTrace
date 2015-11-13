@@ -113,8 +113,13 @@ __device__ __forceinline__ void taskSaveSecondToGMEM(int tid, int taskIdx, const
 __device__ __forceinline__ int allocBuffers(int refs)
 {
 	uint allocSize = refs * sizeof(Reference);
-
+#if (MALLOC_TYPE == CIRCULAR_MALLOC)
 	void* alloc = mallocCircularMalloc(allocSize);
+#elif (MALLOC_TYPE == CUDA_MALLOC)
+	void* alloc = mallocCudaMalloc(allocSize);
+#else
+	lalala
+#endif
 
 	if(alloc == NULL)
 	{
@@ -126,6 +131,9 @@ __device__ __forceinline__ int allocBuffers(int refs)
 	atomicAdd(&g_taskStackBVH.allocSum, allocSize);
 	atomicAdd(&g_taskStackBVH.allocSumSquare, allocSize * allocSize);
 
+	printf("====== ALLOC %iB | offset = %i | total = %f\n", allocSize, ((int)alloc), g_taskStackBVH.allocSum);
+
+
 	return ((char*)alloc) - g_heapBase;	
 }
 
@@ -133,7 +141,15 @@ __device__ __forceinline__ int allocBuffers(int refs)
 
 __device__ __forceinline__ void freeBuffers(int dynamicMemory, int size)
 {
+#ifndef NO_FREE
+#if (MALLOC_TYPE == CUDA_MALLOC)
+	freeCudaMalloc((void*)(g_heapBase + dynamicMemory));
+#elif (MALLOC_TYPE == CIRCULAR_MALLOC)
 	freeCircularMalloc((void*)(g_heapBase + dynamicMemory));
+#else
+	lalala
+#endif
+#endif
 }
 
 //------------------------------------------------------------------------
@@ -153,7 +169,7 @@ __device__ __forceinline__ void allocChildren(volatile int& leftMem, volatile in
 
 	if(cntRight != 0)
 	{
-		if(cntRight == 0)
+		if(cntLeft == 0)
 			rightMem = s_task[threadIdx.y].dynamicMemory;
 		else
 			rightMem = allocBuffers(cntRight);
@@ -724,8 +740,10 @@ __device__ void taskChildTask(volatile TaskBVH* newTask)
 	newTask->triIdxCtr = s_task[threadIdx.y].triIdxCtr;
 	newTask->origSize = newTask->unfinished;
 #if SCAN_TYPE == 2 || SCAN_TYPE == 3
-	newTask->triLeft = newTask->triStart;
-	newTask->triRight = newTask->triEnd;
+	newTask->triLeft = 0;
+	newTask->triRight = 0;
+	//newTask->triLeft = newTask->triStart;
+	//newTask->triRight = newTask->triEnd;
 #endif
 
 #ifdef DEBUG_INFO
@@ -1934,10 +1952,10 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
 
 			findPlaneAABB(tid, bbox, plane);
-			printf("%.1f %.1f %.1f %f | cnt %f %f area %f %f cost=%f cnt %f %f area %f %f Cost=%f\n", 
-				plane.x, plane.y, plane.z, plane.w,
-				leftCnt, rightCnt, areaAABB(bboxLeft), areaAABB(bboxRight),
-				cost, spatialLeftCnt, spatialRightCnt, areaAABB(spatialBboxLeft), areaAABB(spatialBboxRight), spatialCost);
+			//printf("%.1f %.1f %.1f %f | cnt %f %f area %f %f cost=%f cnt %f %f area %f %f Cost=%f\n", 
+			//	plane.x, plane.y, plane.z, plane.w,
+			//	leftCnt, rightCnt, areaAABB(bboxLeft), areaAABB(bboxRight),
+			//	cost, spatialLeftCnt, spatialRightCnt, areaAABB(spatialBboxLeft), areaAABB(spatialBboxRight), spatialCost);
 
 #ifdef MYDEBUG
 			printf("taskFinishBinning l = %i %f %f %f %f %f %f r = %i %f %f %f %f %f %f cost = %i\n", leftCnt, bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z,
@@ -1997,6 +2015,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 					if(spatialLeftCnt == 0 || spatialRightCnt == 0 || leaf)
 					{
+						printf("!!!leaf\n");
 						s_task[threadIdx.y].triLeft = leftCnt;
 						s_task[threadIdx.y].triRight = rightCnt;
 						s_owner[threadIdx.y][0] = -1;
@@ -2024,7 +2043,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 					if(spatialLeftCnt == 0 || spatialRightCnt == 0 || leaf)
 					{
-						printf("leaf");
+						printf("!!!leaf\n");
 						s_task[threadIdx.y].triLeft = leftCnt;
 						s_task[threadIdx.y].triRight = rightCnt;
 						s_owner[threadIdx.y][0] = -1;
@@ -3221,6 +3240,8 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 
 			int pos = getPlaneCentroidPositionHitMiss(plane, tbox);
 			//int pos = getPlaneCentroidPosition(plane, *((float3*)&s_task[threadIdx.y].v0), *((float3*)&s_task[threadIdx.y].v1), *((float3*)&s_task[threadIdx.y].v2), tbox);
+			if(pos == 4)
+				printf("WTF\n");
 
 			if(abs(pos) == 2) // plane intersects triangle's bounding box
 			{
@@ -3760,7 +3781,7 @@ __device__ __noinline__ void computePartition()
 			if(pos == -1)
 			{
 				outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan] = inIdx[triPos];
-				printf("%i Left %i (triIdx=%i)\n", tid, s_owner[threadIdx.y][0] + exclusiveScan, inIdx[triPos].idx);
+				//printf("%i Left %i (triIdx=%i)\n", tid, s_owner[threadIdx.y][0] + exclusiveScan, inIdx[triPos].idx);
 
 			}
 			else
@@ -3769,8 +3790,8 @@ __device__ __noinline__ void computePartition()
 				ref.bbox = leftClipped;
 				ref.idx = inIdx[triPos].idx;
 				outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan] = ref;
-				printf("%i Left clipped %i (triIdx=%i) bbox: %f %f %f | %f %f %f\n", tid, s_owner[threadIdx.y][0] + exclusiveScan, inIdx[triPos].idx, leftClipped.m_mn.x, leftClipped.m_mn.y, leftClipped.m_mn.z, 
-					leftClipped.m_mx.x, leftClipped.m_mx.y, leftClipped.m_mx.z);
+				//printf("%i Left clipped %i (triIdx=%i) bbox: %f %f %f | %f %f %f\n", tid, s_owner[threadIdx.y][0] + exclusiveScan, inIdx[triPos].idx, leftClipped.m_mn.x, leftClipped.m_mn.y, leftClipped.m_mn.z, 
+				//	leftClipped.m_mx.x, leftClipped.m_mx.y, leftClipped.m_mx.z);
 
 			}
 		}
@@ -3789,7 +3810,7 @@ __device__ __noinline__ void computePartition()
 			if(pos == 1)
 			{
 				outIdxRight[s_owner[threadIdx.y][1] + inverseExclusiveScan] = inIdx[triPos];
-				printf("%i Right %i (triIdx=%i)\n", tid, s_owner[threadIdx.y][1] + inverseExclusiveScan, inIdx[triPos].idx);
+				printf("%i Right (%p) %i = %i + %i (triIdx=%i)\n", tid, outIdxRight, s_owner[threadIdx.y][1] + inverseExclusiveScan, s_owner[threadIdx.y][1], inverseExclusiveScan, inIdx[triPos].idx);
 			}
 			else
 			{
@@ -3797,8 +3818,8 @@ __device__ __noinline__ void computePartition()
 				ref.bbox = rightClipped;
 				ref.idx = inIdx[triPos].idx;
 				outIdxRight[s_owner[threadIdx.y][1] + inverseExclusiveScan] = ref;
-				printf("%i Right clipped %i (triIdx=%i) bbox: %f %f %f | %f %f %f\n", tid, s_owner[threadIdx.y][1] + inverseExclusiveScan, inIdx[triPos].idx, rightClipped.m_mn.x, rightClipped.m_mn.y, rightClipped.m_mn.z, 
-					rightClipped.m_mx.x, rightClipped.m_mx.y, rightClipped.m_mx.z);
+				//printf("%i Right clipped %i (triIdx=%i) bbox: %f %f %f | %f %f %f\n", tid, s_owner[threadIdx.y][1] + inverseExclusiveScan, inIdx[triPos].idx, rightClipped.m_mn.x, rightClipped.m_mn.y, rightClipped.m_mn.z, 
+				//	rightClipped.m_mx.x, rightClipped.m_mx.y, rightClipped.m_mx.z);
 			}
 		}
 		s_owner[threadIdx.y][1] += triCnt; // Move the position by the number of written nodes

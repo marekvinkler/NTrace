@@ -53,7 +53,12 @@ CudaPersistentSBVHBuilder::~CudaPersistentSBVHBuilder()
 void CudaPersistentSBVHBuilder::prepareDynamicMemory()
 {
 	U64 allocSize = (U64)((m_trisCompact.getSize() / 12 / sizeof(int) * sizeof(Reference))*Environment::GetSingleton()->GetFloat("PersistentSBVH.heapMultiplicator"));
+
+#if (MALLOC_TYPE == CUDA_MALLOC) || (MALLOC_TYPE == FDG_MALLOC)
+	//CudaModule::checkError("cuCtxSetLimit", cuCtxSetLimit(CU_LIMIT_MALLOC_HEAP_SIZE, allocSize));
+#elif (MALLOC_TYPE == CIRCULAR_MALLOC)
 	m_mallocData.resizeDiscard(allocSize);
+#endif
 }
 
 //------------------------------------------------------------------------
@@ -429,6 +434,7 @@ int CudaPersistentSBVHBuilder::setDynamicMemory()
 	// Offset of the memory allocation
 	baseOffset = headerSize;
 
+
 #ifdef CIRCULAR_MALLOC_WITH_SCATTER_ALLOC
 	// With scatter alloc
 	char*& heapBase2 = *(char**)m_module->getGlobal("g_heapBase2").getMutablePtr();
@@ -441,8 +447,10 @@ int CudaPersistentSBVHBuilder::setDynamicMemory()
 #if (MALLOC_TYPE == CUDA_MALLOC) || (MALLOC_TYPE == SCATTER_ALLOC) || (MALLOC_TYPE == FDG_MALLOC) || (MALLOC_TYPE == HALLOC) || (!defined(CIRCULAR_MALLOC_PREALLOC_SPECIAL) && ((MALLOC_TYPE == CIRCULAR_MALLOC) || (MALLOC_TYPE == CIRCULAR_MALLOC_FUSED)))
 	CudaKernel kernelAlloc = m_module->getKernel("allocFreeableMemory");
 
+	int size = m_numTris * sizeof(Reference) / sizeof(int);
 	kernelAlloc.setParams(
-		m_numTris,
+		//48,
+		size,
 		0);
 
 	F32 allocTime = kernelAlloc.launchTimed(1, 1);
