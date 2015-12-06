@@ -25,7 +25,7 @@
 #pragma once
 #include "allocators.cu"
 
-//------------------------------------------------------------------------
+//-----------------------------------------------------------------------
 
 // Allocate memory for the root node
 __global__ void allocFreeableMemory(int numTris, int numRays)
@@ -33,6 +33,7 @@ __global__ void allocFreeableMemory(int numTris, int numRays)
 	// Save the base pointer (hopefully) to the heap
 
 #if (MALLOC_TYPE == CUDA_MALLOC)
+	//g_heapBase = (char*)mallocCudaMalloc(1024 * 1024 * 5);
 	g_heapBase = (char*)mallocCudaMalloc(numTris*sizeof(int));
 #elif (MALLOC_TYPE == CIRCULAR_MALLOC)
 	mallocCircularMalloc(numTris*sizeof(int));

@@ -19,6 +19,11 @@ using namespace FW;
 
 CudaPersistentSBVHBuilder::CudaPersistentSBVHBuilder(Scene& scene, F32 epsilon) : CudaBVH(BVHLayout_Compact), m_epsilon(epsilon), m_numTris(scene.getNumTriangles()), m_trisCompact(scene.getTriCompactBuffer())
 {
+	// debug
+	size_t printfBuffer;
+	cudaDeviceGetLimit(&printfBuffer, cudaLimitPrintfFifoSize);
+	cudaDeviceSetLimit(cudaLimitPrintfFifoSize, printfBuffer * 10);
+	cudaDeviceGetLimit(&printfBuffer, cudaLimitPrintfFifoSize);
 	// init
 	CudaModule::staticInit();
 	//m_compiler.addOptions("-use_fast_math");
@@ -35,7 +40,7 @@ CudaPersistentSBVHBuilder::CudaPersistentSBVHBuilder(Scene& scene, F32 epsilon) 
 	m_heap = 0.f;
 
 #ifndef BENCHMARK
-	Debug.open("persistent_bvh_debug.log");
+	Debug.open("persistent_sbvh_debug.log");
 #endif
 }
 
@@ -52,12 +57,235 @@ CudaPersistentSBVHBuilder::~CudaPersistentSBVHBuilder()
 
 void CudaPersistentSBVHBuilder::prepareDynamicMemory()
 {
+	// Set the memory limit according to triangle count
 	U64 allocSize = (U64)((m_trisCompact.getSize() / 12 / sizeof(int) * sizeof(Reference))*Environment::GetSingleton()->GetFloat("PersistentSBVH.heapMultiplicator"));
 
+#if (MALLOC_TYPE == SCATTER_ALLOC) || (MALLOC_TYPE == FDG_MALLOC)
+	allocSize = max(allocSize, 8ULL*1024ULL*1024ULL);
+#elif (MALLOC_TYPE == HALLOC)
+	// Memory pool size must be larger than 256MB, otherwise allocation always fails
+	// May be possibly tweaked by changing halloc_opts_t.sb_sz_sh
+	allocSize = max(allocSize, 256ULL*1024ULL*1024ULL);
+#endif
+
 #if (MALLOC_TYPE == CUDA_MALLOC) || (MALLOC_TYPE == FDG_MALLOC)
-	//CudaModule::checkError("cuCtxSetLimit", cuCtxSetLimit(CU_LIMIT_MALLOC_HEAP_SIZE, allocSize));
-#elif (MALLOC_TYPE == CIRCULAR_MALLOC)
+	CudaModule::checkError("cuCtxSetLimit", cuCtxSetLimit(CU_LIMIT_MALLOC_HEAP_SIZE, allocSize));
+	size_t val;
+	cuCtxGetLimit(&val, CU_LIMIT_MALLOC_HEAP_SIZE);
+	printf("HEAP SIZE: %ull\n",val);
+#elif (MALLOC_TYPE == ATOMIC_MALLOC) || (MALLOC_TYPE == ATOMIC_MALLOC_CIRCULAR) || (MALLOC_TYPE == CIRCULAR_MALLOC) || (MALLOC_TYPE == CIRCULAR_MALLOC_FUSED) \
+	|| (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC_FUSED) || (MALLOC_TYPE == SCATTER_ALLOC)
 	m_mallocData.resizeDiscard(allocSize);
+#ifdef CIRCULAR_MALLOC_WITH_SCATTER_ALLOC
+	m_mallocData2.resizeDiscard(allocSize);
+#endif
+#endif
+
+#if (MALLOC_TYPE == SCATTER_ALLOC) || defined(CIRCULAR_MALLOC_WITH_SCATTER_ALLOC)
+	// CUDA Driver API cannot deal with templates -> use C++ mangled name
+	CudaKernel initHeap = module->getKernel("_ZN8GPUTools8initHeapILj" STR(SCATTER_ALLOC_PAGESIZE) "ELj" STR(SCATTER_ALLOC_ACCESSBLOCKS)
+		"ELj" STR(SCATTER_ALLOC_REGIONSIZE) "ELj" STR(SCATTER_ALLOC_WASTEFACTOR) "ELb" STR(SCATTER_ALLOC_COALESCING) "ELb" STR(SCATTER_ALLOC_RESETPAGES)
+		"EEEvPNS_10DeviceHeapIXT_EXT0_EXT1_EXT2_EXT3_EXT4_EEEPvj");
+
+	initHeap.setParams(
+		m_module->getGlobal("theHeap").getMutableCudaPtr(),
+#ifdef CIRCULAR_MALLOC_WITH_SCATTER_ALLOC
+		m_mallocData2.getMutableCudaPtr(),
+#else
+		m_mallocData.getMutableCudaPtr(),
+#endif
+		allocSize);
+
+#if 0
+	F32 initTime = initHeap.launchTimed(1, Vec2i(256, 1));
+#else
+	unsigned int numregions = ((unsigned long long)m_mallocData.getSize())/( ((unsigned long long)SCATTER_ALLOC_REGIONSIZE)*(3*sizeof(unsigned int)+SCATTER_ALLOC_PAGESIZE)+sizeof(unsigned int));
+    unsigned int numpages = numregions*SCATTER_ALLOC_REGIONSIZE;
+	F32 initTime = initHeap.launchTimed(numpages, Vec2i(256, 1));
+#endif
+
+	printf("Scatter alloc initialized in %f\n", initTime);
+
+#elif (MALLOC_TYPE == HALLOC)
+	// Set the memory limit
+	halloc_opts_t opts = halloc_opts_t((size_t)allocSize);
+
+	// TODO: initialize all devices
+	// get total device memory (in bytes) & total number of superblocks
+	uint64 dev_memory;
+	cudaDeviceProp dev_prop;
+	int dev;
+	cucheck(cudaGetDevice(&dev));
+	cucheck(cudaGetDeviceProperties(&dev_prop, dev));
+	dev_memory = dev_prop.totalGlobalMem;
+	uint sb_sz = 1 << opts.sb_sz_sh;
+
+	// set cache configuration
+	cucheck(cudaDeviceSetCacheConfig(cudaFuncCachePreferL1));
+
+	// limit memory available to 3/4 of device memory
+	opts.memory = min((uint64)opts.memory, 3ull * dev_memory / 4ull);
+
+	// split memory between halloc and CUDA allocator
+	uint64 halloc_memory = opts.halloc_fraction * opts.memory;
+	uint64 cuda_memory = opts.memory - halloc_memory;
+	cucheck(cudaDeviceSetLimit(cudaLimitMallocHeapSize, cuda_memory));
+	cuset(cuda_mem_g, uint64, cuda_memory);
+	cuset(total_mem_g, uint64, halloc_memory + cuda_memory);
+
+	// set the number of slabs
+	//uint nsbs = dev_memory / sb_sz;
+	uint nsbs = halloc_memory / sb_sz;
+	cuset(nsbs_g, uint, nsbs);
+	cuset(sb_sz_g, uint, sb_sz);
+	cuset(sb_sz_sh_g, uint, opts.sb_sz_sh);
+
+	// allocate a fixed number of superblocks, copy them to device
+	uint nsbs_alloc = (uint)min((uint64)nsbs, (uint64)halloc_memory / sb_sz);
+	size_t sbs_sz = MAX_NSBS * sizeof(superblock_t);
+	size_t sb_ptrs_sz = MAX_NSBS * sizeof(void *);
+	superblock_t *sbs = (superblock_t *)malloc(sbs_sz);
+	void **sb_ptrs = (void **)malloc(sb_ptrs_sz);
+	memset(sbs, 0, sbs_sz);
+	memset(sb_ptrs, 0, sb_ptrs_sz);
+	uint *sb_counters = (uint *)malloc(MAX_NSBS * sizeof(uint));
+	memset(sbs, 0xff, MAX_NSBS * sizeof(uint));
+	char *base_addr = (char *)~0ull;
+	/********************************************/
+	halloc_base = (char *)0;
+	/********************************************/
+	for(uint isb = 0; isb < nsbs_alloc; isb++) {
+		sb_counters[isb] = sb_counter_val(0, false, SZ_NONE, SZ_NONE);
+		sbs[isb].size_id = SZ_NONE;
+		sbs[isb].chunk_id = SZ_NONE;
+		sbs[isb].is_head = 0;
+		//sbs[isb].flags = 0;
+		sbs[isb].chunk_sz = 0;
+		//sbs[isb].chunk_id = SZ_NONE;
+		//sbs[isb].state = SB_FREE;
+		//sbs[isb].mutex = 0;
+		cucheck(cudaMalloc(&sbs[isb].ptr, sb_sz));
+		sb_ptrs[isb] = sbs[isb].ptr;
+		base_addr = (char *)min((uint64)base_addr, (uint64)sbs[isb].ptr);
+		/********************************************/
+		//halloc_base = (char *)max((uint64)base_addr, (uint64)sbs[isb].ptr);
+		/********************************************/
+	}
+	/********************************************/
+		halloc_base = base_addr;
+	/********************************************/
+	//cuset_arr(sbs_g, (superblock_t (*)[MAX_NSBS])&sbs);
+	cuset_arr(sbs_g, (superblock_t (*)[MAX_NSBS])sbs);
+	cuset_arr(sb_counters_g, (uint (*)[MAX_NSBS])sb_counters);
+	cuset_arr(sb_ptrs_g, (void* (*)[MAX_NSBS])sb_ptrs);
+	// also mark free superblocks in the set
+	sbset_t free_sbs;
+	memset(free_sbs, 0, sizeof(free_sbs));
+	for(uint isb = 0; isb < nsbs_alloc; isb++) {
+		uint iword = isb / WORD_SZ, ibit = isb % WORD_SZ;
+		free_sbs[iword] |= 1 << ibit;
+	}
+	free_sbs[SB_SET_SZ - 1] = nsbs_alloc;
+	cuset_arr(free_sbs_g, &free_sbs);
+	base_addr = (char *)((uint64)base_addr / sb_sz * sb_sz);
+	if((uint64)base_addr < dev_memory)
+		base_addr = 0;
+	else
+		base_addr -= dev_memory;
+	cuset(base_addr_g, void *, base_addr);
+
+	// allocate block bits and zero them out
+	void *bit_blocks, *alloc_sizes;
+	uint nsb_bit_words = sb_sz / (BLOCK_STEP * WORD_SZ),
+		nsb_alloc_words = sb_sz / (BLOCK_STEP * 4);
+	// TODO: move numbers into constants
+	uint nsb_bit_words_sh = opts.sb_sz_sh - (4 + 5);
+	cuset(nsb_bit_words_g, uint, nsb_bit_words);
+	cuset(nsb_bit_words_sh_g, uint, nsb_bit_words_sh);
+	cuset(nsb_alloc_words_g, uint, nsb_alloc_words);
+	size_t bit_blocks_sz = nsb_bit_words * nsbs * sizeof(uint), 
+		alloc_sizes_sz = nsb_alloc_words * nsbs * sizeof(uint);
+	cucheck(cudaMalloc(&bit_blocks, bit_blocks_sz));
+	cucheck(cudaMemset(bit_blocks, 0, bit_blocks_sz));
+	cuset(block_bits_g, uint *, (uint *)bit_blocks);
+	cucheck(cudaMalloc(&alloc_sizes, alloc_sizes_sz));
+	cucheck(cudaMemset(alloc_sizes, 0, alloc_sizes_sz));
+	cuset(alloc_sizes_g, uint *, (uint *)alloc_sizes);
+
+	// set sizes info
+	//uint nsizes = (MAX_BLOCK_SZ - MIN_BLOCK_SZ) / BLOCK_STEP + 1;
+	uint nsizes = 2 * NUNITS;
+	cuset(nsizes_g, uint, nsizes);
+	size_info_t size_infos[MAX_NSIZES];
+	memset(size_infos, 0, MAX_NSIZES * sizeof(size_info_t));
+	for(uint isize = 0; isize < nsizes; isize++) {
+		uint iunit = isize / 2, unit = 1 << (iunit + 3);
+		size_info_t *size_info = &size_infos[isize];
+		//size_info->block_sz = isize % 2 ? 3 * unit : 2 * unit;
+		uint block_sz = isize % 2 ? 3 * unit : 2 * unit;
+		uint nblocks = sb_sz / block_sz;
+		// round #blocks to a multiple of THREAD_MOD
+		uint tmod = tmod_by_size(isize);
+		nblocks = nblocks / tmod * tmod;
+		//nblocks = nblocks / THREAD_MOD * THREAD_MOD;
+		size_info->chunk_id = isize % 2 + (isize < nsizes / 2 ? 0 : 2);
+		uint chunk_sz = (size_info->chunk_id % 2 ? 3 : 2) * 
+			(size_info->chunk_id / 2 ? 128 : 8);
+		size_info->chunk_sz = chunk_val(chunk_sz);
+		size_info->nchunks_in_block = block_sz / chunk_sz;
+		size_info->nchunks = nblocks * size_info->nchunks_in_block;
+		// TODO: use a better hash step
+		size_info->hash_step = size_info->nchunks_in_block *
+		 	max_prime_below(nblocks / 256 + nblocks / 64, nblocks);
+		//size_info->hash_step = size_info->nchunks_in_block * 17;
+		// printf("block = %d, step = %d, nchunks = %d, nchunks/block = %d\n", 
+		// 			 block_sz, size_info->hash_step, size_info->nchunks, 
+		// 			 size_info->nchunks_in_block);
+		size_info->roomy_threshold = opts.roomy_fraction * size_info->nchunks;
+		size_info->busy_threshold = opts.busy_fraction * size_info->nchunks;
+		size_info->sparse_threshold = opts.sparse_fraction * size_info->nchunks;
+	}  // for(each size)
+	cuset_arr(size_infos_g, &size_infos);
+
+	// set grid info
+	uint64 sb_grid[2 * MAX_NSBS];
+	for(uint icell = 0; icell < 2 * MAX_NSBS; icell++) 
+		sb_grid[icell] = grid_cell_init();
+	for(uint isb = 0; isb < nsbs_alloc; isb++)
+		grid_add_sb(sb_grid, base_addr, isb, sbs[isb].ptr, sb_sz);
+	cuset_arr(sb_grid_g, &sb_grid);
+	
+	// zero out sets (but have some of the free set)
+	//fprintf(stderr, "started cuda-memsetting\n");
+	//cuvar_memset(unallocated_sbs_g, 0, sizeof(unallocated_sbs_g));
+	cuvar_memset(busy_sbs_g, 0, sizeof(roomy_sbs_g));
+	cuvar_memset(roomy_sbs_g, 0, sizeof(roomy_sbs_g));
+	cuvar_memset(sparse_sbs_g, 0, sizeof(sparse_sbs_g));
+	//cuvar_memset(roomy_sbs_g, 0, (MAX_NSIZES * SB_SET_SZ * sizeof(uint)));
+	cuvar_memset(head_sbs_g, ~0, sizeof(head_sbs_g));
+	cuvar_memset(cached_sbs_g, ~0, sizeof(head_sbs_g));
+	cuvar_memset(head_locks_g, 0, sizeof(head_locks_g));
+	cuvar_memset(sb_locks_g, 0, sizeof(sb_locks_g));
+	//cuvar_memset(counters_g, 1, sizeof(counters_g));
+	cuvar_memset(counters_g, 11, sizeof(counters_g));
+	//fprintf(stderr, "finished cuda-memsetting\n");
+	cucheck(cudaStreamSynchronize(0));
+
+	// free all temporary data structures
+	free(sbs);
+	free(sb_counters);
+
+#endif
+
+#ifdef CIRCULAR_MALLOC_CHECK_INTERNAL_FRAGMENTATION
+	int numWarpsPerBlock = Environment::GetSingleton()->GetInt("SubdivisionRayCaster.numWarpsPerBlock");
+	int numBlocksPerSM = Environment::GetSingleton()->GetInt("SubdivisionRayCaster.numBlockPerSM");
+
+	// Prepare memory for internal fragmentation data
+	m_interFragSum.resizeDiscard(numWarpsPerBlock*WARP_SIZE * NUM_SM*numBlocksPerSM * sizeof(float));
+	m_interFragSum.clear(0);
+	float*& interFragSum = *(float**)m_module->getGlobal("g_interFragSum").getMutablePtr();
+	interFragSum = (float*)m_interFragSum.getMutableCudaPtr();
 #endif
 }
 

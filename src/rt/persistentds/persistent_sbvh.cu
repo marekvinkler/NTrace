@@ -117,6 +117,9 @@ __device__ __forceinline__ int allocBuffers(int refs)
 	void* alloc = mallocCircularMalloc(allocSize);
 #elif (MALLOC_TYPE == CUDA_MALLOC)
 	void* alloc = mallocCudaMalloc(allocSize);
+#elif (MALLOC_TYPE == ATOMIC_MALLOC)
+	void* alloc = mallocAtomicMalloc(allocSize);
+
 #else
 	lalala
 #endif
@@ -131,7 +134,7 @@ __device__ __forceinline__ int allocBuffers(int refs)
 	atomicAdd(&g_taskStackBVH.allocSum, allocSize);
 	atomicAdd(&g_taskStackBVH.allocSumSquare, allocSize * allocSize);
 
-	printf("====== ALLOC %iB | offset = %i | total = %f\n", allocSize, ((int)alloc), g_taskStackBVH.allocSum);
+	//printf("====== ALLOC %iB | offset = %i | total = %f\n", allocSize, ((int)alloc), g_taskStackBVH.allocSum);
 
 
 	return ((char*)alloc) - g_heapBase;	
@@ -1948,6 +1951,12 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			float cost = leftCost + rightCost;
 			float spatialCost = spatialLeftCost + spatialRightCost;
 
+			if(cost < 0)
+				printf("=========== cost < 0 | %f %f %f %f\n", leftCnt, rightCnt, areaAABB(bboxLeft), areaAABB(bboxRight));
+
+			if(spatialCost < 0)
+				printf("=========== sCost < 0 | %f %f %f %f\n", spatialLeftCnt, spatialRightCnt, areaAABB(spatialBboxLeft), areaAABB(spatialBboxRight));
+
 			float4 plane;
 			volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
 
@@ -2021,6 +2030,12 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 						s_owner[threadIdx.y][0] = -1;
 					}
 				}
+				//else
+				//{
+				//	printf("FAIL spatial %i\n", bestSpatialTid);
+				//	//printf("spatial cost object cost %f %f | bestTid bestSTid %i %i\n", spatialCost, cost, bestTid, bestSpatialTid);
+				//	printf("%i split: spatial lc=%f rc=%f, %0.1f %0.1f %0.1f %f | %f == %f\n", tid, spatialLeftCnt, spatialRightCnt, plane.x, plane.y, plane.z, plane.w, spatialCost, spatialRed[tid]);
+				//}
 			}
 			else
 			{
@@ -2054,12 +2069,21 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 						s_task[threadIdx.y].splitPlane.x, s_task[threadIdx.y].splitPlane.y, s_task[threadIdx.y].splitPlane.z, s_task[threadIdx.y].splitPlane.w);
 	#endif*/
 				}
+				//else
+				//{
+				//	printf("FAIL object %i\n", bestTid);
+				//	//printf("spatialcost object cost %f %f | bestTid bestSTid %i %i\n", spatialCost, cost, bestTid, bestSpatialTid);
+				//	printf("%i split: object lc=%f rc=%f, %0.1f %0.1f %0.1f %f | %f == %f\n", tid, leftCnt, rightCnt, plane.x, plane.y, plane.z, plane.w, cost, red[tid]);
+				//}
+
 			}
 		}
+
 
 		if(s_owner[threadIdx.y][0] == -1) // No split found, do object median
 		{
 			printf("-------================median\n");
+			
 			s_task[threadIdx.y].triRight = triStart + (triEnd - triStart) / 2; // Force split on unsubdivided task
 			s_task[threadIdx.y].unfinished = taskWarpSubtasksZero(triEnd - triStart);
 #ifdef COMPUTE_MEDIAN_BOUNDS
@@ -2549,11 +2573,11 @@ __device__ void taskFinishPartition(int tid, int taskIdx, unsigned countDown)
 		int triLeft = g_taskStackBVH.tasks[taskIdx].triLeft;
 		int triRight = g_taskStackBVH.tasks[taskIdx].triRight;
 
-		if(triRight == triStart || triRight == triEnd)
-		{
-			triRight = triStart + (triEnd - triStart) / 2; // Force split on unsubdivided task
-			triLeft = triRight;
-		}
+		//if(triRight == triStart || triRight == triEnd)
+		//{
+		//	triRight = triStart + (triEnd - triStart) / 2; // Force split on unsubdivided task
+		//	triLeft = triRight;
+		//}
 
 		s_task[threadIdx.y].triLeft = triLeft;
 		s_task[threadIdx.y].triRight = triRight;
@@ -3461,11 +3485,11 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 			}
 		}
 
-#ifdef MYDEBUG
-		printf("l = %i %f %f %f %f %f %f r = %i %f %f %f %f %f %f\n", split->children[0].cnt, bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z,
-				bboxLeft.m_mx.x, bboxLeft.m_mx.y, bboxLeft.m_mx.z, split->children[1].cnt, bboxRight.m_mn.x, bboxRight.m_mn.y, bboxRight.m_mn.z,
-				bboxRight.m_mx.x, bboxRight.m_mx.y, bboxRight.m_mx.z);
-#endif
+		//if(areaAABB(bboxLeft) < 0 || areaAABB(bboxRight) < 0)
+		//printf("l = %i %f %f %f %f %f %f r = %i %f %f %f %f %f %f\n", split->children[0].cnt, bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z,
+		//		bboxLeft.m_mx.x, bboxLeft.m_mx.y, bboxLeft.m_mx.z, split->children[1].cnt, bboxRight.m_mn.x, bboxRight.m_mn.y, bboxRight.m_mn.z,
+		//		bboxRight.m_mx.x, bboxRight.m_mx.y, bboxRight.m_mx.z);
+
 	}
 }
 #endif // BINNING_TYPE == 2
@@ -3810,7 +3834,7 @@ __device__ __noinline__ void computePartition()
 			if(pos == 1)
 			{
 				outIdxRight[s_owner[threadIdx.y][1] + inverseExclusiveScan] = inIdx[triPos];
-				printf("%i Right (%p) %i = %i + %i (triIdx=%i)\n", tid, outIdxRight, s_owner[threadIdx.y][1] + inverseExclusiveScan, s_owner[threadIdx.y][1], inverseExclusiveScan, inIdx[triPos].idx);
+				//printf("%i Right (%p) %i = %i + %i (triIdx=%i)\n", tid, outIdxRight, s_owner[threadIdx.y][1] + inverseExclusiveScan, s_owner[threadIdx.y][1], inverseExclusiveScan, inIdx[triPos].idx);
 			}
 			else
 			{
