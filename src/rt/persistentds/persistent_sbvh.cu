@@ -146,13 +146,34 @@ __device__ __forceinline__ void freeBuffers(int dynamicMemory, int size)
 {
 #ifndef NO_FREE
 #if (MALLOC_TYPE == CUDA_MALLOC)
-	freeCudaMalloc((void*)(g_heapBase + dynamicMemory));
-#elif (MALLOC_TYPE == CIRCULAR_MALLOC)
-	freeCircularMalloc((void*)(g_heapBase + dynamicMemory));
-#else
-	lalala
+	freeCudaMalloc((void*)(g_heapBase+dynamicMemory));
+#elif (MALLOC_TYPE == CIRCULAR_MALLOC) || (MALLOC_TYPE == CIRCULAR_MALLOC_FUSED) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC_FUSED)
+#ifdef CIRCULAR_MALLOC_WITH_SCATTER_ALLOC
+	if(dynamicMemory <= 0)
+	{
+		freeScatterAlloc((void*)(g_heapBase2-dynamicMemory));
+		return;
+	}
 #endif
+
+#if (MALLOC_TYPE == CIRCULAR_MALLOC)
+	freeCircularMalloc((void*)(g_heapBase+dynamicMemory));
+#elif (MALLOC_TYPE == CIRCULAR_MALLOC_FUSED)
+	freeCircularMallocFused((void*)(g_heapBase+dynamicMemory));
+#elif (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC)
+	freeCircularMultiMalloc((void*)(g_heapBase+dynamicMemory));
+#elif (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC_FUSED)
+	freeCircularMultiMallocFused((void*)(g_heapBase+dynamicMemory));
 #endif
+#elif (MALLOC_TYPE == SCATTER_ALLOC)
+	freeScatterAlloc((void*)(g_heapBase+dynamicMemory));
+#elif (MALLOC_TYPE == HALLOC)
+	if(dynamicMemory < 0)
+		freeHalloc((void*)(g_heapBase + dynamicMemory));
+	else
+		freeHalloc((void*)(g_heapBase2 + dynamicMemory));
+#endif
+#endif // NO_FREE
 }
 
 //------------------------------------------------------------------------
@@ -590,7 +611,7 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 #ifndef WOOP_TRIANGLES
 			childLeft = createLeaf(tid, leftOfs, (float*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triStart, triRight, (float*)c_bvh_in.tris, getTriIdxPtr(triIdxCtr));
 #else
-			printf("leaf left %i - %i\n",0, triLeft);
+			//printf("leaf left %i - %i\n",0, triLeft);
 			childLeft = createLeafWoop(tid, leftOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, triLeft, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryLeft, triEnd-triStart));
 			if(tid == 0)
 				if(numLeft != 0)
@@ -640,7 +661,7 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 #ifndef WOOP_TRIANGLES
 			childRight = createLeaf(tid, rightOfs, (float*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triRight, triEnd, (float*)c_bvh_in.tris, getTriIdxPtr(triIdxCtr));
 #else
-			printf("leaf right %i - %i\n",0, triRight);
+			//printf("leaf right %i - %i\n",0, triRight);
 			childRight = createLeafWoop(tid, rightOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, triRight, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, triEnd-triStart));
 			if(tid == 0)
 				if(numRight != 0)
@@ -2014,7 +2035,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 					//s_task[threadIdx.y].bboxLeft = spatialBboxLeft;
 					//s_task[threadIdx.y].bboxRight = spatialBboxRight;
 					s_task[threadIdx.y].bestOrder = 1; //useful??
-					printf("best split: spatial lc=%f rc=%f, %0.1f %0.1f %0.1f %f | %f\n", spatialLeftCnt, spatialRightCnt, plane.x, plane.y, plane.z, plane.w, spatialCost);
+					//printf("best split: spatial lc=%f rc=%f, %0.1f %0.1f %0.1f %f | %f\n", spatialLeftCnt, spatialRightCnt, plane.x, plane.y, plane.z, plane.w, spatialCost);
 
 					int termCrit;
 					bool leftLeaf, rightLeaf;
@@ -2048,7 +2069,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 					s_task[threadIdx.y].bestCost = cost;
 					s_owner[threadIdx.y][0] = tid;
 					s_task[threadIdx.y].bestOrder = 0; //useful??
-					printf("best split: object lc=%f rc=%f, %0.1f %0.1f %0.1f %f | %f\n", leftCnt, rightCnt, plane.x, plane.y, plane.z, plane.w, cost);
+					//printf("best split: object lc=%f rc=%f, %0.1f %0.1f %0.1f %f | %f\n", leftCnt, rightCnt, plane.x, plane.y, plane.z, plane.w, cost);
 
 					int termCrit;
 					bool leftLeaf, rightLeaf;

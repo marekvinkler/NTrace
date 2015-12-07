@@ -307,7 +307,7 @@ __device__ __forceinline__ uint mallocCircularMallocInternal(uint allocSize, uin
 #endif
 
 	uint offset = getMemory(&g_heapOffset);
-	printf("ALLOC: offset=%u, offset%8=%u\n", offset, offset % 8);
+	//printf("ALLOC: offset=%u, offset%8=%u\n", offset, offset % 8);
 
 	// Find an empty chunk that is large enough
 	uint lock, next, size;

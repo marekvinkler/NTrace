@@ -309,7 +309,7 @@ int CudaPersistentSBVHBuilder::setDynamicMemory()
 #if SCAN_TYPE < 2
 	heapOffset = align<U32, ALIGN>(4*m_numTris*sizeof(int));
 #else
-	heapOffset = align<U32, ALIGN>(m_numTris*sizeof(int));
+	heapOffset = align<U32, ALIGN>(m_numTris*sizeof(Reference));
 #endif
 
 #elif (MALLOC_TYPE == CIRCULAR_MALLOC) || (MALLOC_TYPE == CIRCULAR_MALLOC_FUSED) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC) || (MALLOC_TYPE == CIRCULAR_MULTI_MALLOC_FUSED)
