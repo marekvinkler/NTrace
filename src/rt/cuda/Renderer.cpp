@@ -36,6 +36,8 @@
 
 #include "3d/Light.hpp"
 
+#include "..\tools\BvhInspector.h"
+
 //#define CPU
 
 using namespace FW;
@@ -87,7 +89,7 @@ Renderer::Renderer()
     m_cachePath = "bvhcache";
 
     m_platform = Platform("GPU");
-    m_platform.setLeafPreferences(1, 1);
+    m_platform.setLeafPreferences(16, 1);
 
 	Environment::GetSingleton()->GetIntValue("VPL.primaryLights", m_lightCount);
 	Environment::GetSingleton()->GetIntValue("VPL.maxLightBounces", m_lightBounces);
@@ -271,7 +273,14 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 		{
 			m_accelStruct = new CudaPersistentSBVHBuilder(*m_scene, FLT_EPSILON);
 			((CudaPersistentSBVHBuilder*)m_accelStruct)->resetBuffers(true);
-			((CudaPersistentSBVHBuilder*)m_accelStruct)->build();
+			float time = ((CudaPersistentSBVHBuilder*)m_accelStruct)->build();
+			//((CudaPersistentSBVHBuilder*)m_accelStruct)->build();
+			printf("Build time: %f\n", time);
+			//BvhInspector ins((CudaBVH*)m_accelStruct);
+			//BVH::Stats stats;
+			//ins.inspect(stats);
+			//printf("INodes: %i LNodes: %i SAH: %f max depth: %i\n", stats.numInnerNodes, stats.numLeafNodes, stats.SAHCost, stats.maxDepth);
+			fflush(stdout);
 			((CudaPersistentSBVHBuilder*)m_accelStruct)->resetBuffers(false);
 		}
 		else
@@ -279,6 +288,11 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			BVH bvh(m_scene, m_platform, m_buildParams);
 			stats.print();
 			m_accelStruct = new CudaBVH(bvh, layout);
+
+			BvhInspector ins((CudaBVH*)m_accelStruct);
+			BVH::Stats stats;
+			ins.inspect(stats);
+			printf("INodes: %i LNodes: %i SAH: %f max depth: %i\n", stats.numInnerNodes, stats.numLeafNodes, stats.SAHCost, stats.maxDepth);
 			/*int* ptr = (int*)m_accelStruct->getNodeBuffer().getPtr();
 
 			printf("\n\n");
@@ -359,7 +373,9 @@ CudaAS*	Renderer::getCudaKDTree(void)
 	{
 		m_accelStruct = new CudaPersistentKDTreeBuilder(*m_scene, FLT_EPSILON);
 		((CudaPersistentKDTreeBuilder*)m_accelStruct)->resetBuffers(true);
-		((CudaPersistentKDTreeBuilder*)m_accelStruct)->build();
+		float time = ((CudaPersistentKDTreeBuilder*)m_accelStruct)->build();
+		printf("Build time: %f\n", time);
+		fflush(stdout);
 		((CudaPersistentKDTreeBuilder*)m_accelStruct)->resetBuffers(false);
 	}
 	else

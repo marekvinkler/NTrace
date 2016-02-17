@@ -15,6 +15,9 @@ using namespace FW;
 #define CIRCULAR_MALLOC_INIT GPU
 #define CIRCULAR_MALLOC_PREALLOC_SPECIAL
 
+#include <cuda_profiler_api.h>
+
+
 //------------------------------------------------------------------------
 
 CudaPersistentSBVHBuilder::CudaPersistentSBVHBuilder(Scene& scene, F32 epsilon) : CudaBVH(BVHLayout_Compact), m_epsilon(epsilon), m_numTris(scene.getNumTriangles()), m_trisCompact(scene.getTriCompactBuffer())
@@ -1326,7 +1329,9 @@ F32 CudaPersistentSBVHBuilder::buildCuda()
 
 	// Launch.
 	kernel.setGridExact(blockSize, gridSize);
+	//cudaProfilerStart();
 	float tKernel = kernel.launchTimed();
+	//cudaProfilerStop();
 
 #ifndef BENCHMARK
 	cuCtxSynchronize(); // Flushes printfs

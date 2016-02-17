@@ -754,6 +754,42 @@ __device__ __forceinline__ void computeClippedBoxes(const float4& plane, const f
 	rightBox = triBoxR;
 }
 
+__device__ __forceinline__ void computeCutBoxes(const float4& plane, const volatile CudaAABB& nodeBox, CudaAABB& leftBox, CudaAABB& rightBox)
+{
+	int dim = getPlaneDimension(plane);
+
+	leftBox.m_mx.x = nodeBox.m_mx.x;
+	leftBox.m_mx.y = nodeBox.m_mx.y;
+	leftBox.m_mx.z = nodeBox.m_mx.z;
+	leftBox.m_mn.x = nodeBox.m_mn.x;
+	leftBox.m_mn.y = nodeBox.m_mn.y;
+	leftBox.m_mn.z = nodeBox.m_mn.z;
+
+	rightBox.m_mx.x = nodeBox.m_mx.x;
+	rightBox.m_mx.y = nodeBox.m_mx.y;
+	rightBox.m_mx.z = nodeBox.m_mx.z;
+	rightBox.m_mn.x = nodeBox.m_mn.x;
+	rightBox.m_mn.y = nodeBox.m_mn.y;
+	rightBox.m_mn.z = nodeBox.m_mn.z;
+
+	switch(dim)
+	{
+		case 0:
+			leftBox.m_mx.x = plane.w;
+			rightBox.m_mn.x = plane.w;
+			break;
+		case 1:
+			leftBox.m_mx.y = plane.w;
+			rightBox.m_mn.y = plane.w;
+			break;
+		case 2:
+			leftBox.m_mx.z = plane.w;
+			rightBox.m_mn.z = plane.w;
+			break;
+	}
+
+}
+
 // Split triangle bounding box based on spatial split location
 __device__ __forceinline__ int getPlanePositionClipped(const float4& plane, const float3& v0, const float3& v1, const float3& v2, const CudaAABB& nodeBox)
 {
@@ -1715,7 +1751,51 @@ __device__ int createLeaf(int tid, int outOfs, float* outTriMem, int* outIdxMem,
 	return ~outOfs;
 }
 
-//------------------------------------------------------------------------
+////------------------------------------------------------------------------
+////Original version
+//__device__ int createLeafWoop(int tid, int outOfs, float4* outTriMem, int* outIdxMem, int start, int end, float4* inTriMem, int* inIdxMem)
+//{
+//	// Compute output data pointers
+//	int numTris = end-start;
+//	int idxData;
+//
+//	int* inIdx = inIdxMem + start; // Memory for the first triangle index
+//
+//	float4* outTri = outTriMem + outOfs; // Memory for the first triangle data
+//	int* outIdx = outIdxMem + outOfs; // Memory for the first triangle index
+//
+//
+//	// Write out all triangles and the triangle sentinel per vertex
+//	int numIters = taskWarpSubtasksZero(numTris); // Number of written out data chunks divided by WARP_SIZE
+//	for(int i = 0; i < numIters; i++)
+//	{
+//		int tri = i*WARP_SIZE + tid;
+//		int pos = tri*3;
+//
+//		if(tri < numTris) // Regular triangle
+//		{
+//			idxData = inIdx[tri];
+//			float3 v0, v1, v2;
+//			float4 o0, o1, o2;
+//			taskFetchTri((CUdeviceptr)inTriMem, idxData*3, v0, v1, v2);
+//
+//			calcWoop(v0, v1, v2, o0, o1, o2);
+//
+//			outTri[pos+0] = o0;
+//			outTri[pos+1] = o1;
+//			outTri[pos+2] = o2;
+//			outIdx[pos] = idxData;
+//		}
+//	}
+//
+//	if(tid == 0)
+//	{
+//		outTri[numTris*3].x = __int_as_float(0x80000000);
+//		outIdx[numTris*3] = 0;
+//	}
+//
+//	return ~outOfs;
+//}
 
 // Creates a leaf in the compact layout, with Woop triangles
 __device__ int createLeafWoop(int tid, int outOfs, float4* outTriMem, int* outIdxMem, int start, int end, float4* inTriMem, Reference* inRefMem)// int* inIdxMem)

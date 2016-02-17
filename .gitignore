@@ -13,3 +13,10 @@ state_rt_001.dat
 *.opensdf
 *.suo
 *.pdb
+*.vcxproj
+*.log
+*.txt
+*.bat
+*.user
+*.nvuser
+*.nvact

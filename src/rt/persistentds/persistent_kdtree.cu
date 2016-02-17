@@ -1,3 +1,4 @@
+//#define TIMING_ALLOC
 /*
  *  Copyright 2009-2010 NVIDIA Corporation
  *
@@ -161,7 +162,7 @@ __device__ __forceinline__ int* getTriIdxPtr(int dynamicMemory, int tris)
 		return (int*)(g_heapBase2 + dynamicMemory);
 
 #else
-	printf("%p+%i\n", g_heapBase, dynamicMemory);
+	//printf("%p+%i\n", g_heapBase, dynamicMemory);
 	return (int*)(g_heapBase + dynamicMemory);
 #endif // MALLOC_TYPE
 #endif
@@ -171,11 +172,15 @@ __device__ __forceinline__ int* getTriIdxPtr(int dynamicMemory, int tris)
 
 __device__ __forceinline__ int allocBuffers(int tris)
 {
+#ifdef TIMING_ALLOC
+	time_t timeStart = clock();
+#endif
 	// Allocators do align memory automatically 
 #if SCAN_TYPE < 2
 	uint allocSize = 4*tris*sizeof(int);
 #else
 	uint allocSize = tris*sizeof(int);
+	//uint allocSize = tris*sizeof(int)*8;
 #endif
 
 #if (MALLOC_TYPE == CUDA_MALLOC)
@@ -209,10 +214,16 @@ __device__ __forceinline__ int allocBuffers(int tris)
 #endif
 
 #ifdef COUNT_NODES
-		atomicAdd(&g_taskStackKdtree.numAllocations, 1);
-		atomicAdd(&g_taskStackKdtree.allocSum, allocSize);
+		uint count = atomicAdd(&g_taskStackKdtree.numAllocations, 1);
+		uint sum = atomicAdd(&g_taskStackKdtree.allocSum, allocSize);
 		atomicAdd(&g_taskStackKdtree.allocSumSquare, allocSize*allocSize);
 #endif
+
+#ifdef TIMING_ALLOC
+	time_t timeEnd = clock();
+	printf("%u KA, %u KB, alloc %lli\n", count >> 10, sum >> 10, timeEnd - timeStart);
+#endif
+
 
 #if (MALLOC_TYPE == HALLOC)
 	if(allocSize <= MAX_BLOCK_SZ) // Specific to Halloc

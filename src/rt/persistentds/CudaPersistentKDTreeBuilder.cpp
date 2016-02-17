@@ -22,6 +22,10 @@ using namespace FW;
 
 CudaPersistentKDTreeBuilder::CudaPersistentKDTreeBuilder(Scene& scene, F32 epsilon) : CudaKDTree(), m_epsilon(epsilon), m_numTris(scene.getNumTriangles()), m_trisCompact(scene.getTriCompactBuffer())
 {
+	size_t printfBuffer;
+	cudaDeviceGetLimit(&printfBuffer, cudaLimitPrintfFifoSize);
+	cudaDeviceSetLimit(cudaLimitPrintfFifoSize, printfBuffer * 100);
+	cudaDeviceGetLimit(&printfBuffer, cudaLimitPrintfFifoSize);
 	// init
 	CudaModule::staticInit();
 	//m_compiler.addOptions("-use_fast_math");
@@ -890,6 +894,7 @@ void CudaPersistentKDTreeBuilder::getFragmentationStats(F32& fInt, F32& fExt)
 void CudaPersistentKDTreeBuilder::prepareDynamicMemory()
 {
 	// Set the memory limit according to triangle count
+	//U64 allocSize = (U64)(m_trisCompactIndex.getSize()*Environment::GetSingleton()->GetFloat("PersistentKDTree.heapMultiplicator")) * 8;
 	U64 allocSize = (U64)(m_trisCompactIndex.getSize()*Environment::GetSingleton()->GetFloat("PersistentKDTree.heapMultiplicator"));
 
 #if (MALLOC_TYPE == SCATTER_ALLOC) || (MALLOC_TYPE == FDG_MALLOC)
