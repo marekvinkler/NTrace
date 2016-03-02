@@ -275,12 +275,19 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			((CudaPersistentSBVHBuilder*)m_accelStruct)->resetBuffers(true);
 			float time = ((CudaPersistentSBVHBuilder*)m_accelStruct)->build();
 			//((CudaPersistentSBVHBuilder*)m_accelStruct)->build();
+
 			printf("Build time: %f\n", time);
-			//BvhInspector ins((CudaBVH*)m_accelStruct);
-			//BVH::Stats stats;
-			//ins.inspect(stats);
-			//printf("INodes: %i LNodes: %i SAH: %f max depth: %i\n", stats.numInnerNodes, stats.numLeafNodes, stats.SAHCost, stats.maxDepth);
+			BvhInspector ins((CudaBVH*)m_accelStruct);
+			float sah = 0.f;
+			Vec3f lo; Vec3f hi;
+			m_scene->getBBox(lo, hi);
+			ins.computeSubtreeProbabilities(0, AABB(lo, hi), m_platform, 1.0, sah);
+			printf("SAH = %f\n", sah);
+			BVH::Stats stats;
+			ins.inspect(stats);
+			printf("INodes: %i LNodes: %i, max depth: %i\n", stats.numInnerNodes, stats.numLeafNodes, stats.maxDepth);
 			fflush(stdout);
+
 			((CudaPersistentSBVHBuilder*)m_accelStruct)->resetBuffers(false);
 		}
 		else
@@ -289,11 +296,18 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			stats.print();
 			m_accelStruct = new CudaBVH(bvh, layout);
 
+			//printf("Build time: %f\n", time);
 			BvhInspector ins((CudaBVH*)m_accelStruct);
+			float sah = 0.f;
+			Vec3f lo; Vec3f hi;
+			m_scene->getBBox(lo, hi);
+			ins.computeSubtreeProbabilities(0, AABB(lo, hi), m_platform, 1.0, sah);
+			printf("SAH = %f\n", sah);
 			BVH::Stats stats;
 			ins.inspect(stats);
-			printf("INodes: %i LNodes: %i SAH: %f max depth: %i\n", stats.numInnerNodes, stats.numLeafNodes, stats.SAHCost, stats.maxDepth);
-			/*int* ptr = (int*)m_accelStruct->getNodeBuffer().getPtr();
+			printf("INodes: %i LNodes: %i, max depth: %i\n", stats.numInnerNodes, stats.numLeafNodes, stats.maxDepth);
+			fflush(stdout);
+			/*
 
 			printf("\n\n");
 			for (int i = 0; i < m_accelStruct->getNodeBuffer().getSize()/64; i++)

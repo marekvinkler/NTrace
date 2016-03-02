@@ -196,6 +196,10 @@ __device__ __forceinline__ void allocChildren(volatile int& leftMem, volatile in
 	int leftSize = cntLeft * sizeof(Reference);
 	int rightSize = cntRight * sizeof(Reference);
 
+	leftMem = allocBuffers(cntLeft);
+	rightMem = allocBuffers(cntRight);
+
+	/*
 	if(cntLeft != 0)
 	{
 		if(cntRight == 0)
@@ -211,6 +215,7 @@ __device__ __forceinline__ void allocChildren(volatile int& leftMem, volatile in
 		else
 			rightMem = allocBuffers(cntRight);
 	}
+	*/
 }
 
 //------------------------------------------------------------------------
@@ -2098,8 +2103,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			if(threadIdx.x == 0)
 				printf("TFB term crit %lli\n", endTime - startTime);
 			startTime = clock();
-#endif
-
+#endif				
 				if(!leaf)
 					allocChildren(s_task[threadIdx.y].dynamicMemoryLeft, s_task[threadIdx.y].dynamicMemoryRight, leftCnt, rightCnt);
 

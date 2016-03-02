@@ -76,6 +76,7 @@
       <GPUDebugInfo Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GPUDebugInfo>
       <GPUDebugInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GPUDebugInfo>
       <GenerateLineInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateLineInfo>
+      <CodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">compute_20,sm_20</CodeGeneration>
     </CudaCompile>
     <CudaCompile Include="src\rt\persistentds\alloc_common.cu">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -84,6 +85,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <GenerateLineInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateLineInfo>
       <GPUDebugInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GPUDebugInfo>
+      <CodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">compute_20,sm_20</CodeGeneration>
     </CudaCompile>
     <CudaCompile Include="src\rt\persistentds\persistent_bvh.cu">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">-Xptxas -dlcm=cg %(AdditionalOptions)</AdditionalOptions>
@@ -93,6 +95,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <GPUDebugInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GPUDebugInfo>
       <GenerateLineInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateLineInfo>
+      <CodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">compute_20,sm_20</CodeGeneration>
     </CudaCompile>
     <CudaCompile Include="src\rt\persistentds\persistent_kdtree.cu">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -100,6 +103,8 @@
       <GPUDebugInfo Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GPUDebugInfo>
       <GPUDebugInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GPUDebugInfo>
       <GenerateLineInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateLineInfo>
+      <CodeGeneration Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">compute_20,sm_20</CodeGeneration>
+      <CodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">compute_20,sm_20</CodeGeneration>
     </CudaCompile>
     <CudaCompile Include="src\rt\persistentds\persistent_sbvh.cu">
       <CudaRuntime Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Static</CudaRuntime>
@@ -109,6 +114,10 @@
       </MaxRegCount>
       <GPUDebugInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GPUDebugInfo>
       <GenerateLineInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateLineInfo>
+      <CodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">compute_20,sm_20</CodeGeneration>
+      <InterleaveSourceInPTX Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</InterleaveSourceInPTX>
+      <Keep Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</Keep>
+      <GenerateLineInfo Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</GenerateLineInfo>
     </CudaCompile>
     <CudaCompile Include="src\rt\persistentds\pool_common.cu">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -121,6 +130,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <GPUDebugInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GPUDebugInfo>
       <GenerateLineInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateLineInfo>
+      <CodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">compute_20,sm_20</CodeGeneration>
     </CudaCompile>
     <CudaCompile Include="src\rt\persistentds\rt_common.cu">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -129,6 +139,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <GenerateLineInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateLineInfo>
       <GPUDebugInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GPUDebugInfo>
+      <CodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">compute_20,sm_20</CodeGeneration>
     </CudaCompile>
     <CudaCompile Include="src\rt\persistentds\warp_common.cu">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -137,6 +148,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <GPUDebugInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GPUDebugInfo>
       <GenerateLineInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateLineInfo>
+      <CodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">compute_20,sm_20</CodeGeneration>
     </CudaCompile>
     <CudaCompile Include="src\rt\ray\RayBufferKernels.cu">
       <FileType>Document</FileType>

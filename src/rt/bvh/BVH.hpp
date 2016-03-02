@@ -152,7 +152,7 @@ public:
 	 *  \param[in] platform		Platform settings.
 	 *  \param[in] params		Build parameters.
 	 */
-                        BVH                     (Scene* scene, const Platform& platform, const BuildParams& params);
+                        BVH                     (Scene* scene, const Platform& platform, const BuildParams& /*params*/);
 
 	/**
 	 *  \brief Destructor.

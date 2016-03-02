@@ -7,6 +7,7 @@ class BvhInspector
 {
 public:
 	BvhInspector(CudaBVH* bvh) : m_bvh(bvh) {}
+	void BvhInspector::computeSubtreeProbabilities(S32 node, const AABB& box, const Platform& p,float probability, float& sah);
 	void inspect(BVH::Stats& stats);
 
 private:

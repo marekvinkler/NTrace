@@ -173,7 +173,8 @@ __device__ __forceinline__ void taskFetchNodeAddr(CUdeviceptr nodes, int nodeIdx
 	node.children.x = vchildren->x, node.children.y = vchildren->y, node.children.z = vchildren->z, node.children.w = vchildren->w;
 #elif 0
 	CUdeviceptr addr = (nodes + nodeIdx);
-	asm("{\n\t"
+	
+	("{\n\t"
 		"ld.volatile.v4.f32\t{%0, %1, %2, %3}, [%16];\n\t"
 		"ld.volatile.v4.f32\t{%4, %5, %6, %7}, [%16+16];\n\t"
 		"ld.volatile.v4.f32\t{%8, %9, %10, %11}, [%16+32];\n\t"
