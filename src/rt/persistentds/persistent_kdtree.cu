@@ -1,4 +1,5 @@
 //#define TIMING_ALLOC
+//#define BIG_ALLOC
 /*
  *  Copyright 2009-2010 NVIDIA Corporation
  *
@@ -179,7 +180,11 @@ __device__ __forceinline__ int allocBuffers(int tris)
 #if SCAN_TYPE < 2
 	uint allocSize = 4*tris*sizeof(int);
 #else
+#ifdef BIG_ALLOC
+	uint allocSize = tris*sizeof(int)*8;
+#else
 	uint allocSize = tris*sizeof(int);
+#endif
 	//uint allocSize = tris*sizeof(int)*8;
 #endif
 

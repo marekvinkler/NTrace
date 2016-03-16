@@ -30,8 +30,14 @@
 #include "gui/Window.hpp"
 #include "io/File.hpp"
 #include "bvh/HLBVH/HLBVHBuilder.hpp"
-//#include "persistentds/CudaPersistentBVHBuilder.hpp"
+
+#define SBVH
+
+#ifndef SBVH
+#include "persistentds/CudaPersistentBVHBuilder.hpp"
+#else
 #include "persistentds/CudaPersistentSBVHBuilder.hpp"
+#endif
 #include "persistentds/CudaPersistentKdtreeBuilder.hpp"
 
 #include "3d/Light.hpp"
@@ -264,17 +270,11 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 	{
 		if (builder == "PersistentBVH")
 		{
-			//m_accelStruct = new CudaPersistentBVHBuilder(*m_scene, FLT_EPSILON);
-			//((CudaPersistentBVHBuilder*)m_accelStruct)->resetBuffers(true);
-			//((CudaPersistentBVHBuilder*)m_accelStruct)->build();
-			//((CudaPersistentBVHBuilder*)m_accelStruct)->resetBuffers(false);
-		}
-		else if(builder == "PersistentSBVH")
-		{
-			m_accelStruct = new CudaPersistentSBVHBuilder(*m_scene, FLT_EPSILON);
-			((CudaPersistentSBVHBuilder*)m_accelStruct)->resetBuffers(true);
-			float time = ((CudaPersistentSBVHBuilder*)m_accelStruct)->build();
-			//((CudaPersistentSBVHBuilder*)m_accelStruct)->build();
+#ifndef SBVH
+			m_accelStruct = new CudaPersistentBVHBuilder(*m_scene, FLT_EPSILON);
+			((CudaPersistentBVHBuilder*)m_accelStruct)->resetBuffers(true);
+			float time = ((CudaPersistentBVHBuilder*)m_accelStruct)->build();
+			((CudaPersistentBVHBuilder*)m_accelStruct)->resetBuffers(false);
 
 			printf("Build time: %f\n", time);
 			BvhInspector ins((CudaBVH*)m_accelStruct);
@@ -287,8 +287,36 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			ins.inspect(stats);
 			printf("INodes: %i LNodes: %i, max depth: %i\n", stats.numInnerNodes, stats.numLeafNodes, stats.maxDepth);
 			fflush(stdout);
+#endif
+		}
+		else if(builder == "PersistentSBVH")
+		{
+#ifdef SBVH
+			m_accelStruct = new CudaPersistentSBVHBuilder(*m_scene, FLT_EPSILON);
+			((CudaPersistentSBVHBuilder*)m_accelStruct)->resetBuffers(true);
+			float time = ((CudaPersistentSBVHBuilder*)m_accelStruct)->build();
+
+			FW::U32 allocNum;
+			FW::F32 allocSum;
+			FW::F32 allocSquare;
+
+			((CudaPersistentSBVHBuilder*)m_accelStruct)->getAllocStats(allocNum, allocSum, allocSquare);
+
+			printf("Build time: %f\n", time);
+			BvhInspector ins((CudaBVH*)m_accelStruct);
+			float sah = 0.f;
+			Vec3f lo; Vec3f hi;
+			m_scene->getBBox(lo, hi);
+			ins.computeSubtreeProbabilities(0, AABB(lo, hi), m_platform, 1.0, sah);
+			printf("SAH = %f\n", sah);
+			BVH::Stats stats;
+			ins.inspect(stats);
+			printf("INodes: %i LNodes: %i, max depth: %i\n", stats.numInnerNodes, stats.numLeafNodes, stats.maxDepth);
+			printf("Alloc stats: num: %u size: %f (%f MB)\n", allocNum, allocSum, allocSum / (1024.f * 1024.f));
+			fflush(stdout);
 
 			((CudaPersistentSBVHBuilder*)m_accelStruct)->resetBuffers(false);
+#endif
 		}
 		else
 		{
@@ -307,18 +335,6 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			ins.inspect(stats);
 			printf("INodes: %i LNodes: %i, max depth: %i\n", stats.numInnerNodes, stats.numLeafNodes, stats.maxDepth);
 			fflush(stdout);
-			/*
-
-			printf("\n\n");
-			for (int i = 0; i < m_accelStruct->getNodeBuffer().getSize()/64; i++)
-			{
-				printf("v1=%f v2=%f \n",i, *((int*)m_accelStruct->getNodeBuffer().getPtr(i*64+48))/64, *((int*)m_accelStruct->getNodeBuffer().getPtr(i*64+52))/64,
-					volume(*((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+0)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+4)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+8)),
-					*((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+12)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+32)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+36))), 
-					volume(*((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+16)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+20)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+24)),
-					*((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+28)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+40)), *((float*)m_accelStruct->getNodeBuffer().getPtr(i*64+44))));
-			}
-		*/
 
 			failIfError();
 		}
@@ -385,12 +401,20 @@ CudaAS*	Renderer::getCudaKDTree(void)
 
 	if (builder == "PersistentKDTree")
 	{
+		FW::U32 allocNum = 0;
+		FW::F32 allocSum = 0.f;
+		FW::F32 allocSquare = 0.f;
+
+
 		m_accelStruct = new CudaPersistentKDTreeBuilder(*m_scene, FLT_EPSILON);
 		((CudaPersistentKDTreeBuilder*)m_accelStruct)->resetBuffers(true);
 		float time = ((CudaPersistentKDTreeBuilder*)m_accelStruct)->build();
 		printf("Build time: %f\n", time);
-		fflush(stdout);
+		((CudaPersistentKDTreeBuilder*)m_accelStruct)->getAllocStats(allocNum, allocSum, allocSquare);
 		((CudaPersistentKDTreeBuilder*)m_accelStruct)->resetBuffers(false);
+		printf("Alloc stats: num: %u size: %f (%f MB)\n", allocNum, allocSum, allocSum / (1024.f * 1024.f));
+		fflush(stdout);
+
 	}
 	else
 	{

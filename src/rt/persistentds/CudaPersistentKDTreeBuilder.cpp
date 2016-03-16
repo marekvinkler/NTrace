@@ -1,6 +1,8 @@
 //#include <sstream>
 //#include <iomanip>
 
+//#define BIG_ALLOC
+
 #include "base/Random.hpp"
 #include "persistentds/CudaPersistentKdtreeBuilder.hpp"
 #include "persistentds/PersistentHelper.hpp"
@@ -894,8 +896,11 @@ void CudaPersistentKDTreeBuilder::getFragmentationStats(F32& fInt, F32& fExt)
 void CudaPersistentKDTreeBuilder::prepareDynamicMemory()
 {
 	// Set the memory limit according to triangle count
-	//U64 allocSize = (U64)(m_trisCompactIndex.getSize()*Environment::GetSingleton()->GetFloat("PersistentKDTree.heapMultiplicator")) * 8;
+#ifdef BIG_ALLOC
+	U64 allocSize = (U64)(m_trisCompactIndex.getSize()*Environment::GetSingleton()->GetFloat("PersistentKDTree.heapMultiplicator")) * 8;
+#else
 	U64 allocSize = (U64)(m_trisCompactIndex.getSize()*Environment::GetSingleton()->GetFloat("PersistentKDTree.heapMultiplicator"));
+#endif
 
 #if (MALLOC_TYPE == SCATTER_ALLOC) || (MALLOC_TYPE == FDG_MALLOC)
 	allocSize = max(allocSize, 8ULL*1024ULL*1024ULL);

@@ -6,7 +6,6 @@
 
 //Optimalization #defines
 #define TIGHT_BOXES
-#define UNSPLIT
 
 /*
  *  Copyright 2009-2010 NVIDIA Corporation
@@ -196,8 +195,15 @@ __device__ __forceinline__ void allocChildren(volatile int& leftMem, volatile in
 	int leftSize = cntLeft * sizeof(Reference);
 	int rightSize = cntRight * sizeof(Reference);
 
+	/*
+	leftMem = allocBuffers(cntLeft + cntRight);
+	rightMem = leftMem + cleftSize;
+	*/
+	
 	leftMem = allocBuffers(cntLeft);
 	rightMem = allocBuffers(cntRight);
+	
+
 
 	/*
 	if(cntLeft != 0)
@@ -2020,10 +2026,6 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			//if(spatialCost < 0)
 			//	printf("=========== sCost < 0 | %f %f %f %f\n", spatialLeftCnt, spatialRightCnt, areaAABB(spatialBboxLeft), areaAABB(spatialBboxRight));
 
-			float4 plane;
-			volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
-
-			findPlaneAABB(tid, bbox, plane);
 #ifdef TIMING_INNER
 			endTime = clock();
 			if(threadIdx.x == 0)
@@ -2085,6 +2087,11 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 			if(__ffs(__ballot(red[tid] == cost)) == tid+1) // First thread with such condition, OPTIMIZE: Can be also computed by overwrite and test: better?
 			{
+				float4 plane;
+				volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
+
+				findPlaneAABB(tid, bbox, plane);
+
 				s_task[threadIdx.y].splitPlane.x = plane.x;
 				s_task[threadIdx.y].splitPlane.y = plane.y;
 				s_task[threadIdx.y].splitPlane.z = plane.z;
@@ -3869,6 +3876,11 @@ __device__ __noinline__ void computePartition()
 				computeCutBoxes(plane, tbox, leftClipped, rightClipped);
 #endif
 			}
+			else
+			{
+				leftClipped = tbox;
+				rightClipped = tbox;
+			}
 			//printf("%i pos=%i\n", tid, pos);
 			//pos = getPlaneCentroidPosition(*((float4*)&s_task[threadIdx.y].splitPlane), tbox);
 		}
@@ -3890,6 +3902,9 @@ __device__ __noinline__ void computePartition()
 		// Find the output position for each thread as the sum of the output position and the exclusive scanned value
 		if(pos == -1 || abs(pos) == 2)
 		{
+			outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan].bbox = leftClipped;
+			outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan].idx = inIdx[triPos].idx;
+			/*
 			if(pos == -1)
 			{
 				outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan] = inIdx[triPos];
@@ -3898,14 +3913,18 @@ __device__ __noinline__ void computePartition()
 			}
 			else
 			{
+				outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan].bbox = leftClipped;
+				outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan].idx = inIdx[triPos].idx;
+				/*
 				Reference ref;
 				ref.bbox = leftClipped;
 				ref.idx = inIdx[triPos].idx;
 				outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan] = ref;
+				*/
 				//printf("%i Left clipped %i (triIdx=%i) bbox: %f %f %f | %f %f %f\n", tid, s_owner[threadIdx.y][0] + exclusiveScan, inIdx[triPos].idx, leftClipped.m_mn.x, leftClipped.m_mn.y, leftClipped.m_mn.z, 
 				//	leftClipped.m_mx.x, leftClipped.m_mx.y, leftClipped.m_mx.z);
 
-			}
+			//}
 		}
 		s_owner[threadIdx.y][0] += triCnt; // Move the position by the number of written nodes
 
@@ -3919,6 +3938,9 @@ __device__ __noinline__ void computePartition()
 		// Find the output position for each thread as the output position minus the triangle count plus the scanned value
 		if(pos == 1 || abs(pos) == 2)
 		{
+			outIdxRight[s_owner[threadIdx.y][1] + inverseExclusiveScan].bbox = rightClipped;
+			outIdxRight[s_owner[threadIdx.y][1] + inverseExclusiveScan].idx = inIdx[triPos].idx;
+			/*
 			if(pos == 1)
 			{
 				outIdxRight[s_owner[threadIdx.y][1] + inverseExclusiveScan] = inIdx[triPos];
@@ -3932,7 +3954,9 @@ __device__ __noinline__ void computePartition()
 				outIdxRight[s_owner[threadIdx.y][1] + inverseExclusiveScan] = ref;
 				//printf("%i Right clipped %i (triIdx=%i) bbox: %f %f %f | %f %f %f\n", tid, s_owner[threadIdx.y][1] + inverseExclusiveScan, inIdx[triPos].idx, rightClipped.m_mn.x, rightClipped.m_mn.y, rightClipped.m_mn.z, 
 				//	rightClipped.m_mx.x, rightClipped.m_mx.y, rightClipped.m_mx.z);
+
 			}
+			*/
 		}
 		s_owner[threadIdx.y][1] += triCnt; // Move the position by the number of written nodes
 
