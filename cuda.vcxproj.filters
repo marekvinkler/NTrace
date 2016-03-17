@@ -37,6 +37,42 @@
     <ClInclude Include="src\rt\persistentds\CudaPoolSBVH.hpp">
       <Filter>persistentds</Filter>
     </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\globals.cuh">
+      <Filter>persistentds\halloc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\grid.cuh">
+      <Filter>persistentds\halloc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\grid.h">
+      <Filter>persistentds\halloc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\halloc.h">
+      <Filter>persistentds\halloc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\sbset.cuh">
+      <Filter>persistentds\halloc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\sbset.h">
+      <Filter>persistentds\halloc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\size-info.cuh">
+      <Filter>persistentds\halloc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\size-info.h">
+      <Filter>persistentds\halloc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\slab.cuh">
+      <Filter>persistentds\halloc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\slab.h">
+      <Filter>persistentds\halloc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\statistics.cuh">
+      <Filter>persistentds\halloc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\utils.h">
+      <Filter>persistentds\halloc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="src\rt\kernels\fermi_speculative_while_while.cu">
@@ -111,6 +147,12 @@
     <CudaCompile Include="src\rt\persistentds\persistent_sbvh.cu">
       <Filter>persistentds</Filter>
     </CudaCompile>
+    <CudaCompile Include="src\rt\persistentds\halloc\src\halloc.cu">
+      <Filter>persistentds\halloc</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\persistentds\halloc\src\utils.cu">
+      <Filter>persistentds\halloc</Filter>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="traversal">
@@ -130,6 +172,9 @@
     </Filter>
     <Filter Include="persistentds\ScatterAlloc">
       <UniqueIdentifier>{23223281-0bed-4946-bb7b-519c45b0c867}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="persistentds\halloc">
+      <UniqueIdentifier>{bb561a6d-50d9-4746-9999-f18e2d25c727}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +198,9 @@
     </None>
     <None Include="src\rt\kernels\otracer_func.cuh">
       <Filter>traversal</Filter>
+    </None>
+    <None Include="src\rt\persistentds\halloc\src\.gitignore">
+      <Filter>persistentds\halloc</Filter>
     </None>
   </ItemGroup>
 </Project>

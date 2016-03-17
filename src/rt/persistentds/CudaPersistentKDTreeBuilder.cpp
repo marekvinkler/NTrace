@@ -926,6 +926,8 @@ void CudaPersistentKDTreeBuilder::prepareDynamicMemory()
 		"ELj" STR(SCATTER_ALLOC_REGIONSIZE) "ELj" STR(SCATTER_ALLOC_WASTEFACTOR) "ELb" STR(SCATTER_ALLOC_COALESCING) "ELb" STR(SCATTER_ALLOC_RESETPAGES)
 		"EEEvPNS_10DeviceHeapIXT_EXT0_EXT1_EXT2_EXT3_EXT4_EEEPvj");
 
+	FW_ASSERT(allocSize < MAXUINT32);
+
 	initHeap.setParams(
 		m_module->getGlobal("theHeap").getMutableCudaPtr(),
 #ifdef CIRCULAR_MALLOC_WITH_SCATTER_ALLOC
@@ -933,7 +935,7 @@ void CudaPersistentKDTreeBuilder::prepareDynamicMemory()
 #else
 		m_mallocData.getMutableCudaPtr(),
 #endif
-		allocSize);
+		(U32)allocSize);
 
 #if 0
 	F32 initTime = initHeap.launchTimed(1, Vec2i(256, 1));

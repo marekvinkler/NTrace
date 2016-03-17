@@ -87,12 +87,18 @@
       <GPUDebugInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GPUDebugInfo>
       <CodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">compute_20,sm_20</CodeGeneration>
     </CudaCompile>
+    <CudaCompile Include="src\rt\persistentds\halloc\src\halloc.cu">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </CudaCompile>
+    <CudaCompile Include="src\rt\persistentds\halloc\src\utils.cu">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </CudaCompile>
     <CudaCompile Include="src\rt\persistentds\persistent_bvh.cu">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">-Xptxas -dlcm=cg %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
       <GPUDebugInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GPUDebugInfo>
       <GenerateLineInfo Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateLineInfo>
       <CodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">compute_20,sm_20</CodeGeneration>
@@ -160,6 +166,9 @@
   <ItemGroup>
     <None Include="src\rt\bvh\HLBVH\emitTreeKernel.cuh" />
     <None Include="src\rt\kernels\otracer_func.cuh" />
+    <None Include="src\rt\persistentds\halloc\src\.gitignore">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
     <None Include="src\rt\persistentds\rt_common.cuh">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -203,6 +212,42 @@
     <ClInclude Include="src\rt\persistentds\CudaTracerDefines.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\globals.cuh">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\grid.cuh">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\grid.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\halloc.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\sbset.cuh">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\sbset.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\size-info.cuh">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\size-info.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\slab.cuh">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\slab.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\statistics.cuh">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rt\persistentds\halloc\src\utils.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="src\rt\persistentds\ScatterAlloc\utils.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>

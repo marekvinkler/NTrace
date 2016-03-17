@@ -7,6 +7,7 @@
 #include "persistentds/CudaPoolSBVH.hpp"
 #include "Scene.hpp"
 #include "Util.hpp"
+#include "persistentds/halloc/src/halloc.h"
 
 #include <fstream>
 

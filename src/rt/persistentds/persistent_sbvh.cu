@@ -6,7 +6,7 @@
 
 //Optimalization #defines
 #define TIGHT_BOXES
-
+#define MAX_COST 1000000000.f
 /*
  *  Copyright 2009-2010 NVIDIA Corporation
  *
@@ -130,9 +130,10 @@ __device__ __forceinline__ int allocBuffers(int refs)
 	void* alloc = mallocCudaMalloc(allocSize);
 #elif (MALLOC_TYPE == ATOMIC_MALLOC)
 	void* alloc = mallocAtomicMalloc(allocSize);
-
-#else
-	lalala
+#elif (MALLOC_TYPE == SCATTER_ALLOC)
+	void* alloc = mallocScatterAlloc(allocSize);
+#elif (MALLOC_TYPE == HALLOC)
+	void* alloc = mallocHalloc(allocSize);
 #endif
 
 	if(alloc == NULL)
@@ -1948,6 +1949,9 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			float rightCost = areaAABB(bboxRight)*rightCnt;
 
 			float cost = leftCost + rightCost;
+			
+			if(leftCnt == 0 || rightCnt == 0)
+				cost = -1.f;
 
 			// Spatial split
 			bboxLeft.m_mn.x = orderedIntToFloat(spatialLeft->bbox.m_mn.x);
@@ -1974,7 +1978,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			float spatialCost = leftCost + rightCost;
 
 			bool spatialSplit = false;
-			if(spatialCost < cost)
+			if(spatialCost < cost || cost < 0.f)
 			{
 				cost = spatialCost;
 				spatialSplit = true;
@@ -2104,6 +2108,8 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 				int termCrit;
 				bool leftLeaf, rightLeaf;
 				bool leaf = taskTerminationCriteria(leftCnt, rightCnt, s_task[threadIdx.y].bbox, bboxLeft, bboxRight, termCrit, leftLeaf, rightLeaf);
+				if(leftCnt == 0 || rightCnt == 0)
+					printf("youdongoofed");
 
 #ifdef TIMING_INNER_INNER
 			time_t endTime = clock();
