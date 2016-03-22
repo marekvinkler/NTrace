@@ -65,7 +65,7 @@
 //#define OBJECT_SAH 
 //#endif
 #define SAH_TERMINATION
-#define COMPUTE_MEDIAN_BOUNDS
+//#define COMPUTE_MEDIAN_BOUNDS
 #define SHUFFLE_RED_SCAN
 
 #define TRIANGLE_CLIPPING 0 // 0 Means no clipping

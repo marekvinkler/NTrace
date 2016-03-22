@@ -61,7 +61,7 @@ CudaPersistentSBVHBuilder::~CudaPersistentSBVHBuilder()
 void CudaPersistentSBVHBuilder::prepareDynamicMemory()
 {
 	// Set the memory limit according to triangle count
-	U64 allocSize = (U64)((m_trisCompact.getSize() / 12 / sizeof(int) * sizeof(Reference))*Environment::GetSingleton()->GetFloat("PersistentSBVH.heapMultiplicator"));
+	U64 allocSize = (U64)((m_trisCompact.getSize() / 12 / sizeof(int) * sizeof(Reference)) * Environment::GetSingleton()->GetFloat("PersistentSBVH.heapMultiplicator"));
 
 #if (MALLOC_TYPE == SCATTER_ALLOC) || (MALLOC_TYPE == FDG_MALLOC)
 	allocSize = max(allocSize, 8ULL*1024ULL*1024ULL);

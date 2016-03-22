@@ -56,6 +56,7 @@
 
 // NOTICE: Due to the unknown base of CudaMalloc CUDA_MALLOC, FDG_MALLOC and HALLOC allocators may be unstable
 #define MALLOC_TYPE SCATTER_ALLOC
+//#define NO_FREE
 
 //------------------------------------------------------------------------
 // AtomicMalloc

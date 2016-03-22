@@ -112,6 +112,8 @@ Renderer::~Renderer(void)
     delete m_image;
 	delete m_cudaTracer;
 	delete m_accelStruct;
+
+	cudaDeviceReset();
 }
 
 //------------------------------------------------------------------------

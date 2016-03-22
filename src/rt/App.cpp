@@ -197,6 +197,7 @@ App::App(void)
 App::~App(void)
 {
     delete m_mesh;
+	delete m_renderer;
 }
 
 //------------------------------------------------------------------------
