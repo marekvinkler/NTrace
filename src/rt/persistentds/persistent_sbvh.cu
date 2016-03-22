@@ -2152,11 +2152,11 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 		if(s_owner[threadIdx.y][0] == -1) // No split found, do object median
 		{
-			printf("-------================median\n");
+			//printf("-------================median\n");
 			
-			s_task[threadIdx.y].triRight = triStart + (triEnd - triStart) / 2; // Force split on unsubdivided task
-			//s_task[threadIdx.y].triRight = (triEnd - triStart) / 2; // Force split on unsubdivided task
-			//s_task[threadIdx.y].triLeft = (triEnd - triStart) - s_task[threadIdx.y].triRight;
+			//s_task[threadIdx.y].triRight = triStart + (triEnd - triStart) / 2; // Force split on unsubdivided task
+			s_task[threadIdx.y].triRight = (triEnd - triStart) / 2; // Force split on unsubdivided task
+			s_task[threadIdx.y].triLeft = (triEnd - triStart) - s_task[threadIdx.y].triRight;
 			s_task[threadIdx.y].unfinished = taskWarpSubtasksZero(triEnd - triStart);
 #ifdef COMPUTE_MEDIAN_BOUNDS
 			s_task[threadIdx.y].type = taskChooseAABBType();
@@ -2179,6 +2179,8 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			}
 
 			s_task[threadIdx.y].type = taskChooseScanType(s_task[threadIdx.y].unfinished);
+
+			allocChildren(s_task[threadIdx.y].dynamicMemoryLeft, s_task[threadIdx.y].dynamicMemoryRight, s_task[threadIdx.y].triLeft, s_task[threadIdx.y].triRight);
 #endif
 		}
 		else
