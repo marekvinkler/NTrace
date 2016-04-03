@@ -751,6 +751,21 @@ __device__ __forceinline__ void computeClippedBoxes(const float4& plane, const f
 		break;
 	}
 
+	// Clip to node bbox
+	triBoxL.m_mn.x = fmaxf(triBoxL.m_mn.x, nodeBox.m_mn.x);
+	triBoxL.m_mx.x = fminf(triBoxL.m_mx.x, nodeBox.m_mx.x);
+	triBoxL.m_mn.y = fmaxf(triBoxL.m_mn.y, nodeBox.m_mn.y);
+	triBoxL.m_mx.y = fminf(triBoxL.m_mx.y, nodeBox.m_mx.y);
+	triBoxL.m_mn.z = fmaxf(triBoxL.m_mn.z, nodeBox.m_mn.z);
+	triBoxL.m_mx.z = fminf(triBoxL.m_mx.z, nodeBox.m_mx.z);
+
+	triBoxR.m_mn.x = fmaxf(triBoxR.m_mn.x, nodeBox.m_mn.x);
+	triBoxR.m_mx.x = fminf(triBoxR.m_mx.x, nodeBox.m_mx.x);
+	triBoxR.m_mn.y = fmaxf(triBoxR.m_mn.y, nodeBox.m_mn.y);
+	triBoxR.m_mx.y = fminf(triBoxR.m_mx.y, nodeBox.m_mx.y);
+	triBoxR.m_mn.z = fmaxf(triBoxR.m_mn.z, nodeBox.m_mn.z);
+	triBoxR.m_mx.z = fminf(triBoxR.m_mx.z, nodeBox.m_mx.z);
+
 	leftBox = triBoxL;
 	rightBox = triBoxR;
 }

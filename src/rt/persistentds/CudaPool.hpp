@@ -50,7 +50,7 @@
 //#define KEEP_ALL_TASKS // Each task is saved to a different location so that they are all visible afterwards
 //#define DEBUG_INFO // Enables gathering of statistics for each task
 #define COUNT_NODES // Enables gathering of emited number of nodes
-//#define ONE_WARP_RUN
+#define ONE_WARP_RUN
 //#define DEBUG_PPS
 #define TRAVERSAL_TEST
 //#define LEAF_HISTOGRAM

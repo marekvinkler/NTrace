@@ -288,6 +288,7 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			BVH::Stats stats;
 			ins.inspect(stats);
 			printf("INodes: %i LNodes: %i, max depth: %i\n", stats.numInnerNodes, stats.numLeafNodes, stats.maxDepth);
+			printf("Overlap SA: %f", stats.overlapSA);
 			fflush(stdout);
 #endif
 		}
@@ -301,8 +302,10 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			FW::U32 allocNum;
 			FW::F32 allocSum;
 			FW::F32 allocSquare;
+			FW::U32 forced;
 
-			((CudaPersistentSBVHBuilder*)m_accelStruct)->getAllocStats(allocNum, allocSum, allocSquare);
+			((CudaPersistentSBVHBuilder*)m_accelStruct)->getAllocStats(allocNum, allocSum, allocSquare, forced);
+
 
 			printf("Build time: %f\n", time);
 			BvhInspector ins((CudaBVH*)m_accelStruct);
@@ -315,6 +318,9 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			ins.inspect(stats);
 			printf("INodes: %i LNodes: %i, max depth: %i\n", stats.numInnerNodes, stats.numLeafNodes, stats.maxDepth);
 			printf("Alloc stats: num: %u size: %f (%f MB)\n", allocNum, allocSum, allocSum / (1024.f * 1024.f));
+			printf("Overlap SA: %f", stats.overlapSA);
+			if(forced != 0)
+				printf("Forced median splits: %u, %f", forced, (float)allocNum/forced);
 			fflush(stdout);
 
 			((CudaPersistentSBVHBuilder*)m_accelStruct)->resetBuffers(false);
@@ -336,6 +342,7 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			BVH::Stats stats;
 			ins.inspect(stats);
 			printf("INodes: %i LNodes: %i, max depth: %i\n", stats.numInnerNodes, stats.numLeafNodes, stats.maxDepth);
+			printf("Overlap SA: %f", stats.overlapSA);
 			fflush(stdout);
 
 			failIfError();

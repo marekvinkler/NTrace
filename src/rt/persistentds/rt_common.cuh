@@ -62,6 +62,7 @@ struct CudaAABB
 	__device__ __forceinline__    void            grow        (const float3& pt)      { m_mn = fminf(m_mn, pt); m_mx = fmaxf(m_mx, pt); }
     __device__ __forceinline__    void            grow        (const CudaAABB& aabb)  { grow(aabb.m_mn); grow(aabb.m_mx); }
 	__device__ __forceinline__    bool            isEmpty     ()                      { return (m_mx.x < m_mn.x || m_mx.y < m_mn.y || m_mx.z < m_mn.z); }
+	__device__ __forceinline__	  void			  intersect	  (const CudaAABB& isec)  { m_mn = fmaxf(m_mn, isec.m_mn); m_mx = fminf(m_mx, isec.m_mx); }
 #endif
 };
 

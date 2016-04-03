@@ -107,6 +107,8 @@ public:
         S32     numOSAHTested;			//!< Number of splits tested for OSAH.
         S32     numOSAHChosen;			//!< Number of splits where OSAH was chosen.
         F32     buildTime;				//!< Time to build the hierarchy.
+		F32		boxSA;
+		F32		overlapSA;
     };
 
 	/**

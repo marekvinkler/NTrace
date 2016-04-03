@@ -97,7 +97,7 @@ public:
 	F32 getGPUTime() { return m_gpuTime; }
 	void getStats(U32& nodes, U32& leaves, U32& stackTop, U32& nodeTop, U32& tris, U32& sortedTris, bool sub = true);
 	void getSizes(F32& task, F32& split, F32& ads, F32& tri, F32& triIdx, F32& heap);
-	void getAllocStats(U32& numAllocs, F32& allocSum, F32& allocSumSquare);
+	void getAllocStats(U32& numAllocs, F32& allocSum, F32& allocSumSquare, U32& forced);
 };
 
 }

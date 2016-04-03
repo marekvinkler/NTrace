@@ -6,7 +6,7 @@
 
 //Optimalization #defines
 #define TIGHT_BOXES
-#define MAX_COST 1000000000.f
+#define BOX_EPS 0.001f
 /*
  *  Copyright 2009-2010 NVIDIA Corporation
  *
@@ -389,7 +389,8 @@ __device__ bool taskTerminationCriteria(int trisLeft, int trisRight, volatile Cu
 	//	return false;
 	
 #if defined(SAH_TERMINATION) && SPLIT_TYPE != 0
-	if(trisLeft+trisRight <= c_env.triMaxLimit)
+	//if(trisLeft+trisRight <= c_env.triMaxLimit)
+	if(true)
 	{
 		float leafCost, leftCost, rightCost;
 		// Evaluate if the termination criteria are met
@@ -403,6 +404,12 @@ __device__ bool taskTerminationCriteria(int trisLeft, int trisRight, volatile Cu
 			termCrit = TerminatedBy_Cost;
 			return true; // Trivial computation
 		}
+
+		printf("TC: lc=%i/%f rc=%i/%f lfc=%i/%f subdc=%f || BBOX: %f %f %f %f %f %f | BBOXL: %f %f %f %f %f %f | BBOXR: %f %f %f %f %f %f\n", 
+			trisLeft, leftCost, trisRight, rightCost, trisLeft+trisRight, leafCost, subdivisionCost, bbox.m_mn.x, bbox.m_mn.y, bbox.m_mn.z,
+			bbox.m_mx.x, bbox.m_mx.y, bbox.m_mx.z, bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z, bboxLeft.m_mx.x, bboxLeft.m_mx.y, bboxLeft.m_mx.z,
+			bboxRight.m_mn.x, bboxRight.m_mn.y, bboxRight.m_mn.z, bboxRight.m_mx.x, bboxRight.m_mx.y, bboxRight.m_mx.z);
+
 	}
 #endif
 
@@ -690,7 +697,7 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 			childRight = createLeafWoop(tid, rightOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, triRight, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, triEnd-triStart));
 			if(tid == 0)
 				if(numRight != 0)
-					freeBuffers(s_task[threadIdx.y].dynamicMemoryRight, numLeft * sizeof(Reference));
+					freeBuffers(s_task[threadIdx.y].dynamicMemoryRight, numRight * sizeof(Reference));
 #ifdef MYDEBUG
 			printf("childRightLeaf = %i | %i - %i |\n",childLeft, triRight, triEnd);
 #endif
@@ -1977,8 +1984,21 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 			float spatialCost = leftCost + rightCost;
 
+			float4 plane;
+			volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
+			findPlaneAABB(tid, bbox, plane);
+
+			//if((plane.x == -1.0 && (bboxRight.m_mx.x - bboxRight.m_mn.x < BOX_EPS || bboxLeft.m_mx.x - bboxLeft.m_mn.x < BOX_EPS)) ||
+			//   (plane.y == -1.0 && (bboxRight.m_mx.y - bboxRight.m_mn.y < BOX_EPS || bboxLeft.m_mx.y - bboxLeft.m_mn.y < BOX_EPS)) ||
+			//   (plane.z == -1.0 && (bboxRight.m_mx.z - bboxRight.m_mn.z < BOX_EPS || bboxLeft.m_mx.z - bboxLeft.m_mn.z < BOX_EPS))  )
+			//{
+			//	spatialCost = (rightCnt + leftCnt) * 100000;
+			//	//printf("force cost %f\n", spatialCost);
+			//}
+
 			bool spatialSplit = false;
-			if(spatialCost < cost || cost < 0.f)
+			//if(spatialCost < cost || cost < 0.f)
+			if(true)
 			{
 				cost = spatialCost;
 				spatialSplit = true;
@@ -2089,13 +2109,11 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			//int bestTid = __ffs(__ballot(red[tid] == cost));
 			//int bestSpatialTid = __ffs(__ballot(spatialRed[tid] == spatialCost));
 
+			//if(false)
 			if(__ffs(__ballot(red[tid] == cost)) == tid+1) // First thread with such condition, OPTIMIZE: Can be also computed by overwrite and test: better?
 			{
-				float4 plane;
-				volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
-
-				findPlaneAABB(tid, bbox, plane);
-
+				//float4 plane;
+				//volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
 				s_task[threadIdx.y].splitPlane.x = plane.x;
 				s_task[threadIdx.y].splitPlane.y = plane.y;
 				s_task[threadIdx.y].splitPlane.z = plane.z;
@@ -2103,13 +2121,41 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 				s_task[threadIdx.y].bestCost = cost;
 				s_owner[threadIdx.y][0] = tid;
 				s_task[threadIdx.y].bestOrder = (spatialSplit ? 1 : 0); //useful??
-				//printf("best split: object lc=%f rc=%f, %0.1f %0.1f %0.1f %f | %f\n", leftCnt, rightCnt, plane.x, plane.y, plane.z, plane.w, cost);
+				
+				//printf("best split: lc=%f rc=%f, %0.1f %0.1f %0.1f %f | %f || bbox: %f %f %f %f %f %f\n", 
+				//	leftCnt, rightCnt, plane.x, plane.y, plane.z, plane.w, cost, bbox.m_mn.x, bbox.m_mn.y, bbox.m_mn.z, bbox.m_mx.x, bbox.m_mx.y, bbox.m_mx.z);
+/*
+
+				if(bboxLeft.m_mn.x < bbox.m_mn.x)
+					printf("notgut");
+				if(bboxLeft.m_mn.y < bbox.m_mn.y)
+					printf("notgut");
+				if(bboxLeft.m_mn.z < bbox.m_mn.z)
+					printf("notgut");
+				if(bboxRight.m_mn.x < bbox.m_mn.x)
+					printf("notgut");
+				if(bboxRight.m_mn.y < bbox.m_mn.y)
+					printf("notgut");
+				if(bboxRight.m_mn.z < bbox.m_mn.z)
+					printf("notgut");
+
+				if(bboxLeft.m_mx.x > bbox.m_mx.x)
+					printf("notgut");
+				if(bboxLeft.m_mx.y > bbox.m_mx.y)
+					printf("notgut");
+				if(bboxLeft.m_mx.z > bbox.m_mx.z)
+					printf("notgut");
+				if(bboxRight.m_mx.x > bbox.m_mx.x)
+					printf("notgut");
+				if(bboxRight.m_mx.y > bbox.m_mx.y)
+					printf("notgut");
+				if(bboxRight.m_mx.z > bbox.m_mx.z)
+					printf("notgut");
+*/
 
 				int termCrit;
 				bool leftLeaf, rightLeaf;
 				bool leaf = taskTerminationCriteria(leftCnt, rightCnt, s_task[threadIdx.y].bbox, bboxLeft, bboxRight, termCrit, leftLeaf, rightLeaf);
-				if(leftCnt == 0 || rightCnt == 0)
-					printf("youdongoofed");
 
 #ifdef TIMING_INNER_INNER
 			time_t endTime = clock();
@@ -2126,13 +2172,18 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 				printf("TFB alloc %lli\n", endTime - startTime);
 			startTime = clock();
 #endif
-
-				if(leftCnt == 0 || rightCnt == 0 || leaf)
+				if(leftCnt == 0 || rightCnt == 0)
+				{
+					s_task[threadIdx.y].triLeft = leftCnt;
+					s_task[threadIdx.y].triRight = rightCnt;
+					s_owner[threadIdx.y][0] = -1;
+				}
+				else if(leaf)
 				{
 					printf("!!!leaf\n");
 					s_task[threadIdx.y].triLeft = leftCnt;
 					s_task[threadIdx.y].triRight = rightCnt;
-					s_owner[threadIdx.y][0] = -1;
+					s_owner[threadIdx.y][0] = -tid * 10;
 				}
 
 /*#ifdef SPLIT_TEST
@@ -2150,9 +2201,13 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 		}
 
 
+		//if(s_owner[threadIdx.y][0] == -100)
+		//{
+		//	taskFinishTask(tid, taskIdx);
+		//}
 		if(s_owner[threadIdx.y][0] == -1) // No split found, do object median
 		{
-			//printf("-------================median\n");
+			printf("-------================median\n");
 			
 			//s_task[threadIdx.y].triRight = triStart + (triEnd - triStart) / 2; // Force split on unsubdivided task
 			s_task[threadIdx.y].triRight = (triEnd - triStart) / 2; // Force split on unsubdivided task
@@ -2180,11 +2235,28 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 			s_task[threadIdx.y].type = taskChooseScanType(s_task[threadIdx.y].unfinished);
 
-			allocChildren(s_task[threadIdx.y].dynamicMemoryLeft, s_task[threadIdx.y].dynamicMemoryRight, s_task[threadIdx.y].triLeft, s_task[threadIdx.y].triRight);
+
+			//allocChildren(s_task[threadIdx.y].dynamicMemoryLeft, s_task[threadIdx.y].dynamicMemoryRight, s_task[threadIdx.y].triLeft, s_task[threadIdx.y].triRight);
+
+			if(__ffs(__ballot(tid == tid)) == tid+1)
+			{
+				allocChildren(s_task[threadIdx.y].dynamicMemoryLeft, s_task[threadIdx.y].dynamicMemoryRight, s_task[threadIdx.y].triLeft, s_task[threadIdx.y].triRight);
+			//atomicAdd(&g_taskStackBVH.numForcedMedians, 1);
+			}
+			
+
+			taskPrepareNext(tid, taskIdx, TaskType_BinTriangles);	
 #endif
 		}
 		else
 		{
+			bool leaf = false;
+			if(s_owner[threadIdx.y][0] < 0)
+			{
+				s_owner[threadIdx.y][0] = s_owner[threadIdx.y][0] / (-10);
+				leaf = true;
+			}
+
 			// Copy boxes
 			if(s_task[threadIdx.y].bestOrder == 1) // Spatial split
 			{
@@ -2232,10 +2304,19 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 #endif
 #endif
 			}
+
+			if(leaf)
+			{
+				taskFinishTask(tid, taskIdx);
+			}
+			else
+			{
+				taskPrepareNext(tid, taskIdx, TaskType_BinTriangles);	
+			}
 #endif
 		}
 
-		taskPrepareNext(tid, taskIdx, TaskType_BinTriangles);	
+		//taskPrepareNext(tid, taskIdx, TaskType_BinTriangles);	
 		#ifdef TIMING_INNER
 			endTime = clock();
 			if(threadIdx.x == 0)
@@ -3360,6 +3441,33 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 #else
 				computeCutBoxes(plane, tbox, leftBox, rightBox);
 #endif
+/*
+				if(leftBox.m_mn.x < bbox.m_mn.x)
+					printf("notgut");
+				if(leftBox.m_mn.y < bbox.m_mn.y)
+					printf("notgut");
+				if(leftBox.m_mn.z < bbox.m_mn.z)
+					printf("notgut");
+				if(rightBox.m_mn.x < bbox.m_mn.x)
+					printf("notgut");
+				if(rightBox.m_mn.y < bbox.m_mn.y)
+					printf("notgut");
+				if(rightBox.m_mn.z < bbox.m_mn.z)
+					printf("notgut");
+
+				if(leftBox.m_mx.x > bbox.m_mx.x)
+					printf("notgut");
+				if(leftBox.m_mx.y > bbox.m_mx.y)
+					printf("notgut");
+				if(leftBox.m_mx.z > bbox.m_mx.z)
+					printf("notgut");
+				if(rightBox.m_mx.x > bbox.m_mx.x)
+					printf("notgut");
+				if(rightBox.m_mx.y > bbox.m_mx.y)
+					printf("notgut");
+				if(rightBox.m_mx.z > bbox.m_mx.z)
+					printf("notgut");
+					*/
 
 				spatCntLeft++;
 				spatCntRight++;

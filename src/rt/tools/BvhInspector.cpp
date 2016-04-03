@@ -60,6 +60,14 @@ void BvhInspector::inspectRecursive(S32 node, float probability, int depth, BVH:
 		stats.SAHCost += probability * getCost(2, 0);
 		stats.numInnerNodes += 1;
 
+		stats.boxSA += leftBox.area();
+		stats.boxSA += rightBox.area();
+
+		AABB overlap = AABB(leftBox);
+		overlap.intersect(rightBox);
+		stats.overlapSA += overlap.area();
+
+
 		float probabilityLeft = leftBox.area() / (leftBox + rightBox).area();
 		float probabilityRight = rightBox.area() / (leftBox + rightBox).area();
 

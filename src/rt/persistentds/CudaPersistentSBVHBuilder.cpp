@@ -1531,7 +1531,7 @@ void CudaPersistentSBVHBuilder::getSizes(F32& task, F32& split, F32& ads, F32& t
 
 //------------------------------------------------------------------------
 
-void CudaPersistentSBVHBuilder::getAllocStats(U32& numAllocs, F32& allocSum, F32& allocSumSquare)
+void CudaPersistentSBVHBuilder::getAllocStats(U32& numAllocs, F32& allocSum, F32& allocSumSquare, U32& forced)
 {
 	TaskStackBVH tasks = *(TaskStackBVH*)m_module->getGlobal("g_taskStackBVH").getPtr();
 
@@ -1539,5 +1539,6 @@ void CudaPersistentSBVHBuilder::getAllocStats(U32& numAllocs, F32& allocSum, F32
 	numAllocs = tasks.numAllocations;
 	allocSum = tasks.allocSum;
 	allocSumSquare = tasks.allocSumSquare;
+	forced = tasks.numForcedMedians;
 #endif
 }
