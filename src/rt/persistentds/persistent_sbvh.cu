@@ -7,6 +7,7 @@
 //Optimalization #defines
 #define TIGHT_BOXES
 #define BOX_EPS 0.001f
+//#define PRINTS
 /*
  *  Copyright 2009-2010 NVIDIA Corporation
  *
@@ -399,12 +400,20 @@ __device__ bool taskTerminationCriteria(int trisLeft, int trisRight, volatile Cu
 		rightCost = areaAABB(bboxRight)/areaAABB(bbox)*(float)trisRight;
 		float subdivisionCost = c_env.optCt + c_env.optCi*(leftCost + rightCost);
 
-		if(leafCost < subdivisionCost)
+		if(leafCost < subdivisionCost && !(s_task[threadIdx.y].bestOrder == 2))
 		{
 			termCrit = TerminatedBy_Cost;
 			return true; // Trivial computation
 		}
 
+		//if(areaAABB(bboxLeft) < EPS || areaAABB(bboxRight) < EPS)
+		//{
+		//	termCrit = TerminatedBy_Cost;
+		//	return true;
+		//}
+
+
+		if(s_task[threadIdx.y].depth > 44)
 		printf("TC: lc=%i/%f rc=%i/%f lfc=%i/%f subdc=%f || BBOX: %f %f %f %f %f %f | BBOXL: %f %f %f %f %f %f | BBOXR: %f %f %f %f %f %f\n", 
 			trisLeft, leftCost, trisRight, rightCost, trisLeft+trisRight, leafCost, subdivisionCost, bbox.m_mn.x, bbox.m_mn.y, bbox.m_mn.z,
 			bbox.m_mx.x, bbox.m_mx.y, bbox.m_mx.z, bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z, bboxLeft.m_mx.x, bboxLeft.m_mx.y, bboxLeft.m_mx.z,
@@ -1957,8 +1966,8 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 			float cost = leftCost + rightCost;
 			
-			if(leftCnt == 0 || rightCnt == 0)
-				cost = -1.f;
+			//if(leftCnt == 0 || rightCnt == 0)
+			//	cost = -1.f;
 
 			// Spatial split
 			bboxLeft.m_mn.x = orderedIntToFloat(spatialLeft->bbox.m_mn.x);
@@ -1997,8 +2006,8 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			//}
 
 			bool spatialSplit = false;
-			//if(spatialCost < cost || cost < 0.f)
-			if(true)
+			if(spatialCost < cost || cost < 0.f)
+			//if(false)
 			{
 				cost = spatialCost;
 				spatialSplit = true;
@@ -2110,7 +2119,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			//int bestSpatialTid = __ffs(__ballot(spatialRed[tid] == spatialCost));
 
 			//if(false)
-			if(__ffs(__ballot(red[tid] == cost)) == tid+1) // First thread with such condition, OPTIMIZE: Can be also computed by overwrite and test: better?
+			if(__ffs(__ballot(red[tid] == cost)) == tid+1 && !(areaAABB(bbox) < 0.000001f)) // First thread with such condition, OPTIMIZE: Can be also computed by overwrite and test: better? */
 			{
 				//float4 plane;
 				//volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
@@ -2121,10 +2130,11 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 				s_task[threadIdx.y].bestCost = cost;
 				s_owner[threadIdx.y][0] = tid;
 				s_task[threadIdx.y].bestOrder = (spatialSplit ? 1 : 0); //useful??
-				
-				//printf("best split: lc=%f rc=%f, %0.1f %0.1f %0.1f %f | %f || bbox: %f %f %f %f %f %f\n", 
-				//	leftCnt, rightCnt, plane.x, plane.y, plane.z, plane.w, cost, bbox.m_mn.x, bbox.m_mn.y, bbox.m_mn.z, bbox.m_mx.x, bbox.m_mx.y, bbox.m_mx.z);
-/*
+#ifdef PRINTS
+				printf("best split at %i: %i -> lc=%f rc=%f, %0.1f %0.1f %0.1f %f | %f || bbox: %f %f %f %f %f %f\n", 
+					s_task[threadIdx.y].depth, triEnd, leftCnt, rightCnt, plane.x, plane.y, plane.z, plane.w, cost, bbox.m_mn.x, bbox.m_mn.y, bbox.m_mn.z, bbox.m_mx.x, bbox.m_mx.y, bbox.m_mx.z);
+#endif
+				/*
 
 				if(bboxLeft.m_mn.x < bbox.m_mn.x)
 					printf("notgut");
@@ -2180,7 +2190,9 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 				}
 				else if(leaf)
 				{
+#ifdef PRINTS
 					printf("!!!leaf\n");
+#endif
 					s_task[threadIdx.y].triLeft = leftCnt;
 					s_task[threadIdx.y].triRight = rightCnt;
 					s_owner[threadIdx.y][0] = -tid * 10;
@@ -2207,12 +2219,16 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 		//}
 		if(s_owner[threadIdx.y][0] == -1) // No split found, do object median
 		{
-			printf("-------================median\n");
+			s_task[threadIdx.y].bestOrder = 2; // Mark as forced object median split
 			
 			//s_task[threadIdx.y].triRight = triStart + (triEnd - triStart) / 2; // Force split on unsubdivided task
 			s_task[threadIdx.y].triRight = (triEnd - triStart) / 2; // Force split on unsubdivided task
 			s_task[threadIdx.y].triLeft = (triEnd - triStart) - s_task[threadIdx.y].triRight;
 			s_task[threadIdx.y].unfinished = taskWarpSubtasksZero(triEnd - triStart);
+#ifdef PRINTS
+			if(tid == 0)
+				printf("MEDIAN %i %i\n",s_task[threadIdx.y].triLeft, s_task[threadIdx.y].triRight);
+#endif
 #ifdef COMPUTE_MEDIAN_BOUNDS
 			s_task[threadIdx.y].type = taskChooseAABBType();
 
@@ -2220,7 +2236,8 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 #else
 			// Copy boxes
 			volatile float* bbox = (volatile float*)&(s_task[threadIdx.y].bbox);
-			volatile float* bboxCpy = (volatile float*)((tid < sizeof(CudaAABB)/sizeof(float)) ? &s_task[threadIdx.y].bboxLeft : &s_task[threadIdx.y].bboxRight);
+			volatile float* bboxCpy = (volatile float*)((tid < sizeof(CudaAABB)/sizeof(float)) ? &g_taskStackBVH.tasks[taskIdx].bboxLeft : &g_taskStackBVH.tasks[taskIdx].bboxRight);
+			//volatile float* bboxCpy = (volatile float*)((tid < sizeof(CudaAABB)/sizeof(float)) ? &s_task[threadIdx.y].bboxLeft : &s_task[threadIdx.y].bboxRight);
 			//volatile float* bboxLeft = (volatile float*)&(s_task[threadIdx.y].bboxLeft);
 			//volatile float* bboxRight = (volatile float*)&(s_task[threadIdx.y].bboxRight);
 			/*if(tid < sizeof(CudaAABB)/sizeof(float))
@@ -2230,7 +2247,8 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			}*/
 			if(tid < 2*sizeof(CudaAABB)/sizeof(float))
 			{
-				bboxCpy[tid] = bbox[tid];
+				//bboxCpy[tid % 6] = bbox[tid % 6];
+				bboxCpy[tid % 6] = bbox[tid % 6];
 			}
 
 			s_task[threadIdx.y].type = taskChooseScanType(s_task[threadIdx.y].unfinished);
@@ -2240,9 +2258,11 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 			if(__ffs(__ballot(tid == tid)) == tid+1)
 			{
-				allocChildren(s_task[threadIdx.y].dynamicMemoryLeft, s_task[threadIdx.y].dynamicMemoryRight, s_task[threadIdx.y].triLeft, s_task[threadIdx.y].triRight);
+				allocChildren(s_task[threadIdx.y].dynamicMemoryLeft, s_task[threadIdx.y].dynamicMemoryRight, s_task[threadIdx.y].triLeft + 1, s_task[threadIdx.y].triRight + 1);
 			//atomicAdd(&g_taskStackBVH.numForcedMedians, 1);
 			}
+			s_task[threadIdx.y].triRight = 0;
+			s_task[threadIdx.y].triLeft  = 0;
 			
 
 			taskPrepareNext(tid, taskIdx, TaskType_BinTriangles);	
@@ -3918,7 +3938,9 @@ __device__ __noinline__ void computePartition()
 	int popTaskIdx = s_task[threadIdx.y].popTaskIdx;
 	bool singleWarp = s_task[threadIdx.y].lock == LockType_None;
 
-	bool spatialSplit = s_task[threadIdx.y].bestOrder;
+	bool medianSplit = (s_task[threadIdx.y].bestOrder == 2);
+	bool spatialSplit = (s_task[threadIdx.y].bestOrder == 1);
+
 #ifdef TIMING
 	time_t startTime = clock();
 #endif
@@ -3941,7 +3963,7 @@ __device__ __noinline__ void computePartition()
 		int pos = 0; // Outside of the interval
 		int triPos = triStart + popSubtask*WARP_SIZE + tid;
 		int triSum = min(triEnd - (triStart + popSubtask*WARP_SIZE), WARP_SIZE); // Triangles to process
-		if(triPos < triEnd)
+		if(triPos < triEnd && !medianSplit)
 		{
 			//triIdx = inIdx[triPos];
 			//triIdx = triPos;
@@ -4013,6 +4035,11 @@ __device__ __noinline__ void computePartition()
 
 		// Scan the number of triangles to the left of the splitting plane
 
+		if(medianSplit && triPos < triEnd && triPos % 2 == 0)
+			pos = -1;
+		if(medianSplit && triPos < triEnd && triPos % 2 == 1)
+			pos = 1;
+
 		int triCnt;
 		int exclusiveScan = threadPosWarp(tid, s_sharedData[threadIdx.y], pos == -1 || abs(pos) == 2, triCnt);
 
@@ -4047,7 +4074,6 @@ __device__ __noinline__ void computePartition()
 			//}
 		}
 		s_owner[threadIdx.y][0] += triCnt; // Move the position by the number of written nodes
-
 
 		// Compute the number of triangles to the right of the splitting plane
 		int inverseExclusiveScan = threadPosWarp(tid, s_sharedData[threadIdx.y], pos == 1 || abs(pos) == 2, triCnt); // The scan of the number of triangles to the right of the splitting plane
