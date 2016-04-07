@@ -1804,7 +1804,8 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 			s_owner[threadIdx.y][0] = -1; // Mark as no split
 			// Return the best plane for this warp
-			if(__ffs(__ballot(red[tid] == cost)) == tid+1) // First thread with such condition, OPTIMIZE: Can be also computed by overwrite and test: better?
+			if(false)
+			//if(__ffs(__ballot(red[tid] == cost)) == tid+1) // First thread with such condition, OPTIMIZE: Can be also computed by overwrite and test: better?
 			{
 				s_task[threadIdx.y].splitPlane.x = plane.x;
 				s_task[threadIdx.y].splitPlane.y = plane.y;
@@ -3370,6 +3371,11 @@ __device__ __noinline__ void computePartition()
 		if(pos == 1)
 			outIdx[s_owner[threadIdx.y][1] - triCnt + inverseExclusiveScan] = triIdx;
 		s_owner[threadIdx.y][1] -= triCnt; // Move the position by the number of written nodes
+
+		if(pos == 1)
+			printf("1\n");
+		else if (pos == -1)
+			printf("-1\n");
 
 
 		subtasksDone = taskReduceSubtask(popSubtask, popStart, popCount);

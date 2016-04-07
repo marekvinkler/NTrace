@@ -840,19 +840,19 @@ void CudaPersistentSBVHBuilder::updateConstants()
 {
 	RtEnvironment& cudaEnv = *(RtEnvironment*)m_module->getGlobal("c_env").getMutablePtr();
 
-	Environment::GetSingleton()->GetIntValue("PersistentBVH.maxDepth", cudaEnv.optMaxDepth);
+	Environment::GetSingleton()->GetIntValue("PersistentSBVH.maxDepth", cudaEnv.optMaxDepth);
 
-	Environment::GetSingleton()->GetFloatValue("PersistentBVH.ci", cudaEnv.optCi);
+	Environment::GetSingleton()->GetFloatValue("PersistentSBVH.ci", cudaEnv.optCi);
 
-	Environment::GetSingleton()->GetFloatValue("PersistentBVH.ct", cudaEnv.optCt);
+	Environment::GetSingleton()->GetFloatValue("PersistentSBVH.ct", cudaEnv.optCt);
 
-	Environment::GetSingleton()->GetIntValue("PersistentBVH.triLimit", cudaEnv.triLimit);
+	Environment::GetSingleton()->GetIntValue("PersistentSBVH.triLimit", cudaEnv.triLimit);
 
-	Environment::GetSingleton()->GetIntValue("PersistentBVH.triMaxLimit", cudaEnv.triMaxLimit);
+	Environment::GetSingleton()->GetIntValue("PersistentSBVH.triMaxLimit", cudaEnv.triMaxLimit);
 
-	Environment::GetSingleton()->GetIntValue("PersistentBVH.popCount", cudaEnv.popCount);
+	Environment::GetSingleton()->GetIntValue("PersistentSBVH.popCount", cudaEnv.popCount);
 
-	Environment::GetSingleton()->GetFloatValue("PersistentBVH.granularity", cudaEnv.granularity);
+	Environment::GetSingleton()->GetFloatValue("PersistentSBVH.granularity", cudaEnv.granularity);
 	
 	cudaEnv.epsilon = m_epsilon;
 	//cudaEnv.epsilon = 0.f;

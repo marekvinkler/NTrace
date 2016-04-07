@@ -146,12 +146,22 @@ void AppEnvironment::RegisterOptions()
 	RegisterOption("PersistentBVH.granularity", optFloat, "persistent_bvh_granularity=", "50.0");
 
 	/*************************************************************************/
-	/*    Persistent BVH                                                     */
+	/*    Persistent SBVH                                                     */
 	/*************************************************************************/
 	RegisterOption("PersistentSBVH.heapMultiplicator", optFloat, "persistent_sbvh_heap_mult=", "20.0");
 	RegisterOption("PersistentSBVH.nodeRatio", optInt, "persistent_sbvh_nodeRatio=", "5");
 	RegisterOption("PersistentSBVH.triRatio", optInt, "persistent_sbvh_triRatio=", "3");
 	RegisterOption("PersistentSBVH.idxRatio", optInt, "persistent_sbvh_idxRatio=", "12");
+
+	RegisterOption("PersistentSBVH.ci", optInt, "persistent_sbvh_ci=", "1");
+	RegisterOption("PersistentSBVH.ct", optInt, "persistent_sbvh_ct=", "1");
+
+	RegisterOption("PersistentSBVH.popCount", optInt, "persistent_sbvh_popCount=", "14");
+	RegisterOption("PersistentSBVH.granularity", optFloat, "persistent_sbvh_granularity=", "50.0");
+
+	RegisterOption("PersistentSBVH.triLimit", optInt, "persistent_sbvh_triLimit=", "2");
+	RegisterOption("PersistentSBVH.triMaxLimit", optInt, "persistent_sbvh_triMaxLimit=", "16");
+	RegisterOption("PersistentSBVH.maxDepth", optInt, "persistent_sbvh_maxDepth=", "50");
 
 	/*************************************************************************/
 	/*    Persistent KDTree                                                  */

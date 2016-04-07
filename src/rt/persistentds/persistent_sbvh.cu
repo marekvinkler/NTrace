@@ -7,6 +7,7 @@
 //Optimalization #defines
 #define TIGHT_BOXES
 #define BOX_EPS 0.001f
+
 //#define PRINTS
 /*
  *  Copyright 2009-2010 NVIDIA Corporation
@@ -388,10 +389,12 @@ __device__ bool taskTerminationCriteria(int trisLeft, int trisRight, volatile Cu
 {
 	//if(s_task[threadIdx.y].depth < 2) // Unknown error if we try to split an empty task
 	//	return false;
+	if(s_task[threadIdx.y].bestOrder == 3)
+		return true;
 	
 #if defined(SAH_TERMINATION) && SPLIT_TYPE != 0
-	//if(trisLeft+trisRight <= c_env.triMaxLimit)
-	if(true)
+	if(trisLeft+trisRight <= c_env.triMaxLimit)
+	//if(true)
 	{
 		float leafCost, leftCost, rightCost;
 		// Evaluate if the termination criteria are met
@@ -413,11 +416,11 @@ __device__ bool taskTerminationCriteria(int trisLeft, int trisRight, volatile Cu
 		//}
 
 
-		if(s_task[threadIdx.y].depth > 44)
-		printf("TC: lc=%i/%f rc=%i/%f lfc=%i/%f subdc=%f || BBOX: %f %f %f %f %f %f | BBOXL: %f %f %f %f %f %f | BBOXR: %f %f %f %f %f %f\n", 
-			trisLeft, leftCost, trisRight, rightCost, trisLeft+trisRight, leafCost, subdivisionCost, bbox.m_mn.x, bbox.m_mn.y, bbox.m_mn.z,
-			bbox.m_mx.x, bbox.m_mx.y, bbox.m_mx.z, bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z, bboxLeft.m_mx.x, bboxLeft.m_mx.y, bboxLeft.m_mx.z,
-			bboxRight.m_mn.x, bboxRight.m_mn.y, bboxRight.m_mn.z, bboxRight.m_mx.x, bboxRight.m_mx.y, bboxRight.m_mx.z);
+		//if(s_task[threadIdx.y].depth > 44)
+		//printf("TC: lc=%i/%f rc=%i/%f lfc=%i/%f subdc=%f || BBOX: %f %f %f %f %f %f | BBOXL: %f %f %f %f %f %f | BBOXR: %f %f %f %f %f %f\n", 
+		//	trisLeft, leftCost, trisRight, rightCost, trisLeft+trisRight, leafCost, subdivisionCost, bbox.m_mn.x, bbox.m_mn.y, bbox.m_mn.z,
+		//	bbox.m_mx.x, bbox.m_mx.y, bbox.m_mx.z, bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z, bboxLeft.m_mx.x, bboxLeft.m_mx.y, bboxLeft.m_mx.z,
+		//	bboxRight.m_mn.x, bboxRight.m_mn.y, bboxRight.m_mn.z, bboxRight.m_mx.x, bboxRight.m_mx.y, bboxRight.m_mx.z);
 
 	}
 #endif
@@ -1760,6 +1763,8 @@ __device__ __noinline__ bool taskDequeue(int tid)
 // Finishes a sort task
 __device__ void taskFinishSort(int tid, int taskIdx)
 {
+	freeBuffers(s_task[threadIdx.y].dynamicMemory, (s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart) *sizeof(Reference));
+
 	// We should update the dependencies before we start adding new tasks because these subtasks may be finished before this is done
 
 #ifndef KEEP_ALL_TASKS
@@ -1966,8 +1971,9 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 			float cost = leftCost + rightCost;
 			
-			//if(leftCnt == 0 || rightCnt == 0)
-			//	cost = -1.f;
+			bool spatialSplit = false;
+			if(leftCnt == 0 || rightCnt == 0)
+				spatialSplit = true;
 
 			// Spatial split
 			bboxLeft.m_mn.x = orderedIntToFloat(spatialLeft->bbox.m_mn.x);
@@ -2005,8 +2011,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			//	//printf("force cost %f\n", spatialCost);
 			//}
 
-			bool spatialSplit = false;
-			if(spatialCost < cost || cost < 0.f)
+			if(spatialCost < cost || spatialSplit)
 			//if(false)
 			{
 				cost = spatialCost;
@@ -2191,11 +2196,16 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 				else if(leaf)
 				{
 #ifdef PRINTS
+					s_task[threadIdx.y].triLeft = s_task[threadIdx.y].triEnd -1;
+					s_task[threadIdx.y].triRight = 1;
+					s_task[threadIdx.y].bestOrder = 3;
 					printf("!!!leaf\n");
+
 #endif
-					s_task[threadIdx.y].triLeft = leftCnt;
-					s_task[threadIdx.y].triRight = rightCnt;
-					s_owner[threadIdx.y][0] = -tid * 10;
+
+					//s_task[threadIdx.y].triLeft = leftCnt;
+					//s_task[threadIdx.y].triRight = rightCnt;
+					//s_owner[threadIdx.y][0] = -tid * 10;
 				}
 
 /*#ifdef SPLIT_TEST
@@ -2270,67 +2280,60 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 		}
 		else
 		{
-			bool leaf = false;
-			if(s_owner[threadIdx.y][0] < 0)
-			{
-				s_owner[threadIdx.y][0] = s_owner[threadIdx.y][0] / (-10);
-				leaf = true;
-			}
-
-			// Copy boxes
-			if(s_task[threadIdx.y].bestOrder == 1) // Spatial split
-			{
-				left = (ChildData*)&splitArray->spatialSplits[s_owner[threadIdx.y][0]].children[0];
-				right = (ChildData*)&splitArray->spatialSplits[s_owner[threadIdx.y][0]].children[1];
-			}
-			else
-			{
-				left = (ChildData*)&splitArray->splits[s_owner[threadIdx.y][0]].children[0];
-				right = (ChildData*)&splitArray->splits[s_owner[threadIdx.y][0]].children[1];
-			}
-
-			float* t_bboxLeft = (float*)&(g_taskStackBVH.tasks[taskIdx].bboxLeft);
-			const float* g_bboxLeft = (const float*)&(left->bbox);
-
-			float* t_bboxRight = (float*)&(g_taskStackBVH.tasks[taskIdx].bboxRight);
-			const float* g_bboxRight = (const float*)&(right->bbox);
-			// Copy CudaAABB from corresponding task
-			if(tid < sizeof(CudaAABB)/sizeof(float))
-			{
-				float cor;
-				if(tid < sizeof(float3)/sizeof(float))
-					cor = -c_env.epsilon;
-				else
-					cor = c_env.epsilon;
-
-#if BINNING_TYPE == 0 || BINNING_TYPE == 1
-				t_bboxLeft[tid] = g_bboxLeft[tid];
-				t_bboxRight[tid] = g_bboxRight[tid];
-#else
-				t_bboxLeft[tid] = orderedIntToFloat(*(int*)&g_bboxLeft[tid])+cor;
-				t_bboxRight[tid] = orderedIntToFloat(*(int*)&g_bboxRight[tid])+cor;
-#endif
-
-#ifdef DEBUG_INFO
-				volatile float* s_bboxLeft = (volatile float*)&(s_task[threadIdx.y].bboxLeft);
-				volatile float* s_bboxRight = (volatile float*)&(s_task[threadIdx.y].bboxRight);
-
-#if BINNING_TYPE == 0 || BINNING_TYPE == 1
-				s_bboxLeft[tid] = g_bboxLeft[tid];
-				s_bboxRight[tid] = g_bboxRight[tid];
-#else
-				s_bboxLeft[tid] = orderedIntToFloat(*(int*)&g_bboxLeft[tid]);
-				s_bboxRight[tid] = orderedIntToFloat(*(int*)&g_bboxRight[tid]);
-#endif
-#endif
-			}
-
-			if(leaf)
+			if(s_task[threadIdx.y].bestOrder == 3)
 			{
 				taskFinishTask(tid, taskIdx);
 			}
 			else
 			{
+
+				// Copy boxes
+				if(s_task[threadIdx.y].bestOrder == 1) // Spatial split
+				{
+					left = (ChildData*)&splitArray->spatialSplits[s_owner[threadIdx.y][0]].children[0];
+					right = (ChildData*)&splitArray->spatialSplits[s_owner[threadIdx.y][0]].children[1];
+				}
+				else
+				{
+					left = (ChildData*)&splitArray->splits[s_owner[threadIdx.y][0]].children[0];
+					right = (ChildData*)&splitArray->splits[s_owner[threadIdx.y][0]].children[1];
+				}
+
+				float* t_bboxLeft = (float*)&(g_taskStackBVH.tasks[taskIdx].bboxLeft);
+				const float* g_bboxLeft = (const float*)&(left->bbox);
+
+				float* t_bboxRight = (float*)&(g_taskStackBVH.tasks[taskIdx].bboxRight);
+				const float* g_bboxRight = (const float*)&(right->bbox);
+				// Copy CudaAABB from corresponding task
+				if(tid < sizeof(CudaAABB)/sizeof(float))
+				{
+					float cor;
+					if(tid < sizeof(float3)/sizeof(float))
+						cor = -c_env.epsilon;
+					else
+						cor = c_env.epsilon;
+
+	#if BINNING_TYPE == 0 || BINNING_TYPE == 1
+					t_bboxLeft[tid] = g_bboxLeft[tid];
+					t_bboxRight[tid] = g_bboxRight[tid];
+	#else
+					t_bboxLeft[tid] = orderedIntToFloat(*(int*)&g_bboxLeft[tid])+cor;
+					t_bboxRight[tid] = orderedIntToFloat(*(int*)&g_bboxRight[tid])+cor;
+	#endif
+
+	#ifdef DEBUG_INFO
+					volatile float* s_bboxLeft = (volatile float*)&(s_task[threadIdx.y].bboxLeft);
+					volatile float* s_bboxRight = (volatile float*)&(s_task[threadIdx.y].bboxRight);
+
+	#if BINNING_TYPE == 0 || BINNING_TYPE == 1
+					s_bboxLeft[tid] = g_bboxLeft[tid];
+					s_bboxRight[tid] = g_bboxRight[tid];
+	#else
+					s_bboxLeft[tid] = orderedIntToFloat(*(int*)&g_bboxLeft[tid]);
+					s_bboxRight[tid] = orderedIntToFloat(*(int*)&g_bboxRight[tid]);
+	#endif
+	#endif
+				}
 				taskPrepareNext(tid, taskIdx, TaskType_BinTriangles);	
 			}
 #endif
@@ -2751,6 +2754,7 @@ __device__ void taskFinishPartition(int tid, int taskIdx, unsigned countDown)
 
 	if(taskCheckFinished(tid, taskIdx, countDown)) // We have finished the task and are responsible for cleaning up
 	{
+		//freeBuffers(s_task[threadIdx.y].dynamicMemory, s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart);
 		// Load correct split positions from global memory
 		int triLeft = g_taskStackBVH.tasks[taskIdx].triLeft;
 		int triRight = g_taskStackBVH.tasks[taskIdx].triRight;
