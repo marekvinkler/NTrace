@@ -1,13 +1,3 @@
-//#define MYDEBUG
-//#define TIMING
-//#define TIMING_INNER
-//#define TIMING_INNER_INNER
-//#define TIMING_ALLOC
-
-//Optimalization #defines
-#define TIGHT_BOXES
-#define BOX_EPS 0.001f
-
 //#define PRINTS
 /*
  *  Copyright 2009-2010 NVIDIA Corporation
@@ -25,28 +15,17 @@
  *  limitations under the License.
  */
 
-/*
-    BVH building specialization of the framework.
-
-    "Massively Parallel Hierarchical Scene Sorting with Applications in Rendering",
-    Marek Vinkler, Michal Hapala, Jiri Bittner and Vlastimil Havran,
-    Computer Graphics Forum 2012
-*/
 
 #include "rt_common.cu"
 #include "CudaPoolSBVH.hpp"
-
-// ERROR: JIT compilation does not pass this macro in preprocessing - compilation errors
-/*#if defined(__CUDA_ARCH__) && (__CUDA_ARCH__ < 300)
-#undef OBJECT_SAH
-#endif*/
+using namespace SBVH;
 
 //------------------------------------------------------------------------
 // Shared variables.
 //------------------------------------------------------------------------
 
-__shared__ volatile TaskBVH s_task[NUM_WARPS_PER_BLOCK]; // Memory holding information about the currently processed task
-__shared__ volatile TaskBVH s_newTask[NUM_WARPS_PER_BLOCK]; // Memory for the new task to be created in
+__shared__ volatile TaskSBVH s_task[NUM_WARPS_PER_BLOCK]; // Memory holding information about the currently processed task
+__shared__ volatile TaskSBVH s_newTask[NUM_WARPS_PER_BLOCK]; // Memory for the new task to be created in
 __shared__ volatile int s_sharedData[NUM_WARPS_PER_BLOCK][WARP_SIZE]; // Shared memory for inside warp use
 __shared__ volatile int s_owner[NUM_WARPS_PER_BLOCK][WARP_SIZE]; // Another shared pool
 __shared__ volatile int s_spatialMem[NUM_WARPS_PER_BLOCK][WARP_SIZE];
@@ -57,19 +36,19 @@ __shared__ volatile int s_spatialMem[NUM_WARPS_PER_BLOCK][WARP_SIZE];
 //------------------------------------------------------------------------
 
 // Loading and saving functions
-__device__ __forceinline__ void taskLoadFirstFromGMEM(int tid, int taskIdx, volatile TaskBVH& task);
-__device__ __forceinline__ void taskLoadSecondFromGMEM(int tid, int taskIdx, volatile TaskBVH& task);
-__device__ __forceinline__ void taskSaveFirstToGMEM(int tid, int taskIdx, const volatile TaskBVH& task);
-__device__ __forceinline__ void taskSaveSecondToGMEM(int tid, int taskIdx, const volatile TaskBVH& task);
+__device__ __forceinline__ void taskLoadFirstFromGMEM(int tid, int taskIdx, volatile TaskSBVH& task);
+__device__ __forceinline__ void taskLoadSecondFromGMEM(int tid, int taskIdx, volatile TaskSBVH& task);
+__device__ __forceinline__ void taskSaveFirstToGMEM(int tid, int taskIdx, const volatile TaskSBVH& task);
+__device__ __forceinline__ void taskSaveSecondToGMEM(int tid, int taskIdx, const volatile TaskSBVH& task);
 
 //------------------------------------------------------------------------
 
 // Copies first cache line of the Task taskIdx to task
-__device__ __forceinline__ void taskLoadFirstFromGMEM(int tid, int taskIdx, volatile TaskBVH& task)
+__device__ __forceinline__ void taskLoadFirstFromGMEM(int tid, int taskIdx, volatile TaskSBVH& task)
 {
 	ASSERT_DIVERGENCE("taskLoadFirstFromGMEM top", tid);
 	volatile int* taskAddr = (volatile int*)(&task);
-	TaskBVH* g_task = &g_taskStackBVH.tasks[taskIdx];
+	TaskSBVH* g_task = &g_taskStackSBVH.tasks[taskIdx];
 	taskAddr[tid] = ((int*)g_task)[tid]; // Every thread copies one word of task data
 	ASSERT_DIVERGENCE("taskLoadFirstFromGMEM bottom", tid);
 
@@ -79,11 +58,11 @@ __device__ __forceinline__ void taskLoadFirstFromGMEM(int tid, int taskIdx, vola
 }
 
 // Copies second cache line of the Task taskIdx to task
-__device__ __forceinline__ void taskLoadSecondFromGMEM(int tid, int taskIdx, volatile TaskBVH& task)
+__device__ __forceinline__ void taskLoadSecondFromGMEM(int tid, int taskIdx, volatile TaskSBVH& task)
 {
 	ASSERT_DIVERGENCE("taskLoadSecondFromGMEM top", tid);
 	volatile int* taskAddr = (volatile int*)(&task);
-	TaskBVH* g_task = &g_taskStackBVH.tasks[taskIdx];
+	TaskSBVH* g_task = &g_taskStackSBVH.tasks[taskIdx];
 	int offset = 128/sizeof(int); // 128B offset
 	if(tid < TASK_GLOBAL_BVH) // Prevent overwriting local data saved in task
 		taskAddr[tid+offset] = ((int*)g_task)[tid+offset]; // Every thread copies one word of task data
@@ -93,11 +72,11 @@ __device__ __forceinline__ void taskLoadSecondFromGMEM(int tid, int taskIdx, vol
 //------------------------------------------------------------------------
 
 // Copies first cache line of the task to Task taskIdx
-__device__ __forceinline__ void taskSaveFirstToGMEM(int tid, int taskIdx, const volatile TaskBVH& task)
+__device__ __forceinline__ void taskSaveFirstToGMEM(int tid, int taskIdx, const volatile TaskSBVH& task)
 {
 	ASSERT_DIVERGENCE("taskSaveFirstToGMEM top", tid);
 	// Copy the data to global memory
-	int* taskAddr = (int*)(&g_taskStackBVH.tasks[taskIdx]);
+	int* taskAddr = (int*)(&g_taskStackSBVH.tasks[taskIdx]);
 	taskAddr[tid] = ((const volatile int*)&task)[tid]; // Every thread copies one word of data of its task
 	ASSERT_DIVERGENCE("taskSaveFirstToGMEM bottom", tid);
 
@@ -107,11 +86,11 @@ __device__ __forceinline__ void taskSaveFirstToGMEM(int tid, int taskIdx, const 
 }
 
 // Copies second cache line of the task to Task taskIdx
-__device__ __forceinline__ void taskSaveSecondToGMEM(int tid, int taskIdx, const volatile TaskBVH& task)
+__device__ __forceinline__ void taskSaveSecondToGMEM(int tid, int taskIdx, const volatile TaskSBVH& task)
 {
 	ASSERT_DIVERGENCE("taskSaveSecondToGMEM top", tid);
 	// Copy the data to global memory
-	int* taskAddr = (int*)(&g_taskStackBVH.tasks[taskIdx]);
+	int* taskAddr = (int*)(&g_taskStackSBVH.tasks[taskIdx]);
 	int offset = 128/sizeof(int); // 128B offset
 	taskAddr[tid+offset] = ((const volatile int*)&task)[tid+offset]; // Every thread copies one word of data of its task
 	ASSERT_DIVERGENCE("taskSaveSecondToGMEM bottom", tid);
@@ -121,10 +100,6 @@ __device__ __forceinline__ void taskSaveSecondToGMEM(int tid, int taskIdx, const
 
 __device__ __forceinline__ int allocBuffers(int refs)
 {
-#ifdef TIMING_ALLOC
-	time_t timeStart = clock();
-#endif
-
 	uint allocSize = refs * sizeof(Reference);
 #if (MALLOC_TYPE == CIRCULAR_MALLOC)
 	void* alloc = mallocCircularMalloc(allocSize);
@@ -141,17 +116,13 @@ __device__ __forceinline__ int allocBuffers(int refs)
 	if(alloc == NULL)
 	{
 		printf("Out of memory!\n");
-		g_taskStackBVH.unfinished = 1;
+		g_taskStackSBVH.unfinished = 1;
 	}
 
-	uint count = atomicAdd(&g_taskStackBVH.numAllocations, 1);
-	uint sum = atomicAdd(&g_taskStackBVH.allocSum, allocSize);
-	atomicAdd(&g_taskStackBVH.allocSumSquare, allocSize * allocSize);
+	uint count = atomicAdd(&g_taskStackSBVH.numAllocations, 1);
+	uint sum = atomicAdd(&g_taskStackSBVH.allocSum, allocSize);
+	atomicAdd(&g_taskStackSBVH.allocSumSquare, allocSize * allocSize);
 
-#ifdef TIMING_ALLOC
-	time_t timeEnd = clock();
-	printf("%u KA, %u KB, alloc %lli\n", count >> 10, sum >> 10, timeEnd - timeStart);
-#endif
 	return ((char*)alloc) - g_heapBase;	
 }
 
@@ -197,34 +168,9 @@ __device__ __forceinline__ void allocChildren(volatile int& leftMem, volatile in
 {
 	int leftSize = cntLeft * sizeof(Reference);
 	int rightSize = cntRight * sizeof(Reference);
-
-	/*
-	leftMem = allocBuffers(cntLeft + cntRight);
-	rightMem = leftMem + cleftSize;
-	*/
 	
 	leftMem = allocBuffers(cntLeft);
 	rightMem = allocBuffers(cntRight);
-	
-
-
-	/*
-	if(cntLeft != 0)
-	{
-		if(cntRight == 0)
-			leftMem = s_task[threadIdx.y].dynamicMemory;
-		else
-			leftMem = allocBuffers(cntLeft);
-	}
-
-	if(cntRight != 0)
-	{
-		if(cntLeft == 0)
-			rightMem = s_task[threadIdx.y].dynamicMemory;
-		else
-			rightMem = allocBuffers(cntRight);
-	}
-	*/
 }
 
 //------------------------------------------------------------------------
@@ -233,39 +179,10 @@ __device__ __forceinline__ void allocChildren(volatile int& leftMem, volatile in
 
 __device__ __forceinline__ int taskPopCount(int status)
 {
-	//float nTris = c_bvh_in.numTris;
-
-	//return 1;
-	//return (int)((float)nTris/((float)WARP_SIZE*NUM_WARPS*c_env.granularity))+1;
 	return c_env.popCount;
 }
 
 //------------------------------------------------------------------------
-
-
-//__device__ __forceinline__ int* getTriIdxPtr(int triIdxCtr)
-//{
-//#if SCAN_TYPE < 2
-//	return (int*)c_bvh_in.trisIndex;
-//#else
-//	if((triIdxCtr % 2) == 0)
-//		return (int*)c_bvh_in.refs;
-//	else
-//		return (int*)c_bvh_in.sortRefs;
-//#endif
-//}
-
-//__device__ __forceinline__ Reference* getTriIdxPtr(int triIdxCtr)
-//{
-//#if SCAN_TYPE < 2
-//	return (int*)c_bvh_in.trisIndex;
-//#else
-//	if((triIdxCtr % 2) == 0)
-//		return (Reference*)c_bvh_in.refs;
-//	else
-//		return (Reference*)c_bvh_in.sortRefs;
-//#endif
-//}
 
 __device__ __forceinline__ Reference* getTriIdxPtr(int dynamicMemory, int triCount)
 {
@@ -312,7 +229,7 @@ __device__ __forceinline__ void taskPrepareNext(int tid, int taskIdx, int phase)
 #ifdef KEEP_ALL_TASKS
 		taskSaveFirstToGMEM(tid, taskIdx, s_task[threadIdx.y]);
 #endif
-		g_taskStackBVH.unfinished = 1;
+		g_taskStackSBVH.unfinished = 1;
 	}
 #endif
 
@@ -349,7 +266,7 @@ __device__ __forceinline__ void taskPrepareNext(int tid, int taskIdx, int phase)
 #ifdef PHASE_TEST
 		if(phase == endAfter && s_task[threadIdx.y].type != phase)
 		{
-			g_taskStackBVH.header[taskIdx] = TaskHeader_Locked;
+			g_taskStackSBVH.header[taskIdx] = TaskHeader_Locked;
 		}
 		else
 #endif
@@ -359,7 +276,7 @@ __device__ __forceinline__ void taskPrepareNext(int tid, int taskIdx, int phase)
 			s_task[threadIdx.y].popCount = popCount;
 			s_task[threadIdx.y].unfinished -= popCount;
 
-			g_taskStackBVH.header[taskIdx] = s_task[threadIdx.y].unfinished; // Restart this task
+			g_taskStackSBVH.header[taskIdx] = s_task[threadIdx.y].unfinished; // Restart this task
 		}
 	}
 }
@@ -374,7 +291,7 @@ __device__ __forceinline__ bool taskCheckFinished(int tid, int taskIdx, int coun
 		if(s_task[threadIdx.y].lock == LockType_None)
 			s_sharedData[threadIdx.y][0] = countDown;
 		else
-			s_sharedData[threadIdx.y][0] = atomicSub(&g_taskStackBVH.tasks[taskIdx].unfinished, countDown); // Lower the number of unfinished tasks
+			s_sharedData[threadIdx.y][0] = atomicSub(&g_taskStackSBVH.tasks[taskIdx].unfinished, countDown); // Lower the number of unfinished tasks
 	}
 
 	ASSERT_DIVERGENCE("taskCheckFinished top", tid);
@@ -387,14 +304,11 @@ __device__ __forceinline__ bool taskCheckFinished(int tid, int taskIdx, int coun
 // Decides what type of task should be created
 __device__ bool taskTerminationCriteria(int trisLeft, int trisRight, volatile CudaAABB& bbox, volatile CudaAABB& bboxLeft, volatile CudaAABB& bboxRight, int& termCrit, bool& leftLeaf, bool& rightLeaf)
 {
-	//if(s_task[threadIdx.y].depth < 2) // Unknown error if we try to split an empty task
-	//	return false;
 	if(s_task[threadIdx.y].bestOrder == 3)
 		return true;
 	
 #if defined(SAH_TERMINATION) && SPLIT_TYPE != 0
 	if(trisLeft+trisRight <= c_env.triMaxLimit)
-	//if(true)
 	{
 		float leafCost, leftCost, rightCost;
 		// Evaluate if the termination criteria are met
@@ -406,22 +320,8 @@ __device__ bool taskTerminationCriteria(int trisLeft, int trisRight, volatile Cu
 		if(leafCost < subdivisionCost && !(s_task[threadIdx.y].bestOrder == 2))
 		{
 			termCrit = TerminatedBy_Cost;
-			return true; // Trivial computation
+			return true;
 		}
-
-		//if(areaAABB(bboxLeft) < EPS || areaAABB(bboxRight) < EPS)
-		//{
-		//	termCrit = TerminatedBy_Cost;
-		//	return true;
-		//}
-
-
-		//if(s_task[threadIdx.y].depth > 44)
-		//printf("TC: lc=%i/%f rc=%i/%f lfc=%i/%f subdc=%f || BBOX: %f %f %f %f %f %f | BBOXL: %f %f %f %f %f %f | BBOXR: %f %f %f %f %f %f\n", 
-		//	trisLeft, leftCost, trisRight, rightCost, trisLeft+trisRight, leafCost, subdivisionCost, bbox.m_mn.x, bbox.m_mn.y, bbox.m_mn.z,
-		//	bbox.m_mx.x, bbox.m_mx.y, bbox.m_mx.z, bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z, bboxLeft.m_mx.x, bboxLeft.m_mx.y, bboxLeft.m_mx.z,
-		//	bboxRight.m_mn.x, bboxRight.m_mn.y, bboxRight.m_mn.z, bboxRight.m_mx.x, bboxRight.m_mx.y, bboxRight.m_mx.z);
-
 	}
 #endif
 
@@ -432,7 +332,7 @@ __device__ bool taskTerminationCriteria(int trisLeft, int trisRight, volatile Cu
 }
 
 #if 0
-__device__ __noinline__ void taskSaveNodeMain(volatile TaskBVH* newTask, int childLeft, int childRight, int parentIdx, int nodeIdx)
+__device__ __noinline__ void taskSaveNodeMain(volatile TaskSBVH* newTask, int childLeft, int childRight, int parentIdx, int nodeIdx)
 {
 #if 1
 	volatile CudaBVHNode* node = (CudaBVHNode*)&s_newTask[threadIdx.y];
@@ -457,7 +357,7 @@ __device__ __noinline__ void taskSaveNodeMain(volatile TaskBVH* newTask, int chi
 #endif
 }
 
-__device__ __noinline__ void taskSaveNodeLeft(volatile TaskBVH* newTask, int childLeft, int nodeIdx, int triStart, int triRight)
+__device__ __noinline__ void taskSaveNodeLeft(volatile TaskSBVH* newTask, int childLeft, int nodeIdx, int triStart, int triRight)
 {
 #if 1
 	volatile CudaBVHNode* node0 = ((CudaBVHNode*)&s_newTask[threadIdx.y])+0;
@@ -475,7 +375,7 @@ __device__ __noinline__ void taskSaveNodeLeft(volatile TaskBVH* newTask, int chi
 #endif
 }
 
-__device__ __noinline__ void taskSaveNodeRight(volatile TaskBVH* newTask, int childRight, int nodeIdx, int triRight, int triEnd)
+__device__ __noinline__ void taskSaveNodeRight(volatile TaskSBVH* newTask, int childRight, int nodeIdx, int triRight, int triEnd)
 {
 #if 1
 	volatile CudaBVHNode* node1 = ((CudaBVHNode*)&s_newTask[threadIdx.y])+1;
@@ -497,7 +397,7 @@ __device__ __noinline__ void taskSaveNodeRight(volatile TaskBVH* newTask, int ch
 //------------------------------------------------------------------------
 
 // Decides what type of task should be created
-__device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
+__device__ bool taskDecideType(int tid, volatile TaskSBVH* newTask)
 {
 	// Update this task in the final array
 	int termCrit;
@@ -513,9 +413,6 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 	int nodeIdx = newTask->nodeIdx;
 
 	ASSERT_DIVERGENCE("taskDecideType top", tid);
-#ifdef MYDEBUG
-	printf("tdt l=%i r=%i\n", numLeft, numRight);
-#endif
 	
 	if(taskTerminationCriteria(numLeft, numRight, newTask->bbox, newTask->bboxLeft, newTask->bboxRight, termCrit, leftLeaf, rightLeaf))
 	{
@@ -539,21 +436,16 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 #else
 		if(tid == 0)
 		{
-			//printf("Left %d, right %d, depth %d\n", numLeft, numRight, newTask->depth);
-			s_sharedData[threadIdx.y][3] = atomicAdd(&g_taskStackBVH.triTop, (numLeft+numRight)*3+1); // Atomically acquire leaf space, +1 is for the triangle sentinel
+			s_sharedData[threadIdx.y][3] = atomicAdd(&g_taskStackSBVH.triTop, (numLeft+numRight)*3+1); // Atomically acquire leaf space, +1 is for the triangle sentinel
 		}
 		int triOfs = s_sharedData[threadIdx.y][3];
 #ifndef WOOP_TRIANGLES
 		int triIdx = createLeaf(tid, triOfs, (float*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triStart, triEnd, (float*)c_bvh_in.tris, getTriIdxPtr(triIdxCtr)); 
 #else
-		//printf("leaf %i - %i\n", triStart, triEnd);
 		int triIdx = createLeafWoop(tid, triOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triStart, triEnd, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart));
 		if(tid == 0)
 			if(triEnd - triStart != 0)
 				freeBuffers(s_task[threadIdx.y].dynamicMemory, (triEnd - triStart) * sizeof(Reference));
-#ifdef MYDEBUG
-		printf("leaf %i\n", triIdx);
-#endif
 #endif
 		if(tid == 0)
 			taskUpdateParentPtr(g_bvh, parentIdx, newTask->taskID, triIdx); // Mark this node as leaf in the hierarchy
@@ -567,13 +459,12 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 		{
 #ifdef COUNT_NODES
 			// Beware this node has a preallocated space and is thus also counted as an inner node
-			atomicAdd(&g_taskStackBVH.numNodes, 1);
-			atomicAdd(&g_taskStackBVH.numLeaves, 1);
-			atomicAdd(&g_taskStackBVH.numSortedTris, triEnd - triStart);
-			//printf("Split Leaf (%d, %d)\n", triStart, triEnd);
+			atomicAdd(&g_taskStackSBVH.numNodes, 1);
+			atomicAdd(&g_taskStackSBVH.numLeaves, 1);
+			atomicAdd(&g_taskStackSBVH.numSortedTris, triEnd - triStart);
 #endif
 #ifdef LEAF_HISTOGRAM
-			atomicAdd(&g_taskStackBVH.leafHist[numLeft+numRight], 1); // Update histogram
+			atomicAdd(&g_taskStackSBVH.leafHist[numLeft+numRight], 1); // Update histogram
 #endif
 		}
 
@@ -596,7 +487,7 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 		if(tid == 0)
 		{
 			// Inner node -> create new subtasks in the final array
-			s_sharedData[threadIdx.y][2] = atomicAdd(&g_taskStackBVH.nodeTop, 2);
+			s_sharedData[threadIdx.y][2] = atomicAdd(&g_taskStackSBVH.nodeTop, 2);
 		}
 		int childrenIdx = s_sharedData[threadIdx.y][2];
 
@@ -608,14 +499,14 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 		if(tid == 0)
 		{
 			if(innerNodes > 0)
-				s_sharedData[threadIdx.y][2] = atomicAdd(&g_taskStackBVH.nodeTop, innerNodes); // Inner node -> create new subtasks in the final array
+				s_sharedData[threadIdx.y][2] = atomicAdd(&g_taskStackSBVH.nodeTop, innerNodes); // Inner node -> create new subtasks in the final array
 			if(innerNodes < 2)
-				s_sharedData[threadIdx.y][3] = atomicAdd(&g_taskStackBVH.triTop, leafChunks); // Atomically acquire leaf space
+				s_sharedData[threadIdx.y][3] = atomicAdd(&g_taskStackSBVH.triTop, leafChunks); // Atomically acquire leaf space
 
 			// Check if there is enough memory to write the nodes and triangles
-			if((innerNodes > 0 && s_sharedData[threadIdx.y][2]+innerNodes >= g_taskStackBVH.sizeNodes) || (leafChunks > 0 && s_sharedData[threadIdx.y][3]+leafChunks >= g_taskStackBVH.sizeTris))
+			if((innerNodes > 0 && s_sharedData[threadIdx.y][2]+innerNodes >= g_taskStackSBVH.sizeNodes) || (leafChunks > 0 && s_sharedData[threadIdx.y][3]+leafChunks >= g_taskStackSBVH.sizeTris))
 			{
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackSBVH.unfinished = 1;
 			}
 		}
 		int childrenIdx = s_sharedData[threadIdx.y][2];
@@ -655,25 +546,19 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 #ifndef WOOP_TRIANGLES
 			childLeft = createLeaf(tid, leftOfs, (float*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triStart, triRight, (float*)c_bvh_in.tris, getTriIdxPtr(triIdxCtr));
 #else
-			//printf("leaf left %i - %i\n",0, triLeft);
 			childLeft = createLeafWoop(tid, leftOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, triLeft, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryLeft, triEnd-triStart));
 			if(tid == 0)
 				if(numLeft != 0)
 					freeBuffers(s_task[threadIdx.y].dynamicMemoryLeft, numLeft * sizeof(Reference));
-#ifdef MYDEBUG
-			printf("childLeftLeaf = %i | %i - %i \n",childLeft, triStart, triRight);
 #endif
 #endif
-#endif
-
 			if(tid == 0)
 			{
 #ifdef COUNT_NODES
-				atomicAdd(&g_taskStackBVH.numLeaves, 1);
-			//	printf("Force Leaf left (%d, %d)\n", triStart, triEnd);
+				atomicAdd(&g_taskStackSBVH.numLeaves, 1);
 #endif
 #ifdef LEAF_HISTOGRAM
-				atomicAdd(&g_taskStackBVH.leafHist[numLeft], 1); // Update histogram
+				atomicAdd(&g_taskStackSBVH.leafHist[numLeft], 1); // Update histogram
 #endif
 			}
 		}
@@ -705,25 +590,20 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 #ifndef WOOP_TRIANGLES
 			childRight = createLeaf(tid, rightOfs, (float*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, triRight, triEnd, (float*)c_bvh_in.tris, getTriIdxPtr(triIdxCtr));
 #else
-			//printf("leaf right %i - %i\n",0, triRight);
 			childRight = createLeafWoop(tid, rightOfs, (float4*)c_bvh_in.trisOut, (int*)c_bvh_in.trisIndexOut, 0, triRight, (float4*)c_bvh_in.tris, getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, triEnd-triStart));
 			if(tid == 0)
 				if(numRight != 0)
 					freeBuffers(s_task[threadIdx.y].dynamicMemoryRight, numRight * sizeof(Reference));
-#ifdef MYDEBUG
-			printf("childRightLeaf = %i | %i - %i |\n",childLeft, triRight, triEnd);
-#endif
 #endif
 #endif
 
 			if(tid == 0)
 			{
 #ifdef COUNT_NODES
-				atomicAdd(&g_taskStackBVH.numLeaves, 1);
-			//	printf("Force Leaf right (%d, %d)\n", triStart, triEnd);
+				atomicAdd(&g_taskStackSBVH.numLeaves, 1);
 #endif
 #ifdef LEAF_HISTOGRAM
-				atomicAdd(&g_taskStackBVH.leafHist[numRight], 1); // Update histogram
+				atomicAdd(&g_taskStackSBVH.leafHist[numRight], 1); // Update histogram
 #endif
 			}
 		}
@@ -732,9 +612,6 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 		ASSERT_DIVERGENCE("taskDecideType nodeBottom", tid);
 
 		volatile CudaBVHNode* node = (CudaBVHNode*)&s_newTask[threadIdx.y];
-
-		//if(tid == 1)
-		//	printf("Constructed node %d\n", nodeIdx);
 #if 1
 		*((float4*)&node->c0xy) = make_float4(newTask->bboxLeft.m_mn.x, newTask->bboxLeft.m_mx.x, newTask->bboxLeft.m_mn.y, newTask->bboxLeft.m_mx.y);
 		*((float4*)&node->c1xy) = make_float4(newTask->bboxRight.m_mn.x, newTask->bboxRight. m_mx.x, newTask->bboxRight.m_mn.y, newTask->bboxRight.m_mx.y);
@@ -753,9 +630,8 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 #ifdef COUNT_NODES
 		if(tid == 0)
 		{
-			atomicAdd(&g_taskStackBVH.numNodes, 1);
-			atomicAdd(&g_taskStackBVH.numSortedTris, triEnd - triStart);
-			//	printf("Node (%d, %d)\n", triStart, triEnd);
+			atomicAdd(&g_taskStackSBVH.numNodes, 1);
+			atomicAdd(&g_taskStackSBVH.numSortedTris, triEnd - triStart);
 		}
 #endif
 
@@ -768,7 +644,7 @@ __device__ bool taskDecideType(int tid, volatile TaskBVH* newTask)
 //------------------------------------------------------------------------
 
 // Creates child task
-__device__ void taskChildTask(volatile TaskBVH* newTask)
+__device__ void taskChildTask(volatile TaskSBVH* newTask)
 {
 	newTask->lock = LockType_Free;
 #if SPLIT_TYPE == 0 || SPLIT_TYPE == 4
@@ -810,8 +686,6 @@ __device__ void taskChildTask(volatile TaskBVH* newTask)
 #if SCAN_TYPE == 2 || SCAN_TYPE == 3
 	newTask->triLeft = 0;
 	newTask->triRight = 0;
-	//newTask->triLeft = newTask->triStart;
-	//newTask->triRight = newTask->triEnd;
 #endif
 
 #ifdef DEBUG_INFO
@@ -826,7 +700,7 @@ __device__ void taskChildTask(volatile TaskBVH* newTask)
 //------------------------------------------------------------------------
 
 // Prepares a new task based on its ID
-__device__ void taskCreateSubtask(int tid, volatile TaskBVH* newTask, int subIdx)
+__device__ void taskCreateSubtask(int tid, volatile TaskSBVH* newTask, int subIdx)
 {
 	ASSERT_DIVERGENCE("taskCreateSubtask", tid);
 
@@ -838,20 +712,17 @@ __device__ void taskCreateSubtask(int tid, volatile TaskBVH* newTask, int subIdx
 		switch(subIdx) // Choose which subtask we are creating
 		{
 		case 1:
-			//newTask->triStart   = s_task[threadIdx.y].triRight;
-			//newTask->triEnd     = s_task[threadIdx.y].triEnd;
+
 			newTask->triStart = 0;
-			newTask->triEnd     = s_task[threadIdx.y].triRight;
+			newTask->triEnd = s_task[threadIdx.y].triRight;
 			newTask->dynamicMemory = s_task[threadIdx.y].dynamicMemoryRight;
 
 			srcBox = (volatile const float*)&(s_task[threadIdx.y].bboxRight);
 			break;
 
 		case 0:
-			//newTask->triStart   = s_task[threadIdx.y].triStart;
-			//newTask->triEnd     = s_task[threadIdx.y].triRight;
-			newTask->triStart   = 0;
-			newTask->triEnd     = s_task[threadIdx.y].triLeft;
+			newTask->triStart = 0;
+			newTask->triEnd = s_task[threadIdx.y].triLeft;
 			newTask->dynamicMemory = s_task[threadIdx.y].dynamicMemoryLeft;
 
 			srcBox = (volatile const float*)&(s_task[threadIdx.y].bboxLeft);
@@ -882,12 +753,12 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 {
 	ASSERT_DIVERGENCE("taskEnqueueSubtasks top", tid);
 
-	int *stackTop = &g_taskStackBVH.top;
+	int *stackTop = &g_taskStackSBVH.top;
 #if ENQUEUE_TYPE == 0
 	int beg = *stackTop;
 	bool goRight = true;
 #elif ENQUEUE_TYPE == 1
-	int beg = g_taskStackBVH.bottom;
+	int beg = g_taskStackSBVH.bottom;
 #elif ENQUEUE_TYPE == 2
 	int beg = *stackTop;
 #endif
@@ -916,7 +787,7 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 #if ENQUEUE_TYPE == 0
 		if(goRight)
 		{
-			taskEnqueueRight(tid, g_taskStackBVH.header, s_sharedData[threadIdx.y], newStatus, beg, 0); // Go right of beg and fill empty tasks
+			taskEnqueueRight(tid, g_taskStackSBVH.header, s_sharedData[threadIdx.y], newStatus, beg, 0); // Go right of beg and fill empty tasks
 
 			if(beg < 0) // Not added when going right
 			{
@@ -928,18 +799,18 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 		// Cannot be else, both paths may need to be taken for same i
 		if(!goRight)
 		{
-			taskEnqueueLeft(tid, g_taskStackBVH.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackBVH.unfinished, g_taskStackBVH.sizePool); // Go left of beg and fill empty tasks
+			taskEnqueueLeft(tid, g_taskStackSBVH.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackSBVH.unfinished, g_taskStackSBVH.sizePool); // Go left of beg and fill empty tasks
 			if(beg == -1)
 			{
-				atomicMax(&g_taskStackBVH.top, g_taskStackBVH.sizePool);
+				atomicMax(&g_taskStackSBVH.top, g_taskStackSBVH.sizePool);
 				return;
 			}
 		}
 #else
-		taskEnqueueLeft(tid, g_taskStackBVH.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackBVH.unfinished, g_taskStackBVH.sizePool); // Go left of beg and fill empty tasks
+		taskEnqueueLeft(tid, g_taskStackSBVH.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackSBVH.unfinished, g_taskStackSBVH.sizePool); // Go left of beg and fill empty tasks
 		if(beg == -1)
 		{
-			atomicMax(&g_taskStackBVH.top, g_taskStackBVH.sizePool);
+			atomicMax(&g_taskStackSBVH.top, g_taskStackSBVH.sizePool);
 			return;
 		}
 #endif
@@ -969,9 +840,9 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 
 		if(tid == 24)
 		{
-			atomicMax(&g_taskStackBVH.top, beg); // Update the stack top to be a larger position than all nonempty tasks
+			atomicMax(&g_taskStackSBVH.top, beg); // Update the stack top to be a larger position than all nonempty tasks
 #if ENQUEUE_TYPE == 1
-			atomicMax(&g_taskStackBVH.bottom, beg);  // Update the stack bottom
+			atomicMax(&g_taskStackSBVH.bottom, beg);  // Update the stack bottom
 #endif
 		}
 
@@ -982,7 +853,7 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 		// Copy empty task from the end of the array
 		if(s_newTask[threadIdx.y].type == TaskType_BinTriangles)
 		{
-			int *orig = (int*)&g_redSplits[g_taskStackBVH.sizePool];
+			int *orig = (int*)&g_redSplits[g_taskStackSBVH.sizePool];
 			int *split = (int*)&g_redSplits[beg];
 			int numElems = (sizeof(SplitArray)/sizeof(int));
 			for(int j = tid; j < numElems; j+=WARP_SIZE)
@@ -1002,13 +873,13 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 #if DEQUEUE_TYPE == 3 || DEQUEUE_TYPE == 5 || DEQUEUE_TYPE == 6
 		if(tid == 24)
 		{
-			taskCacheActive(beg, g_taskStackBVH.active, &g_taskStackBVH.activeTop);
+			taskCacheActive(beg, g_taskStackSBVH.active, &g_taskStackSBVH.activeTop);
 		}
 #endif
 
 		// Unlock the task - set the task status
-		g_taskStackBVH.header[beg] = newStatus; // This operation is atomic anyway
-		//g_taskStackBVH.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
+		g_taskStackSBVH.header[beg] = newStatus; // This operation is atomic anyway
+		//g_taskStackSBVH.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
 
 #if ENQUEUE_TYPE == 0
 		if(goRight)
@@ -1023,7 +894,7 @@ __device__ void taskEnqueueSubtasks(int tid, int taskIdx)
 	}
 
 	//if(s_task[threadIdx.y].depth > c_env.optCutOffDepth)
-	//g_taskStackBVH.unfinished = 1; // Finish computation after first task
+	//g_taskStackSBVH.unfinished = 1; // Finish computation after first task
 
 	ASSERT_DIVERGENCE("taskEnqueueSubtasks aftercycle", tid);
 }
@@ -1036,9 +907,9 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 {
 	ASSERT_DIVERGENCE("taskEnqueueSubtasksParallel top", tid);
 
-	int *stackTop = &g_taskStackBVH.top;
-	unsigned int *emptyTop = &g_taskStackBVH.emptyTop;
-	unsigned int *emptyBottom = &g_taskStackBVH.emptyBottom;
+	int *stackTop = &g_taskStackSBVH.top;
+	unsigned int *emptyTop = &g_taskStackSBVH.emptyTop;
+	unsigned int *emptyBottom = &g_taskStackSBVH.emptyBottom;
 	int pos = *emptyBottom;
 	int top = *emptyTop;
 	int beg = -1;
@@ -1072,7 +943,7 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 #ifdef COUNT_STEPS_CACHE
 			numReads[threadIdx.y]++;
 #endif
-			taskEnqueueCache(tid, &g_taskStackBVH, s_sharedData[threadIdx.y], status, pos, beg, top);
+			taskEnqueueCache(tid, &g_taskStackSBVH, s_sharedData[threadIdx.y], status, pos, beg, top);
 			ASSERT_DIVERGENCE("taskEnqueueSubtasks cache", tid);
 
 			// Test that we have not read all cached items
@@ -1099,18 +970,18 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 		{
 			if(mid == -1)
 			{
-				//beg = g_taskStackBVH.bottom;
-				//beg = g_taskStackBVH.top;
+				//beg = g_taskStackSBVH.bottom;
+				//beg = g_taskStackSBVH.top;
 				beg = max(*stackTop - WARP_SIZE, 0);
 				mid = 0;
 			}
 #ifdef COUNT_STEPS_LEFT
 				numReads[threadIdx.y]++;
 #endif
-			taskEnqueueLeft(tid, g_taskStackBVH.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackBVH.unfinished, g_taskStackBVH.sizePool); // Go left of beg and fill empty tasks
+			taskEnqueueLeft(tid, g_taskStackSBVH.header, s_sharedData[threadIdx.y], newStatus, beg, &g_taskStackSBVH.unfinished, g_taskStackSBVH.sizePool); // Go left of beg and fill empty tasks
 			if(beg == -1)
 			{
-				atomicMax(&g_taskStackBVH.top, g_taskStackBVH.sizePool);
+				atomicMax(&g_taskStackSBVH.top, g_taskStackSBVH.sizePool);
 				return;
 			}
 		}
@@ -1126,7 +997,7 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 
 		if(tid == 24)
 		{
-			atomicMax(&g_taskStackBVH.top, beg); // Update the stack top to be a larger position than all nonempty tasks
+			atomicMax(&g_taskStackSBVH.top, beg); // Update the stack top to be a larger position than all nonempty tasks
 		}
 
 		taskSaveFirstToGMEM(tid, beg, s_newTask[threadIdx.y]);
@@ -1136,7 +1007,7 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 		// Copy empty task from the end of the array
 		if(s_newTask[threadIdx.y].type == TaskType_BinTriangles)
 		{
-			int *orig = (int*)&g_redSplits[g_taskStackBVH.sizePool];
+			int *orig = (int*)&g_redSplits[g_taskStackSBVH.sizePool];
 			int *split = (int*)&g_redSplits[beg];
 			int numElems = (sizeof(SplitArray)/sizeof(int));
 			for(int j = tid; j < numElems; j+=WARP_SIZE)
@@ -1157,13 +1028,13 @@ __device__ void taskEnqueueSubtasksCache(int tid, int taskIdx)
 #if DEQUEUE_TYPE == 3 || DEQUEUE_TYPE == 5 || DEQUEUE_TYPE == 6
 		if(tid == 24)
 		{
-			taskCacheActive(beg, g_taskStackBVH.active, &g_taskStackBVH.activeTop);
+			taskCacheActive(beg, g_taskStackSBVH.active, &g_taskStackSBVH.activeTop);
 		}
 #endif
 
 		// Unlock the task - set the task status
-		g_taskStackBVH.header[beg] = newStatus; // This operation is atomic anyway
-		//g_taskStackBVH.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
+		g_taskStackSBVH.header[beg] = newStatus; // This operation is atomic anyway
+		//g_taskStackSBVH.header[beg] = TaskHeader_Locked; // Stop the algorithm by not activating tasks
 
 		beg++; // Move for next item
 
@@ -1190,9 +1061,9 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 	{
 
 		// Initiate variables
-		int* header = g_taskStackBVH.header;
-		int *unfinished = &g_taskStackBVH.unfinished;
-		int *stackTop = &g_taskStackBVH.top;
+		int* header = g_taskStackSBVH.header;
+		int *unfinished = &g_taskStackSBVH.unfinished;
+		int *stackTop = &g_taskStackSBVH.top;
 
 		int status = TaskHeader_Active;
 		int counter = 0; // TESTING ONLY: Allows to undeadlock a failed run!
@@ -1222,8 +1093,8 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 		//int beg = top - (warpIdx % (top + 1));
 		//int beg = (int)((float)warpIdx*((float)(top + 1) / (float)NUM_WARPS));
 #elif DEQUEUE_TYPE == 3
-		unsigned int *activeTop = &g_taskStackBVH.activeTop;
-		int* act = g_taskStackBVH.active;
+		unsigned int *activeTop = &g_taskStackSBVH.activeTop;
+		int* act = g_taskStackSBVH.active;
 		int pos = (*activeTop)-1;
 		if(pos < 0)
 			pos = ACTIVE_MAX;
@@ -1244,9 +1115,9 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 			if(status > TaskHeader_Active)
 			{
 				//popCount = taskPopCount(status);
-				popCount = taskPopCount(*((int*)&g_taskStackBVH.tasks[beg].origSize));
+				popCount = taskPopCount(*((int*)&g_taskStackSBVH.tasks[beg].origSize));
 				// Try acquire the current task - decrease it
-				status = atomicSub(&g_taskStackBVH.header[beg], popCount); // Try to update and return the current value
+				status = atomicSub(&g_taskStackSBVH.header[beg], popCount); // Try to update and return the current value
 			}
 
 			/*if(status <= TaskHeader_Active) // Immediate exit
@@ -1266,7 +1137,7 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 		/*if(status <= TaskHeader_Active) // Immediate exit
 			counter = WAIT_COUNT;*/
 
-		while(counter < WAIT_COUNT && *unfinished < 0 && status <= TaskHeader_Active) // while g_taskStackBVH is not empty and we have not found ourselves a task
+		while(counter < WAIT_COUNT && *unfinished < 0 && status <= TaskHeader_Active) // while g_taskStackSBVH is not empty and we have not found ourselves a task
 		{
 			// Find first active task, end if we have reached start of the array
 #if DEQUEUE_TYPE == 0 || DEQUEUE_TYPE == 2 || DEQUEUE_TYPE == 3
@@ -1308,7 +1179,7 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 				clock_t end = start + 1000;
 				while(start < end)
 				{
-				//g_taskStackBVH.tasks[0].padding1 = 0; // DOES NOT SEEM TO BE BETTER
+				//g_taskStackSBVH.tasks[0].padding1 = 0; // DOES NOT SEEM TO BE BETTER
 				//__threadfence_system();
 				start = clock();
 				}*/
@@ -1352,9 +1223,9 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 #endif
 
 			//popCount = taskPopCount(status);
-			popCount = taskPopCount(*((int*)&g_taskStackBVH.tasks[beg].origSize));
+			popCount = taskPopCount(*((int*)&g_taskStackSBVH.tasks[beg].origSize));
 			// Try acquire the current task - decrease it
-			status = atomicSub(&g_taskStackBVH.header[beg], popCount); // Try to update and return the current value
+			status = atomicSub(&g_taskStackSBVH.header[beg], popCount); // Try to update and return the current value
 
 			//int warpIdx = (blockDim.y*blockIdx.x + threadIdx.y);
 			//if(status < TaskHeader_Active)
@@ -1379,12 +1250,12 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 				else
 					beg++;
 #endif
-				// OPTIMIZE: we shall move beg--; as the first statement in the outer while and start with g_taskStackBVH.top+1.
+				// OPTIMIZE: we shall move beg--; as the first statement in the outer while and start with g_taskStackSBVH.top+1.
 			}
 		}
 
 		// Distribute information to all threads through shared memory
-		if(counter >= WAIT_COUNT || status <= TaskHeader_Active || *unfinished == 0) // g_taskStackBVH is empty, no more work to do
+		if(counter >= WAIT_COUNT || status <= TaskHeader_Active || *unfinished == 0) // g_taskStackSBVH is empty, no more work to do
 		{
 			s_sharedData[threadIdx.y][0] = -1; // no task, end
 		}
@@ -1406,7 +1277,7 @@ __device__ __noinline__ bool taskDequeue(int tid, int& subtask, int& taskIdx, in
 			numRestarts[threadIdx.y] += counter;
 		}
 
-		//atomicExch(&g_taskStackBVH.active, beg); // Update the last active position
+		//atomicExch(&g_taskStackSBVH.active, beg); // Update the last active position
 
 		if(counter >= WAIT_COUNT || status <= TaskHeader_Active || *unfinished == 0)
 			numSteps[threadIdx.y] -= 1;
@@ -1444,9 +1315,9 @@ __device__ __noinline__ bool taskDequeue(int tid)
 	ASSERT_DIVERGENCE("taskDequeue", tid);
 
 	// Initiate variables
-	int* header = g_taskStackBVH.header;
-	int* unfinished = &g_taskStackBVH.unfinished;
-	int* stackTop = &g_taskStackBVH.top;
+	int* header = g_taskStackSBVH.header;
+	int* unfinished = &g_taskStackSBVH.unfinished;
+	int* stackTop = &g_taskStackSBVH.top;
 	volatile int* red = (volatile int*)&s_newTask[threadIdx.y];
 
 	int status = TaskHeader_Active;
@@ -1468,8 +1339,8 @@ __device__ __noinline__ bool taskDequeue(int tid)
 	int beg = (warpIdx % topChunk) * WARP_SIZE - tid;
 
 #elif DEQUEUE_TYPE == 5
-	//unsigned int *activeTop = &g_taskStackBVH.activeTop;
-	int* cache = g_taskStackBVH.active;
+	//unsigned int *activeTop = &g_taskStackSBVH.activeTop;
+	int* cache = g_taskStackSBVH.active;
 	s_task[threadIdx.y].popSubtask = status;
 	//bool cached;
 
@@ -1547,7 +1418,7 @@ __device__ __noinline__ bool taskDequeue(int tid)
 		if(status > TaskHeader_Active)
 		{
 			red[tid] = status;
-			//red[tid] = *((int*)&g_taskStackBVH.tasks[beg].origSize);
+			//red[tid] = *((int*)&g_taskStackSBVH.tasks[beg].origSize);
 			//owner[tid] = beg;
 		}*/
 
@@ -1557,7 +1428,7 @@ __device__ __noinline__ bool taskDequeue(int tid)
 		//	reduceWarp<int>(tid, red, plus);
 
 		//int popCount = taskPopCount(status);
-		//int popCount = taskPopCount(*((int*)&g_taskStackBVH.tasks[beg].origSize));
+		//int popCount = taskPopCount(*((int*)&g_taskStackSBVH.tasks[beg].origSize));
 		//int popCount = max((red[0] / NUM_WARPS) + 1, taskPopCount(status));
 		int popCount = max((status / NUM_WARPS) + 1, taskPopCount(status));
 
@@ -1582,7 +1453,7 @@ __device__ __noinline__ bool taskDequeue(int tid)
 			//if(red[tid] == xPos)
 			{
 				// Try acquire the current task - decrease it
-				s_task[threadIdx.y].popSubtask = atomicSub(&g_taskStackBVH.header[beg], popCount); // Try to update and return the current value
+				s_task[threadIdx.y].popSubtask = atomicSub(&g_taskStackSBVH.header[beg], popCount); // Try to update and return the current value
 				s_task[threadIdx.y].popCount = popCount;
 				s_task[threadIdx.y].popTaskIdx = beg;
 				//s_sharedData[threadIdx.y][1] = beg;
@@ -1599,7 +1470,7 @@ __device__ __noinline__ bool taskDequeue(int tid)
 
 		/*if(tid == 0 && status < TaskHeader_Dependent)
 		{
-			atomicAdd(&g_taskStackBVH.header[beg], s_task[threadIdx.y].popCount); // Revert if we have accidentaly changed waiting task
+			atomicAdd(&g_taskStackSBVH.header[beg], s_task[threadIdx.y].popCount); // Revert if we have accidentaly changed waiting task
 		}*/
 
 		//if(pos < 0)
@@ -1646,7 +1517,7 @@ __device__ __noinline__ bool taskDequeue(int tid)
 		/*red[tid] = 0;
 		if(status > TaskHeader_Active)
 		{
-			red[tid] = *((int*)&g_taskStackBVH.tasks[beg].origSize);
+			red[tid] = *((int*)&g_taskStackSBVH.tasks[beg].origSize);
 			//red[tid] = status;
 		}
 
@@ -1696,7 +1567,7 @@ __device__ __noinline__ bool taskDequeue(int tid)
 				// Try acquire the current task - decrease it
 				// status now holds the information about what tasks this warp has to do but in a reversed order and offseted by 1
 				// (status starts at the number of subtasks and ends at 1)
-				s_task[threadIdx.y].popSubtask = atomicSub(&g_taskStackBVH.header[beg], popCount); // Try to update and return the current value
+				s_task[threadIdx.y].popSubtask = atomicSub(&g_taskStackSBVH.header[beg], popCount); // Try to update and return the current value
 				s_task[threadIdx.y].popCount = popCount;
 				s_task[threadIdx.y].popTaskIdx = beg;
 
@@ -1768,7 +1639,7 @@ __device__ void taskFinishSort(int tid, int taskIdx)
 	// We should update the dependencies before we start adding new tasks because these subtasks may be finished before this is done
 
 #ifndef KEEP_ALL_TASKS
-	atomicCAS(&g_taskStackBVH.top, taskIdx, max(taskIdx-1, 0)); // Try decreasing the stack top
+	atomicCAS(&g_taskStackSBVH.top, taskIdx, max(taskIdx-1, 0)); // Try decreasing the stack top
 #endif
 
 	int fullLeft = s_sharedData[threadIdx.y][0] >= 0;
@@ -1776,15 +1647,15 @@ __device__ void taskFinishSort(int tid, int taskIdx)
 	int numSubtasks = fullLeft+fullRight;
 
 	// Update taskStackBVH.unfinished
-	atomicSub(&g_taskStackBVH.unfinished, numSubtasks-1);
+	atomicSub(&g_taskStackSBVH.unfinished, numSubtasks-1);
 
 #ifndef KEEP_ALL_TASKS
-	g_taskStackBVH.header[taskIdx] = TaskHeader_Empty; // Empty this task
+	g_taskStackSBVH.header[taskIdx] = TaskHeader_Empty; // Empty this task
 
 #if ENQUEUE_TYPE == 1
-	atomicMin(&g_taskStackBVH.bottom, taskIdx); // Update the stack bottom
+	atomicMin(&g_taskStackSBVH.bottom, taskIdx); // Update the stack bottom
 #elif ENQUEUE_TYPE == 3
-	taskCacheEmpty(taskIdx, g_taskStackBVH.empty, &g_taskStackBVH.emptyTop);
+	taskCacheEmpty(taskIdx, g_taskStackSBVH.empty, &g_taskStackSBVH.emptyTop);
 #endif
 #endif
 }
@@ -1800,13 +1671,13 @@ __device__ void taskFinishTask(int tid, int taskIdx)
 
 #ifndef KEEP_ALL_TASKS
 #if DEQUEUE_TYPE == 3 || DEQUEUE_TYPE == 5 || DEQUEUE_TYPE == 6
-		taskUncacheActive(tid, taskIdx, g_taskStackBVH.active, &g_taskStackBVH.activeTop);
+		taskUncacheActive(tid, taskIdx, g_taskStackSBVH.active, &g_taskStackSBVH.activeTop);
 #endif
 #endif
 
 		s_task[threadIdx.y].lock = LockType_Free;
 
-		//g_taskStackBVH.unfinished = 1;
+		//g_taskStackSBVH.unfinished = 1;
 		//return; // Measure time without enqueue
 
 		ASSERT_DIVERGENCE("taskFinishTask top", tid);
@@ -1939,7 +1810,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			if(left->cnt+right->cnt != triEnd - triStart)
 			{
 				printf("Failed reduction in task %d (%d x %d)!\n", taskIdx, left->cnt+right->cnt, triEnd - triStart);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackSBVH.unfinished = 1;
 			}
 #endif
 #ifdef TIMING_INNER
@@ -2003,16 +1874,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
 			findPlaneAABB(tid, bbox, plane);
 
-			//if((plane.x == -1.0 && (bboxRight.m_mx.x - bboxRight.m_mn.x < BOX_EPS || bboxLeft.m_mx.x - bboxLeft.m_mn.x < BOX_EPS)) ||
-			//   (plane.y == -1.0 && (bboxRight.m_mx.y - bboxRight.m_mn.y < BOX_EPS || bboxLeft.m_mx.y - bboxLeft.m_mn.y < BOX_EPS)) ||
-			//   (plane.z == -1.0 && (bboxRight.m_mx.z - bboxRight.m_mn.z < BOX_EPS || bboxLeft.m_mx.z - bboxLeft.m_mn.z < BOX_EPS))  )
-			//{
-			//	spatialCost = (rightCnt + leftCnt) * 100000;
-			//	//printf("force cost %f\n", spatialCost);
-			//}
-
-			if(spatialCost < cost || spatialSplit)
-			//if(false)
+			if((spatialCost < cost || spatialSplit) && s_task[threadIdx.y].depth < c_env.optMaxDepthSpatialSplit)
 			{
 				cost = spatialCost;
 				spatialSplit = true;
@@ -2021,11 +1883,8 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			{
 				leftCnt = (float)left->cnt;
 				rightCnt = (float)right->cnt;
+				spatialSplit = false;
 			}
-
-
-
-			//printf("%f %f %f %f %f %f\n", bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z, spatialBboxLeft.m_mn.x, spatialBboxLeft.m_mn.y, spatialBboxLeft.m_mn.z);
 
 #ifdef BBOX_TEST
 			if(bboxLeft.m_mn.x < s_task[threadIdx.y].bbox.m_mn.x)
@@ -2058,46 +1917,9 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			if(bboxRight.m_mx.z > s_task[threadIdx.y].bbox.m_mx.z)
 				printf("Max right z cost bound error %f should be %f!\n", bboxRight.m_mx.z, s_task[threadIdx.y].bbox.m_mx.z);
 #endif
-			//if(cost < 0)
-			//	printf("=========== cost < 0 | %f %f %f %f\n", leftCnt, rightCnt, areaAABB(bboxLeft), areaAABB(bboxRight));
-			//
-			//if(spatialCost < 0)
-			//	printf("=========== sCost < 0 | %f %f %f %f\n", spatialLeftCnt, spatialRightCnt, areaAABB(spatialBboxLeft), areaAABB(spatialBboxRight));
-
-#ifdef TIMING_INNER
-			endTime = clock();
-			if(threadIdx.x == 0)
-				printf("TFB cost compute %lli\n", endTime - startTime);
-#endif
-			//printf("%.1f %.1f %.1f %f | cnt %f %f area %f %f cost=%f cnt %f %f area %f %f Cost=%f\n", 
-			//	plane.x, plane.y, plane.z, plane.w,
-			//	leftCnt, rightCnt, areaAABB(bboxLeft), areaAABB(bboxRight),
-			//	cost, spatialLeftCnt, spatialRightCnt, areaAABB(spatialBboxLeft), areaAABB(spatialBboxRight), spatialCost);
-
-#ifdef MYDEBUG
-			printf("taskFinishBinning l = %i %f %f %f %f %f %f r = %i %f %f %f %f %f %f cost = %i\n", leftCnt, bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z,
-				bboxLeft.m_mx.x, bboxLeft.m_mx.y, bboxLeft.m_mx.z, rightCnt, bboxRight.m_mn.x, bboxRight.m_mn.y, bboxRight.m_mn.z,
-				bboxRight.m_mx.x, bboxRight.m_mx.y, bboxRight.m_mx.z,  cost);
-#endif
-
 			// Reduce the best cost within the warp
-#ifdef TIMING_INNER 
-			startTime = clock();
-#endif
-#ifdef TIMING_INNER_INNER
-			time_t startTime = clock();
-#endif
-
 			red[tid] = cost;
 			reduceWarp(tid, red, min);
-
-#ifdef TIMING_INNER_INNER
-			time_t endTime = clock();
-			if(threadIdx.x == 0)
-				printf("TFB reduce %lli\n", endTime - startTime);
-			startTime = clock();
-#endif
-
 
 			//spatialRed[tid] = spatialCost;
 			//reduceWarp(tid, spatialRed, min);
@@ -2119,74 +1941,27 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 			s_owner[threadIdx.y][0] = -1; // Mark as no split
 			// Return the best plane for this warp
-
-			//int bestTid = __ffs(__ballot(red[tid] == cost));
-			//int bestSpatialTid = __ffs(__ballot(spatialRed[tid] == spatialCost));
-
-			//if(false)
-			if(__ffs(__ballot(red[tid] == cost)) == tid+1 && !(areaAABB(bbox) < 0.000001f)) // First thread with such condition, OPTIMIZE: Can be also computed by overwrite and test: better? */
+			if(__ffs(__ballot(red[tid] == cost)) == tid+1) // First thread with such condition, OPTIMIZE: Can be also computed by overwrite and test: better? */
 			{
 				//float4 plane;
-				//volatile CudaAABB& bbox = s_task[threadIdx.y].bbox;
 				s_task[threadIdx.y].splitPlane.x = plane.x;
 				s_task[threadIdx.y].splitPlane.y = plane.y;
 				s_task[threadIdx.y].splitPlane.z = plane.z;
 				s_task[threadIdx.y].splitPlane.w = plane.w;
 				s_task[threadIdx.y].bestCost = cost;
 				s_owner[threadIdx.y][0] = tid;
-				s_task[threadIdx.y].bestOrder = (spatialSplit ? 1 : 0); //useful??
+				s_task[threadIdx.y].bestOrder = (spatialSplit ? 1 : 0);
 #ifdef PRINTS
 				printf("best split at %i: %i -> lc=%f rc=%f, %0.1f %0.1f %0.1f %f | %f || bbox: %f %f %f %f %f %f\n", 
 					s_task[threadIdx.y].depth, triEnd, leftCnt, rightCnt, plane.x, plane.y, plane.z, plane.w, cost, bbox.m_mn.x, bbox.m_mn.y, bbox.m_mn.z, bbox.m_mx.x, bbox.m_mx.y, bbox.m_mx.z);
 #endif
-				/*
-
-				if(bboxLeft.m_mn.x < bbox.m_mn.x)
-					printf("notgut");
-				if(bboxLeft.m_mn.y < bbox.m_mn.y)
-					printf("notgut");
-				if(bboxLeft.m_mn.z < bbox.m_mn.z)
-					printf("notgut");
-				if(bboxRight.m_mn.x < bbox.m_mn.x)
-					printf("notgut");
-				if(bboxRight.m_mn.y < bbox.m_mn.y)
-					printf("notgut");
-				if(bboxRight.m_mn.z < bbox.m_mn.z)
-					printf("notgut");
-
-				if(bboxLeft.m_mx.x > bbox.m_mx.x)
-					printf("notgut");
-				if(bboxLeft.m_mx.y > bbox.m_mx.y)
-					printf("notgut");
-				if(bboxLeft.m_mx.z > bbox.m_mx.z)
-					printf("notgut");
-				if(bboxRight.m_mx.x > bbox.m_mx.x)
-					printf("notgut");
-				if(bboxRight.m_mx.y > bbox.m_mx.y)
-					printf("notgut");
-				if(bboxRight.m_mx.z > bbox.m_mx.z)
-					printf("notgut");
-*/
-
 				int termCrit;
 				bool leftLeaf, rightLeaf;
 				bool leaf = taskTerminationCriteria(leftCnt, rightCnt, s_task[threadIdx.y].bbox, bboxLeft, bboxRight, termCrit, leftLeaf, rightLeaf);
-
-#ifdef TIMING_INNER_INNER
-			time_t endTime = clock();
-			if(threadIdx.x == 0)
-				printf("TFB term crit %lli\n", endTime - startTime);
-			startTime = clock();
-#endif				
+			
 				if(!leaf)
 					allocChildren(s_task[threadIdx.y].dynamicMemoryLeft, s_task[threadIdx.y].dynamicMemoryRight, leftCnt, rightCnt);
 
-#ifdef TIMING_INNER_INNER
-			endTime = clock();
-			if(threadIdx.x == 0)
-				printf("TFB alloc %lli\n", endTime - startTime);
-			startTime = clock();
-#endif
 				if(leftCnt == 0 || rightCnt == 0)
 				{
 					s_task[threadIdx.y].triLeft = leftCnt;
@@ -2195,17 +1970,14 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 				}
 				else if(leaf)
 				{
-#ifdef PRINTS
+
 					s_task[threadIdx.y].triLeft = s_task[threadIdx.y].triEnd -1;
 					s_task[threadIdx.y].triRight = 1;
 					s_task[threadIdx.y].bestOrder = 3;
+#ifdef PRINTS
 					printf("!!!leaf\n");
 
 #endif
-
-					//s_task[threadIdx.y].triLeft = leftCnt;
-					//s_task[threadIdx.y].triRight = rightCnt;
-					//s_owner[threadIdx.y][0] = -tid * 10;
 				}
 
 /*#ifdef SPLIT_TEST
@@ -2213,25 +1985,11 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 					s_task[threadIdx.y].splitPlane.x, s_task[threadIdx.y].splitPlane.y, s_task[threadIdx.y].splitPlane.z, s_task[threadIdx.y].splitPlane.w);
 #endif*/
 			}
-
-#ifdef TIMING_INNER
-			endTime = clock();
-			if(threadIdx.x == 0)
-				printf("TFB best cost %lli\n", endTime - startTime);
-			startTime = clock();
-#endif
 		}
 
-
-		//if(s_owner[threadIdx.y][0] == -100)
-		//{
-		//	taskFinishTask(tid, taskIdx);
-		//}
 		if(s_owner[threadIdx.y][0] == -1) // No split found, do object median
 		{
 			s_task[threadIdx.y].bestOrder = 2; // Mark as forced object median split
-			
-			//s_task[threadIdx.y].triRight = triStart + (triEnd - triStart) / 2; // Force split on unsubdivided task
 			s_task[threadIdx.y].triRight = (triEnd - triStart) / 2; // Force split on unsubdivided task
 			s_task[threadIdx.y].triLeft = (triEnd - triStart) - s_task[threadIdx.y].triRight;
 			s_task[threadIdx.y].unfinished = taskWarpSubtasksZero(triEnd - triStart);
@@ -2246,30 +2004,18 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 #else
 			// Copy boxes
 			volatile float* bbox = (volatile float*)&(s_task[threadIdx.y].bbox);
-			volatile float* bboxCpy = (volatile float*)((tid < sizeof(CudaAABB)/sizeof(float)) ? &g_taskStackBVH.tasks[taskIdx].bboxLeft : &g_taskStackBVH.tasks[taskIdx].bboxRight);
-			//volatile float* bboxCpy = (volatile float*)((tid < sizeof(CudaAABB)/sizeof(float)) ? &s_task[threadIdx.y].bboxLeft : &s_task[threadIdx.y].bboxRight);
-			//volatile float* bboxLeft = (volatile float*)&(s_task[threadIdx.y].bboxLeft);
-			//volatile float* bboxRight = (volatile float*)&(s_task[threadIdx.y].bboxRight);
-			/*if(tid < sizeof(CudaAABB)/sizeof(float))
-			{
-				bboxLeft[tid] = bbox[tid];
-				bboxRight[tid] = bbox[tid];
-			}*/
+			volatile float* bboxCpy = (volatile float*)((tid < sizeof(CudaAABB)/sizeof(float)) ? &g_taskStackSBVH.tasks[taskIdx].bboxLeft : &g_taskStackSBVH.tasks[taskIdx].bboxRight);
+
 			if(tid < 2*sizeof(CudaAABB)/sizeof(float))
 			{
-				//bboxCpy[tid % 6] = bbox[tid % 6];
 				bboxCpy[tid % 6] = bbox[tid % 6];
 			}
 
 			s_task[threadIdx.y].type = taskChooseScanType(s_task[threadIdx.y].unfinished);
 
-
-			//allocChildren(s_task[threadIdx.y].dynamicMemoryLeft, s_task[threadIdx.y].dynamicMemoryRight, s_task[threadIdx.y].triLeft, s_task[threadIdx.y].triRight);
-
 			if(__ffs(__ballot(tid == tid)) == tid+1)
 			{
 				allocChildren(s_task[threadIdx.y].dynamicMemoryLeft, s_task[threadIdx.y].dynamicMemoryRight, s_task[threadIdx.y].triLeft + 1, s_task[threadIdx.y].triRight + 1);
-			//atomicAdd(&g_taskStackBVH.numForcedMedians, 1);
 			}
 			s_task[threadIdx.y].triRight = 0;
 			s_task[threadIdx.y].triLeft  = 0;
@@ -2286,7 +2032,6 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			}
 			else
 			{
-
 				// Copy boxes
 				if(s_task[threadIdx.y].bestOrder == 1) // Spatial split
 				{
@@ -2299,10 +2044,10 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 					right = (ChildData*)&splitArray->splits[s_owner[threadIdx.y][0]].children[1];
 				}
 
-				float* t_bboxLeft = (float*)&(g_taskStackBVH.tasks[taskIdx].bboxLeft);
+				float* t_bboxLeft = (float*)&(g_taskStackSBVH.tasks[taskIdx].bboxLeft);
 				const float* g_bboxLeft = (const float*)&(left->bbox);
 
-				float* t_bboxRight = (float*)&(g_taskStackBVH.tasks[taskIdx].bboxRight);
+				float* t_bboxRight = (float*)&(g_taskStackSBVH.tasks[taskIdx].bboxRight);
 				const float* g_bboxRight = (const float*)&(right->bbox);
 				// Copy CudaAABB from corresponding task
 				if(tid < sizeof(CudaAABB)/sizeof(float))
@@ -2386,7 +2131,7 @@ __device__ void taskFinishReduce(int tid, int taskIdx, int countDown)
 			if(left->cnt+right->cnt != s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart)
 			{
 				printf("Failed reduction in task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackSBVH.unfinished = 1;
 			}
 #endif
 
@@ -2435,10 +2180,10 @@ __device__ void taskFinishReduce(int tid, int taskIdx, int countDown)
 			left = (ChildData*)&splitArray->splits[0][s_sharedData[threadIdx.y][0]].children[0];
 			right = (ChildData*)&splitArray->splits[0][s_sharedData[threadIdx.y][0]].children[1];
 
-			volatile float* bboxLeft = (volatile float*)&(g_taskStackBVH.tasks[taskIdx].bboxLeft);
+			volatile float* bboxLeft = (volatile float*)&(g_taskStackSBVH.tasks[taskIdx].bboxLeft);
 			const float* g_bboxLeft = (const float*)&(left->bbox);
 
-			volatile float* bboxRight = (volatile float*)&(g_taskStackBVH.tasks[taskIdx].bboxRight);
+			volatile float* bboxRight = (volatile float*)&(g_taskStackSBVH.tasks[taskIdx].bboxRight);
 			const float* g_bboxRight = (const float*)&(right->bbox);
 			// Copy CudaAABB from corresponding task
 			if(tid < sizeof(CudaAABB)/sizeof(float))
@@ -2754,20 +2499,12 @@ __device__ void taskFinishPartition(int tid, int taskIdx, unsigned countDown)
 
 	if(taskCheckFinished(tid, taskIdx, countDown)) // We have finished the task and are responsible for cleaning up
 	{
-		//freeBuffers(s_task[threadIdx.y].dynamicMemory, s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart);
 		// Load correct split positions from global memory
-		int triLeft = g_taskStackBVH.tasks[taskIdx].triLeft;
-		int triRight = g_taskStackBVH.tasks[taskIdx].triRight;
-
-		//if(triRight == triStart || triRight == triEnd)
-		//{
-		//	triRight = triStart + (triEnd - triStart) / 2; // Force split on unsubdivided task
-		//	triLeft = triRight;
-		//}
+		int triLeft = g_taskStackSBVH.tasks[taskIdx].triLeft;
+		int triRight = g_taskStackSBVH.tasks[taskIdx].triRight;
 
 		s_task[threadIdx.y].triLeft = triLeft;
 		s_task[threadIdx.y].triRight = triRight;
-		//s_task[threadIdx.y].triIdxCtr++; // The output array should be used
 
 #ifdef RAYTRI_TEST
 		if(tid == 0 && triLeft != triRight)
@@ -3019,7 +2756,7 @@ __device__ void taskFinishAABB(int tid, int taskIdx, unsigned countDown)
 					s_task[threadIdx.y].bboxLeft.m_mx.x, s_task[threadIdx.y].bboxLeft.m_mx.y, s_task[threadIdx.y].bboxLeft.m_mx.z,
 					s_task[threadIdx.y].bbox.m_mn.x, s_task[threadIdx.y].bbox.m_mn.y, s_task[threadIdx.y].bbox.m_mn.z,
 					s_task[threadIdx.y].bbox.m_mx.x, s_task[threadIdx.y].bbox.m_mx.y, s_task[threadIdx.y].bbox.m_mx.z);
-				//g_taskStackBVH.unfinished = 1;
+				//g_taskStackSBVH.unfinished = 1;
 			}
 			
 			if(s_task[threadIdx.y].bboxRight.m_mn.x < s_task[threadIdx.y].bbox.m_mn.x || s_task[threadIdx.y].bboxRight.m_mn.y < s_task[threadIdx.y].bbox.m_mn.y || s_task[threadIdx.y].bboxRight.m_mn.z < s_task[threadIdx.y].bbox.m_mn.z
@@ -3030,7 +2767,7 @@ __device__ void taskFinishAABB(int tid, int taskIdx, unsigned countDown)
 					s_task[threadIdx.y].bboxRight.m_mx.x, s_task[threadIdx.y].bboxRight.m_mx.y, s_task[threadIdx.y].bboxRight.m_mx.z,
 					s_task[threadIdx.y].bbox.m_mn.x, s_task[threadIdx.y].bbox.m_mn.y, s_task[threadIdx.y].bbox.m_mn.z,
 					s_task[threadIdx.y].bbox.m_mx.x, s_task[threadIdx.y].bbox.m_mx.y, s_task[threadIdx.y].bbox.m_mx.z);
-				//g_taskStackBVH.unfinished = 1;
+				//g_taskStackSBVH.unfinished = 1;
 			}
 		}
 #endif
@@ -3093,14 +2830,10 @@ __device__ void trianglesPlanePosition(int triStart, int triEnd, const float4& p
 	for(int triPos = triStart; triPos < triEnd; triPos += step)
 	{
 		Reference* inIdx = getTriIdxPtr(s_task[threadIdx.y].triIdxCtr, triEnd-triStart);
-		//int triIdx = inIdx[triPos]*3;
 
-		// Fetch triangle
-		//float3 v0, v1, v2;
 		CudaAABB bbox;
 		int dummyIdx;
 		taskFetchReference((CUdeviceptr)inIdx, triPos, bbox, dummyIdx);
-		//taskFetchTri(c_bvh_in.tris, triIdx, v0, v1, v2);
 
 		int pos = getPlaneCentroidPosition(plane, bbox);
 		
@@ -3425,7 +3158,6 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 		time_t startTime = clock();
 #endif
 
-		//Reference* inIdx = getTriIdxPtr(s_task[threadIdx.y].triIdxCtr);
 		Reference* inIdx = getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, triEnd-triStart);
 		int triPos = triStart + subtaskFirst*WARP_SIZE*BIN_MULTIPLIER;
 		int triLast = min(triStart + subtaskLast*WARP_SIZE*BIN_MULTIPLIER, triEnd);
@@ -3450,10 +3182,8 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 			int tIdx;
 
 			taskFetchReference((CUdeviceptr)inIdx, triPos, tbox, tIdx);
-			//printf("fetch: %i %i | %f %f %f %f %f %f\n", triPos, tIdx, tbox.m_mn.x, tbox.m_mn.y, tbox.m_mn.z, tbox.m_mx.x, tbox.m_mx.y, tbox.m_mx.z);
 
 			int pos = getPlaneCentroidPositionHitMiss(plane, tbox);
-			//int pos = getPlaneCentroidPosition(plane, *((float3*)&s_task[threadIdx.y].v0), *((float3*)&s_task[threadIdx.y].v1), *((float3*)&s_task[threadIdx.y].v2), tbox);
 
 			if(abs(pos) == 2) // plane intersects triangle's bounding box
 			{
@@ -3465,42 +3195,8 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 #else
 				computeCutBoxes(plane, tbox, leftBox, rightBox);
 #endif
-/*
-				if(leftBox.m_mn.x < bbox.m_mn.x)
-					printf("notgut");
-				if(leftBox.m_mn.y < bbox.m_mn.y)
-					printf("notgut");
-				if(leftBox.m_mn.z < bbox.m_mn.z)
-					printf("notgut");
-				if(rightBox.m_mn.x < bbox.m_mn.x)
-					printf("notgut");
-				if(rightBox.m_mn.y < bbox.m_mn.y)
-					printf("notgut");
-				if(rightBox.m_mn.z < bbox.m_mn.z)
-					printf("notgut");
-
-				if(leftBox.m_mx.x > bbox.m_mx.x)
-					printf("notgut");
-				if(leftBox.m_mx.y > bbox.m_mx.y)
-					printf("notgut");
-				if(leftBox.m_mx.z > bbox.m_mx.z)
-					printf("notgut");
-				if(rightBox.m_mx.x > bbox.m_mx.x)
-					printf("notgut");
-				if(rightBox.m_mx.y > bbox.m_mx.y)
-					printf("notgut");
-				if(rightBox.m_mx.z > bbox.m_mx.z)
-					printf("notgut");
-					*/
-
 				spatCntLeft++;
 				spatCntRight++;
-
-				//printf("pos==2 | bbox clipping: plane %.3f %.3f %.3f %.3f | tri %i [%.3f %.3f %.3f] [%.3f %.3f %.3f] [%.3f %.3f %.3f] tribox %.3f %.3f %.3f %.3f %.3f %.3f | left %.3f %.3f %.3f %.3f %.3f %.3f | right %.3f %.3f %.3f %.3f %.3f %.3f |\n", 
-				//	plane.x, plane.y, plane.z, plane.w, tIdx, v0.x, v0.y, v0.z, v1.x, v1.y, v1.z, v2.x, v2.y, v2.z, 
-				//	tbox.m_mn.x, tbox.m_mn.y, tbox.m_mn.z, tbox.m_mx.x, tbox.m_mx.y, tbox.m_mx.z,
-				//	leftBox.m_mn.x, leftBox.m_mn.y, leftBox.m_mn.z, leftBox.m_mx.x, leftBox.m_mx.y, leftBox.m_mx.z,
-				//	rightBox.m_mn.x, rightBox.m_mn.y, rightBox.m_mn.z, rightBox.m_mx.x, rightBox.m_mx.y, rightBox.m_mx.z);
 
 				spatBboxLeft.m_mn = fminf(spatBboxLeft.m_mn, leftBox.m_mn/*-c_env.epsilon*/);
 				spatBboxLeft.m_mx = fmaxf(spatBboxLeft.m_mx, leftBox.m_mx/*+c_env.epsilon*/);
@@ -3515,14 +3211,11 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 				bboxLeft.m_mx = fmaxf(bboxLeft.m_mx, tbox.m_mx/*+c_env.epsilon*/);
 				cntLeft++;
 
-				//printf("pos<0 %f %f %f %f %f %f\n", bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z, bboxLeft.m_mx.x, bboxLeft.m_mx.y, bboxLeft.m_mx.z);
-
 				if(pos == -1)
 				{
 					spatBboxLeft.m_mn = fminf(spatBboxLeft.m_mn, tbox.m_mn/*-c_env.epsilon*/);
 					spatBboxLeft.m_mx = fmaxf(spatBboxLeft.m_mx, tbox.m_mx/*+c_env.epsilon*/);
 					spatCntLeft++;
-					//printf("--- %f %f %f %f %f %f\n", spatBboxLeft.m_mn.x, spatBboxLeft.m_mn.y, spatBboxLeft.m_mn.z, spatBboxLeft.m_mx.x, spatBboxLeft.m_mx.y, spatBboxLeft.m_mx.z);
 				}
 			}
 			else
@@ -3531,14 +3224,11 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 				bboxRight.m_mx = fmaxf(bboxRight.m_mx, tbox.m_mx/*+c_env.epsilon*/);
 				cntRight++;
 
-				//printf("pos>0 %f %f %f %f %f %f\n", bboxRight.m_mn.x, bboxRight.m_mn.y, bboxRight.m_mn.z, bboxRight.m_mx.x, bboxRight.m_mx.y, bboxRight.m_mx.z);
-
 				if(pos == 1)
 				{
 					spatBboxRight.m_mn = fminf(spatBboxRight.m_mn, tbox.m_mn/*-c_env.epsilon*/);
 					spatBboxRight.m_mx = fmaxf(spatBboxRight.m_mx, tbox.m_mx/*+c_env.epsilon*/);
 					spatCntRight++;
-					//printf("--- %f %f %f %f %f %f\n", spatBboxRight.m_mn.x, spatBboxRight.m_mn.y, spatBboxRight.m_mn.z, spatBboxRight.m_mx.x, spatBboxRight.m_mx.y, spatBboxRight.m_mx.z);
 				}
 			}
 		}
@@ -3703,18 +3393,6 @@ __device__ void binTrianglesAtomic(int tid, int subtaskFirst, int subtaskLast, i
 				split->children[1].cnt = spatCntRight;
 			}
 		}
-
-#ifdef TIMING
-			time_t timeEnd = clock();
-			if(threadIdx.x == 0)
-			printf("bin atomic \t\t\t\t%lli\n", timeEnd - startTime);
-#endif
-
-		//if(areaAABB(bboxLeft) < 0 || areaAABB(bboxRight) < 0)
-		//printf("l = %i %f %f %f %f %f %f r = %i %f %f %f %f %f %f\n", split->children[0].cnt, bboxLeft.m_mn.x, bboxLeft.m_mn.y, bboxLeft.m_mn.z,
-		//		bboxLeft.m_mx.x, bboxLeft.m_mx.y, bboxLeft.m_mx.z, split->children[1].cnt, bboxRight.m_mn.x, bboxRight.m_mn.y, bboxRight.m_mn.z,
-		//		bboxRight.m_mx.x, bboxRight.m_mx.y, bboxRight.m_mx.z);
-
 	}
 }
 #endif // BINNING_TYPE == 2
@@ -3730,12 +3408,7 @@ __device__ int classifyTri(int tid, int subtask, int start, int end, volatile co
 	int tripos = start + subtask*WARP_SIZE + tid;
 	if(tripos < end)
 	{
-		//int triidx = (getTriIdxPtr(s_task[threadIdx.y].triIdxCtr))[tripos]*3;
 		Reference* inIdx = getTriIdxPtr(s_task[threadIdx.y].dynamicMemory, end-start);
-
-		// Fetch triangle
-		//float3 v0, v1, v2;
-		//taskFetchTri(c_bvh_in.tris, triidx, v0, v1, v2);
 
 		// Test that all triangles are inside the bounding box
 #ifdef BBOX_TEST
@@ -3759,13 +3432,6 @@ __device__ int classifyTri(int tid, int subtask, int start, int end, volatile co
 		int dummyIdx;
 		taskFetchReference((CUdeviceptr)inIdx, tripos, tbox, dummyIdx);
 		int pos = getPlaneCentroidPosition(*((float4*)&splitPlane), tbox);
-
-		/*float4 plane; // Without typecast, possible data copy
-		plane.x = splitPlane.x;
-		plane.y = splitPlane.y;
-		plane.z = splitPlane.z;
-		plane.w = splitPlane.w;
-		int pos = getPlanePosition(plane, v0, v1, v2);*/
 
 #if SCAN_TYPE == 3
 		// Write to auxiliary array
@@ -3954,8 +3620,6 @@ __device__ __noinline__ void computePartition()
 	Reference* outIdxLeft = getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryLeft, 0);
 	Reference* outIdxRight = getTriIdxPtr(s_task[threadIdx.y].dynamicMemoryRight, 0);
 
-	//s_owner[threadIdx.y][0] = triStart;
-	//s_owner[threadIdx.y][1] = triEnd;
 	s_owner[threadIdx.y][0] = 0;
 	s_owner[threadIdx.y][1] = 0;
 
@@ -3969,12 +3633,6 @@ __device__ __noinline__ void computePartition()
 		int triSum = min(triEnd - (triStart + popSubtask*WARP_SIZE), WARP_SIZE); // Triangles to process
 		if(triPos < triEnd && !medianSplit)
 		{
-			//triIdx = inIdx[triPos];
-			//triIdx = triPos;
-
-			// Fetch triangle
-			//float3 v0, v1, v2;
-			//taskFetchTri(c_bvh_in.tris, triIdx*3, v0, v1, v2);
 
 			// Test that all triangles are inside the bounding box
 #ifdef BBOX_TEST
@@ -3997,10 +3655,7 @@ __device__ __noinline__ void computePartition()
 			CudaAABB tbox;
 			int tIdx;
 
-			//printf("preFetch, Plane=%f %f %f %f\n", s_task[threadIdx.y].splitPlane.x, s_task[threadIdx.y].splitPlane.y, s_task[threadIdx.y].splitPlane.z, s_task[threadIdx.y].splitPlane.w);
 			taskFetchReference((CUdeviceptr)inIdx, triPos, tbox, tIdx);
-			//printf("%p postFetch | %i | %i | %i | %f %f %f %f %f %f\n", (CUdeviceptr)inIdx, tid, triPos, tIdx, tbox.m_mn.x, tbox.m_mn.y, tbox.m_mn.z, tbox.m_mx.x, tbox.m_mx.y, tbox.m_mx.z);
-
 			pos = getPlaneCentroidPositionHitMiss(*((float4*)&s_task[threadIdx.y].splitPlane), tbox);
 
 			if(!spatialSplit) // object split, do not split references
@@ -4027,17 +3682,7 @@ __device__ __noinline__ void computePartition()
 				leftClipped = tbox;
 				rightClipped = tbox;
 			}
-			//printf("%i pos=%i\n", tid, pos);
-			//pos = getPlaneCentroidPosition(*((float4*)&s_task[threadIdx.y].splitPlane), tbox);
 		}
-
-#ifdef MYDEBUG
-		printf("pos = %i\n", pos);
-#endif
-		
-		// Partition the triangles to the left and right children intervals
-
-		// Scan the number of triangles to the left of the splitting plane
 
 		if(medianSplit && triPos < triEnd && triPos % 2 == 0)
 			pos = -1;
@@ -4048,34 +3693,13 @@ __device__ __noinline__ void computePartition()
 		int exclusiveScan = threadPosWarp(tid, s_sharedData[threadIdx.y], pos == -1 || abs(pos) == 2, triCnt);
 
 		if(!singleWarp && tid == 0 && triCnt > 0)
-			s_owner[threadIdx.y][0] = atomicAdd(&g_taskStackBVH.tasks[popTaskIdx].triLeft, triCnt); // Add the number of triangles to the left of the plane to the global counter
+			s_owner[threadIdx.y][0] = atomicAdd(&g_taskStackSBVH.tasks[popTaskIdx].triLeft, triCnt); // Add the number of triangles to the left of the plane to the global counter
 
 		// Find the output position for each thread as the sum of the output position and the exclusive scanned value
 		if(pos == -1 || abs(pos) == 2)
 		{
 			outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan].bbox = leftClipped;
 			outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan].idx = inIdx[triPos].idx;
-			/*
-			if(pos == -1)
-			{
-				outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan] = inIdx[triPos];
-				//printf("%i Left %i (triIdx=%i)\n", tid, s_owner[threadIdx.y][0] + exclusiveScan, inIdx[triPos].idx);
-
-			}
-			else
-			{
-				outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan].bbox = leftClipped;
-				outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan].idx = inIdx[triPos].idx;
-				/*
-				Reference ref;
-				ref.bbox = leftClipped;
-				ref.idx = inIdx[triPos].idx;
-				outIdxLeft[s_owner[threadIdx.y][0] + exclusiveScan] = ref;
-				*/
-				//printf("%i Left clipped %i (triIdx=%i) bbox: %f %f %f | %f %f %f\n", tid, s_owner[threadIdx.y][0] + exclusiveScan, inIdx[triPos].idx, leftClipped.m_mn.x, leftClipped.m_mn.y, leftClipped.m_mn.z, 
-				//	leftClipped.m_mx.x, leftClipped.m_mx.y, leftClipped.m_mx.z);
-
-			//}
 		}
 		s_owner[threadIdx.y][0] += triCnt; // Move the position by the number of written nodes
 
@@ -4083,30 +3707,13 @@ __device__ __noinline__ void computePartition()
 		int inverseExclusiveScan = threadPosWarp(tid, s_sharedData[threadIdx.y], pos == 1 || abs(pos) == 2, triCnt); // The scan of the number of triangles to the right of the splitting plane
 		
 		if(!singleWarp && tid == 0 && triCnt > 0)
-			s_owner[threadIdx.y][1] = atomicAdd(&g_taskStackBVH.tasks[popTaskIdx].triRight, triCnt); // Add the number of triangles to the right of the plane to the global counter
+			s_owner[threadIdx.y][1] = atomicAdd(&g_taskStackSBVH.tasks[popTaskIdx].triRight, triCnt); // Add the number of triangles to the right of the plane to the global counter
 
 		// Find the output position for each thread as the output position minus the triangle count plus the scanned value
 		if(pos == 1 || abs(pos) == 2)
 		{
 			outIdxRight[s_owner[threadIdx.y][1] + inverseExclusiveScan].bbox = rightClipped;
 			outIdxRight[s_owner[threadIdx.y][1] + inverseExclusiveScan].idx = inIdx[triPos].idx;
-			/*
-			if(pos == 1)
-			{
-				outIdxRight[s_owner[threadIdx.y][1] + inverseExclusiveScan] = inIdx[triPos];
-				//printf("%i Right (%p) %i = %i + %i (triIdx=%i)\n", tid, outIdxRight, s_owner[threadIdx.y][1] + inverseExclusiveScan, s_owner[threadIdx.y][1], inverseExclusiveScan, inIdx[triPos].idx);
-			}
-			else
-			{
-				Reference ref;
-				ref.bbox = rightClipped;
-				ref.idx = inIdx[triPos].idx;
-				outIdxRight[s_owner[threadIdx.y][1] + inverseExclusiveScan] = ref;
-				//printf("%i Right clipped %i (triIdx=%i) bbox: %f %f %f | %f %f %f\n", tid, s_owner[threadIdx.y][1] + inverseExclusiveScan, inIdx[triPos].idx, rightClipped.m_mn.x, rightClipped.m_mn.y, rightClipped.m_mn.z, 
-				//	rightClipped.m_mx.x, rightClipped.m_mx.y, rightClipped.m_mx.z);
-
-			}
-			*/
 		}
 		s_owner[threadIdx.y][1] += triCnt; // Move the position by the number of written nodes
 
@@ -4116,8 +3723,8 @@ __device__ __noinline__ void computePartition()
 	// Write out the final positions
 	if(singleWarp)
 	{
-		g_taskStackBVH.tasks[popTaskIdx].triLeft = s_owner[threadIdx.y][0];
-		g_taskStackBVH.tasks[popTaskIdx].triRight = s_owner[threadIdx.y][1];
+		g_taskStackSBVH.tasks[popTaskIdx].triLeft = s_owner[threadIdx.y][0];
+		g_taskStackSBVH.tasks[popTaskIdx].triRight = s_owner[threadIdx.y][1];
 	}
 
 #ifdef MYDEBUG
@@ -4149,7 +3756,7 @@ __device__ __noinline__ void computePartition()
 	int triCnt = s_sharedData[threadIdx.y][WARP_SIZE-1];
 
 	if(tid == 0 && triCnt > 0)
-		s_owner[threadIdx.y][0] = atomicAdd(&g_taskStackBVH.tasks[popTaskIdx].triLeft, triCnt); // Add the number of triangles to the left of the plane to the global counter
+		s_owner[threadIdx.y][0] = atomicAdd(&g_taskStackSBVH.tasks[popTaskIdx].triLeft, triCnt); // Add the number of triangles to the left of the plane to the global counter
 	int warpAtomicLeft = s_owner[threadIdx.y][0];
 
 	s_sharedData[threadIdx.y][tid] = cntRight;
@@ -4157,7 +3764,7 @@ __device__ __noinline__ void computePartition()
 	triCnt = s_sharedData[threadIdx.y][WARP_SIZE-1];
 
 	if(tid == 0 && triCnt > 0)
-		s_owner[threadIdx.y][0] = atomicSub(&g_taskStackBVH.tasks[popTaskIdx].triRight, triCnt); // Add the number of triangles to the right of the plane to the global counter
+		s_owner[threadIdx.y][0] = atomicSub(&g_taskStackSBVH.tasks[popTaskIdx].triRight, triCnt); // Add the number of triangles to the right of the plane to the global counter
 	int warpAtomicRight = s_owner[threadIdx.y][0];
 
 	popSubtask = popStart; // Sweep the interval once more
@@ -5243,7 +4850,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(red[tid] < s_task[threadIdx.y].bbox.m_mn.x)
 			{
 				printf("Min x step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackSBVH.unfinished = 1;
 			}
 #endif
 
@@ -5256,7 +4863,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(red[tid] < s_task[threadIdx.y].bbox.m_mn.y)
 			{
 				printf("Min y step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackSBVH.unfinished = 1;
 			}
 #endif
 
@@ -5269,7 +4876,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(red[tid] < s_task[threadIdx.y].bbox.m_mn.z)
 			{
 				printf("Min z step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackSBVH.unfinished = 1;
 			}
 #endif
 		}
@@ -5288,7 +4895,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(red[tid] > s_task[threadIdx.y].bbox.m_mx.x)
 			{
 				printf("Max x step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackSBVH.unfinished = 1;
 			}
 #endif
 
@@ -5301,7 +4908,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(red[tid] > s_task[threadIdx.y].bbox.m_mx.y)
 			{
 				printf("Max y step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackSBVH.unfinished = 1;
 			}
 #endif
 
@@ -5314,7 +4921,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(red[tid] > s_task[threadIdx.y].bbox.m_mx.z)
 			{
 				printf("Max z step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackSBVH.unfinished = 1;
 			}
 #endif
 		}
@@ -5333,7 +4940,7 @@ __device__ void reduceBins(int tid, int subtask, int taskIdx, int step)
 			if(redI[tid] > s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart)
 			{
 				printf("Count step0 bound error task %d!\n", taskIdx);
-				g_taskStackBVH.unfinished = 1;
+				g_taskStackSBVH.unfinished = 1;
 			}
 #endif
 		}
@@ -5452,9 +5059,9 @@ __device__ __noinline__ void computeObjectSplitTree()
 			taskUpdateParentPtr(g_bvh, parentIdx, taskID, ~nodeIdx); // Mark this node as leaf in the hierarchy	
 #ifdef COUNT_NODES
 			// Beware this node has a preallocated space and is thus also counted as an inner node
-			atomicAdd(&g_taskStackBVH.numNodes, 1);
-			atomicAdd(&g_taskStackBVH.numLeaves, 1);
-			atomicAdd(&g_taskStackBVH.numSortedTris, triEnd - triStart);
+			atomicAdd(&g_taskStackSBVH.numNodes, 1);
+			atomicAdd(&g_taskStackSBVH.numLeaves, 1);
+			atomicAdd(&g_taskStackSBVH.numSortedTris, triEnd - triStart);
 			//printf("Split Leaf (%d, %d)\n", triStart, triEnd);
 #endif
 		}
@@ -5615,7 +5222,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 #ifdef COUNT_NODES
 				// Beware the node count must still be updated
 				if(tid == segmentStart)
-					atomicAdd(&g_taskStackBVH.numNodes, 1);
+					atomicAdd(&g_taskStackSBVH.numNodes, 1);
 #endif
 			}
 		}
@@ -5639,7 +5246,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 		if(tid == 0 && nodeCount != 0)
 		{
 			// Inner node -> create new subtasks in the final array
-			nodeOffset = atomicAdd(&g_taskStackBVH.nodeTop, nodeCount);
+			nodeOffset = atomicAdd(&g_taskStackSBVH.nodeTop, nodeCount);
 		}
 		// Compute the positions of new children
 		childrenCount = __shfl(childrenCount, segmentStart); // Broadcast children count from the segment start
@@ -5781,9 +5388,9 @@ __device__ __noinline__ void computeObjectSplitTree()
 
 	if(tid == 0)
 	{
-		atomicAdd(&g_taskStackBVH.numNodes, leafCount-1);
-		atomicAdd(&g_taskStackBVH.numSortedTris, __log2f(leafCount)*(s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart));
-		atomicAdd(&g_taskStackBVH.numLeaves, leafCount);
+		atomicAdd(&g_taskStackSBVH.numNodes, leafCount-1);
+		atomicAdd(&g_taskStackSBVH.numSortedTris, __log2f(leafCount)*(s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart));
+		atomicAdd(&g_taskStackSBVH.numLeaves, leafCount);
 	}
 #endif
 #else
@@ -5801,13 +5408,13 @@ __device__ __noinline__ void computeObjectSplitTree()
 	if(tid == 0)
 	{
 		// Leaf -> create new triangles in the final array
-		triOffset = atomicAdd(&g_taskStackBVH.triTop, bufferSize);
+		triOffset = atomicAdd(&g_taskStackSBVH.triTop, bufferSize);
 
 #ifdef COUNT_NODES
 		int cntSegments = bufferSize-3*end; // Subtract size of triangle data to get the number of segments (leaves)
-		atomicAdd(&g_taskStackBVH.numNodes, cntSegments-1);
-		atomicAdd(&g_taskStackBVH.numSortedTris, __log2f(cntSegments)*(s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart));
-		atomicAdd(&g_taskStackBVH.numLeaves, cntSegments);
+		atomicAdd(&g_taskStackSBVH.numNodes, cntSegments-1);
+		atomicAdd(&g_taskStackSBVH.numSortedTris, __log2f(cntSegments)*(s_task[threadIdx.y].triEnd - s_task[threadIdx.y].triStart));
+		atomicAdd(&g_taskStackSBVH.numLeaves, cntSegments);
 #endif
 	}
 	triPosition = __shfl(triOffset, 0) + triPosition;
@@ -5866,7 +5473,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 		//printf("Segment %d: Parent %d <- node %d (%d)!\n", segmentStart, parentIdx, triPosition, taskID);
 		taskUpdateParentPtr(g_bvh, parentIdx, taskID, ~triPosition); // Mark this node as leaf in the hierarchy
 #ifdef LEAF_HISTOGRAM
-		atomicAdd(&g_taskStackBVH.leafHist[segmentEnd-segmentStart], 1); // Update histogram
+		atomicAdd(&g_taskStackSBVH.leafHist[segmentEnd-segmentStart], 1); // Update histogram
 #endif
 	}
 #endif // COMPACT_LAYOUT
@@ -5883,7 +5490,7 @@ __device__ __noinline__ void computeObjectSplitTree()
 
 #ifdef SNAPSHOT_POOL
 // Constantly take snapshots of the pool
-__device__ void snapshot(int tid, int* header, volatile TaskBVH* tasks, int *unfinished, int *stackTop, volatile int* img, volatile int* red)
+__device__ void snapshot(int tid, int* header, volatile TaskSBVH* tasks, int *unfinished, int *stackTop, volatile int* img, volatile int* red)
 {
 	int counter = 0; // TESTING ONLY: Allows to undeadlock a failed run!
 	int beg = 0;
@@ -6029,7 +5636,7 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 	int warpIdx = blockDim.y*blockIdx.x + threadIdx.y; // Warp ID
 	if(warpIdx == 0)
 	{
-		snapshot(tid, g_taskStackBVH.header, g_taskStackBVH.tasks, &g_taskStackBVH.unfinished, &g_taskStackBVH.top, (volatile int*)&s_task[threadIdx.y], (volatile int*)s_sharedData[threadIdx.y]);
+		snapshot(tid, g_taskStackSBVH.header, g_taskStackSBVH.tasks, &g_taskStackSBVH.unfinished, &g_taskStackSBVH.top, (volatile int*)&s_task[threadIdx.y], (volatile int*)s_sharedData[threadIdx.y]);
 		return;
 	}
 #endif
@@ -6057,7 +5664,7 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 		{
 			// Copy first cache line of task to shared memory
 			//taskLoadFirstFromGMEM(tid, s_task[threadIdx.y].popTaskIdx, &s_task[threadIdx.y]);
-			TaskBVH* g_task = &g_taskStackBVH.tasks[s_task[threadIdx.y].popTaskIdx];
+			TaskSBVH* g_task = &g_taskStackSBVH.tasks[s_task[threadIdx.y].popTaskIdx];
 			taskAddr[tid] = ((int*)g_task)[tid]; // Every thread copies one word of task data
 #ifdef DEBUG_INFO
 			int offset = 128/sizeof(int); // 128B offset
@@ -6078,7 +5685,7 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 			info.popCount = s_task[threadIdx.y].popCount;
 			info.depth = s_task[threadIdx.y].depth;
 			info.idx = s_task[threadIdx.y].nodeIdx;
-			info.stackTop = *((int*)&g_taskStackBVH.top);
+			info.stackTop = *((int*)&g_taskStackSBVH.top);
 			info.clockSearch = *(long long int*)&(s_sharedData[threadIdx.y][4]);
 			info.clockDequeue = clock64();
 #endif
@@ -6094,7 +5701,7 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 			{
 				printf("warpId %d\n", blockDim.y*blockIdx.x + threadIdx.y);
 				printf("task s_task[threadIdx.y].popTaskIdx: %d\n", s_task[threadIdx.y].popTaskIdx);
-				printf("Global unfinished: %d\n", g_taskStackBVH.warpCounter);
+				printf("Global unfinished: %d\n", g_taskStackSBVH.warpCounter);
 				//printf("Header: %d\n", s_task[threadIdx.y].popSubtask);
 				printf("Unfinished: %d\n", s_task[threadIdx.y].unfinished);
 				printf("Type: %d\n", s_task[threadIdx.y].type);
@@ -6122,7 +5729,7 @@ extern "C" __global__ void __launch_bounds__(NUM_THREADS, NUM_BLOCKS_PER_SM) bui
 		case TaskType_InitMemory:
 			do {
 				// Initialize the task by copying it from the end of the array
-				int *orig = ((int*)&g_redSplits[g_taskStackBVH.sizePool])+s_task[threadIdx.y].popSubtask*WARP_SIZE;
+				int *orig = ((int*)&g_redSplits[g_taskStackSBVH.sizePool])+s_task[threadIdx.y].popSubtask*WARP_SIZE;
 				int *split = ((int*)&g_redSplits[s_task[threadIdx.y].popTaskIdx])+s_task[threadIdx.y].popSubtask*WARP_SIZE;
 				split[tid] = orig[tid]; // Each thread copies 1 int-sized variable
 

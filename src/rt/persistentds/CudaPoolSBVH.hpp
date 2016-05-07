@@ -45,14 +45,14 @@
 
 #define CUDA_MALLOC 0 // Default CUDA allocator
 #define ATOMIC_MALLOC 1 // Allocate memory by just atomically adding an offset
-#define ATOMIC_MALLOC_CIRCULAR 2 // Circular variant of atomic malloc
+//#define ATOMIC_MALLOC_CIRCULAR 2 // Circular variant of atomic malloc
 #define CIRCULAR_MALLOC 3 // Allocator that used a linked list in global heap
-#define CIRCULAR_MALLOC_FUSED 4 // Allocator that used a linked list in global heap and fuses the lock and next pointer
-#define CIRCULAR_MULTI_MALLOC 5 // Allocator that used a linked list in global heap and multiple heap offsets
-#define CIRCULAR_MULTI_MALLOC_FUSED 6 // Allocator that used a linked list in global heap, multiple heap offsets and fuses the lock and next pointer
+//#define CIRCULAR_MALLOC_FUSED 4 // Allocator that used a linked list in global heap and fuses the lock and next pointer
+//#define CIRCULAR_MULTI_MALLOC 5 // Allocator that used a linked list in global heap and multiple heap offsets
+//#define CIRCULAR_MULTI_MALLOC_FUSED 6 // Allocator that used a linked list in global heap, multiple heap offsets and fuses the lock and next pointer
 #define SCATTER_ALLOC 7 // Use ScatterAlloc for allocations
-#define FDG_MALLOC 8 // Use FDG for allocations
-#define HALLOC 9 // Use Halloc for allocations
+//#define FDG_MALLOC 8 // Use FDG for allocations
+//#define HALLOC 9 // Use Halloc for allocations
 
 // NOTICE: Due to the unknown base of CudaMalloc CUDA_MALLOC, FDG_MALLOC and HALLOC allocators may be unstable
 #define MALLOC_TYPE CIRCULAR_MALLOC
@@ -103,6 +103,8 @@
 // BVH data structures
 //------------------------------------------------------------------------
 
+namespace SBVH
+{
 struct KernelInputSBVH
 {
 	int             numTris;        // Total number of tris.
@@ -123,12 +125,10 @@ struct KernelInputSBVH
 
 // BEWARE THAT STRUCT ALIGNMENT MAY INCREASE THE DATA SIZE AND BREAK 1 INSTRUCTION LOAD/STORE
 // CURRENT ORDER ENSURES THAT splitPlane AND bbox ARE ALIGNED TO 16B
-struct __align__(128) TaskBVH
+struct __align__(128) TaskSBVH
 {
     int       unfinished;        // Counts the number of unfinished sub tasks
     int       type;              // Type of work to be done
-	//int       depend1;           // Index to the first task dependent on this one, -1 is pointer to TaskStack::unfinished, -2 is empty link
-	//int       depend2;           // Index to the second task dependent on this one, -1 is pointer to TaskStack::unfinished, -2 is empty link
 	int       dynamicMemoryLeft; // Chunk of dynamic memory given to the left child as offset from g_heapBase
 	int       dynamicMemoryRight;// Chunk of dynamic memory given to the right child as offset from g_heapBase
 
@@ -188,9 +188,9 @@ struct __align__(128) TaskBVH
 //------------------------------------------------------------------------
 
 // A work queue divided into two arrays with same indexing and other auxiliary global data
-struct TaskStackBVH : public TaskStackBase
+struct TaskStackSBVH : public TaskStackBase
 {
-	TaskBVH      *tasks;               // Holds task data
+	TaskSBVH	 *tasks;               // Holds task data
 	int          nodeTop;              // Top of the node array
 	int          triTop;               // Top of the triangle array
 	unsigned int numSortedTris;        // Number of inner nodes emited
@@ -238,7 +238,9 @@ struct SplitArray
 	SplitRed spatialSplits[PLANE_COUNT]; // Same here :)
 };
 #endif
+}//namespace SBVH
 
+using namespace SBVH;
 #ifdef __CUDACC__
 //------------------------------------------------------------------------
 // Common data items.
@@ -274,7 +276,7 @@ extern "C" __global__ void build(void);        // Launched for each batch of ray
 // Task queue globals.
 //------------------------------------------------------------------------
 
-__device__ TaskStackBVH g_taskStackBVH;   // Task queue variable
+__device__ TaskStackSBVH g_taskStackSBVH;   // Task queue variable
 __device__ SplitArray *g_redSplits;   // Split stack head
 __device__ CudaBVHNode *g_bvh;   // Split stack head
 #endif

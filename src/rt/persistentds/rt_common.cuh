@@ -227,6 +227,7 @@ struct RtEnvironment
 	int   childLimit;
 	int   subtreeLimit;
 	float subdivThreshold;
+	int	  optMaxDepthSpatialSplit;
 };
 
 #ifdef __CUDACC__

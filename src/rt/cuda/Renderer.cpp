@@ -31,13 +31,8 @@
 #include "io/File.hpp"
 #include "bvh/HLBVH/HLBVHBuilder.hpp"
 
-#define SBVH
-
-#ifndef SBVH
 #include "persistentds/CudaPersistentBVHBuilder.hpp"
-#else
 #include "persistentds/CudaPersistentSBVHBuilder.hpp"
-#endif
 #include "persistentds/CudaPersistentKdtreeBuilder.hpp"
 
 #include "3d/Light.hpp"
@@ -272,12 +267,12 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 	{
 		if (builder == "PersistentBVH")
 		{
-#ifndef SBVH
 			m_accelStruct = new CudaPersistentBVHBuilder(*m_scene, FLT_EPSILON);
 			((CudaPersistentBVHBuilder*)m_accelStruct)->resetBuffers(true);
 			float time = ((CudaPersistentBVHBuilder*)m_accelStruct)->build();
 			((CudaPersistentBVHBuilder*)m_accelStruct)->resetBuffers(false);
 
+			/*
 			printf("Build time: %f\n", time);
 			BvhInspector ins((CudaBVH*)m_accelStruct);
 			float sah = 0.f;
@@ -290,15 +285,16 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			printf("INodes: %i LNodes: %i, max depth: %i\n", stats.numInnerNodes, stats.numLeafNodes, stats.maxDepth);
 			printf("Overlap SA: %f", stats.overlapSA);
 			fflush(stdout);
-#endif
+			*/
 		}
 		else if(builder == "PersistentSBVH")
 		{
-#ifdef SBVH
 			m_accelStruct = new CudaPersistentSBVHBuilder(*m_scene, FLT_EPSILON);
 			((CudaPersistentSBVHBuilder*)m_accelStruct)->resetBuffers(true);
 			float time = ((CudaPersistentSBVHBuilder*)m_accelStruct)->build();
+			((CudaPersistentSBVHBuilder*)m_accelStruct)->resetBuffers(false);
 
+			/*
 			FW::U32 allocNum;
 			FW::F32 allocSum;
 			FW::F32 allocSquare;
@@ -322,9 +318,7 @@ CudaAS* Renderer::getCudaBVH(GLContext* gl, const CameraControls& camera)
 			if(forced != 0)
 				printf("Forced median splits: %u, %f", forced, (float)allocNum/forced);
 			fflush(stdout);
-
-			((CudaPersistentSBVHBuilder*)m_accelStruct)->resetBuffers(false);
-#endif
+			*/
 		}
 		else
 		{

@@ -1804,8 +1804,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 
 			s_owner[threadIdx.y][0] = -1; // Mark as no split
 			// Return the best plane for this warp
-			if(false)
-			//if(__ffs(__ballot(red[tid] == cost)) == tid+1) // First thread with such condition, OPTIMIZE: Can be also computed by overwrite and test: better?
+			if(__ffs(__ballot(red[tid] == cost)) == tid+1) // First thread with such condition, OPTIMIZE: Can be also computed by overwrite and test: better?
 			{
 				s_task[threadIdx.y].splitPlane.x = plane.x;
 				s_task[threadIdx.y].splitPlane.y = plane.y;
@@ -1835,7 +1834,7 @@ __device__ void taskFinishBinning(int tid, int taskIdx, int countDown)
 			}*/
 			if(tid < 2*sizeof(CudaAABB)/sizeof(float))
 			{
-				bboxCpy[tid] = bbox[tid];
+				bboxCpy[tid % 6] = bbox[tid % 6];
 			}
 
 			s_task[threadIdx.y].type = taskChooseScanType(s_task[threadIdx.y].unfinished);

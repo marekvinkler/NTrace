@@ -163,6 +163,7 @@ void AppEnvironment::RegisterOptions()
 	RegisterOption("PersistentSBVH.triMaxLimit", optInt, "persistent_sbvh_triMaxLimit=", "16");
 	RegisterOption("PersistentSBVH.maxDepth", optInt, "persistent_sbvh_maxDepth=", "50");
 
+	RegisterOption("PersistentSBVH.maxDepthSpatialSplit", optInt, "persistent_sbvh_maxDepthSpatialSplit=", "48");
 	/*************************************************************************/
 	/*    Persistent KDTree                                                  */
 	/*************************************************************************/

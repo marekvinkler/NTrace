@@ -17,6 +17,8 @@ using namespace FW;
 
 #include <cuda_profiler_api.h>
 
+using namespace SBVH;
+
 
 //------------------------------------------------------------------------
 
@@ -804,7 +806,7 @@ F32 CudaPersistentSBVHBuilder::build()
 	m_timer.start();
 
 	// Create the taskData
-	m_taskData.resizeDiscard(TASK_SIZE * (sizeof(TaskBVH) + sizeof(int)));
+	m_taskData.resizeDiscard(TASK_SIZE * (sizeof(TaskSBVH) + sizeof(int)));
 	m_taskData.setOwner(Buffer::Cuda, true); // Make CUDA the owner so that CPU memory is never allocated
 #if SPLIT_TYPE >= 4 && SPLIT_TYPE <= 6
 	m_splitData.resizeDiscard((S64)(TASK_SIZE+1) * (S64)sizeof(SplitArray));
@@ -841,6 +843,8 @@ void CudaPersistentSBVHBuilder::updateConstants()
 	RtEnvironment& cudaEnv = *(RtEnvironment*)m_module->getGlobal("c_env").getMutablePtr();
 
 	Environment::GetSingleton()->GetIntValue("PersistentSBVH.maxDepth", cudaEnv.optMaxDepth);
+
+	Environment::GetSingleton()->GetIntValue("PersistentSBVH.maxDepthSpatialSplit", cudaEnv.optMaxDepthSpatialSplit);
 
 	Environment::GetSingleton()->GetFloatValue("PersistentSBVH.ci", cudaEnv.optCi);
 
@@ -880,7 +884,7 @@ void CudaPersistentSBVHBuilder::initPool(Buffer* nodeBuffer)
 #ifdef BENCHMARK
 	m_taskData.clearRange32(0, TaskHeader_Empty, TASK_SIZE * sizeof(int)); // Mark all tasks as empty
 #else
-	m_taskData.clearRange32(0, TaskHeader_Empty, TASK_SIZE * (sizeof(int)+sizeof(TaskBVH))); // Mark all tasks as empty (important for debug)
+	m_taskData.clearRange32(0, TaskHeader_Empty, TASK_SIZE * (sizeof(int)+sizeof(TaskSBVH))); // Mark all tasks as empty (important for debug)
 #endif
 
 	// Set texture references.
@@ -1000,7 +1004,7 @@ void CudaPersistentSBVHBuilder::printPoolHeader(TaskStackBase* tasks, int* heade
 
 //------------------------------------------------------------------------
 
-void CudaPersistentSBVHBuilder::printPool(TaskStackBVH &tasks, int numWarps)
+void CudaPersistentSBVHBuilder::printPool(TaskStackSBVH &tasks, int numWarps)
 {
 #ifdef LEAF_HISTOGRAM
 	printf("Leaf histogram\n");
@@ -1023,7 +1027,7 @@ void CudaPersistentSBVHBuilder::printPool(TaskStackBVH &tasks, int numWarps)
 	printPoolHeader(&tasks, header, numWarps, state);
 
 	Debug << "\n\nTasks" << "\n";
-	TaskBVH* task = (TaskBVH*)m_taskData.getPtr(TASK_SIZE*sizeof(int));
+	TaskSBVH* task = (TaskSBVH*)m_taskData.getPtr(TASK_SIZE*sizeof(int));
 	int stackMax = 0;
 	int maxTaskId = -1;
 	long double sumTris = 0;
@@ -1210,7 +1214,7 @@ F32 CudaPersistentSBVHBuilder::buildCuda()
 	memcpy(&bbox.m_mx, &m_bboxMax, sizeof(float3));
 
 	// Set parent task containing all the work
-	TaskBVH all;
+	TaskSBVH all;
 	all.triStart     = 0;
 	all.triLeft      = 0;
 	//all.triRight     = m_numTris;
@@ -1265,15 +1269,15 @@ F32 CudaPersistentSBVHBuilder::buildCuda()
 #endif
 	all.origSize     = all.unfinished;
 
-	m_taskData.setRange(TASK_SIZE * sizeof(int), &all, sizeof(TaskBVH)); // Set the first task
+	m_taskData.setRange(TASK_SIZE * sizeof(int), &all, sizeof(TaskSBVH)); // Set the first task
 
 	// Set parent task header
 	m_taskData.setRange(0, &all.unfinished, sizeof(int)); // Set the first task
 
 	// Prepare the task stack
-	TaskStackBVH& tasks = *(TaskStackBVH*)m_module->getGlobal("g_taskStackBVH").getMutablePtr();
+	TaskStackSBVH& tasks = *(TaskStackSBVH*)m_module->getGlobal("g_taskStackSBVH").getMutablePtr();
 	tasks.header     = (int*)m_taskData.getMutableCudaPtr();
-	tasks.tasks      = (TaskBVH*)m_taskData.getMutableCudaPtr(TASK_SIZE * sizeof(int));
+	tasks.tasks      = (TaskSBVH*)m_taskData.getMutableCudaPtr(TASK_SIZE * sizeof(int));
 	tasks.nodeTop    = 1;
 	tasks.triTop     = 0;
 	tasks.top        = 0;
@@ -1371,7 +1375,7 @@ F32 CudaPersistentSBVHBuilder::buildCuda()
 	return 0;
 #endif
 
-	tasks = *(TaskStackBVH*)m_module->getGlobal("g_taskStackBVH").getPtr();
+	tasks = *(TaskStackSBVH*)m_module->getGlobal("g_taskStackSBVH").getPtr();
 	if(tasks.unfinished != 0 || tasks.top >= tasks.sizePool || tasks.nodeTop >= m_nodes.getSize() / sizeof(CudaBVHNode) || tasks.triTop >= m_triIndex.getSize() / sizeof(S32)) // Something went fishy
 	{
 		tKernel = 1e38f;
@@ -1478,7 +1482,7 @@ void CudaPersistentSBVHBuilder::trimBuffers()
 
 void CudaPersistentSBVHBuilder::getStats(U32& nodes, U32& leaves, U32& stackTop, U32& nodeTop, U32& tris, U32& sortedTris, bool sub)
 {
-	TaskStackBVH tasks = *(TaskStackBVH*)m_module->getGlobal("g_taskStackBVH").getPtr();
+	TaskStackSBVH tasks = *(TaskStackSBVH*)m_module->getGlobal("g_taskStackSBVH").getPtr();
 
 #ifndef COUNT_NODES
 #ifndef COMPACT_LAYOUT
@@ -1533,7 +1537,7 @@ void CudaPersistentSBVHBuilder::getSizes(F32& task, F32& split, F32& ads, F32& t
 
 void CudaPersistentSBVHBuilder::getAllocStats(U32& numAllocs, F32& allocSum, F32& allocSumSquare, U32& forced)
 {
-	TaskStackBVH tasks = *(TaskStackBVH*)m_module->getGlobal("g_taskStackBVH").getPtr();
+	TaskStackSBVH tasks = *(TaskStackSBVH*)m_module->getGlobal("g_taskStackSBVH").getPtr();
 
 #ifdef COUNT_NODES
 	numAllocs = tasks.numAllocations;

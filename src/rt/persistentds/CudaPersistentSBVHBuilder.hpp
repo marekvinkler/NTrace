@@ -11,6 +11,8 @@
 
 #include <fstream>
 
+using namespace SBVH;
+
 namespace FW
 {
 
@@ -76,7 +78,7 @@ class CudaPersistentSBVHBuilder : public CudaBVH
 	void initPool(Buffer* nodeBuffer = NULL);
 	void deinitPool();
 	void printPoolHeader(TaskStackBase* tasks, int* header, int numWarps, FW::String state);
-	void printPool(TaskStackBVH& tasks, int numWarps);
+	void printPool(TaskStackSBVH& tasks, int numWarps);
 
 	void saveBufferSizes(bool ads = true, bool aux = true);
 
